@@ -1,13 +1,15 @@
 name: PR Name Lint - Conventional Commit
 on:
   pull_request:
-    types: ['opened', 'edited', 'reopened', 'synchronize']
+    types: ['opened', 'edited', 'reopened']
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
     - name: Install Dependencies
-      run: npm install @commitlint/config-conventional
+      env:
+        COMMITLINT_VERSION: $(node -pe "require('./package.json')['devDependencies']['@commitlint/config-conventional']")
+      run: npm install @commitlint/config-conventional@$COMMITLINT_VERSION
     - uses: JulienKode/pull-request-name-linter-action@v0.5.0
