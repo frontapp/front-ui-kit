@@ -1,4 +1,4 @@
-name: pr-name-linter
+name: PR Name Lint - Conventional Commit
 on:
   pull_request:
     types: ['opened', 'edited', 'reopened', 'synchronize']
