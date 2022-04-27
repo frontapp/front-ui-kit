@@ -28,7 +28,7 @@ jobs:
           command: yarn lint
 
 workflows:
-  lint:
+  validate:
     jobs:
       - dependencies
 
