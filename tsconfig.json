@@ -4,14 +4,14 @@
     "outDir": "dist",
     "target": "ESNext",
     "module": "esnext",
-		"moduleResolution": "node",
-		"declarationDir": "dist",
+    "moduleResolution": "node",
+    "declarationDir": "dist",
     "declaration": true,
     "noEmit": false,
     "noEmitOnError": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-		"isolatedModules": true,
+    "isolatedModules": true,
     "emitDecoratorMetadata": true,
     "noUnusedLocals": true,
     "sourceMap": true,
@@ -27,10 +27,10 @@
     ],
   },
   "include": [
-		"src"
-	],
+    "src"
+  ],
   "exclude": [
-		"node_modules",
-		"dist"
-	]
+    "node_modules",
+    "dist"
+  ]
 }
