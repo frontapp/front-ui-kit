@@ -5,8 +5,23 @@
   "repository": "git@github.com:frontapp/bricks.git",
   "author": "",
   "license": "Apache-2.0",
+  "engines": {
+    "node": ">=16",
+    "npm": "please-use-yarn-instead"
+  },
+  "scripts": {
+    "build": "yarn build:dev",
+    "build:watch": "yarn build:dev --watch",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production"
+  },
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
-    "@commitlint/config-conventional": "^16.2.1"
+    "@commitlint/config-conventional": "^16.2.1",
+    "ts-loader": "^9.2.9",
+    "typescript": "^4.6.3",
+    "typescript-styled-plugin": "^0.18.2",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2"
   }
 }
