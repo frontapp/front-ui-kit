@@ -8,12 +8,12 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
-        exclude: /node_modules/,
+        exclude: /node_modules/
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
-      },
+        type: 'asset/resource'
+      }
     ],
     generator: {
       'asset/resource': {
@@ -22,11 +22,11 @@ module.exports = {
     }
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js']
   },
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist'),
-    clean: true,
-  },
+    clean: true
+  }
 };
