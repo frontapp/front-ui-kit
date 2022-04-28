@@ -11,8 +11,6 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 16
-    - name: Set Commintlint version
-      run: echo "COMMITLINT_VERSION=$(node -pe "require('./package.json')['devDependencies']['@commitlint/config-conventional']")" >> $GITHUB_ENV
     - name: Install Dependencies
-      run: npm install @commitlint/config-conventional@${{ env.COMMITLINT_VERSION }}
+      run: yarn install
     - uses: JulienKode/pull-request-name-linter-action@v0.5.0
