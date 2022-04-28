@@ -39,6 +39,7 @@ module.exports = {
     'react/no-unused-prop-types': 0,
     'react-hooks/rules-of-hooks': 2,
     'react-hooks/exhaustive-deps': 1,
+    'react/function-component-definition': [2, {namedComponents: "arrow-function"}],
     'no-trailing-spaces': 2,
     'max-classes-per-file': 0,
     'implicit-arrow-linebreak': 0,
@@ -122,6 +123,32 @@ module.exports = {
     }
   },
   overrides: [
+    /*
+     * We're disabling some rules on TS(X) files as they're
+     * redundant with what the compiler already checks for.
+     */
+    {
+      files: ['*.ts', '*.tsx'],
+      rules: {
+        'no-use-before-define': 0,
+        'no-unused-vars': 0,
+        // Allow parameter properties with otherwise empty constructors.
+        'no-useless-constructor': 0,
+        // Add constructors to the functions that are allowed to be empty.
+        'no-empty-function': ['error', {allow: ['arrowFunctions', 'functions', 'methods', 'constructors']}],
+        'react/jsx-filename-extension': 0,
+        'react/jsx-one-expression-per-line': 0,
+        'react/destructuring-assignment': 0,
+        'react/prop-types': 0,
+        'react/prefer-stateless-function': 0,
+        'react/jsx-wrap-multilines': 0,
+        'react/no-multi-comp': 0,
+        'no-restricted-globals': 0,
+        'operator-linebreak': 0,
+        'simple-import-sort/imports': 2,
+        'no-multiple-empty-lines': [2, {max: 1}]
+      }
+    },
     {
       files: [
         '**/__tests__/**/*.js',
