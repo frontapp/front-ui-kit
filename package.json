@@ -14,13 +14,31 @@
     "build:watch": "yarn build:dev --watch",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production",
-    "lint": "eslint --ext .jsx,.ts,.tsx,.js ."
+    "lint": "eslint --ext .jsx,.ts,.tsx,.js . .storybook",
+    "storybook": "start-storybook -p 6006",
+    "build:storybook": "build-storybook",
+    "chromatic": "npx chromatic -b build:storybook --exit-zero-on-changes"
+  },
+  "dependencies": {
+    "@storybook/react": "^6.4.22",
+    "@storybook/testing-library": "^0.0.11",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.9",
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
+    "@storybook/addon-actions": "^6.4.22",
+    "@storybook/addon-essentials": "^6.4.22",
+    "@storybook/addon-interactions": "^6.4.22",
+    "@storybook/addon-links": "^6.4.22",
+    "@storybook/builder-webpack5": "^6.4.22",
+    "@storybook/manager-webpack5": "^6.4.22",
     "@typescript-eslint/eslint-plugin": "^5.21.0",
     "@typescript-eslint/parser": "^5.21.0",
+    "babel-loader": "^8.2.5",
+    "chromatic": "^6.5.4",
     "eslint": "^8.14.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.26.0",
