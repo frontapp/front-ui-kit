@@ -11,7 +11,7 @@
     "noEmitOnError": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "emitDecoratorMetadata": true,
     "noUnusedLocals": true,
     "sourceMap": true,

@@ -1,4 +1,11 @@
-import FrontLogo from './assets/FrontLogo.svg';
+/*
+ * Interfaces.
+ */
 
-export const testFront = 'testFront';
-export const frontLogoSrc = FrontLogo;
+export {SelectableComponentColors} from './helpers/styleHelpers';
+
+/*
+ * Constants.
+ */
+
+export {VisualSizesEnum, fonts} from './helpers/fontHelpers';
