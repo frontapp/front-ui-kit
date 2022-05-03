@@ -1,9 +1,11 @@
 name: Build and Publish
 
 on:
-  push:
-    branches:
-      - main
+  push
+# on:
+#   push:
+#     branches:
+#       - main
 
 jobs:
   release-please:
