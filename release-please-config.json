@@ -1,0 +1,14 @@
+{
+  "command": "release-pr",
+  "release-type": "node",
+  "bump-minor-pre-major": true,
+  "bump-patch-for-minor-pre-major": true,
+  "packages": {
+    ".": {
+      "packageName": "@frontapp/ui-kit",
+      "bumpMinorPreMajor": true,
+      "bumpPatchForMinorPreMajor": true,
+      "changelogPath": "CHANGELOG.md"
+    }
+  }
+}
