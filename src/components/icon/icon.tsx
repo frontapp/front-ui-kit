@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import styled from 'styled-components';
 
 import CheckmarkCircle from '../../assets/icons/checkmarkCircle.svg';
-import CheckmarkSelected from '../../assets/icons/checkmarkSelected.svg';
+import Checkmark from '../../assets/icons/checkmarkSelected.svg';
 import ChevronDown from '../../assets/icons/chevronDown.svg';
 import ChevronLeft from '../../assets/icons/chevronLeft.svg';
 import ChevronRight from '../../assets/icons/chevronRight.svg';
@@ -10,9 +10,9 @@ import ChevronUp from '../../assets/icons/chevronUp.svg';
 import Close from '../../assets/icons/close.svg';
 import ExternalLink from '../../assets/icons/externalLink.svg';
 import Minus from '../../assets/icons/minus.svg';
-import MoreHorizontal from '../../assets/icons/moreHorizontal.svg';
-import MoreVertical from '../../assets/icons/moreVertical.svg';
-import New from '../../assets/icons/new.svg';
+import EllipsisHorizontal from '../../assets/icons/moreHorizontal.svg';
+import EllipsisVertical from '../../assets/icons/moreVertical.svg';
+import Plus from '../../assets/icons/new.svg';
 import PlusCircle from '../../assets/icons/plusCircle.svg';
 import Search from '../../assets/icons/search.svg';
 import {greys} from '../../helpers/colorHelpers';
@@ -26,7 +26,7 @@ const defaultColor = greys.shade50;
 
 const importedIcons = {
   CheckmarkCircle,
-  CheckmarkSelected,
+  CheckmarkSelected: Checkmark,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
@@ -34,9 +34,9 @@ const importedIcons = {
   Close,
   ExternalLink,
   Minus,
-  MoreHorizontal,
-  MoreVertical,
-  New,
+  EllipsisHorizontal,
+  EllipsisVertical,
+  Plus,
   PlusCircle,
   Search
 };
