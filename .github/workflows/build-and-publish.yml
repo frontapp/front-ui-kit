@@ -14,8 +14,10 @@ jobs:
       - uses: google-github-actions/release-please-action@v3
         id: release
         with:
+          command: release-pr
           release-type: node
-          extra-files: README.md
+          bump-minor-pre-major: true
+          bump-patch-for-minor-pre-major: true
 
   # Build and publish to NPM when a new version is released.
   build-and-publish:

@@ -1,17 +1,16 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "ESNext"],
+    "lib": ["dom", "es6"],
     "outDir": "dist",
-    "target": "ESNext",
-    "module": "esnext",
+    "target": "es6",
+    "module": "es6",
     "moduleResolution": "node",
     "declarationDir": "dist",
     "declaration": true,
     "noEmit": false,
     "noEmitOnError": true,
     "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "emitDecoratorMetadata": true,
     "noUnusedLocals": true,
     "sourceMap": true,
@@ -33,6 +32,7 @@
   "exclude": [
     "node_modules",
     "dist",
-    "src/stories/"
+    "src/stories/",
+    "src/**/*.stories.tsx"
   ]
 }
