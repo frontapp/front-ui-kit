@@ -1,6 +1,6 @@
 {
-  "name": "front-ui-kit",
-  "version": "0.1.0",
+  "name": "@frontapp/ui-kit",
+  "version": "0.0.1",
   "main": "index.js",
   "repository": "git@github.com:frontapp/front-ui-kit.git",
   "homepage": "http://frontapp.github.io/front-ui-kit",
