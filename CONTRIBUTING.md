@@ -38,7 +38,7 @@ Each component created will have to meet the following requirements to be marked
 
 1. Each PR for a new component should follow the guidelines highlighted above in order to be considered for review.
 2. Each new component should be readable and easy to understand with well defined and documented props.
-3. The component is tested on different browsers to detect any browser compatibility issues.
+3. The component should be tested on different browsers to detect any browser compatibility issues.
 4. Each component should have its own story in Storbybook which should test the range of props supported by the component.
 5. The component should be approved by at least one owner of the front-ui-kit repository.
 6. The documentation for each new component should be clear and concise.
