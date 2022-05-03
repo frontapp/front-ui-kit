@@ -178,7 +178,9 @@ module.exports = {
         // Default exports are necessary for CSF stories
         'import/no-default-export': 0,
         // Prop spreading is the canonical way of writing controls
-        'react/jsx-props-no-spreading': 0
+        'react/jsx-props-no-spreading': 0,
+        'react/function-component-definition': 0,
+        'import/no-extraneous-dependencies': 0
       }
     },
     {
