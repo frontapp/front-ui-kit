@@ -15,7 +15,8 @@ jobs:
         id: release
         with:
           release-type: node
-          extra-files: README.md
+          bump-minor-pre-major: true
+          bump-patch-for-minor-pre-major: true
 
   # Build and publish to NPM when a new version is released.
   build-and-publish:
