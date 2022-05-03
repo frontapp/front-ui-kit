@@ -15,7 +15,6 @@ jobs:
         id: release
         with:
           release-type: node
-          extra-files: README.md
           bump-minor-pre-major: true
           bump-patch-for-minor-pre-major: true
 
