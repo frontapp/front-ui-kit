@@ -1,0 +1,56 @@
+name: Build and Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    outputs:
+      release-created: ${{ steps.release.outputs.release_created }}
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          release-type: node
+          extra-files: README.md
+
+  # Build and publish to NPM when a new version is released.
+  build-and-publish:
+    runs-on: ubuntu-latest
+    needs: release-please
+    if: needs.release-please.outputs.release-created
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
+      - run: yarn build:prod
+      - run: yarn publish --non-interactive
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      
+  # Build and publish storybook when a new version is released.
+  storybook:
+    runs-on: ubuntu-latest
+    needs: release-please
+    if: needs.release-please.outputs.release-created
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
+      - name: Build storybook
+        run: yarn build:storybook
+      - name: Deploy storybook
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        with:
+          branch: gh-pages
+          folder: storybook-static
+          clean: true
