@@ -36,7 +36,9 @@ Base requirements for each PR
 Each component created will have to meet the following requirements to be marked as done. 
 [This will be initially used only by Front developers while we build the starter components for this project. When we open this project for other developers to contribute, this set of requirements will likely grow.]
 
-1. Each PR should follow the guidelines highlighted above in order to be considered for review.
-2. Stories in Storybook: Each component's story should test the range of props supported by the component.
-3. Each PR should be approved by at least one owner of the front-ui-kit repository.
-4. Documentation for the change is created / updated to include any deprecation warnings, updated props, etc.
+1. Each PR for a new component should follow the guidelines highlighted above in order to be considered for review.
+2. Each new component should be readable and easy to understand with well defined and documented props.
+3. The component is tested on different browsers to detect any browser compatibility issues.
+4. Each component should have its own story in Storbybook which should test the range of props supported by the component.
+5. The component should be approved by at least one owner of the front-ui-kit repository.
+6. The documentation for each new component should be clear and concise.
