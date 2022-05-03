@@ -7,6 +7,7 @@ All work on this library will be done via Github. Owners of this repository as w
 # Semantic Versioning (TODO)
 
 The front-ui-kit library will follow [Semantic Versioning](https://semver.org/).
+
 # Bugs (TODO)
 
 (Reporting broken changes, proposing new changes)
