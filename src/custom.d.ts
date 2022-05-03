@@ -1,6 +1,7 @@
-declare module '*.svg' {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const content: any;
-  // eslint-disable-next-line import/no-default-export
-  export default content;
+/* eslint-disable import/no-default-export */
+declare module "*.svg" {
+  const ReactComponent: (props: React.SVGAttributes<SVGElement>) => React.ReactElement<React.SVGAttributes<SVGElement>>;
+
+  export {ReactComponent};
+  export default ReactComponent;
 }
