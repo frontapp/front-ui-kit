@@ -64,12 +64,12 @@ const ShowcaseComponent: FC = props => {
           if (copiedIconName && copiedIconName === iconName)
             return (
               <StyledCopiedDiv key={iconName} onMouseLeave={() => setCopiedIconName(undefined)}>
-                <Icon name="CheckmarkSelected" width={32} height={32} color={greys.white} />
+                <Icon name="CheckmarkSelected" size={32} color={greys.white} />
               </StyledCopiedDiv>
             );
           return (
             <StyledIconDiv key={iconName} onClick={() => onClick(iconName)}>
-              <Icon name={iconName as IconName} width={32} height={32} />
+              <Icon name={iconName as IconName} size={32} />
             </StyledIconDiv>
           );
         })}

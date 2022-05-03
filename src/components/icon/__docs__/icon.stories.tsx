@@ -13,8 +13,7 @@ const Template: ComponentStory<typeof Icon> = args => <Icon {...args} />;
 export const Basic = Template.bind({});
 Basic.args = {
   name: 'CheckmarkCircle',
-  width: 32,
-  height: 32
+  size: 32
 };
 Basic.parameters = {
   name: {

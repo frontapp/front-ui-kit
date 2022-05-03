@@ -21,8 +21,7 @@ import {greys} from '../../helpers/colorHelpers';
  * Constants.
  */
 
-const defaultWidth = 16;
-const defaultHeight = 16;
+const defaultSize = 16;
 const defaultColor = greys.shade50;
 
 const importedIcons = {
@@ -50,10 +49,12 @@ export const icons = importedIcons as {[name in IconName]: (props: React.SVGAttr
  */
 
 interface IconProps {
+  /** The icon to display. */
   name: IconName;
+  /** The color of the icon. */
   color?: string;
-  width?: number;
-  height?: number;
+  /** Controls the width and height of the icon. */
+  size?: number;
 }
 
 /*
@@ -61,13 +62,12 @@ interface IconProps {
  */
 
 interface StyledIconDivProps {
-  $width: number;
-  $height: number;
+  $size: number;
 }
 
 const StyledIconDiv = styled.div<StyledIconDivProps>`
-  width: ${p => `${p.$width}px`};
-  height: ${p => `${p.$height}px`};
+  width: ${p => `${p.$size}px`};
+  height: ${p => `${p.$size}px`};
 `;
 
 /*
@@ -75,7 +75,7 @@ const StyledIconDiv = styled.div<StyledIconDivProps>`
  */
 
 export const Icon: FC<IconProps> = props => {
-  const {name, width = defaultWidth, height = defaultHeight, color = defaultColor} = props;
+  const {name, size = defaultSize, color = defaultColor} = props;
 
   // Pull the icon from the list of available icons.
   // The svg file is converted to a function that is called.
@@ -84,10 +84,10 @@ export const Icon: FC<IconProps> = props => {
     return null;
 
   return (
-    <StyledIconDiv $width={width} $height={height}>
+    <StyledIconDiv $size={size}>
       {icon({
-        width,
-        height,
+        width: size,
+        height: size,
         color,
         preserveAspectRatio: "none"
       })}

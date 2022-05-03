@@ -43,8 +43,7 @@ module.exports = {
           }
         },
         exclude: [
-          /node_modules/,
-          /__docs__/
+          /node_modules/
         ]
       },
       {
