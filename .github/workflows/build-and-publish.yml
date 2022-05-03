@@ -6,7 +6,18 @@ on:
       - main
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - run: yarn install --frozen-lockfile
+    - run: yarn lint
+
   release-please:
+    needs: lint
     runs-on: ubuntu-latest
     outputs:
       release-created: ${{ steps.release.outputs.release_created }}
