@@ -28,8 +28,8 @@ Releases will be automated using [Release Please](https://github.com/googleapis/
 
 Base requirements for each PR
 1. Each PR should be submitted to merge directly into the main branch.
-2. The title of the PRs match the format specified in [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
-3. The description includes a thorough explanation of the PR and ideally some screenshots/videos of the fix. For example, if you are adding a new component please include the component name, a description of each prop as well as any helpful videos/images from Storybook which accurately demostrate the use of the component.
+2. The title of the PR should match the format specified in [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
+3. The description includes a thorough explanation of the PR and ideally some screenshots/videos of the fix. For example, if you are adding a new component please include the component name, a description of each prop as well as any helpful videos/images from Storybook which accurately demostrates the use of the component. For any bug fixes, please include a thorough description of the bug as well as the fix (and any helpful images/videos).
 
 # Definition of Done
 
@@ -40,4 +40,3 @@ Each component created will have to meet the following requirements to be marked
 2. Stories in Storybook: Each component's story should test the range of props supported by the component.
 3. Each PR should be approved by at least one owner of the front-ui-kit repository.
 4. Documentation for the change is created / updated to include any deprecation warnings, updated props, etc.
-5. The ChangeLog is updated to describe the change along with any changes to the versioning.
