@@ -6,8 +6,7 @@ All work on this library will be done via Github. Owners of this repository as w
 
 # Semantic Versioning (TODO)
 
-The front-ui-kit library will follow [Semantic Versioning](https://semver.org/) with 0.1.0 being the first minor version in development. The first major released version will be 1.0.0 once we declare the library ready and open for development.
-
+The front-ui-kit library will follow [Semantic Versioning](https://semver.org/).
 # Bugs (TODO)
 
 (Reporting broken changes, proposing new changes)
@@ -15,6 +14,10 @@ The front-ui-kit library will follow [Semantic Versioning](https://semver.org/) 
 # Contributing to front-ui-kit (TODO)
 
 ## Contributor License Agreement (TODO)
+
+## Proposing New Components (TODO)
+
+If you would like to develop your own component, please first submit a proposal via a Github issue.
 
 ## Prerequisites (TODO)
 
