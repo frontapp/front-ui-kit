@@ -23,6 +23,8 @@ export {ButtonGroup} from './components/button/buttonGroup';
 
 export {Checkbox} from './components/checkbox/checkbox';
 
+export {DropdownCoordinator} from './components/popover/dropdownCoordinator';
+
 export {Icon, IconName} from './components/icon/icon';
 
 export {Pill} from './components/pill/pill';

@@ -50,13 +50,13 @@ export const Layer: FC<LayerProps> = props => {
 
     // Create the outer container, which holds our child layers.
     const nodeWrapper = document.createElement('div');
-    nodeWrapper.className = 'layer';
+    nodeWrapper.className = 'front-ui-kit-layer';
     nodeWrapper.style.position = 'absolute';
     nodeWrapper.style.inset = '0';
 
     // Create our inner container, which holds the children that are not nested inside a child layer.
     const nodeContent = document.createElement('div');
-    nodeContent.className = 'layer';
+    nodeContent.className = 'front-ui-kit-layer';
     nodeContent.style.position = 'absolute';
     nodeContent.style.inset = '0';
     nodeWrapper.appendChild(nodeContent);
