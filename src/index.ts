@@ -15,3 +15,5 @@ export {VisualSizesEnum, fonts} from './helpers/fontHelpers';
  */
 
 export {Icon, IconName} from './components/icon/icon';
+
+export {Skeleton} from './components/skeleton/skeleton';
