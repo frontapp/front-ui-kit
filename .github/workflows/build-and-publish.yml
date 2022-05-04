@@ -14,7 +14,6 @@ jobs:
       - uses: google-github-actions/release-please-action@v3
         id: release
         with:
-          command: release-pr
           release-type: node
           bump-minor-pre-major: true
           bump-patch-for-minor-pre-major: true
@@ -30,9 +29,10 @@ jobs:
         with:
           node-version: 16
           cache: 'yarn'
+          registry-url: 'https://registry.npmjs.org'
       - run: yarn install --frozen-lockfile
       - run: yarn build:prod
-      - run: yarn publish --non-interactive
+      - run: yarn publish --non-interactive --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
       
