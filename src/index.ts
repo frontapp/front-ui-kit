@@ -35,3 +35,6 @@ export {Skeleton} from './components/skeleton/skeleton';
 
 export {Tab} from './components/tab/tab';
 export {TabGroup} from './components/tab/tabGroup';
+
+export {Tooltip} from './components/tooltip/tooltip';
+export {TooltipCoordinator} from './components/popover/tooltipCoordinator';
