@@ -1,9 +1,9 @@
 import React, {FC, MouseEventHandler} from 'react';
-import * as ReactIs from "react-is";
 import styled, {css} from 'styled-components';
 
 import {alphas, greys} from '../../helpers/colorHelpers';
 import {fonts, fontSizes} from '../../helpers/fontHelpers';
+import {isComponentInChildren} from '../../helpers/renderHelpers';
 import {getBackgroundColorFromStyles, getTextColorFromStyles, SelectableComponentColors} from '../../helpers/styleHelpers';
 import {PillContent} from './pillContent';
 
@@ -94,19 +94,8 @@ export const Pill: FC<PillProps> = props => {
 
 /** Renders the children and checks if we need to wrap the passed in children in the PillContent. */
 function renderPillChildren(children: React.ReactNode) {
-  const shouldWrapInContent = !hasPillContent(children);
+  const shouldWrapInContent = !isComponentInChildren(children, 'PillContent');
   if (!shouldWrapInContent)
     return children;
   return <PillContent>{children}</PillContent>;
-}
-
-function hasPillContent(children: React.ReactNode) {
-  return React.Children.toArray(children).some(child => {
-    if (typeof child === 'string' || typeof child === 'number')
-      return null;
-    if (ReactIs.isFragment(child) || !ReactIs.isElement(child))
-      return false;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/consistent-type-assertions
-    return (child.type as any)?.displayName === 'PillContent';
-  });
 }
