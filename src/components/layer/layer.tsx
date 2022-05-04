@@ -63,7 +63,7 @@ export const Layer: FC<LayerProps> = props => {
     return () => {
       destroyLayer();
     };
-  }, []);
+  }, [isExclusive]);
 
   if (!nodes)
     return null;
