@@ -15,29 +15,25 @@ interface ShowcaseCheckboxProps {
 
 
 const ShowcaseComponent: FC = props => {
-    return (
-      <>  
-        <ShowcaseCheckboxComponent isDisabled={true}/>
-        <ShowcaseCheckboxComponent isIndeterminate={true}/>
-        <ShowcaseCheckboxComponent/>
-      </>
-    );
+  return <div>
+      <ShowcaseCheckboxComponent isDisabled={true}/>
+      <ShowcaseCheckboxComponent isIndeterminate={true}/>
+      <ShowcaseCheckboxComponent/>
+    </div>  
   };
 
 const ShowcaseCheckboxComponent: FC<ShowcaseCheckboxProps> = props => {
-    const {isDisabled, isIndeterminate} = props;
-    const [isChecked, setIsChecked] = useState(false);
-    const onToggleCheckbox = (isChecked: boolean) => {
-      setIsChecked(!isChecked);
-    };
+  const {isDisabled, isIndeterminate} = props;
+  const [isChecked, setIsChecked] = useState(false);
+  const onToggleCheckbox = (isChecked: boolean) => {
+    setIsChecked(!isChecked);
+  };
 
-    return (
-      <>  
-        <Checkbox isDisabled={isDisabled} isIndeterminate={isIndeterminate} isChecked={isChecked} onChange={() => onToggleCheckbox(isChecked)}>
-            {isDisabled ? "Disabled" : (isIndeterminate ?  "isIndeterminate" : (isChecked ? "Checked" : "Unchecked"))}
-        </Checkbox>
-      </>
-    );
+  return (
+    <Checkbox isDisabled={isDisabled} isIndeterminate={isIndeterminate} isChecked={isChecked} onChange={() => onToggleCheckbox(isChecked)}>
+        {isDisabled ? "Disabled" : (isIndeterminate ?  "isIndeterminate" : (isChecked ? "Checked" : "Unchecked"))}
+    </Checkbox>
+  );
 }
 
 /*
@@ -45,14 +41,14 @@ const ShowcaseCheckboxComponent: FC<ShowcaseCheckboxProps> = props => {
  */
 
 export default {
-    title: 'Front UI Kit/Checkbox',
-    component: ShowcaseComponent
+  title: 'Front UI Kit/Checkbox',
+  component: ShowcaseComponent
 } as ComponentMeta<typeof ShowcaseComponent>;
   
 const ShowcaseTemplate: ComponentStory<typeof ShowcaseComponent> = () => <ShowcaseComponent />;
 export const Showcase = ShowcaseTemplate.bind({});
 Showcase.parameters = {
-    controls: {hideNoControlsWarning: true}
+  controls: {hideNoControlsWarning: true}
 };
 
 
