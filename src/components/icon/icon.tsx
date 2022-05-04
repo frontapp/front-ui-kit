@@ -55,6 +55,8 @@ interface IconProps {
   color?: string;
   /** Controls the width and height of the icon. */
   size?: number;
+  /** If set, no color for the icon will be set. This enables inheriting the parents color. */
+  shouldDisableColor?: boolean;
 }
 
 /*
@@ -75,7 +77,7 @@ const StyledIconDiv = styled.div<StyledIconDivProps>`
  */
 
 export const Icon: FC<IconProps> = props => {
-  const {name, size = defaultSize, color = defaultColor} = props;
+  const {name, size = defaultSize, color = defaultColor, shouldDisableColor} = props;
 
   // Pull the icon from the list of available icons.
   // The svg file is converted to a function that is called.
@@ -88,7 +90,7 @@ export const Icon: FC<IconProps> = props => {
       {icon({
         width: size,
         height: size,
-        color,
+        color: shouldDisableColor ? '' : color,
         preserveAspectRatio: "none"
       })}
     </StyledIconDiv>

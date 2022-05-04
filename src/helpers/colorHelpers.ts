@@ -1,3 +1,5 @@
+import {transparentize} from 'polished';
+
 /*
  * Interfaces.
  */
@@ -22,6 +24,25 @@ export interface PaletteColor {
   readonly shade30: string;
   readonly shade40: string;
   readonly shade50: string;
+}
+
+export interface AlphasPalette {
+  readonly transparent: string;
+  readonly gray10: string;
+  readonly gray20: string;
+  readonly gray90: string;
+  readonly black10: string;
+  readonly black20: string;
+  readonly black30: string;
+  readonly black40: string;
+  readonly black50: string;
+  readonly black60: string;
+  readonly white10: string;
+  readonly white20: string;
+  readonly white30: string;
+  readonly white40: string;
+  readonly white50: string;
+  readonly white60: string;
 }
 
 type Palette = {readonly [T in PaletteColorsEnum]: PaletteColor};
@@ -54,6 +75,25 @@ export const greys: Readonly<FullColorPalette> = {
   shade80: '#3e3e40',
   shade90: '#19191a',
   black: '#001B38'
+};
+
+export const alphas: Readonly<AlphasPalette> = {
+  transparent: 'transparent',
+  gray10: transparentize(0.9, '#5d6985'),
+  gray20: transparentize(0.82, '#5d6985'), // "selected state Gray 18%" in Figma.
+  gray90: transparentize(0.1, '#5d6985'),
+  black10: alphaBlack(0.04),
+  black20: alphaBlack(0.08),
+  black30: alphaBlack(0.1),
+  black40: alphaBlack(0.15),
+  black50: alphaBlack(0.3),
+  black60: alphaBlack(0.6),
+  white10: alphaWhite(0.08),
+  white20: alphaWhite(0.15),
+  white30: alphaWhite(0.3),
+  white40: alphaWhite(0.6),
+  white50: alphaWhite(0.8),
+  white60: alphaWhite(0.95)
 };
 
 export const palette: Palette = {
@@ -121,3 +161,23 @@ export const palette: Palette = {
     shade50: '#681aad'
   }
 };
+
+/*
+ * Helpers.
+ */
+
+/**
+ * Convenience helper to get a rgba(black, N) equivalent
+ * @param n opacity (from 0 to 1)
+ */
+function alphaBlack(n: number) {
+  return `rgba(0, 0, 0, ${n})`;
+}
+
+/**
+ * Convenience helper to get a rgba(white, N) equivalent
+ * @param n opacity (from 0 to 1)
+ */
+function alphaWhite(n: number) {
+  return `rgba(255, 255, 255, ${n})`;
+}
