@@ -13,14 +13,12 @@ interface ShowcaseCheckboxProps {
  * Component.
  */
 
+const ShowcaseComponent: FC = props =>  <div>
+  <ShowcaseCheckboxComponent isDisabled/>
+  <ShowcaseCheckboxComponent isIndeterminate/>
+  <ShowcaseCheckboxComponent/>
+</div>;
 
-const ShowcaseComponent: FC = props => {
-  return <div>
-      <ShowcaseCheckboxComponent isDisabled={true}/>
-      <ShowcaseCheckboxComponent isIndeterminate={true}/>
-      <ShowcaseCheckboxComponent/>
-    </div>  
-  };
 
 const ShowcaseCheckboxComponent: FC<ShowcaseCheckboxProps> = props => {
   const {isDisabled, isIndeterminate} = props;
