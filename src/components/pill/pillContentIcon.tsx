@@ -7,8 +7,8 @@ import {renderFirstIconOnly} from '../../helpers/renderHelpers';
  * Props.
  */
 
-interface ButtonContentIconProps {
-  /** Position of the icon. If you want an icon in the center, use ButtonContent and Icon. */
+interface PillContentIconProps {
+  /** Position of the icon. If you want an icon in the center, use PillContent and Icon. */
   position?: 'left' | 'right';
   /** Children to render. */
   children: React.ReactNode;
@@ -41,6 +41,6 @@ const StyledContentIconDiv = styled.div<StyledContentIconDivProps>`
  * Component.
  */
 
-export const ButtonContentIcon: FC<ButtonContentIconProps> = ({children, position = 'left'}) => (
+export const PillContentIcon: FC<PillContentIconProps> = ({children, position = 'left'}) => (
   <StyledContentIconDiv $position={position}>{renderFirstIconOnly(children)}</StyledContentIconDiv>
 );
