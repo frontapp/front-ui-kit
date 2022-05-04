@@ -5,9 +5,6 @@ on:
     branches-ignore:
       - main
 
-env:
-  NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-
 jobs:
   lint:
     runs-on: ubuntu-latest
