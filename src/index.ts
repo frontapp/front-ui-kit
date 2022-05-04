@@ -16,4 +16,6 @@ export {VisualSizesEnum, fonts} from './helpers/fontHelpers';
 
 export {Avatar} from './components/avatar/avatar';
 
+export {Checkbox} from './components/checkbox/checkbox';
+
 export {Icon, IconName} from './components/icon/icon';
