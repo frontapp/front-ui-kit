@@ -99,7 +99,7 @@ function getCheckboxImage(props: CheckboxProps) {
   if (props.isChecked)
     return <Icon name="CheckmarkBox" color={props.isDisabled? greys.shade60 : greys.white} />;
   if (props.isIndeterminate)
-    return <Icon name="Minus" size={16} color={props.isDisabled? greys.shade60 : greys.white} />;
+    return <Icon name="Minus" color={props.isDisabled? greys.shade60 : greys.white} />;
   return null;
 }
 
