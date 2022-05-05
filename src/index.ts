@@ -22,3 +22,5 @@ export {ButtonContentIcon} from './components/button/buttonContentIcon';
 export {ButtonGroup} from './components/button/buttonGroup';
 
 export {Icon, IconName} from './components/icon/icon';
+
+export {Skeleton} from './components/skeleton/skeleton';
