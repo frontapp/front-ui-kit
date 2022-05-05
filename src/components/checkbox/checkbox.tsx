@@ -1,6 +1,7 @@
-import React, {FC, useCallback, useLayoutEffect, useRef, useState} from 'react';
+import React, {FC, useCallback, useLayoutEffect, useRef} from 'react';
 import styled from 'styled-components';
-import { fonts, fontSizes } from '../../helpers/fontHelpers';
+
+import {fonts, fontSizes} from '../../helpers/fontHelpers';
 
 /*
  * Props.
@@ -40,8 +41,8 @@ export const Checkbox: FC<CheckboxProps> = props => {
   const onInputChange = useCallback(() => {
     if (isDisabled)
       return;
-    onChange(!isChecked)
-  }, [isChecked, onChange]);
+    onChange(!isChecked);
+  }, [isChecked, isDisabled, onChange]);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useLayoutEffect(() => {
@@ -58,17 +59,16 @@ export const Checkbox: FC<CheckboxProps> = props => {
     }
   }, [isChecked, isIndeterminate]);
 
-  
   return (
     <StyledWrapperDiv>
       <StyledInput
-          ref={inputRef}
-          type="checkbox"
-          checked={isChecked}
-          disabled={isDisabled}
-          onChange={onInputChange}
-          />
-        {children}
+        ref={inputRef}
+        type="checkbox"
+        checked={isChecked}
+        disabled={isDisabled}
+        onChange={onInputChange}
+      />
+      {children}
     </StyledWrapperDiv>
   );
 };

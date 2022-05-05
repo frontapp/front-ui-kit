@@ -1,5 +1,6 @@
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 import React, {FC, useState} from 'react';
+
 import {Checkbox} from '../checkbox';
 
 interface ShowcaseCheckboxProps {
@@ -13,26 +14,39 @@ interface ShowcaseCheckboxProps {
  * Component.
  */
 
-const ShowcaseComponent: FC = props =>  <div>
-  <ShowcaseCheckboxComponent isDisabled/>
-  <ShowcaseCheckboxComponent isIndeterminate/>
-  <ShowcaseCheckboxComponent/>
-</div>;
-
+const ShowcaseComponent: FC = props => (
+  <div>
+    <ShowcaseCheckboxComponent isDisabled />
+    <ShowcaseCheckboxComponent isIndeterminate />
+    <ShowcaseCheckboxComponent />
+  </div>
+);
 
 const ShowcaseCheckboxComponent: FC<ShowcaseCheckboxProps> = props => {
-  const {isDisabled, isIndeterminate} = props;
+  const {isDisabled} = props;
   const [isChecked, setIsChecked] = useState(false);
-  const onToggleCheckbox = (isChecked: boolean) => {
-    setIsChecked(!isChecked);
+  const [isIndeterminate, setIsIndeterminate] = useState(props.isIndeterminate);
+  const onToggleCheckbox = checked => {
+    setIsChecked(!checked);
+    setIsIndeterminate(false);
+  };
+
+  const getCheckBoxLabel = () => {
+    if (isDisabled)
+      return "Disabled";
+    if (isIndeterminate)
+      return "Indeterminate";
+    if (isChecked)
+      return "Checked";
+    return "Unchecked";
   };
 
   return (
     <Checkbox isDisabled={isDisabled} isIndeterminate={isIndeterminate} isChecked={isChecked} onChange={() => onToggleCheckbox(isChecked)}>
-        {isDisabled ? "Disabled" : (isIndeterminate ?  "isIndeterminate" : (isChecked ? "Checked" : "Unchecked"))}
+      {getCheckBoxLabel()}
     </Checkbox>
   );
-}
+};
 
 /*
  * Storybook.
@@ -42,11 +56,9 @@ export default {
   title: 'Front UI Kit/Checkbox',
   component: ShowcaseComponent
 } as ComponentMeta<typeof ShowcaseComponent>;
-  
+
 const ShowcaseTemplate: ComponentStory<typeof ShowcaseComponent> = () => <ShowcaseComponent />;
 export const Showcase = ShowcaseTemplate.bind({});
 Showcase.parameters = {
   controls: {hideNoControlsWarning: true}
 };
-
-
