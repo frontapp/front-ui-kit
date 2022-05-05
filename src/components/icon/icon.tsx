@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
 import styled from 'styled-components';
 
+import CheckmarkBox from '../../assets/icons/checkmarkBox.svg';
 import CheckmarkCircle from '../../assets/icons/checkmarkCircle.svg';
 import Checkmark from '../../assets/icons/checkmarkSelected.svg';
-import CheckmarkBox from '../../assets/icons/checkmarkBox.svg';
 import ChevronDown from '../../assets/icons/chevronDown.svg';
 import ChevronLeft from '../../assets/icons/chevronLeft.svg';
 import ChevronRight from '../../assets/icons/chevronRight.svg';

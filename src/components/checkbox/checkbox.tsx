@@ -1,10 +1,8 @@
-import React, {FC, useCallback, useLayoutEffect, useRef} from 'react';
-import styled, { css } from 'styled-components';
-import { Icon } from '../..';
-import Checkmark from '../../assets/icons/checkmarkSelected.svg';
-import Minus from '../../assets/icons/minus.svg';
-import { greys, palette } from '../../helpers/colorHelpers';
+import React, {FC, useLayoutEffect, useRef} from 'react';
+import styled, {css} from 'styled-components';
 
+import {Icon} from '../..';
+import {greys, palette} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 
 /*
@@ -14,7 +12,7 @@ import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 interface CheckboxProps {
   /** Whether the checkbox is checked. */
   isChecked: boolean;
-  /** The content of the checkbox. */
+  /** The label of the checkbox. */
   children?: React.ReactNode;
   /** Whether the checkbox is disabled. If disabled, clicking it won't check/uncheck it. */
   isDisabled?: boolean;
@@ -61,7 +59,6 @@ const StyledInput = styled.input<StyledCheckboxInputProps>`
   -ms-progress-appearance: none;
 
   ${p => addCheckboxStyles(p)};
-  
 `;
 
 const StyledChildrenDiv = styled.div`
@@ -100,9 +97,9 @@ function addCheckboxStyles(props: StyledCheckboxInputProps) {
 
 function getCheckboxImage(props: CheckboxProps) {
   if (props.isChecked)
-    return <Icon name="CheckmarkBox" color={props.isDisabled? greys.shade60 : greys.white}></Icon>
+    return <Icon name="CheckmarkBox" color={props.isDisabled? greys.shade60 : greys.white} />;
   if (props.isIndeterminate)
-    return <Icon name="Minus" size={16} color={props.isDisabled? greys.shade60 : greys.white}></Icon>
+    return <Icon name="Minus" size={16} color={props.isDisabled? greys.shade60 : greys.white} />;
   return null;
 }
 
@@ -120,7 +117,7 @@ export const Checkbox: FC<CheckboxProps> = props => {
     if (!input)
       return;
 
-   if (isChecked) {
+    if (isChecked) {
       input.indeterminate = false;
       input.checked = true;
     } else if (isIndeterminate) {

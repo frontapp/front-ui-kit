@@ -18,7 +18,7 @@ const ShowcaseComponent: FC = props => (
   <div>
     <ShowcaseCheckboxComponent isDisabled />
     <ShowcaseCheckboxComponent isIndeterminate />
-    <ShowcaseCheckboxComponent isIndeterminate isDisabled/>
+    <ShowcaseCheckboxComponent isIndeterminate isDisabled />
     <ShowcaseCheckboxComponent />
   </div>
 );
@@ -41,7 +41,7 @@ const ShowcaseCheckboxComponent: FC<ShowcaseCheckboxProps> = props => {
     if (isChecked)
       label +="Checked";
     if (label)
-      return label
+      return label;
     return "Unchecked";
   };
 
