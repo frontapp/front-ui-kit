@@ -14,7 +14,7 @@ export {VisualSizesEnum, fonts} from './helpers/fontHelpers';
  * Utils.
  */
 
-export {FrontUIKitStyleProvider} from './utils/frontUIKitStyleProvider';
+export {DefaultStyleProvider} from './utils/defaultStyleProvider';
 
 /*
  * Components.
