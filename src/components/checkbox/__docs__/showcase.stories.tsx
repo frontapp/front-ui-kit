@@ -18,6 +18,7 @@ const ShowcaseComponent: FC = props => (
   <div>
     <ShowcaseCheckboxComponent isDisabled />
     <ShowcaseCheckboxComponent isIndeterminate />
+    <ShowcaseCheckboxComponent isIndeterminate isDisabled/>
     <ShowcaseCheckboxComponent />
   </div>
 );
@@ -32,12 +33,15 @@ const ShowcaseCheckboxComponent: FC<ShowcaseCheckboxProps> = props => {
   };
 
   const getCheckBoxLabel = () => {
+    let label = "";
     if (isDisabled)
-      return "Disabled";
+      label = "Disabled ";
     if (isIndeterminate)
-      return "Indeterminate";
+      label += "Indeterminate ";
     if (isChecked)
-      return "Checked";
+      label +="Checked";
+    if (label)
+      return label
     return "Unchecked";
   };
 

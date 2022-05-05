@@ -1,6 +1,15 @@
 # Changelog
 
 
+### [0.1.1](https://github.com/frontapp/front-ui-kit/compare/v0.1.0...v0.1.1) (2022-05-05)
+
+
+### Features
+
+* add avatar component ([#23](https://github.com/frontapp/front-ui-kit/issues/23)) ([f90c112](https://github.com/frontapp/front-ui-kit/commit/f90c112183ff524244d1d8a876d01123321bd429))
+* add button, buttonGroup, buttonContent, buttonContentIcon ([#18](https://github.com/frontapp/front-ui-kit/issues/18)) ([23e49c7](https://github.com/frontapp/front-ui-kit/commit/23e49c7da9a786d00edc75592f9c16ef85ce2b1e))
+* add skeleton component ([#24](https://github.com/frontapp/front-ui-kit/issues/24)) ([e36f82f](https://github.com/frontapp/front-ui-kit/commit/e36f82f3ec3b56eb2935cbbdcd6470c27fb1647d))
+
 ## 0.1.0 (2022-05-03)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@frontapp/ui-kit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "index.js",
   "repository": "git@github.com:frontapp/front-ui-kit.git",
   "homepage": "http://frontapp.github.io/front-ui-kit",
@@ -20,8 +20,10 @@
     "build:storybook": "build-storybook"
   },
   "dependencies": {
+    "polished": "^4.2.2",
     "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "react-dom": "^18.1.0",
+    "react-is": "^18.1.0"
   },
   "peerDependencies": {
     "styled-components": "^5.3.5"
@@ -42,6 +44,7 @@
     "@storybook/react": "^6.4.22",
     "@storybook/testing-library": "^0.0.11",
     "@svgr/webpack": "^6.2.1",
+    "@types/react-is": "^17.0.3",
     "@types/styled-components": "^5.1.25",
     "@typescript-eslint/eslint-plugin": "^5.21.0",
     "@typescript-eslint/parser": "^5.21.0",
