@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import {greys} from '../../../helpers/colorHelpers';
 import {fontSizes, fontWeights, VisualSizesEnum} from '../../../helpers/fontHelpers';
-import {FrontUIKitStyleProvider} from '../../../utils/frontUIKitStyleProvider';
+import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
 import {Icon} from '../../icon/icon';
 import {Button} from '../button';
 import {ButtonContent} from '../buttonContent';
@@ -34,7 +34,7 @@ const StyledTitleDiv = styled.div`
 `;
 
 const ShowcaseComponent: FC = props => (
-  <FrontUIKitStyleProvider>
+  <DefaultStyleProvider>
     <StyledContainerDiv>
       <StyledButtonsContainerDiv>
         <StyledTitleDiv>Primary Buttons</StyledTitleDiv>
@@ -131,7 +131,7 @@ const ShowcaseComponent: FC = props => (
         </ButtonGroup>
       </StyledButtonsContainerDiv>
     </StyledContainerDiv>
-  </FrontUIKitStyleProvider>
+  </DefaultStyleProvider>
 );
 
 /*

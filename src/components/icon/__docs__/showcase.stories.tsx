@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import {greys, palette} from '../../../helpers/colorHelpers';
 import {fontSizes, fontWeights} from '../../../helpers/fontHelpers';
-import {FrontUIKitStyleProvider} from '../../../utils/frontUIKitStyleProvider';
+import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
 import {Icon, IconName, icons} from '../icon';
 
 /*
@@ -54,7 +54,7 @@ const ShowcaseComponent: FC = props => {
   };
 
   return (
-    <FrontUIKitStyleProvider>
+    <DefaultStyleProvider>
       <StyledExplainerContainerDiv>
         All available icons are listed below. You can click on an icon to copy the IconName for that component.
       </StyledExplainerContainerDiv>
@@ -73,7 +73,7 @@ const ShowcaseComponent: FC = props => {
           );
         })}
       </StyledIconsContainerDiv>
-    </FrontUIKitStyleProvider>
+    </DefaultStyleProvider>
   );
 };
 
