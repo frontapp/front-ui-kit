@@ -3,7 +3,8 @@ import React, {FC, useState} from 'react';
 import styled from 'styled-components';
 
 import {greys, palette} from '../../../helpers/colorHelpers';
-import {fonts, fontSizes, fontWeights} from '../../../helpers/fontHelpers';
+import {fontSizes, fontWeights} from '../../../helpers/fontHelpers';
+import {FrontUIKitStyleProvider} from '../../../utils/frontUIKitStyleProvider';
 import {Icon, IconName, icons} from '../icon';
 
 /*
@@ -39,8 +40,6 @@ const StyledCopiedDiv = styled.div`
 `;
 
 const StyledExplainerContainerDiv = styled.div`
-  font-family: ${fonts.system};
-  color: ${greys.shade70};
   text-align: center;
   font-size: ${fontSizes.large};
   font-weight: ${fontWeights.semibold};
@@ -55,7 +54,7 @@ const ShowcaseComponent: FC = props => {
   };
 
   return (
-    <>
+    <FrontUIKitStyleProvider>
       <StyledExplainerContainerDiv>
         All available icons are listed below. You can click on an icon to copy the IconName for that component.
       </StyledExplainerContainerDiv>
@@ -74,7 +73,7 @@ const ShowcaseComponent: FC = props => {
           );
         })}
       </StyledIconsContainerDiv>
-    </>
+    </FrontUIKitStyleProvider>
   );
 };
 
