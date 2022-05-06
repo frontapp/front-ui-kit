@@ -35,6 +35,7 @@ interface StyledCheckboxInputProps {
 const StyledWrapperDiv = styled.div`
   display: flex;
   flex-flow: row;
+  height: 17px;
 `;
 
 const StyledCheckboxDiv = styled.div`
@@ -43,9 +44,8 @@ const StyledCheckboxDiv = styled.div`
 
 const StyledIconDiv = styled.div`
   position: absolute;
-  top: 3px;
-  left: 4px;
-  pointer-events: none
+  pointer-events: none;
+  top: 0px;
 `;
 
 const StyledInput = styled.input<StyledCheckboxInputProps>`
@@ -54,6 +54,7 @@ const StyledInput = styled.input<StyledCheckboxInputProps>`
   border-radius: 3px;
   box-sizing: border-box;
   appearance: none;
+  margin: 0px;
 
   ${p => addCheckboxStyles(p)};
 `;
@@ -62,7 +63,7 @@ const StyledChildrenDiv = styled.div`
   font-family: ${fonts.system};
   font-size: ${fontSizes.medium};
   font-weight: ${fontWeights.normal};
-  line-height: 26px;
+  line-height: 20px;
   color: ${greys.shade80};
   margin-left: 8px;
 `;

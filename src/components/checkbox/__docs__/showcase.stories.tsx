@@ -1,7 +1,12 @@
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 import React, {FC, useState} from 'react';
+import styled from 'styled-components';
 
 import {Checkbox} from '../checkbox';
+
+/*
+ * Props.
+ */
 
 interface ShowcaseCheckboxProps {
   /** Whether the checkbox is disabled. */
@@ -9,6 +14,15 @@ interface ShowcaseCheckboxProps {
   /** Whether the checkbox is in an indeterminate state. */
   isIndeterminate?: boolean;
 }
+
+/*
+ * Style.
+ */
+
+const StyledShowcaseDiv = styled.div`
+  margin-top: 5px;
+  margin-bottom: 5px;
+`;
 
 /*
  * Component.
@@ -46,9 +60,11 @@ const ShowcaseCheckboxComponent: FC<ShowcaseCheckboxProps> = props => {
   };
 
   return (
-    <Checkbox isDisabled={isDisabled} isIndeterminate={isIndeterminate} isChecked={isChecked} onChange={() => onToggleCheckbox(isChecked)}>
-      {getCheckBoxLabel()}
-    </Checkbox>
+    <StyledShowcaseDiv>
+      <Checkbox isDisabled={isDisabled} isIndeterminate={isIndeterminate} isChecked={isChecked} onChange={() => onToggleCheckbox(isChecked)}>
+        {getCheckBoxLabel()}
+      </Checkbox>
+    </StyledShowcaseDiv>
   );
 };
 
