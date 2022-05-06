@@ -26,7 +26,7 @@ const defaultColor = greys.shade50;
 
 const importedIcons = {
   CheckmarkCircle,
-  CheckmarkSelected: Checkmark,
+  Checkmark,
   ChevronDown,
   ChevronLeft,
   ChevronRight,

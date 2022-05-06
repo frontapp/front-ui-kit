@@ -1,9 +1,9 @@
 import React, {FC, MouseEvent, MouseEventHandler} from 'react';
-import * as ReactIs from "react-is";
 import styled, {css} from 'styled-components';
 
 import {alphas, greys, palette} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights, VisualSizesEnum} from '../../helpers/fontHelpers';
+import {isComponentInChildren} from '../../helpers/renderHelpers';
 import {makeSizeConstants} from '../../helpers/styleHelpers';
 import {ButtonContent} from './buttonContent';
 import {IconButton} from './iconButton';
@@ -192,19 +192,8 @@ export const Button: FC<ButtonProps> = props => {
 
 /** Renders the children and checks if we need to wrap the passed in children in the ButtonContent. */
 function renderButtonChildren(children: React.ReactNode) {
-  const shouldWrapInContent = !hasButtonContent(children);
+  const shouldWrapInContent = !isComponentInChildren(children, 'ButtonContent');
   if (!shouldWrapInContent)
     return children;
   return <ButtonContent>{children}</ButtonContent>;
-}
-
-function hasButtonContent(children: React.ReactNode) {
-  return React.Children.toArray(children).some(child => {
-    if (typeof child === 'string' || typeof child === 'number')
-      return null;
-    if (ReactIs.isFragment(child) || !ReactIs.isElement(child))
-      return false;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/consistent-type-assertions
-    return (child.type as any)?.displayName === 'ButtonContent';
-  });
 }
