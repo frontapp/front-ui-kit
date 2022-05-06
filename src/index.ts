@@ -21,6 +21,8 @@ export {ButtonContent} from './components/button/buttonContent';
 export {ButtonContentIcon} from './components/button/buttonContentIcon';
 export {ButtonGroup} from './components/button/buttonGroup';
 
+export {Checkbox} from './components/checkbox/checkbox';
+
 export {Icon, IconName} from './components/icon/icon';
 
 export {Pill} from './components/pill/pill';

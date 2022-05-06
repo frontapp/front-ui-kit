@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import styled from 'styled-components';
 
+import CheckmarkBox from '../../assets/icons/checkmarkBox.svg';
 import CheckmarkCircle from '../../assets/icons/checkmarkCircle.svg';
 import Checkmark from '../../assets/icons/checkmarkSelected.svg';
 import ChevronDown from '../../assets/icons/chevronDown.svg';
@@ -26,6 +27,7 @@ const defaultColor = greys.shade50;
 
 const importedIcons = {
   CheckmarkCircle,
+  CheckmarkBox,
   Checkmark,
   ChevronDown,
   ChevronLeft,
