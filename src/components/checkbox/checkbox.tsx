@@ -30,7 +30,6 @@ interface StyledCheckboxInputProps {
   $isChecked: boolean;
   $isIndeterminate: boolean;
   $isDisabled?: boolean;
-  $iconUrl?: string;
 }
 
 const StyledWrapperDiv = styled.div`
@@ -46,7 +45,7 @@ const StyledIconDiv = styled.div`
   position: absolute;
   top: 3px;
   left: 4px;
-  pointer-events:none
+  pointer-events: none
 `;
 
 const StyledInput = styled.input<StyledCheckboxInputProps>`
@@ -54,9 +53,7 @@ const StyledInput = styled.input<StyledCheckboxInputProps>`
   height: 16px;
   border-radius: 3px;
   box-sizing: border-box;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  -ms-progress-appearance: none;
+  appearance: none;
 
   ${p => addCheckboxStyles(p)};
 `;
@@ -66,7 +63,6 @@ const StyledChildrenDiv = styled.div`
   font-size: ${fontSizes.medium};
   font-weight: ${fontWeights.normal};
   line-height: 26px;
-  letter-spacing: -0.154px;
   color: ${greys.shade80};
   margin-left: 8px;
 `;
@@ -95,13 +91,9 @@ function addCheckboxStyles(props: StyledCheckboxInputProps) {
   `;
 }
 
-function getCheckboxImage(props: CheckboxProps) {
-  if (props.isChecked)
-    return <Icon name="CheckmarkBox" color={props.isDisabled? greys.shade60 : greys.white} />;
-  if (props.isIndeterminate)
-    return <Icon name="Minus" color={props.isDisabled? greys.shade60 : greys.white} />;
-  return null;
-}
+/*
+ * Component.
+ */
 
 export const Checkbox: FC<CheckboxProps> = props => {
   const {isChecked, children, isDisabled = false, isIndeterminate = false, onChange} = props;
@@ -137,9 +129,21 @@ export const Checkbox: FC<CheckboxProps> = props => {
           $isIndeterminate={isIndeterminate}
           onChange={onInputChange}
         />
-        <StyledIconDiv>{getCheckboxImage(props)}</StyledIconDiv>
+        <StyledIconDiv>{getCheckboxImage(isDisabled, isChecked, isIndeterminate)}</StyledIconDiv>
       </StyledCheckboxDiv>
       <StyledChildrenDiv>{children}</StyledChildrenDiv>
     </StyledWrapperDiv>
   );
 };
+
+/*
+ * Helpers.
+ */
+
+function getCheckboxImage(isDisabled: boolean, isChecked: boolean, isIndeterminate: boolean) {
+  if (isChecked)
+    return <Icon name="CheckmarkBox" color={isDisabled? greys.shade60 : greys.white} />;
+  if (isIndeterminate)
+    return <Icon name="Minus" color={isDisabled? greys.shade60 : greys.white} />;
+  return null;
+}
