@@ -107,10 +107,16 @@ export const Checkbox: FC<CheckboxProps> = props => {
   };
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // Set the attributes of the input on every render.
   useLayoutEffect(() => {
     const input = inputRef.current;
     if (!input)
       return;
+
+    if (isDisabled)
+      input.disabled = true;
+    else
+      input.disabled = false;
 
     if (isChecked) {
       input.indeterminate = false;
@@ -119,7 +125,7 @@ export const Checkbox: FC<CheckboxProps> = props => {
       input.indeterminate = true;
       input.checked = false;
     }
-  }, [isChecked, isIndeterminate]);
+  }, [isDisabled, isChecked, isIndeterminate]);
 
   return (
     <StyledWrapperDiv>
