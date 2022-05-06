@@ -35,11 +35,12 @@ interface StyledCheckboxInputProps {
 const StyledWrapperDiv = styled.div`
   display: flex;
   flex-flow: row;
-  height: 17px;
 `;
 
 const StyledCheckboxDiv = styled.div`
   position: relative;
+  width: 16px;
+  height: 16px;
 `;
 
 const StyledIconDiv = styled.div`
@@ -49,8 +50,8 @@ const StyledIconDiv = styled.div`
 `;
 
 const StyledInput = styled.input<StyledCheckboxInputProps>`
-  width: 16px;
-  height: 16px;
+  width: inherit;
+  height: inherit;
   border-radius: 3px;
   box-sizing: border-box;
   appearance: none;
@@ -63,9 +64,10 @@ const StyledChildrenDiv = styled.div`
   font-family: ${fonts.system};
   font-size: ${fontSizes.medium};
   font-weight: ${fontWeights.normal};
-  line-height: 20px;
+  line-height: 17px;
   color: ${greys.shade80};
   margin-left: 8px;
+  padding-top: 1px;
 `;
 
 function addCheckboxStyles(props: StyledCheckboxInputProps) {
