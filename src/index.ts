@@ -24,3 +24,6 @@ export {ButtonGroup} from './components/button/buttonGroup';
 export {Icon, IconName} from './components/icon/icon';
 
 export {Skeleton} from './components/skeleton/skeleton';
+
+export {Tab} from './components/tab/tab';
+export {TabGroup} from './components/tab/tabGroup';
