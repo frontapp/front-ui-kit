@@ -64,7 +64,7 @@ const ShowcaseComponent: FC = props => {
           if (copiedIconName && copiedIconName === iconName)
             return (
               <StyledCopiedDiv key={iconName} onMouseLeave={() => setCopiedIconName(undefined)}>
-                <Icon name="CheckmarkSelected" size={32} color={greys.white} />
+                <Icon name="Checkmark" size={32} color={greys.white} />
               </StyledCopiedDiv>
             );
           return (

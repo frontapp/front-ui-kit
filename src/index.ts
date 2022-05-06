@@ -25,4 +25,8 @@ export {Checkbox} from './components/checkbox/checkbox';
 
 export {Icon, IconName} from './components/icon/icon';
 
+export {Pill} from './components/pill/pill';
+export {PillContent} from './components/pill/pillContent';
+export {PillContentIcon} from './components/pill/pillContentIcon';
+
 export {Skeleton} from './components/skeleton/skeleton';

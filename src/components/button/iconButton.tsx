@@ -2,7 +2,7 @@ import React, {FC, MouseEventHandler} from 'react';
 import styled, {css} from 'styled-components';
 
 import {alphas, greys, palette} from '../../helpers/colorHelpers';
-import {renderButtonIconContent} from './buttonHelpers';
+import {renderFirstIconOnly} from '../../helpers/renderHelpers';
 
 /*
  * Props.
@@ -69,7 +69,7 @@ export const IconButton: FC<IconButtonProps> = props => {
   const {children, isDanger, isDisabled, onClick} = props;
   return (
     <StyledIconButton $isDanger={isDanger} $isDisabled={isDisabled} onClick={onClick}>
-      {renderButtonIconContent(children)}
+      {renderFirstIconOnly(children)}
     </StyledIconButton>
   );
 };
