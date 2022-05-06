@@ -29,7 +29,7 @@ interface CheckboxProps {
 interface StyledCheckboxInputProps {
   $isChecked: boolean;
   $isIndeterminate: boolean;
-  $isDisabled?: boolean;
+  $isDisabled: boolean;
 }
 
 const StyledWrapperDiv = styled.div`
@@ -71,7 +71,7 @@ const StyledChildrenDiv = styled.div`
 `;
 
 function addCheckboxStyles(props: StyledCheckboxInputProps) {
-  if (props.$isDisabled && (props.$isChecked|| props.$isIndeterminate))
+  if (props.$isDisabled && (props.$isChecked || props.$isIndeterminate))
     return css`
       background-color: ${greys.shade40};
       border: 1.5px solid ${greys.shade40};
@@ -138,7 +138,7 @@ export const Checkbox: FC<CheckboxProps> = props => {
           $isIndeterminate={isIndeterminate}
           onChange={onInputChange}
         />
-        <StyledIconDiv>{getCheckboxImage(isDisabled, isChecked, isIndeterminate)}</StyledIconDiv>
+        <StyledIconDiv>{getCheckboxIcon(isDisabled, isChecked, isIndeterminate)}</StyledIconDiv>
       </StyledCheckboxDiv>
       <StyledChildrenDiv>{children}</StyledChildrenDiv>
     </StyledWrapperDiv>
@@ -149,7 +149,7 @@ export const Checkbox: FC<CheckboxProps> = props => {
  * Helpers.
  */
 
-function getCheckboxImage(isDisabled: boolean, isChecked: boolean, isIndeterminate: boolean) {
+function getCheckboxIcon(isDisabled: boolean, isChecked: boolean, isIndeterminate: boolean) {
   if (isChecked)
     return <Icon name="CheckmarkBox" color={isDisabled? greys.shade60 : greys.white} />;
   if (isIndeterminate)
