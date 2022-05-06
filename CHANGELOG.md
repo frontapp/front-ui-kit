@@ -1,6 +1,14 @@
 # Changelog
 
 
+### [0.1.2](https://github.com/frontapp/front-ui-kit/compare/v0.1.1...v0.1.2) (2022-05-06)
+
+
+### Features
+
+* add new checkbox component ([#28](https://github.com/frontapp/front-ui-kit/issues/28)) ([1d48a35](https://github.com/frontapp/front-ui-kit/commit/1d48a35aa8a91341c51f983f64727b8ab29275c7))
+* add pill, pillContent, and pillContentIcon components ([#26](https://github.com/frontapp/front-ui-kit/issues/26)) ([e905a55](https://github.com/frontapp/front-ui-kit/commit/e905a558710c029670a754f8ea3adac3da789546))
+
 ### [0.1.1](https://github.com/frontapp/front-ui-kit/compare/v0.1.0...v0.1.1) (2022-05-05)
 
 
