@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {ComponentMeta, ComponentStory} from '@storybook/react';
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
 import {VisualSizesEnum} from '../../../helpers/fontHelpers';
 import {Avatar} from '../../avatar/avatar';
+import {Button} from '../../button/button';
 import {Tooltip} from '../../tooltip/tooltip';
 import {TooltipCoordinator} from '../tooltipCoordinator';
 
@@ -60,6 +61,36 @@ export const Simple = Template.bind({});
  * Overflow tooltips.
  */
 
+const ExplicitTemplate: ComponentStory<typeof TooltipCoordinator> = args => {
+  const [isEnabled, setIsEnabled] = useState(true);
+  return (
+    <>
+      <Button onClick={() => setIsEnabled(!isEnabled)}>Toggle Tooltip Enabled: {isEnabled.toString()}</Button>
+      <br /><br />
+      <TooltipCoordinator
+        {...args}
+        condition={{
+          type: 'explicit',
+          isEnabled
+        }}
+        renderTooltip={() => (
+          <Tooltip placement={(args as any).placement}>
+            This is not overflowing text.
+          </Tooltip>
+        )}
+      >
+        This is not overflowing text.
+      </TooltipCoordinator>
+    </>
+  );
+};
+
+export const ExplicitCondition = ExplicitTemplate.bind({});
+
+/*
+ * Overflow tooltips.
+ */
+
 const OverflowTemplate: ComponentStory<typeof TooltipCoordinator> = args => {
   const exampleText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ornare feugiat elit. ' +
   'Suspendisse dapibus placerat nunc, quis convallis eros tempor vel. Nullam hendrerit semper mollis. Maecenas quis sollicitudin urna.';
@@ -70,7 +101,9 @@ const OverflowTemplate: ComponentStory<typeof TooltipCoordinator> = args => {
       <div style={{maxWidth: "400px", overflow: 'hidden'}}>
         <TooltipCoordinator
           {...args}
-          condition="overflow"
+          condition={{
+            type: 'overflow'
+          }}
           renderTooltip={() => (
             <Tooltip placement={(args as any).placement}>
               This is not overflowing text.
@@ -85,7 +118,9 @@ const OverflowTemplate: ComponentStory<typeof TooltipCoordinator> = args => {
       <div style={{maxWidth: "400px", overflow: 'hidden'}}>
         <TooltipCoordinator
           {...args}
-          condition="overflow"
+          condition={{
+            type: 'overflow'
+          }}
           renderTooltip={() => (
             <Tooltip placement={(args as any).placement}>
               {exampleText}
@@ -99,4 +134,4 @@ const OverflowTemplate: ComponentStory<typeof TooltipCoordinator> = args => {
   );
 };
 
-export const TextOverflow = OverflowTemplate.bind({});
+export const OverflowCondition = OverflowTemplate.bind({});

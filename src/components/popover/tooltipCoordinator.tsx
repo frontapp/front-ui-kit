@@ -6,18 +6,35 @@ import {TooltipOverflow} from '../tooltip/tooltipOverflow';
 import {PopoverContext, PopoverContextProps} from './popoverContext';
 
 /*
- * Props.
+ * Tooltip Conditions.
  */
 
-type TooltipCoordinatorConditions = 'overflow';
+interface TooltipCondition {
+  type: 'overflow' | 'explicit';
+}
+
+interface TooltipOverflowCondition extends TooltipCondition {
+  type: 'overflow';
+}
+
+interface TooltipExplicitCondition extends TooltipCondition {
+  type: 'explicit';
+  isEnabled: boolean;
+}
+
+type TooltipAvailableConditions = TooltipOverflowCondition | TooltipExplicitCondition;
+
+/*
+ * Props.
+ */
 
 interface TooltipCoordinatorProps {
   /** Delay in ms before the tooltip appears. Default is 0. */
   delay?: number;
   /** Children that is wrapped by the tooltip coordinator. */
   children: React.ReactNode;
-  /** Conditions for if the tooltip show show itself. Default is no condition. */
-  condition?: TooltipCoordinatorConditions;
+  /** Conditions that the tooltip would need to pass to be displayed. */
+  condition?: TooltipAvailableConditions;
   /** Tooltip to be rendered. */
   renderTooltip: () => React.ReactNode;
 }
@@ -27,11 +44,11 @@ interface TooltipCoordinatorProps {
  */
 
 interface StyledTooltipCoordinatorDivProps {
-  $condition?: TooltipCoordinatorConditions;
+  $condition?: TooltipAvailableConditions;
 }
 
 const StyledTooltipCoordinatorDiv = styled.div<StyledTooltipCoordinatorDivProps>`
-  display: ${p => (p.$condition === 'overflow' ? 'block' : 'inline-block')};
+  display: ${p => (p.$condition?.type === 'overflow' ? 'block' : 'inline-block')};
 `;
 
 /*
@@ -70,7 +87,7 @@ export const TooltipCoordinator: FC<TooltipCoordinatorProps> = props => {
   return (
     <PopoverContext.Provider value={context}>
       <StyledTooltipCoordinatorDiv $condition={condition} ref={setAnchorElement} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-        {renderWithPotentialConditions(condition, children, setIsConditionPassed)}
+        {renderWithPotentialConditions(condition, children, isConditionPassed, setIsConditionPassed)}
         {shouldRenderTooltip && isConditionPassed && renderTooltip()}
       </StyledTooltipCoordinatorDiv>
     </PopoverContext.Provider>
@@ -82,15 +99,29 @@ export const TooltipCoordinator: FC<TooltipCoordinatorProps> = props => {
  */
 
 function renderWithPotentialConditions(
-  condition: TooltipCoordinatorConditions | undefined,
+  condition: TooltipAvailableConditions | undefined,
   children: React.ReactNode,
+  isConditionPassed: boolean,
   onConditionChange: (isConditionPassed: boolean) => void
 ) {
-  if (condition === 'overflow')
-    return (
-      <TooltipOverflow onConditionChange={onConditionChange}>
-        {children}
-      </TooltipOverflow>
-    );
-  return children;
+  if (!condition)
+    return children;
+
+  switch (condition.type) {
+    // If the type is explicit, set the condition passed to whatever value we currently have.
+    case 'explicit': {
+      if (isConditionPassed !== condition.isEnabled)
+        onConditionChange(condition.isEnabled);
+      return children;
+    }
+    // If the type is overflow, wrap in the tooltip overflow wrapper.
+    case 'overflow':
+      return (
+        <TooltipOverflow onConditionChange={onConditionChange}>
+          {children}
+        </TooltipOverflow>
+      );
+    default:
+      return children;
+  }
 }
