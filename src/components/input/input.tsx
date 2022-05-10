@@ -1,5 +1,4 @@
-
-import React, {FC, useLayoutEffect, useRef, ChangeEventHandler, FocusEventHandler, useState} from 'react';
+import React, {ChangeEventHandler, FC, FocusEventHandler, useLayoutEffect, useRef} from 'react';
 import styled, {css} from 'styled-components';
 
 import {Icon, IconName} from '../..';
@@ -50,7 +49,6 @@ interface InputProps {
 
 interface StyledInputProps {
   $isDisabled: boolean;
-  $isActive: boolean;
   $hasIcon: boolean;
 }
 
@@ -74,9 +72,13 @@ const StyledInput = styled.input<StyledInputProps>`
   border-radius: 8px;
   box-sizing: border-box;
   appearance: none;
-  padding-left: ${p => p.$hasIcon ? `26px` : `5px`};
+  padding-left: ${p => (p.$hasIcon ? `26px` : `5px`)};
   border: none;
   outline: none;
+  color: ${greys.shade90};
+  :focus {
+    border: 2px solid ${palette.blue.shade40};
+  }
 
   ${p => addInputStyles(p)};
 `;
@@ -94,21 +96,13 @@ function addInputStyles(props: StyledInputProps) {
       color: ${greys.shade70};
     `;
 
-  if (props.$isActive)
-    return css`
-      border: 2px solid ${palette.blue.shade40};
-      color: ${greys.shade90};
-    `;
-
   return css`
-    border: 2px solid ${greys.shade10};
-    color: ${greys.shade90};
+    border: none;
   `;
 }
 
 export const Input: FC<InputProps> = props => {
   const {value, type = InputTypesEnum.TEXT, name = "", isDisabled = false, iconName, onChange, onFocus, onBlur, shouldFocus = false} = props;
-  const [isActive, setIsActive] = useState(shouldFocus);
   const inputRef = useRef<HTMLInputElement>(null);
   const onInputChange: ChangeEventHandler<HTMLInputElement> = event => {
     if (isDisabled || !onChange)
@@ -124,7 +118,6 @@ export const Input: FC<InputProps> = props => {
     if (!input)
       return;
     input.focus();
-    setIsActive(true);
     if (onFocus)
       onFocus();
   };
@@ -136,7 +129,6 @@ export const Input: FC<InputProps> = props => {
     if (!input)
       return;
     input.blur();
-    setIsActive(false);
     if (onBlur)
       onBlur();
   };
@@ -159,7 +151,6 @@ export const Input: FC<InputProps> = props => {
       <StyledInput
         ref={inputRef}
         $isDisabled={isDisabled}
-        $isActive={isActive}
         $hasIcon={Boolean(iconName)}
         autoFocus={shouldFocus}
         type={type}
@@ -179,7 +170,6 @@ export const Input: FC<InputProps> = props => {
 
 function getInputIcon(iconName?: IconName) {
   if (iconName)
-    return <Icon name={iconName}/>;
+    return <Icon name={iconName} />;
   return null;
-
 }
