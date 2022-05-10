@@ -8,7 +8,6 @@ import styled from 'styled-components';
 
 export interface LayerProps {
   isExclusive?: boolean;
-  isInteractive?: boolean;
   onClick?: () => void;
   children?: React.ReactNode;
 }
@@ -19,7 +18,6 @@ export interface LayerProps {
 
 interface LayerStyleProps {
   $isExclusive?: boolean;
-  $isInteractive?: boolean;
 }
 
 const StyledLayerDiv = styled.div<LayerStyleProps>`
@@ -31,10 +29,6 @@ const StyledLayerDiv = styled.div<LayerStyleProps>`
 
   /** Catch pointer events if and only if we are an exclusive layer. */
   pointer-events: ${p => (p.$isExclusive ? 'auto' : 'none')};
-
-  & > * {
-    pointer-events: ${p => (p.$isInteractive ? 'auto' : 'none')};
-  }
 `;
 
 /*
@@ -42,7 +36,7 @@ const StyledLayerDiv = styled.div<LayerStyleProps>`
  */
 
 export const Layer: FC<LayerProps> = props => {
-  const {isExclusive, isInteractive, children, onClick} = props;
+  const {isExclusive, children, onClick} = props;
   const [nodes, setNodes] = useState<{nodeWrapper: HTMLElement; nodeContent: HTMLElement}>();
 
   useLayoutEffect(() => {
@@ -73,11 +67,7 @@ export const Layer: FC<LayerProps> = props => {
     return null;
 
   const content = (
-    <StyledLayerDiv
-      $isExclusive={isExclusive}
-      $isInteractive={isInteractive}
-      onClick={onClick}
-    >
+    <StyledLayerDiv $isExclusive={isExclusive} onClick={onClick}>
       {children}
     </StyledLayerDiv>
   );

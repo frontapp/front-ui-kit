@@ -4,15 +4,21 @@ import React, {FC, useEffect, useState} from 'react';
 import styled from 'styled-components';
 
 import {PopoverContext, PopoverContextProps} from './popoverContext';
+import {RepositionPopover, RepositionPopoverProps} from './repositionPopover';
 
 /*
  * Props.
  */
 
-interface DropdownCoordinatorProps {
+interface DropdownCoordinatorProps extends Omit<RepositionPopoverProps, 'onRequestClose' | 'isExclusive' | 'onClick'> {
+  /** Controls if the dropdown is disabled from opening. If disabled, we will not open anything. */
   isDisabled?: boolean;
+  /** Controls if the overlay will close the dropdown. If disabled, we will not close when the overlay is clicked. */
+  isOverlayCloseDisabled?: boolean;
+  /** Render the button that triggers the dropdown. */
   renderButton: () => React.ReactNode;
-  renderDropdown: (onRequestClose: () => void) => React.ReactNode;
+  /** Render the dropdown. */
+  renderDropdown: (onCloseDropdown: () => void) => React.ReactNode;
 }
 
 /*
@@ -28,7 +34,7 @@ const StyledAnchorDiv = styled.div`
  */
 
 export const DropdownCoordinator: FC<DropdownCoordinatorProps> = props => {
-  const {isDisabled, renderButton, renderDropdown} = props;
+  const {isDisabled, hasVisibleOverlay, placement, isOverlayCloseDisabled, renderButton, renderDropdown} = props;
   const [anchorElement, setAnchorElement] = useState<HTMLDivElement | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [context, setContext] = useState<PopoverContextProps | undefined>();
@@ -47,7 +53,7 @@ export const DropdownCoordinator: FC<DropdownCoordinatorProps> = props => {
     setIsDropdownOpen(true);
   };
 
-  const onRequestClose = () => {
+  const onCloseDropdown = () => {
     setIsDropdownOpen(false);
   };
 
@@ -56,7 +62,16 @@ export const DropdownCoordinator: FC<DropdownCoordinatorProps> = props => {
       <StyledAnchorDiv ref={setAnchorElement} onClick={onClick}>
         {renderButton()}
       </StyledAnchorDiv>
-      {isDropdownOpen && renderDropdown(onRequestClose)}
+      {isDropdownOpen && (
+        <RepositionPopover
+          placement={placement}
+          hasVisibleOverlay={hasVisibleOverlay}
+          onRequestClose={isOverlayCloseDisabled ? undefined : onCloseDropdown}
+          isExclusive
+        >
+          {renderDropdown(onCloseDropdown)}
+        </RepositionPopover>
+      )}
     </PopoverContext.Provider>
   );
 };

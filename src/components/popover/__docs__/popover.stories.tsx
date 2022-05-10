@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import {greys} from '../../../helpers/colorHelpers';
 import {fonts} from '../../../helpers/fontHelpers';
 import {DropdownCoordinator} from '../dropdownCoordinator';
-import {RepositionPopover} from '../repositionPopover';
 
 export default {
   title: 'Front UI Kit/Dropdown',
@@ -35,18 +34,12 @@ const Template: ComponentStory<typeof DropdownCoordinator> = args => (
     <StyledDropdownContainerDiv>
       <DropdownCoordinator
         {...args}
+        placement="bottom-start"
         renderButton={() => <StyledButton type="button">Dropdown Without Background</StyledButton>}
-        renderDropdown={onRequestClose => (
-          <RepositionPopover
-            onRequestClose={onRequestClose}
-            isExclusive
-            isInteractive
-            placement="bottom-start"
-          >
-            <StyledDropdownDiv>
-              Example Dropdown
-            </StyledDropdownDiv>
-          </RepositionPopover>
+        renderDropdown={() => (
+          <StyledDropdownDiv>
+            Example Dropdown
+          </StyledDropdownDiv>
         )}
       />
     </StyledDropdownContainerDiv>
@@ -54,19 +47,13 @@ const Template: ComponentStory<typeof DropdownCoordinator> = args => (
     <StyledDropdownContainerDiv>
       <DropdownCoordinator
         {...args}
+        hasVisibleOverlay
+        placement="bottom-start"
         renderButton={() => <StyledButton type="button">Dropdown With Background</StyledButton>}
-        renderDropdown={onRequestClose => (
-          <RepositionPopover
-            onRequestClose={onRequestClose}
-            isExclusive
-            isInteractive
-            hasBackground
-            placement="bottom-start"
-          >
-            <StyledDropdownDiv>
-              Example Dropdown
-            </StyledDropdownDiv>
-          </RepositionPopover>
+        renderDropdown={() => (
+          <StyledDropdownDiv>
+            Example Dropdown
+          </StyledDropdownDiv>
         )}
       />
     </StyledDropdownContainerDiv>
@@ -74,21 +61,16 @@ const Template: ComponentStory<typeof DropdownCoordinator> = args => (
     <StyledDropdownContainerDiv>
       <DropdownCoordinator
         {...args}
+        isOverlayCloseDisabled
+        placement="bottom-start"
         renderButton={() => <StyledButton type="button">Dropdown Close Action</StyledButton>}
-        renderDropdown={onRequestClose => (
-          <RepositionPopover
-            isExclusive
-            isInteractive
-            hasBackground
-            placement="bottom-start"
-          >
-            <StyledDropdownDiv>
-              This dropdown will not close when the background is clicked.
-              <br />
-              <br />
-              <StyledButton type="button" onClick={onRequestClose}>Close</StyledButton>
-            </StyledDropdownDiv>
-          </RepositionPopover>
+        renderDropdown={onCloseDropdown => (
+          <StyledDropdownDiv>
+            This dropdown will not close when the background is clicked.
+            <br />
+            <br />
+            <StyledButton type="button" onClick={onCloseDropdown}>Close</StyledButton>
+          </StyledDropdownDiv>
         )}
       />
     </StyledDropdownContainerDiv>

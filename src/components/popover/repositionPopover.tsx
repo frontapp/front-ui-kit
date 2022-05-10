@@ -9,7 +9,8 @@ import {Reposition, RepositionProps} from './reposition';
  */
 
 export interface RepositionPopoverProps extends LayerProps, RepositionProps {
-  hasBackground?: boolean;
+  /** Controls if the overlay should be transparent or has a slight black shade. */
+  hasVisibleOverlay?: boolean;
   onRequestClose?: () => void;
 }
 
@@ -18,7 +19,7 @@ export interface RepositionPopoverProps extends LayerProps, RepositionProps {
  */
 
 interface StyledBackgroundDivProps {
-  $hasBackground?: boolean;
+  $hasVisibleOverlay?: boolean;
 }
 const StyledBackgroundDiv = styled.div<StyledBackgroundDivProps>`
   position: absolute;
@@ -26,7 +27,7 @@ const StyledBackgroundDiv = styled.div<StyledBackgroundDivProps>`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: ${p => (p.$hasBackground ? 'rgba(0, 0, 0, 0.3)' : 'transparent')};
+  background-color: ${p => (p.$hasVisibleOverlay ? 'rgba(0, 0, 0, 0.3)' : 'transparent')};
 `;
 
 /*
@@ -34,10 +35,10 @@ const StyledBackgroundDiv = styled.div<StyledBackgroundDivProps>`
  */
 
 export const RepositionPopover: FC<RepositionPopoverProps> = props => {
-  const {hasBackground, isExclusive, isInteractive, placement, children, onRequestClose} = props;
+  const {hasVisibleOverlay, isExclusive, placement, children, onRequestClose} = props;
   return (
-    <Layer isExclusive={isExclusive} isInteractive={isInteractive} onClick={onRequestClose}>
-      {props.isExclusive && <StyledBackgroundDiv $hasBackground={hasBackground} onClick={onRequestClose} />}
+    <Layer isExclusive={isExclusive} onClick={onRequestClose}>
+      {props.isExclusive && <StyledBackgroundDiv $hasVisibleOverlay={hasVisibleOverlay} onClick={onRequestClose} />}
       <Reposition placement={placement}>{children}</Reposition>
     </Layer>
   );
