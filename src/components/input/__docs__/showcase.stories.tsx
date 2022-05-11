@@ -3,6 +3,7 @@ import React, {FC, useState} from 'react';
 import styled from 'styled-components';
 
 import {IconName} from '../../..';
+import { greys, palette } from '../../../helpers/colorHelpers';
 import {Input, InputTypesEnum} from '../input';
 
 /*
@@ -11,7 +12,7 @@ import {Input, InputTypesEnum} from '../input';
 
 interface ShowcaseInputProps {
   /** The content of the input field */
-  value: string | number;
+  value?: string | number;
   /** Type of input: number, text, email, url, password. Default to text. */
   type: InputTypesEnum;
   /** Whether the input is disabled. */
@@ -31,8 +32,8 @@ interface StyledTextProps {
 const StyledShowcaseDiv = styled.div`
   margin-top: 5px;
   margin-bottom: 5px;
-  background: grey;
-  width: 250px;
+  background: ${greys.shade30};
+  width: 450px;
   height: 60px;
   align-items: center;
   padding-left: 10px;
@@ -51,7 +52,7 @@ const StyledText = styled.div<StyledTextProps>`
   display: flex;
   overflow: hidden;
   white-space: nowrap;
-  color: ${p => (p.$isFocused ? `red` : `black`)};
+  color: ${p => (p.$isFocused ? `${palette.blue.shade40}` : `${greys.black}`)};
 `;
 
 /*
@@ -61,6 +62,7 @@ const StyledText = styled.div<StyledTextProps>`
 const ShowcaseComponent: FC = props => (
   <div>
     <ShowcaseInputComponent isDisabled value="Disabled Input" type={InputTypesEnum.TEXT} />
+    <ShowcaseInputComponent type={InputTypesEnum.TEXT} />
     <ShowcaseInputComponent value="Hello World" type={InputTypesEnum.TEXT} />
     <ShowcaseInputComponent value="Hello World" type={InputTypesEnum.TEXT} iconName="Close" />
     <ShowcaseInputComponent value={10} type={InputTypesEnum.NUMBER} />
@@ -70,9 +72,14 @@ const ShowcaseComponent: FC = props => (
 const ShowcaseInputComponent: FC<ShowcaseInputProps> = props => {
   const {isDisabled, value, type, iconName} = props;
   const [inputValue, setInputValue] = useState(value);
+  const [isErred, setIsErred] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const onChange = newValue => {
     setInputValue(newValue);
+    if (newValue === "Error")
+      setIsErred(true);
+    else
+    setIsErred(false);
   };
   const onFocus = () => {
     setIsFocused(true);
@@ -83,7 +90,7 @@ const ShowcaseInputComponent: FC<ShowcaseInputProps> = props => {
 
   return (
     <StyledShowcaseDiv>
-      <Input value={inputValue} type={type} isDisabled={isDisabled} iconName={iconName} onChange={onChange} onBlur={onBlur} onFocus={onFocus} />
+      <Input id="input" value={inputValue} type={type} isDisabled={isDisabled} iconName={iconName} isErred={isErred} onChange={onChange} onBlur={onBlur} onFocus={onFocus} />
       <StyledText $isFocused={isFocused}>{inputValue}</StyledText>
     </StyledShowcaseDiv>
   );

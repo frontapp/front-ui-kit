@@ -21,6 +21,8 @@ export enum InputTypesEnum {
  */
 
 interface InputProps {
+  /** The id of the input field */
+  id: string
   /** The content of the input field */
   value: string | number;
   /** Type of input: number, text, email, url, password. Default to text. */
@@ -33,6 +35,8 @@ interface InputProps {
   isDisabled?: boolean;
   /** The icon to render at the beginning of the input field */
   iconName?: IconName;
+  /** Whether the input is erred */
+  isErred?: boolean;
   /** Whether we should focus on the input when it is mounted */
   shouldFocus?: boolean;
   /** The handler for when the content of the input field changes */
@@ -50,11 +54,12 @@ interface InputProps {
 interface StyledInputProps {
   $isDisabled: boolean;
   $hasIcon: boolean;
+  $isErred: boolean;
 }
 
 const StyledInputDiv = styled.div`
   position: relative;
-  width: 121px;
+  width: 229px;
   height: 30px;
   display: flex;
   flex-flow: row;
@@ -63,23 +68,30 @@ const StyledInputDiv = styled.div`
 const StyledInput = styled.input<StyledInputProps>`
   width: inherit;
   height: inherit;
-  background: ${greys.white};
+  background: ${greys.shade20};
   font-family: ${fonts.system};
   font-size: ${fontSizes.medium};
   font-weight: ${fontWeights.normal};
   line-height: 17px;
   text-overflow: ellipsis;
-  border-radius: 8px;
+  border-radius: 6px;
   box-sizing: border-box;
   appearance: none;
-  padding-left: ${p => (p.$hasIcon ? `26px` : `5px`)};
+  padding: 7px 8px 7px 8px;
+  padding-left: ${p => (p.$hasIcon ? `25px` : `8px`)};
   border: none;
   outline: none;
   color: ${greys.shade90};
+  ::placeholder {
+    color: ${greys.shade60};
+  }
+  :hover {
+    background: ${greys.shade30};
+  }
   :focus {
     border: 2px solid ${palette.blue.shade40};
+    background: ${greys.white};
   }
-
   ${p => addInputStyles(p)};
 `;
 
@@ -93,7 +105,22 @@ function addInputStyles(props: StyledInputProps) {
   if (props.$isDisabled)
     return css`
       border: 2px solid ${greys.shade30};
-      color: ${greys.shade70};
+      background: ${greys.white};
+      :hover {
+        background: ${greys.white};
+      }
+      opacity: 0.5;
+    `;
+  if (props.$isErred)
+    return css`
+      background: ${palette.red.shade10};
+      :hover {
+        background: ${palette.red.shade20};
+      }
+      :focus {
+        border: 2px solid ${palette.red.shade40};
+        background: ${greys.white};
+      }
     `;
 
   return css`
@@ -102,12 +129,12 @@ function addInputStyles(props: StyledInputProps) {
 }
 
 export const Input: FC<InputProps> = props => {
-  const {value, type = InputTypesEnum.TEXT, name = "", isDisabled = false, iconName, onChange, onFocus, onBlur, shouldFocus = false} = props;
+  const {id, value, placeholder = "Placeholder", type = InputTypesEnum.TEXT, name = "", isDisabled = false, iconName, isErred = false, onChange, onFocus, onBlur, shouldFocus = false} = props;
   const inputRef = useRef<HTMLInputElement>(null);
   const onInputChange: ChangeEventHandler<HTMLInputElement> = event => {
     if (isDisabled || !onChange)
       return;
-    const inputValue = event.currentTarget.value || '';
+    const inputValue = event.currentTarget.value;
     onChange(inputValue);
   };
 
@@ -149,9 +176,12 @@ export const Input: FC<InputProps> = props => {
     <StyledInputDiv>
       <StyledIconDiv>{getInputIcon(iconName)}</StyledIconDiv>
       <StyledInput
+        id={id}
         ref={inputRef}
         $isDisabled={isDisabled}
+        $isErred={isErred}
         $hasIcon={Boolean(iconName)}
+        placeholder={placeholder}
         autoFocus={shouldFocus}
         type={type}
         name={name}
