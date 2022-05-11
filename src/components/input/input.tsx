@@ -68,7 +68,6 @@ const StyledInput = styled.input<StyledInputProps>`
   appearance: none;
   padding: 7px 8px 7px 8px;
   padding-left: ${p => (p.$hasIcon ? `25px` : `8px`)};
-  border: none;
   outline: none;
   color: ${greys.shade90};
 
@@ -118,7 +117,7 @@ function addInputStyles(props: StyledInputProps) {
     `;
 
   return css`
-    border: none;
+    border: 2px solid transparent;
   `;
 }
 
