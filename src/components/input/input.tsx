@@ -49,7 +49,6 @@ interface StyledInputProps {
 const StyledInputDiv = styled.div`
   position: relative;
   width: inherit;
-  padding: 30px 0px;
   display: flex;
   flex-flow: row;
 `;
@@ -66,7 +65,7 @@ const StyledInput = styled.input<StyledInputProps>`
   border-radius: 6px;
   box-sizing: border-box;
   appearance: none;
-  padding: 7px 8px 7px 8px;
+  padding: 4.5px 8px 4.5px 8px;
   padding-left: ${p => (p.$hasIcon ? `25px` : `8px`)};
   outline: none;
   color: ${greys.shade90};
