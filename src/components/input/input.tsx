@@ -49,7 +49,7 @@ interface StyledInputProps {
 const StyledInputDiv = styled.div`
   position: relative;
   width: inherit;
-  height: 30px;
+  padding: 30px 0px;
   display: flex;
   flex-flow: row;
 `;
@@ -89,8 +89,12 @@ const StyledInput = styled.input<StyledInputProps>`
 
 const StyledIconDiv = styled.div`
   position: absolute;
-  top: 7px;
+  display: flex;
+  flex-flow: column;
+  top: 0;
+  bottom: 0;
   left: 5px;
+  justify-content: center;
 `;
 
 function addInputStyles(props: StyledInputProps) {
@@ -107,6 +111,7 @@ function addInputStyles(props: StyledInputProps) {
   if (props.$isErred)
     return css`
       background: ${palette.red.shade10};
+      border: 2px solid transparent;
       &:hover {
         background: ${palette.red.shade20};
       }
@@ -126,9 +131,20 @@ function addInputStyles(props: StyledInputProps) {
  */
 
 export const Input: FC<InputProps> = props => {
-  const {id, value, placeholder, type = 'text', name = "", isDisabled = false,
-    iconName, isErred = false, onChange, onFocus, onBlur, shouldFocus = false} = props;
-  const inputRef = useRef<HTMLInputElement>(null);
+  const {
+    id,
+    value,
+    placeholder,
+    type = 'text',
+    name = "",
+    isDisabled = false,
+    iconName,
+    isErred = false,
+    onChange,
+    onFocus,
+    onBlur,
+    shouldFocus = false
+  } = props;
   const onInputChange: ChangeEventHandler<HTMLInputElement> = event => {
     if (isDisabled || !onChange)
       return;
@@ -137,17 +153,15 @@ export const Input: FC<InputProps> = props => {
   };
 
   const onInputFocus: FocusEventHandler<HTMLInputElement> = event => {
-    if (isDisabled)
+    if (isDisabled || !onFocus)
       return;
-    if (onFocus)
-      onFocus();
+    onFocus();
   };
 
   const onInputBlur: FocusEventHandler<HTMLInputElement> = event => {
-    if (isDisabled)
+    if (isDisabled || !onBlur)
       return;
-    if (onBlur)
-      onBlur();
+    onBlur();
   };
 
   return (
@@ -155,7 +169,6 @@ export const Input: FC<InputProps> = props => {
       <StyledIconDiv>{getInputIcon(iconName)}</StyledIconDiv>
       <StyledInput
         id={id}
-        ref={inputRef}
         $isDisabled={isDisabled}
         disabled={isDisabled}
         $isErred={isErred}
