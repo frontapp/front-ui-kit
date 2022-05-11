@@ -1,6 +1,15 @@
 # Changelog
 
 
+### [0.1.3](https://github.com/frontapp/front-ui-kit/compare/v0.1.2...v0.1.3) (2022-05-11)
+
+
+### Features
+
+* add dropdown coordinator component ([#17](https://github.com/frontapp/front-ui-kit/issues/17)) ([2718f15](https://github.com/frontapp/front-ui-kit/commit/2718f15609e753f167a84b1dc63bb828e0e55d44))
+* add Tab and TabGroup components ([#30](https://github.com/frontapp/front-ui-kit/issues/30)) ([31a7214](https://github.com/frontapp/front-ui-kit/commit/31a7214d02a41125727b7fd7a23b1a29311d1093))
+* add tooltip and tooltipCoordinator ([#27](https://github.com/frontapp/front-ui-kit/issues/27)) ([b355030](https://github.com/frontapp/front-ui-kit/commit/b355030b30fe25e8ebb609c5c623e3f5782e526b))
+
 ### [0.1.2](https://github.com/frontapp/front-ui-kit/compare/v0.1.1...v0.1.2) (2022-05-06)
 
 
