@@ -133,20 +133,20 @@ export const TextArea: FC<TextAreaProps> = props => {
     onBlur,
     shouldFocus = false
   } = props;
-  const onInputChange: ChangeEventHandler<HTMLTextAreaElement> = event => {
+  const onTextAreaChange: ChangeEventHandler<HTMLTextAreaElement> = event => {
     if (isDisabled || !onChange)
       return;
-    const inputValue = event.currentTarget.value;
-    onChange(inputValue);
+    const textAreaValue = event.currentTarget.value;
+    onChange(textAreaValue);
   };
 
-  const onInputFocus: FocusEventHandler<HTMLTextAreaElement> = event => {
+  const onTextAreaFocus: FocusEventHandler<HTMLTextAreaElement> = event => {
     if (isDisabled || !onFocus)
       return;
     onFocus();
   };
 
-  const onInputBlur: FocusEventHandler<HTMLTextAreaElement> = event => {
+  const onTextAreaBlur: FocusEventHandler<HTMLTextAreaElement> = event => {
     if (isDisabled || !onBlur)
       return;
     onBlur();
@@ -165,9 +165,9 @@ export const TextArea: FC<TextAreaProps> = props => {
         autoFocus={shouldFocus}
         name={name}
         value={value}
-        onChange={onInputChange}
-        onFocus={onInputFocus}
-        onBlur={onInputBlur}
+        onChange={onTextAreaChange}
+        onFocus={onTextAreaFocus}
+        onBlur={onTextAreaBlur}
       >
         {value}
       </StyledTextArea>
