@@ -44,6 +44,10 @@ const StyledShowcaseDiv = styled.div`
   align-items: center;
 `;
 
+const StyledInputDiv = styled.div`
+  width: 230px
+`;
+
 const StyledText = styled.div<StyledTextProps>`
   line-height: 17px;
   text-overflow: ellipsis;
@@ -91,7 +95,9 @@ const ShowcaseInputComponent: FC<ShowcaseInputProps> = props => {
 
   return (
     <StyledShowcaseDiv>
-      <Input id="input" value={inputValue} type={type} isDisabled={isDisabled} iconName={iconName} isErred={isErred} onChange={onChange} onBlur={onBlur} onFocus={onFocus} />
+      <StyledInputDiv>
+        <Input id="input" value={inputValue} type={type} isDisabled={isDisabled} iconName={iconName} isErred={isErred} onChange={onChange} onBlur={onBlur} onFocus={onFocus} />
+      </StyledInputDiv>
       <StyledText $isFocused={isFocused}>{inputValue}</StyledText>
     </StyledShowcaseDiv>
   );
