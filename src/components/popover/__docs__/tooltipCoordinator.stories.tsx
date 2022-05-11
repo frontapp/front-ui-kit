@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 
 import {VisualSizesEnum} from '../../../helpers/fontHelpers';
+import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
 import {Avatar} from '../../avatar/avatar';
 import {Button} from '../../button/button';
 import {Tooltip} from '../../tooltip/tooltip';
@@ -64,7 +65,7 @@ export const Simple = Template.bind({});
 const ExplicitTemplate: ComponentStory<typeof TooltipCoordinator> = args => {
   const [isEnabled, setIsEnabled] = useState(true);
   return (
-    <>
+    <DefaultStyleProvider>
       <Button onClick={() => setIsEnabled(!isEnabled)}>Toggle Tooltip Enabled: {isEnabled.toString()}</Button>
       <br /><br />
       <TooltipCoordinator
@@ -81,7 +82,7 @@ const ExplicitTemplate: ComponentStory<typeof TooltipCoordinator> = args => {
       >
         This is not overflowing text.
       </TooltipCoordinator>
-    </>
+    </DefaultStyleProvider>
   );
 };
 
@@ -96,7 +97,7 @@ const OverflowTemplate: ComponentStory<typeof TooltipCoordinator> = args => {
   'Suspendisse dapibus placerat nunc, quis convallis eros tempor vel. Nullam hendrerit semper mollis. Maecenas quis sollicitudin urna.';
 
   return (
-    <>
+    <DefaultStyleProvider>
       <h2>No tooltip - Text is not overflowing</h2>
       <div style={{maxWidth: "400px", overflow: 'hidden'}}>
         <TooltipCoordinator
@@ -130,7 +131,7 @@ const OverflowTemplate: ComponentStory<typeof TooltipCoordinator> = args => {
           {exampleText}
         </TooltipCoordinator>
       </div>
-    </>
+    </DefaultStyleProvider>
   );
 };
 
