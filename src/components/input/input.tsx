@@ -1,4 +1,4 @@
-import React, {ChangeEventHandler, FC, FocusEventHandler, useRef} from 'react';
+import React, {ChangeEventHandler, FC, FocusEventHandler} from 'react';
 import styled, {css} from 'styled-components';
 
 import {Icon, IconName} from '../..';
