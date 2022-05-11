@@ -3,7 +3,7 @@ import React, {FC, useState} from 'react';
 import styled from 'styled-components';
 
 import {IconName} from '../../..';
-import { greys, palette } from '../../../helpers/colorHelpers';
+import {greys, palette} from '../../../helpers/colorHelpers';
 import {Input, InputTypesEnum} from '../input';
 
 /*
@@ -79,7 +79,7 @@ const ShowcaseInputComponent: FC<ShowcaseInputProps> = props => {
     if (newValue === "Error")
       setIsErred(true);
     else
-    setIsErred(false);
+      setIsErred(false);
   };
   const onFocus = () => {
     setIsFocused(true);
