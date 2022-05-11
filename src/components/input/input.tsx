@@ -15,7 +15,7 @@ interface InputProps {
   /** The content of the input field */
   value?: string | number;
   /** Type of input: number, text, email, url, password. Default to text. */
-  type?: 'text' |'email' | 'password' | 'url' |'number';
+  type?: 'text' |'email' | 'password' | 'url' | 'number';
   /** The name of the input field */
   name?: string;
   /** Placeholder value */
