@@ -13,7 +13,8 @@ export enum InputTypesEnum {
   TEXT = 'text',
   NUMBER = 'number',
   EMAIL = 'email',
-  PASSWORD = 'password'
+  PASSWORD = 'password',
+  URL = 'url'
 }
 
 /**
