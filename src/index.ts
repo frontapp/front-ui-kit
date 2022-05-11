@@ -25,7 +25,7 @@ export {Checkbox} from './components/checkbox/checkbox';
 
 export {Icon, IconName} from './components/icon/icon';
 
-export {Input, InputTypesEnum} from './components/input/input';
+export {Input} from './components/input/input';
 
 export {Pill} from './components/pill/pill';
 export {PillContent} from './components/pill/pillContent';

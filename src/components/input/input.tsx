@@ -1,4 +1,4 @@
-import React, {ChangeEventHandler, FC, FocusEventHandler, useLayoutEffect, useRef} from 'react';
+import React, {ChangeEventHandler, FC, FocusEventHandler, useRef} from 'react';
 import styled, {css} from 'styled-components';
 
 import {Icon, IconName} from '../..';
@@ -6,18 +6,6 @@ import {greys, palette} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 
 /*
- * Constants.
- */
-
-export enum InputTypesEnum {
-  TEXT = 'text',
-  NUMBER = 'number',
-  EMAIL = 'email',
-  PASSWORD = 'password',
-  URL = 'url'
-}
-
-/**
  * Props
  */
 
@@ -27,7 +15,7 @@ interface InputProps {
   /** The content of the input field */
   value?: string | number;
   /** Type of input: number, text, email, url, password. Default to text. */
-  type?: InputTypesEnum;
+  type?: 'text' |'email' | 'password' | 'url' |'number';
   /** The name of the input field */
   name?: string;
   /** Placeholder value */
@@ -41,11 +29,11 @@ interface InputProps {
   /** Whether we should focus on the input when it is mounted */
   shouldFocus?: boolean;
   /** The handler for when the content of the input field changes */
-  onChange: (value?: string | number) => void
+  onChange?: (value?: string | number) => void;
   /** The handler for when the input field is unfocused */
-  onBlur?: () => void
+  onBlur?: () => void;
   /** The handler for when the input field is focused */
-  onFocus?: () => void
+  onFocus?: () => void;
 }
 
 /*
@@ -60,7 +48,7 @@ interface StyledInputProps {
 
 const StyledInputDiv = styled.div`
   position: relative;
-  width: 229px;
+  width: inherit;
   height: 30px;
   display: flex;
   flex-flow: row;
@@ -83,16 +71,20 @@ const StyledInput = styled.input<StyledInputProps>`
   border: none;
   outline: none;
   color: ${greys.shade90};
-  ::placeholder {
+
+  &::placeholder {
     color: ${greys.shade60};
   }
-  :hover {
+
+  &:hover {
     background: ${greys.shade30};
   }
-  :focus {
+
+  &:focus {
     border: 2px solid ${palette.blue.shade40};
     background: ${greys.white};
   }
+
   ${p => addInputStyles(p)};
 `;
 
@@ -107,18 +99,19 @@ function addInputStyles(props: StyledInputProps) {
     return css`
       border: 2px solid ${greys.shade30};
       background: ${greys.white};
-      :hover {
+      &:hover {
         background: ${greys.white};
       }
       opacity: 0.5;
     `;
+
   if (props.$isErred)
     return css`
       background: ${palette.red.shade10};
-      :hover {
+      &:hover {
         background: ${palette.red.shade20};
       }
-      :focus {
+      &:focus {
         border: 2px solid ${palette.red.shade40};
         background: ${greys.white};
       }
@@ -129,8 +122,13 @@ function addInputStyles(props: StyledInputProps) {
   `;
 }
 
+/*
+ * Component.
+ */
+
 export const Input: FC<InputProps> = props => {
-  const {id, value, placeholder = "Placeholder", type = InputTypesEnum.TEXT, name = "", isDisabled = false, iconName, isErred = false, onChange, onFocus, onBlur, shouldFocus = false} = props;
+  const {id, value, placeholder, type = 'text', name = "", isDisabled = false,
+    iconName, isErred = false, onChange, onFocus, onBlur, shouldFocus = false} = props;
   const inputRef = useRef<HTMLInputElement>(null);
   const onInputChange: ChangeEventHandler<HTMLInputElement> = event => {
     if (isDisabled || !onChange)
@@ -142,10 +140,6 @@ export const Input: FC<InputProps> = props => {
   const onInputFocus: FocusEventHandler<HTMLInputElement> = event => {
     if (isDisabled)
       return;
-    const input = inputRef.current;
-    if (!input)
-      return;
-    input.focus();
     if (onFocus)
       onFocus();
   };
@@ -153,25 +147,9 @@ export const Input: FC<InputProps> = props => {
   const onInputBlur: FocusEventHandler<HTMLInputElement> = event => {
     if (isDisabled)
       return;
-    const input = inputRef.current;
-    if (!input)
-      return;
-    input.blur();
     if (onBlur)
       onBlur();
   };
-
-  // Set the attributes of the input on every render.
-  useLayoutEffect(() => {
-    const input = inputRef.current;
-    if (!input)
-      return;
-
-    if (isDisabled)
-      input.disabled = true;
-    else
-      input.disabled = false;
-  }, [isDisabled]);
 
   return (
     <StyledInputDiv>
@@ -180,6 +158,7 @@ export const Input: FC<InputProps> = props => {
         id={id}
         ref={inputRef}
         $isDisabled={isDisabled}
+        disabled={isDisabled}
         $isErred={isErred}
         $hasIcon={Boolean(iconName)}
         placeholder={placeholder}

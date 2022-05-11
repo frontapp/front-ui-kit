@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import {IconName} from '../../..';
 import {greys, palette} from '../../../helpers/colorHelpers';
-import {Input, InputTypesEnum} from '../input';
+import {Input} from '../input';
 
 /*
  * Props.
@@ -13,8 +13,8 @@ import {Input, InputTypesEnum} from '../input';
 interface ShowcaseInputProps {
   /** The content of the input field */
   value?: string | number;
-  /** Type of input: number, text, email, url, password. Default to text. */
-  type: InputTypesEnum;
+  /** Type of input */
+  type: 'text' |'email' | 'password' | 'url' |'number';
   /** Whether the input is disabled. */
   isDisabled?: boolean;
   /** The icon to render at the beginning of the input field */
@@ -24,6 +24,7 @@ interface ShowcaseInputProps {
 /*
  * Style.
  */
+
 interface StyledTextProps {
   /** Whether the input corresponding to the text is focused. */
   $isFocused : boolean;
@@ -61,11 +62,11 @@ const StyledText = styled.div<StyledTextProps>`
 
 const ShowcaseComponent: FC = props => (
   <div>
-    <ShowcaseInputComponent isDisabled value="Disabled Input" type={InputTypesEnum.TEXT} />
-    <ShowcaseInputComponent type={InputTypesEnum.TEXT} />
-    <ShowcaseInputComponent value="Hello World" type={InputTypesEnum.TEXT} />
-    <ShowcaseInputComponent value="Hello World" type={InputTypesEnum.TEXT} iconName="Close" />
-    <ShowcaseInputComponent value={10} type={InputTypesEnum.NUMBER} />
+    <ShowcaseInputComponent isDisabled value="Disabled Input" type="text" />
+    <ShowcaseInputComponent type="text"/>
+    <ShowcaseInputComponent value="Hello World" type="text"/>
+    <ShowcaseInputComponent value="Hello World" type="text"iconName="Close" />
+    <ShowcaseInputComponent value={10} type="number" />
   </div>
 );
 
