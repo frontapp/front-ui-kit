@@ -47,12 +47,14 @@ export const Layer: FC<LayerProps> = props => {
     nodeWrapper.className = 'front-ui-kit-layer';
     nodeWrapper.style.position = 'absolute';
     nodeWrapper.style.inset = '0';
+    nodeWrapper.style.pointerEvents = isExclusive ? 'auto' : 'none';
 
     // Create our inner container, which holds the children that are not nested inside a child layer.
     const nodeContent = document.createElement('div');
     nodeContent.className = 'front-ui-kit-layer';
     nodeContent.style.position = 'absolute';
     nodeContent.style.inset = '0';
+    nodeContent.style.pointerEvents = isExclusive ? 'auto' : 'none';
     nodeWrapper.appendChild(nodeContent);
 
     const destroyLayer = createLayer(nodeWrapper);
@@ -61,7 +63,7 @@ export const Layer: FC<LayerProps> = props => {
     return () => {
       destroyLayer();
     };
-  }, []);
+  }, [isExclusive]);
 
   if (!nodes)
     return null;
