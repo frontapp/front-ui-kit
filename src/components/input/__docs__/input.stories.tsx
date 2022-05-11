@@ -12,24 +12,24 @@ const Template: ComponentStory<typeof Input> = args => <Input {...args} />;
 
 export const BasicEmptyInput = Template.bind({});
 BasicEmptyInput.args = {
-  placeholder: "Placeholder",
+  placeholder: "Placeholder"
 };
 
 export const BasicTextInput = Template.bind({});
 BasicTextInput.args = {
-  value: "Hello",
+  value: "Hello"
 };
 
 export const BasicNumberInput = Template.bind({});
 BasicNumberInput.args = {
   value: 20,
-  type:'number',
+  type: 'number'
 };
 
 export const BasicPasswordInput = Template.bind({});
 BasicPasswordInput.args = {
   value: "password",
-  type: 'password',
+  type: 'password'
 };
 
 export const BasicEmailInput = Template.bind({});

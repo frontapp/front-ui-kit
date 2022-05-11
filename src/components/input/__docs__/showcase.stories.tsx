@@ -63,9 +63,9 @@ const StyledText = styled.div<StyledTextProps>`
 const ShowcaseComponent: FC = props => (
   <div>
     <ShowcaseInputComponent isDisabled value="Disabled Input" type="text" />
-    <ShowcaseInputComponent type="text"/>
-    <ShowcaseInputComponent value="Hello World" type="text"/>
-    <ShowcaseInputComponent value="Hello World" type="text"iconName="Close" />
+    <ShowcaseInputComponent type="text" />
+    <ShowcaseInputComponent value="Hello World" type="text" />
+    <ShowcaseInputComponent value="Hello World" type="text" iconName="Close" />
     <ShowcaseInputComponent value={10} type="number" />
   </div>
 );
