@@ -25,7 +25,7 @@ interface InputProps {
   /** The id of the input field */
   id: string
   /** The content of the input field */
-  value: string | number;
+  value?: string | number;
   /** Type of input: number, text, email, url, password. Default to text. */
   type?: InputTypesEnum;
   /** The name of the input field */
