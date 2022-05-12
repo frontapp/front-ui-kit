@@ -90,7 +90,7 @@ function addCheckboxStyles(props: StyledCheckboxInputProps) {
     `;
 
   return css`
-    border: 1.5px solid ${greys.shade60}
+    border: 1.5px solid ${greys.shade60};
   `;
 }
 

@@ -16,6 +16,8 @@ interface ShowcaseTextAreaProps {
   isDisabled?: boolean;
   /** The number of lines in the textarea field */
   rows: number;
+  /** Whether the textarea is resizable */
+  shouldAllowResize?: boolean;
 }
 
 /*
@@ -28,10 +30,10 @@ interface StyledTextProps {
 }
 
 const StyledShowcaseDiv = styled.div`
-  margin-top: 5px;
-  margin-bottom: 5px;
-  background: ${greys.shade30};
-  height: 60px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  width: 400px;
+  border: 2px solid ${greys.black};
   align-items: center;
   padding-left: 10px;
   padding-right: 20px;
@@ -41,18 +43,13 @@ const StyledShowcaseDiv = styled.div`
 `;
 
 const StyledTextAreaDiv = styled.div`
-  width: 230px
 `;
 
 const StyledText = styled.div<StyledTextProps>`
   line-height: 17px;
-  text-overflow: ellipsis;
-  width: 121px;
-  height: 30px;
   align-items: center;
   display: flex;
   overflow: hidden;
-  white-space: nowrap;
   color: ${p => (p.$isFocused ? `${palette.blue.shade40}` : `${greys.black}`)};
 `;
 
@@ -64,12 +61,12 @@ const ShowcaseComponent: FC = props => (
   <div>
     <ShowcaseTextAreaComponent isDisabled value="Disabled TextArea" rows={5} />
     <ShowcaseTextAreaComponent value="Hello World" rows={3} />
-    <ShowcaseTextAreaComponent value={10} rows={2} />
+    <ShowcaseTextAreaComponent value={10} rows={2} shouldAllowResize={false} />
   </div>
 );
 
 const ShowcaseTextAreaComponent: FC<ShowcaseTextAreaProps> = props => {
-  const {isDisabled, value, rows} = props;
+  const {isDisabled, value, rows, shouldAllowResize = true} = props;
   const [TextAreaValue, setTextAreaValue] = useState(value);
   const [isErred, setIsErred] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -90,7 +87,17 @@ const ShowcaseTextAreaComponent: FC<ShowcaseTextAreaProps> = props => {
   return (
     <StyledShowcaseDiv>
       <StyledTextAreaDiv>
-        <TextArea id="TextArea" rows={rows} value={TextAreaValue} isDisabled={isDisabled} isErred={isErred} onChange={onChange} onBlur={onBlur} onFocus={onFocus} />
+        <TextArea
+          id="TextArea"
+          rows={rows}
+          value={TextAreaValue}
+          isDisabled={isDisabled}
+          isErred={isErred}
+          shouldAllowResize={shouldAllowResize}
+          onChange={onChange}
+          onBlur={onBlur}
+          onFocus={onFocus}
+        />
       </StyledTextAreaDiv>
       <StyledText $isFocused={isFocused}>{TextAreaValue}</StyledText>
     </StyledShowcaseDiv>
