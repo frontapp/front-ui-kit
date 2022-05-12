@@ -1,4 +1,3 @@
-const WebpackReactComponentNamePlugin = require('webpack-react-component-name');
 const path = require('path');
 
 const isProduction = process.argv.indexOf('--mode=production') !== -1;
