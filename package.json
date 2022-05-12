@@ -1,7 +1,6 @@
 {
   "name": "@frontapp/ui-kit",
   "version": "0.1.3",
-  "main": "index.js",
   "repository": "git@github.com:frontapp/front-ui-kit.git",
   "homepage": "http://frontapp.github.io/front-ui-kit",
   "author": "",
@@ -10,6 +9,11 @@
     "node": ">=16",
     "npm": "please-use-yarn-instead"
   },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "yarn build:dev",
     "build:watch": "yarn build:dev --watch",
