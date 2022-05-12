@@ -1,3 +1,4 @@
+const WebpackReactComponentNamePlugin = require('webpack-react-component-name');
 const path = require('path');
 
 const isProduction = process.argv.indexOf('--mode=production') !== -1;
@@ -28,18 +29,21 @@ module.exports = {
           options: {
             compact: true,
             presets: [['@babel/preset-env', {modules: false}], '@babel/preset-typescript', ["@babel/preset-react", {runtime: "automatic"}]],
-            plugins: [[
-              'babel-plugin-styled-components',
-              {
+            plugins: [
+              "add-react-displayname",
+              [
+                'babel-plugin-styled-components',
+                {
                 // Disable the dev-friendly classNames on styled-components
-                displayName: true,
-                // Minify the CSS
-                minify: true,
-                // Helps with dead code elimination
-                // https://www.styled-components.com/docs/tooling#dead-code-elimination
-                pure: true
-              }
-            ]]
+                  displayName: false,
+                  // Minify the CSS
+                  minify: true,
+                  // Helps with dead code elimination
+                  // https://www.styled-components.com/docs/tooling#dead-code-elimination
+                  pure: true
+                }
+              ]
+            ]
           }
         },
         exclude: [
