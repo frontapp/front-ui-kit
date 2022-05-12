@@ -11,6 +11,12 @@ export {SelectableComponentColors} from './helpers/styleHelpers';
 export {VisualSizesEnum, fonts} from './helpers/fontHelpers';
 
 /*
+ * Utils.
+ */
+
+export {DefaultStyleProvider} from './utils/defaultStyleProvider';
+
+/*
  * Components.
  */
 
