@@ -28,7 +28,7 @@ interface TextAreaProps {
   /** Whether we should focus on the textarea when it is mounted */
   shouldFocus?: boolean;
   /** The handler for when the content of the textarea field changes */
-  onChange?: (value?: string | number) => void;
+  onChange?: (value?: string) => void;
   /** The handler for when the textarea field is unfocused */
   onBlur?: () => void;
   /** The handler for when the textarea field is focused */
