@@ -12,7 +12,7 @@ interface TextAreaProps {
   /** The id of the textarea field */
   id: string
   /** The content of the textarea field */
-  value?: string | number;
+  value?: string;
   /** The number of lines in the textarea field */
   rows: number;
   /** The name of the textarea field */
