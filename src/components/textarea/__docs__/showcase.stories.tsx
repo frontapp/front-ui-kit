@@ -3,13 +3,13 @@ import React, {FC, useState} from 'react';
 import styled from 'styled-components';
 
 import {greys, palette} from '../../../helpers/colorHelpers';
-import {TextArea} from '../textarea';
+import {Textarea} from '../textarea';
 
 /*
  * Props.
  */
 
-interface ShowcaseTextAreaProps {
+interface ShowcaseTextareaProps {
   /** The content of the textarea field */
   value?: string | number;
   /** Whether the textarea is disabled. */
@@ -42,7 +42,7 @@ const StyledShowcaseDiv = styled.div`
   align-items: center;
 `;
 
-const StyledTextAreaDiv = styled.div`
+const StyledTextareaDiv = styled.div`
 `;
 
 const StyledText = styled.div<StyledTextProps>`
@@ -59,19 +59,19 @@ const StyledText = styled.div<StyledTextProps>`
 
 const ShowcaseComponent: FC = props => (
   <div>
-    <ShowcaseTextAreaComponent isDisabled value="Disabled TextArea" rows={5} />
-    <ShowcaseTextAreaComponent value="Hello World" rows={3} />
-    <ShowcaseTextAreaComponent value={10} rows={2} shouldAllowResize={false} />
+    <ShowcaseTextareaComponent isDisabled value="Disabled Textarea" rows={5} />
+    <ShowcaseTextareaComponent value="Hello World" rows={3} />
+    <ShowcaseTextareaComponent value={10} rows={2} shouldAllowResize={false} />
   </div>
 );
 
-const ShowcaseTextAreaComponent: FC<ShowcaseTextAreaProps> = props => {
+const ShowcaseTextareaComponent: FC<ShowcaseTextareaProps> = props => {
   const {isDisabled, value, rows, shouldAllowResize = true} = props;
-  const [TextAreaValue, setTextAreaValue] = useState(value);
+  const [textareaValue, setTextareaValue] = useState(value);
   const [isErred, setIsErred] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const onChange = newValue => {
-    setTextAreaValue(newValue);
+    setTextareaValue(newValue);
     if (newValue.startsWith("Error"))
       setIsErred(true);
     else
@@ -86,11 +86,11 @@ const ShowcaseTextAreaComponent: FC<ShowcaseTextAreaProps> = props => {
 
   return (
     <StyledShowcaseDiv>
-      <StyledTextAreaDiv>
-        <TextArea
-          id="TextArea"
+      <StyledTextareaDiv>
+        <Textarea
+          id="Textarea"
           rows={rows}
-          value={TextAreaValue}
+          value={textareaValue.toString()}
           isDisabled={isDisabled}
           isErred={isErred}
           shouldAllowResize={shouldAllowResize}
@@ -98,8 +98,8 @@ const ShowcaseTextAreaComponent: FC<ShowcaseTextAreaProps> = props => {
           onBlur={onBlur}
           onFocus={onFocus}
         />
-      </StyledTextAreaDiv>
-      <StyledText $isFocused={isFocused}>{TextAreaValue}</StyledText>
+      </StyledTextareaDiv>
+      <StyledText $isFocused={isFocused}>{textareaValue}</StyledText>
     </StyledShowcaseDiv>
   );
 };
@@ -109,7 +109,7 @@ const ShowcaseTextAreaComponent: FC<ShowcaseTextAreaProps> = props => {
  */
 
 export default {
-  title: 'Front UI Kit/TextArea',
+  title: 'Front UI Kit/Textarea',
   component: ShowcaseComponent
 } as ComponentMeta<typeof ShowcaseComponent>;
 

@@ -1,23 +1,23 @@
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 import React from 'react';
 
-import {TextArea} from '../textarea';
+import {Textarea} from '../textarea';
 
 export default {
-  title: 'Front UI Kit/TextArea',
-  component: TextArea
-} as ComponentMeta<typeof TextArea>;
+  title: 'Front UI Kit/Textarea',
+  component: Textarea
+} as ComponentMeta<typeof Textarea>;
 
-const Template: ComponentStory<typeof TextArea> = args => <TextArea {...args} />;
+const Template: ComponentStory<typeof Textarea> = args => <Textarea {...args} />;
 
-export const BasicEmptyTextArea = Template.bind({});
-BasicEmptyTextArea.args = {
+export const BasicEmptyTextarea = Template.bind({});
+BasicEmptyTextarea.args = {
   placeholder: "Placeholder",
   rows: 5
 };
 
-export const BasicTextArea = Template.bind({});
-BasicTextArea.args = {
+export const BasicTextarea = Template.bind({});
+BasicTextarea.args = {
   value: "Hello",
   rows: 3
 };

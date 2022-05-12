@@ -8,7 +8,7 @@ import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
  * Props
  */
 
-interface TextAreaProps {
+interface TextareaProps {
   /** The id of the textarea field */
   id: string
   /** The content of the textarea field */
@@ -39,19 +39,19 @@ interface TextAreaProps {
  * Style.
  */
 
-interface StyledTextAreaProps {
+interface StyledTextareaProps {
   $isDisabled: boolean;
   $isErred: boolean;
   $shouldAllowResize: boolean;
 }
 
-const StyledTextAreaDiv = styled.div`
+const StyledTextareaDiv = styled.div`
   position: relative;
   display: flex;
   flex-flow: row;
 `;
 
-const StyledTextArea = styled.textarea<StyledTextAreaProps>`
+const StyledTextarea = styled.textarea<StyledTextareaProps>`
   width: inherit;
   height: inherit;
   background: ${greys.shade20};
@@ -82,10 +82,10 @@ const StyledTextArea = styled.textarea<StyledTextAreaProps>`
 
   resize: ${p => (!p.$shouldAllowResize ? `none` : `auto`)};
 
-  ${p => addTextAreaStyles(p)};
+  ${p => addTextareaStyles(p)};
 `;
 
-function addTextAreaStyles(props: StyledTextAreaProps) {
+function addTextareaStyles(props: StyledTextareaProps) {
   if (props.$isDisabled)
     return css`
       border: 2px solid ${greys.shade30};
@@ -118,7 +118,7 @@ function addTextAreaStyles(props: StyledTextAreaProps) {
  * Component.
  */
 
-export const TextArea: FC<TextAreaProps> = props => {
+export const Textarea: FC<TextareaProps> = props => {
   const {
     id,
     value,
@@ -133,28 +133,28 @@ export const TextArea: FC<TextAreaProps> = props => {
     onBlur,
     shouldFocus = false
   } = props;
-  const onTextAreaChange: ChangeEventHandler<HTMLTextAreaElement> = event => {
+  const onTextareaChange: ChangeEventHandler<HTMLTextAreaElement> = event => {
     if (isDisabled || !onChange)
       return;
     const textAreaValue = event.currentTarget.value;
     onChange(textAreaValue);
   };
 
-  const onTextAreaFocus: FocusEventHandler<HTMLTextAreaElement> = event => {
+  const onTextareaFocus: FocusEventHandler<HTMLTextAreaElement> = event => {
     if (isDisabled || !onFocus)
       return;
     onFocus();
   };
 
-  const onTextAreaBlur: FocusEventHandler<HTMLTextAreaElement> = event => {
+  const onTextareaBlur: FocusEventHandler<HTMLTextAreaElement> = event => {
     if (isDisabled || !onBlur)
       return;
     onBlur();
   };
 
   return (
-    <StyledTextAreaDiv>
-      <StyledTextArea
+    <StyledTextareaDiv>
+      <StyledTextarea
         id={id}
         rows={rows}
         $isDisabled={isDisabled}
@@ -165,12 +165,12 @@ export const TextArea: FC<TextAreaProps> = props => {
         autoFocus={shouldFocus}
         name={name}
         value={value}
-        onChange={onTextAreaChange}
-        onFocus={onTextAreaFocus}
-        onBlur={onTextAreaBlur}
+        onChange={onTextareaChange}
+        onFocus={onTextareaFocus}
+        onBlur={onTextareaBlur}
       >
         {value}
-      </StyledTextArea>
-    </StyledTextAreaDiv>
+      </StyledTextarea>
+    </StyledTextareaDiv>
   );
 };
