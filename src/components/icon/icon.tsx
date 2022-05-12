@@ -90,6 +90,7 @@ export const Icon: FC<IconProps> = props => {
   return (
     <StyledIconDiv $size={size}>
       {icon({
+        name,
         width: size,
         height: size,
         color: shouldDisableColor ? '' : color,
