@@ -1,6 +1,14 @@
 # Changelog
 
 
+### [0.1.4](https://github.com/frontapp/front-ui-kit/compare/v0.1.3...v0.1.4) (2022-05-12)
+
+
+### Features
+
+* add input component ([#34](https://github.com/frontapp/front-ui-kit/issues/34)) ([419c487](https://github.com/frontapp/front-ui-kit/commit/419c4872a83c3e67255d6228c3b65ae85590e63b))
+* add style provider for base styles ([#29](https://github.com/frontapp/front-ui-kit/issues/29)) ([9b6d627](https://github.com/frontapp/front-ui-kit/commit/9b6d627531dc91aedfa5344a3fb3e04c275ddff0))
+
 ### [0.1.3](https://github.com/frontapp/front-ui-kit/compare/v0.1.2...v0.1.3) (2022-05-11)
 
 
