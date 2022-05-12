@@ -1,6 +1,13 @@
 # Changelog
 
 
+### [0.1.5](https://github.com/frontapp/front-ui-kit/compare/v0.1.4...v0.1.5) (2022-05-12)
+
+
+### Bug Fixes
+
+* add displayName to prod build ([#38](https://github.com/frontapp/front-ui-kit/issues/38)) ([26ac71e](https://github.com/frontapp/front-ui-kit/commit/26ac71ee0ed9b508f74630e40f93731e1a907049))
+
 ### [0.1.4](https://github.com/frontapp/front-ui-kit/compare/v0.1.3...v0.1.4) (2022-05-12)
 
 
