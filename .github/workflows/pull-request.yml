@@ -1,9 +1,16 @@
 name: Pull Request Actions
 
 on:
+  # On push to all branches
   push:
     branches-ignore:
       - main
+  # When the release-please is assigned.
+  pull_request:
+    types:
+      - assigned
+    branches:
+      - 'release-please*'
 
 jobs:
   lint:
