@@ -18,7 +18,7 @@
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
-    "jsx": "preserve",
+    "jsx": "react",
     "plugins": [
       {
         "name": "typescript-styled-plugin"
@@ -33,6 +33,9 @@
     "node_modules",
     "dist",
     "src/stories/",
-    "src/**/*.stories.tsx"
+    "src/**/*.stories.tsx",
+    "**/__tests__/*",
+    "**/__mocks__/*",
+    "src/setupTests.ts"
   ]
 }

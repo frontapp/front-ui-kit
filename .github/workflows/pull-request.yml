@@ -1,16 +1,9 @@
 name: Pull Request Actions
 
 on:
-  # On push to all branches
   push:
     branches-ignore:
       - main
-  # When the release-please is assigned.
-  pull_request:
-    types:
-      - assigned
-    branches:
-      - 'release-please*'
 
 jobs:
   lint:
@@ -23,9 +16,19 @@ jobs:
     - run: yarn install --frozen-lockfile
     - run: yarn lint
 
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - run: yarn install --frozen-lockfile
+    - run: yarn test
+
   # For pull requests, we can publish to chromatic so we have a way to view storybook.
   chromatic-deployment:
-    needs: lint
+    needs: [lint, test]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
