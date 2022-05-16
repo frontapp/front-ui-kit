@@ -36,7 +36,7 @@ const Template: ComponentStory<typeof DropdownCoordinator> = args => (
       <DropdownCoordinator
         {...args}
         placement="bottom-start"
-        renderButton={() => <Button>Dropdown Without Background</Button>}
+        renderButton={() => <Button>Dropdown Without Overlay</Button>}
         renderDropdown={() => (
           <StyledDropdownDiv>
             Example Dropdown
@@ -50,7 +50,7 @@ const Template: ComponentStory<typeof DropdownCoordinator> = args => (
         {...args}
         hasVisibleOverlay
         placement="bottom-start"
-        renderButton={() => <Button>Dropdown With Background</Button>}
+        renderButton={() => <Button>Dropdown With Overlay</Button>}
         renderDropdown={() => (
           <StyledDropdownDiv>
             Example Dropdown
