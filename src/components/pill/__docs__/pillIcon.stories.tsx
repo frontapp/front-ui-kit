@@ -8,7 +8,7 @@ import {PillContent} from '../pillContent';
 import {PillContentIcon} from '../pillContentIcon';
 
 export default {
-  title: 'Front UI Kit/Pill',
+  title: 'Components/Pill',
   component: Pill,
   argTypes: {
     iconName: {control: {type: 'select'}, options: Object.keys(icons), defaultValue: "Checkmark"},

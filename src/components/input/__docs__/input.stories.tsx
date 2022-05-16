@@ -1,14 +1,27 @@
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 import React from 'react';
+import styled from 'styled-components';
 
+import {greys} from '../../../helpers/colorHelpers';
 import {Input} from '../input';
 
 export default {
-  title: 'Front UI Kit/Input',
-  component: Input
+  title: 'Components/Input',
+  component: Input,
+  argTypes: {
+    maxWidth: {
+      defaultValue: 250
+    }
+  }
 } as ComponentMeta<typeof Input>;
 
-const Template: ComponentStory<typeof Input> = args => <Input {...args} />;
+const StyledInputWrapperDiv = styled.div`
+  background: ${greys.white};
+  padding: 32px;
+  border-radius: 8px;
+`;
+
+const Template: ComponentStory<typeof Input> = args => <StyledInputWrapperDiv><Input {...args} /></StyledInputWrapperDiv>;
 
 export const BasicEmptyInput = Template.bind({});
 BasicEmptyInput.args = {

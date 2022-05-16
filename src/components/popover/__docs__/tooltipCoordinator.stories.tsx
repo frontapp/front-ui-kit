@@ -15,13 +15,17 @@ const StyledExampleWrapperDiv = styled.div`
 `;
 
 export default {
-  title: 'Front UI Kit/Tooltip',
+  title: 'Components/Tooltip',
   component: TooltipCoordinator,
   argTypes: {
     placement: {
       control: {type: 'select'},
       defaultValue: 'bottom',
       options: ['auto', 'auto-end', 'auto-start', 'bottom', 'bottom-end', 'bottom-start', 'left', 'left-end', 'left-start', 'right', 'right-end', 'right-start', 'top', 'top-end', 'top-start']
+    },
+    maxWidth: {
+      control: {type: 'number'},
+      defaultValue: 200
     },
     renderTooltip: {
       table: {
@@ -46,7 +50,7 @@ const Template: ComponentStory<typeof TooltipCoordinator> = args => (
     <TooltipCoordinator
       {...args}
       renderTooltip={() => (
-        <Tooltip placement={(args as any).placement} maxWidth={200}>
+        <Tooltip placement={(args as any).placement} maxWidth={(args as any).maxWidth}>
           This is an example tooltip for Doug the Pug
         </Tooltip>
       )}
@@ -64,9 +68,12 @@ export const Simple = Template.bind({});
 
 const ExplicitTemplate: ComponentStory<typeof TooltipCoordinator> = args => {
   const [isEnabled, setIsEnabled] = useState(true);
+
+  const message = `Example tooltip that is controlled explicitly. Is the tooltip currently enabled? ${isEnabled ? 'Yes' : 'No'}`;
+
   return (
     <DefaultStyleProvider>
-      <Button onClick={() => setIsEnabled(!isEnabled)}>Toggle Tooltip Enabled: {isEnabled.toString()}</Button>
+      <Button onClick={() => setIsEnabled(!isEnabled)}>Toggle Tooltip</Button>
       <br /><br />
       <TooltipCoordinator
         {...args}
@@ -75,12 +82,12 @@ const ExplicitTemplate: ComponentStory<typeof TooltipCoordinator> = args => {
           isEnabled
         }}
         renderTooltip={() => (
-          <Tooltip placement={(args as any).placement}>
-            This is not overflowing text.
+          <Tooltip placement={(args as any).placement} maxWidth={(args as any).maxWidth}>
+            {message}
           </Tooltip>
         )}
       >
-        This is not overflowing text.
+        {message}
       </TooltipCoordinator>
     </DefaultStyleProvider>
   );
@@ -123,7 +130,7 @@ const OverflowTemplate: ComponentStory<typeof TooltipCoordinator> = args => {
             type: 'overflow'
           }}
           renderTooltip={() => (
-            <Tooltip placement={(args as any).placement}>
+            <Tooltip placement={(args as any).placement} maxWidth={(args as any).maxWidth}>
               {exampleText}
             </Tooltip>
           )}

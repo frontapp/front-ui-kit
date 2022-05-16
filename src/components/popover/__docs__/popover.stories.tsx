@@ -3,11 +3,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 import {greys} from '../../../helpers/colorHelpers';
-import {fonts} from '../../../helpers/fontHelpers';
+import {fonts, VisualSizesEnum} from '../../../helpers/fontHelpers';
+import {Button} from '../../button/button';
 import {DropdownCoordinator} from '../dropdownCoordinator';
 
 export default {
-  title: 'Front UI Kit/Dropdown',
+  title: 'Components/Dropdown',
   component: DropdownCoordinator
 } as ComponentMeta<typeof DropdownCoordinator>;
 
@@ -35,7 +36,7 @@ const Template: ComponentStory<typeof DropdownCoordinator> = args => (
       <DropdownCoordinator
         {...args}
         placement="bottom-start"
-        renderButton={() => <StyledButton type="button">Dropdown Without Background</StyledButton>}
+        renderButton={() => <Button>Dropdown Without Background</Button>}
         renderDropdown={() => (
           <StyledDropdownDiv>
             Example Dropdown
@@ -49,7 +50,7 @@ const Template: ComponentStory<typeof DropdownCoordinator> = args => (
         {...args}
         hasVisibleOverlay
         placement="bottom-start"
-        renderButton={() => <StyledButton type="button">Dropdown With Background</StyledButton>}
+        renderButton={() => <Button>Dropdown With Background</Button>}
         renderDropdown={() => (
           <StyledDropdownDiv>
             Example Dropdown
@@ -63,13 +64,13 @@ const Template: ComponentStory<typeof DropdownCoordinator> = args => (
         {...args}
         isOverlayCloseDisabled
         placement="bottom-start"
-        renderButton={() => <StyledButton type="button">Dropdown Close Action</StyledButton>}
+        renderButton={() => <Button>Dropdown Close Action</Button>}
         renderDropdown={onCloseDropdown => (
           <StyledDropdownDiv>
             This dropdown will not close when the background is clicked.
             <br />
             <br />
-            <StyledButton type="button" onClick={onCloseDropdown}>Close</StyledButton>
+            <Button onClick={onCloseDropdown} size={VisualSizesEnum.SMALL}>Close</Button>
           </StyledDropdownDiv>
         )}
       />

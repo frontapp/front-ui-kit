@@ -2,8 +2,9 @@ import {ComponentMeta, ComponentStory} from '@storybook/react';
 import React, {FC, useState} from 'react';
 import styled from 'styled-components';
 
-import {IconName} from '../../..';
 import {greys, palette} from '../../../helpers/colorHelpers';
+import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
+import {IconName} from '../../icon/icon';
 import {Input} from '../input';
 
 /*
@@ -33,7 +34,8 @@ interface StyledTextProps {
 const StyledShowcaseDiv = styled.div`
   margin-top: 5px;
   margin-bottom: 5px;
-  background: ${greys.shade30};
+  background: ${greys.white};
+  border-radius: 8px;
   width: 450px;
   height: 60px;
   align-items: center;
@@ -45,7 +47,7 @@ const StyledShowcaseDiv = styled.div`
 `;
 
 const StyledInputDiv = styled.div`
-  width: 230px
+  width: 230px;
 `;
 
 const StyledText = styled.div<StyledTextProps>`
@@ -64,14 +66,14 @@ const StyledText = styled.div<StyledTextProps>`
  * Component.
  */
 
-const ShowcaseComponent: FC = props => (
-  <div>
+const ShowcaseComponent: FC = () => (
+  <DefaultStyleProvider>
     <ShowcaseInputComponent isDisabled value="Disabled Input" type="text" />
     <ShowcaseInputComponent type="text" />
     <ShowcaseInputComponent value="Hello World" type="text" />
     <ShowcaseInputComponent value="Hello World" type="text" iconName="Close" />
     <ShowcaseInputComponent value={10} type="number" />
-  </div>
+  </DefaultStyleProvider>
 );
 
 const ShowcaseInputComponent: FC<ShowcaseInputProps> = props => {
@@ -108,7 +110,7 @@ const ShowcaseInputComponent: FC<ShowcaseInputProps> = props => {
  */
 
 export default {
-  title: 'Front UI Kit/Input',
+  title: 'Components/Input',
   component: ShowcaseComponent
 } as ComponentMeta<typeof ShowcaseComponent>;
 

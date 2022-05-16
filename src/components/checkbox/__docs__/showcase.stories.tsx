@@ -73,7 +73,7 @@ const ShowcaseCheckboxComponent: FC<ShowcaseCheckboxProps> = props => {
  */
 
 export default {
-  title: 'Front UI Kit/Checkbox',
+  title: 'Components/Checkbox',
   component: ShowcaseComponent
 } as ComponentMeta<typeof ShowcaseComponent>;
 

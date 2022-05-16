@@ -4,7 +4,7 @@ import React from 'react';
 import {Pill} from '../pill';
 
 export default {
-  title: 'Front UI Kit/Pill',
+  title: 'Components/Pill',
   component: Pill,
   argTypes: {
     children: {

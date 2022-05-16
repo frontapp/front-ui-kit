@@ -4,7 +4,7 @@ import React from 'react';
 import {Skeleton} from '../skeleton';
 
 export default {
-  title: 'Front UI Kit/Skeleton',
+  title: 'Components/Skeleton',
   component: Skeleton
 } as ComponentMeta<typeof Skeleton>;
 

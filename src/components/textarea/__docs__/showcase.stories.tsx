@@ -3,6 +3,8 @@ import React, {FC, useState} from 'react';
 import styled from 'styled-components';
 
 import {greys, palette} from '../../../helpers/colorHelpers';
+import {fontSizes} from '../../../helpers/fontHelpers';
+import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
 import {Textarea} from '../textarea';
 
 /*
@@ -10,14 +12,11 @@ import {Textarea} from '../textarea';
  */
 
 interface ShowcaseTextareaProps {
-  /** The content of the textarea field */
   value?: string | number;
-  /** Whether the textarea is disabled. */
   isDisabled?: boolean;
-  /** The number of lines in the textarea field */
   rows: number;
-  /** Whether the textarea is resizable */
   shouldAllowResize?: boolean;
+  description?: string;
 }
 
 /*
@@ -33,19 +32,24 @@ const StyledShowcaseDiv = styled.div`
   margin-top: 15px;
   margin-bottom: 15px;
   width: 400px;
-  border: 2px solid ${greys.black};
+  background: ${greys.white};
+  border-radius: 8px;
+  padding: 16px;
   align-items: center;
   padding-left: 10px;
   padding-right: 20px;
   gap: 20px;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 `;
 
 const StyledTextareaDiv = styled.div`
+  flex: 1;
 `;
 
 const StyledText = styled.div<StyledTextProps>`
+  flex: 1;
   line-height: 17px;
   align-items: center;
   display: flex;
@@ -53,20 +57,27 @@ const StyledText = styled.div<StyledTextProps>`
   color: ${p => (p.$isFocused ? `${palette.blue.shade40}` : `${greys.black}`)};
 `;
 
+const StyledDescriptionDiv = styled.div`
+  font-size: ${fontSizes.small};
+  color: ${greys.shade60};
+  flex: 0 0 100%;
+  text-align: center;
+`;
+
 /*
  * Component.
  */
 
 const ShowcaseComponent: FC = props => (
-  <div>
-    <ShowcaseTextareaComponent isDisabled value="Disabled Textarea" rows={5} />
+  <DefaultStyleProvider>
     <ShowcaseTextareaComponent value="Hello World" rows={3} />
-    <ShowcaseTextareaComponent value={10} rows={2} shouldAllowResize={false} />
-  </div>
+    <ShowcaseTextareaComponent value={10} rows={2} shouldAllowResize={false} description="Resize is disabled." />
+    <ShowcaseTextareaComponent isDisabled value="Disabled Textarea" rows={5} description="Textarea is disabled., can still resize." />
+  </DefaultStyleProvider>
 );
 
 const ShowcaseTextareaComponent: FC<ShowcaseTextareaProps> = props => {
-  const {isDisabled, value, rows, shouldAllowResize = true} = props;
+  const {isDisabled, value, rows, shouldAllowResize = true, description} = props;
   const [textareaValue, setTextareaValue] = useState(value);
   const [isErred, setIsErred] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -86,6 +97,7 @@ const ShowcaseTextareaComponent: FC<ShowcaseTextareaProps> = props => {
 
   return (
     <StyledShowcaseDiv>
+      {description && <StyledDescriptionDiv>{description}</StyledDescriptionDiv>}
       <StyledTextareaDiv>
         <Textarea
           id="Textarea"
@@ -109,7 +121,7 @@ const ShowcaseTextareaComponent: FC<ShowcaseTextareaProps> = props => {
  */
 
 export default {
-  title: 'Front UI Kit/Textarea',
+  title: 'Components/Textarea',
   component: ShowcaseComponent
 } as ComponentMeta<typeof ShowcaseComponent>;
 
