@@ -1,5 +1,4 @@
-import {render, screen, waitFor} from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import {render} from '@testing-library/react';
 import React from 'react';
 
 import {VisualSizesEnum} from '../../../helpers/fontHelpers';
@@ -26,18 +25,5 @@ describe('<Avatar /> Spec', () => {
       const view = render(<Avatar name="John Doe" imgSrc="https://picsum.photos/id/1062/200/200" />);
       expect(view.container).toMatchSnapshot();
     });
-  });
-
-  it('should render tooltip when moused over', async () => {
-    const user = userEvent.setup();
-    const view = render(<Avatar name="John Doe" shouldRenderTooltip />);
-
-    // Hover over the avatar.
-    await user.hover(screen.getByText('JD'));
-
-    // Wait until we see the tooltip.
-    await waitFor(() =>
-      screen.getByText('John Doe')
-    );
   });
 });

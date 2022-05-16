@@ -4,8 +4,6 @@ import styled, {css} from 'styled-components';
 import {greys, palette, PaletteColorsEnum} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, VisualSizesEnum} from '../../helpers/fontHelpers';
 import {makeSizeConstants} from '../../helpers/styleHelpers';
-import {TooltipCoordinator} from '../popover/tooltipCoordinator';
-import {Tooltip} from '../tooltip/tooltip';
 
 /*
  * Constants.
@@ -27,8 +25,6 @@ interface AvatarProps {
   imgSrc?: string;
   /** The size of the avatar. Defaults to VisualSizesEnum.LARGE. */
   size?: VisualSizesEnum;
-  /** Controls whether a tooltip is shown when mouse is over. */
-  shouldRenderTooltip?: boolean;
 }
 
 /*
@@ -73,19 +69,14 @@ function addImageSrcStyles(imgSrc?: string) {
  */
 
 export const Avatar: FC<AvatarProps> = props => {
-  const {name, imgSrc, size = VisualSizesEnum.LARGE, shouldRenderTooltip = false} = props;
+  const {name, imgSrc, size = VisualSizesEnum.LARGE} = props;
   const avatarColor = useMemo(() => computeColorFromName(name.trim()), [name]);
   const initials = useMemo(() => computeInitialsFromName(name.trim(), size), [name, size]);
 
   return (
-    <TooltipCoordinator
-      condition={{type: 'explicit', isEnabled: shouldRenderTooltip}}
-      renderTooltip={() => <Tooltip placement="bottom">{name}</Tooltip>}
-    >
-      <StyledAvatarWrapperDiv $color={avatarColor} $size={size} $imgSrc={imgSrc}>
-        {!imgSrc && initials}
-      </StyledAvatarWrapperDiv>
-    </TooltipCoordinator>
+    <StyledAvatarWrapperDiv $color={avatarColor} $size={size} $imgSrc={imgSrc}>
+      {!imgSrc && initials}
+    </StyledAvatarWrapperDiv>
   );
 };
 
