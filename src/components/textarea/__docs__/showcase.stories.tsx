@@ -72,7 +72,7 @@ const ShowcaseComponent: FC = props => (
   <DefaultStyleProvider>
     <ShowcaseTextareaComponent value="Hello World" rows={3} />
     <ShowcaseTextareaComponent value={10} rows={2} shouldAllowResize={false} description="Resize is disabled." />
-    <ShowcaseTextareaComponent isDisabled value="Disabled Textarea" rows={5} description="Textarea is disabled., can still resize." />
+    <ShowcaseTextareaComponent isDisabled value="Disabled Textarea" rows={5} description="Textarea is disabled, can still resize." />
   </DefaultStyleProvider>
 );
 

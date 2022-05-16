@@ -12,13 +12,9 @@ import {Input} from '../input';
  */
 
 interface ShowcaseInputProps {
-  /** The content of the input field */
   value?: string | number;
-  /** Type of input */
   type: 'text' |'email' | 'password' | 'url' |'number';
-  /** Whether the input is disabled. */
   isDisabled?: boolean;
-  /** The icon to render at the beginning of the input field */
   iconName?: IconName;
 }
 
