@@ -2,8 +2,8 @@ import React, {FC, useEffect, useState} from 'react';
 import styled from 'styled-components';
 
 import {useTimeout} from '../../helpers/hookHelpers';
-import {TooltipOverflow} from '../tooltip/tooltipOverflow';
-import {PopoverContext, PopoverContextProps} from './popoverContext';
+import {PopoverContext, PopoverContextProps} from '../popover/popoverContext';
+import {TooltipOverflow} from './tooltipOverflow';
 
 /*
  * Tooltip Conditions.
