@@ -1,6 +1,14 @@
 # Changelog
 
 
+### [0.1.6](https://github.com/frontapp/front-ui-kit/compare/v0.1.5...v0.1.6) (2022-05-16)
+
+
+### Features
+
+* add textarea component ([#36](https://github.com/frontapp/front-ui-kit/issues/36)) ([9cfbd9a](https://github.com/frontapp/front-ui-kit/commit/9cfbd9a69b8e07d18cd3b6f062f682f1feaf1ecf))
+* update input and textarea components, update stories ([#43](https://github.com/frontapp/front-ui-kit/issues/43)) ([cf5a7c5](https://github.com/frontapp/front-ui-kit/commit/cf5a7c50fbf6aaade20cb2746f67b36c38305388))
+
 ### [0.1.5](https://github.com/frontapp/front-ui-kit/compare/v0.1.4...v0.1.5) (2022-05-12)
 
 
