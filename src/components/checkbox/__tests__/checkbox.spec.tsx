@@ -7,32 +7,32 @@ import {Checkbox} from '../checkbox';
 describe('<Checkbox /> Spec', () => {
   describe('Snapshots', () => {
     it('should render an empty and disabled checkbox', () => {
-      const view = render(<Checkbox onChange={jest.fn()} isChecked={false} isDisabled></Checkbox>);
+      const view = render(<Checkbox onChange={jest.fn()} isChecked={false} isDisabled />);
       expect(view.container).toMatchSnapshot();
     });
 
     it('should render a checked and disabled checkbox', () => {
-      const view = render(<Checkbox onChange={jest.fn()} isChecked isDisabled></Checkbox>);
+      const view = render(<Checkbox onChange={jest.fn()} isChecked isDisabled />);
       expect(view.container).toMatchSnapshot();
     });
 
     it('should render an indeterminate and disabled checkbox', () => {
-      const view = render(<Checkbox onChange={jest.fn()} isChecked={false} isIndeterminate isDisabled></Checkbox>);
+      const view = render(<Checkbox onChange={jest.fn()} isChecked={false} isIndeterminate isDisabled />);
       expect(view.container).toMatchSnapshot();
     });
 
     it('should render an empty checkbox', () => {
-      const view = render(<Checkbox onChange={jest.fn()} isChecked={false}></Checkbox>);
+      const view = render(<Checkbox onChange={jest.fn()} isChecked={false} />);
       expect(view.container).toMatchSnapshot();
     });
 
     it('should render a checked checkbox', () => {
-      const view = render(<Checkbox onChange={jest.fn()} isChecked></Checkbox>);
+      const view = render(<Checkbox onChange={jest.fn()} isChecked />);
       expect(view.container).toMatchSnapshot();
     });
 
     it('should render an indeterminate checkbox', () => {
-      const view = render(<Checkbox onChange={jest.fn()} isIndeterminate isChecked={false}></Checkbox>);
+      const view = render(<Checkbox onChange={jest.fn()} isIndeterminate isChecked={false} />);
       expect(view.container).toMatchSnapshot();
     });
 
@@ -75,5 +75,5 @@ describe('<Checkbox /> Spec', () => {
     const view = render(<Checkbox onChange={onChangeMock} isChecked isDisabled>Label</Checkbox>);
     await user.click(view.getByRole('checkbox'));
     expect(onChangeMock).not.toBeCalled();
-    });
+  });
 });
