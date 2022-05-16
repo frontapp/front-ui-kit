@@ -4,7 +4,7 @@ import React from 'react';
 import {Tab} from '../tab';
 
 export default {
-  title: 'Front UI Kit/Tabs',
+  title: 'Components/Tabs',
   component: Tab
 } as ComponentMeta<typeof Tab>;
 

@@ -28,6 +28,8 @@ interface InputProps {
   isErred?: boolean;
   /** Whether we should focus on the input when it is mounted */
   shouldFocus?: boolean;
+  /** Max width of the input. Default is 100%. */
+  maxWidth?: number;
   /** The handler for when the content of the input field changes */
   onChange?: (value?: string | number) => void;
   /** The handler for when the input field is unfocused */
@@ -40,18 +42,24 @@ interface InputProps {
  * Style.
  */
 
+interface StyledInputDivProps {
+  $maxWidth?: number;
+}
+
+const StyledInputDiv = styled.div<StyledInputDivProps>`
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+
+  ${p => p.$maxWidth && css`max-width: ${p.$maxWidth}px;`};
+`;
+
 interface StyledInputProps {
   $isDisabled: boolean;
   $hasIcon: boolean;
   $isErred: boolean;
 }
-
-const StyledInputDiv = styled.div`
-  position: relative;
-  width: inherit;
-  display: flex;
-  flex-flow: row;
-`;
 
 const StyledInput = styled.input<StyledInputProps>`
   width: inherit;
@@ -139,6 +147,7 @@ export const Input: FC<InputProps> = props => {
     isDisabled = false,
     iconName,
     isErred = false,
+    maxWidth,
     onChange,
     onFocus,
     onBlur,
@@ -164,7 +173,7 @@ export const Input: FC<InputProps> = props => {
   };
 
   return (
-    <StyledInputDiv>
+    <StyledInputDiv $maxWidth={maxWidth}>
       <StyledIconDiv>{getInputIcon(iconName)}</StyledIconDiv>
       <StyledInput
         id={id}

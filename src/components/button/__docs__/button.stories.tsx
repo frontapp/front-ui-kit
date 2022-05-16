@@ -5,7 +5,7 @@ import {Icon} from '../../icon/icon';
 import {Button} from '../button';
 
 export default {
-  title: 'Front UI Kit/Buttons',
+  title: 'Components/Buttons',
   component: Button
 } as ComponentMeta<typeof Button>;
 

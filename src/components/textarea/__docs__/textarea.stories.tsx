@@ -1,14 +1,22 @@
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 import React from 'react';
+import styled from 'styled-components';
 
+import {greys} from '../../../helpers/colorHelpers';
 import {Textarea} from '../textarea';
 
 export default {
-  title: 'Front UI Kit/Textarea',
+  title: 'Components/Textarea',
   component: Textarea
 } as ComponentMeta<typeof Textarea>;
 
-const Template: ComponentStory<typeof Textarea> = args => <Textarea {...args} />;
+const StyledTextareaWrapperDiv = styled.div`
+  background: ${greys.white};
+  padding: 32px;
+  border-radius: 8px;
+`;
+
+const Template: ComponentStory<typeof Textarea> = args => <StyledTextareaWrapperDiv><Textarea {...args} /></StyledTextareaWrapperDiv>;
 
 export const BasicEmptyTextarea = Template.bind({});
 BasicEmptyTextarea.args = {

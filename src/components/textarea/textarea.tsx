@@ -27,6 +27,8 @@ interface TextareaProps {
   isErred?: boolean;
   /** Whether we should focus on the textarea when it is mounted */
   shouldFocus?: boolean;
+  /** Max width of the textarea. Default is 100%. */
+  maxWidth?: number;
   /** The handler for when the content of the textarea field changes */
   onChange?: (value?: string) => void;
   /** The handler for when the textarea field is unfocused */
@@ -39,17 +41,24 @@ interface TextareaProps {
  * Style.
  */
 
+interface StyledTextareaDivProps {
+  $maxWidth?: number;
+}
+
+const StyledTextareaDiv = styled.div<StyledTextareaDivProps>`
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+
+  ${p => p.$maxWidth && css`max-width: ${p.$maxWidth}px;`};
+`;
+
 interface StyledTextareaProps {
   $isDisabled: boolean;
   $isErred: boolean;
   $shouldAllowResize: boolean;
 }
-
-const StyledTextareaDiv = styled.div`
-  position: relative;
-  display: flex;
-  flex-flow: row;
-`;
 
 const StyledTextarea = styled.textarea<StyledTextareaProps>`
   width: inherit;
@@ -128,6 +137,7 @@ export const Textarea: FC<TextareaProps> = props => {
     name = "",
     isDisabled = false,
     isErred = false,
+    maxWidth,
     onChange,
     onFocus,
     onBlur,
@@ -153,7 +163,7 @@ export const Textarea: FC<TextareaProps> = props => {
   };
 
   return (
-    <StyledTextareaDiv>
+    <StyledTextareaDiv $maxWidth={maxWidth}>
       <StyledTextarea
         id={id}
         rows={rows}

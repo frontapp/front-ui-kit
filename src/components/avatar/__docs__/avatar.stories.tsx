@@ -5,7 +5,7 @@ import {VisualSizesEnum} from '../../../helpers/fontHelpers';
 import {Avatar} from '../avatar';
 
 export default {
-  title: 'Front UI Kit/Avatar',
+  title: 'Components/Avatar',
   component: Avatar
 } as ComponentMeta<typeof Avatar>;
 

@@ -82,7 +82,7 @@ const ShowcaseComponent: FC = props => {
  */
 
 export default {
-  title: 'Front UI Kit/Icons',
+  title: 'Components/Icons',
   component: ShowcaseComponent
 } as ComponentMeta<typeof ShowcaseComponent>;
 

@@ -5,7 +5,7 @@ import {Tab} from '../tab';
 import {TabGroup} from '../tabGroup';
 
 export default {
-  title: 'Front UI Kit/Tabs',
+  title: 'Components/Tabs',
   component: TabGroup
 } as ComponentMeta<typeof TabGroup>;
 

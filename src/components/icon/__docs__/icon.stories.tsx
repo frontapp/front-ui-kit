@@ -4,7 +4,7 @@ import React from 'react';
 import {Icon, icons} from '../icon';
 
 export default {
-  title: 'Front UI Kit/Icons',
+  title: 'Components/Icons',
   component: Icon
 } as ComponentMeta<typeof Icon>;
 
