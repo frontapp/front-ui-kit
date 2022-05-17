@@ -11,7 +11,7 @@ import {DropdownItemSkeleton} from './skeleton/dropdownItemSkeleton';
  * Constants.
  */
 
-const defaultWidth = 260; // px.
+const defaultWidth = 200; // px.
 const defaultMaxHeight = 342; // px.
 const fallbackLoadingStateHeight = 30; // px.
 const totalLoadingRows = 3;
