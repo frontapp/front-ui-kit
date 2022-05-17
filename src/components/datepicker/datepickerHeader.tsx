@@ -4,16 +4,16 @@ import {DateTime} from 'luxon';
 
 import {greys} from '../../helpers/colorHelpers';
 import {Button} from '../button/button';
-import { Icon } from '../icon/icon';
-import { fonts } from '../..';
-import { fontSizes, fontWeights } from '../../helpers/fontHelpers';
+import {Icon} from '../icon/icon';
+import {fonts} from '../..';
+import {fontSizes, fontWeights} from '../../helpers/fontHelpers';
 
 /*
  * Props.
  */
 
 interface DatePickerHeaderProps {
-  focusedMonth: DateTime;
+  value: DateTime;
   onFocusPreviousMonth: MouseEventHandler;
   onFocusNextMonth: MouseEventHandler;
 }
@@ -50,11 +50,11 @@ const StyledTitleDiv = styled.div`
  */
 
 export const DatePickerHeader: FC<DatePickerHeaderProps> = props => {
-  const {focusedMonth, onFocusPreviousMonth, onFocusNextMonth} = props;
+  const {value, onFocusPreviousMonth, onFocusNextMonth} = props;
   return (
     <StyledCalendarHeader>
       <Button type="icon" onClick={onFocusPreviousMonth}><Icon name="ChevronLeft" /></Button>
-      {renderFocusedMonth(focusedMonth)}
+      {renderFocusedMonth(value)}
       <Button type="icon" onClick={onFocusNextMonth}><Icon name="ChevronRight" /></Button>
     </StyledCalendarHeader>
   );
@@ -65,10 +65,10 @@ export const DatePickerHeader: FC<DatePickerHeaderProps> = props => {
 */
 
 /** Render the selected month. */
-function renderFocusedMonth(focusedMonth: DateTime) {
+function renderFocusedMonth(value: DateTime) {
   return (
-    <StyledTitleDiv data-testid="focusedMonth">
-      {renderMonth(focusedMonth)}
+    <StyledTitleDiv data-testid="value">
+      {renderMonth(value)}
     </StyledTitleDiv>
   );
 }
