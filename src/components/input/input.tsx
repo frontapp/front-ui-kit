@@ -11,7 +11,7 @@ import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 
 interface InputProps {
   /** The id of the input field */
-  id: string
+  id?: string
   /** The content of the input field */
   value?: string | number;
   /** Type of input: number, text, email, url, password. Default to text. */

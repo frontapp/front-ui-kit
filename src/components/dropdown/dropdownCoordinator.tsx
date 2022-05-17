@@ -3,8 +3,8 @@
 import React, {FC, useEffect, useState} from 'react';
 import styled from 'styled-components';
 
-import {PopoverContext, PopoverContextProps} from './popoverContext';
-import {RepositionPopover, RepositionPopoverProps} from './repositionPopover';
+import {PopoverContext, PopoverContextProps} from '../popover/popoverContext';
+import {RepositionPopover, RepositionPopoverProps} from '../popover/repositionPopover';
 
 /*
  * Props.
