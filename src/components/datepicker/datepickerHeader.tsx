@@ -53,7 +53,7 @@ export const DatePickerHeader: FC<DatePickerHeaderProps> = props => {
   return (
     <StyledCalendarHeader>
       <Button type="icon" onClick={onFocusPreviousMonth}><Icon name="ChevronLeft" /></Button>
-      {renderFocusedMonth(value)}
+      <StyledTitleDiv data-testid="value">{renderMonth(value)}</StyledTitleDiv>
       <Button type="icon" onClick={onFocusNextMonth}><Icon name="ChevronRight" /></Button>
     </StyledCalendarHeader>
   );
@@ -62,15 +62,6 @@ export const DatePickerHeader: FC<DatePickerHeaderProps> = props => {
 /*
 * Helpers
 */
-
-/** Render the selected month. */
-function renderFocusedMonth(value: DateTime) {
-  return (
-    <StyledTitleDiv data-testid="value">
-      {renderMonth(value)}
-    </StyledTitleDiv>
-  );
-}
 
 /** Localization-aware renderer for a single month. */
 function renderMonth(month: DateTime) {
