@@ -27,7 +27,7 @@ const Template: ComponentStory<typeof Dropdown> = args => (
       <Dropdown {...args}>
         {itemsToRender.map(itemId => (
           <DropdownItem key={itemId} onClick={() => console.log('Clicked item', itemId)}>
-            Example Dropdown Item {itemId}
+            Dropdown Item: {itemId}
           </DropdownItem>
         ))}
       </Dropdown>
