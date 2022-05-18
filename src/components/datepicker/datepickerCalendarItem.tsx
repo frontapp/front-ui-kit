@@ -1,6 +1,7 @@
 import {DateTime} from 'luxon';
-import React, {FC} from 'react';
+import React, {FC, MouseEventHandler} from 'react';
 import styled, {css} from 'styled-components';
+
 import {greys, palette} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 
@@ -13,6 +14,8 @@ interface DatePickerCalendarItemProps {
   isDifferentMonth: boolean;
   isSelectable: boolean;
   isSelected: boolean;
+  /** The handler for when a date is selected */
+  onSelect?: (date: DateTime) => void;
 }
 
 /*
@@ -87,15 +90,20 @@ function maybeAddHoverDayStyle(props: DayStyleProps) {
  */
 
 export const DatePickerCalendarItem: FC<DatePickerCalendarItemProps> = props => {
-  const {day, isSelectable} = props;
+  const {day, isSelectable, isSelected, isDifferentMonth, onSelect} = props;
+  const onClick: MouseEventHandler = () => {
+    if (onSelect)
+      onSelect(day);
+  };
   return (
     <StyledDayDiv
-    $isSelected={props.isSelected}
-    $isSelectable={props.isSelectable}
-    $isDisabled={!isSelectable}
-    $isDifferentMonth={props.isDifferentMonth}
-  >
-    {day.day}
-  </StyledDayDiv>
+      $isSelected={isSelected}
+      $isSelectable={isSelectable}
+      $isDisabled={!isSelectable}
+      $isDifferentMonth={isDifferentMonth}
+      onClick={onClick}
+    >
+      {day.day}
+    </StyledDayDiv>
   );
 };

@@ -1,11 +1,11 @@
+import {DateTime, Info} from 'luxon';
 import React, {FC} from 'react';
 import styled from 'styled-components';
-import {DateTime, Info} from 'luxon';
 
+import {CalendarWeekDaysEnum, getCalendarDays, getSortedWeekdays} from '../../helpers/calendarHelpers';
 import {greys} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
-import {getCalendarDays, getSortedWeekdays} from '../../helpers/calendarHelpers';
-import { DatePickerCalendarItem } from './datepickerCalendarItem';
+import {DatePickerCalendarItem} from './datepickerCalendarItem';
 
 /*
  * Props.
@@ -14,8 +14,10 @@ import { DatePickerCalendarItem } from './datepickerCalendarItem';
 interface DatePickerCalendarProps {
   /** The selected date */
   selectedDate: DateTime;
-  /** The selected month, we do not care about the time set as this will be what is currently being rendered. This is different than the `selectedDate`. */
+  /** The selected month. This is different than the `selectedDate`. */
   monthBeingViewed: DateTime;
+  /** The day of the the week the calendar should start on. The default is Sunday */
+  calendarWeekStartDay: CalendarWeekDaysEnum;
   /** The minimum date allowed to be selected. */
   minDate?: DateTime;
   /** The maximum date allowed to be selected. */
@@ -23,7 +25,7 @@ interface DatePickerCalendarProps {
   /** The handler for when a date is selected */
   onDateSelect?: (date: DateTime) => void;
 }
-  
+
 /*
  * Style.
  */
@@ -53,7 +55,8 @@ const StyledWeekdayDiv = styled.div`
  */
 
 export const DatePickerCalendar: FC<DatePickerCalendarProps> = props => {
-  const weekdays = getSortedWeekdays();
+  const {calendarWeekStartDay} = props;
+  const weekdays = getSortedWeekdays(calendarWeekStartDay);
   return (
     <StyledGridDiv>
       {renderWeekdays(weekdays)}
@@ -85,6 +88,7 @@ function renderDays(
     selectedDate,
     minDate,
     maxDate,
+    onDateSelect
   } = props;
   const days = getCalendarDays(monthBeingViewed, weekdays);
   return days.map(day => {
@@ -98,6 +102,7 @@ function renderDays(
         isDifferentMonth={day.month !== monthBeingViewed.month}
         isSelectable={isAfterMinDate && isBeforeMaxDate}
         isSelected={areDatesEqual(day, selectedDate)}
+        onSelect={() => onDateSelect && onDateSelect(day)}
       />
     );
   });
@@ -106,5 +111,3 @@ function renderDays(
 function areDatesEqual(date1: DateTime, date2?: DateTime) {
   return Boolean(date2 && date1.startOf('day').equals(date2.startOf('day')));
 }
-
-

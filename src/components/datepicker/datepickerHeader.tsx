@@ -1,12 +1,12 @@
+import {DateTime} from 'luxon';
 import React, {FC, MouseEventHandler} from 'react';
 import styled from 'styled-components';
-import {DateTime} from 'luxon';
 
+import {fonts} from '../..';
 import {greys} from '../../helpers/colorHelpers';
+import {fontSizes, fontWeights} from '../../helpers/fontHelpers';
 import {Button} from '../button/button';
 import {Icon} from '../icon/icon';
-import {fonts} from '../..';
-import {fontSizes, fontWeights} from '../../helpers/fontHelpers';
 
 /*
  * Props.
@@ -76,8 +76,3 @@ function renderFocusedMonth(value: DateTime) {
 function renderMonth(month: DateTime) {
   return `${month.monthLong} ${month.year}`;
 }
-
-
-
-
-

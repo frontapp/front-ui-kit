@@ -1,5 +1,5 @@
-import {DateTime} from 'luxon';
 import {range} from 'lodash';
+import {DateTime} from 'luxon';
 
 /*
  * Constants.
@@ -13,7 +13,7 @@ export enum CalendarWeekDaysEnum {
   THURSDAY = 'thursday',
   FRIDAY = 'friday',
   SATURDAY = 'saturday'
-};
+}
 
 export const calendarWeekdayToWeekdayNumber = {
   [CalendarWeekDaysEnum.MONDAY]: 1,
@@ -30,9 +30,17 @@ export const calendarWeekdayToWeekdayNumber = {
  */
 
 /** Get the sorted weekdays number, starting with Sunday. */
-export function getSortedWeekdays() {
-  const sortedCalendarWeekdays = Object.values(CalendarWeekDaysEnum);
+export function getSortedWeekdays(calendarWeekStartDay: CalendarWeekDaysEnum) {
+  const sortedCalendarWeekdays = getSortedWeekdayNames(calendarWeekStartDay);
   return sortedCalendarWeekdays.map(weekdayName => calendarWeekdayToWeekdayNumber[weekdayName]);
+}
+
+export function getSortedWeekdayNames(calendarWeekStartDay: CalendarWeekDaysEnum) {
+  const unorderedWeekdays = Object.values(CalendarWeekDaysEnum);
+  const splitIndex = unorderedWeekdays.indexOf(calendarWeekStartDay);
+  const left = unorderedWeekdays.slice(0, splitIndex);
+  const right = unorderedWeekdays.slice(splitIndex);
+  return [...right, ...left];
 }
 
 /** Get the full list of days for the provided month, sorted by the provided week days. */
@@ -53,13 +61,13 @@ export function getCalendarDays(month: DateTime, weekdays: ReadonlyArray<number>
     previousMonth.daysInMonth - previousPad + 1,
     previousMonth.daysInMonth + 1
   );
-  const currentMonthDayNumbers = range(1, month.daysInMonth + 1)
-  const nextMonthDayNumbers = range(1, nextPad + 1)
+  const currentMonthDayNumbers = range(1, month.daysInMonth + 1);
+  const nextMonthDayNumbers = range(1, nextPad + 1);
 
   // Map the day numbers to datetimes.
-  const previousMonthDays = previousMonthDayNumbers.map((day: any) => previousMonth.set({day}));
-  const currentMonthDays = currentMonthDayNumbers.map((day: any) => month.set({day}));
-  const nextMonthDays = nextMonthDayNumbers.map((day: any) => nextMonth.set({day}));
+  const previousMonthDays = previousMonthDayNumbers.map((day: number) => previousMonth.set({day}));
+  const currentMonthDays = currentMonthDayNumbers.map((day: number) => month.set({day}));
+  const nextMonthDays = nextMonthDayNumbers.map((day: number) => nextMonth.set({day}));
 
   // Combine everything and return.
   return [...previousMonthDays, ...currentMonthDays, ...nextMonthDays];

@@ -1,10 +1,11 @@
-import {isUndefined, noop} from 'lodash';
+import {isUndefined} from 'lodash';
 import {DateTime} from 'luxon';
 import React, {FC, useEffect, useState} from 'react';
 import styled from 'styled-components';
-import {DatePickerHeader} from './datepickerHeader';
-import {DatePickerCalendar} from './datepickerCalendar';
 
+import {CalendarWeekDaysEnum} from '../../helpers/calendarHelpers';
+import {DatePickerCalendar} from './datepickerCalendar';
+import {DatePickerHeader} from './datepickerHeader';
 
 /*
  * Props.
@@ -15,15 +16,15 @@ interface DatePickerProps {
   value?: Date;
   /** Controls allowing selecting a time. Default is date. */
   type?: 'date' | 'dateAndTime';
-  /**  */
-  placeholder?: string;
   /** The minimum date allowed to be selected. */
   minDate?: Date;
   /** The maximum date allowed to be selected. */
   maxDate?: Date;
-  /** - Called when a date is selected in date mode and called when Confirm is clicked when dateAndTime is selected. */
+  /** Called when a date is selected in date mode. */
   onChange: (value: Date) => void;
-  // TODO calendarWeekStartDay, timeFormat, onClear
+  /** The day of the the week the calendar should start on. The default is Sunday */
+  calendarWeekStartDay?: CalendarWeekDaysEnum
+  // TODO placeholder, timeFormat, onClear
 }
 
 /*
@@ -47,37 +48,37 @@ const StyledPickerDiv = styled.div`
 
 export const DatePicker: FC<DatePickerProps> = props => {
   const {
-    value = new Date()
+    value = new Date(),
+    calendarWeekStartDay = CalendarWeekDaysEnum.SUNDAY,
+    minDate,
+    maxDate,
+    onChange
   } = props;
-  const selectedDate = DateTime.fromJSDate(value);
-  console.log(selectedDate);
+  const [selectedDate, setSelectedDate] = useState(DateTime.fromJSDate(value));
   const selectedDateMonth = selectedDate?.startOf('month');
   const [focusedMonth, setFocusedMonth] = useState(selectedDateMonth);
-  console.log(focusedMonth);
 
-
-  /*
-   * When the selected date changes, updated the focused month.
-   */
+  // When the selected date changes, updated the focused month.
   const selectedDateMonthMillis = selectedDateMonth?.toMillis();
   useEffect(() => {
     if (isUndefined(selectedDateMonthMillis))
       return;
-
     setFocusedMonth(DateTime.fromMillis(selectedDateMonthMillis));
   }, [selectedDateMonthMillis]);
 
-  /*
-   * Event handlers.
-   */
-
   const onFocusPreviousMonth = () => {
-    setFocusedMonth(value => value.minus({months: 1}));
+    setFocusedMonth(month => month.minus({months: 1}));
   };
-  const onFocusNextMonth = () => {
-    setFocusedMonth(value => value.plus({months: 1}));
-  }
 
+  const onFocusNextMonth = () => {
+    setFocusedMonth(month => month.plus({months: 1}));
+  };
+
+  const onDateSelect = (date: DateTime) => {
+    setSelectedDate(date);
+    if (onChange)
+      onChange(date.toJSDate());
+  };
   return (
     <StyledPickerDiv>
       <DatePickerHeader
@@ -88,7 +89,10 @@ export const DatePicker: FC<DatePickerProps> = props => {
       <DatePickerCalendar
         selectedDate={selectedDate}
         monthBeingViewed={focusedMonth}
-        onDateSelect={noop}
+        calendarWeekStartDay={calendarWeekStartDay}
+        onDateSelect={onDateSelect}
+        minDate={minDate && DateTime.fromJSDate(minDate)}
+        maxDate={maxDate && DateTime.fromJSDate(maxDate)}
       />
     </StyledPickerDiv>
   );
