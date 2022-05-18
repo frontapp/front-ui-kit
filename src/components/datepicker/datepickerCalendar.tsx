@@ -35,6 +35,7 @@ const StyledGridDiv = styled.div`
   justify-content: space-between;
   justify-items: center;
   background: ${greys.white};
+  padding: 5px 8px;
 `;
 
 const StyledWeekdayDiv = styled.div`
@@ -84,7 +85,6 @@ function renderDays(
     selectedDate,
     minDate,
     maxDate,
-    onDateSelect
   } = props;
   const days = getCalendarDays(monthBeingViewed, weekdays);
   return days.map(day => {

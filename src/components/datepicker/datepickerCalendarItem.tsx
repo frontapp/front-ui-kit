@@ -1,8 +1,8 @@
 import {DateTime} from 'luxon';
 import React, {FC} from 'react';
 import styled, {css} from 'styled-components';
-import { greys, palette, alphas } from '../../helpers/colorHelpers';
-import { fontSizes, fontWeights } from '../../helpers/fontHelpers';
+import {greys, palette} from '../../helpers/colorHelpers';
+import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 
 /*
  * Props.
@@ -28,14 +28,16 @@ interface DayStyleProps {
 
 const StyledDayDiv = styled.div<DayStyleProps>`
   width: 24px;
-  padding: 4px 0;
+  height: 24px;
   border-radius: 6px;
-  position: relative;
   text-align: center;
-  font-size: ${fontSizes.small};
-  line-height: 16px;
   ${addNormalDayStyle};
   ${maybeAddHoverDayStyle};
+
+  font-family: ${fonts.system};
+  font-size: ${fontSizes.small};
+  font-weight: ${fontWeights.normal};
+  line-height: 24px;
 `;
 
 function addNormalDayStyle(props: DayStyleProps) {
@@ -43,7 +45,6 @@ function addNormalDayStyle(props: DayStyleProps) {
   if (props.$isSelected)
     return css`
       color: ${greys.white};
-      font-weight: ${fontWeights.medium};
       background-color: ${palette.blue.shade40};
     `;
 
@@ -76,7 +77,7 @@ function maybeAddHoverDayStyle(props: DayStyleProps) {
   return css`
     &:hover {
       color: ${greys.shade90};
-      background-color: ${alphas.gray20};
+      background-color: ${greys.shade20};
     }
   `;
 }

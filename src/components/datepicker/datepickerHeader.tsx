@@ -24,13 +24,12 @@ interface DatePickerHeaderProps {
 
 const StyledCalendarHeader = styled.header`
   width: inherit;
-  display: grid;
-  grid-auto-columns: auto;
-  grid-template-rows: auto;
+  display: flex;
+  gap: 10px;
   justify-content: center;
-  justify-items: center;
   align-items: center;
   background: ${greys.white};
+  padding: 4px 0px;
 `;
 
 const StyledTitleDiv = styled.div`
