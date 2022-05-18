@@ -6,7 +6,7 @@ import InfiniteLoader from 'react-window-infinite-loader';
  * Constants.
  */
 
-const dropdownListPadding = 5; // px.
+export const dropdownListPadding = 5; // px.
 
 /*
  * Props.
