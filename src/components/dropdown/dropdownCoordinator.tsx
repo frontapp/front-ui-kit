@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, {FC, useEffect, useState} from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 import {PopoverContext, PopoverContextProps} from '../popover/popoverContext';
 import {RepositionPopover, RepositionPopoverProps} from '../popover/repositionPopover';
@@ -15,8 +15,10 @@ interface DropdownCoordinatorProps extends Pick<RepositionPopoverProps, 'hasVisi
   isDisabled?: boolean;
   /** Controls if the overlay will close the dropdown. If disabled, we will not close when the overlay is clicked. */
   isOverlayCloseDisabled?: boolean;
+  /** Controls whether the dropdown anchor should be inline-block or block. */
+  isInline?: boolean;
   /** Render the button that triggers the dropdown. */
-  renderButton: () => React.ReactNode;
+  renderButton: (isDropdownOpen: boolean, isDisabled?: boolean) => React.ReactNode;
   /** Render the dropdown. */
   renderDropdown: (onCloseDropdown: () => void) => React.ReactNode;
   /** Called when the dropdown is first opened. */
@@ -29,8 +31,16 @@ interface DropdownCoordinatorProps extends Pick<RepositionPopoverProps, 'hasVisi
  * Styles.
  */
 
-const StyledAnchorDiv = styled.div`
-  display: inline-block;
+interface StyledAnchorDivProps {
+  $isInline?: boolean;
+}
+
+const StyledAnchorDiv = styled.div<StyledAnchorDivProps>`
+  display: block;
+
+  ${p => p.$isInline && css`
+    display: inline-block;
+  `};
 `;
 
 /*
@@ -38,7 +48,7 @@ const StyledAnchorDiv = styled.div`
  */
 
 export const DropdownCoordinator: FC<DropdownCoordinatorProps> = props => {
-  const {isDisabled, hasVisibleOverlay, placement, isOverlayCloseDisabled, onDropdownOpen, onDropdownClosed, renderButton, renderDropdown} = props;
+  const {isDisabled, hasVisibleOverlay, placement, isOverlayCloseDisabled, isInline, onDropdownOpen, onDropdownClosed, renderButton, renderDropdown} = props;
   const [anchorElement, setAnchorElement] = useState<HTMLDivElement | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [context, setContext] = useState<PopoverContextProps | undefined>();
@@ -72,8 +82,8 @@ export const DropdownCoordinator: FC<DropdownCoordinatorProps> = props => {
 
   return (
     <PopoverContext.Provider value={context}>
-      <StyledAnchorDiv ref={setAnchorElement} onClick={onClick}>
-        {renderButton()}
+      <StyledAnchorDiv ref={setAnchorElement} onClick={onClick} $isInline={isInline}>
+        {renderButton(isDropdownOpen, isDisabled)}
       </StyledAnchorDiv>
       {isDropdownOpen && (
         <RepositionPopover

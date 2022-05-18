@@ -22,7 +22,8 @@ const Template: ComponentStory<typeof Dropdown> = args => (
   <DropdownCoordinator
     {...args}
     placement="bottom-start"
-    renderButton={() => <Button type="icon"><Icon name="EllipsisVertical" /></Button>}
+    isInline
+    renderButton={isDropdownOpen => <Button type="icon" shouldForceHoverState={isDropdownOpen}><Icon name="EllipsisVertical" /></Button>}
     renderDropdown={() => (
       <Dropdown {...args}>
         {itemsToRender.map(itemId => (
@@ -34,4 +35,4 @@ const Template: ComponentStory<typeof Dropdown> = args => (
     )}
   />
 );
-export const DropdownSimple = Template.bind({});
+export const Simple = Template.bind({});

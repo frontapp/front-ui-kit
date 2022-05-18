@@ -39,6 +39,8 @@ interface ButtonProps {
   children?: React.ReactNode;
   /** The size of the button. Note EXTRA_LARGE is not supported. */
   size?: VisualSizesEnum;
+  /** Whether we should force hover state styles. */
+  shouldForceHoverState?: boolean;
   /** Called when the user click on the button. */
   onClick?: MouseEventHandler;
 }
@@ -54,6 +56,7 @@ const StyledButtonWrapperDiv = styled.div`
 interface StyledButtonProps {
   $size: VisualSizesEnum;
   $type: Omit<ButtonTypes, 'icon' | 'icon-danger'>;
+  $shouldForceHoverState?: boolean;
   $isDisabled?: boolean;
 }
 
@@ -66,7 +69,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   font-weight: ${fontWeights.semibold};
 
   ${p => addButtonSizeStyles(p.$size)};
-  ${p => addButtonTypeStyles(p.$type, p.$isDisabled)};
+  ${p => addButtonTypeStyles(p.$type, p.$isDisabled, p.$shouldForceHoverState)};
 `;
 
 function addButtonSizeStyles(size: VisualSizesEnum) {
@@ -77,7 +80,7 @@ function addButtonSizeStyles(size: VisualSizesEnum) {
   `;
 }
 
-function addButtonTypeStyles(type: Omit<ButtonTypes, 'icon' | 'icon-danger'>, isDisabled?: boolean) {
+function addButtonTypeStyles(type: Omit<ButtonTypes, 'icon' | 'icon-danger'>, isDisabled?: boolean, shouldForceHoverState?: boolean) {
   if (isDisabled)
     return css`
       color: ${greys.shade70};
@@ -97,7 +100,7 @@ function addButtonTypeStyles(type: Omit<ButtonTypes, 'icon' | 'icon-danger'>, is
     case 'primary':
       return css`
         ${addSharedPrimaryStyles()};
-        background: ${palette.blue.shade40};
+        background: ${palette.blue[shouldForceHoverState ? 'shade50' : 'shade40']};
 
         &:hover {
           background: ${palette.blue.shade50};
@@ -106,7 +109,7 @@ function addButtonTypeStyles(type: Omit<ButtonTypes, 'icon' | 'icon-danger'>, is
     case 'primary-danger':
       return css`
         ${addSharedPrimaryStyles()};
-        background: ${palette.red.shade40};
+        background: ${palette.red[shouldForceHoverState ? 'shade50' : 'shade40']};
 
         &:hover {
           background: ${palette.red.shade50};
@@ -114,7 +117,7 @@ function addButtonTypeStyles(type: Omit<ButtonTypes, 'icon' | 'icon-danger'>, is
       `;
     case 'tertiary':
       return css`
-        background: transparent;
+        background: ${shouldForceHoverState ? alphas.gray10 : 'transparent'};
         border: 1px solid transparent;
         color: ${palette.blue.shade40};
 
@@ -124,13 +127,13 @@ function addButtonTypeStyles(type: Omit<ButtonTypes, 'icon' | 'icon-danger'>, is
       `;
     case 'secondary-danger':
       return css`
-        ${addSharedSecondaryStyles()};
+        ${addSharedSecondaryStyles(shouldForceHoverState)};
         color: ${palette.red.shade40};
       `;
     case 'secondary':
     default:
       return css`
-        ${addSharedSecondaryStyles()};
+        ${addSharedSecondaryStyles(shouldForceHoverState)};
         color: ${greys.shade80};
       `;
   }
@@ -144,9 +147,9 @@ function addSharedPrimaryStyles() {
   `;
 }
 
-function addSharedSecondaryStyles() {
+function addSharedSecondaryStyles(shouldForceHoverState?: boolean) {
   return css`
-    background: ${greys.white};
+    background: ${greys[shouldForceHoverState ? 'shade30' : 'white']};
     border: 1px solid ${alphas.black30};
     box-shadow: 0 1px 3px ${alphas.black10};
 
@@ -161,7 +164,14 @@ function addSharedSecondaryStyles() {
  */
 
 export const Button: FC<ButtonProps> = props => {
-  const {type = 'secondary', size = VisualSizesEnum.MEDIUM, children, isDisabled, onClick} = props;
+  const {
+    type = 'secondary',
+    size = VisualSizesEnum.MEDIUM,
+    children,
+    isDisabled,
+    shouldForceHoverState,
+    onClick
+  } = props;
 
   // Wrap the onClick to check if it is disabled or not defined.
   const onButtonClick = (event: MouseEvent) => {
@@ -173,13 +183,13 @@ export const Button: FC<ButtonProps> = props => {
   // Check if we should be rendering an icon.
   if (type === 'icon' || type === 'icon-danger')
     return (
-      <IconButton isDanger={type === 'icon-danger'} isDisabled={isDisabled} onClick={onButtonClick}>
+      <IconButton isDanger={type === 'icon-danger'} isDisabled={isDisabled} shouldForceHoverState={shouldForceHoverState} onClick={onButtonClick}>
         {children}
       </IconButton>
     );
   return (
     <StyledButtonWrapperDiv>
-      <StyledButton $type={type} $size={size} $isDisabled={isDisabled} onClick={onButtonClick}>
+      <StyledButton $type={type} $size={size} $isDisabled={isDisabled} $shouldForceHoverState={shouldForceHoverState} onClick={onButtonClick}>
         {renderButtonChildren(children)}
       </StyledButton>
     </StyledButtonWrapperDiv>

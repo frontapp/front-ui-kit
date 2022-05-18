@@ -16,7 +16,7 @@ export default {
 } as ComponentMeta<typeof DropdownCoordinator>;
 
 const StyledDropdownContainerDiv = styled.div`
-  text-align: center;
+  margin-bottom: 16px;
 `;
 
 const StyledDropdownFooterDiv = styled.div`
@@ -29,6 +29,7 @@ const Template: ComponentStory<typeof DropdownCoordinator> = args => (
       <DropdownCoordinator
         {...args}
         placement="bottom-start"
+        isInline
         renderButton={() => <Button>Dropdown Without Overlay</Button>}
         renderDropdown={() => (
           <Dropdown>
@@ -42,6 +43,7 @@ const Template: ComponentStory<typeof DropdownCoordinator> = args => (
       <DropdownCoordinator
         {...args}
         hasVisibleOverlay
+        isInline
         placement="bottom-start"
         renderButton={() => <Button>Dropdown With Overlay</Button>}
         renderDropdown={() => (
@@ -56,6 +58,7 @@ const Template: ComponentStory<typeof DropdownCoordinator> = args => (
       <DropdownCoordinator
         {...args}
         isOverlayCloseDisabled
+        isInline
         placement="bottom-start"
         renderButton={() => <Button>Dropdown Close Action</Button>}
         renderDropdown={onCloseDropdown => (

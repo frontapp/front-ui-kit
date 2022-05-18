@@ -1,4 +1,4 @@
-import React, {FC, useLayoutEffect, useState} from 'react';
+import React, {FC, MouseEventHandler, useLayoutEffect, useState} from 'react';
 import {createPortal} from 'react-dom';
 import styled from 'styled-components';
 
@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 export interface LayerProps {
   isExclusive?: boolean;
-  onClick?: () => void;
+  onClick?: MouseEventHandler;
   children?: React.ReactNode;
 }
 
