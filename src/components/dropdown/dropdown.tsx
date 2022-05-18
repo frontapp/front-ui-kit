@@ -3,7 +3,7 @@ import styled, {css} from 'styled-components';
 
 import {greys} from '../../helpers/colorHelpers';
 import {renderChildrenSpecifiedComponents} from '../../helpers/renderHelpers';
-import {DropdownList} from './dropdownList';
+import {DropdownList, dropdownListPadding} from './dropdownList';
 import {useDropdownList} from './hooks/useDropdownList';
 import {DropdownItemSkeleton} from './skeleton/dropdownItemSkeleton';
 
@@ -155,5 +155,5 @@ function computeHeight(itemsHeight: number, itemsCount: number, loadingStateHeig
     return totalLoadingRowsToRender * loadingStateHeight;
   // If we have more items we can load, make sure to take that into account when calculating the height.
   const itemsWithLoadingHeight = itemsHeight + (hasMore ? loadingStateHeight * totalLoadingRowsToRender : 0);
-  return itemsWithLoadingHeight < maxHeight ? itemsWithLoadingHeight : maxHeight;
+  return itemsWithLoadingHeight < maxHeight ? itemsWithLoadingHeight + (dropdownListPadding * 2) : maxHeight;
 }
