@@ -8,5 +8,9 @@ export default {
   component: DatePicker
 } as ComponentMeta<typeof DatePicker>;
 
-const Template: ComponentStory<typeof DatePicker> = args => <DatePicker {...args} />;
+const Template: ComponentStory<typeof DatePicker> = args => <DatePicker
+  {...args}
+  minDate={args.minDate && new Date(args.minDate)}
+  maxDate={args.maxDate && new Date(args.maxDate)}
+/>;
 export const Basic = Template.bind({});

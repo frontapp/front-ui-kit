@@ -79,9 +79,10 @@ function addDayStyles(props: DayStyleProps) {
 
 export const DatePickerCalendarItem: FC<DatePickerCalendarItemProps> = props => {
   const {day, isSelectable, isSelected, isDifferentMonth, onSelect} = props;
-  const onClick: MouseEventHandler = () => {
+  const onClick: MouseEventHandler = event => {
     if (onSelect)
       onSelect(day);
+    event.preventDefault();
   };
   return (
     <StyledDayDiv

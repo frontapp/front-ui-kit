@@ -1,3 +1,4 @@
+import {range} from 'lodash';
 import {DateTime} from 'luxon';
 import React, {FC, MouseEventHandler} from 'react';
 import styled from 'styled-components';
@@ -23,12 +24,24 @@ interface DatePickerHeaderProps {
 
 const StyledCalendarHeader = styled.header`
   width: inherit;
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
   background: ${greys.white};
   padding: 4px 0px;
+  display: grid;
+  grid-auto-columns: auto;
+  grid-template-rows: auto;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+`;
+
+const StyledLeftButtonDiv = styled.div`
+  grid-column: 1;
+  grid-row: 1;
+`;
+
+const StyledRightButtonDiv = styled.div`
+  grid-column: 3;
+  grid-row: 1;
 `;
 
 const StyledTitleDiv = styled.div`
@@ -43,6 +56,10 @@ const StyledTitleDiv = styled.div`
   text-transform: capitalize;
 `;
 
+const StyledInvisibleDiv = styled(StyledTitleDiv)`
+  opacity: 0;
+`;
+
 /*
  * Component.
  */
@@ -51,9 +68,14 @@ export const DatePickerHeader: FC<DatePickerHeaderProps> = props => {
   const {value = DateTime.now(), onFocusPreviousMonth, onFocusNextMonth} = props;
   return (
     <StyledCalendarHeader>
-      <Button type="icon" onClick={onFocusPreviousMonth}><Icon name="ChevronLeft" /></Button>
+      <StyledLeftButtonDiv>
+        <Button type="icon" onClick={onFocusPreviousMonth}><Icon name="ChevronLeft" /></Button>
+      </StyledLeftButtonDiv>
+      {renderAllMonths(value)}
       <StyledTitleDiv data-testid="value">{renderMonth(value)}</StyledTitleDiv>
-      <Button type="icon" onClick={onFocusNextMonth}><Icon name="ChevronRight" /></Button>
+      <StyledRightButtonDiv>
+        <Button type="icon" onClick={onFocusNextMonth}><Icon name="ChevronRight" /></Button>
+      </StyledRightButtonDiv>
     </StyledCalendarHeader>
   );
 };
@@ -61,6 +83,18 @@ export const DatePickerHeader: FC<DatePickerHeaderProps> = props => {
 /*
 * Helpers
 */
+
+/** Render all months in the year at opacity 0 for spacing. */
+function renderAllMonths(focusedMonth: DateTime) {
+  return range(1, 13).map(m => {
+    const month = focusedMonth.set({month: m});
+    return (
+      <StyledInvisibleDiv key={m}>
+        {renderMonth(month)}
+      </StyledInvisibleDiv>
+    );
+  });
+}
 
 function renderMonth(month: DateTime) {
   return `${month.monthLong} ${month.year}`;
