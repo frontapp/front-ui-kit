@@ -1,10 +1,10 @@
 import {isUndefined} from 'lodash';
 import {DateTime} from 'luxon';
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect, useMemo, useState} from 'react';
 import styled from 'styled-components';
 
 import {CalendarWeekDaysEnum} from '../../helpers/calendarHelpers';
-import { alphas } from '../../helpers/colorHelpers';
+import {alphas} from '../../helpers/colorHelpers';
 import {DatePickerCalendar} from './datepickerCalendar';
 import {DatePickerHeader} from './datepickerHeader';
 
@@ -80,6 +80,10 @@ export const DatePicker: FC<DatePickerProps> = props => {
     if (onChange)
       onChange(date.toJSDate());
   };
+
+  const minDateTime = useMemo(() => minDate && DateTime.fromJSDate(minDate), [minDate]);
+  const maxDateTime = useMemo(() => maxDate && DateTime.fromJSDate(maxDate), [maxDate]);
+
   return (
     <StyledDatePickerDiv>
       <DatePickerHeader
@@ -92,8 +96,8 @@ export const DatePicker: FC<DatePickerProps> = props => {
         monthBeingViewed={focusedMonth}
         calendarWeekStartDay={calendarWeekStartDay}
         onDateSelect={onDateSelect}
-        minDate={minDate && DateTime.fromJSDate(minDate)}
-        maxDate={maxDate && DateTime.fromJSDate(maxDate)}
+        minDate={minDateTime}
+        maxDate={maxDateTime}
       />
     </StyledDatePickerDiv>
   );

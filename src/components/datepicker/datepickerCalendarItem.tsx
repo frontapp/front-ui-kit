@@ -34,50 +34,38 @@ const StyledDayDiv = styled.div<DayStyleProps>`
   height: 24px;
   border-radius: 6px;
   text-align: center;
-  ${addNormalDayStyle};
-  ${maybeAddHoverDayStyle};
+  ${addDayStyles};
 
   font-family: ${fonts.system};
   font-size: ${fontSizes.small};
   font-weight: ${fontWeights.normal};
   line-height: 24px;
+  cursor: default
 `;
 
-function addNormalDayStyle(props: DayStyleProps) {
+function addDayStyles(props: DayStyleProps) {
   // Selected state.
   if (props.$isSelected)
     return css`
       color: ${greys.white};
       background-color: ${palette.blue.shade40};
+      &:hover {
+        background-color: ${palette.blue.shade50};
+      }
     `;
 
   // Greyed-out state.
   if (!props.$isSelectable || props.$isDifferentMonth)
     return css`
       color: ${greys.shade50};
-    `;
-
-  // Normal state.
-  return css`
-    color: ${greys.shade90};
-  `;
-}
-
-function maybeAddHoverDayStyle(props: DayStyleProps) {
-  // Greyed-out state.
-  if (!props.$isSelectable)
-    return '';
-
-  // Selected state.
-  if (props.$isSelected)
-    return css`
       &:hover {
-        background-color: ${palette.blue.shade50};
+        background-color: ${greys.shade20};
       }
     `;
 
   // Normal state.
   return css`
+    color: ${greys.shade80};
     &:hover {
       color: ${greys.shade90};
       background-color: ${greys.shade20};

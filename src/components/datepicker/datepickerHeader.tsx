@@ -2,9 +2,8 @@ import {DateTime} from 'luxon';
 import React, {FC, MouseEventHandler} from 'react';
 import styled from 'styled-components';
 
-import {fonts} from '../..';
 import {greys} from '../../helpers/colorHelpers';
-import {fontSizes, fontWeights} from '../../helpers/fontHelpers';
+import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 import {Button} from '../button/button';
 import {Icon} from '../icon/icon';
 
