@@ -19,6 +19,10 @@ interface DropdownCoordinatorProps extends Pick<RepositionPopoverProps, 'hasVisi
   renderButton: () => React.ReactNode;
   /** Render the dropdown. */
   renderDropdown: (onCloseDropdown: () => void) => React.ReactNode;
+  /** Called when the dropdown is first opened. */
+  onDropdownOpen?: () => void;
+  /** Called when the dropdown is closed. */
+  onDropdownClosed?: () => void;
 }
 
 /*
@@ -34,10 +38,17 @@ const StyledAnchorDiv = styled.div`
  */
 
 export const DropdownCoordinator: FC<DropdownCoordinatorProps> = props => {
-  const {isDisabled, hasVisibleOverlay, placement, isOverlayCloseDisabled, renderButton, renderDropdown} = props;
+  const {isDisabled, hasVisibleOverlay, placement, isOverlayCloseDisabled, onDropdownOpen, onDropdownClosed, renderButton, renderDropdown} = props;
   const [anchorElement, setAnchorElement] = useState<HTMLDivElement | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [context, setContext] = useState<PopoverContextProps | undefined>();
+
+  // When the dropdown is first opened.
+  useEffect(() => {
+    if (onDropdownOpen)
+      onDropdownOpen();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (!anchorElement)
@@ -55,6 +66,8 @@ export const DropdownCoordinator: FC<DropdownCoordinatorProps> = props => {
 
   const onCloseDropdown = () => {
     setIsDropdownOpen(false);
+    if (onDropdownClosed)
+      onDropdownClosed();
   };
 
   return (

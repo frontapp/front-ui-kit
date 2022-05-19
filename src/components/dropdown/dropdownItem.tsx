@@ -19,7 +19,7 @@ const nonDropdownContentComponents = ['DropdownItemIcon', 'DropdownItemAvatar'];
 export interface DropdownItemProps {
   /** Content to render. */
   children: React.ReactNode;
-  /** Height of the content, this is only used for the dropdowns internal logic. */
+  /** Height of the content, this is only used for the dropdowns internal logic. This will be auto-calculated if not specified. */
   height?: number;
   /** Called when the dropdown item is clicked. */
   onClick?: MouseEventHandler;

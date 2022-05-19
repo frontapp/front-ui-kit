@@ -45,17 +45,17 @@ const Template: ComponentStory<typeof Dropdown> = args => {
       {...args}
       placement="bottom-start"
       renderButton={() => <Button type="icon"><Icon name="EllipsisVertical" /></Button>}
+      onDropdownClosed={() => {
+        setPage(1);
+        setIsLoading(false);
+        setUsers([]);
+      }}
       renderDropdown={() => (
         <Dropdown
           {...args}
           isLoading={isLoading}
           hasMore={page < 5}
           onLoadMore={fetchUserData}
-          onDropdownOpen={() => {
-            setPage(1);
-            setIsLoading(false);
-            setUsers([]);
-          }}
         >
           {users.map(user => (
             <DropdownItem key={user.id} onClick={() => console.log('Selected user:', user)}>

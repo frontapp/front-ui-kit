@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC, useMemo} from 'react';
 import styled, {css} from 'styled-components';
 
 import {greys} from '../../helpers/colorHelpers';
@@ -11,9 +11,9 @@ import {DropdownItemSkeleton} from './skeleton/dropdownItemSkeleton';
  * Constants.
  */
 
-const defaultWidth = 260; // px.
+const defaultMaxWidth = 260; // px.
 const defaultMaxHeight = 342; // px.
-const fallbackLoadingStateHeight = 30; // px.
+const defaultLoadingSkeletonHeight = 30; // px.
 const totalLoadingRows = 3;
 const defaultLoadingThreshold = 5;
 
@@ -23,25 +23,23 @@ const defaultLoadingThreshold = 5;
 
 interface DropdownProps {
   /** The maximum width of the dropdown. Defaults to 260. */
-  width?: number;
+  maxWidth?: number;
   /** The minimum height of the dropdown. Defaults to unset. */
   minHeight?: number;
   /** The maximum height of the dropdown. Defaults to 342. */
   maxHeight?: number;
   /** Children to render for the dropdown. */
   children: React.ReactNode;
-  /** Called when the dropdown is first opened. */
-  onDropdownOpen?: () => void;
-  /** Controls if we will try to load more items when they reach the loadingThreshold.  */
-  hasMore?: boolean;
+
   /** Controls if we should render the loading state. */
   isLoading?: boolean;
-  /** Controls the height of the loading state items. This should match the same height as your dropdown items. */
-  loadingStateHeight?: number;
+  /** The loading skeleton we would render. Only supports DropdownItemSkeleton. */
+  loadingSkeleton?: React.ReactNode;
   /** Controls when we will call the "onLoadMore" function. Default is when we are within 5 items of the bottom. */
   loadingThreshold?: number;
-  /** The loading state to render. This is per called per loading item. Default is a simple loading item. */
-  renderLoadingState?: () => React.ReactNode;
+
+  /** Controls if we will try to load more items when they reach the loadingThreshold.  */
+  hasMore?: boolean;
   /** Called when we request to load more items. */
   onLoadMore?: () => Promise<void>;
 }
@@ -51,7 +49,7 @@ interface DropdownProps {
  */
 
 interface StyledDropdownWrapperDivProps {
-  $width?: number;
+  $maxWidth: number;
 }
 
 const StyledDropdownWrapperDiv = styled.div<StyledDropdownWrapperDivProps>`
@@ -66,7 +64,7 @@ const StyledDropdownWrapperDiv = styled.div<StyledDropdownWrapperDivProps>`
   width: 100%;
   overflow: auto;
   ${p => css`
-    width: ${p.$width ?? defaultWidth}px;
+    max-width: ${p.$maxWidth}px;
   `}
 `;
 
@@ -94,43 +92,37 @@ function addDropdownContentStyles(props: StyledDropdownContentWrapperDivProps) {
 export const Dropdown: FC<DropdownProps> = props => {
   const {
     children,
-    width,
+    maxWidth = defaultMaxWidth,
     maxHeight = defaultMaxHeight,
     minHeight,
-    loadingStateHeight,
     isLoading,
     hasMore,
     loadingThreshold = defaultLoadingThreshold,
-    onDropdownOpen,
-    renderLoadingState,
+    loadingSkeleton,
     onLoadMore
   } = props;
   const {itemsCount, itemsHeight, getItemHeight, renderItem} = useDropdownList(children);
-  const loadingItemHeight = loadingStateHeight || fallbackLoadingStateHeight;
 
-  // When the dropdown is first opened.
-  useEffect(() => {
-    if (onDropdownOpen)
-      onDropdownOpen();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // Look at the supplied loading skeleton or default the loading skeleton.
+  const loadingSkeletonDefaulted = useMemo(() => buildLoadingSkeleton(loadingSkeleton), [loadingSkeleton]);
+  const loadingSkeletonHeight = useMemo(() => computeLoadingSkeletonHeight(loadingSkeletonDefaulted), [loadingSkeletonDefaulted]);
 
   return (
-    <StyledDropdownWrapperDiv $width={width}>
+    <StyledDropdownWrapperDiv $maxWidth={maxWidth}>
       {/* Render Dropdown headers / footers. */}
       {renderChildrenSpecifiedComponents(children, ['DropdownHeader', 'DropdownFooter'])}
       <StyledDropdownContentWrapperDiv $maxHeight={maxHeight} $minHeight={minHeight}>
         <DropdownList
           itemsCount={itemsCount}
-          loadingItemsCount={hasMore || isLoading ? computeTotalLoadingItems(itemsCount, maxHeight, loadingItemHeight) : 0}
-          height={computeHeight(itemsHeight, itemsCount, loadingItemHeight, maxHeight, hasMore)}
-          loadingStateHeight={loadingItemHeight}
+          loadingItemsCount={hasMore || isLoading ? computeTotalLoadingItems(itemsCount, maxHeight, loadingSkeletonHeight) : 0}
+          height={computeHeight(itemsHeight, itemsCount, loadingSkeletonHeight, maxHeight, hasMore)}
           isLoading={isLoading}
           hasMore={hasMore}
           loadingThreshold={loadingThreshold}
+          loadingSkeletonHeight={loadingSkeletonHeight}
+          loadingSkeleton={loadingSkeletonDefaulted}
           getItemHeight={getItemHeight}
           renderItem={renderItem}
-          renderLoadingState={renderLoadingState || (() => <DropdownItemSkeleton />)}
           onLoadMore={onLoadMore || (async () => {})}
         />
       </StyledDropdownContentWrapperDiv>
@@ -142,18 +134,36 @@ export const Dropdown: FC<DropdownProps> = props => {
  * Helpers.
  */
 
-function computeTotalLoadingItems(itemsCount: number, maxHeight: number, loadingStateHeight: number) {
-  if (itemsCount > 0)
-    return totalLoadingRows;
-  return Math.floor(maxHeight / loadingStateHeight);
+/** Children may not be a DropdownItemSkeleton, so we need to verify. */
+function buildLoadingSkeleton(skeleton?: React.ReactNode): React.ReactNode {
+  // If we do not have a skeleton supplied, default to a generic one.
+  if (!skeleton)
+    return <DropdownItemSkeleton />;
+
+  // Try to pull the DropdownItemSkeleton from the children and return the first one found.
+  const dropdownSkeletons = renderChildrenSpecifiedComponents(skeleton, ['DropdownItemSkeleton']);
+  return dropdownSkeletons?.[0] || (<DropdownItemSkeleton />);
 }
 
-function computeHeight(itemsHeight: number, itemsCount: number, loadingStateHeight: number, maxHeight: number, hasMore?: boolean) {
-  const totalLoadingRowsToRender = computeTotalLoadingItems(itemsCount, maxHeight, loadingStateHeight);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function computeLoadingSkeletonHeight(_loadingSkeleton: any): number {
+  // TODO: access the props of the skeleton to look for certain things that could increase height loadingSkeleton?.props?.hasDescription
+  return defaultLoadingSkeletonHeight;
+}
+
+/** If we are initially loading the dropdown, we should fill the entire dropdown with loading indicators, otherwise only should 3. */
+function computeTotalLoadingItems(itemsCount: number, maxHeight: number, loadingSkeletonHeight: number) {
+  if (itemsCount > 0)
+    return totalLoadingRows;
+  return Math.floor(maxHeight / loadingSkeletonHeight);
+}
+
+function computeHeight(itemsHeight: number, itemsCount: number, loadingSkeletonHeight: number, maxHeight: number, hasMore?: boolean) {
+  const totalLoadingRowsToRender = computeTotalLoadingItems(itemsCount, maxHeight, loadingSkeletonHeight);
   // If we are at the first page, we should fill up the dropdown with loading indicators.
   if (itemsCount === 0)
-    return totalLoadingRowsToRender * loadingStateHeight;
+    return totalLoadingRowsToRender * loadingSkeletonHeight;
   // If we have more items we can load, make sure to take that into account when calculating the height.
-  const itemsWithLoadingHeight = itemsHeight + (hasMore ? loadingStateHeight * totalLoadingRowsToRender : 0);
+  const itemsWithLoadingHeight = itemsHeight + (hasMore ? loadingSkeletonHeight * totalLoadingRowsToRender : 0);
   return itemsWithLoadingHeight < maxHeight ? itemsWithLoadingHeight + (dropdownListPadding * 2) : maxHeight;
 }
