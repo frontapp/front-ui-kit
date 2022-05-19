@@ -162,7 +162,7 @@ function computeHeight(itemsHeight: number, itemsCount: number, loadingSkeletonH
   const totalLoadingRowsToRender = computeTotalLoadingItems(itemsCount, maxHeight, loadingSkeletonHeight);
   // If we are at the first page, we should fill up the dropdown with loading indicators.
   if (itemsCount === 0)
-    return totalLoadingRowsToRender * loadingSkeletonHeight;
+    return maxHeight;
   // If we have more items we can load, make sure to take that into account when calculating the height.
   const itemsWithLoadingHeight = itemsHeight + (hasMore ? loadingSkeletonHeight * totalLoadingRowsToRender : 0);
   return itemsWithLoadingHeight < maxHeight ? itemsWithLoadingHeight + (dropdownListPadding * 2) : maxHeight;
