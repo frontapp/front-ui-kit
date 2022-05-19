@@ -4,7 +4,7 @@ import React from 'react';
 import {DatePicker} from '../datepicker';
 
 export default {
-  title: 'Components/DatePicker',
+  title: 'Development/DatePicker',
   component: DatePicker
 } as ComponentMeta<typeof DatePicker>;
 

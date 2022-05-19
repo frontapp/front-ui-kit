@@ -62,7 +62,7 @@ const ShowcaseDatePickerComponent: FC = props => {
  */
 
 export default {
-  title: 'Components/DatePicker',
+  title: 'Development/DatePicker',
   component: ShowcaseComponent
 } as ComponentMeta<typeof ShowcaseComponent>;
 
