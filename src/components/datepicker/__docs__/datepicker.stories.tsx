@@ -9,4 +9,4 @@ export default {
 } as ComponentMeta<typeof DatePicker>;
 
 const Template: ComponentStory<typeof DatePicker> = args => <DatePicker {...args} />;
-export const DatePickerBasic = Template.bind({});
+export const Basic = Template.bind({});

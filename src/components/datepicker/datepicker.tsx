@@ -4,6 +4,7 @@ import React, {FC, useEffect, useState} from 'react';
 import styled from 'styled-components';
 
 import {CalendarWeekDaysEnum} from '../../helpers/calendarHelpers';
+import { alphas } from '../../helpers/colorHelpers';
 import {DatePickerCalendar} from './datepickerCalendar';
 import {DatePickerHeader} from './datepickerHeader';
 
@@ -31,11 +32,11 @@ interface DatePickerProps {
  * Style.
  */
 
-const StyledPickerDiv = styled.div`
+const StyledDatePickerDiv = styled.div`
   display: grid;
   grid-auto-rows: auto;
   width: 254px;
-  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3), 0px 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 1px ${alphas.black50}, 0px 3px 10px ${alphas.black30};
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -48,13 +49,13 @@ const StyledPickerDiv = styled.div`
 
 export const DatePicker: FC<DatePickerProps> = props => {
   const {
-    value = new Date(),
+    value,
     calendarWeekStartDay = CalendarWeekDaysEnum.SUNDAY,
     minDate,
     maxDate,
     onChange
   } = props;
-  const [selectedDate, setSelectedDate] = useState(DateTime.fromJSDate(value));
+  const [selectedDate, setSelectedDate] = useState(value && DateTime.fromJSDate(value));
   const selectedDateMonth = selectedDate?.startOf('month');
   const [focusedMonth, setFocusedMonth] = useState(selectedDateMonth);
 
@@ -67,11 +68,11 @@ export const DatePicker: FC<DatePickerProps> = props => {
   }, [selectedDateMonthMillis]);
 
   const onFocusPreviousMonth = () => {
-    setFocusedMonth(month => month.minus({months: 1}));
+    setFocusedMonth(month => month && month.minus({months: 1}));
   };
 
   const onFocusNextMonth = () => {
-    setFocusedMonth(month => month.plus({months: 1}));
+    setFocusedMonth(month => month && month.plus({months: 1}));
   };
 
   const onDateSelect = (date: DateTime) => {
@@ -80,7 +81,7 @@ export const DatePicker: FC<DatePickerProps> = props => {
       onChange(date.toJSDate());
   };
   return (
-    <StyledPickerDiv>
+    <StyledDatePickerDiv>
       <DatePickerHeader
         value={focusedMonth}
         onFocusPreviousMonth={onFocusPreviousMonth}
@@ -94,6 +95,6 @@ export const DatePicker: FC<DatePickerProps> = props => {
         minDate={minDate && DateTime.fromJSDate(minDate)}
         maxDate={maxDate && DateTime.fromJSDate(maxDate)}
       />
-    </StyledPickerDiv>
+    </StyledDatePickerDiv>
   );
 };

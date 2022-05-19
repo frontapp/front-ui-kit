@@ -13,7 +13,7 @@ import {Icon} from '../icon/icon';
  */
 
 interface DatePickerHeaderProps {
-  value: DateTime;
+  value?: DateTime;
   onFocusPreviousMonth: MouseEventHandler;
   onFocusNextMonth: MouseEventHandler;
 }
@@ -49,7 +49,7 @@ const StyledTitleDiv = styled.div`
  */
 
 export const DatePickerHeader: FC<DatePickerHeaderProps> = props => {
-  const {value, onFocusPreviousMonth, onFocusNextMonth} = props;
+  const {value = DateTime.now(), onFocusPreviousMonth, onFocusNextMonth} = props;
   return (
     <StyledCalendarHeader>
       <Button type="icon" onClick={onFocusPreviousMonth}><Icon name="ChevronLeft" /></Button>
@@ -63,7 +63,6 @@ export const DatePickerHeader: FC<DatePickerHeaderProps> = props => {
 * Helpers
 */
 
-/** Localization-aware renderer for a single month. */
 function renderMonth(month: DateTime) {
   return `${month.monthLong} ${month.year}`;
 }
