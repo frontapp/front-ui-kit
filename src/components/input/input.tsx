@@ -31,7 +31,7 @@ interface InputProps {
   /** Max width of the input. Default is 100%. */
   maxWidth?: number;
   /** The handler for when the content of the input field changes */
-  onChange?: (value?: string | number) => void;
+  onChange?: (value: string | number) => void;
   /** The handler for when the input field is unfocused */
   onBlur?: () => void;
   /** The handler for when the input field is focused */
