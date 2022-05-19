@@ -30,7 +30,7 @@ interface TextareaProps {
   /** Max width of the textarea. Default is 100%. */
   maxWidth?: number;
   /** The handler for when the content of the textarea field changes */
-  onChange?: (value?: string) => void;
+  onChange?: (value: string) => void;
   /** The handler for when the textarea field is unfocused */
   onBlur?: () => void;
   /** The handler for when the textarea field is focused */
