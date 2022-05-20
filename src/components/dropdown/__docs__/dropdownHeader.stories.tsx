@@ -70,14 +70,15 @@ const Template: ComponentStory<typeof Dropdown> = args => {
         renderButton={isDropdownOpen => (
           <DropdownButton
             placeholder="Select dog breed"
-            shouldForceHoverState={isDropdownOpen}
+            isActive={isDropdownOpen}
             maxWidth={300}
           >
             {selectedDogBreed}
           </DropdownButton>
         )}
+        onDropdownOpen={() => setSearchValue('')}
         renderDropdown={() => (
-          <Dropdown {...args} onDropdownOpen={() => setSearchValue('')}>
+          <Dropdown {...args}>
             <DropdownHeader
               searchValue={searchValue}
               searchPlaceholder="Search dog breeds..."

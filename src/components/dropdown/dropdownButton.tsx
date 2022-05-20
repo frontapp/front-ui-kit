@@ -2,7 +2,7 @@ import {ellipsis} from 'polished';
 import React, {FC} from 'react';
 import styled, {css} from 'styled-components';
 
-import {greys} from '../../helpers/colorHelpers';
+import {greys, palette} from '../../helpers/colorHelpers';
 import {fonts, fontSizes} from '../../helpers/fontHelpers';
 import {buildHoverParentClassName, hoverSelector} from '../../helpers/hoverHelpers';
 import {Icon, IconName} from '../icon/icon';
@@ -18,9 +18,11 @@ interface DropdownButtonProps {
   placeholder?: string;
   /** Whether the button is disabled. */
   isDisabled?: boolean;
-  /** Whether we should force hover state styles. */
-  shouldForceHoverState?: boolean;
-  /** Icon to render on the right */
+  /** Whether the button is in error state. */
+  isErred?: boolean;
+  /** Whether the button is currently active. */
+  isActive?: boolean;
+  /** Icon to render on the left. If nothing is set, no icon will be rendered. */
   iconName?: IconName;
   /** The max width of the button. Default is 100%. */
   maxWidth?: number;
@@ -32,8 +34,9 @@ interface DropdownButtonProps {
 
 interface StyledDropdownButtonWrapperDivProps {
   $maxWidth?: number;
-  $shouldForceHoverState?: boolean;
+  $isActive?: boolean;
   $isDisabled?: boolean;
+  $isErred?: boolean;
 }
 
 const StyledDropdownButtonWrapperDiv = styled.div<StyledDropdownButtonWrapperDivProps>`
@@ -48,14 +51,22 @@ const StyledDropdownButtonWrapperDiv = styled.div<StyledDropdownButtonWrapperDiv
   border: 2px solid transparent;
 
   ${p => css`
-    background: ${greys[p.$shouldForceHoverState ? 'shade30' : 'shade20']};
     max-width: ${p.$maxWidth ? `${p.$maxWidth}px` : 'unset'};
   `};
 
-  ${p => addDropdownButtonWrapperStyles(p.$isDisabled)};
+  ${p => addDropdownButtonWrapperStyles(p.$isActive, p.$isDisabled, p.$isErred)};
 `;
 
-function addDropdownButtonWrapperStyles(isDisabled?: boolean) {
+function addDropdownButtonWrapperStyles(isActive?: boolean, isDisabled?: boolean, isErred?: boolean) {
+  if (isErred)
+    return css`
+      background: ${palette.red[isActive ? 'shade20' : 'shade10']};
+
+      &:hover {
+        background: ${palette.red.shade20};
+      }
+    `;
+
   if (isDisabled)
     return css`
       background: white;
@@ -63,9 +74,11 @@ function addDropdownButtonWrapperStyles(isDisabled?: boolean) {
     `;
 
   return css`
-  &:hover {
-    background: ${greys.shade30};
-  }
+    background: ${greys[isActive ? 'shade30' : 'shade20']};
+    
+    &:hover {
+      background: ${greys.shade30};
+    }
   `;
 }
 
@@ -109,13 +122,14 @@ const StyledChildrenWrapperDiv = styled.div`
  */
 
 export const DropdownButton: FC<DropdownButtonProps> = props => {
-  const {maxWidth, children, iconName, isDisabled, shouldForceHoverState} = props;
+  const {maxWidth, children, iconName, isDisabled, isActive, isErred} = props;
   return (
     <StyledDropdownButtonWrapperDiv
-      className={!isDisabled ? buildHoverParentClassName(shouldForceHoverState) : undefined}
+      className={!isDisabled ? buildHoverParentClassName(isActive) : undefined}
       $maxWidth={maxWidth}
-      $shouldForceHoverState={shouldForceHoverState}
+      $isActive={isActive}
       $isDisabled={isDisabled}
+      $isErred={isErred}
     >
       <StyledContentWrapperDiv $isDisabled={isDisabled}>
         {maybeRenderIcon(iconName)}
