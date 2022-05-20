@@ -75,14 +75,16 @@ export const DatePicker: FC<DatePickerProps> = props => {
     setFocusedMonth(month => month && month.plus({months: 1}));
   };
 
+  const minDateTime = useMemo(() => minDate && DateTime.fromJSDate(minDate), [minDate]);
+  const maxDateTime = useMemo(() => maxDate && DateTime.fromJSDate(maxDate), [maxDate]);
+
   const onDateSelect = (date: DateTime) => {
+    if (!(isDateSelectable(date, minDateTime, maxDateTime)))
+      return;
     setSelectedDate(date);
     if (onChange)
       onChange(date.toJSDate());
   };
-
-  const minDateTime = useMemo(() => minDate && DateTime.fromJSDate(minDate), [minDate]);
-  const maxDateTime = useMemo(() => maxDate && DateTime.fromJSDate(maxDate), [maxDate]);
 
   return (
     <StyledDatePickerDiv>
@@ -102,3 +104,18 @@ export const DatePicker: FC<DatePickerProps> = props => {
     </StyledDatePickerDiv>
   );
 };
+
+/*
+ * Helpers
+ */
+
+function isDateSelectable(date: DateTime, minDate?: DateTime, maxDate?: DateTime) {
+  if (!minDate || !maxDate)
+    return false;
+
+  const dateMillis = date.toMillis();
+  const startMillis = minDate.toMillis();
+  const endMillis = maxDate.toMillis();
+
+  return dateMillis >= startMillis && dateMillis <= endMillis;
+}
