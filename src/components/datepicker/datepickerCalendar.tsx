@@ -93,8 +93,8 @@ function renderDays(
   const days = getCalendarDays(monthBeingViewed, weekdays);
   return days.map(day => {
     // Check if this day is in range.
-    const isAfterMinDate = !minDate || minDate < day.endOf('day');
-    const isBeforeMaxDate = !maxDate || maxDate > day.startOf('day');
+    const isAfterMinDate = !minDate || minDate <= day.endOf('day');
+    const isBeforeMaxDate = !maxDate || maxDate >= day.startOf('day');
     return (
       <DatePickerCalendarItem
         key={day.valueOf()}
