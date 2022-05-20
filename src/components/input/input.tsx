@@ -159,8 +159,10 @@ export function Input<T = string>(props: InputProps<T>) {
   const onInputChange: ChangeEventHandler<HTMLInputElement> = event => {
     if (isDisabled || !onChange)
       return;
-    const inputValue = event.currentTarget.value as unknown as T;
-    onChange(inputValue);
+    const inputValue = event.currentTarget.value;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    onChange(type === 'number' ? Number(inputValue) : inputValue);
   };
 
   const onInputFocus: FocusEventHandler<HTMLInputElement> = event => {
