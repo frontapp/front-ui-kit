@@ -47,4 +47,4 @@ export {TabGroup} from './components/tab/tabGroup';
 export {Textarea} from './components/textarea/textarea';
 
 export {Tooltip} from './components/tooltip/tooltip';
-export {TooltipCoordinator} from './components/popover/tooltipCoordinator';
+export {TooltipCoordinator} from './components/tooltip/tooltipCoordinator';

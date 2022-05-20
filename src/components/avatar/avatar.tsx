@@ -73,7 +73,11 @@ export const Avatar: FC<AvatarProps> = props => {
   const avatarColor = useMemo(() => computeColorFromName(name.trim()), [name]);
   const initials = useMemo(() => computeInitialsFromName(name.trim(), size), [name, size]);
 
-  return <StyledAvatarWrapperDiv $color={avatarColor} $size={size} $imgSrc={imgSrc}>{!imgSrc && initials}</StyledAvatarWrapperDiv>;
+  return (
+    <StyledAvatarWrapperDiv $color={avatarColor} $size={size} $imgSrc={imgSrc}>
+      {!imgSrc && initials}
+    </StyledAvatarWrapperDiv>
+  );
 };
 
 /*

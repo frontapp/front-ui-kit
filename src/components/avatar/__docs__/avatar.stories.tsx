@@ -18,7 +18,7 @@ InitialsAvatar.args = {
 
 export const ImageAvatar = Template.bind({});
 ImageAvatar.args = {
-  name: "John Doe",
+  name: "Doug the Pug",
   // Example image supplied by: https://picsum.photos/
   imgSrc: "https://picsum.photos/id/1062/200/200",
   size: VisualSizesEnum.EXTRA_LARGE

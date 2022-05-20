@@ -7,7 +7,7 @@ import {VisualSizesEnum} from '../../../helpers/fontHelpers';
 import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
 import {Avatar} from '../../avatar/avatar';
 import {Button} from '../../button/button';
-import {Tooltip} from '../../tooltip/tooltip';
+import {Tooltip} from '../tooltip';
 import {TooltipCoordinator} from '../tooltipCoordinator';
 
 const StyledExampleWrapperDiv = styled.div`
