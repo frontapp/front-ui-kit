@@ -121,6 +121,6 @@ function isDateSelectable(date: DateTime, minDate?: DateTime, maxDate?: DateTime
   if (!startMillis && endMillis)
     return dateMillis <= endMillis;
   if (startMillis && endMillis)
-    return date.toMillis() >= startMillis && dateMillis <= endMillis;
+    return dateMillis >= startMillis && dateMillis <= endMillis;
   return false;
 }
