@@ -67,6 +67,9 @@ export const DatePicker: FC<DatePickerProps> = props => {
     setFocusedMonth(DateTime.fromMillis(selectedDateMonthMillis));
   }, [selectedDateMonthMillis]);
 
+  const minDateTime = useMemo(() => minDate && DateTime.fromJSDate(minDate), [minDate]);
+  const maxDateTime = useMemo(() => maxDate && DateTime.fromJSDate(maxDate), [maxDate]);
+
   const onFocusPreviousMonth = () => {
     setFocusedMonth(month => month && month.minus({months: 1}));
   };
@@ -74,9 +77,6 @@ export const DatePicker: FC<DatePickerProps> = props => {
   const onFocusNextMonth = () => {
     setFocusedMonth(month => month && month.plus({months: 1}));
   };
-
-  const minDateTime = useMemo(() => minDate && DateTime.fromJSDate(minDate), [minDate]);
-  const maxDateTime = useMemo(() => maxDate && DateTime.fromJSDate(maxDate), [maxDate]);
 
   const onDateSelect = (date: DateTime) => {
     if (!(isDateSelectable(date, minDateTime, maxDateTime)))
