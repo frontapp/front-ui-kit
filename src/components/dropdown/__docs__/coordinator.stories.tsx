@@ -2,10 +2,13 @@ import {ComponentMeta, ComponentStory} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import {greys} from '../../../helpers/colorHelpers';
-import {fonts, VisualSizesEnum} from '../../../helpers/fontHelpers';
+import {VisualSizesEnum} from '../../../helpers/fontHelpers';
+import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
 import {Button} from '../../button/button';
+import {Dropdown} from '../dropdown';
 import {DropdownCoordinator} from '../dropdownCoordinator';
+import {DropdownFooter} from '../dropdownFooter';
+import {DropdownItem} from '../dropdownItem';
 
 export default {
   title: 'Components/Dropdown',
@@ -16,31 +19,21 @@ const StyledDropdownContainerDiv = styled.div`
   text-align: center;
 `;
 
-const StyledDropdownDiv = styled.div`
-  font-family: ${fonts.system};
-  padding: 8px;
-  border-radius: 8px;
-  background: white;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  border: 1px solid ${greys.shade40};
-  max-width: 300px;
-`;
-
-const StyledButton = styled.button`
-  font-family: ${fonts.system};
+const StyledDropdownFooterDiv = styled.div`
+  text-align: right;
 `;
 
 const Template: ComponentStory<typeof DropdownCoordinator> = args => (
-  <>
+  <DefaultStyleProvider>
     <StyledDropdownContainerDiv>
       <DropdownCoordinator
         {...args}
         placement="bottom-start"
         renderButton={() => <Button>Dropdown Without Overlay</Button>}
         renderDropdown={() => (
-          <StyledDropdownDiv>
-            Example Dropdown
-          </StyledDropdownDiv>
+          <Dropdown>
+            <DropdownItem>Example Dropdown</DropdownItem>
+          </Dropdown>
         )}
       />
     </StyledDropdownContainerDiv>
@@ -52,9 +45,9 @@ const Template: ComponentStory<typeof DropdownCoordinator> = args => (
         placement="bottom-start"
         renderButton={() => <Button>Dropdown With Overlay</Button>}
         renderDropdown={() => (
-          <StyledDropdownDiv>
-            Example Dropdown
-          </StyledDropdownDiv>
+          <Dropdown>
+            <DropdownItem>Example Dropdown</DropdownItem>
+          </Dropdown>
         )}
       />
     </StyledDropdownContainerDiv>
@@ -66,17 +59,21 @@ const Template: ComponentStory<typeof DropdownCoordinator> = args => (
         placement="bottom-start"
         renderButton={() => <Button>Dropdown Close Action</Button>}
         renderDropdown={onCloseDropdown => (
-          <StyledDropdownDiv>
-            This dropdown will not close when the background is clicked.
-            <br />
-            <br />
-            <Button onClick={onCloseDropdown} size={VisualSizesEnum.SMALL}>Close</Button>
-          </StyledDropdownDiv>
+          <Dropdown>
+            <DropdownItem onClick={onCloseDropdown}>This dropdown will not</DropdownItem>
+            <DropdownItem onClick={onCloseDropdown}>close when the overlay is</DropdownItem>
+            <DropdownItem onClick={onCloseDropdown}>clicked.</DropdownItem>
+            <DropdownFooter>
+              <StyledDropdownFooterDiv>
+                <Button onClick={onCloseDropdown} size={VisualSizesEnum.SMALL}>Close</Button>
+              </StyledDropdownFooterDiv>
+            </DropdownFooter>
+          </Dropdown>
         )}
       />
     </StyledDropdownContainerDiv>
-  </>
+  </DefaultStyleProvider>
 
 );
 
-export const Coordinator = Template.bind({});
+export const CoordinatorExamples = Template.bind({});

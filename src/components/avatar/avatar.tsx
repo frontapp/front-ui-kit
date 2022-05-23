@@ -18,7 +18,7 @@ const characterLimits = makeSizeConstants(1, 2);
  * Props.
  */
 
-interface AvatarProps {
+export interface AvatarProps {
   /** The name to use for the avatar. */
   name: string;
   /** If specified, we will render the image instead of initials. */
