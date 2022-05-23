@@ -14,6 +14,7 @@ import {DropdownItemSkeleton} from './skeleton/dropdownItemSkeleton';
 const defaultMaxWidth = 260; // px.
 const defaultMaxHeight = 342; // px.
 const defaultLoadingSkeletonHeight = 30; // px.
+const defaultLoadingSkeletonHeightWithDescription = 46; // px.
 const totalLoadingRows = 3;
 const defaultLoadingThreshold = 5;
 
@@ -146,8 +147,9 @@ function buildLoadingSkeleton(skeleton?: React.ReactNode): React.ReactNode {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function computeLoadingSkeletonHeight(_loadingSkeleton: any): number {
-  // TODO: access the props of the skeleton to look for certain things that could increase height loadingSkeleton?.props?.hasDescription
+function computeLoadingSkeletonHeight(loadingSkeleton: any): number {
+  if (loadingSkeleton?.props?.hasDescription)
+    return defaultLoadingSkeletonHeightWithDescription;
   return defaultLoadingSkeletonHeight;
 }
 

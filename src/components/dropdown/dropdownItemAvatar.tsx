@@ -20,6 +20,6 @@ const StyledDropdownAvatarWrapperDiv = styled.div`
 
 export const DropdownItemAvatar: FC<AvatarProps> = props => (
   <StyledDropdownAvatarWrapperDiv>
-    <Avatar {...props} size={props.size || VisualSizesEnum.SMALL} />
+    <Avatar {...props} size={props.size || VisualSizesEnum.MEDIUM} />
   </StyledDropdownAvatarWrapperDiv>
 );

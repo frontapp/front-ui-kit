@@ -25,6 +25,8 @@ export interface DropdownItemProps {
   children: React.ReactNode;
   /** Type of the dropdown item. Default is simple. */
   type?: DropdownTypes;
+  /** Optional description to render for the item. This will be rendered on a second line. */
+  description?: string;
   /** Height of the content, this is only used for the dropdowns internal logic. This will be auto-calculated if not specified. */
   height?: number;
   /** Whether the dropdown item is selected. */
@@ -50,15 +52,21 @@ const StyledDropdownItemWrapperDiv = styled.div`
   }
 `;
 
-interface StyledDropdownItemContentWrapperDivProps {
+const StyledDropdownItemContentWrapperDiv = styled.div`
+  display: flex;
+  flex-flow: column;
+  font-family: ${fonts.system};
+  grid-area: content;
+  cursor: default;
+  overflow: hidden;
+`;
+
+interface StyledDropdownItemTitleDivProps {
   $isSelected?: boolean;
 }
 
-const StyledDropdownItemContentWrapperDiv = styled.div<StyledDropdownItemContentWrapperDivProps>`
-  font-family: ${fonts.system};
-  grid-area: content;
+const StyledDropdownItemTitleDiv = styled.div<StyledDropdownItemTitleDivProps>`
   color: ${greys.shade80};
-  cursor: default;
   line-height: 16px;
   font-size: ${fontSizes.medium};
   ${ellipsis()};
@@ -76,12 +84,19 @@ const StyledDropdownItemRightContentDiv = styled.div`
   }
 `;
 
+const StyledDropdownItemDescriptionDiv = styled.div`
+  color: ${greys.shade70};
+  line-height: 16px;
+  font-size: ${fontSizes.verySmall};
+  ${ellipsis()};
+`;
+
 /*
  * Component.
  */
 
 export const DropdownItem: FC<DropdownItemProps> = props => {
-  const {children, type = 'simple', isSelected, onClick} = props;
+  const {children, type = 'simple', isSelected, description, onClick} = props;
 
   return (
     <StyledDropdownItemWrapperDiv
@@ -96,8 +111,11 @@ export const DropdownItem: FC<DropdownItemProps> = props => {
       {/* Render non-content items. Avatar, icons, etc. */}
       {renderChildrenSpecifiedComponents(children, nonDropdownContentComponents)}
       {/* Render content items. */}
-      <StyledDropdownItemContentWrapperDiv $isSelected={isSelected}>
-        {renderChildrenIgnoreSpecifiedComponents(children, nonDropdownContentComponents)}
+      <StyledDropdownItemContentWrapperDiv>
+        <StyledDropdownItemTitleDiv $isSelected={isSelected}>
+          {renderChildrenIgnoreSpecifiedComponents(children, nonDropdownContentComponents)}
+        </StyledDropdownItemTitleDiv>
+        {maybeRenderDescription(description)}
       </StyledDropdownItemContentWrapperDiv>
       <StyledDropdownItemRightContentDiv>
         {renderSelectedState(type, isSelected)}
@@ -121,4 +139,14 @@ function renderSelectedState(type: DropdownTypes, isSelected?: boolean) {
       return <Icon name="Checkmark" color={palette.blue.shade40} />;
     }
   }
+}
+
+function maybeRenderDescription(description?: string) {
+  if (!description)
+    return null;
+  return (
+    <StyledDropdownItemDescriptionDiv>
+      {description}
+    </StyledDropdownItemDescriptionDiv>
+  );
 }
