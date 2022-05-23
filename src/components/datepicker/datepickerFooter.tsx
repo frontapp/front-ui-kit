@@ -1,4 +1,4 @@
-import { isUndefined } from 'lodash';
+import {isUndefined} from 'lodash';
 import {DateTime} from 'luxon';
 import React, {FC, MouseEventHandler, useEffect, useState} from 'react';
 import styled from 'styled-components';
@@ -60,17 +60,17 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
   useEffect(() => {
     if (isUndefined(selectedDateMillis))
       return;
-    const date = DateTime.fromMillis(selectedDateMillis)
+    const date = DateTime.fromMillis(selectedDateMillis);
     setTimeValue(date.toLocaleString(DateTime.TIME_SIMPLE));
     setDateValue(date.toFormat("MM/dd/yyyy"));
   }, [selectedDateMillis]);
 
   // Focus handlers
   const onTimeFocus = () => {
-    onViewChange(DatepickerViewsEnum.Time);
+    onViewChange(DatepickerViewsEnum.DATE);
   };
   const onDateFocus = () => {
-    onViewChange(DatepickerViewsEnum.Date);
+    onViewChange(DatepickerViewsEnum.TIME);
   };
 
   // Change handlers
@@ -78,33 +78,35 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
     setTimeValue(newTimeValue);
     const dateAndTime = parseTime(selectedDate || DateTime.now(), newTimeValue);
     if (dateAndTime)
-     onDateChange(dateAndTime);
-
+      onDateChange(dateAndTime);
   };
   const onDateValueChange = (newDateValue: string) => {
     setDateValue(newDateValue);
     const dateAndTime = parseDate(newDateValue, selectedDate || DateTime.now().startOf("day"));
     if (dateAndTime)
       onDateChange(dateAndTime);
-  }
+  };
 
-  return <StyledWrapperDiv>
-    <Input
-      id="date"
-      value={dateValue}
-      shouldFocus={selectedView === DatepickerViewsEnum.Date}
-      onFocus={onDateFocus} 
-      maxWidth={MAX_INPUT_WIDTH}
-      onChange={onDateValueChange}/>
-    <Input
-      id="time"
-      value={timeValue}
-      shouldFocus={selectedView === DatepickerViewsEnum.Time}
-      onFocus={onTimeFocus}
-      maxWidth={MAX_INPUT_WIDTH}
-      onChange={onTimeValueChange} />
-  </StyledWrapperDiv>
-
+  return (
+    <StyledWrapperDiv>
+      <Input
+        id="date"
+        value={dateValue}
+        shouldFocus={selectedView === DatepickerViewsEnum.DATE}
+        onFocus={onDateFocus}
+        maxWidth={MAX_INPUT_WIDTH}
+        onChange={onDateValueChange}
+      />
+      <Input
+        id="time"
+        value={timeValue}
+        shouldFocus={selectedView === DatepickerViewsEnum.TIME}
+        onFocus={onTimeFocus}
+        maxWidth={MAX_INPUT_WIDTH}
+        onChange={onTimeValueChange}
+      />
+    </StyledWrapperDiv>
+  );
 };
 
 /*

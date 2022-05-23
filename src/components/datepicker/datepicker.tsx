@@ -82,7 +82,7 @@ export const DatePicker: FC<DatePickerProps> = props => {
   const [selectedDate, setSelectedDate] = useState(value && DateTime.fromJSDate(value));
   const selectedDateMonth = selectedDate?.startOf('month');
   const [focusedMonth, setFocusedMonth] = useState(selectedDateMonth);
-  const [selectedView, setSelectedView] = useState(DatepickerViewsEnum.Date)
+  const [selectedView, setSelectedView] = useState(DatepickerViewsEnum.DATE);
 
   // When the selected date changes, updated the focused month.
   const selectedDateMonthMillis = selectedDateMonth?.toMillis();
@@ -116,17 +116,17 @@ export const DatePicker: FC<DatePickerProps> = props => {
     setSelectedDate(date);
     if (onChange)
       onChange(date.toJSDate());
-  }
+  };
 
-  const onViewChange = (changedView: DatepickerViewsEnum)  => {
+  const onViewChange = (changedView: DatepickerViewsEnum) => {
     setSelectedView(changedView);
-  }
+  };
 
   const onDateChange = (date: DateTime) => {
     setSelectedDate(date);
     if (onChange)
       onChange(date.toJSDate());
-  }
+  };
 
   return (
     <StyledWrapperDiv>
@@ -146,15 +146,18 @@ export const DatePicker: FC<DatePickerProps> = props => {
         />
         {maybeRenderTimePicker(selectedView, onTimeSelect, selectedDate)}
       </StyledDatePickerDiv>
-      {type === 'dateAndTime' && <StyledInputsDiv>
-        <DatePickerFooter
-          selectedDate={selectedDate}
-          selectedView={selectedView}
-          onDateChange={onDateChange}
-          onViewChange={onViewChange}
-          onRequestClose={noop}
-          onDoneClick={noop} />
-       </StyledInputsDiv>}
+      {type === 'dateAndTime' &&
+        <StyledInputsDiv>
+          <DatePickerFooter
+            selectedDate={selectedDate}
+            selectedView={selectedView}
+            onDateChange={onDateChange}
+            onViewChange={onViewChange}
+            onRequestClose={noop}
+            onDoneClick={noop}
+          />
+        </StyledInputsDiv>
+      }
     </StyledWrapperDiv>
   );
 };
@@ -163,14 +166,17 @@ export const DatePicker: FC<DatePickerProps> = props => {
  * Helpers
  */
 
-function maybeRenderTimePicker(selectedView: DatepickerViewsEnum, onTimeSelect: (date: DateTime) => void, selectedDate?: DateTime ) {
-  if (selectedView === DatepickerViewsEnum.Date)
+function maybeRenderTimePicker(selectedView: DatepickerViewsEnum, onTimeSelect: (date: DateTime) => void, selectedDate?: DateTime) {
+  if (selectedView === DatepickerViewsEnum.DATE)
     return null;
-  return <StyledTimePickerDiv>
-    <TimePicker
-    value={selectedDate}
-    onChange={onTimeSelect} />;
-  </StyledTimePickerDiv>;
+  return (
+    <StyledTimePickerDiv>
+      <TimePicker
+        value={selectedDate}
+        onChange={onTimeSelect}
+      />;
+    </StyledTimePickerDiv>
+  );
 }
 
 function isDateSelectable(date: DateTime, minDate?: DateTime, maxDate?: DateTime) {

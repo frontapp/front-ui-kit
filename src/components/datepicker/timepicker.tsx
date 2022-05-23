@@ -91,7 +91,6 @@ export const TimePicker: FC<TimePickerProps> = props => (
 
 function renderItems(props: TimePickerProps) {
   // Render each hour in the day.
-  // TODO: what should the value here be?
   const {value = DateTime.now(), onChange} = props;
   return range(24).map(hour => {
     // Check if this hour is selected.
@@ -102,7 +101,8 @@ function renderItems(props: TimePickerProps) {
       <StyledItemDiv
         key={hour}
         $isSelected={isSelected}
-        onClick={() => onChange && onChange(hourTime)} >
+        onClick={() => onChange && onChange(hourTime)}
+      >
         {hourTime.toLocaleString(DateTime.TIME_SIMPLE)}
       </StyledItemDiv>
     );
