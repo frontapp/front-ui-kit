@@ -70,6 +70,10 @@ const StyledDropdownItemContentWrapperDiv = styled.div<StyledDropdownItemContent
 
 const StyledDropdownItemRightContentDiv = styled.div`
   grid-area: right-content;
+
+  &:not(:empty) {
+    margin-left: 8px;
+  }
 `;
 
 /*
