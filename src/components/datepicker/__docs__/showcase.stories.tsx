@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import {CalendarWeekDaysEnum} from '../../../helpers/calendarHelpers';
 import {greys} from '../../../helpers/colorHelpers';
 import {fontSizes} from '../../../helpers/fontHelpers';
-import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
 import {DatePicker} from '../datepicker';
 
 /*

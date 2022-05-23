@@ -1,4 +1,4 @@
-import {isUndefined, min} from 'lodash';
+import {isUndefined} from 'lodash';
 import {DateTime} from 'luxon';
 import React, {FC, useEffect, useMemo, useState} from 'react';
 import styled from 'styled-components';
@@ -122,4 +122,5 @@ function isDateSelectable(date: DateTime, minDate?: DateTime, maxDate?: DateTime
     return dateMillis <= endMillis;
   if (startMillis && endMillis)
     return date.toMillis() >= startMillis && dateMillis <= endMillis;
+  return false;
 }
