@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import {CalendarWeekDaysEnum, DatepickerViewsEnum} from '../../helpers/calendarHelpers';
 import {alphas, greys} from '../../helpers/colorHelpers';
 import {DatePickerCalendar} from './datepickerCalendar';
-import { DatePickerFooter } from './datepickerFooter';
+import {DatePickerFooter} from './datepickerFooter';
 import {DatePickerHeader} from './datepickerHeader';
 import {TimePicker} from './timepicker';
 
@@ -77,6 +77,9 @@ export const DatePicker: FC<DatePickerProps> = props => {
     setFocusedMonth(DateTime.fromMillis(selectedDateMonthMillis));
   }, [selectedDateMonthMillis]);
 
+  const minDateTime = useMemo(() => minDate && DateTime.fromJSDate(minDate), [minDate]);
+  const maxDateTime = useMemo(() => maxDate && DateTime.fromJSDate(maxDate), [maxDate]);
+
   const onFocusPreviousMonth = () => {
     setFocusedMonth(month => month && month.minus({months: 1}));
   };
@@ -84,9 +87,6 @@ export const DatePicker: FC<DatePickerProps> = props => {
   const onFocusNextMonth = () => {
     setFocusedMonth(month => month && month.plus({months: 1}));
   };
-
-  const minDateTime = useMemo(() => minDate && DateTime.fromJSDate(minDate), [minDate]);
-  const maxDateTime = useMemo(() => maxDate && DateTime.fromJSDate(maxDate), [maxDate]);
 
   const onDateSelect = (date: DateTime) => {
     if (!(isDateSelectable(date, minDateTime, maxDateTime)))
@@ -146,12 +146,17 @@ function maybeRenderTimePicker(selectedView: DatepickerViewsEnum, selectedDate: 
 }
 
 function isDateSelectable(date: DateTime, minDate?: DateTime, maxDate?: DateTime) {
-  if (!minDate || !maxDate)
-    return false;
+  const startMillis = minDate && minDate.toMillis();
+  const endMillis = maxDate && maxDate.toMillis();
+  if (!startMillis && !endMillis)
+    return true;
 
   const dateMillis = date.toMillis();
-  const startMillis = minDate.toMillis();
-  const endMillis = maxDate.toMillis();
-
-  return dateMillis >= startMillis && dateMillis <= endMillis;
+  if (startMillis && !endMillis)
+    return dateMillis >= startMillis;
+  if (!startMillis && endMillis)
+    return dateMillis <= endMillis;
+  if (startMillis && endMillis)
+    return dateMillis >= startMillis && dateMillis <= endMillis;
+  return false;
 }

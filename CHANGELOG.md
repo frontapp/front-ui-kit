@@ -1,6 +1,30 @@
 # Changelog
 
 
+## [0.2.0](https://github.com/frontapp/front-ui-kit/compare/v0.1.6...v0.2.0) (2022-05-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* update optional param for the input and textarea components handler (#60)
+
+### Features
+
+* add dropdown, dropdownItem and dropdownFooter ([#52](https://github.com/frontapp/front-ui-kit/issues/52)) ([48b5b95](https://github.com/frontapp/front-ui-kit/commit/48b5b950a02ce67e917c07b300504c82cc64a4eb))
+* add dropdownItemSkeleton. ([48b5b95](https://github.com/frontapp/front-ui-kit/commit/48b5b950a02ce67e917c07b300504c82cc64a4eb))
+* update optional param for the input and textarea components handler ([#60](https://github.com/frontapp/front-ui-kit/issues/60)) ([d271e6b](https://github.com/frontapp/front-ui-kit/commit/d271e6b8ca4abbb1a3b31ba79116454caf1eb40f))
+
+
+### Bug Fixes
+
+* input `id` is now optional ([48b5b95](https://github.com/frontapp/front-ui-kit/commit/48b5b950a02ce67e917c07b300504c82cc64a4eb))
+* popper now takes up as much width and height as possible. ([48b5b95](https://github.com/frontapp/front-ui-kit/commit/48b5b950a02ce67e917c07b300504c82cc64a4eb))
+
+
+### Reverts
+
+* feat! Remove optional state for the value in the onChange handler for input & textarea ([#58](https://github.com/frontapp/front-ui-kit/issues/58)) ([f332587](https://github.com/frontapp/front-ui-kit/commit/f3325878072a5e0799224a64bfec7153f8e4226d))
+
 ### [0.1.6](https://github.com/frontapp/front-ui-kit/compare/v0.1.5...v0.1.6) (2022-05-16)
 
 

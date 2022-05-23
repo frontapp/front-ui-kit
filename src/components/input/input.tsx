@@ -1,4 +1,7 @@
-import React, {ChangeEventHandler, FC, FocusEventHandler} from 'react';
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable react/function-component-definition */
+/* eslint-disable @typescript-eslint/consistent-type-assertions */
+import React, {ChangeEventHandler, FocusEventHandler} from 'react';
 import styled, {css} from 'styled-components';
 
 import {Icon, IconName} from '../..';
@@ -9,11 +12,11 @@ import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
  * Props
  */
 
-interface InputProps {
+interface InputProps<T> {
   /** The id of the input field */
-  id: string
+  id?: string
   /** The content of the input field */
-  value?: string | number;
+  value?: T;
   /** Type of input: number, text, email, url, password. Default to text. */
   type?: 'text' |'email' | 'password' | 'url' | 'number';
   /** The name of the input field */
@@ -31,11 +34,11 @@ interface InputProps {
   /** Max width of the input. Default is 100%. */
   maxWidth?: number;
   /** The handler for when the content of the input field changes */
-  onChange?: (value: string | number) => void;
+  onChange?: (value: T) => void;
   /** The handler for when the input field is unfocused */
-  onBlur?: () => void;
+  onBlur?: FocusEventHandler;
   /** The handler for when the input field is focused */
-  onFocus?: () => void;
+  onFocus?: FocusEventHandler;
 }
 
 /*
@@ -137,7 +140,7 @@ function addInputStyles(props: StyledInputProps) {
  * Component.
  */
 
-export const Input: FC<InputProps> = props => {
+export function Input<T = string>(props: InputProps<T>) {
   const {
     id,
     value,
@@ -157,19 +160,21 @@ export const Input: FC<InputProps> = props => {
     if (isDisabled || !onChange)
       return;
     const inputValue = event.currentTarget.value;
-    onChange(inputValue);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    onChange(type === 'number' ? Number(inputValue) : inputValue);
   };
 
   const onInputFocus: FocusEventHandler<HTMLInputElement> = event => {
     if (isDisabled || !onFocus)
       return;
-    onFocus();
+    onFocus(event);
   };
 
   const onInputBlur: FocusEventHandler<HTMLInputElement> = event => {
     if (isDisabled || !onBlur)
       return;
-    onBlur();
+    onBlur(event);
   };
 
   return (
@@ -185,14 +190,14 @@ export const Input: FC<InputProps> = props => {
         autoFocus={shouldFocus}
         type={type}
         name={name}
-        value={value}
+        value={value as unknown as string | number}
         onChange={onInputChange}
         onFocus={onInputFocus}
         onBlur={onInputBlur}
       />
     </StyledInputDiv>
   );
-};
+}
 
 /*
  * Helpers.

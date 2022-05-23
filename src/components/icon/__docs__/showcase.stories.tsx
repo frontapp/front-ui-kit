@@ -34,9 +34,12 @@ const StyledIconDiv = styled.div`
 
 const StyledCopiedDiv = styled.div`
   flex: 0 0 32px;
-  padding: 4px;
+  padding: 2px 4px 4px 4px;
   background: ${palette.green.shade40};
   border-radius: 8px;
+  align-items: center;
+  display: flex;
+  flex-flow: column;
 `;
 
 const StyledExplainerContainerDiv = styled.div`
@@ -44,6 +47,11 @@ const StyledExplainerContainerDiv = styled.div`
   font-size: ${fontSizes.large};
   font-weight: ${fontWeights.semibold};
   margin-bottom: 32px;
+`;
+
+const StyledCopiedTextDiv = styled.div`
+  color: white;
+  font-size: 8px;
 `;
 
 const ShowcaseComponent: FC = props => {
@@ -58,12 +66,13 @@ const ShowcaseComponent: FC = props => {
       <StyledExplainerContainerDiv>
         All available icons are listed below. You can click on an icon to copy the IconName for that component.
       </StyledExplainerContainerDiv>
-      <StyledIconsContainerDiv onMouseEnter={() => setCopiedIconName(undefined)}>
+      <StyledIconsContainerDiv>
         {Object.keys(icons).map(iconName => {
           if (copiedIconName && copiedIconName === iconName)
             return (
               <StyledCopiedDiv key={iconName} onMouseLeave={() => setCopiedIconName(undefined)}>
-                <Icon name="Checkmark" size={32} color={greys.white} />
+                <Icon name="Checkmark" size={22} color={greys.white} />
+                <StyledCopiedTextDiv>Copied</StyledCopiedTextDiv>
               </StyledCopiedDiv>
             );
           return (

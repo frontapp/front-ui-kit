@@ -2,11 +2,19 @@ import {ComponentMeta, ComponentStory} from '@storybook/react';
 import React, {FC, useState} from 'react';
 import styled from 'styled-components';
 
-import {CalendarWeekDaysEnum} from '../../../helpers/calendarHelpers';
 import {greys} from '../../../helpers/colorHelpers';
 import {fontSizes} from '../../../helpers/fontHelpers';
-import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
 import {DatePicker} from '../datepicker';
+
+/*
+ * Props.
+ */
+
+interface ShowcaseDatePickerProps {
+  value?: Date;
+  minDate?: Date;
+  maxDate?: Date;
+}
 
 /*
  * Style.
@@ -34,25 +42,17 @@ const StyledDescriptionDiv = styled.div`
  * Component.
  */
 
-const ShowcaseComponent: FC = () => (
-  <DefaultStyleProvider>
-    <ShowcaseDatePickerComponent />
-  </DefaultStyleProvider>
-);
-
-const ShowcaseDatePickerComponent: FC = props => {
-  const onChange = newDate => {
+const ShowcaseDatePickerComponent: FC<ShowcaseDatePickerProps> = props => {
+  const onChange = (newDate: Date) => {
     setDescription(newDate.toDateString());
   };
-  const date = new Date();
-  const [description, setDescription] = useState(date.toDateString());
-  const minDate = new Date('05/01/2022');
-  const maxDate = new Date('05/31/2022');
+  const {value, minDate, maxDate} = props;
+  const [description, setDescription] = useState(value && value.toDateString());
 
   return (
     <StyledShowcaseDiv>
       {description && <StyledDescriptionDiv>{description}</StyledDescriptionDiv>}
-      <DatePicker value={date} minDate={minDate} maxDate={maxDate} calendarWeekStartDay={CalendarWeekDaysEnum.FRIDAY} onChange={onChange} />
+      <DatePicker value={value} minDate={minDate} maxDate={maxDate} onChange={onChange} />
     </StyledShowcaseDiv>
   );
 };
@@ -63,11 +63,15 @@ const ShowcaseDatePickerComponent: FC = props => {
 
 export default {
   title: 'Development/DatePicker',
-  component: ShowcaseComponent
-} as ComponentMeta<typeof ShowcaseComponent>;
+  component: ShowcaseDatePickerComponent,
+  argTypes: {
+    minDate: {control: 'date'},
+    maxDate: {control: 'date'}
+  }
+} as ComponentMeta<typeof ShowcaseDatePickerComponent>;
 
-const ShowcaseTemplate: ComponentStory<typeof ShowcaseComponent> = () => <ShowcaseComponent />;
+const ShowcaseTemplate: ComponentStory<typeof ShowcaseDatePickerComponent> = (props: ShowcaseDatePickerProps) => <ShowcaseDatePickerComponent
+  minDate={props.minDate && new Date(props.minDate)}
+  maxDate={props.maxDate && new Date(props.maxDate)}
+/>;
 export const Showcase = ShowcaseTemplate.bind({});
-Showcase.parameters = {
-  controls: {hideNoControlsWarning: true}
-};

@@ -34,7 +34,7 @@ module.exports = {
                 'babel-plugin-styled-components',
                 {
                 // Disable the dev-friendly classNames on styled-components
-                  displayName: false,
+                  displayName: !isProduction,
                   // Minify the CSS
                   minify: true,
                   // Helps with dead code elimination
