@@ -1,4 +1,4 @@
-import {isUndefined} from 'lodash';
+import {isUndefined, min} from 'lodash';
 import {DateTime} from 'luxon';
 import React, {FC, useEffect, useMemo, useState} from 'react';
 import styled from 'styled-components';
@@ -110,12 +110,16 @@ export const DatePicker: FC<DatePickerProps> = props => {
  */
 
 function isDateSelectable(date: DateTime, minDate?: DateTime, maxDate?: DateTime) {
-  if (!minDate || !maxDate)
-    return false;
+  const startMillis = minDate && minDate.toMillis();
+  const endMillis = maxDate && maxDate.toMillis();
+  if (!startMillis && !endMillis)
+    return true;
 
   const dateMillis = date.toMillis();
-  const startMillis = minDate.toMillis();
-  const endMillis = maxDate.toMillis();
-
-  return dateMillis >= startMillis && dateMillis <= endMillis;
+  if (startMillis && !endMillis)
+    return dateMillis >= startMillis;
+  if (!startMillis && endMillis)
+    return dateMillis <= endMillis;
+  if (startMillis && endMillis)
+    return date.toMillis() >= startMillis && dateMillis <= endMillis;
 }

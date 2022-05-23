@@ -34,12 +34,6 @@ const StyledDescriptionDiv = styled.div`
  * Component.
  */
 
-const ShowcaseComponent: FC = () => (
-  <DefaultStyleProvider>
-    <ShowcaseDatePickerComponent />
-  </DefaultStyleProvider>
-);
-
 const ShowcaseDatePickerComponent: FC = props => {
   const onChange = newDate => {
     setDescription(newDate.toDateString());
@@ -63,10 +57,10 @@ const ShowcaseDatePickerComponent: FC = props => {
 
 export default {
   title: 'Development/DatePicker',
-  component: ShowcaseComponent
-} as ComponentMeta<typeof ShowcaseComponent>;
+  component: DatePicker
+} as ComponentMeta<typeof DatePicker>;
 
-const ShowcaseTemplate: ComponentStory<typeof ShowcaseComponent> = () => <ShowcaseComponent />;
+const ShowcaseTemplate: ComponentStory<typeof ShowcaseDatePickerComponent> = props => <ShowcaseDatePickerComponent {...props} />;
 export const Showcase = ShowcaseTemplate.bind({});
 Showcase.parameters = {
   controls: {hideNoControlsWarning: true}
