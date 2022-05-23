@@ -22,7 +22,7 @@ export function isComponentInChildren(children: React.ReactNode, componentDispla
 /**
  * Takes in children for a component and strips out all content besides the first Icon.
  */
-export function renderFirstIconOnly(children: React.ReactNode) {
+export function renderFirstIconOnly(children: React.ReactNode, shouldDisableColor: boolean = true) {
   let hasFoundIcon = false;
   return React.Children.toArray(children).map(child => {
     if (typeof child === 'string' || typeof child === 'number')
@@ -36,8 +36,46 @@ export function renderFirstIconOnly(children: React.ReactNode) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/consistent-type-assertions
     if ((child.type as any)?.displayName === 'Icon' && !hasFoundIcon) {
       hasFoundIcon = true;
-      return React.cloneElement(child, {shouldDisableColor: true});
+      return React.cloneElement(child, {shouldDisableColor});
     }
+    return null;
+  });
+}
+
+/**
+ * Takes in children for a component and strips out any specified component.
+ */
+export function renderChildrenIgnoreSpecifiedComponents(children: React.ReactNode, componentsToIgnore: ReadonlyArray<string>) {
+  return React.Children.toArray(children).map(child => {
+    if (typeof child === 'string' || typeof child === 'number')
+      return child;
+    if (ReactIs.isFragment(child) || !ReactIs.isElement(child))
+      return child;
+
+    // Check if the display name is one we should not render.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/consistent-type-assertions
+    if (componentsToIgnore.includes((child.type as any)?.displayName))
+      return null;
+
+    return child;
+  });
+}
+
+/**
+ * Takes in children for a component and renders only the specified components.
+ */
+export function renderChildrenSpecifiedComponents(children: React.ReactNode, componentsToInclude: ReadonlyArray<string>) {
+  return React.Children.toArray(children).map(child => {
+    if (typeof child === 'string' || typeof child === 'number')
+      return null;
+    if (ReactIs.isFragment(child) || !ReactIs.isElement(child))
+      return null;
+
+    // Check if the display name is one we should not render.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/consistent-type-assertions
+    if (componentsToInclude.includes((child.type as any)?.displayName))
+      return child;
+
     return null;
   });
 }

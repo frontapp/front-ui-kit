@@ -19,3 +19,12 @@ export function useTimeout(): [(handler: () => void, timeout?: number) => void, 
 
   return [safeSetTimeout, safeClearTimeout];
 }
+
+/** Returns the passed value as it was after the last successful render of the component. */
+export function usePrevious<T>(value: T) {
+  const ref = useRef<T | null>(null);
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
