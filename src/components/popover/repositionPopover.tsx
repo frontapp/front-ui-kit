@@ -40,10 +40,10 @@ export const RepositionPopover: FC<RepositionPopoverProps> = props => {
     <Layer
       isExclusive={isExclusive}
       onClick={event => {
-        if (event.defaultPrevented)
+        // If this click event was already handled, do not request to close.
+        if (event.defaultPrevented || !onRequestClose)
           return;
-        if (onRequestClose)
-          onRequestClose();
+        onRequestClose();
       }}
     >
       {props.isExclusive && <StyledBackgroundDiv $hasVisibleOverlay={hasVisibleOverlay} onClick={onRequestClose} />}
