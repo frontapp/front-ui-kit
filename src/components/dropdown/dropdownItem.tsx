@@ -72,7 +72,7 @@ const StyledDropdownItemRightContentDiv = styled.div`
   grid-area: right-content;
 
   &:not(:empty) {
-    margin-left: 8px;
+    margin-left: 12px;
   }
 `;
 
