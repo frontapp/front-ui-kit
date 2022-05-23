@@ -77,6 +77,7 @@ const ShowcaseInputComponent: FC<ShowcaseInputProps> = props => {
   const [inputValue, setInputValue] = useState(value);
   const [isErred, setIsErred] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+
   const onChange = newValue => {
     setInputValue(newValue);
     if (newValue === "Error")

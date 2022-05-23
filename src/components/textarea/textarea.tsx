@@ -10,7 +10,7 @@ import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 
 interface TextareaProps {
   /** The id of the textarea field */
-  id: string
+  id?: string
   /** The content of the textarea field */
   value?: string;
   /** The number of lines in the textarea field */
