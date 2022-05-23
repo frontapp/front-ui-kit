@@ -72,9 +72,8 @@ const Template: ComponentStory<typeof Dropdown> = args => {
             placeholder="Select dog breed"
             isActive={isDropdownOpen}
             maxWidth={300}
-          >
-            {selectedDogBreed}
-          </DropdownButton>
+            value={selectedDogBreed}
+          />
         )}
         onDropdownOpen={() => setSearchValue('')}
         renderDropdown={() => (

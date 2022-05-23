@@ -1,3 +1,4 @@
+import {isArray} from 'lodash';
 import {ellipsis} from 'polished';
 import React, {FC} from 'react';
 import styled, {css} from 'styled-components';
@@ -12,8 +13,8 @@ import {Icon, IconName} from '../icon/icon';
  */
 
 interface DropdownButtonProps {
-  /** Content to render. */
-  children: string;
+  /** Content to render. If an array is passed in we will render the items in pill form. */
+  value: string | ReadonlyArray<string>; // TODO: add support for pills
   /** Placeholder to render when no children is supplied. */
   placeholder?: string;
   /** Whether the button is disabled. */
@@ -122,7 +123,7 @@ const StyledChildrenWrapperDiv = styled.div`
  */
 
 export const DropdownButton: FC<DropdownButtonProps> = props => {
-  const {maxWidth, children, iconName, isDisabled, isActive, isErred} = props;
+  const {maxWidth, value, iconName, isDisabled, isActive, isErred} = props;
   return (
     <StyledDropdownButtonWrapperDiv
       className={!isDisabled ? buildHoverParentClassName(isActive) : undefined}
@@ -135,7 +136,7 @@ export const DropdownButton: FC<DropdownButtonProps> = props => {
         {maybeRenderIcon(iconName)}
         {maybeRenderPlaceholder(props)}
         <StyledChildrenWrapperDiv>
-          {children}
+          {value}
         </StyledChildrenWrapperDiv>
       </StyledContentWrapperDiv>
       <Icon name="ChevronDown" color={greys[isDisabled ? 'shade50' : 'shade70']} />
@@ -158,8 +159,11 @@ function maybeRenderIcon(iconName?: IconName) {
 }
 
 function maybeRenderPlaceholder(props: DropdownButtonProps) {
-  const {children, placeholder} = props;
-  if (children || !placeholder)
+  const {value, placeholder} = props;
+  if (!placeholder)
+    return null;
+  // If the value is a string and we have a value or the value is an array and it has items do not render placeholder.
+  if ((typeof value === 'string' && value !== '') || (isArray(value) && value.length !== 0))
     return null;
   return (
     <StyledPlaceholderWrapperDiv>
