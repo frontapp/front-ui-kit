@@ -14,3 +14,6 @@ const Template: ComponentStory<typeof DatePicker> = args => <DatePicker
   maxDate={args.maxDate && new Date(args.maxDate)}
 />;
 export const Basic = Template.bind({});
+Basic.args = {
+  type: 'dateAndTime'
+}

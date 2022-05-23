@@ -40,7 +40,7 @@ const StyledDayDiv = styled.div<DayStyleProps>`
   font-size: ${fontSizes.small};
   font-weight: ${fontWeights.normal};
   line-height: 24px;
-  cursor: default
+  cursor: default;
 `;
 
 function addDayStyles(props: DayStyleProps) {

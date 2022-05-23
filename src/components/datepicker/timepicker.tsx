@@ -4,7 +4,7 @@ import React, {FC} from 'react';
 import styled, {css} from 'styled-components';
 
 import {alphas, greys, palette} from '../../helpers/colorHelpers';
-import {fontSizes} from '../../helpers/fontHelpers';
+import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 
 /*
  * Types.
@@ -12,7 +12,7 @@ import {fontSizes} from '../../helpers/fontHelpers';
 
 interface TimePickerProps {
   /** The selected time */
-  value: DateTime;
+  value?: DateTime;
   /** Handler for when a time is selected */
   onChange: (value: DateTime) => void
 }
@@ -31,9 +31,9 @@ interface TimePickerItemStyleProps {
 
 const StyledTimePickerDiv = styled.div`
   width: inherit;
+  height: inherit;
   display: flex;
   flex-direction: column;
-  padding: 8px 12px;
   width: 254px;
   border-radius: 8px;
 
@@ -46,9 +46,16 @@ const StyledItemDiv = styled.div<TimePickerItemStyleProps>`
   border-radius: 5px;
   font-size: ${fontSizes.large};
   display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-family: ${fonts.system};
+  font-size: ${fontSizes.small};
+  font-weight: ${fontWeights.normal};
+  line-height: 24px;
+  cursor: default;
+
   ${addTimesStyles}
 `;
 
@@ -84,7 +91,8 @@ export const TimePicker: FC<TimePickerProps> = props => (
 
 function renderItems(props: TimePickerProps) {
   // Render each hour in the day.
-  const {value, onChange} = props;
+  // TODO: what should the value here be?
+  const {value = DateTime.now(), onChange} = props;
   return range(24).map(hour => {
     // Check if this hour is selected.
     const hourTime = value.startOf('hour').set({hour});

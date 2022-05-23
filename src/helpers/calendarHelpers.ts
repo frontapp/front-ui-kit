@@ -15,6 +15,11 @@ export enum CalendarWeekDaysEnum {
   SATURDAY = 'saturday'
 }
 
+export enum DatepickerViewsEnum {
+  Date = 'Date',
+  Time = 'Time'
+}
+
 export const calendarWeekdayToWeekdayNumber = {
   [CalendarWeekDaysEnum.MONDAY]: 1,
   [CalendarWeekDaysEnum.TUESDAY]: 2,
