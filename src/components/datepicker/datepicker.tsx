@@ -1,12 +1,14 @@
-import {isUndefined} from 'lodash';
+import {isUndefined, noop} from 'lodash';
 import {DateTime} from 'luxon';
 import React, {FC, useEffect, useMemo, useState} from 'react';
 import styled from 'styled-components';
 
-import {CalendarWeekDaysEnum} from '../../helpers/calendarHelpers';
-import {alphas} from '../../helpers/colorHelpers';
+import {CalendarWeekDaysEnum, DatepickerViewsEnum} from '../../helpers/calendarHelpers';
+import {alphas, greys} from '../../helpers/colorHelpers';
 import {DatePickerCalendar} from './datepickerCalendar';
+import {DatePickerFooter} from './datepickerFooter';
 import {DatePickerHeader} from './datepickerHeader';
+import {TimePicker} from './timepicker';
 
 /*
  * Props.
@@ -32,15 +34,36 @@ interface DatePickerProps {
  * Style.
  */
 
+const StyledWrapperDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: ${greys.white};
+  box-shadow: 0px 0px 1px ${alphas.black50}, 0px 3px 10px ${alphas.black30};
+  width: 254px;
+  overflow: auto;
+  border-radius: 8px;
+`;
+
 const StyledDatePickerDiv = styled.div`
+  position: relative;
   display: grid;
   grid-auto-rows: auto;
-  width: 254px;
-  box-shadow: 0px 0px 1px ${alphas.black50}, 0px 3px 10px ${alphas.black30};
-  border-radius: 8px;
   display: flex;
   flex-direction: column;
   overflow: auto;
+`;
+
+const StyledTimePickerDiv = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+`;
+
+const StyledInputsDiv = styled.div`
+  padding: 12px 12px 0 12px;
+  border-top: 1px solid ${greys.shade30};
 `;
 
 /*
@@ -53,11 +76,13 @@ export const DatePicker: FC<DatePickerProps> = props => {
     calendarWeekStartDay = CalendarWeekDaysEnum.SUNDAY,
     minDate,
     maxDate,
-    onChange
+    onChange,
+    type = 'date'
   } = props;
   const [selectedDate, setSelectedDate] = useState(value && DateTime.fromJSDate(value));
   const selectedDateMonth = selectedDate?.startOf('month');
   const [focusedMonth, setFocusedMonth] = useState(selectedDateMonth);
+  const [selectedView, setSelectedView] = useState(DatepickerViewsEnum.Date)
 
   // When the selected date changes, updated the focused month.
   const selectedDateMonthMillis = selectedDateMonth?.toMillis();
@@ -82,32 +107,61 @@ export const DatePicker: FC<DatePickerProps> = props => {
     if (!(isDateSelectable(date, minDateTime, maxDateTime)))
       return;
     setSelectedDate(date);
-    if (onChange)
+    if (onChange && selectedView === DatepickerViewsEnum.Date)
       onChange(date.toJSDate());
   };
 
+  const onTimeSelect = (date: DateTime) => {
+    setSelectedDate(date);
+  }
+
+  const onViewChange = (changedView: DatepickerViewsEnum)  => {
+    setSelectedView(changedView);
+  }
+
   return (
-    <StyledDatePickerDiv>
-      <DatePickerHeader
-        value={focusedMonth}
-        onFocusPreviousMonth={onFocusPreviousMonth}
-        onFocusNextMonth={onFocusNextMonth}
-      />
-      <DatePickerCalendar
-        selectedDate={selectedDate}
-        monthBeingViewed={focusedMonth}
-        calendarWeekStartDay={calendarWeekStartDay}
-        onDateSelect={onDateSelect}
-        minDate={minDateTime}
-        maxDate={maxDateTime}
-      />
-    </StyledDatePickerDiv>
+    <StyledWrapperDiv>
+      <StyledDatePickerDiv>
+        <DatePickerHeader
+          value={focusedMonth}
+          onFocusPreviousMonth={onFocusPreviousMonth}
+          onFocusNextMonth={onFocusNextMonth}
+        />
+        <DatePickerCalendar
+          selectedDate={selectedDate}
+          monthBeingViewed={focusedMonth}
+          calendarWeekStartDay={calendarWeekStartDay}
+          onDateSelect={onDateSelect}
+          minDate={minDateTime}
+          maxDate={maxDateTime}
+        />
+        {maybeRenderTimePicker(selectedView, onTimeSelect, selectedDate)}
+      </StyledDatePickerDiv>
+      {type === 'dateAndTime' && <StyledInputsDiv>
+        <DatePickerFooter
+          selectedView={selectedView}
+          onDateChange={onDateSelect}
+          onViewChange={onViewChange}
+          onRequestClose={noop}
+          onDoneClick={noop} />
+       </StyledInputsDiv>}
+    </StyledWrapperDiv>
   );
 };
 
 /*
  * Helpers
  */
+
+function maybeRenderTimePicker(selectedView: DatepickerViewsEnum, onTimeSelect: (date: DateTime) => void, selectedDate?: DateTime ) {
+  if (selectedView === DatepickerViewsEnum.Date)
+    return null;
+  return <StyledTimePickerDiv>
+    <TimePicker
+    value={selectedDate}
+    onChange={onTimeSelect} />;
+  </StyledTimePickerDiv>;
+}
 
 function isDateSelectable(date: DateTime, minDate?: DateTime, maxDate?: DateTime) {
   const startMillis = minDate && minDate.toMillis();
