@@ -102,8 +102,7 @@ function renderItems(props: TimePickerProps) {
       <StyledItemDiv
         key={hour}
         $isSelected={isSelected}
-        onClick={() => onChange && onChange(hourTime)}
-      >
+        onClick={() => onChange && onChange(hourTime)} >
         {hourTime.toLocaleString(DateTime.TIME_SIMPLE)}
       </StyledItemDiv>
     );

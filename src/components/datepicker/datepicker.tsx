@@ -3,7 +3,7 @@ import {DateTime} from 'luxon';
 import React, {FC, useEffect, useMemo, useState} from 'react';
 import styled from 'styled-components';
 
-import {CalendarWeekDaysEnum, DatepickerViewsEnum} from '../../helpers/calendarHelpers';
+import {CalendarWeekDaysEnum, DatepickerViewsEnum, mergeDateAndTime} from '../../helpers/calendarHelpers';
 import {alphas, greys} from '../../helpers/colorHelpers';
 import {DatePickerCalendar} from './datepickerCalendar';
 import {DatePickerFooter} from './datepickerFooter';
@@ -104,19 +104,28 @@ export const DatePicker: FC<DatePickerProps> = props => {
   };
 
   const onDateSelect = (date: DateTime) => {
-    if (!(isDateSelectable(date, minDateTime, maxDateTime)))
+    const mergedDate = mergeDateAndTime(date, selectedDate || DateTime.now().startOf("day"));
+    if (!(isDateSelectable(mergedDate, minDateTime, maxDateTime)))
       return;
-    setSelectedDate(date);
-    if (onChange && selectedView === DatepickerViewsEnum.Date)
-      onChange(date.toJSDate());
+    setSelectedDate(mergedDate);
+    if (onChange)
+      onChange(mergedDate.toJSDate());
   };
 
   const onTimeSelect = (date: DateTime) => {
     setSelectedDate(date);
+    if (onChange)
+      onChange(date.toJSDate());
   }
 
   const onViewChange = (changedView: DatepickerViewsEnum)  => {
     setSelectedView(changedView);
+  }
+
+  const onDateChange = (date: DateTime) => {
+    setSelectedDate(date);
+    if (onChange)
+      onChange(date.toJSDate());
   }
 
   return (
@@ -139,8 +148,9 @@ export const DatePicker: FC<DatePickerProps> = props => {
       </StyledDatePickerDiv>
       {type === 'dateAndTime' && <StyledInputsDiv>
         <DatePickerFooter
+          selectedDate={selectedDate}
           selectedView={selectedView}
-          onDateChange={onDateSelect}
+          onDateChange={onDateChange}
           onViewChange={onViewChange}
           onRequestClose={noop}
           onDoneClick={noop} />

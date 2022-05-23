@@ -1,8 +1,9 @@
+import { isUndefined } from 'lodash';
 import {DateTime} from 'luxon';
-import React, {FC, MouseEventHandler, useState} from 'react';
+import React, {FC, MouseEventHandler, useEffect, useState} from 'react';
 import styled from 'styled-components';
 
-import {DatepickerViewsEnum} from '../../helpers/calendarHelpers';
+import {DatepickerViewsEnum, mergeDateAndTime} from '../../helpers/calendarHelpers';
 import {greys} from '../../helpers/colorHelpers';
 import {Input} from '../input/input';
 
@@ -51,10 +52,18 @@ const StyledWrapperDiv = styled.div`
  */
 
 export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
-  const {selectedDate, selectedView, onViewChange} = props;
-  const [selectedDateTime, setSelectedDateTime] = useState(selectedDate);
-  const [dateValue, setDateValue] = useState(selectedDateTime?.toString());
-  const [timeValue, setTimeValue] = useState(selectedDateTime?.toLocaleString(DateTime.TIME_SIMPLE));
+  const {selectedDate, selectedView, onViewChange, onDateChange} = props;
+  const [dateValue, setDateValue] = useState(selectedDate?.toString());
+  const [timeValue, setTimeValue] = useState(selectedDate?.toLocaleString(DateTime.TIME_SIMPLE));
+
+  const selectedDateMillis = selectedDate?.toMillis();
+  useEffect(() => {
+    if (isUndefined(selectedDateMillis))
+      return;
+    const date = DateTime.fromMillis(selectedDateMillis)
+    setTimeValue(date.toLocaleString(DateTime.TIME_SIMPLE));
+    setDateValue(date.toFormat("MM/dd/yyyy"));
+  }, [selectedDateMillis]);
 
   // Focus handlers
   const onTimeFocus = () => {
@@ -65,15 +74,18 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
   };
 
   // Change handlers
-  const onTimeChange = (newTimeValue: string) => {
+  const onTimeValueChange = (newTimeValue: string) => {
     setTimeValue(newTimeValue);
-    const dateAndTime = parseTime(selectedDateTime || DateTime.now(), newTimeValue);
-    setSelectedDateTime(dateAndTime);
+    const dateAndTime = parseTime(selectedDate || DateTime.now(), newTimeValue);
+    if (dateAndTime)
+     onDateChange(dateAndTime);
+
   };
-  const onDateChange = (newDateValue: string) => {
+  const onDateValueChange = (newDateValue: string) => {
     setDateValue(newDateValue);
-    const dateAndTime = parseDate(newDateValue, selectedDateTime || DateTime.fromISO("12:00 PM"));
-    setSelectedDateTime(dateAndTime);0
+    const dateAndTime = parseDate(newDateValue, selectedDate || DateTime.now().startOf("day"));
+    if (dateAndTime)
+      onDateChange(dateAndTime);
   }
 
   return <StyledWrapperDiv>
@@ -83,14 +95,14 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
       shouldFocus={selectedView === DatepickerViewsEnum.Date}
       onFocus={onDateFocus} 
       maxWidth={MAX_INPUT_WIDTH}
-      onChange={onDateChange}/>
+      onChange={onDateValueChange}/>
     <Input
       id="time"
       value={timeValue}
       shouldFocus={selectedView === DatepickerViewsEnum.Time}
       onFocus={onTimeFocus}
       maxWidth={MAX_INPUT_WIDTH}
-      onChange={onTimeChange} />
+      onChange={onTimeValueChange} />
   </StyledWrapperDiv>
 
 };
@@ -112,15 +124,4 @@ function parseDate(dateValue: string, time: DateTime) {
   if (!parsedDate.isValid)
     return undefined;
   return mergeDateAndTime(parsedDate, time);
-}
-
-/**
- * @param date Chosen date (time portion is not relevant)
- * @param time Chosen time (date portion is not relevant)
- */
- function mergeDateAndTime(date: DateTime, time: DateTime) {
-  return date.startOf('minute').set({
-    hour: time.hour,
-    minute: time.minute
-  });
 }

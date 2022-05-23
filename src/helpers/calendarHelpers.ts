@@ -77,3 +77,14 @@ export function getCalendarDays(month: DateTime, weekdays: ReadonlyArray<number>
   // Combine everything and return.
   return [...previousMonthDays, ...currentMonthDays, ...nextMonthDays];
 }
+
+/**
+ * @param date Chosen date (time portion is not relevant)
+ * @param time Chosen time (date portion is not relevant)
+ */
+ export function mergeDateAndTime(date: DateTime, time: DateTime) {
+  return date.startOf('minute').set({
+    hour: time.hour,
+    minute: time.minute
+  });
+}
