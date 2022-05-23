@@ -64,7 +64,8 @@ export const Reposition: FC<RepositionProps> = props => {
         name: 'preventOverflow',
         options: {
           padding: 10,
-          boundary: window.document.body
+          boundary: window.document.body,
+          altAxis: true
         }
       },
       {
@@ -78,6 +79,9 @@ export const Reposition: FC<RepositionProps> = props => {
         options: {
           offset: [0, 8]
         }
+      },
+      {
+        name: 'flip'
       }
     ]
   });
