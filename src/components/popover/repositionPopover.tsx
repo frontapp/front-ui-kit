@@ -37,7 +37,15 @@ const StyledBackgroundDiv = styled.div<StyledBackgroundDivProps>`
 export const RepositionPopover: FC<RepositionPopoverProps> = props => {
   const {hasVisibleOverlay, isExclusive, placement, children, onRequestClose} = props;
   return (
-    <Layer isExclusive={isExclusive} onClick={onRequestClose}>
+    <Layer
+      isExclusive={isExclusive}
+      onClick={event => {
+        if (event.defaultPrevented)
+          return;
+        if (onRequestClose)
+          onRequestClose();
+      }}
+    >
       {props.isExclusive && <StyledBackgroundDiv $hasVisibleOverlay={hasVisibleOverlay} onClick={onRequestClose} />}
       <Reposition placement={placement}>{children}</Reposition>
     </Layer>
