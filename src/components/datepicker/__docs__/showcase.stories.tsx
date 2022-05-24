@@ -1,8 +1,8 @@
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 import React, {FC, useState} from 'react';
 import styled from 'styled-components';
-import { CalendarWeekDaysEnum, formatDate } from '../../../helpers/calendarHelpers';
 
+import {CalendarWeekDaysEnum, formatDate} from '../../../helpers/calendarHelpers';
 import {greys} from '../../../helpers/colorHelpers';
 import {fontSizes} from '../../../helpers/fontHelpers';
 import {DatePickerDropdown} from '../datepickerDropdown';
@@ -54,7 +54,7 @@ const ShowcaseDatePickerComponent: FC<ShowcaseDatePickerProps> = props => {
   return (
     <StyledShowcaseDiv>
       {<StyledDescriptionDiv>{description}</StyledDescriptionDiv>}
-      <DatePickerDropdown value={value} calendarWeekStartDay={calendarWeekStartDay} minDate={minDate} maxDate={maxDate} onChange={onChange} type={type}/>
+      <DatePickerDropdown value={value} calendarWeekStartDay={calendarWeekStartDay} minDate={minDate} maxDate={maxDate} onChange={onChange} type={type} />
     </StyledShowcaseDiv>
   );
 };
