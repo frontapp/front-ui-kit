@@ -21,10 +21,6 @@ interface TimePickerProps {
  * Style.
  */
 
-/*
- * Style.
- */
-
 interface TimePickerItemStyleProps {
   $isSelected?: boolean;
 }

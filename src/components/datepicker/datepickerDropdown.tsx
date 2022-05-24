@@ -29,7 +29,6 @@ interface DatePickerDropdownProps {
   calendarWeekStartDay?: CalendarWeekDaysEnum
   /** Controls if the clear button is visible and is only supported when in dateAndTime mode.  */
   onClear?: () => void;
-  onRequestClose: () => void;
   // TODO timeformat
 }
 
@@ -38,14 +37,20 @@ interface DatePickerDropdownProps {
  */
 
 const StyledDatePickerButtonDiv = styled.div`
-  width: 254px;
+  width: 234px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: ${greys.white};
-  border-radius: 4px;
+  background: ${greys.shade20};
+  border: 2px solid ${greys.shade30};
+  border-radius: 6px;
   padding: 5px 8px;
   gap: 8px;
+
+  &:hover {
+    background: ${greys.shade30};
+  }
 `;
 
 const StyledDatePickerButtonContentDiv = styled.div`
@@ -59,7 +64,7 @@ const StyledDatePickerButtonContentDiv = styled.div`
 `;
 
 const StyledDateTimeDiv = styled.div`
-  color: ${greys.shade90};
+  color: ${greys.shade80};
   white-space: nowrap;
 `;
 
@@ -81,8 +86,7 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = props => {
     maxDate,
     onChange,
     type,
-    onClear,
-    onRequestClose
+    onClear
   } = props;
   const [selectedDate, setSelectedDate] = useState(value);
   const onChangeDate = (date: Date) => {
@@ -93,7 +97,11 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = props => {
   return <DropdownCoordinator
     isOverlayCloseDisabled
     placement="bottom-start"
-    renderButton={() => <StyledDatePickerButtonDiv>{renderDatePickerCalendarButton(selectedDate, placeholder)}</StyledDatePickerButtonDiv>}
+    renderButton={() => (
+      <StyledDatePickerButtonDiv>
+        {renderDatePickerCalendarButton(selectedDate, placeholder)}
+      </StyledDatePickerButtonDiv>
+    )}
     renderDropdown={onCloseDropdown => (
       <DatePicker
         value={selectedDate}

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import {DatepickerViewsEnum, mergeDateAndTime} from '../../helpers/calendarHelpers';
 import {greys} from '../../helpers/colorHelpers';
-import {VisualSizesEnum} from '../../helpers/fontHelpers';
+import {fonts, fontSizes, fontWeights, VisualSizesEnum} from '../../helpers/fontHelpers';
 import {Button} from '../button/button';
 import {Input} from '../input/input';
 
@@ -42,6 +42,23 @@ interface DatePickerFooterProps {
 const StyledWrapperDiv = styled.div`
   width: inherit;
   background-color: ${greys.white};
+`;
+
+const StyledLabelsDiv = styled.div`
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  grid-column-gap: 12px;
+  width: inherit;
+  margin-bottom: 8px;
+`;
+
+const StyledLabelDiv = styled.div`
+  font-family: ${fonts.system};
+  font-size: ${fontSizes.small};
+  font-weight: ${fontWeights.semibold};
+  line-height: 15px;
+  color: ${greys.shade70}
 `;
 
 const StyledInputsDiv = styled.div`
@@ -118,6 +135,10 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
 
   return (
     <StyledWrapperDiv>
+      <StyledLabelsDiv>
+        <StyledLabelDiv>Date</StyledLabelDiv>
+        <StyledLabelDiv>Time</StyledLabelDiv>
+      </StyledLabelsDiv>
       <StyledInputsDiv>
         <Input
           id="date"

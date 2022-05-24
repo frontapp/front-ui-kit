@@ -103,7 +103,6 @@ export const DatePicker: FC<DatePickerProps> = props => {
   const onFocusPreviousMonth = () => {
     setFocusedMonth(month => month && month.minus({months: 1}));
   };
-
   const onFocusNextMonth = () => {
     setFocusedMonth(month => month && month.plus({months: 1}));
   };
@@ -126,7 +125,6 @@ export const DatePicker: FC<DatePickerProps> = props => {
   const onViewChange = (changedView: DatepickerViewsEnum) => {
     setSelectedView(changedView);
   };
-
   const onDateChange = (date: DateTime) => {
     setSelectedDate(date);
   };
