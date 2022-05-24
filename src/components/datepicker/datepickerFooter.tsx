@@ -5,6 +5,8 @@ import styled from 'styled-components';
 
 import {DatepickerViewsEnum, mergeDateAndTime} from '../../helpers/calendarHelpers';
 import {greys} from '../../helpers/colorHelpers';
+import {VisualSizesEnum} from '../../helpers/fontHelpers';
+import {Button} from '../button/button';
 import {Input} from '../input/input';
 
 /*
@@ -38,13 +40,38 @@ interface DatePickerFooterProps {
  */
 
 const StyledWrapperDiv = styled.div`
+  width: inherit;
+  background-color: ${greys.white};
+`;
+
+const StyledInputsDiv = styled.div`
   display: grid;
   grid-auto-columns: 1fr;
   grid-auto-flow: column;
   grid-column-gap: 12px;
   width: inherit;
+`;
 
-  background-color: ${greys.white};
+const StyledClearDiv = styled.div`
+  position: absolute;
+  bottom: 12px;
+`;
+
+const StyledCancelDoneDiv = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 6px;
+`;
+
+const StyledFooterDiv = styled.div`
+  position: sticky;
+  bottom: 0px;
+
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: end;
+
+  padding: 12px 0px;
 `;
 
 /*
@@ -52,7 +79,7 @@ const StyledWrapperDiv = styled.div`
  */
 
 export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
-  const {selectedDate, selectedView, onViewChange, onDateChange} = props;
+  const {selectedDate, selectedView, onViewChange, onDateChange, onDoneClick, onRequestClose, onClear} = props;
   const [dateValue, setDateValue] = useState(selectedDate?.toString());
   const [timeValue, setTimeValue] = useState(selectedDate?.toLocaleString(DateTime.TIME_SIMPLE));
 
@@ -67,10 +94,10 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
 
   // Focus handlers
   const onTimeFocus = () => {
-    onViewChange(DatepickerViewsEnum.DATE);
+    onViewChange(DatepickerViewsEnum.TIME);
   };
   const onDateFocus = () => {
-    onViewChange(DatepickerViewsEnum.TIME);
+    onViewChange(DatepickerViewsEnum.DATE);
   };
 
   // Change handlers
@@ -89,22 +116,39 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
 
   return (
     <StyledWrapperDiv>
-      <Input
-        id="date"
-        value={dateValue}
-        shouldFocus={selectedView === DatepickerViewsEnum.DATE}
-        onFocus={onDateFocus}
-        maxWidth={MAX_INPUT_WIDTH}
-        onChange={onDateValueChange}
-      />
-      <Input
-        id="time"
-        value={timeValue}
-        shouldFocus={selectedView === DatepickerViewsEnum.TIME}
-        onFocus={onTimeFocus}
-        maxWidth={MAX_INPUT_WIDTH}
-        onChange={onTimeValueChange}
-      />
+      <StyledInputsDiv>
+        <Input
+          id="date"
+          value={dateValue}
+          shouldFocus={selectedView === DatepickerViewsEnum.DATE}
+          onFocus={onDateFocus}
+          maxWidth={MAX_INPUT_WIDTH}
+          onChange={onDateValueChange}
+        />
+        <Input
+          id="time"
+          value={timeValue}
+          shouldFocus={selectedView === DatepickerViewsEnum.TIME}
+          onFocus={onTimeFocus}
+          maxWidth={MAX_INPUT_WIDTH}
+          onChange={onTimeValueChange}
+        />
+      </StyledInputsDiv>
+      <StyledFooterDiv>
+        <StyledClearDiv>
+          <Button size={VisualSizesEnum.SMALL} type="secondary" onClick={onClear}>
+            Clear
+          </Button>
+        </StyledClearDiv>
+        <StyledCancelDoneDiv>
+          <Button size={VisualSizesEnum.SMALL} type="secondary" onClick={onRequestClose}>
+            Cancel
+          </Button>
+          <Button size={VisualSizesEnum.SMALL} type="primary" onClick={onDoneClick}>
+            Done
+          </Button>
+        </StyledCancelDoneDiv>
+      </StyledFooterDiv>
     </StyledWrapperDiv>
   );
 };
