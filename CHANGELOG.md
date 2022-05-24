@@ -1,6 +1,31 @@
 # Changelog
 
 
+## [0.3.0](https://github.com/frontapp/front-ui-kit/compare/v0.2.0...v0.3.0) (2022-05-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* input now supports generic for better typecasting (#61)
+
+### Features
+
+* add datepicker component ([#53](https://github.com/frontapp/front-ui-kit/issues/53)) ([3afd7c4](https://github.com/frontapp/front-ui-kit/commit/3afd7c4474a17453441647d7549f85db66d5045b))
+* add datepicker, datepickerHeader and datePickerCalendar components ([3afd7c4](https://github.com/frontapp/front-ui-kit/commit/3afd7c4474a17453441647d7549f85db66d5045b))
+* add description to dropdownItem ([#66](https://github.com/frontapp/front-ui-kit/issues/66)) ([a697944](https://github.com/frontapp/front-ui-kit/commit/a69794401d5ee80179bc68cabb9b743e632ad2ef))
+* add dropdownItemAvatar component ([#65](https://github.com/frontapp/front-ui-kit/issues/65)) ([9da9099](https://github.com/frontapp/front-ui-kit/commit/9da9099f7180e27e05726a05ec8072c1d8a83644))
+* add hasAvatar to dropdownItemSkeleton ([9da9099](https://github.com/frontapp/front-ui-kit/commit/9da9099f7180e27e05726a05ec8072c1d8a83644))
+* add hasDescription to dropdownItemSkeleton ([a697944](https://github.com/frontapp/front-ui-kit/commit/a69794401d5ee80179bc68cabb9b743e632ad2ef))
+* add isSelected support for dropdownItem ([#62](https://github.com/frontapp/front-ui-kit/issues/62)) ([af592c9](https://github.com/frontapp/front-ui-kit/commit/af592c99256beba0960441519b1e7e6cc980243f))
+* input now supports generic for better typecasting ([#61](https://github.com/frontapp/front-ui-kit/issues/61)) ([5b23cbc](https://github.com/frontapp/front-ui-kit/commit/5b23cbc89373865595aa977bcf1757e52e5a541d))
+
+
+### Bug Fixes
+
+* id for textarea is now optional ([5b23cbc](https://github.com/frontapp/front-ui-kit/commit/5b23cbc89373865595aa977bcf1757e52e5a541d))
+* remove children margin in checkbox when no content is passed in ([af592c9](https://github.com/frontapp/front-ui-kit/commit/af592c99256beba0960441519b1e7e6cc980243f))
+* return number from input when type is number ([5b23cbc](https://github.com/frontapp/front-ui-kit/commit/5b23cbc89373865595aa977bcf1757e52e5a541d))
+
 ## [0.2.0](https://github.com/frontapp/front-ui-kit/compare/v0.1.6...v0.2.0) (2022-05-23)
 
 
