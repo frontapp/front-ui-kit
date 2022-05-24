@@ -12,6 +12,7 @@ import {DropdownItem, DropdownItemProps} from '../dropdownItem';
  */
 
 const defaultDropdownItemHeight = 30;
+const defaultDropdownItemHeightWithDescription = 46;
 
 /*
  * Interfaces.
@@ -43,8 +44,16 @@ export function useDropdownList(children: React.ReactNode) {
     const item = items[index];
 
     // If the item is of type "DropdownItem" it could have a custom height specified.
-    if (item.type === 'DropdownItem')
-      return item.props.height || defaultDropdownItemHeight;
+    if (item.type === 'DropdownItem') {
+      // Prioritize rendering the height if specified.
+      if (item.props.height)
+        return item.props.height;
+      // If it has a description, pass back the default with description
+      if (item.props.description)
+        return defaultDropdownItemHeightWithDescription;
+      // Catch-all item height.
+      return defaultDropdownItemHeight;
+    }
 
     // All other items can be the default height.
     return defaultDropdownItemHeight;
