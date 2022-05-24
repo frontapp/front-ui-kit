@@ -89,9 +89,11 @@ export function mergeDateAndTime(date: DateTime, time: DateTime) {
   });
 }
 
-export function formatDate(date?: Date) {
+export function formatDate(date?: Date, type?: 'date' | 'dateAndTime') {
   if (date) {
     const dateTime = DateTime.fromJSDate(date);
+    if (type === 'date')
+      return `${dateTime.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)}`;
     return `${dateTime.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)} ${dateTime.toLocaleString(DateTime.TIME_SIMPLE)}`;
   }
   return "";

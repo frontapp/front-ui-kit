@@ -85,7 +85,7 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = props => {
     minDate,
     maxDate,
     onChange,
-    type,
+    type = 'date',
     onClear
   } = props;
   const [selectedDate, setSelectedDate] = useState(value);
@@ -99,7 +99,7 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = props => {
     placement="bottom-start"
     renderButton={() => (
       <StyledDatePickerButtonDiv>
-        {renderDatePickerCalendarButton(selectedDate, placeholder)}
+        {renderDatePickerCalendarButton(selectedDate, placeholder, type)}
       </StyledDatePickerButtonDiv>
     )}
     renderDropdown={onCloseDropdown => (
@@ -121,13 +121,13 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = props => {
  * Helpers
  */
 
-function renderDatePickerCalendarButton(selectedDate?: Date, placeholder?: string) {
+function renderDatePickerCalendarButton(selectedDate?: Date, placeholder?: string, type?: 'date' | 'dateAndTime') {
   if (selectedDate)
     return (
       <StyledDatePickerButtonContentDiv>
         <Icon name="Calendar" color={greys.shade70} />
         <StyledDateTimeDiv>
-          {formatDate(selectedDate)}
+          {formatDate(selectedDate, type)}
         </StyledDateTimeDiv>
         <Icon name="ChevronDown" color={greys.shade70} />
       </StyledDatePickerButtonContentDiv>
