@@ -29,6 +29,7 @@ interface DatePickerProps {
   calendarWeekStartDay?: CalendarWeekDaysEnum
   /** Controls if the clear button is visible and is only supported when in dateAndTime mode.  */
   onClear?: () => void;
+  /** The dropdown's close method which is called when Cancel is clicked. */
   onRequestClose: () => void;
   // TODO timeFormat
 }
