@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import {greys} from '../../../helpers/colorHelpers';
 import {fontSizes} from '../../../helpers/fontHelpers';
-import {DatePicker} from '../datepicker';
+import {DatePickerDropdown} from '../datepickerDropdown';
 
 /*
  * Props.
@@ -24,11 +24,7 @@ const StyledShowcaseDiv = styled.div`
   background: ${greys.shade50};
   border-radius: 8px;
   width: 300px;
-  height: 300px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
 `;
 
 const StyledDescriptionDiv = styled.div`
@@ -52,7 +48,7 @@ const ShowcaseDatePickerComponent: FC<ShowcaseDatePickerProps> = props => {
   return (
     <StyledShowcaseDiv>
       {description && <StyledDescriptionDiv>{description}</StyledDescriptionDiv>}
-      <DatePicker value={value} minDate={minDate} maxDate={maxDate} onChange={onChange} />
+      <DatePickerDropdown value={value} minDate={minDate} maxDate={maxDate} onChange={onChange} type="dateAndTime" />
     </StyledShowcaseDiv>
   );
 };

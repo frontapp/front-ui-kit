@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import styled from 'styled-components';
 
+import Calendar from '../../assets/icons/calendar.svg';
 import CheckmarkBox from '../../assets/icons/checkmarkBox.svg';
 import CheckmarkCircle from '../../assets/icons/checkmarkCircle.svg';
 import Checkmark from '../../assets/icons/checkmarkSelected.svg';
@@ -26,6 +27,7 @@ const defaultSize = 16;
 const defaultColor = greys.shade50;
 
 const importedIcons = {
+  Calendar,
   CheckmarkCircle,
   CheckmarkBox,
   Checkmark,

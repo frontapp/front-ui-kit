@@ -1,6 +1,6 @@
 import {isUndefined} from 'lodash';
 import {DateTime} from 'luxon';
-import React, {FC, MouseEventHandler, useEffect, useState} from 'react';
+import React, {FC, FocusEventHandler, MouseEventHandler, useEffect, useState} from 'react';
 import styled from 'styled-components';
 
 import {DatepickerViewsEnum, mergeDateAndTime} from '../../helpers/calendarHelpers';
@@ -93,10 +93,12 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
   }, [selectedDateMillis]);
 
   // Focus handlers
-  const onTimeFocus = () => {
+  const onTimeFocus: FocusEventHandler = event => {
+    event.preventDefault();
     onViewChange(DatepickerViewsEnum.TIME);
   };
-  const onDateFocus = () => {
+  const onDateFocus: FocusEventHandler = event => {
+    event.preventDefault();
     onViewChange(DatepickerViewsEnum.DATE);
   };
 
@@ -135,11 +137,13 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
         />
       </StyledInputsDiv>
       <StyledFooterDiv>
-        <StyledClearDiv>
-          <Button size={VisualSizesEnum.SMALL} type="secondary" onClick={onClear}>
-            Clear
-          </Button>
-        </StyledClearDiv>
+        {selectedDate && onClear &&
+          <StyledClearDiv>
+            <Button size={VisualSizesEnum.SMALL} type="secondary" onClick={onClear}>
+              Clear
+            </Button>
+          </StyledClearDiv>
+        }
         <StyledCancelDoneDiv>
           <Button size={VisualSizesEnum.SMALL} type="secondary" onClick={onRequestClose}>
             Cancel
@@ -158,7 +162,7 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
  */
 
 function parseTime(date: DateTime, timeValue: string) {
-  const parsedTime = DateTime.fromISO(timeValue);
+  const parsedTime = DateTime.fromFormat(timeValue, "HH:mm");
   if (!parsedTime.isValid)
     return undefined;
 

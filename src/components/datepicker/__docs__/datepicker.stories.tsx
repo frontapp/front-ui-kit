@@ -1,14 +1,14 @@
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 import React from 'react';
 
-import {DatePicker} from '../datepicker';
+import {DatePickerDropdown} from '../datepickerDropdown';
 
 export default {
   title: 'Development/DatePicker',
-  component: DatePicker
-} as ComponentMeta<typeof DatePicker>;
+  component: DatePickerDropdown
+} as ComponentMeta<typeof DatePickerDropdown>;
 
-const Template: ComponentStory<typeof DatePicker> = args => <DatePicker
+const Template: ComponentStory<typeof DatePickerDropdown> = args => <DatePickerDropdown
   {...args}
   minDate={args.minDate && new Date(args.minDate)}
   maxDate={args.maxDate && new Date(args.maxDate)}

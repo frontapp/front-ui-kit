@@ -1,6 +1,6 @@
-import {isUndefined, noop} from 'lodash';
+import {isUndefined} from 'lodash';
 import {DateTime} from 'luxon';
-import React, {FC, useEffect, useMemo, useState} from 'react';
+import React, {FC, MouseEventHandler, useEffect, useMemo, useState} from 'react';
 import styled from 'styled-components';
 
 import {CalendarWeekDaysEnum, DatepickerViewsEnum, mergeDateAndTime} from '../../helpers/calendarHelpers';
@@ -23,11 +23,14 @@ interface DatePickerProps {
   minDate?: Date;
   /** The maximum date allowed to be selected. */
   maxDate?: Date;
-  /** Called when a date is selected in date mode. */
+  /** Called when a date is selected in date mode or when 'Done' is clicked in the 'dateAndTime' mode. */
   onChange: (value: Date) => void;
   /** The day of the the week the calendar should start on. The default is Sunday */
   calendarWeekStartDay?: CalendarWeekDaysEnum
-  // TODO placeholder, timeFormat, onClear
+  /** Controls if the clear button is visible and is only supported when in dateAndTime mode.  */
+  onClear?: () => void;
+  onRequestClose: () => void;
+  // TODO timeFormat
 }
 
 /*
@@ -77,7 +80,9 @@ export const DatePicker: FC<DatePickerProps> = props => {
     minDate,
     maxDate,
     onChange,
-    type = 'date'
+    type = 'date',
+    onClear,
+    onRequestClose
   } = props;
   const [selectedDate, setSelectedDate] = useState(value && DateTime.fromJSDate(value));
   const selectedDateMonth = selectedDate?.startOf('month');
@@ -108,14 +113,14 @@ export const DatePicker: FC<DatePickerProps> = props => {
     if (!(isDateSelectable(mergedDate, minDateTime, maxDateTime)))
       return;
     setSelectedDate(mergedDate);
-    if (onChange)
+    if (type === 'date') {
       onChange(mergedDate.toJSDate());
+      onRequestClose();
+    }
   };
 
   const onTimeSelect = (date: DateTime) => {
     setSelectedDate(date);
-    if (onChange)
-      onChange(date.toJSDate());
   };
 
   const onViewChange = (changedView: DatepickerViewsEnum) => {
@@ -124,8 +129,12 @@ export const DatePicker: FC<DatePickerProps> = props => {
 
   const onDateChange = (date: DateTime) => {
     setSelectedDate(date);
-    if (onChange)
-      onChange(date.toJSDate());
+  };
+
+  const onDone: MouseEventHandler = () => {
+    if (type === 'dateAndTime' && selectedDate)
+      onChange(selectedDate?.toJSDate());
+    onRequestClose();
   };
 
   return (
@@ -153,8 +162,9 @@ export const DatePicker: FC<DatePickerProps> = props => {
             selectedView={selectedView}
             onDateChange={onDateChange}
             onViewChange={onViewChange}
-            onRequestClose={noop}
-            onDoneClick={noop}
+            onDoneClick={onDone}
+            onClear={onClear}
+            onRequestClose={onRequestClose}
           />
         </StyledInputsDiv>
       }
