@@ -1,7 +1,7 @@
 import React, {FC, useState} from 'react';
 import styled from 'styled-components';
 
-import {CalendarWeekDaysEnum} from '../../helpers/calendarHelpers';
+import {CalendarWeekDaysEnum, formatDate} from '../../helpers/calendarHelpers';
 import {greys} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 import {DropdownCoordinator} from '../dropdown/dropdownCoordinator';
@@ -127,7 +127,7 @@ function renderDatePickerCalendarButton(selectedDate?: Date, placeholder?: strin
       <StyledDatePickerButtonContentDiv>
         <Icon name="Calendar" color={greys.shade70} />
         <StyledDateTimeDiv>
-          {selectedDate?.toDateString()}
+          {formatDate(selectedDate)}
         </StyledDateTimeDiv>
         <Icon name="ChevronDown" color={greys.shade70} />
       </StyledDatePickerButtonContentDiv>
