@@ -45,6 +45,10 @@ exports[`<Checkbox /> Spec Snapshots should render a checkbox with a label 1`] =
   padding-top: 1px;
 }
 
+.c4:empty {
+  margin-left: 0;
+}
+
 <div>
   <div
     class="c0"
@@ -118,6 +122,10 @@ exports[`<Checkbox /> Spec Snapshots should render a checked and disabled checkb
   color: #3e3e40;
   margin-left: 8px;
   padding-top: 1px;
+}
+
+.c5:empty {
+  margin-left: 0;
 }
 
 <div>
@@ -206,6 +214,10 @@ exports[`<Checkbox /> Spec Snapshots should render a checked checkbox 1`] = `
   padding-top: 1px;
 }
 
+.c5:empty {
+  margin-left: 0;
+}
+
 <div>
   <div
     class="c0"
@@ -286,6 +298,10 @@ exports[`<Checkbox /> Spec Snapshots should render an empty and disabled checkbo
   padding-top: 1px;
 }
 
+.c4:empty {
+  margin-left: 0;
+}
+
 <div>
   <div
     class="c0"
@@ -352,6 +368,10 @@ exports[`<Checkbox /> Spec Snapshots should render an empty checkbox 1`] = `
   color: #3e3e40;
   margin-left: 8px;
   padding-top: 1px;
+}
+
+.c4:empty {
+  margin-left: 0;
 }
 
 <div>
@@ -425,6 +445,10 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate and disabled
   color: #3e3e40;
   margin-left: 8px;
   padding-top: 1px;
+}
+
+.c5:empty {
+  margin-left: 0;
 }
 
 <div>
@@ -511,6 +535,10 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate checkbox 1`]
   color: #3e3e40;
   margin-left: 8px;
   padding-top: 1px;
+}
+
+.c5:empty {
+  margin-left: 0;
 }
 
 <div>
