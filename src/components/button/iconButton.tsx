@@ -16,7 +16,7 @@ interface IconButtonProps {
   /** Whether the button is disabled. If disabled the onClick will not fire. */
   isDisabled?: boolean;
   /** Whether we should force hover state styles. */
-  shouldForceHoverState?: boolean;
+  isActive?: boolean;
   /** Called when the user click on the button. */
   onClick: MouseEventHandler;
 }
@@ -28,7 +28,7 @@ interface IconButtonProps {
 interface StyledIconButtonProps {
   $isDanger?: boolean;
   $isDisabled?: boolean;
-  $shouldForceHoverState?: boolean;
+  $isActive?: boolean;
 }
 
 const StyledIconButton = styled.button<StyledIconButtonProps>`
@@ -37,18 +37,18 @@ const StyledIconButton = styled.button<StyledIconButtonProps>`
   padding: 7px;
   border-radius: 8px;
 
-  ${p => addIconColorStyles(p.$isDanger, p.$isDisabled, p.$shouldForceHoverState)};
+  ${p => addIconColorStyles(p.$isDanger, p.$isDisabled, p.$isActive)};
 `;
 
-function addIconColorStyles(isDanger?: boolean, isDisabled?: boolean, shouldForceHoverState?: boolean) {
+function addIconColorStyles(isDanger?: boolean, isDisabled?: boolean, isActive?: boolean) {
   if (isDisabled)
     return css`
       color: ${greys.shade40};
     `;
   if (isDanger)
     return css`
-      color: ${palette.red[shouldForceHoverState ? 'shade50' : 'shade40']};
-      background: ${shouldForceHoverState ? alphas.gray20 : 'unset'};
+      color: ${palette.red[isActive ? 'shade50' : 'shade40']};
+      background: ${isActive ? alphas.gray20 : 'unset'};
 
       &:hover {
         color: ${palette.red.shade50};
@@ -56,8 +56,8 @@ function addIconColorStyles(isDanger?: boolean, isDisabled?: boolean, shouldForc
       }
     `;
   return css`
-    color: ${greys[shouldForceHoverState ? 'shade80' : 'shade70']};
-    background: ${shouldForceHoverState ? alphas.gray20 : 'unset'};
+    color: ${greys[isActive ? 'shade80' : 'shade70']};
+    background: ${isActive ? alphas.gray20 : 'unset'};
 
     &:hover {
       color: ${greys.shade80};
@@ -71,9 +71,9 @@ function addIconColorStyles(isDanger?: boolean, isDisabled?: boolean, shouldForc
  */
 
 export const IconButton: FC<IconButtonProps> = props => {
-  const {children, isDanger, isDisabled, shouldForceHoverState, onClick} = props;
+  const {children, isDanger, isDisabled, isActive, onClick} = props;
   return (
-    <StyledIconButton $isDanger={isDanger} $isDisabled={isDisabled} $shouldForceHoverState={shouldForceHoverState} onClick={onClick}>
+    <StyledIconButton $isDanger={isDanger} $isDisabled={isDisabled} $isActive={isActive} onClick={onClick}>
       {renderFirstIconOnly(children)}
     </StyledIconButton>
   );

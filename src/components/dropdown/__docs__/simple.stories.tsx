@@ -23,7 +23,7 @@ const Template: ComponentStory<typeof Dropdown> = args => (
     {...args}
     placement="bottom-start"
     isInline
-    renderButton={isDropdownOpen => <Button type="icon" shouldForceHoverState={isDropdownOpen}><Icon name="EllipsisVertical" /></Button>}
+    renderButton={isDropdownOpen => <Button type="icon" isActive={isDropdownOpen}><Icon name="EllipsisVertical" /></Button>}
     renderDropdown={() => (
       <Dropdown {...args}>
         {itemsToRender.map(itemId => (
