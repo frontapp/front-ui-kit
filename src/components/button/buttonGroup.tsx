@@ -1,11 +1,13 @@
 import React, {FC} from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 /*
  * Props.
  */
 
 interface ButtonGroupProps {
+  /** How to align the buttons. Default is left. */
+  align?: 'left' | 'right';
   /** Children to render. */
   children: React.ReactNode;
 }
@@ -14,14 +16,24 @@ interface ButtonGroupProps {
  * Style.
  */
 
-const StyledButtonGroupDiv = styled.div`
+interface StyledButtonGroupDivProps {
+  $align: 'left' | 'right';
+}
+
+const StyledButtonGroupDiv = styled.div<StyledButtonGroupDivProps>`
   display: flex;
   flex-flow: row;
   gap: 8px;
+
+  ${p => css`
+    justify-content: ${p.$align === 'left' ? 'unset' : 'end'};
+  `};
 `;
 
 /*
  * Component.
  */
 
-export const ButtonGroup: FC<ButtonGroupProps> = ({children}) => <StyledButtonGroupDiv>{children}</StyledButtonGroupDiv>;
+export const ButtonGroup: FC<ButtonGroupProps> = ({children, align = 'left'}) => (
+  <StyledButtonGroupDiv $align={align}>{children}</StyledButtonGroupDiv>
+);

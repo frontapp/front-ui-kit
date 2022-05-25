@@ -5,8 +5,10 @@ import _ from 'lodash';
 import React, {useCallback, useMemo} from 'react';
 import ReactIs from 'react-is';
 
+import {FormFieldProps} from '../../formField/formField';
 import {DropdownHeading, DropdownHeadingProps} from '../dropdownHeading';
 import {DropdownItem, DropdownItemProps} from '../dropdownItem';
+import {DropdownItemInput} from '../dropdownItemInput';
 
 /*
  * Constants.
@@ -14,6 +16,7 @@ import {DropdownItem, DropdownItemProps} from '../dropdownItem';
 
 const defaultDropdownItemHeight = 30;
 const defaultDropdownItemHeightWithDescription = 46;
+const defaultDropdownItemInputHeight = 72;
 
 /*
  * Interfaces.
@@ -29,7 +32,12 @@ interface DropdownHeadingType {
   props: DropdownHeadingProps;
 }
 
-type DropdownRenderTypes = DropdownItemType | DropdownHeadingType;
+interface DropdownItemInputType {
+  type: 'DropdownItemInput',
+  props: FormFieldProps
+}
+
+type DropdownRenderTypes = DropdownItemType | DropdownHeadingType | DropdownItemInputType;
 
 /*
  * Hook.
@@ -55,6 +63,9 @@ export function useDropdownList(children: React.ReactNode) {
       return defaultDropdownItemHeight;
     }
 
+    if (item.type === 'DropdownItemInput')
+      return defaultDropdownItemInputHeight;
+
     // All other items can be the default height.
     return defaultDropdownItemHeight;
   }, [items]);
@@ -67,6 +78,8 @@ export function useDropdownList(children: React.ReactNode) {
 
     if (item.type === 'DropdownItem')
       return <DropdownItem {...item.props} />;
+    if (item.type === 'DropdownItemInput')
+      return <DropdownItemInput {...item.props} />;
     if (item.type === 'DropdownHeading')
       return <DropdownHeading {...item.props} />;
 
@@ -122,6 +135,13 @@ function buildDropdownItemsFromChildren(children: React.ReactNode): ReadonlyArra
         type: 'DropdownHeading',
         props: child.props
       } as DropdownHeadingType;
+    if ((child.type as any)?.displayName === "DropdownItemInput")
+      return {
+        type: 'DropdownItemInput',
+        props: {
+          ...child.props
+        }
+      } as DropdownItemInputType;
 
     // Catchall for all other types, we will not render anything.
     return undefined;
