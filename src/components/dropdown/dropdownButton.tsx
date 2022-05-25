@@ -1,12 +1,16 @@
+/* eslint-disable react/no-array-index-key */
 import {isArray} from 'lodash';
 import {ellipsis} from 'polished';
 import React, {FC} from 'react';
 import styled, {css} from 'styled-components';
 
-import {greys, palette} from '../../helpers/colorHelpers';
+import {alphas, greys, palette} from '../../helpers/colorHelpers';
 import {fonts, fontSizes} from '../../helpers/fontHelpers';
+import {useMeasureElement} from '../../helpers/hookHelpers';
 import {buildHoverParentClassName, hoverSelector} from '../../helpers/hoverHelpers';
 import {Icon, IconName} from '../icon/icon';
+import {OverflowWithCount} from '../overflowWithCount/overflowWithCount';
+import {Pill} from '../pill/pill';
 
 /*
  * Props.
@@ -14,7 +18,7 @@ import {Icon, IconName} from '../icon/icon';
 
 interface DropdownButtonProps {
   /** Content to render. If an array is passed in we will render the items in pill form. */
-  value: string | ReadonlyArray<string>; // TODO: add support for pills
+  value: string | ReadonlyArray<string>;
   /** Placeholder to render when no children is supplied. */
   placeholder?: string;
   /** Whether the button is disabled. */
@@ -38,21 +42,23 @@ interface StyledDropdownButtonWrapperDivProps {
   $isActive?: boolean;
   $isDisabled?: boolean;
   $isErred?: boolean;
+  $hasArrayValue?: boolean;
 }
 
 const StyledDropdownButtonWrapperDiv = styled.div<StyledDropdownButtonWrapperDivProps>`
   font-family: ${fonts.system};
   display: flex;
   flex-flow: row;
-  padding: 4.75px 8px;
   border-radius: 6px;
   box-sizing: border-box;
   font-size: ${fontSizes.medium};
   width: calc(100% - 16px);
   border: 2px solid transparent;
+  min-height: 30px;
 
   ${p => css`
     max-width: ${p.$maxWidth ? `${p.$maxWidth}px` : 'unset'};
+    padding: ${p.$hasArrayValue ? '1.75px 8px 1.75px 2px' : '4.75px 8px'};
   `};
 
   ${p => addDropdownButtonWrapperStyles(p.$isActive, p.$isDisabled, p.$isErred)};
@@ -116,6 +122,19 @@ const StyledChildrenWrapperDiv = styled.div`
   ${ellipsis()};
   color: ${greys.shade90};
   cursor: default;
+  flex: 1;
+`;
+
+const StyledPillsWrapperDiv = styled.div`
+  display: flex;
+  flex-flow: row;
+  gap: 4px;
+`;
+
+const StyledChevronWrapperDiv = styled.div`
+  display: flex;
+  flex-flow: column;
+  place-content: center;
 `;
 
 /*
@@ -124,6 +143,9 @@ const StyledChildrenWrapperDiv = styled.div`
 
 export const DropdownButton: FC<DropdownButtonProps> = props => {
   const {maxWidth, value, iconName, isDisabled, isActive, isErred} = props;
+  const hasArrayValue = Boolean(typeof value !== 'string' && value.length > 0);
+  const [childrenContainerRef, {width}] = useMeasureElement();
+
   return (
     <StyledDropdownButtonWrapperDiv
       className={!isDisabled ? buildHoverParentClassName(isActive) : undefined}
@@ -131,15 +153,18 @@ export const DropdownButton: FC<DropdownButtonProps> = props => {
       $isActive={isActive}
       $isDisabled={isDisabled}
       $isErred={isErred}
+      $hasArrayValue={hasArrayValue}
     >
       <StyledContentWrapperDiv $isDisabled={isDisabled}>
         {maybeRenderIcon(iconName)}
         {maybeRenderPlaceholder(props)}
-        <StyledChildrenWrapperDiv>
-          {value}
+        <StyledChildrenWrapperDiv ref={childrenContainerRef}>
+          {renderDropdownContent(value, width)}
         </StyledChildrenWrapperDiv>
       </StyledContentWrapperDiv>
-      <Icon name="ChevronDown" color={greys[isDisabled ? 'shade50' : 'shade70']} />
+      <StyledChevronWrapperDiv>
+        <Icon name="ChevronDown" color={greys[isDisabled ? 'shade50' : 'shade70']} />
+      </StyledChevronWrapperDiv>
     </StyledDropdownButtonWrapperDiv>
   );
 };
@@ -147,6 +172,25 @@ export const DropdownButton: FC<DropdownButtonProps> = props => {
 /*
  * Helpers.
  */
+
+function renderDropdownContent(value: string | ReadonlyArray<string>, childrenContainerWidth: number) {
+  if (typeof value !== 'string')
+    return (
+      <StyledPillsWrapperDiv>
+        <OverflowWithCount<string>
+          shouldRenderPartial={false}
+          elements={value}
+          elementRenderer={(element, index) => (
+            <Pill key={`${index}-${element}`} colors={{backgroundColor: alphas.black30, textColor: greys.shade90}}>
+              {element}
+            </Pill>
+          )}
+          overflowContainerWidth={childrenContainerWidth}
+        />
+      </StyledPillsWrapperDiv>
+    );
+  return value;
+}
 
 function maybeRenderIcon(iconName?: IconName) {
   if (!iconName)
