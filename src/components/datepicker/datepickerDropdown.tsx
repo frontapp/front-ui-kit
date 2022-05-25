@@ -29,8 +29,6 @@ interface DatePickerDropdownProps {
   onChange: (value: Date) => void;
   /** The day of the the week the calendar should start on. The default is Sunday */
   calendarWeekStartDay?: CalendarWeekDaysEnum
-  /** Controls if the clear button is visible and is only supported when in dateAndTime mode.  */
-  onClear?: () => void;
 }
 
 /*
@@ -91,7 +89,6 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = props => {
     onChange,
     type = 'date',
     timeFormat = '12h',
-    onClear
   } = props;
   const [selectedDate, setSelectedDate] = useState(value);
   const onChangeDate = (date: Date) => {
@@ -116,7 +113,6 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = props => {
         maxDate={maxDate}
         onChange={onChangeDate}
         type={type}
-        onClear={onClear}
         onRequestClose={onCloseDropdown}
       />
     )}

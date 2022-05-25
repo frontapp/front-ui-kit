@@ -33,8 +33,6 @@ interface DatePickerFooterProps {
   onRequestClose: () => void;
   /** Called when the user clicks "Done" */
   onDoneClick: MouseEventHandler;
-  /** Controls if the `clear` button is visible and called when clear is clicked */
-  onClear?: () => void;
 }
 
 /*
@@ -98,7 +96,7 @@ const StyledFooterDiv = styled.div`
  */
 
 export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
-  const {selectedDate, timeFormat, selectedView, onViewChange, onDateChange, onDoneClick, onRequestClose, onClear} = props;
+  const {selectedDate, timeFormat, selectedView, onViewChange, onDateChange, onDoneClick, onRequestClose} = props;
   const [dateValue, setDateValue] = useState(selectedDate?.toFormat("MM/dd/yyyy"));
   const [timeValue, setTimeValue] = useState(selectedDate && formatTime(selectedDate, timeFormat));
 
@@ -119,12 +117,6 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
   const onDateFocus: FocusEventHandler = event => {
     event.preventDefault();
     onViewChange(DatepickerViewsEnum.DATE);
-  };
-  const onClearClick = () => {
-    setTimeValue("");
-    setDateValue("");
-    if (onClear)
-      onClear();
   };
 
   // Change handlers
@@ -166,13 +158,6 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
         />
       </StyledInputsDiv>
       <StyledFooterDiv>
-        {selectedDate && onClear &&
-          <StyledClearDiv>
-            <Button size={VisualSizesEnum.SMALL} type="secondary" onClick={onClearClick}>
-              Clear
-            </Button>
-          </StyledClearDiv>
-        }
         <StyledCancelDoneDiv>
           <Button size={VisualSizesEnum.SMALL} type="secondary" onClick={onRequestClose}>
             Cancel
