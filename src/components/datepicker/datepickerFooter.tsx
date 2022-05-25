@@ -112,6 +112,26 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
     onViewChange(DatepickerViewsEnum.DATE);
   };
 
+  // Blur handlers
+  const onTimeBlur: FocusEventHandler = () => {
+    if (!selectedDate) {
+      setTimeValue("");
+      return;
+    }
+    const selectedTimeValue = formatTime(selectedDate, timeFormat);
+    if (selectedTimeValue !== timeValue)
+      setTimeValue(selectedTimeValue);
+  };
+  const onDateBlur: FocusEventHandler = () => {
+    if (!selectedDate) {
+      setDateValue("");
+      return;
+    }
+    const selectedDateValue = selectedDate.toFormat("MM/dd/yyyy");
+    if (selectedDateValue !== dateValue)
+      setDateValue(selectedDateValue);
+  };
+
   // Change handlers
   const onTimeValueChange = (newTimeValue: string) => {
     setTimeValue(newTimeValue);
@@ -136,6 +156,7 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
         <Input
           value={dateValue}
           onFocus={onDateFocus}
+          onBlur={onDateBlur}
           shouldFocus={selectedView === DatepickerViewsEnum.DATE}
           maxWidth={MAX_INPUT_WIDTH}
           onChange={onDateValueChange}
@@ -144,6 +165,7 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
           value={timeValue}
           shouldFocus={selectedView === DatepickerViewsEnum.TIME}
           onFocus={onTimeFocus}
+          onBlur={onTimeBlur}
           maxWidth={MAX_INPUT_WIDTH}
           onChange={onTimeValueChange}
         />
@@ -167,7 +189,9 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
  */
 
 /** Given a date and a time string, merge them together to give a DateTime object */
-function parseTime(date: DateTime, timeValue: string) {
+function parseTime(date: DateTime, timeValue?: string) {
+  if (!timeValue)
+    return undefined;
   const formattedTime = DateTime.fromFormatExplain(
     `${date.toLocaleString(DateTime.DATE_SHORT)} ${timeValue}`, "M/d/yyyy h:mm a");
   if (!formattedTime.matches || _.isEmpty(formattedTime.matches))

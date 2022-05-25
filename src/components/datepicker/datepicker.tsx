@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import {CalendarWeekDaysEnum, DatepickerViewsEnum, mergeDateAndTime} from '../../helpers/calendarHelpers';
 import {alphas, greys} from '../../helpers/colorHelpers';
 import {DatePickerCalendar} from './datepickerCalendar';
+import {DatePickerDropdownProps} from './datepickerDropdown';
 import {DatePickerFooter} from './datepickerFooter';
 import {DatePickerHeader} from './datepickerHeader';
 import {TimePicker} from './timepicker';
@@ -14,21 +15,7 @@ import {TimePicker} from './timepicker';
  * Props.
  */
 
-interface DatePickerProps {
-  /** The selected date */
-  value?: Date;
-  /** Controls allowing selecting a time. Default is date. */
-  type: 'date' | 'dateAndTime';
-  /** The format to display time in. This is only used if dateAndTime type is selected. */
-  timeFormat: '12h' | '24h';
-  /** The minimum date allowed to be selected. */
-  minDate?: Date;
-  /** The maximum date allowed to be selected. */
-  maxDate?: Date;
-  /** Called when a date is selected in date mode or when 'Done' is clicked in the 'dateAndTime' mode. */
-  onChange: (value: Date) => void;
-  /** The day of the the week the calendar should start on. The default is Sunday */
-  calendarWeekStartDay?: CalendarWeekDaysEnum
+interface DatePickerProps extends Omit<DatePickerDropdownProps, 'placeholder'> {
   /** The dropdown's close method which is called when Cancel is clicked. */
   onRequestClose: () => void;
 }
@@ -77,11 +64,11 @@ export const DatePicker: FC<DatePickerProps> = props => {
   const {
     value,
     calendarWeekStartDay = CalendarWeekDaysEnum.SUNDAY,
-    timeFormat,
+    timeFormat = '12h',
     minDate,
     maxDate,
     onChange,
-    type,
+    type = 'date',
     onRequestClose
   } = props;
   const [selectedDate, setSelectedDate] = useState(value && DateTime.fromJSDate(value));

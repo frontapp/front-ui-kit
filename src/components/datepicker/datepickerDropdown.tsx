@@ -10,7 +10,7 @@ import {DatePicker} from './datepicker';
  * Props.
  */
 
-interface DatePickerDropdownProps {
+export interface DatePickerDropdownProps {
   /** The selected date */
   value?: Date;
   /** The placeholder value */
@@ -63,7 +63,13 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = props => {
     isInline
     renderButton={isDropdownOpen => (
       <StyledDatePickerButtonDiv>
-        {renderDatePickerCalendarButton(isDropdownOpen, type, selectedDate, placeholder, timeFormat)}
+        <DropdownButton
+          value={(selectedDate && formatDateTime(selectedDate, type, timeFormat)) || ""}
+          placeholder={placeholder}
+          iconName="Calendar"
+          maxWidth={254}
+          isActive={isDropdownOpen}
+        />
       </StyledDatePickerButtonDiv>
     )}
     renderDropdown={onCloseDropdown => (
@@ -80,24 +86,3 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = props => {
     )}
   />;
 };
-
-/*
- * Helpers
- */
-
-function renderDatePickerCalendarButton(
-  isActive: boolean,
-  type: 'date' | 'dateAndTime',
-  selectedDate?: Date,
-  placeholder?: string,
-  timeFormat?: '12h' | '24h') {
-  return (
-    <DropdownButton
-      value={(selectedDate && formatDateTime(selectedDate, type, timeFormat)) || ""}
-      placeholder={placeholder}
-      iconName="Calendar"
-      maxWidth={254}
-      isActive={isActive}
-    />
-  );
-}
