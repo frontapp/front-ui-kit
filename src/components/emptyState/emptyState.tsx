@@ -53,7 +53,7 @@ const StyledContentWrapperDiv = styled.div<StyledContentWrapperDivProps>`
   gap: 10px;
 
   ${p => css`
-    height: ${p.$hasVisibleButton ? '140px' : '84px'};
+    height: ${p.$hasVisibleButton ? '140px' : '97px'};
   `};
 `;
 
