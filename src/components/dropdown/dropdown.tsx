@@ -113,6 +113,11 @@ export const Dropdown: FC<DropdownProps> = props => {
       {/* Render Dropdown headers / footers. */}
       {renderChildrenSpecifiedComponents(children, ['DropdownHeader', 'DropdownFooter'])}
       <StyledDropdownContentWrapperDiv $maxHeight={maxHeight} $minHeight={minHeight}>
+        {/*
+          We will not support rendering the input items in the list. Since the virtual list re-renders so often
+          and inputs need to keep focus they do not really mix well.
+        */}
+        {renderChildrenSpecifiedComponents(children, ['DropdownItemInput'])}
         <DropdownList
           itemsCount={itemsCount}
           loadingItemsCount={hasMore || isLoading ? computeTotalLoadingItems(itemsCount, maxHeight, loadingSkeletonHeight) : 0}

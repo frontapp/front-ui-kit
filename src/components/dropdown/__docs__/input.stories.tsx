@@ -47,6 +47,9 @@ const dogBreedsSource = [
 
 const Template: ComponentStory<typeof Dropdown> = args => {
   const [selectedDog, setSelectedDog] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+
   return (
     <DropdownCoordinator
       {...args}
@@ -58,10 +61,10 @@ const Template: ComponentStory<typeof Dropdown> = args => {
           <DropdownHeader>Sign up</DropdownHeader>
 
           <DropdownItemInput label="Your name">
-            <Input placeholder="John Doe" />
+            <Input placeholder="John Doe" value={name} onChange={setName} />
           </DropdownItemInput>
           <DropdownItemInput label="Your email">
-            <Input placeholder="john.doe@example.com" />
+            <Input placeholder="john.doe@example.com" value={email} onChange={setEmail} />
           </DropdownItemInput>
           <DropdownItemInput label="Your favorite dog breed">
             <DropdownCoordinator
