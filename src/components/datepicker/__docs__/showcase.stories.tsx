@@ -50,11 +50,11 @@ const ShowcaseDatePickerComponent: FC<ShowcaseDatePickerProps> = props => {
     setDescription(formatDateTime(newDate, type, timeFormat));
   };
   const {value, minDate, maxDate, type, calendarWeekStartDay, timeFormat} = props;
-  const [description, setDescription] = useState(formatDateTime(value, type, timeFormat));
+  const [description, setDescription] = useState(value && formatDateTime(value, type, timeFormat));
 
   return (
     <StyledShowcaseDiv>
-      {<StyledDescriptionDiv>{description}</StyledDescriptionDiv>}
+      {description && <StyledDescriptionDiv>{description}</StyledDescriptionDiv>}
       <DatePickerDropdown
         value={value}
         calendarWeekStartDay={calendarWeekStartDay}
