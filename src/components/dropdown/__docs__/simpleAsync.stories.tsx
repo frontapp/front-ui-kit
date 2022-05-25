@@ -45,6 +45,7 @@ const Template: ComponentStory<typeof Dropdown> = args => {
       {...args}
       placement="bottom-start"
       renderButton={() => <Button type="icon"><Icon name="EllipsisVertical" /></Button>}
+      isInline
       onDropdownClosed={() => {
         setPage(1);
         setIsLoading(false);
@@ -67,7 +68,7 @@ const Template: ComponentStory<typeof Dropdown> = args => {
     />
   );
 };
-export const DropdownSimpleAsync = Template.bind({});
-DropdownSimpleAsync.args = {
+export const SimpleAsync = Template.bind({});
+SimpleAsync.args = {
   loadingThreshold: 3
 };
