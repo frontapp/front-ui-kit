@@ -43,6 +43,7 @@ const StyledDatePickerButtonDiv = styled.div`
   border-radius: 6px;
   padding: 5px 8px;
   gap: 8px;
+  cursor: default;
 
   &:hover {
     background: ${greys.shade30};

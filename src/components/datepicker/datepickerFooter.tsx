@@ -69,11 +69,6 @@ const StyledInputsDiv = styled.div`
   width: inherit;
 `;
 
-const StyledClearDiv = styled.div`
-  position: absolute;
-  bottom: 12px;
-`;
-
 const StyledCancelDoneDiv = styled.div`
   display: grid;
   grid-auto-flow: column;
