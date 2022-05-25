@@ -21,7 +21,7 @@ const MAX_INPUT_WIDTH = 107;
 interface DatePickerFooterProps {
   /** The selected date */
   selectedDate?: DateTime;
-  /** The format to display time in. This is only used if dateAndTime type is selected. Default is 12h. */
+  /** The format to display time in. */
   timeFormat: '12h' | '24h';
   /** Controls which input is focused */
   selectedView: DatepickerViewsEnum;

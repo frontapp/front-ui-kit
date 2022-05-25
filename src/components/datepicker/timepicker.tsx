@@ -16,7 +16,7 @@ interface TimePickerProps {
   value?: DateTime;
   /** Handler for when a time is selected */
   onChange: (value: DateTime) => void;
-  /** The format to display time in. This is only used if dateAndTime type is selected. Default is 12h. */
+  /** The format to display time in. */
   timeFormat: '12h' | '24h';
 }
 
