@@ -2,6 +2,7 @@ import {range} from 'lodash';
 import {DateTime} from 'luxon';
 import React, {FC} from 'react';
 import styled, {css} from 'styled-components';
+import {formatTime} from '../../helpers/calendarHelpers';
 
 import {alphas, greys, palette} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
@@ -101,7 +102,7 @@ function renderItems(props: TimePickerProps) {
         $isSelected={isSelected}
         onClick={() => onChange && onChange(hourTime)}
       >
-        {hourTime.toLocaleString(timeFormat === '12h' ? DateTime.TIME_SIMPLE : DateTime.TIME_24_SIMPLE)}
+        {formatTime(hourTime, timeFormat)}
       </StyledItemDiv>
     );
   });

@@ -39,10 +39,7 @@ interface DatePickerDropdownProps {
 
 const StyledDatePickerButtonDiv = styled.div`
   width: 234px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  height: 16px;
   background: ${greys.shade20};
   border: 2px solid ${greys.shade30};
   border-radius: 6px;
@@ -57,7 +54,9 @@ const StyledDatePickerButtonDiv = styled.div`
 const StyledDatePickerButtonContentDiv = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 8px;
+  width: 100%;
   font-family: ${fonts.system};
   font-size: ${fontSizes.medium};
   font-weight: ${fontWeights.normal};
@@ -72,6 +71,10 @@ const StyledDateTimeDiv = styled.div`
 const StyledPlaceholderDiv = styled.div`
   color: ${greys.shade60};
   white-space: nowrap;
+`;
+
+const StyledIconDiv = styled.div`
+  margin-left: auto
 `;
 
 /*
@@ -132,7 +135,9 @@ function renderDatePickerCalendarButton(type: 'date' | 'dateAndTime', selectedDa
         <StyledDateTimeDiv>
           {formatDateTime(selectedDate, type, timeFormat)}
         </StyledDateTimeDiv>
-        <Icon name="ChevronDown" color={greys.shade70} />
+        <StyledIconDiv>
+          <Icon name="ChevronDown" color={greys.shade70} />
+        </StyledIconDiv>
       </StyledDatePickerButtonContentDiv>
     );
 
@@ -142,7 +147,9 @@ function renderDatePickerCalendarButton(type: 'date' | 'dateAndTime', selectedDa
       <StyledPlaceholderDiv>
         {placeholder}
       </StyledPlaceholderDiv>
-      <Icon name="ChevronDown" color={greys.shade70} />
+      <StyledIconDiv>
+        <Icon name="ChevronDown" color={greys.shade70} />
+      </StyledIconDiv>
     </StyledDatePickerButtonContentDiv>
   );
 }
