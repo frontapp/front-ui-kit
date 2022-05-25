@@ -15,6 +15,8 @@ interface IconButtonProps {
   isDanger?: boolean;
   /** Whether the button is disabled. If disabled the onClick will not fire. */
   isDisabled?: boolean;
+  /** Whether we should force hover state styles. */
+  isActive?: boolean;
   /** Called when the user click on the button. */
   onClick: MouseEventHandler;
 }
@@ -26,6 +28,7 @@ interface IconButtonProps {
 interface StyledIconButtonProps {
   $isDanger?: boolean;
   $isDisabled?: boolean;
+  $isActive?: boolean;
 }
 
 const StyledIconButton = styled.button<StyledIconButtonProps>`
@@ -34,17 +37,18 @@ const StyledIconButton = styled.button<StyledIconButtonProps>`
   padding: 7px;
   border-radius: 8px;
 
-  ${p => addIconColorStyles(p.$isDanger, p.$isDisabled)};
+  ${p => addIconColorStyles(p.$isDanger, p.$isDisabled, p.$isActive)};
 `;
 
-function addIconColorStyles(isDanger?: boolean, isDisabled?: boolean) {
+function addIconColorStyles(isDanger?: boolean, isDisabled?: boolean, isActive?: boolean) {
   if (isDisabled)
     return css`
       color: ${greys.shade40};
     `;
   if (isDanger)
     return css`
-      color: ${palette.red.shade40};
+      color: ${palette.red[isActive ? 'shade50' : 'shade40']};
+      background: ${isActive ? alphas.gray20 : 'unset'};
 
       &:hover {
         color: ${palette.red.shade50};
@@ -52,7 +56,8 @@ function addIconColorStyles(isDanger?: boolean, isDisabled?: boolean) {
       }
     `;
   return css`
-    color: ${greys.shade70};
+    color: ${greys[isActive ? 'shade80' : 'shade70']};
+    background: ${isActive ? alphas.gray20 : 'unset'};
 
     &:hover {
       color: ${greys.shade80};
@@ -66,9 +71,9 @@ function addIconColorStyles(isDanger?: boolean, isDisabled?: boolean) {
  */
 
 export const IconButton: FC<IconButtonProps> = props => {
-  const {children, isDanger, isDisabled, onClick} = props;
+  const {children, isDanger, isDisabled, isActive, onClick} = props;
   return (
-    <StyledIconButton $isDanger={isDanger} $isDisabled={isDisabled} onClick={onClick}>
+    <StyledIconButton $isDanger={isDanger} $isDisabled={isDisabled} $isActive={isActive} onClick={onClick}>
       {renderFirstIconOnly(children)}
     </StyledIconButton>
   );

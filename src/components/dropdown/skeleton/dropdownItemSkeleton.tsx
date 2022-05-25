@@ -1,29 +1,83 @@
 import React, {FC} from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
+import {VisualSizesEnum} from '../../../helpers/fontHelpers';
+import {makeSizeConstants} from '../../../helpers/styleHelpers';
 import {Skeleton} from '../../skeleton/skeleton';
+
+/*
+ * Constants.
+ */
+
+const avatarSizes = makeSizeConstants(16, 20, 30, 48);
 
 /*
  * Props.
  */
 
-// TODO: Add support for multi-line (description), Avatar, icon.
-interface DropdownItemSkeletonProps {}
+interface DropdownItemSkeletonProps {
+  /** Whether we should render the avatar. */
+  hasAvatar?: boolean;
+  /** The size of the avatar to render a skeleton for. Default is MEDIUM. */
+  avatarSize?: VisualSizesEnum;
+  /** Whether the this is a multi-line skeleton. */
+  hasDescription?: boolean;
+}
 
 /*
  * Style.
  */
 
+const StyledDropdownRightContentWrapperDiv = styled.div`
+  display: grid;
+  align-items: center;
+`;
+
 const StyledDropdownItemSkeletonDiv = styled.div`
+  display: flex;
+  flex-flow: row;
+  gap: 10px;
   padding: 7px 12px;
+`;
+
+const StyledDropdownContentWrapperDiv = styled.div`
+  flex: 1;
+  display: flex;
+  flex-flow: column;
+  gap: 4px;
+`;
+
+interface StyledTitleWrapperDivProps {
+  $hasDescription?: boolean;
+}
+
+const StyledTitleWrapperDiv = styled.div<StyledTitleWrapperDivProps>`
+  ${p => css`
+    max-width: ${p.$hasDescription ? '60%' : 'unset'};
+  `};
 `;
 
 /*
  * Component.
  */
 
-export const DropdownItemSkeleton: FC<DropdownItemSkeletonProps> = () => (
+export const DropdownItemSkeleton: FC<DropdownItemSkeletonProps> = ({hasAvatar, hasDescription, avatarSize = VisualSizesEnum.MEDIUM}) => (
   <StyledDropdownItemSkeletonDiv>
-    <Skeleton borderRadius="4px" />
+    {hasAvatar && (
+      <StyledDropdownRightContentWrapperDiv>
+        <Skeleton
+          borderRadius="100px"
+          width={avatarSizes[avatarSize]}
+          height={avatarSizes[avatarSize]}
+          variant="dark"
+        />
+      </StyledDropdownRightContentWrapperDiv>
+    )}
+    <StyledDropdownContentWrapperDiv>
+      <StyledTitleWrapperDiv $hasDescription={hasDescription}>
+        <Skeleton borderRadius="4px" variant="dark" />
+      </StyledTitleWrapperDiv>
+      {hasDescription && <Skeleton borderRadius="4px" />}
+    </StyledDropdownContentWrapperDiv>
   </StyledDropdownItemSkeletonDiv>
 );

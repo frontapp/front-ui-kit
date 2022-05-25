@@ -68,6 +68,10 @@ const StyledChildrenDiv = styled.div`
   color: ${greys.shade80};
   margin-left: 8px;
   padding-top: 1px;
+
+  &:empty {
+    margin-left: 0;
+  }
 `;
 
 function addCheckboxStyles(props: StyledCheckboxInputProps) {

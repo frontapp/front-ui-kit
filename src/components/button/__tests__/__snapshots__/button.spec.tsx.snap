@@ -185,6 +185,7 @@ exports[`<Button /> Spec Snapshots should render icon button 1`] = `
   padding: 7px;
   border-radius: 8px;
   color: #77787a;
+  background: unset;
 }
 
 .c0:hover {
@@ -223,6 +224,7 @@ exports[`<Button /> Spec Snapshots should render icon-danger button 1`] = `
   padding: 7px;
   border-radius: 8px;
   color: #e9483a;
+  background: unset;
 }
 
 .c0:hover {
