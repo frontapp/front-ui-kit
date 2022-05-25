@@ -35,6 +35,8 @@ export {DropdownItem} from './components/dropdown/dropdownItem';
 export {DropdownFooter} from './components/dropdown/dropdownFooter';
 export {DropdownItemSkeleton} from './components/dropdown/skeleton/dropdownItemSkeleton';
 
+export {EmptyState} from './components/emptyState/emptyState';
+
 export {Icon, IconName} from './components/icon/icon';
 
 export {Input} from './components/input/input';
