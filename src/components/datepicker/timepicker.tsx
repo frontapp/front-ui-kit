@@ -2,8 +2,8 @@ import {range} from 'lodash';
 import {DateTime} from 'luxon';
 import React, {FC} from 'react';
 import styled, {css} from 'styled-components';
-import {formatTime} from '../../helpers/calendarHelpers';
 
+import {formatTime} from '../../helpers/calendarHelpers';
 import {alphas, greys, palette} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 

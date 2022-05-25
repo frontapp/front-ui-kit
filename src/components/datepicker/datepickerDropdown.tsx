@@ -88,7 +88,7 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = props => {
     maxDate,
     onChange,
     type = 'date',
-    timeFormat = '12h',
+    timeFormat = '12h'
   } = props;
   const [selectedDate, setSelectedDate] = useState(value);
   const onChangeDate = (date: Date) => {
