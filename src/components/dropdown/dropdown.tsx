@@ -25,7 +25,7 @@ const defaultLoadingThreshold = 5;
 interface DropdownProps {
   /** The maximum width of the dropdown. Defaults to 260. */
   maxWidth?: number;
-  /** The minimum height of the dropdown. Defaults to 342. */
+  /** The minimum height of the dropdown. Defaults to the max height. */
   minHeight?: number;
   /** The maximum height of the dropdown. Defaults to 342. */
   maxHeight?: number;
