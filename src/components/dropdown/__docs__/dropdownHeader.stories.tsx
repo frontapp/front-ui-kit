@@ -2,11 +2,14 @@ import {ComponentMeta, ComponentStory} from '@storybook/react';
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
+import {palette} from '../../../helpers/colorHelpers';
 import {Dropdown} from '../dropdown';
 import {DropdownButton} from '../dropdownButton';
 import {DropdownCoordinator} from '../dropdownCoordinator';
 import {DropdownHeader} from '../dropdownHeader';
+import {DropdownHeading} from '../dropdownHeading';
 import {DropdownItem} from '../dropdownItem';
+import {DropdownItemIcon} from '../dropdownItemIcon';
 import {disabledDropdownStoryFields} from './dropdownStoryHelpers';
 
 export default {
@@ -86,6 +89,20 @@ const Template: ComponentStory<typeof Dropdown> = args => {
             >
               Dog Breeds
             </DropdownHeader>
+            {!searchValue && (
+              <>
+                <DropdownHeading>
+                  Create
+                </DropdownHeading>
+                <DropdownItem>
+                  <DropdownItemIcon color={palette.blue.shade40} iconName="PlusCircle" />
+                  Create new breed
+                </DropdownItem>
+                <DropdownHeading>
+                  Dog Breeds
+                </DropdownHeading>
+              </>
+            )}
             {dogBreeds.map(breed => (
               <DropdownItem key={breed} onClick={() => setSelectedDogBreed(breed)}>
                 {breed}
