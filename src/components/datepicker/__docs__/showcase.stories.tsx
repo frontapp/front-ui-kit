@@ -51,10 +51,22 @@ const ShowcaseDatePickerComponent: FC<ShowcaseDatePickerProps> = props => {
   const {value, minDate, maxDate, type, calendarWeekStartDay} = props;
   const [description, setDescription] = useState(formatDate(value, type));
 
+  const onClear = () => {
+    console.log("Clearing the datepicker");
+  };
+
   return (
     <StyledShowcaseDiv>
       {<StyledDescriptionDiv>{description}</StyledDescriptionDiv>}
-      <DatePickerDropdown value={value} calendarWeekStartDay={calendarWeekStartDay} minDate={minDate} maxDate={maxDate} onChange={onChange} type={type} />
+      <DatePickerDropdown
+        value={value}
+        calendarWeekStartDay={calendarWeekStartDay}
+        minDate={minDate}
+        maxDate={maxDate}
+        onChange={onChange}
+        onClear={onClear}
+        type={type}
+      />
     </StyledShowcaseDiv>
   );
 };

@@ -81,7 +81,7 @@ export const DatePicker: FC<DatePickerProps> = props => {
     minDate,
     maxDate,
     onChange,
-    type = 'date',
+    type,
     onClear,
     onRequestClose
   } = props;

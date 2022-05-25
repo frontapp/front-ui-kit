@@ -1,4 +1,4 @@
-import {isUndefined} from 'lodash';
+import _, {isUndefined} from 'lodash';
 import {DateTime} from 'luxon';
 import React, {FC, FocusEventHandler, MouseEventHandler, useEffect, useState} from 'react';
 import styled from 'styled-components';
@@ -118,6 +118,12 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
     event.preventDefault();
     onViewChange(DatepickerViewsEnum.DATE);
   };
+  const onClearClick = () => {
+    setTimeValue("");
+    setDateValue("");
+    if (onClear)
+      onClear();
+  };
 
   // Change handlers
   const onTimeValueChange = (newTimeValue: string) => {
@@ -160,7 +166,7 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
       <StyledFooterDiv>
         {selectedDate && onClear &&
           <StyledClearDiv>
-            <Button size={VisualSizesEnum.SMALL} type="secondary" onClick={onClear}>
+            <Button size={VisualSizesEnum.SMALL} type="secondary" onClick={onClearClick}>
               Clear
             </Button>
           </StyledClearDiv>
@@ -182,14 +188,21 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
  * Helpers
  */
 
+/** Given a date and a time string, merge them together to give a DateTime object */
 function parseTime(date: DateTime, timeValue: string) {
-  const parsedTime = DateTime.fromFormat(timeValue, "HH:mm");
-  if (!parsedTime.isValid)
+  const formattedTime = DateTime.fromFormatExplain(
+    `${date.toLocaleString(DateTime.DATE_SHORT)} ${timeValue}`, "M/d/yyyy h:mm a");
+  if (!formattedTime.matches || _.isEmpty(formattedTime.matches))
     return undefined;
 
+  const parsedTime = DateTime.now().startOf('minute').set({
+    hour: formattedTime?.matches.h,
+    minute: formattedTime?.matches.m
+  });
   return mergeDateAndTime(date, parsedTime);
 }
 
+/** Given a date string and a time, merge them together to give a DateTime object */
 function parseDate(dateValue: string, time: DateTime) {
   const parsedDate = DateTime.fromFormat(dateValue, "MM/dd/yyyy");
   if (!parsedDate.isValid)
