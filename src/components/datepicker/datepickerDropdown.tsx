@@ -1,7 +1,7 @@
 import React, {FC, useState} from 'react';
 import styled from 'styled-components';
 
-import {CalendarWeekDaysEnum, formatDate} from '../../helpers/calendarHelpers';
+import {CalendarWeekDaysEnum, formatDateTime} from '../../helpers/calendarHelpers';
 import {greys} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 import {DropdownCoordinator} from '../dropdown/dropdownCoordinator';
@@ -19,6 +19,8 @@ interface DatePickerDropdownProps {
   placeholder?: string;
   /** Controls allowing selecting a time. Default is date. */
   type?: 'date' | 'dateAndTime';
+  /** The format to display time in. This is only used if dateAndTime type is selected. Default is 12h. */
+  timeFormat?: '12h' | '24h';
   /** The minimum date allowed to be selected. */
   minDate?: Date;
   /** The maximum date allowed to be selected. */
@@ -29,7 +31,6 @@ interface DatePickerDropdownProps {
   calendarWeekStartDay?: CalendarWeekDaysEnum
   /** Controls if the clear button is visible and is only supported when in dateAndTime mode.  */
   onClear?: () => void;
-  // TODO timeformat
 }
 
 /*
@@ -86,6 +87,7 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = props => {
     maxDate,
     onChange,
     type = 'date',
+    timeFormat = '12h',
     onClear
   } = props;
   const [selectedDate, setSelectedDate] = useState(value);
@@ -99,12 +101,13 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = props => {
     placement="bottom-start"
     renderButton={() => (
       <StyledDatePickerButtonDiv>
-        {renderDatePickerCalendarButton(selectedDate, placeholder, type)}
+        {renderDatePickerCalendarButton(type, selectedDate, placeholder, timeFormat)}
       </StyledDatePickerButtonDiv>
     )}
     renderDropdown={onCloseDropdown => (
       <DatePicker
         value={selectedDate}
+        timeFormat={timeFormat}
         calendarWeekStartDay={calendarWeekStartDay}
         minDate={minDate}
         maxDate={maxDate}
@@ -121,13 +124,13 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = props => {
  * Helpers
  */
 
-function renderDatePickerCalendarButton(selectedDate?: Date, placeholder?: string, type?: 'date' | 'dateAndTime') {
+function renderDatePickerCalendarButton(type: 'date' | 'dateAndTime', selectedDate?: Date, placeholder?: string, timeFormat?: '12h' | '24h') {
   if (selectedDate)
     return (
       <StyledDatePickerButtonContentDiv>
         <Icon name="Calendar" color={greys.shade70} />
         <StyledDateTimeDiv>
-          {formatDate(selectedDate, type)}
+          {formatDateTime(selectedDate, type, timeFormat)}
         </StyledDateTimeDiv>
         <Icon name="ChevronDown" color={greys.shade70} />
       </StyledDatePickerButtonContentDiv>

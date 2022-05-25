@@ -3,7 +3,7 @@ import {DateTime} from 'luxon';
 import React, {FC, FocusEventHandler, MouseEventHandler, useEffect, useState} from 'react';
 import styled from 'styled-components';
 
-import {DatepickerViewsEnum, mergeDateAndTime} from '../../helpers/calendarHelpers';
+import {DatepickerViewsEnum, formatTime, mergeDateAndTime} from '../../helpers/calendarHelpers';
 import {greys} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights, VisualSizesEnum} from '../../helpers/fontHelpers';
 import {Button} from '../button/button';
@@ -21,6 +21,8 @@ const MAX_INPUT_WIDTH = 107;
 interface DatePickerFooterProps {
   /** The selected date */
   selectedDate?: DateTime;
+  /** The format to display time in. This is only used if dateAndTime type is selected. Default is 12h. */
+  timeFormat: '12h' | '24h';
   /** Controls which input is focused */
   selectedView: DatepickerViewsEnum;
   /** Called when the user updates the date via the input */
@@ -96,18 +98,18 @@ const StyledFooterDiv = styled.div`
  */
 
 export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
-  const {selectedDate, selectedView, onViewChange, onDateChange, onDoneClick, onRequestClose, onClear} = props;
-  const [dateValue, setDateValue] = useState(selectedDate?.toString());
-  const [timeValue, setTimeValue] = useState(selectedDate?.toLocaleString(DateTime.TIME_SIMPLE));
+  const {selectedDate, timeFormat, selectedView, onViewChange, onDateChange, onDoneClick, onRequestClose, onClear} = props;
+  const [dateValue, setDateValue] = useState(selectedDate?.toFormat("MM/dd/yyyy"));
+  const [timeValue, setTimeValue] = useState(selectedDate && formatTime(selectedDate, timeFormat));
 
   const selectedDateMillis = selectedDate?.toMillis();
   useEffect(() => {
     if (isUndefined(selectedDateMillis))
       return;
     const date = DateTime.fromMillis(selectedDateMillis);
-    setTimeValue(date.toLocaleString(DateTime.TIME_SIMPLE));
+    setTimeValue(formatTime(date, timeFormat));
     setDateValue(date.toFormat("MM/dd/yyyy"));
-  }, [selectedDateMillis]);
+  }, [selectedDateMillis, timeFormat]);
 
   // Focus handlers
   const onTimeFocus: FocusEventHandler = event => {

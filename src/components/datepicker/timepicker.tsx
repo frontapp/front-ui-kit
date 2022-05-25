@@ -14,7 +14,9 @@ interface TimePickerProps {
   /** The selected time */
   value?: DateTime;
   /** Handler for when a time is selected */
-  onChange: (value: DateTime) => void
+  onChange: (value: DateTime) => void;
+  /** The format to display time in. This is only used if dateAndTime type is selected. Default is 12h. */
+  timeFormat: '12h' | '24h';
 }
 
 /*
@@ -87,7 +89,7 @@ export const TimePicker: FC<TimePickerProps> = props => (
 
 function renderItems(props: TimePickerProps) {
   // Render each hour in the day.
-  const {value = DateTime.now(), onChange} = props;
+  const {value = DateTime.now(), onChange, timeFormat} = props;
   return range(24).map(hour => {
     // Check if this hour is selected.
     const hourTime = value.startOf('hour').set({hour});
@@ -99,7 +101,7 @@ function renderItems(props: TimePickerProps) {
         $isSelected={isSelected}
         onClick={() => onChange && onChange(hourTime)}
       >
-        {hourTime.toLocaleString(DateTime.TIME_SIMPLE)}
+        {hourTime.toLocaleString(timeFormat === '12h' ? DateTime.TIME_SIMPLE : DateTime.TIME_24_SIMPLE)}
       </StyledItemDiv>
     );
   });

@@ -89,12 +89,18 @@ export function mergeDateAndTime(date: DateTime, time: DateTime) {
   });
 }
 
-export function formatDate(date?: Date, type?: 'date' | 'dateAndTime') {
+export function formatTime(time: DateTime, timeFormat?: '12h' | '24h') {
+  if (!timeFormat || timeFormat === '12h')
+    return time.toLocaleString(DateTime.TIME_SIMPLE);
+  return time.toLocaleString(DateTime.TIME_24_SIMPLE);
+}
+
+export function formatDateTime(date: Date, type: 'date' | 'dateAndTime', timeFormat?: '12h' | '24h') {
   if (date) {
     const dateTime = DateTime.fromJSDate(date);
     if (type === 'date')
       return `${dateTime.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)}`;
-    return `${dateTime.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)} ${dateTime.toLocaleString(DateTime.TIME_SIMPLE)}`;
+    return `${dateTime.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)} ${formatTime(dateTime, timeFormat)}`;
   }
   return "";
 }

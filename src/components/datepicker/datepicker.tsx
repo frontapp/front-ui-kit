@@ -19,6 +19,8 @@ interface DatePickerProps {
   value?: Date;
   /** Controls allowing selecting a time. Default is date. */
   type?: 'date' | 'dateAndTime';
+  /** The format to display time in. This is only used if dateAndTime type is selected. */
+  timeFormat: '12h' | '24h';
   /** The minimum date allowed to be selected. */
   minDate?: Date;
   /** The maximum date allowed to be selected. */
@@ -78,6 +80,7 @@ export const DatePicker: FC<DatePickerProps> = props => {
   const {
     value,
     calendarWeekStartDay = CalendarWeekDaysEnum.SUNDAY,
+    timeFormat,
     minDate,
     maxDate,
     onChange,
@@ -152,7 +155,7 @@ export const DatePicker: FC<DatePickerProps> = props => {
           minDate={minDateTime}
           maxDate={maxDateTime}
         />
-        {maybeRenderTimePicker(selectedView, onTimeSelect, selectedDate)}
+        {maybeRenderTimePicker(selectedView, onTimeSelect, timeFormat, selectedDate)}
       </StyledDatePickerDiv>
       {type === 'dateAndTime' &&
         <StyledInputsDiv>
@@ -163,6 +166,7 @@ export const DatePicker: FC<DatePickerProps> = props => {
             onViewChange={onViewChange}
             onDoneClick={onDone}
             onClear={onClear}
+            timeFormat={timeFormat}
             onRequestClose={onRequestClose}
           />
         </StyledInputsDiv>
@@ -175,12 +179,14 @@ export const DatePicker: FC<DatePickerProps> = props => {
  * Helpers
  */
 
-function maybeRenderTimePicker(selectedView: DatepickerViewsEnum, onTimeSelect: (date: DateTime) => void, selectedDate?: DateTime) {
+function maybeRenderTimePicker(selectedView: DatepickerViewsEnum,
+  onTimeSelect: (date: DateTime) => void, timeFormat: '12h' | '24h', selectedDate?: DateTime) {
   if (selectedView === DatepickerViewsEnum.DATE)
     return null;
   return (
     <StyledTimePickerDiv>
       <TimePicker
+        timeFormat={timeFormat}
         value={selectedDate}
         onChange={onTimeSelect}
       />;
