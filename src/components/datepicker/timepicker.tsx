@@ -49,7 +49,7 @@ const StyledItemDiv = styled.div<TimePickerItemStyleProps>`
   align-items: center;
 
   font-family: ${fonts.system};
-  font-size: ${fontSizes.small};
+  font-size: ${fontSizes.large};
   font-weight: ${fontWeights.normal};
   line-height: 24px;
   cursor: default;
