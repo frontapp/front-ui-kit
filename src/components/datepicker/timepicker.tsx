@@ -1,6 +1,6 @@
 import {range} from 'lodash';
 import {DateTime} from 'luxon';
-import React, {FC, useEffect, useRef} from 'react';
+import React, {FC, RefObject, useEffect, useRef} from 'react';
 import styled, {css} from 'styled-components';
 
 import {formatTime} from '../../helpers/calendarHelpers';
@@ -78,22 +78,24 @@ function addTimesStyles(props: TimePickerItemStyleProps) {
  * Component.
  */
 
-export const TimePicker: FC<TimePickerProps> = props => (
-  <StyledTimePickerDiv>
-    {renderItems(props)}
-  </StyledTimePickerDiv>
-);
+export const TimePicker: FC<TimePickerProps> = props => {
+  const selectedRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    selectedRef.current?.scrollIntoView({block: "center"});
+  }, []);
+  return (
+    <StyledTimePickerDiv>
+      {renderItems(props, selectedRef)}
+    </StyledTimePickerDiv>
+  );
+};
 
 /*
  * Helpers
  */
 
-function renderItems(props: TimePickerProps) {
+function renderItems(props: TimePickerProps, selectedRef: RefObject<HTMLDivElement>) {
   // Render each hour in the day.
-  const selectedRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    selectedRef.current?.scrollIntoView({block: "center"});
-  }, [])
   const {value = DateTime.now(), onChange, timeFormat} = props;
   return range(24).map(hour => {
     // Check if this hour is selected.
