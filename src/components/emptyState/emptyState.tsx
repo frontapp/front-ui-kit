@@ -17,8 +17,11 @@ const DefaultMessage = 'No results';
  */
 
 interface EmptyStateProps {
+  /** The message to render for the empty state. Default is "No results" */
   message?: string;
+  /** Text for the button to render, required to render a button.  */
   buttonText?: string;
+  /** Handler when the button is clicked, required to render a button. */
   onButtonClick?: () => void;
 }
 
