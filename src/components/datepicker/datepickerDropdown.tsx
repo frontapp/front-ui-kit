@@ -98,8 +98,8 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = props => {
   };
 
   return <DropdownCoordinator
-    isOverlayCloseDisabled
     placement="bottom-start"
+    isInline
     renderButton={() => (
       <StyledDatePickerButtonDiv>
         {renderDatePickerCalendarButton(type, selectedDate, placeholder, timeFormat)}

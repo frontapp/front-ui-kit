@@ -105,12 +105,10 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
   }, [selectedDateMillis, timeFormat]);
 
   // Focus handlers
-  const onTimeFocus: FocusEventHandler = event => {
-    event.preventDefault();
+  const onTimeFocus: FocusEventHandler = () => {
     onViewChange(DatepickerViewsEnum.TIME);
   };
-  const onDateFocus: FocusEventHandler = event => {
-    event.preventDefault();
+  const onDateFocus: FocusEventHandler = () => {
     onViewChange(DatepickerViewsEnum.DATE);
   };
 
@@ -138,8 +136,8 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
         <Input
           id="date"
           value={dateValue}
-          shouldFocus={selectedView === DatepickerViewsEnum.DATE}
           onFocus={onDateFocus}
+          shouldFocus={selectedView === DatepickerViewsEnum.DATE}
           maxWidth={MAX_INPUT_WIDTH}
           onChange={onDateValueChange}
         />

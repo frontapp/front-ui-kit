@@ -25,7 +25,7 @@ interface ShowcaseDatePickerProps {
  */
 
 const StyledShowcaseDiv = styled.div`
-  background: ${greys.shade50};
+  background: ${greys.white};
   border-radius: 8px;
   width: 300px;
   height: 80px;
