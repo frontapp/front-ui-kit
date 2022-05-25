@@ -33,7 +33,6 @@ const StyledTimePickerDiv = styled.div`
   height: inherit;
   display: flex;
   flex-direction: column;
-  width: 254px;
   border-radius: 8px;
 
   background-color: ${greys.white};

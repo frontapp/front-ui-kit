@@ -2,10 +2,8 @@ import React, {FC, useState} from 'react';
 import styled from 'styled-components';
 
 import {CalendarWeekDaysEnum, formatDateTime} from '../../helpers/calendarHelpers';
-import {greys} from '../../helpers/colorHelpers';
-import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
+import {DropdownButton} from '../dropdown/dropdownButton';
 import {DropdownCoordinator} from '../dropdown/dropdownCoordinator';
-import {Icon} from '../icon/icon';
 import {DatePicker} from './datepicker';
 
 /*
@@ -36,44 +34,7 @@ interface DatePickerDropdownProps {
  */
 
 const StyledDatePickerButtonDiv = styled.div`
-  width: 234px;
-  height: 16px;
-  background: ${greys.shade20};
-  border: 2px solid ${greys.shade30};
-  border-radius: 6px;
-  padding: 5px 8px;
-  gap: 8px;
-  cursor: default;
-
-  &:hover {
-    background: ${greys.shade30};
-  }
-`;
-
-const StyledDatePickerButtonContentDiv = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  width: 100%;
-  font-family: ${fonts.system};
-  font-size: ${fontSizes.medium};
-  font-weight: ${fontWeights.normal};
-  line-height: 17px;
-`;
-
-const StyledDateTimeDiv = styled.div`
-  color: ${greys.shade80};
-  white-space: nowrap;
-`;
-
-const StyledPlaceholderDiv = styled.div`
-  color: ${greys.shade60};
-  white-space: nowrap;
-`;
-
-const StyledIconDiv = styled.div`
-  margin-left: auto
+  width: 270px;
 `;
 
 /*
@@ -100,9 +61,9 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = props => {
   return <DropdownCoordinator
     placement="bottom-start"
     isInline
-    renderButton={() => (
+    renderButton={isDropdownOpen => (
       <StyledDatePickerButtonDiv>
-        {renderDatePickerCalendarButton(type, selectedDate, placeholder, timeFormat)}
+        {renderDatePickerCalendarButton(isDropdownOpen, type, selectedDate, placeholder, timeFormat)}
       </StyledDatePickerButtonDiv>
     )}
     renderDropdown={onCloseDropdown => (
@@ -124,29 +85,19 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = props => {
  * Helpers
  */
 
-function renderDatePickerCalendarButton(type: 'date' | 'dateAndTime', selectedDate?: Date, placeholder?: string, timeFormat?: '12h' | '24h') {
-  if (selectedDate)
-    return (
-      <StyledDatePickerButtonContentDiv>
-        <Icon name="Calendar" color={greys.shade70} />
-        <StyledDateTimeDiv>
-          {formatDateTime(selectedDate, type, timeFormat)}
-        </StyledDateTimeDiv>
-        <StyledIconDiv>
-          <Icon name="ChevronDown" color={greys.shade70} />
-        </StyledIconDiv>
-      </StyledDatePickerButtonContentDiv>
-    );
-
+function renderDatePickerCalendarButton(
+  isActive: boolean,
+  type: 'date' | 'dateAndTime',
+  selectedDate?: Date,
+  placeholder?: string,
+  timeFormat?: '12h' | '24h') {
   return (
-    <StyledDatePickerButtonContentDiv>
-      <Icon name="Calendar" color={greys.shade70} />
-      <StyledPlaceholderDiv>
-        {placeholder}
-      </StyledPlaceholderDiv>
-      <StyledIconDiv>
-        <Icon name="ChevronDown" color={greys.shade70} />
-      </StyledIconDiv>
-    </StyledDatePickerButtonContentDiv>
+    <DropdownButton
+      value={(selectedDate && formatDateTime(selectedDate, type, timeFormat)) || ""}
+      placeholder={placeholder}
+      iconName="Calendar"
+      maxWidth={254}
+      isActive={isActive}
+    />
   );
 }

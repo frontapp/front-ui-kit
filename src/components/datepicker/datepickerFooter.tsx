@@ -134,7 +134,6 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
       </StyledLabelsDiv>
       <StyledInputsDiv>
         <Input
-          id="date"
           value={dateValue}
           onFocus={onDateFocus}
           shouldFocus={selectedView === DatepickerViewsEnum.DATE}
@@ -142,7 +141,6 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
           onChange={onDateValueChange}
         />
         <Input
-          id="time"
           value={timeValue}
           shouldFocus={selectedView === DatepickerViewsEnum.TIME}
           onFocus={onTimeFocus}

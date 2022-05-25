@@ -37,7 +37,7 @@ const StyledGridDiv = styled.div`
   justify-content: space-between;
   justify-items: center;
   background: ${greys.white};
-  padding: 8px 8px;
+  padding: 8px;
 `;
 
 const StyledWeekdayDiv = styled.div`
