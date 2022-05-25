@@ -42,7 +42,6 @@ interface StyledDropdownButtonWrapperDivProps {
   $isActive?: boolean;
   $isDisabled?: boolean;
   $isErred?: boolean;
-  $hasArrayValue?: boolean;
 }
 
 const StyledDropdownButtonWrapperDiv = styled.div<StyledDropdownButtonWrapperDivProps>`
@@ -58,7 +57,6 @@ const StyledDropdownButtonWrapperDiv = styled.div<StyledDropdownButtonWrapperDiv
 
   ${p => css`
     max-width: ${p.$maxWidth ? `${p.$maxWidth}px` : 'unset'};
-    padding: ${p.$hasArrayValue ? '1.75px 8px 1.75px 2px' : '4.75px 8px'};
   `};
 
   ${p => addDropdownButtonWrapperStyles(p.$isActive, p.$isDisabled, p.$isErred)};
@@ -98,6 +96,7 @@ const StyledContentWrapperDiv = styled.div<StyledContentWrapperDivProps>`
   flex-flow: row;
   flex: 1;
   overflow: hidden;
+  place-content: center;
 
   ${p => p.$isDisabled && css`
     opacity: 0.5;
@@ -123,18 +122,23 @@ const StyledChildrenWrapperDiv = styled.div`
   color: ${greys.shade90};
   cursor: default;
   flex: 1;
+  padding: 0 0 0 8px;
+  line-height: 26px;
+  height: 26px;
 `;
 
 const StyledPillsWrapperDiv = styled.div`
   display: flex;
   flex-flow: row;
   gap: 4px;
+  margin-left: -4px;
 `;
 
 const StyledChevronWrapperDiv = styled.div`
   display: flex;
   flex-flow: column;
   place-content: center;
+  padding: 0 8px;
 `;
 
 /*
@@ -143,7 +147,6 @@ const StyledChevronWrapperDiv = styled.div`
 
 export const DropdownButton: FC<DropdownButtonProps> = props => {
   const {maxWidth, value, iconName, isDisabled, isActive, isErred} = props;
-  const hasArrayValue = Boolean(typeof value !== 'string' && value.length > 0);
   const [childrenContainerRef, {width}] = useMeasureElement();
 
   return (
@@ -153,12 +156,11 @@ export const DropdownButton: FC<DropdownButtonProps> = props => {
       $isActive={isActive}
       $isDisabled={isDisabled}
       $isErred={isErred}
-      $hasArrayValue={hasArrayValue}
     >
       <StyledContentWrapperDiv $isDisabled={isDisabled}>
         {maybeRenderIcon(iconName)}
-        {maybeRenderPlaceholder(props)}
         <StyledChildrenWrapperDiv ref={childrenContainerRef}>
+          {maybeRenderPlaceholder(props)}
           {renderDropdownContent(value, width)}
         </StyledChildrenWrapperDiv>
       </StyledContentWrapperDiv>
@@ -174,7 +176,7 @@ export const DropdownButton: FC<DropdownButtonProps> = props => {
  */
 
 function renderDropdownContent(value: string | ReadonlyArray<string>, childrenContainerWidth: number) {
-  if (typeof value !== 'string')
+  if (Array.isArray(value))
     return (
       <StyledPillsWrapperDiv>
         <OverflowWithCount<string>
