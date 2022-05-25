@@ -43,7 +43,6 @@ const StyledItemDiv = styled.div<TimePickerItemStyleProps>`
   height: 30px;
   margin: 4px 0;
   border-radius: 5px;
-  font-size: ${fontSizes.large};
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -29,6 +29,8 @@ export {ButtonGroup} from './components/button/buttonGroup';
 
 export {Checkbox} from './components/checkbox/checkbox';
 
+export {DatePickerDropdown} from './components/datepicker/datepickerDropdown';
+
 export {DropdownCoordinator} from './components/dropdown/dropdownCoordinator';
 export {Dropdown} from './components/dropdown/dropdown';
 export {DropdownItem} from './components/dropdown/dropdownItem';

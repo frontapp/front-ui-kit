@@ -22,7 +22,7 @@ const Template: ComponentStory<typeof Dropdown> = args => (
   <DropdownCoordinator
     {...args}
     placement="bottom-start"
-    renderButton={() => <Button type="secondary"><Icon name="EllipsisVertical" /></Button>}
+    renderButton={() => <Button type="icon"><Icon name="EllipsisVertical" /></Button>}
     renderDropdown={() => (
       <Dropdown {...args}>
         {itemsToRender.map(itemId => (

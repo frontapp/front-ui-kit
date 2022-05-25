@@ -96,11 +96,8 @@ export function formatTime(time: DateTime, timeFormat?: '12h' | '24h') {
 }
 
 export function formatDateTime(date: Date, type: 'date' | 'dateAndTime', timeFormat?: '12h' | '24h') {
-  if (date) {
-    const dateTime = DateTime.fromJSDate(date);
-    if (type === 'date')
-      return `${dateTime.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)}`;
-    return `${dateTime.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)} ${formatTime(dateTime, timeFormat)}`;
-  }
-  return "";
+  const dateTime = DateTime.fromJSDate(date);
+  if (type === 'date')
+    return `${dateTime.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)}`;
+  return `${dateTime.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)} ${formatTime(dateTime, timeFormat)}`;
 }
