@@ -1,6 +1,33 @@
 # Changelog
 
 
+### [0.3.1](https://github.com/frontapp/front-ui-kit/compare/v0.3.0...v0.3.1) (2022-05-26)
+
+
+### Features
+
+* add ability to force hover state for buttons ([a5e7ba1](https://github.com/frontapp/front-ui-kit/commit/a5e7ba18d892c1e98a5a0d0a05dc96a668bb30ca))
+* add dropdownHeader and dropdownButton ([#55](https://github.com/frontapp/front-ui-kit/issues/55)) ([a5e7ba1](https://github.com/frontapp/front-ui-kit/commit/a5e7ba18d892c1e98a5a0d0a05dc96a668bb30ca))
+* add dropdownHeading component ([#72](https://github.com/frontapp/front-ui-kit/issues/72)) ([b5d01b4](https://github.com/frontapp/front-ui-kit/commit/b5d01b49d2d27415cbc5ae910494a4f82f555b14))
+* add dropdownItemFormField component ([#73](https://github.com/frontapp/front-ui-kit/issues/73)) ([f089944](https://github.com/frontapp/front-ui-kit/commit/f0899446fa11f6af0cb974bdada2a1f28f4d5f01))
+* add dropdownItemIcon component ([b5d01b4](https://github.com/frontapp/front-ui-kit/commit/b5d01b49d2d27415cbc5ae910494a4f82f555b14))
+* add emptyState component ([#70](https://github.com/frontapp/front-ui-kit/issues/70)) ([d54eb2f](https://github.com/frontapp/front-ui-kit/commit/d54eb2f4d02561ac45b05429a230c3da8bd6badd))
+* add formField component ([#68](https://github.com/frontapp/front-ui-kit/issues/68)) ([fe32c1b](https://github.com/frontapp/front-ui-kit/commit/fe32c1b6a92db7274f3090b986f8291e9e571fe2))
+* add internal overflowWithCount component ([e5cc472](https://github.com/frontapp/front-ui-kit/commit/e5cc4722b2d725deb6a801ec1bc001cc77054cd4))
+* add support for empty state in Dropdown ([d54eb2f](https://github.com/frontapp/front-ui-kit/commit/d54eb2f4d02561ac45b05429a230c3da8bd6badd))
+* add support for pills in DropdownButton ([#71](https://github.com/frontapp/front-ui-kit/issues/71)) ([e5cc472](https://github.com/frontapp/front-ui-kit/commit/e5cc4722b2d725deb6a801ec1bc001cc77054cd4))
+* buttonGroup supports alignment ([f089944](https://github.com/frontapp/front-ui-kit/commit/f0899446fa11f6af0cb974bdada2a1f28f4d5f01))
+* dropdownCoordinator passes props to renderButton ([a5e7ba1](https://github.com/frontapp/front-ui-kit/commit/a5e7ba18d892c1e98a5a0d0a05dc96a668bb30ca))
+
+
+### Bug Fixes
+
+* add default pill line-height ([e5cc472](https://github.com/frontapp/front-ui-kit/commit/e5cc4722b2d725deb6a801ec1bc001cc77054cd4))
+* dropdownFooter will not close dropdown on click ([b5d01b4](https://github.com/frontapp/front-ui-kit/commit/b5d01b49d2d27415cbc5ae910494a4f82f555b14))
+* layer now uses MouseEventHandler ([a5e7ba1](https://github.com/frontapp/front-ui-kit/commit/a5e7ba18d892c1e98a5a0d0a05dc96a668bb30ca))
+* popper not overflowing properly ([a5e7ba1](https://github.com/frontapp/front-ui-kit/commit/a5e7ba18d892c1e98a5a0d0a05dc96a668bb30ca))
+* styling for dropdownButton ([f089944](https://github.com/frontapp/front-ui-kit/commit/f0899446fa11f6af0cb974bdada2a1f28f4d5f01))
+
 ## [0.3.0](https://github.com/frontapp/front-ui-kit/compare/v0.2.0...v0.3.0) (2022-05-24)
 
 
