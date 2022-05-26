@@ -26,7 +26,7 @@ const defaultLoadingThreshold = 5;
 interface DropdownProps {
   /** The maximum width of the dropdown. Defaults to 260. */
   maxWidth?: number;
-  /** The minimum height of the dropdown. Defaults to unset. */
+  /** The minimum height of the dropdown. Defaults to the max height. */
   minHeight?: number;
   /** The maximum height of the dropdown. Defaults to 342. */
   maxHeight?: number;
@@ -44,6 +44,11 @@ interface DropdownProps {
   hasMore?: boolean;
   /** Called when we request to load more items. */
   onLoadMore?: () => Promise<void>;
+
+  /** Whether the dropdown should render the empty state. */
+  isEmpty?: boolean;
+  /** Render the empty state for the dropdown. */
+  renderEmptyState?: () => React.ReactNode;
 }
 
 /*
@@ -100,12 +105,15 @@ export const Dropdown: FC<DropdownProps> = props => {
     children,
     maxWidth = defaultMaxWidth,
     maxHeight = defaultMaxHeight,
-    minHeight,
+    // The minHeight should default to the max height
+    minHeight = maxHeight,
     isLoading,
     hasMore,
     loadingThreshold = defaultLoadingThreshold,
     loadingSkeleton,
-    onLoadMore
+    isEmpty,
+    onLoadMore,
+    renderEmptyState
   } = props;
   const {itemsCount, itemsHeight, getItemHeight, renderItem} = useDropdownList(children);
 
@@ -116,6 +124,8 @@ export const Dropdown: FC<DropdownProps> = props => {
   const formFields = useMemo(() => _(renderChildrenSpecifiedComponents(children, ['DropdownItemFormField'])).compact().value(), [children]);
 
   const renderDropdownContent = () => {
+    if (isEmpty && renderEmptyState)
+      return renderEmptyState();
     // We will not support rendering the input items in the list. Since the virtual list re-renders so often
     // and inputs need to keep focus they do not really mix well.
     if (formFields.length > 0)
