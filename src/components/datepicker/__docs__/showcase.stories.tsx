@@ -29,13 +29,14 @@ const StyledShowcaseDiv = styled.div`
   background: ${greys.white};
   border-radius: 8px;
   padding: 16px;
+  width: 254px;
 `;
 
 const StyledDescriptionDiv = styled.div`
   font-size: ${fontSizes.medium};
   color: ${greys.black};
   text-align: center;
-  padding: 10px 0px
+  padding: 10px 10px
 `;
 
 /*

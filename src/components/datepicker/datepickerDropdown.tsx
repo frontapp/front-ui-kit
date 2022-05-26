@@ -58,7 +58,6 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = props => {
           placeholder={placeholder}
           iconName="Calendar"
           isActive={isDropdownOpen}
-          maxWidth={254}
         />
       )}
       renderDropdown={onCloseDropdown => (
