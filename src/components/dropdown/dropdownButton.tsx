@@ -51,7 +51,7 @@ const StyledDropdownButtonWrapperDiv = styled.div<StyledDropdownButtonWrapperDiv
   border-radius: 6px;
   box-sizing: border-box;
   font-size: ${fontSizes.medium};
-  width: calc(100% - 16px);
+  width: 100%;
   border: 2px solid transparent;
   min-height: 30px;
 

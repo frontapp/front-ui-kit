@@ -8,7 +8,7 @@ import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
  * Props.
  */
 
-interface FormFieldProps {
+export interface FormFieldProps {
   /** The label for the form field. */
   label: string;
   /** A hint for the form field. If an error message is supplied, this will not be displayed. */
@@ -43,6 +43,7 @@ interface StyledFormFieldHelperTextDivProps {
 const StyledFormFieldHelperTextDiv = styled.div<StyledFormFieldHelperTextDivProps>`
   height: 14px;
   line-height: 14px;
+  margin-top: -4px; // Minor offset to bring the hint and error closed to the input.
 
   ${p => css`
     font-size: ${fontSizes.verySmall};
