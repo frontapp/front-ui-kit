@@ -72,7 +72,7 @@ export const DatePicker: FC<DatePickerProps> = props => {
     onRequestClose
   } = props;
   const [selectedDate, setSelectedDate] = useState(value && DateTime.fromJSDate(value));
-  const selectedDateMonth = selectedDate?.startOf('month');
+  const selectedDateMonth = selectedDate ? selectedDate.startOf('month') : DateTime.now().startOf('month');
   const [focusedMonth, setFocusedMonth] = useState(selectedDateMonth);
   const [selectedView, setSelectedView] = useState(DatepickerViewsEnum.DATE);
 

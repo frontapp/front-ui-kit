@@ -13,7 +13,7 @@ import {Icon} from '../icon/icon';
  */
 
 interface DatePickerHeaderProps {
-  value?: DateTime;
+  value: DateTime;
   onFocusPreviousMonth: MouseEventHandler;
   onFocusNextMonth: MouseEventHandler;
 }
