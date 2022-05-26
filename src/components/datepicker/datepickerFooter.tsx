@@ -10,8 +10,9 @@ import {Button} from '../button/button';
 import {Input} from '../input/input';
 
 /*
- * Constant
+ * Constants
  */
+
 const MAX_INPUT_WIDTH = 107;
 
 /*

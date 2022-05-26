@@ -12,10 +12,7 @@ import {DatePickerDropdown} from '../datepickerDropdown';
 const StyledDatePickerDiv = styled.div`
   background: ${greys.white};
   border-radius: 8px;
-  padding: 10px;
-  display: grid;
-  align-items: center;
-  justify-content: center;
+  padding: 16px;
 `;
 
 export default {

@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import {CalendarWeekDaysEnum, formatDateTime} from '../../../helpers/calendarHelpers';
 import {greys} from '../../../helpers/colorHelpers';
 import {fontSizes} from '../../../helpers/fontHelpers';
+import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
 import {DatePickerDropdown} from '../datepickerDropdown';
 
 /*
@@ -27,11 +28,7 @@ interface ShowcaseDatePickerProps {
 const StyledShowcaseDiv = styled.div`
   background: ${greys.white};
   border-radius: 8px;
-  width: 300px;
-  height: 80px;
-  display: grid;
-  align-items: center;
-  justify-content: center;
+  padding: 16px;
 `;
 
 const StyledDescriptionDiv = styled.div`
@@ -53,18 +50,20 @@ const ShowcaseDatePickerComponent: FC<ShowcaseDatePickerProps> = props => {
   const [description, setDescription] = useState(value && formatDateTime(value, type, timeFormat));
 
   return (
-    <StyledShowcaseDiv>
-      {description && <StyledDescriptionDiv>{description}</StyledDescriptionDiv>}
-      <DatePickerDropdown
-        value={value}
-        calendarWeekStartDay={calendarWeekStartDay}
-        minDate={minDate}
-        maxDate={maxDate}
-        onChange={onChange}
-        type={type}
-        timeFormat={timeFormat}
-      />
-    </StyledShowcaseDiv>
+    <DefaultStyleProvider>
+      <StyledShowcaseDiv>
+        {description && <StyledDescriptionDiv>{description}</StyledDescriptionDiv>}
+        <DatePickerDropdown
+          value={value}
+          calendarWeekStartDay={calendarWeekStartDay}
+          minDate={minDate}
+          maxDate={maxDate}
+          onChange={onChange}
+          type={type}
+          timeFormat={timeFormat}
+        />
+      </StyledShowcaseDiv>
+    </DefaultStyleProvider>
   );
 };
 

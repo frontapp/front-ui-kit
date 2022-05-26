@@ -34,7 +34,7 @@ export interface DatePickerDropdownProps {
  */
 
 const StyledDatePickerButtonDiv = styled.div`
-  width: 270px;
+  width: 100%;
 `;
 
 /*
@@ -58,31 +58,30 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = props => {
     onChange(date);
   };
 
-  return <DropdownCoordinator
-    placement="bottom-start"
-    isInline
-    renderButton={isDropdownOpen => (
-      <StyledDatePickerButtonDiv>
+  return (
+    <DropdownCoordinator
+      placement="bottom-start"
+      renderButton={isDropdownOpen => (
         <DropdownButton
           value={(selectedDate && formatDateTime(selectedDate, type, timeFormat)) || ""}
           placeholder={placeholder}
           iconName="Calendar"
-          maxWidth={254}
           isActive={isDropdownOpen}
+          maxWidth={254}
         />
-      </StyledDatePickerButtonDiv>
-    )}
-    renderDropdown={onCloseDropdown => (
-      <DatePicker
-        value={selectedDate}
-        timeFormat={timeFormat}
-        calendarWeekStartDay={calendarWeekStartDay}
-        minDate={minDate}
-        maxDate={maxDate}
-        onChange={onChangeDate}
-        type={type}
-        onRequestClose={onCloseDropdown}
-      />
-    )}
-  />;
+      )}
+      renderDropdown={onCloseDropdown => (
+        <DatePicker
+          value={selectedDate}
+          timeFormat={timeFormat}
+          calendarWeekStartDay={calendarWeekStartDay}
+          minDate={minDate}
+          maxDate={maxDate}
+          onChange={onChangeDate}
+          type={type}
+          onRequestClose={onCloseDropdown}
+        />
+      )}
+    />
+  );
 };

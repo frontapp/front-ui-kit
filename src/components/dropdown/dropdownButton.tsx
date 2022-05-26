@@ -104,7 +104,7 @@ const StyledContentWrapperDiv = styled.div<StyledContentWrapperDivProps>`
 `;
 
 const StyledIconWrapperDiv = styled.div`
-  margin-right: 8px;
+  padding: 5px 2px 5px 8px;
 `;
 
 const StyledPlaceholderWrapperDiv = styled.div`

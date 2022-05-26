@@ -74,6 +74,7 @@ const Template: ComponentStory<typeof Dropdown> = args => {
           <DropdownButton
             placeholder="Select dog breed"
             isActive={isDropdownOpen}
+            iconName={"Search"}
             maxWidth={300}
             value={selectedDogBreed}
           />
