@@ -1,5 +1,4 @@
 import React, {FC, useState} from 'react';
-import styled from 'styled-components';
 
 import {CalendarWeekDaysEnum, formatDateTime} from '../../helpers/calendarHelpers';
 import {DropdownButton} from '../dropdown/dropdownButton';
