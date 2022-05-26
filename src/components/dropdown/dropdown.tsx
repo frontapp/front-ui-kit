@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, {FC, useMemo} from 'react';
 import styled, {css} from 'styled-components';
 
@@ -86,6 +87,10 @@ function addDropdownContentStyles(props: StyledDropdownContentWrapperDivProps) {
   `;
 }
 
+const StyledDropdownFormContentDiv = styled.div`
+  padding: 5px 0px;
+`;
+
 /*
  * Component.
  */
@@ -108,29 +113,36 @@ export const Dropdown: FC<DropdownProps> = props => {
   const loadingSkeletonDefaulted = useMemo(() => buildLoadingSkeleton(loadingSkeleton), [loadingSkeleton]);
   const loadingSkeletonHeight = useMemo(() => computeLoadingSkeletonHeight(loadingSkeletonDefaulted), [loadingSkeletonDefaulted]);
 
+  const formFields = useMemo(() => _(renderChildrenSpecifiedComponents(children, ['DropdownItemFormField'])).compact().value(), [children]);
+
+  const renderDropdownContent = () => {
+    // We will not support rendering the input items in the list. Since the virtual list re-renders so often
+    // and inputs need to keep focus they do not really mix well.
+    if (formFields.length > 0)
+      return <StyledDropdownFormContentDiv>{formFields}</StyledDropdownFormContentDiv>;
+    return (
+      <DropdownList
+        itemsCount={itemsCount}
+        loadingItemsCount={hasMore || isLoading ? computeTotalLoadingItems(itemsCount, maxHeight, loadingSkeletonHeight) : 0}
+        height={computeHeight(itemsHeight, itemsCount, loadingSkeletonHeight, maxHeight, hasMore)}
+        isLoading={isLoading}
+        hasMore={hasMore}
+        loadingThreshold={loadingThreshold}
+        loadingSkeletonHeight={loadingSkeletonHeight}
+        loadingSkeleton={loadingSkeletonDefaulted}
+        getItemHeight={getItemHeight}
+        renderItem={renderItem}
+        onLoadMore={onLoadMore || (async () => {})}
+      />
+    );
+  };
+
   return (
     <StyledDropdownWrapperDiv $maxWidth={maxWidth}>
       {/* Render Dropdown headers / footers. */}
       {renderChildrenSpecifiedComponents(children, ['DropdownHeader', 'DropdownFooter'])}
       <StyledDropdownContentWrapperDiv $maxHeight={maxHeight} $minHeight={minHeight}>
-        {/*
-          We will not support rendering the input items in the list. Since the virtual list re-renders so often
-          and inputs need to keep focus they do not really mix well.
-        */}
-        {renderChildrenSpecifiedComponents(children, ['DropdownItemInput'])}
-        <DropdownList
-          itemsCount={itemsCount}
-          loadingItemsCount={hasMore || isLoading ? computeTotalLoadingItems(itemsCount, maxHeight, loadingSkeletonHeight) : 0}
-          height={computeHeight(itemsHeight, itemsCount, loadingSkeletonHeight, maxHeight, hasMore)}
-          isLoading={isLoading}
-          hasMore={hasMore}
-          loadingThreshold={loadingThreshold}
-          loadingSkeletonHeight={loadingSkeletonHeight}
-          loadingSkeleton={loadingSkeletonDefaulted}
-          getItemHeight={getItemHeight}
-          renderItem={renderItem}
-          onLoadMore={onLoadMore || (async () => {})}
-        />
+        {renderDropdownContent()}
       </StyledDropdownContentWrapperDiv>
     </StyledDropdownWrapperDiv>
   );

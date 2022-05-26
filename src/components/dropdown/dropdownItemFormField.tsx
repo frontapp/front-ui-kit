@@ -8,7 +8,7 @@ import {FormField, FormFieldProps} from '../formField/formField';
  * Style.
  */
 
-const StyledDropdownItemInputWrapperDiv = styled.div`
+const StyledDropdownItemFormFieldWrapperDiv = styled.div`
   padding: 0 8px;
 `;
 
@@ -16,8 +16,8 @@ const StyledDropdownItemInputWrapperDiv = styled.div`
  * Component.
  */
 
-export const DropdownItemInput: FC<FormFieldProps> = props => (
-  <StyledDropdownItemInputWrapperDiv onClick={event => event.preventDefault()}>
+export const DropdownItemFormField: FC<FormFieldProps> = props => (
+  <StyledDropdownItemFormFieldWrapperDiv onClick={event => event.preventDefault()}>
     <FormField {...props}>{props.children}</FormField>
-  </StyledDropdownItemInputWrapperDiv>
+  </StyledDropdownItemFormFieldWrapperDiv>
 );

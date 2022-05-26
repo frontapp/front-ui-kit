@@ -11,7 +11,7 @@ import {DropdownCoordinator} from '../dropdownCoordinator';
 import {DropdownFooter} from '../dropdownFooter';
 import {DropdownHeader} from '../dropdownHeader';
 import {DropdownItem} from '../dropdownItem';
-import {DropdownItemInput} from '../dropdownItemInput';
+import {DropdownItemFormField} from '../dropdownItemFormField';
 import {disabledDropdownStoryFields} from './dropdownStoryHelpers';
 
 export default {
@@ -60,13 +60,13 @@ const Template: ComponentStory<typeof Dropdown> = args => {
         <Dropdown {...args}>
           <DropdownHeader>Sign up</DropdownHeader>
 
-          <DropdownItemInput label="Your name">
+          <DropdownItemFormField label="Your name">
             <Input placeholder="John Doe" value={name} onChange={setName} />
-          </DropdownItemInput>
-          <DropdownItemInput label="Your email">
+          </DropdownItemFormField>
+          <DropdownItemFormField label="Your email">
             <Input placeholder="john.doe@example.com" value={email} onChange={setEmail} />
-          </DropdownItemInput>
-          <DropdownItemInput label="Your favorite dog breed">
+          </DropdownItemFormField>
+          <DropdownItemFormField label="Your favorite dog breed">
             <DropdownCoordinator
               placement="bottom-start"
               renderButton={isDropdownOpen => (
@@ -89,7 +89,7 @@ const Template: ComponentStory<typeof Dropdown> = args => {
                 </Dropdown>
               )}
             />
-          </DropdownItemInput>
+          </DropdownItemFormField>
 
           <DropdownFooter>
             <ButtonGroup align="right">
