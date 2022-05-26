@@ -3,7 +3,10 @@ const path = require('path');
 const isProduction = process.argv.indexOf('--mode=production') !== -1;
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: {
+    index: './src/index.ts',
+    'misc/index': './src/misc/index.ts'
+  },
   devtool: !isProduction ? 'inline-source-map' : undefined,
   externals: {
     react: 'react',
@@ -85,7 +88,7 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js']
   },
   output: {
-    filename: 'index.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
     library: {
