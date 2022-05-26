@@ -30,14 +30,6 @@ export interface DatePickerDropdownProps {
 }
 
 /*
- * Style
- */
-
-const StyledDatePickerButtonDiv = styled.div`
-  width: 100%;
-`;
-
-/*
  * Component.
  */
 
