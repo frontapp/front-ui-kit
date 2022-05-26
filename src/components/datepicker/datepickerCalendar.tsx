@@ -15,7 +15,7 @@ interface DatePickerCalendarProps {
   /** The selected date */
   selectedDate?: DateTime;
   /** The selected month. This is different than the `selectedDate`. */
-  monthBeingViewed?: DateTime;
+  monthBeingViewed: DateTime;
   /** The day of the the week the calendar should start on. The default is Sunday */
   calendarWeekStartDay: CalendarWeekDaysEnum;
   /** The minimum date allowed to be selected. */
@@ -37,7 +37,7 @@ const StyledGridDiv = styled.div`
   justify-content: space-between;
   justify-items: center;
   background: ${greys.white};
-  padding: 5px 8px;
+  padding: 8px;
 `;
 
 const StyledWeekdayDiv = styled.div`
@@ -84,7 +84,7 @@ function renderDays(
   weekdays: ReadonlyArray<number>
 ) {
   const {
-    monthBeingViewed = DateTime.now().startOf('month'),
+    monthBeingViewed,
     selectedDate,
     minDate,
     maxDate,

@@ -104,7 +104,9 @@ const StyledContentWrapperDiv = styled.div<StyledContentWrapperDivProps>`
 `;
 
 const StyledIconWrapperDiv = styled.div`
-  margin-right: 8px;
+  margin-left: 8px;
+  place-content: center;
+  display: grid;
 `;
 
 const StyledPlaceholderWrapperDiv = styled.div`

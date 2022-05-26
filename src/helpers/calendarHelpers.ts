@@ -15,6 +15,11 @@ export enum CalendarWeekDaysEnum {
   SATURDAY = 'saturday'
 }
 
+export enum DatepickerViewsEnum {
+  DATE = 'Date',
+  TIME = 'Time'
+}
+
 export const calendarWeekdayToWeekdayNumber = {
   [CalendarWeekDaysEnum.MONDAY]: 1,
   [CalendarWeekDaysEnum.TUESDAY]: 2,
@@ -71,4 +76,28 @@ export function getCalendarDays(month: DateTime, weekdays: ReadonlyArray<number>
 
   // Combine everything and return.
   return [...previousMonthDays, ...currentMonthDays, ...nextMonthDays];
+}
+
+/**
+ * @param date Chosen date (time portion is not relevant)
+ * @param time Chosen time (date portion is not relevant)
+ */
+export function mergeDateAndTime(date: DateTime, time: DateTime) {
+  return date.startOf('minute').set({
+    hour: time.hour,
+    minute: time.minute
+  });
+}
+
+export function formatTime(time: DateTime, timeFormat?: '12h' | '24h') {
+  if (!timeFormat || timeFormat === '12h')
+    return time.toLocaleString(DateTime.TIME_SIMPLE);
+  return time.toLocaleString(DateTime.TIME_24_SIMPLE);
+}
+
+export function formatDateTime(date: Date, type: 'date' | 'dateAndTime', timeFormat?: '12h' | '24h') {
+  const dateTime = DateTime.fromJSDate(date);
+  if (type === 'date')
+    return `${dateTime.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)}`;
+  return `${dateTime.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)} ${formatTime(dateTime, timeFormat)}`;
 }

@@ -2,9 +2,11 @@ import {ComponentMeta, ComponentStory} from '@storybook/react';
 import React, {FC, useState} from 'react';
 import styled from 'styled-components';
 
+import {CalendarWeekDaysEnum, formatDateTime} from '../../../helpers/calendarHelpers';
 import {greys} from '../../../helpers/colorHelpers';
 import {fontSizes} from '../../../helpers/fontHelpers';
-import {DatePicker} from '../datepicker';
+import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
+import {DatePickerDropdown} from '../datepickerDropdown';
 
 /*
  * Props.
@@ -14,6 +16,9 @@ interface ShowcaseDatePickerProps {
   value?: Date;
   minDate?: Date;
   maxDate?: Date;
+  type?: 'date' | 'dateAndTime';
+  calendarWeekStartDay?: CalendarWeekDaysEnum;
+  timeFormat?: '12h' | '24h';
 }
 
 /*
@@ -21,21 +26,17 @@ interface ShowcaseDatePickerProps {
  */
 
 const StyledShowcaseDiv = styled.div`
-  background: ${greys.shade50};
+  background: ${greys.white};
   border-radius: 8px;
-  width: 300px;
-  height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  padding: 16px;
+  width: 254px;
 `;
 
 const StyledDescriptionDiv = styled.div`
   font-size: ${fontSizes.medium};
   color: ${greys.black};
   text-align: center;
-  padding: 10px 0px
+  padding: 10px 10px
 `;
 
 /*
@@ -44,16 +45,26 @@ const StyledDescriptionDiv = styled.div`
 
 const ShowcaseDatePickerComponent: FC<ShowcaseDatePickerProps> = props => {
   const onChange = (newDate: Date) => {
-    setDescription(newDate.toDateString());
+    setDescription(formatDateTime(newDate, type, timeFormat));
   };
-  const {value, minDate, maxDate} = props;
-  const [description, setDescription] = useState(value && value.toDateString());
+  const {value, minDate, maxDate, type, calendarWeekStartDay, timeFormat} = props;
+  const [description, setDescription] = useState(value && formatDateTime(value, type, timeFormat));
 
   return (
-    <StyledShowcaseDiv>
-      {description && <StyledDescriptionDiv>{description}</StyledDescriptionDiv>}
-      <DatePicker value={value} minDate={minDate} maxDate={maxDate} onChange={onChange} />
-    </StyledShowcaseDiv>
+    <DefaultStyleProvider>
+      <StyledShowcaseDiv>
+        {description && <StyledDescriptionDiv>{description}</StyledDescriptionDiv>}
+        <DatePickerDropdown
+          value={value}
+          calendarWeekStartDay={calendarWeekStartDay}
+          minDate={minDate}
+          maxDate={maxDate}
+          onChange={onChange}
+          type={type}
+          timeFormat={timeFormat}
+        />
+      </StyledShowcaseDiv>
+    </DefaultStyleProvider>
   );
 };
 
@@ -62,15 +73,21 @@ const ShowcaseDatePickerComponent: FC<ShowcaseDatePickerProps> = props => {
  */
 
 export default {
-  title: 'Development/DatePicker',
+  title: 'Components/DatePicker',
   component: ShowcaseDatePickerComponent,
   argTypes: {
     minDate: {control: 'date'},
-    maxDate: {control: 'date'}
+    maxDate: {control: 'date'},
+    calendarWeekStartDay: {control: 'radio', options: CalendarWeekDaysEnum},
+    type: {control: 'radio', options: ['date', 'dateAndTime']},
+    timeFormat: {control: 'radio', options: ['12h', '24h']}
   }
 } as ComponentMeta<typeof ShowcaseDatePickerComponent>;
 
 const ShowcaseTemplate: ComponentStory<typeof ShowcaseDatePickerComponent> = (props: ShowcaseDatePickerProps) => <ShowcaseDatePickerComponent
+  type={props.type}
+  timeFormat={props.timeFormat}
+  calendarWeekStartDay={props.calendarWeekStartDay}
   minDate={props.minDate && new Date(props.minDate)}
   maxDate={props.maxDate && new Date(props.maxDate)}
 />;

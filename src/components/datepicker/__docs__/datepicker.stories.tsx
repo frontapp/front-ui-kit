@@ -1,16 +1,32 @@
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 import React from 'react';
+import styled from 'styled-components';
 
-import {DatePicker} from '../datepicker';
+import {greys} from '../../../helpers/colorHelpers';
+import {DatePickerDropdown} from '../datepickerDropdown';
+
+/*
+ * Style.
+ */
+
+const StyledDatePickerDiv = styled.div`
+  background: ${greys.white};
+  border-radius: 8px;
+  padding: 16px;
+`;
 
 export default {
-  title: 'Development/DatePicker',
-  component: DatePicker
-} as ComponentMeta<typeof DatePicker>;
+  title: 'Components/DatePicker',
+  component: DatePickerDropdown
+} as ComponentMeta<typeof DatePickerDropdown>;
 
-const Template: ComponentStory<typeof DatePicker> = args => <DatePicker
-  {...args}
-  minDate={args.minDate && new Date(args.minDate)}
-  maxDate={args.maxDate && new Date(args.maxDate)}
-/>;
+const Template: ComponentStory<typeof DatePickerDropdown> = args => (
+  <StyledDatePickerDiv>
+    <DatePickerDropdown
+      {...args}
+      minDate={args.minDate && new Date(args.minDate)}
+      maxDate={args.maxDate && new Date(args.maxDate)}
+    />
+  </StyledDatePickerDiv>
+);
 export const Basic = Template.bind({});
