@@ -1,4 +1,6 @@
+import {ResizeObserver} from '@juggle/resize-observer';
 import {useCallback, useEffect, useRef} from "react";
+import useMeasure, {Options as UseMeasureOptions, RectReadOnly} from 'react-use-measure';
 
 /*
  * Use Timeout.
@@ -27,4 +29,13 @@ export function usePrevious<T>(value: T) {
     ref.current = value;
   });
   return ref.current;
+}
+
+export function useMeasureElement<T extends HTMLElement = HTMLDivElement>(
+  options?: Omit<UseMeasureOptions, 'polyfill'>
+): [React.RefCallback<T>, RectReadOnly, () => void] {
+  return useMeasure({
+    ...options,
+    polyfill: ResizeObserver
+  });
 }

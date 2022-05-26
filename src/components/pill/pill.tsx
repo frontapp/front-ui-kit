@@ -53,6 +53,7 @@ const StyledPillDiv = styled.div<StyledPillDivProps>`
   box-sizing: border-box;
   font-size: ${fontSizes.medium};
   user-select: none;
+  line-height: 16px;
 
   ${p => addPillStyles(p.$colors, p.$isSelected)}
 `;

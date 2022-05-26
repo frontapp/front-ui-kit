@@ -5,6 +5,7 @@ import _ from 'lodash';
 import React, {useCallback, useMemo} from 'react';
 import ReactIs from 'react-is';
 
+import {DropdownHeading, DropdownHeadingProps} from '../dropdownHeading';
 import {DropdownItem, DropdownItemProps} from '../dropdownItem';
 
 /*
@@ -25,8 +26,7 @@ interface DropdownItemType {
 
 interface DropdownHeadingType {
   type: 'DropdownHeading',
-  // props: DropdownHeadingProps; // TODO: Use the Dropdown Heading when added.
-  props: any
+  props: DropdownHeadingProps;
 }
 
 type DropdownRenderTypes = DropdownItemType | DropdownHeadingType;
@@ -68,8 +68,7 @@ export function useDropdownList(children: React.ReactNode) {
     if (item.type === 'DropdownItem')
       return <DropdownItem {...item.props} />;
     if (item.type === 'DropdownHeading')
-      // return <DropdownHeading {...item.props} />;
-      return null; // TODO: Use the Dropdown Heading when added.
+      return <DropdownHeading {...item.props} />;
 
     return null;
   }, [items]);
