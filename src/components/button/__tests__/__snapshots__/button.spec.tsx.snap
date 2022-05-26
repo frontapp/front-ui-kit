@@ -124,6 +124,10 @@ exports[`<Button /> Spec Snapshots should render different sized button 1`] = `
   -ms-flex-flow: row;
   flex-flow: row;
   gap: 8px;
+  -webkit-box-pack: unset;
+  -webkit-justify-content: unset;
+  -ms-flex-pack: unset;
+  justify-content: unset;
 }
 
 <div>

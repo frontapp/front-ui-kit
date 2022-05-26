@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
 import {palette} from '../../../helpers/colorHelpers';
+import {EmptyState} from '../../emptyState/emptyState';
 import {Dropdown} from '../dropdown';
 import {DropdownButton} from '../dropdownButton';
 import {DropdownCoordinator} from '../dropdownCoordinator';
@@ -79,9 +80,13 @@ const Template: ComponentStory<typeof Dropdown> = args => {
             value={selectedDogBreed}
           />
         )}
-        onDropdownOpen={() => setSearchValue('')}
+        onDropdownClosed={() => setSearchValue('')}
         renderDropdown={() => (
-          <Dropdown {...args}>
+          <Dropdown
+            {...args}
+            isEmpty={dogBreeds.length === 0}
+            renderEmptyState={() => <EmptyState message="Could not find dog breed." />}
+          >
             <DropdownHeader
               searchValue={searchValue}
               searchPlaceholder="Search dog breeds..."
