@@ -20,13 +20,39 @@ const DATA = [{
     {name: "Task 1", done: true},
     {name: "Task 2", done: false},
     {name: "Task 3", done: false}
+  ],
+  sections: [{
+    id: "subtask",
+    title: "Sub Tasks",
+    tasks: [
+      {name: "Sub Task 1", done: true},
+      {name: "Sub Task 2", done: false},
+      {name: "Sub Task 3", done: false}
+    ]
+  }]
+},
+{id: "bugs",
+  title: "Bugs",
+  tasks: [
+    {name: "Bug 1", done: true},
+    {name: "Bug 2", done: false},
+    {name: "Bug 3", done: true}
   ]},
 {id: "reviews",
   title: "Reviews",
   tasks: [
     {name: "Review 1", done: true},
     {name: "Review 2", done: false}
-  ]}
+  ],
+  sections: [{
+    id: "subtask",
+    title: "Sub Tasks",
+    tasks: [
+      {name: "Sub Task 1", done: true},
+      {name: "Sub Task 2", done: false},
+      {name: "Sub Task 3", done: false}
+    ]
+  }]}
 ];
 
 /*
@@ -66,27 +92,12 @@ export default {
 const Template: ComponentStory<typeof Accordion> = args => (
   <DefaultStyleProvider>
     <StyledShowcaseDiv>
-      <Accordion {...args}>
-        {DATA.map(section => (
-          <AccordionSection
-            id={section.id}
-            title={section.title}
-            onSectionToggled={isOpen => console.log(getSectionDetails(section.title, isOpen))}
-          >
-            {section.tasks.map(task => (
-              <StyledTaskDiv>
-                {task.name}
-                {task.done && <StyledIconDiv><Icon name="CheckmarkCircle" size={16} color={palette.blue.shade40} /></StyledIconDiv>}
-              </StyledTaskDiv>
-            ))}
-          </AccordionSection>
-        ))}
-      </Accordion>
+      {renderAccordion(DATA, args)}
     </StyledShowcaseDiv>
   </DefaultStyleProvider>
 );
 
-export const Simple = Template.bind({});
+export const Multi = Template.bind({});
 
 /*
  * Helpers
@@ -96,4 +107,26 @@ function getSectionDetails(title: string, isOpen: boolean) {
   if (isOpen)
     return `Showing details for ${title}.`;
   return `Hiding details for ${title}.`;
+}
+
+function renderAccordion(data, args) {
+  return (
+    <Accordion {...args}>
+      {data.map(section => (
+        <AccordionSection
+          id={section.id}
+          title={section.title}
+          onSectionToggled={isOpen => console.log(getSectionDetails(section.title, isOpen))}
+        >
+          {section.tasks.map(task => (
+            <StyledTaskDiv>
+              {task.name}
+              {task.done && <StyledIconDiv><Icon name="CheckmarkCircle" size={16} color={palette.blue.shade40} /></StyledIconDiv>}
+            </StyledTaskDiv>
+          ))}
+          {section.sections && renderAccordion(section.sections, args)}
+        </AccordionSection>
+      ))}
+    </Accordion>
+  );
 }

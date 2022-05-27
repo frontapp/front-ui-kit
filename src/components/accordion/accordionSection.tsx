@@ -8,7 +8,7 @@ import {Icon} from '../icon/icon';
 /*
  * Props
  */
-interface AccordianSectionProps {
+interface AccordionSectionProps {
   /** Accordion sections to be rendered */
   children: React.ReactNode
   /** The unique id of the section */
@@ -42,7 +42,6 @@ const StyledAccordionSectionContainerDiv = styled.div`
   line-height: 20px;
   padding: 3px 0px;
   
-
   border: 2px solid transparent;
   border-radius: 4px;
   &:hover {
@@ -71,7 +70,7 @@ const StyledChevronIconDiv = styled.div`
  * Component
  */
 
-export const AccordionSection: FC<AccordianSectionProps> = props => {
+export const AccordionSection: FC<AccordionSectionProps> = props => {
   const {children, isOpen = false, title, id, onSectionToggled} = props;
 
   return (
