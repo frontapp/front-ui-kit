@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, {FC, useState} from 'react';
+import _ from 'lodash';
+import React, {FC, useMemo, useState} from 'react';
 import styled from 'styled-components';
 
 import {renderChildrenSpecifiedComponents} from '../../helpers/renderHelpers';
@@ -29,7 +30,9 @@ const StyledAccordionSectionDiv = styled.div`
 
 export const Accordion: FC<AccordionProps> = props => {
   const {children, allowMultiSelect = false} = props;
-  const accordionSections = renderChildrenSpecifiedComponents(children, ['AccordionSection']);
+  const accordionSections = useMemo(() => _(
+    renderChildrenSpecifiedComponents(children, ['AccordionSection'])
+  ).compact().value(), [children]);
   const [openAccordionSections, setOpenAccordionSections] = useState(findOpenAccordionSections(accordionSections, allowMultiSelect));
 
   const toggleSection = (sectionId: string) => {
@@ -38,7 +41,6 @@ export const Accordion: FC<AccordionProps> = props => {
       setOpenAccordionSections(openAccordionSections.filter(id => id !== sectionId));
     else if (allowMultiSelect)
       setOpenAccordionSections([...openAccordionSections, sectionId]);
-
     else
       setOpenAccordionSections([sectionId]);
     return !isOpen;

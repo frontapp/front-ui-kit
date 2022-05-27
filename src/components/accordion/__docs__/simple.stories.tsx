@@ -26,7 +26,7 @@ export default {
 const Template: ComponentStory<typeof Accordion> = args => (
   <DefaultStyleProvider>
     <Accordion {...args}>
-      <AccordionSection id="Project 1 " title="Project 1" isOpen onSectionToggled={isOpen => { console.log(isOpen); }}>
+      <AccordionSection id="Project 1 " title="Project 1" onSectionToggled={isOpen => { console.log(isOpen); }}>
         <StyledCheckboxesDiv>
           <Checkbox isChecked={false} onChange={noop}>Task 1</Checkbox>
           <Checkbox isChecked onChange={noop}>Task 2</Checkbox>

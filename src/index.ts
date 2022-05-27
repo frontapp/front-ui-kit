@@ -22,6 +22,9 @@ export {DefaultStyleProvider} from './utils/defaultStyleProvider';
 
 export {Avatar} from './components/avatar/avatar';
 
+export {Accordion} from './components/accordion/accordion';
+export {AccordionSection} from './components/accordion/accordionSection';
+
 export {Button, ButtonTypes} from './components/button/button';
 export {ButtonContent} from './components/button/buttonContent';
 export {ButtonContentIcon} from './components/button/buttonContentIcon';
