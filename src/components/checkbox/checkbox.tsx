@@ -67,7 +67,6 @@ const StyledChildrenDiv = styled.div`
   line-height: 17px;
   color: ${greys.shade80};
   margin-left: 8px;
-  padding-top: 1px;
 
   &:empty {
     margin-left: 0;
