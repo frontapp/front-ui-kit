@@ -22,6 +22,7 @@ interface AccordionProps {
  */
 
 const StyledAccordionSectionDiv = styled.div`
+  display: block;
 `;
 
 /*
@@ -37,7 +38,7 @@ export const Accordion: FC<AccordionProps> = props => {
 
   const toggleSection = (sectionId: string) => {
     const isOpen = openAccordionSections.includes(sectionId);
-    if (openAccordionSections.includes(sectionId))
+    if (isOpen)
       setOpenAccordionSections(openAccordionSections.filter(id => id !== sectionId));
     else if (allowMultiSelect)
       setOpenAccordionSections([...openAccordionSections, sectionId]);
@@ -49,15 +50,13 @@ export const Accordion: FC<AccordionProps> = props => {
   return (
     <StyledAccordionSectionDiv>
       {accordionSections.map(section => {
-        if (!section)
-          return null;
-        const {onSectionToggled} = section.props;
+        const {id, onSectionToggled} = section.props;
         return (
           <AccordionSection
             {...section.props}
-            isOpen={openAccordionSections.includes(section.props.id)}
+            isOpen={openAccordionSections.includes(id)}
             onSectionToggled={() => {
-              const isOpen = toggleSection(section.props.id);
+              const isOpen = toggleSection(id);
               if (onSectionToggled)
                 onSectionToggled(isOpen);
             }}
@@ -82,6 +81,7 @@ function findOpenAccordionSections(accordionSections: any, allowMultiSelect: boo
     section: any) => section.props.isOpen).map(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (section: any) => section.props.id);
+
   // If multiple sections cannot be selected, then only expand the first section
   if (!allowMultiSelect)
     return openAccordionSections.slice(0, 1);

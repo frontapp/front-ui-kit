@@ -39,7 +39,15 @@ const StyledAccordionSectionContainerDiv = styled.div`
   font-family: ${fonts.system};
   font-size: ${fontSizes.medium};
   font-weight: ${fontWeights.normal};
-  padding-bottom: 10px;
+  line-height: 20px;
+  padding: 3px 0px;
+  
+
+  border: 2px solid transparent;
+  border-radius: 4px;
+  &:hover {
+    background-color: ${greys.shade20};
+  }
 `;
 
 const StyledAccordionSectionTitleDiv = styled.div`
@@ -52,7 +60,7 @@ const StyledAccordionSectionTitleDiv = styled.div`
 
 const StyledAccordionSectionContentDiv = styled.div`
   color: ${greys.shade80};
-  padding: 0px 20px 12px 20px;
+  padding-left: 35px;
 `;
 
 const StyledChevronIconDiv = styled.div`

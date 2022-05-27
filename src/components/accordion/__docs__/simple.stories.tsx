@@ -1,21 +1,68 @@
 import {ComponentMeta, ComponentStory} from '@storybook/react';
-import {noop} from 'lodash';
 import React from 'react';
 import styled from 'styled-components';
 
+import {greys, palette} from '../../../helpers/colorHelpers';
+import {fonts, fontSizes, fontWeights} from '../../../helpers/fontHelpers';
 import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
-import {Checkbox} from '../../checkbox/checkbox';
+import {Icon} from '../../icon/icon';
 import {Accordion} from '../accordion';
 import {AccordionSection} from '../accordionSection';
+
+/*
+ * Constants
+ */
+const SECTION_DATA = [
+  {id: "project",
+    title: "Project",
+    tasks: [
+      {name: "Task 1", done: true},
+      {name: "Task 2", done: false},
+      {name: "Task 3", done: false}
+    ]},
+  {id: "bugs",
+    title: "Bugs",
+    tasks: [
+      {name: "Bug 1", done: true},
+      {name: "Bug 2", done: false},
+      {name: "Bug 3", done: true}
+    ]},
+  {id: "reviews",
+    title: "Reviews",
+    tasks: [
+      {name: "Review 1", done: true},
+      {name: "Review 2", done: false}
+    ]}
+];
 
 /*
  * Style.
  */
 
-const StyledCheckboxesDiv = styled.div`
+const StyledShowcaseDiv = styled.div`
+  background: ${greys.white};
+  border-radius: 8px;
+  padding: 16px;
+  width: 200px;
+`;
+
+const StyledTaskDiv = styled.div`
+  position: relative;
   display: flex;
-  flex-direction: column;
-  gap: 5px;
+  flex-direction: row;
+  width: 100%
+
+  font-family: ${fonts.system};
+  font-size: ${fontSizes.medium};
+  font-weight: ${fontWeights.normal};
+  line-height: 20px;
+  padding: 3px 0px;
+`;
+
+const StyledIconDiv = styled.div`
+  margin: auto;
+  position: absolute;
+  right: -8px;
 `;
 
 export default {
@@ -25,23 +72,34 @@ export default {
 
 const Template: ComponentStory<typeof Accordion> = args => (
   <DefaultStyleProvider>
-    <Accordion {...args}>
-      <AccordionSection id="Project 1 " title="Project 1" onSectionToggled={isOpen => { console.log(isOpen); }}>
-        <StyledCheckboxesDiv>
-          <Checkbox isChecked={false} onChange={noop}>Task 1</Checkbox>
-          <Checkbox isChecked onChange={noop}>Task 2</Checkbox>
-          <Checkbox isChecked={false} onChange={noop}>Task 3</Checkbox>
-        </StyledCheckboxesDiv>
-      </AccordionSection>
-      <AccordionSection id="Project 2" title="Project 2" isOpen onSectionToggled={isOpen => { console.log(isOpen); }}>
-        <StyledCheckboxesDiv>
-          <Checkbox isChecked={false} onChange={noop}>Task 4</Checkbox>
-          <Checkbox isChecked onChange={noop}>Task 5</Checkbox>
-          <Checkbox isChecked={false} onChange={noop}>Task 6</Checkbox>
-        </StyledCheckboxesDiv>
-      </AccordionSection>
-    </Accordion>
+    <StyledShowcaseDiv>
+      <Accordion {...args}>
+        {SECTION_DATA.map(sectionData => (
+          <AccordionSection
+            id={sectionData.id}
+            title={sectionData.title}
+            onSectionToggled={isOpen => console.log(getSectionDetails(sectionData.title, isOpen))}
+          >
+            {sectionData.tasks.map(task => (
+              <StyledTaskDiv>
+                {task.name}
+                {task.done && <StyledIconDiv><Icon name="CheckmarkCircle" size={16} color={palette.blue.shade40} /></StyledIconDiv>}
+              </StyledTaskDiv>
+            ))}
+          </AccordionSection>
+        ))}
+      </Accordion>
+    </StyledShowcaseDiv>
   </DefaultStyleProvider>
 );
 
-export const Basic = Template.bind({});
+export const Simple = Template.bind({});
+
+/*
+ * Helpers
+ */
+function getSectionDetails(title: string, isOpen: boolean) {
+  if (isOpen)
+    return `Showing details for ${title}.`;
+  return `Hiding details for ${title}.`;
+}
