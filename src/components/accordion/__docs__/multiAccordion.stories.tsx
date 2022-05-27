@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import {greys, palette} from '../../../helpers/colorHelpers';
-import {fonts, fontSizes, fontWeights} from '../../../helpers/fontHelpers';
 import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
 import {Icon} from '../../icon/icon';
 import {Accordion} from '../accordion';
@@ -69,19 +68,13 @@ const StyledTaskDiv = styled.div`
   position: relative;
   display: flex;
   flex-direction: row;
-  width: 100%
-
-  font-family: ${fonts.system};
-  font-size: ${fontSizes.medium};
-  font-weight: ${fontWeights.normal};
-  line-height: 20px;
   padding: 3px 0px;
 `;
 
 const StyledIconDiv = styled.div`
   margin: auto;
   position: absolute;
-  right: -8px;
+  right: 0px;
 `;
 
 export default {

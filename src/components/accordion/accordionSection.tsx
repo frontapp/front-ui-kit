@@ -15,7 +15,7 @@ interface AccordionSectionProps {
   id: string;
   /** The title to render for the accordion section */
   title: string;
-  /** Passed from the parent accordion. Any value set here from the user will be used as the default value */
+  /** Controls whether the section is expanded or not */
   isOpen?: boolean;
   /** Called when the section is opened/closed. */
   onSectionToggled?: (isOpen: boolean) => void;
@@ -30,23 +30,24 @@ interface AccordionSectionProps {
 const StyledAccordionSectionDiv = styled.div`
   display: flex;
   flex-direction: column;
+  
   cursor: default;
+  font-family: ${fonts.system};
+  font-size: ${fontSizes.medium};
+  font-weight: ${fontWeights.normal};
+  line-height: 20px;
+  color: ${greys.shade80};
 `;
 
 const StyledAccordionSectionContainerDiv = styled.div`
   display: flex;
   flex-flow: row;
-  font-family: ${fonts.system};
-  font-size: ${fontSizes.medium};
-  font-weight: ${fontWeights.normal};
-  line-height: 20px;
-  padding: 3px 0px;
-  
   border: 2px solid transparent;
   border-radius: 4px;
   &:hover {
     background-color: ${greys.shade20};
   }
+  padding: 3px 0px;
 `;
 
 const StyledAccordionSectionTitleDiv = styled.div`
@@ -54,11 +55,9 @@ const StyledAccordionSectionTitleDiv = styled.div`
   gap: 8px;
   align-items: center;
   width: 100%;
-  color: ${greys.shade80};
 `;
 
 const StyledAccordionSectionContentDiv = styled.div`
-  color: ${greys.shade80};
   padding-left: 35px;
 `;
 
