@@ -8,22 +8,6 @@ import {Icon} from '../icon/icon';
 /*
  * Props
  */
-// const scrollThreshold = 20; // px
-
-/*
- * Props
- */
-
-// interface AccordianSectionContainerProps extends AccordianSectionProps{
-//   onTitleClick: (sectionId: string) => void;
-// }
-
-// export const AccordionSectionContainer: FC<AccordianSectionContainerProps> = props => {
-//   const {onTitleClick, ...rest} = props;
-//   return <AccordionSection
-//     {...rest}
-//   />
-// }
 interface AccordianSectionProps {
   /** Accordion sections to be rendered */
   children: React.ReactNode
@@ -79,8 +63,6 @@ const StyledChevronIconDiv = styled.div`
  * Component
  */
 
-export const accordionSectionIDDataAttribute = 'data-accordion-section-id';
-
 export const AccordionSection: FC<AccordianSectionProps> = props => {
   const {children, isOpen = false, title, id, onSectionToggled} = props;
 
@@ -102,6 +84,7 @@ export const AccordionSection: FC<AccordianSectionProps> = props => {
 /*
  * Helpers
  */
+
 function maybeRenderAccordionSectionContent(children: React.ReactNode, isOpen?: boolean) {
   if (!isOpen)
     return null;
