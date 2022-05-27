@@ -35,6 +35,7 @@ interface StyledCheckboxInputProps {
 const StyledWrapperDiv = styled.div`
   display: flex;
   flex-flow: row;
+  align-items: center;
 `;
 
 const StyledCheckboxDiv = styled.div`
