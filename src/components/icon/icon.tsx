@@ -2,6 +2,8 @@ import React, {FC} from 'react';
 import styled from 'styled-components';
 
 import Archive from '../../assets/icons/archive.svg';
+import Assign from '../../assets/icons/assign.svg';
+import AssignFilled from '../../assets/icons/assignFilled.svg';
 import AttachmentArchive from '../../assets/icons/attachmentArchive.svg';
 import AttachmentCalendar from '../../assets/icons/attachmentCalendar.svg';
 import AttachmentCode from '../../assets/icons/attachmentCode.svg';
@@ -33,6 +35,9 @@ import Minus from '../../assets/icons/minus.svg';
 import EllipsisHorizontal from '../../assets/icons/moreHorizontal.svg';
 import EllipsisVertical from '../../assets/icons/moreVertical.svg';
 import Plus from '../../assets/icons/new.svg';
+import NewContact from '../../assets/icons/newContact.svg';
+import Participant from '../../assets/icons/participant.svg';
+import ParticipantFilled from '../../assets/icons/participantFilled.svg';
 import PlusCircle from '../../assets/icons/plusCircle.svg';
 import Preferences from '../../assets/icons/preferences.svg';
 import Search from '../../assets/icons/search.svg';
@@ -50,6 +55,8 @@ const defaultColor = greys.shade50;
 
 const importedIcons = {
   Archive,
+  Assign,
+  AssignFilled,
   AttachmentArchive,
   AttachmentCalendar,
   AttachmentCode,
@@ -80,6 +87,9 @@ const importedIcons = {
   Info,
   InfoFilled,
   Minus,
+  NewContact,
+  Participant,
+  ParticipantFilled,
   Plus,
   PlusCircle,
   Preferences,
