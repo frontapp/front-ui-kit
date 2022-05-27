@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import styled from 'styled-components';
 
 import Archive from '../../assets/icons/archive.svg';
+import ArchiveFilled from '../../assets/icons/archiveFilled.svg';
 import Assign from '../../assets/icons/assign.svg';
 import AssignFilled from '../../assets/icons/assignFilled.svg';
 import AttachmentArchive from '../../assets/icons/attachmentArchive.svg';
@@ -15,6 +16,7 @@ import AttachmentPowerpoint from '../../assets/icons/attachmentPowerpoint.svg';
 import AttachmentVideo from '../../assets/icons/attachmentVideo.svg';
 import AttachmentWord from '../../assets/icons/attachmentWord.svg';
 import Calendar from '../../assets/icons/calendar.svg';
+import CalendarFilled from '../../assets/icons/calendarFilled.svg';
 import CheckmarkBox from '../../assets/icons/checkmarkBox.svg';
 import CheckmarkCircle from '../../assets/icons/checkmarkCircle.svg';
 import Checkmark from '../../assets/icons/checkmarkSelected.svg';
@@ -25,9 +27,11 @@ import ChevronUp from '../../assets/icons/chevronUp.svg';
 import Close from '../../assets/icons/close.svg';
 import Copy from '../../assets/icons/copy.svg';
 import Edit from '../../assets/icons/edit.svg';
+import EditFilled from '../../assets/icons/editFilled.svg';
 import Export from '../../assets/icons/export.svg';
 import ExternalLink from '../../assets/icons/externalLink.svg';
 import Gear from '../../assets/icons/gear.svg';
+import GearFilled from '../../assets/icons/gearFilled.svg';
 import Import from '../../assets/icons/import.svg';
 import Info from '../../assets/icons/info.svg';
 import InfoFilled from '../../assets/icons/infoFilled.svg';
@@ -44,6 +48,7 @@ import Search from '../../assets/icons/search.svg';
 import Star from '../../assets/icons/star.svg';
 import StarFilled from '../../assets/icons/starFilled.svg';
 import Trash from '../../assets/icons/trash.svg';
+import TrashFilled from '../../assets/icons/trashFilled.svg';
 import {greys} from '../../helpers/colorHelpers';
 
 /*
@@ -55,6 +60,7 @@ const defaultColor = greys.shade50;
 
 const importedIcons = {
   Archive,
+  ArchiveFilled,
   Assign,
   AssignFilled,
   AttachmentArchive,
@@ -68,6 +74,7 @@ const importedIcons = {
   AttachmentVideo,
   AttachmentWord,
   Calendar,
+  CalendarFilled,
   CheckmarkCircle,
   CheckmarkBox,
   Checkmark,
@@ -78,11 +85,13 @@ const importedIcons = {
   Close,
   Copy,
   Edit,
+  EditFilled,
   EllipsisHorizontal,
   EllipsisVertical,
   Export,
   ExternalLink,
   Gear,
+  GearFilled,
   Import,
   Info,
   InfoFilled,
@@ -96,7 +105,8 @@ const importedIcons = {
   Search,
   Star,
   StarFilled,
-  Trash
+  Trash,
+  TrashFilled
 };
 export type IconName = keyof typeof importedIcons;
 // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
