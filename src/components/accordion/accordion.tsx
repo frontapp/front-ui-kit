@@ -14,7 +14,7 @@ interface AccordionProps {
   /** Accordion sections to be rendered. */
   children: React.ReactNode
   /** Flag to determine if multiple sections can be expanded */
-  allowMultiSelect?: boolean;
+  shouldAllowMultiSelect?: boolean;
 }
 
 /*
@@ -30,17 +30,17 @@ const StyledAccordionSectionDiv = styled.div`
  */
 
 export const Accordion: FC<AccordionProps> = props => {
-  const {children, allowMultiSelect = false} = props;
+  const {children, shouldAllowMultiSelect = false} = props;
   const accordionSections = useMemo(() => _(
     renderChildrenSpecifiedComponents(children, ['AccordionSection'])
   ).compact().value(), [children]);
-  const [openAccordionSections, setOpenAccordionSections] = useState(findOpenAccordionSections(accordionSections, allowMultiSelect));
+  const [openAccordionSections, setOpenAccordionSections] = useState(findOpenAccordionSections(accordionSections, shouldAllowMultiSelect));
 
   const toggleSection = (sectionId: string) => {
     const isOpen = openAccordionSections.includes(sectionId);
     if (isOpen)
       setOpenAccordionSections(openAccordionSections.filter(id => id !== sectionId));
-    else if (allowMultiSelect)
+    else if (shouldAllowMultiSelect)
       setOpenAccordionSections([...openAccordionSections, sectionId]);
     else
       setOpenAccordionSections([sectionId]);
@@ -72,7 +72,7 @@ export const Accordion: FC<AccordionProps> = props => {
  */
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function findOpenAccordionSections(accordionSections: any, allowMultiSelect: boolean): Array<string> {
+function findOpenAccordionSections(accordionSections: any, shouldAllowMultiSelect: boolean): Array<string> {
   if (!accordionSections)
     return [];
 
@@ -83,7 +83,7 @@ function findOpenAccordionSections(accordionSections: any, allowMultiSelect: boo
     (section: any) => section.props.id);
 
   // If multiple sections cannot be selected, then only expand the first section
-  if (!allowMultiSelect)
+  if (!shouldAllowMultiSelect)
     return openAccordionSections.slice(0, 1);
 
   return openAccordionSections;
