@@ -1,6 +1,17 @@
 import React, {FC} from 'react';
 import styled from 'styled-components';
 
+import Archive from '../../assets/icons/archive.svg';
+import AttachmentArchive from '../../assets/icons/attachmentArchive.svg';
+import AttachmentCalendar from '../../assets/icons/attachmentCalendar.svg';
+import AttachmentCode from '../../assets/icons/attachmentCode.svg';
+import AttachmentExcel from '../../assets/icons/attachmentExcel.svg';
+import AttachmentGeneric from '../../assets/icons/attachmentGeneric.svg';
+import AttachmentImage from '../../assets/icons/attachmentImage.svg';
+import AttachmentPdf from '../../assets/icons/attachmentPdf.svg';
+import AttachmentPowerpoint from '../../assets/icons/attachmentPowerpoint.svg';
+import AttachmentVideo from '../../assets/icons/attachmentVideo.svg';
+import AttachmentWord from '../../assets/icons/attachmentWord.svg';
 import Calendar from '../../assets/icons/calendar.svg';
 import CheckmarkBox from '../../assets/icons/checkmarkBox.svg';
 import CheckmarkCircle from '../../assets/icons/checkmarkCircle.svg';
@@ -11,12 +22,14 @@ import ChevronRight from '../../assets/icons/chevronRight.svg';
 import ChevronUp from '../../assets/icons/chevronUp.svg';
 import Close from '../../assets/icons/close.svg';
 import ExternalLink from '../../assets/icons/externalLink.svg';
+import Gear from '../../assets/icons/gear.svg';
 import Minus from '../../assets/icons/minus.svg';
 import EllipsisHorizontal from '../../assets/icons/moreHorizontal.svg';
 import EllipsisVertical from '../../assets/icons/moreVertical.svg';
 import Plus from '../../assets/icons/new.svg';
 import PlusCircle from '../../assets/icons/plusCircle.svg';
 import Search from '../../assets/icons/search.svg';
+import Trash from '../../assets/icons/trash.svg';
 import {greys} from '../../helpers/colorHelpers';
 
 /*
@@ -27,6 +40,17 @@ const defaultSize = 16;
 const defaultColor = greys.shade50;
 
 const importedIcons = {
+  Archive,
+  AttachmentArchive,
+  AttachmentCalendar,
+  AttachmentCode,
+  AttachmentExcel,
+  AttachmentGeneric,
+  AttachmentImage,
+  AttachmentPdf,
+  AttachmentPowerpoint,
+  AttachmentVideo,
+  AttachmentWord,
   Calendar,
   CheckmarkCircle,
   CheckmarkBox,
@@ -37,12 +61,14 @@ const importedIcons = {
   ChevronUp,
   Close,
   ExternalLink,
+  Gear,
   Minus,
   EllipsisHorizontal,
   EllipsisVertical,
   Plus,
   PlusCircle,
-  Search
+  Search,
+  Trash
 };
 export type IconName = keyof typeof importedIcons;
 // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
