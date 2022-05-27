@@ -21,11 +21,14 @@ import ChevronLeft from '../../assets/icons/chevronLeft.svg';
 import ChevronRight from '../../assets/icons/chevronRight.svg';
 import ChevronUp from '../../assets/icons/chevronUp.svg';
 import Close from '../../assets/icons/close.svg';
+import Copy from '../../assets/icons/copy.svg';
 import Edit from '../../assets/icons/edit.svg';
 import Export from '../../assets/icons/export.svg';
 import ExternalLink from '../../assets/icons/externalLink.svg';
 import Gear from '../../assets/icons/gear.svg';
 import Import from '../../assets/icons/import.svg';
+import Info from '../../assets/icons/info.svg';
+import InfoFilled from '../../assets/icons/infoFilled.svg';
 import Minus from '../../assets/icons/minus.svg';
 import EllipsisHorizontal from '../../assets/icons/moreHorizontal.svg';
 import EllipsisVertical from '../../assets/icons/moreVertical.svg';
@@ -33,6 +36,8 @@ import Plus from '../../assets/icons/new.svg';
 import PlusCircle from '../../assets/icons/plusCircle.svg';
 import Preferences from '../../assets/icons/preferences.svg';
 import Search from '../../assets/icons/search.svg';
+import Star from '../../assets/icons/star.svg';
+import StarFilled from '../../assets/icons/starFilled.svg';
 import Trash from '../../assets/icons/trash.svg';
 import {greys} from '../../helpers/colorHelpers';
 
@@ -64,6 +69,7 @@ const importedIcons = {
   ChevronRight,
   ChevronUp,
   Close,
+  Copy,
   Edit,
   EllipsisHorizontal,
   EllipsisVertical,
@@ -71,11 +77,15 @@ const importedIcons = {
   ExternalLink,
   Gear,
   Import,
+  Info,
+  InfoFilled,
   Minus,
   Plus,
   PlusCircle,
   Preferences,
   Search,
+  Star,
+  StarFilled,
   Trash
 };
 export type IconName = keyof typeof importedIcons;
