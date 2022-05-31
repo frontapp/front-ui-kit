@@ -14,6 +14,10 @@
   "files": [
     "dist"
   ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./misc": "./dist/misc/index.js"
+  },
   "scripts": {
     "build": "yarn build:dev",
     "build:watch": "yarn build:dev --watch",

@@ -2,6 +2,7 @@ import {Placement} from '@popperjs/core';
 import maxSize from 'popper-max-size-modifier';
 import React, {FC, useState} from 'react';
 import {Modifier, usePopper} from 'react-popper';
+import styled, {css} from 'styled-components';
 
 import {usePopoverContext} from './popoverContext';
 
@@ -13,6 +14,37 @@ export interface RepositionProps {
   /** Position of the element relative to the anchor. */
   placement?: Placement;
   children?: React.ReactNode;
+}
+
+/*
+ * Styles.
+ */
+
+interface StyledPlacementCoordinatorDivProps {
+  $placement?: Placement;
+}
+
+const StyledPlacementCoordinatorDiv = styled.div<StyledPlacementCoordinatorDivProps>`
+  ${p => addPlacementStyles(p.$placement)};
+`;
+
+function addPlacementStyles(placement?: Placement) {
+  if (!placement)
+    return '';
+
+  // If we have any left or top-end or bottom-end placements we need to change
+  // how the content is rendered since we use max-sizing, this can cause it to be rendered
+  // off screen.
+  if (
+    placement.includes('left') ||
+    placement === 'top-end' ||
+    placement === 'bottom-end'
+  )
+    return css`
+      display: flex;
+      flex-flow: row-reverse;
+    `;
+  return '';
 }
 
 /*
@@ -86,7 +118,13 @@ export const Reposition: FC<RepositionProps> = props => {
     ]
   });
 
-  // Enable prop spreading here as it comes from the popper docs.
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  return <div ref={setPopperElement} style={styles.popper} {...attributes.popper}>{children}</div>;
+  return (
+    // Enable prop spreading here as it comes from the popper docs.
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <div ref={setPopperElement} style={styles.popper} {...attributes.popper}>
+      <StyledPlacementCoordinatorDiv $placement={placement}>
+        {children}
+      </StyledPlacementCoordinatorDiv>
+    </div>
+  );
 };
