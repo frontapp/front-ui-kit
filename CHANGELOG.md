@@ -1,6 +1,25 @@
 # Changelog
 
 
+### [0.3.2](https://github.com/frontapp/front-ui-kit/compare/v0.3.1...v0.3.2) (2022-05-31)
+
+
+### Features
+
+* add additional icons and filled variants ([#77](https://github.com/frontapp/front-ui-kit/issues/77)) ([b59603a](https://github.com/frontapp/front-ui-kit/commit/b59603a7d9755d47c105f1808044057bfe5a0708))
+* add datepicker dropdown component ([#67](https://github.com/frontapp/front-ui-kit/issues/67)) ([40daed3](https://github.com/frontapp/front-ui-kit/commit/40daed3d5d15f7f3fd86ec3f16b4c956ce59df35))
+* add isRequired to FormField ([#75](https://github.com/frontapp/front-ui-kit/issues/75)) ([d361622](https://github.com/frontapp/front-ui-kit/commit/d361622c038e7cab333fb1cd746cca190d576f19))
+* add PluginFooter component ([d56d2f5](https://github.com/frontapp/front-ui-kit/commit/d56d2f50f28e811e0f3593f7368d83e7cccfdfd3))
+* add PluginHeader component ([d56d2f5](https://github.com/frontapp/front-ui-kit/commit/d56d2f50f28e811e0f3593f7368d83e7cccfdfd3))
+* add PluginLayout component ([#74](https://github.com/frontapp/front-ui-kit/issues/74)) ([d56d2f5](https://github.com/frontapp/front-ui-kit/commit/d56d2f50f28e811e0f3593f7368d83e7cccfdfd3))
+
+
+### Bug Fixes
+
+* issue with end placements for dropdowns ([d56d2f5](https://github.com/frontapp/front-ui-kit/commit/d56d2f50f28e811e0f3593f7368d83e7cccfdfd3))
+* update DatePicker to add additional props to render the footer. ([40daed3](https://github.com/frontapp/front-ui-kit/commit/40daed3d5d15f7f3fd86ec3f16b4c956ce59df35))
+* update the styles of the icon in the DropdownButton to center it. ([40daed3](https://github.com/frontapp/front-ui-kit/commit/40daed3d5d15f7f3fd86ec3f16b4c956ce59df35))
+
 ### [0.3.1](https://github.com/frontapp/front-ui-kit/compare/v0.3.0...v0.3.1) (2022-05-26)
 
 
