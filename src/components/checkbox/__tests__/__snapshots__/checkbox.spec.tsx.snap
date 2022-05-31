@@ -9,6 +9,10 @@ exports[`<Checkbox /> Spec Snapshots should render a checkbox with a label 1`] =
   -webkit-flex-flow: row;
   -ms-flex-flow: row;
   flex-flow: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .c1 {
@@ -42,7 +46,6 @@ exports[`<Checkbox /> Spec Snapshots should render a checkbox with a label 1`] =
   line-height: 17px;
   color: #3e3e40;
   margin-left: 8px;
-  padding-top: 1px;
 }
 
 .c4:empty {
@@ -87,6 +90,10 @@ exports[`<Checkbox /> Spec Snapshots should render a checked and disabled checkb
   -webkit-flex-flow: row;
   -ms-flex-flow: row;
   flex-flow: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .c1 {
@@ -121,7 +128,6 @@ exports[`<Checkbox /> Spec Snapshots should render a checked and disabled checkb
   line-height: 17px;
   color: #3e3e40;
   margin-left: 8px;
-  padding-top: 1px;
 }
 
 .c5:empty {
@@ -177,6 +183,10 @@ exports[`<Checkbox /> Spec Snapshots should render a checked checkbox 1`] = `
   -webkit-flex-flow: row;
   -ms-flex-flow: row;
   flex-flow: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .c1 {
@@ -211,7 +221,6 @@ exports[`<Checkbox /> Spec Snapshots should render a checked checkbox 1`] = `
   line-height: 17px;
   color: #3e3e40;
   margin-left: 8px;
-  padding-top: 1px;
 }
 
 .c5:empty {
@@ -261,6 +270,10 @@ exports[`<Checkbox /> Spec Snapshots should render an empty and disabled checkbo
   -webkit-flex-flow: row;
   -ms-flex-flow: row;
   flex-flow: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .c1 {
@@ -295,7 +308,6 @@ exports[`<Checkbox /> Spec Snapshots should render an empty and disabled checkbo
   line-height: 17px;
   color: #3e3e40;
   margin-left: 8px;
-  padding-top: 1px;
 }
 
 .c4:empty {
@@ -334,6 +346,10 @@ exports[`<Checkbox /> Spec Snapshots should render an empty checkbox 1`] = `
   -webkit-flex-flow: row;
   -ms-flex-flow: row;
   flex-flow: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .c1 {
@@ -367,7 +383,6 @@ exports[`<Checkbox /> Spec Snapshots should render an empty checkbox 1`] = `
   line-height: 17px;
   color: #3e3e40;
   margin-left: 8px;
-  padding-top: 1px;
 }
 
 .c4:empty {
@@ -410,6 +425,10 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate and disabled
   -webkit-flex-flow: row;
   -ms-flex-flow: row;
   flex-flow: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .c1 {
@@ -444,7 +463,6 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate and disabled
   line-height: 17px;
   color: #3e3e40;
   margin-left: 8px;
-  padding-top: 1px;
 }
 
 .c5:empty {
@@ -500,6 +518,10 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate checkbox 1`]
   -webkit-flex-flow: row;
   -ms-flex-flow: row;
   flex-flow: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .c1 {
@@ -534,7 +556,6 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate checkbox 1`]
   line-height: 17px;
   color: #3e3e40;
   margin-left: 8px;
-  padding-top: 1px;
 }
 
 .c5:empty {
