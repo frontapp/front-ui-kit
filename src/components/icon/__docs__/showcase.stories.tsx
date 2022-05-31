@@ -54,9 +54,22 @@ const StyledCopiedTextDiv = styled.div`
   font-size: 8px;
 `;
 
+const StyledIconsHeaderDiv = styled.div`
+  font-size: ${fontSizes.large};
+  margin: 24px auto 16px auto;
+  max-width: 576px;
+  font-weight: ${fontWeights.medium};
+  color: ${greys.shade80};
+`;
+
 const ShowcaseComponent: FC = props => {
   const [copiedIconName, setCopiedIconName] = useState<string | undefined>();
-  const onClick = (name: string) => {
+
+  const onIconCopied = (name?: string) => {
+    if (!name) {
+      setCopiedIconName(undefined);
+      return;
+    }
     navigator.clipboard.writeText(name);
     setCopiedIconName(name);
   };
@@ -66,25 +79,46 @@ const ShowcaseComponent: FC = props => {
       <StyledExplainerContainerDiv>
         All available icons are listed below. You can click on an icon to copy the IconName for that component.
       </StyledExplainerContainerDiv>
-      <StyledIconsContainerDiv>
-        {Object.keys(icons).map(iconName => {
-          if (copiedIconName && copiedIconName === iconName)
-            return (
-              <StyledCopiedDiv key={iconName} onMouseLeave={() => setCopiedIconName(undefined)}>
-                <Icon name="Checkmark" size={22} color={greys.white} />
-                <StyledCopiedTextDiv>Copied</StyledCopiedTextDiv>
-              </StyledCopiedDiv>
-            );
-          return (
-            <StyledIconDiv key={iconName} onClick={() => onClick(iconName)}>
-              <Icon name={iconName as IconName} size={32} />
-            </StyledIconDiv>
-          );
-        })}
-      </StyledIconsContainerDiv>
+      <StyledIconsHeaderDiv>
+        Generic Icons
+      </StyledIconsHeaderDiv>
+      {renderIcons(
+        Object.keys(icons).filter(iconName => !iconName.includes('Attachment')),
+        copiedIconName,
+        onIconCopied
+      )}
+      <StyledIconsHeaderDiv>
+        Attachment Icons, color overwriting not supported.
+      </StyledIconsHeaderDiv>
+      {renderIcons(
+        Object.keys(icons).filter(iconName => iconName.includes('Attachment')),
+        copiedIconName,
+        onIconCopied
+      )}
     </DefaultStyleProvider>
   );
 };
+
+function renderIcons(iconNames: ReadonlyArray<string>, copiedIconName: string, onIconCopied: (iconName?: string) => void) {
+  return (
+    <StyledIconsContainerDiv>
+      {iconNames.map(iconName => {
+        if (copiedIconName && copiedIconName === iconName)
+          return (
+            <StyledCopiedDiv key={iconName} onMouseLeave={() => onIconCopied(undefined)}>
+              <Icon name="Checkmark" size={22} color={greys.white} />
+              <StyledCopiedTextDiv>Copied</StyledCopiedTextDiv>
+            </StyledCopiedDiv>
+          );
+        return (
+          <StyledIconDiv key={iconName} onClick={() => onIconCopied(iconName)}>
+            <Icon name={iconName as IconName} size={32} />
+          </StyledIconDiv>
+        );
+      })}
+    </StyledIconsContainerDiv>
+  );
+}
 
 /*
  * Storybook.
