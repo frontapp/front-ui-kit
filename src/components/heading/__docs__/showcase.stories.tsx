@@ -2,8 +2,7 @@ import {ComponentMeta, ComponentStory} from '@storybook/react';
 import React, {FC} from 'react';
 import styled from 'styled-components';
 
-import {greys} from '../../../helpers/colorHelpers';
-import {fontSizes, fontWeights, VisualSizesEnum} from '../../../helpers/fontHelpers';
+import {VisualSizesEnum} from '../../../helpers/fontHelpers';
 import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
 import {Heading} from '../heading';
 
@@ -28,17 +27,17 @@ const ShowcaseComponent: FC = props => (
   </DefaultStyleProvider>
 );
 
-  /*
+/*
    * Storybook.
    */
 
-  export default {
-    title: 'Components/Heading',
-    component: ShowcaseComponent
-  } as ComponentMeta<typeof ShowcaseComponent>;
+export default {
+  title: 'Components/Heading',
+  component: ShowcaseComponent
+} as ComponentMeta<typeof ShowcaseComponent>;
 
-  const ShowcaseTemplate: ComponentStory<typeof ShowcaseComponent> = () => <ShowcaseComponent />;
-  export const Showcase = ShowcaseTemplate.bind({});
-  Showcase.parameters = {
-    controls: {hideNoControlsWarning: true}
-  };
+const ShowcaseTemplate: ComponentStory<typeof ShowcaseComponent> = () => <ShowcaseComponent />;
+export const Showcase = ShowcaseTemplate.bind({});
+Showcase.parameters = {
+  controls: {hideNoControlsWarning: true}
+};
