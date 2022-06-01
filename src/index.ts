@@ -44,6 +44,8 @@ export {Icon, IconName} from './components/icon/icon';
 
 export {Input} from './components/input/input';
 
+export {Paragraph} from './components/paragraph/paragraph';
+
 export {Pill} from './components/pill/pill';
 export {PillContent} from './components/pill/pillContent';
 export {PillContentIcon} from './components/pill/pillContentIcon';
