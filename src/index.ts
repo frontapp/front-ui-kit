@@ -40,6 +40,8 @@ export {DropdownItemSkeleton} from './components/dropdown/skeleton/dropdownItemS
 
 export {EmptyState} from './components/emptyState/emptyState';
 
+export {Heading} from './components/heading/heading';
+
 export {Icon, IconName} from './components/icon/icon';
 
 export {Input} from './components/input/input';
