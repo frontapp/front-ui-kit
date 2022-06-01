@@ -7,7 +7,7 @@ import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
 import {Heading} from '../heading';
 
 /*
- * Component.
+ * Style
  */
 
 const StyledContainerDiv = styled.div`
@@ -15,6 +15,10 @@ const StyledContainerDiv = styled.div`
   flex-flow: column;
   gap: 32px;
 `;
+
+/*
+ * Component
+ */
 
 const ShowcaseComponent: FC = props => (
   <DefaultStyleProvider>
@@ -28,8 +32,8 @@ const ShowcaseComponent: FC = props => (
 );
 
 /*
-   * Storybook.
-   */
+ * Storybook
+ */
 
 export default {
   title: 'Components/Heading',
