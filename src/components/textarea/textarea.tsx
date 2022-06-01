@@ -62,7 +62,6 @@ interface StyledTextareaProps {
 
 const StyledTextarea = styled.textarea<StyledTextareaProps>`
   width: inherit;
-  height: inherit;
   background: ${greys.shade20};
   font-family: ${fonts.system};
   font-size: ${fontSizes.medium};
@@ -89,7 +88,7 @@ const StyledTextarea = styled.textarea<StyledTextareaProps>`
     background: ${greys.white};
   }
 
-  resize: ${p => (!p.$shouldAllowResize ? `none` : `auto`)};
+  resize: ${p => (!p.$shouldAllowResize ? `none` : `vertical`)};
 
   ${p => addTextareaStyles(p)};
 `;
