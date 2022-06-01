@@ -3,14 +3,10 @@ import styled from 'styled-components';
 
 import {greys} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
-import {makeSizeConstants} from '../../helpers/styleHelpers';
 
 /*
  * Constants.
  */
-
-const headingFontSizes = makeSizeConstants(fontSizes.small, fontSizes.medium, fontSizes.large, fontSizes.veryLarge);
-const lineHeights = makeSizeConstants(16, 16, 20, 30);
 
 const defaultColor = greys.shade80;
 
