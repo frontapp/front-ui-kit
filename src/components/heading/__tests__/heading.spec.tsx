@@ -1,9 +1,8 @@
 import {render} from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import React from 'react';
 
-import {Heading} from '../heading';
 import {VisualSizesEnum} from '../../../helpers/fontHelpers';
+import {Heading} from '../heading';
 
 describe('<Heading /> Spec', () => {
   describe('Snapshots', () => {
