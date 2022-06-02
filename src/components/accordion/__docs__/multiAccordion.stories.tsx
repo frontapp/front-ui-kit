@@ -13,43 +13,35 @@ import {AccordionSection} from '../accordionSection';
  */
 
 const DATA = [{
-  id: "project",
-  title: "Project",
-  tasks: [
-    {name: "Task 1", done: true},
-    {name: "Task 2", done: false},
-    {name: "Task 3", done: false}
+  id: "fiction",
+  title: "Fiction",
+  books: [
+    {name: "The Hunger Games", read: true},
+    {name: "The Chronicles of Narnia", read: true},
   ],
   sections: [{
-    id: "subtask",
-    title: "Sub Tasks",
-    tasks: [
-      {name: "Sub Task 1", done: true},
-      {name: "Sub Task 2", done: false},
-      {name: "Sub Task 3", done: false}
+    id: "fantasy",
+    title: "Fantasy",
+    books: [
+      {name: "Harry Potter", read: true},
+      {name: "Lord of the Rings", read: true},
+      {name: "Game of Thrones", read: false}
     ]
   }]
 },
-{id: "bugs",
-  title: "Bugs",
-  tasks: [
-    {name: "Bug 1", done: true},
-    {name: "Bug 2", done: false},
-    {name: "Bug 3", done: true}
-  ]},
-{id: "reviews",
-  title: "Reviews",
-  tasks: [
-    {name: "Review 1", done: true},
-    {name: "Review 2", done: false}
+{id: "History",
+  title: "History",
+  books: [
+    {name: "Lies My Teacher Told Me", read: true},
+    {name: "A Short History of Nearly Everything", read: true}
   ],
   sections: [{
-    id: "subtask",
-    title: "Sub Tasks",
-    tasks: [
-      {name: "Sub Task 1", done: true},
-      {name: "Sub Task 2", done: false},
-      {name: "Sub Task 3", done: false}
+    id: "historical-fiction",
+    title: "Historical Fiction",
+    books: [
+      {name: "The Richest Man in Babylon", read: false},
+      {name: "The Buddha in the Attic", read: true},
+      {name: "Pachinko", read: true}
     ]
   }]}
 ];
@@ -111,10 +103,10 @@ function renderAccordion(data, args) {
           title={section.title}
           onSectionToggled={isOpen => console.log(getSectionDetails(section.title, isOpen))}
         >
-          {section.tasks.map(task => (
+          {section.books.map(book => (
             <StyledTaskDiv>
-              {task.name}
-              {task.done && <StyledIconDiv><Icon name="CheckmarkCircle" size={16} color={palette.blue.shade40} /></StyledIconDiv>}
+              {book.name}
+              {book.read && <StyledIconDiv><Icon name="CheckmarkCircle" size={16} color={palette.blue.shade40} /></StyledIconDiv>}
             </StyledTaskDiv>
           ))}
           {section.sections && renderAccordion(section.sections, args)}
