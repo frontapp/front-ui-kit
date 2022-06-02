@@ -75,6 +75,10 @@ const StyledFileWrapperDiv = styled.div`
   gap: 9px;
   font-family: ${fonts.system};
   font-weight: ${fontWeights.semibold};
+
+  &:hover {
+    background: ${greys.shade20};
+  }
 `;
 
 const StyledFileIconDiv = styled.div`
