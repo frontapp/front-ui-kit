@@ -17,7 +17,7 @@ const DATA = [{
   title: "Fiction",
   books: [
     {name: "The Hunger Games", read: true},
-    {name: "The Chronicles of Narnia", read: true},
+    {name: "The Chronicles of Narnia", read: true}
   ],
   sections: [{
     id: "fantasy",
@@ -56,7 +56,7 @@ const StyledShowcaseDiv = styled.div`
   padding: 16px;
 `;
 
-const StyledTaskDiv = styled.div`
+const StyledBookDiv = styled.div`
   position: relative;
   display: flex;
   flex-direction: row;
@@ -104,10 +104,10 @@ function renderAccordion(data, args) {
           onSectionToggled={isOpen => console.log(getSectionDetails(section.title, isOpen))}
         >
           {section.books.map(book => (
-            <StyledTaskDiv>
+            <StyledBookDiv>
               {book.name}
               {book.read && <StyledIconDiv><Icon name="CheckmarkCircle" size={16} color={palette.blue.shade40} /></StyledIconDiv>}
-            </StyledTaskDiv>
+            </StyledBookDiv>
           ))}
           {section.sections && renderAccordion(section.sections, args)}
         </AccordionSection>
