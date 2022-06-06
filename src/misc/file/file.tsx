@@ -1,8 +1,9 @@
 import React, {FC} from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
+import {Button} from '../../components/button/button';
 import {Icon, IconName} from '../../components/icon/icon';
-import {greys} from '../../helpers/colorHelpers';
+import {greys, palette} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 
 /*
@@ -62,39 +63,36 @@ interface FileProps {
  * Style.
  */
 
-const StyledFileWrapperDiv = styled.div`
+interface StyledFileProps {
+  $isErred: boolean;
+}
+
+const StyledFileWrapperDiv = styled.div<StyledFileProps>`
   width: inherit;
   position: relative;
-  padding: 7px;
+  padding: 7px 9px 7px 7px;
   border: 1px solid ${greys.shade40};
   border-radius: 8px;
-  background: ${greys.white};
 
   display: flex;
   flex-direction: row;
   gap: 9px;
   font-family: ${fonts.system};
   font-weight: ${fontWeights.semibold};
+  font-size: ${fontSizes.medium};
+  line-height: 17px;
 
-  &:hover {
-    background: ${greys.shade20};
-  }
+  ${p => addFileStyles(p)};
 `;
 
 const StyledFileIconDiv = styled.div`
   pointer-events: none;
-  top: 0px;
+  margin-top: 2px;
 `;
 
 const StyledFileDetailsDiv = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-const StyledFileNameDiv = styled.div`
-  font-size: ${fontSizes.medium};
-  line-height: 17px;
-  color: ${greys.shade90};
 `;
 
 const StyledFileSizeDiv = styled.div`
@@ -103,27 +101,64 @@ const StyledFileSizeDiv = styled.div`
   color: ${greys.shade70};
 `;
 
+const StyledFileClearDiv = styled.div`
+  margin-left: auto;
+  margin-top: 5px;
+
+  button {
+    background: unset;
+    &:hover {
+      background: unset;
+      color: ${greys.white};
+    }
+    padding: 3px;
+    color: ${greys.white};
+  }
+`;
+
+const StyledFileClearIconDiv = styled.div`
+  background: ${greys.black};
+  &:hover {
+    background: ${palette.blue.shade40};
+  }
+  border-radius: 50%;
+`;
+
+function addFileStyles(props: StyledFileProps) {
+  if (props.$isErred)
+    return css`
+      background: ${palette.red.shade10};
+      color: ${palette.red.shade50};
+    `;
+  return css`
+    background: ${greys.white};
+    color: ${greys.shade90};
+    &:hover {
+      background: ${greys.shade20};
+    }
+  `;
+}
+
 /*
  * Component.
  */
 
 export const File: FC<FileProps> = props => {
-  const {fileName, fileType = AttachmentTypesEnum.GENERIC, fileSize} = props;
+  const {fileName, fileType = AttachmentTypesEnum.GENERIC, fileSize, isErred = false, onClear} = props;
   const iconName = fileTypeIcons[fileType];
 
   return (
-    <StyledFileWrapperDiv>
+    <StyledFileWrapperDiv $isErred={isErred}>
       <StyledFileIconDiv>
         <Icon name={iconName} />
       </StyledFileIconDiv>
       <StyledFileDetailsDiv>
-        <StyledFileNameDiv>
-          {fileName}
-        </StyledFileNameDiv>
+        {fileName}
         <StyledFileSizeDiv>
           {bytesToSize(fileSize * 1024)}
         </StyledFileSizeDiv>
       </StyledFileDetailsDiv>
+      {maybeRenderFileClearButton(onClear)}
     </StyledFileWrapperDiv>
   );
 };
@@ -138,4 +173,16 @@ function bytesToSize(bytes: number) {
     return '0B';
   const index = Math.floor(Math.log(bytes) / Math.log(1024));
   return Math.round(bytes / 1024**index) + sizes[index];
+}
+
+function maybeRenderFileClearButton(onClear?: () => void) {
+  if (!onClear)
+    return null;
+  return (
+    <StyledFileClearDiv>
+      <StyledFileClearIconDiv>
+        <Button type="icon" onClick={onClear}><Icon name="Close" color={greys.white} /></Button>
+      </StyledFileClearIconDiv>
+    </StyledFileClearDiv>
+  );
 }
