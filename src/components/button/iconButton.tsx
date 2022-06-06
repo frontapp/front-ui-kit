@@ -19,6 +19,7 @@ interface IconButtonProps {
   isActive?: boolean;
   /** Called when the user click on the button. */
   onClick: MouseEventHandler;
+  isCustom?: boolean;
 }
 
 /*
@@ -29,6 +30,7 @@ interface StyledIconButtonProps {
   $isDanger?: boolean;
   $isDisabled?: boolean;
   $isActive?: boolean;
+  $isCustom?: boolean;
 }
 
 const StyledIconButton = styled.button<StyledIconButtonProps>`
@@ -37,10 +39,10 @@ const StyledIconButton = styled.button<StyledIconButtonProps>`
   padding: 7px;
   border-radius: 8px;
 
-  ${p => addIconColorStyles(p.$isDanger, p.$isDisabled, p.$isActive)};
+  ${p => addIconColorStyles(p.$isDanger, p.$isDisabled, p.$isActive, p.$isCustom)};
 `;
 
-function addIconColorStyles(isDanger?: boolean, isDisabled?: boolean, isActive?: boolean) {
+function addIconColorStyles(isDanger?: boolean, isDisabled?: boolean, isActive?: boolean, isCustom?: boolean) {
   if (isDisabled)
     return css`
       color: ${greys.shade40};
@@ -71,9 +73,9 @@ function addIconColorStyles(isDanger?: boolean, isDisabled?: boolean, isActive?:
  */
 
 export const IconButton: FC<IconButtonProps> = props => {
-  const {children, isDanger, isDisabled, isActive, onClick} = props;
+  const {children, isDanger, isDisabled, isActive, onClick, isCustom} = props;
   return (
-    <StyledIconButton $isDanger={isDanger} $isDisabled={isDisabled} $isActive={isActive} onClick={onClick}>
+    <StyledIconButton $isCustom={isCustom} $isDanger={isDanger} $isDisabled={isDisabled} $isActive={isActive} onClick={onClick}>
       {renderFirstIconOnly(children)}
     </StyledIconButton>
   );
