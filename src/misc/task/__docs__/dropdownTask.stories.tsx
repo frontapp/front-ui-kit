@@ -1,8 +1,8 @@
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 import React, {FC, useState} from 'react';
 import styled from 'styled-components';
-import { DropdownItem } from '../../../components/dropdown/dropdownItem';
 
+import {DropdownItem} from '../../../components/dropdown/dropdownItem';
 import {greys} from '../../../helpers/colorHelpers';
 import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
 import {Task} from '../task';
@@ -15,7 +15,7 @@ const StyledShowcaseDiv = styled.div`
   background: ${greys.shade50};
   border-radius: 8px;
   padding: 16px;
-  width: 300px;
+  width: 200px;
 `;
 
 /*
@@ -43,7 +43,6 @@ const TaskWithDropdownComponent: FC = props => {
     </DefaultStyleProvider>
   );
 };
-
 
 /*
  * Storybook.

@@ -5,6 +5,8 @@ import {Button} from '../../components/button/button';
 import {Dropdown} from '../../components/dropdown/dropdown';
 import {DropdownCoordinator} from '../../components/dropdown/dropdownCoordinator';
 import {Icon, IconName} from '../../components/icon/icon';
+import {Tooltip} from '../../components/tooltip/tooltip';
+import {TooltipCoordinator} from '../../components/tooltip/tooltipCoordinator';
 import {alphas, greys, palette} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 
@@ -50,7 +52,6 @@ const StyledTaskWrapperDiv = styled.div<StyledTaskProps>`
 
   display: flex;
   flex-direction: row;
-  gap: 2px;
   font-family: ${fonts.system};
   font-weight: ${fontWeights.medium};
   font-size: ${fontSizes.medium};
@@ -76,9 +77,8 @@ const StyledTaskCheckboxDiv = styled.div<StyledTaskProps>`
 
 const StyledTaskLabelDiv = styled.div`
   color: ${greys.shade80};
-  display: flex;
-  justify-content: center;
-  align-items: center
+  padding: 7px 4px;
+  overflow: hidden;
 `;
 
 const StyledTaskChildrenDiv = styled.div`
@@ -109,7 +109,18 @@ export const Task: FC<TaskProps> = props => {
         {maybeRenderTaskIconOrCheckbox(type, icon, isChecked, onChange)}
       </StyledTaskIconCheckboxDiv>
       <StyledTaskLabelDiv>
-        {label}
+        <TooltipCoordinator
+          condition={{
+            type: 'overflow'
+          }}
+          renderTooltip={() => (
+            <Tooltip placement="top" maxWidth={150}>
+              {label}
+            </Tooltip>
+          )}
+        >
+          {label}
+        </TooltipCoordinator>
       </StyledTaskLabelDiv>
       <StyledTaskChildrenDiv>
         {maybeRenderDropdown(children)}
