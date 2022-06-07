@@ -5,7 +5,7 @@ import {Button} from '../../components/button/button';
 import {Dropdown} from '../../components/dropdown/dropdown';
 import {DropdownCoordinator} from '../../components/dropdown/dropdownCoordinator';
 import {Icon, IconName} from '../../components/icon/icon';
-import { Skeleton } from '../../components/skeleton/skeleton';
+import {Skeleton} from '../../components/skeleton/skeleton';
 import {Tooltip} from '../../components/tooltip/tooltip';
 import {TooltipCoordinator} from '../../components/tooltip/tooltipCoordinator';
 import {alphas, greys, palette} from '../../helpers/colorHelpers';
@@ -48,7 +48,7 @@ interface StyledTaskProps {
 const StyledLoadingWrapperDiv = styled.div`
   width: 100%;
   border-radius: 8px;
-`
+`;
 
 const StyledTaskWrapperDiv = styled.div<StyledTaskProps>`
   padding: 4px 6px;
@@ -111,7 +111,7 @@ export const Task: FC<TaskProps> = props => {
   if (isLoading)
     return (
       <StyledLoadingWrapperDiv>
-        <Skeleton height={40} variant='dark'/>
+        <Skeleton height={40} variant="dark" />
       </StyledLoadingWrapperDiv>
     );
 
