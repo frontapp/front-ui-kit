@@ -3,6 +3,8 @@ import styled, {css} from 'styled-components';
 
 import {Button} from '../../components/button/button';
 import {Icon, IconName} from '../../components/icon/icon';
+import { Tooltip } from '../../components/tooltip/tooltip';
+import { TooltipCoordinator } from '../../components/tooltip/tooltipCoordinator';
 import {greys, palette} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 
@@ -68,8 +70,6 @@ interface StyledFileProps {
 }
 
 const StyledFileWrapperDiv = styled.div<StyledFileProps>`
-  width: inherit;
-  position: relative;
   padding: 7px 9px 7px 7px;
   border: 1px solid ${greys.shade40};
   border-radius: 8px;
@@ -81,8 +81,12 @@ const StyledFileWrapperDiv = styled.div<StyledFileProps>`
   font-weight: ${fontWeights.semibold};
   font-size: ${fontSizes.medium};
   line-height: 17px;
+  color: ${greys.shade90};
 
-  ${p => addFileStyles(p)};
+  background: ${p => p.$isErred ? palette.red.shade10 : greys.white};
+  &:hover {
+    background: ${p => p.$isErred ? palette.red.shade20 : greys.shade20};
+  }
 `;
 
 const StyledFileIconDiv = styled.div`
@@ -93,6 +97,14 @@ const StyledFileIconDiv = styled.div`
 const StyledFileDetailsDiv = styled.div`
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  pointer-events: none;
+`;
+
+const StyledErrorLabelDiv = styled.div`
+  color: ${palette.red.shade50};
+  float: left;
+  padding-right: 3px;
 `;
 
 const StyledFileSizeDiv = styled.div`
@@ -101,43 +113,21 @@ const StyledFileSizeDiv = styled.div`
   color: ${greys.shade70};
 `;
 
-const StyledFileClearDiv = styled.div`
+const StyledFileClearIconDiv = styled.div<StyledFileProps>`
   margin-left: auto;
   margin-top: 5px;
 
   button {
-    background: unset;
+    background: ${p => p.$isErred ? palette.red.shade40 : greys.black};
+    color: ${greys.white};
     &:hover {
-      background: unset;
+      background: ${p => p.$isErred ? palette.red.shade50 : palette.blue.shade40};
       color: ${greys.white};
     }
     padding: 3px;
-    color: ${greys.white};
+    border-radius: 50%;
   }
 `;
-
-const StyledFileClearIconDiv = styled.div`
-  background: ${greys.black};
-  &:hover {
-    background: ${palette.blue.shade40};
-  }
-  border-radius: 50%;
-`;
-
-function addFileStyles(props: StyledFileProps) {
-  if (props.$isErred)
-    return css`
-      background: ${palette.red.shade10};
-      color: ${palette.red.shade50};
-    `;
-  return css`
-    background: ${greys.white};
-    color: ${greys.shade90};
-    &:hover {
-      background: ${greys.shade20};
-    }
-  `;
-}
 
 /*
  * Component.
@@ -146,6 +136,8 @@ function addFileStyles(props: StyledFileProps) {
 export const File: FC<FileProps> = props => {
   const {fileName, fileType = AttachmentTypesEnum.GENERIC, fileSize, isErred = false, onClear} = props;
   const iconName = fileTypeIcons[fileType];
+  const errorMessage = "[Failed to upload]";
+  const fileLabel = isErred ? `${errorMessage} ${fileName}` : fileName;
 
   return (
     <StyledFileWrapperDiv $isErred={isErred}>
@@ -153,12 +145,24 @@ export const File: FC<FileProps> = props => {
         <Icon name={iconName} />
       </StyledFileIconDiv>
       <StyledFileDetailsDiv>
-        {fileName}
+        <TooltipCoordinator
+          condition={{
+            type: 'overflow'
+          }}
+          renderTooltip={() => (
+            <Tooltip placement="top" maxWidth={240}>
+              {fileLabel}
+            </Tooltip>
+          )}
+        >
+          {isErred && <StyledErrorLabelDiv>{errorMessage}</StyledErrorLabelDiv>}
+          {fileName}
+        </TooltipCoordinator>
         <StyledFileSizeDiv>
           {bytesToSize(fileSize * 1024)}
         </StyledFileSizeDiv>
       </StyledFileDetailsDiv>
-      {maybeRenderFileClearButton(onClear)}
+      {maybeRenderFileClearButton(isErred, onClear)}
     </StyledFileWrapperDiv>
   );
 };
@@ -175,14 +179,12 @@ function bytesToSize(bytes: number) {
   return Math.round(bytes / 1024**index) + sizes[index];
 }
 
-function maybeRenderFileClearButton(onClear?: () => void) {
+function maybeRenderFileClearButton(isErred: boolean, onClear?: () => void) {
   if (!onClear)
     return null;
   return (
-    <StyledFileClearDiv>
-      <StyledFileClearIconDiv>
-        <Button type="icon" onClick={onClear}><Icon name="Close" color={greys.white} /></Button>
-      </StyledFileClearIconDiv>
-    </StyledFileClearDiv>
+    <StyledFileClearIconDiv $isErred={isErred}>
+      <Button type="icon" onClick={onClear}><Icon name="Close" color={greys.white} /></Button>
+    </StyledFileClearIconDiv>
   );
 }
