@@ -2,6 +2,8 @@ import React, {FC, ReactNode} from 'react';
 import styled, {css} from 'styled-components';
 
 import {Button} from '../../components/button/button';
+import { Dropdown } from '../../components/dropdown/dropdown';
+import { DropdownCoordinator } from '../../components/dropdown/dropdownCoordinator';
 import {Icon, IconName} from '../../components/icon/icon';
 import {alphas, greys, palette} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
@@ -41,8 +43,6 @@ interface StyledTaskProps {
 }
 
 const StyledTaskWrapperDiv = styled.div<StyledTaskProps>`
-  width: inherit;
-  position: relative;
   padding: 4px 6px;
   border: 1px solid ${alphas.black30};
   border-radius: 8px;
@@ -62,7 +62,6 @@ const StyledTaskWrapperDiv = styled.div<StyledTaskProps>`
 `;
 
 const StyledTaskIconCheckboxDiv = styled.div`
-  
 `;
 
 const StyledTaskIconDiv = styled.div`
@@ -86,16 +85,11 @@ function addTaskCheckboxStyles(props: StyledTaskProps) {
   if (props.$isChecked)
     return css`
       color: ${palette.green.shade40};
-      &: hover {
+      &:hover {
         color: ${palette.green.shade40};
       }
     `;
-  return css`
-    color: none;
-    &:hover {
-      color: none;
-    }
-  `;
+  return css``;
 }
 
 /*
@@ -122,7 +116,11 @@ export const Task: FC<TaskProps> = props => {
  * Helpers
  */
 
-function maybeRenderTaskIconOrCheckbox(type?: 'icon' | 'checkbox', iconName?: IconName, isChecked?: boolean, onChange?: (isChecked: boolean) => void) {
+function maybeRenderTaskIconOrCheckbox(
+  type?: 'icon' | 'checkbox',
+  iconName?: IconName,
+  isChecked?: boolean,
+  onChange?: (isChecked: boolean) => void) {
   if (!type)
     return null;
   if (type === 'icon' && iconName)
@@ -147,5 +145,16 @@ function maybeRenderTaskIconOrCheckbox(type?: 'icon' | 'checkbox', iconName?: Ic
 function maybeRenderDropdown(children?: ReactNode) {
   if (!children)
     return null;
+  return (
+    <DropdownCoordinator
+      placement="bottom-start"
+      renderButton={isDropdownOpen => <Button type="icon" isActive={isDropdownOpen}><Icon name="EllipsisVertical" /></Button>}
+      renderDropdown={onCloseDropdown => (
+        <Dropdown>
+          {children}
+        </Dropdown>
+      )}/>
+  );
+
 }
 
