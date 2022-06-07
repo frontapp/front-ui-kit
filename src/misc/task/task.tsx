@@ -12,17 +12,13 @@ import {alphas, greys, palette} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 
 /*
- * Constants.
- */
-
-/*
  * Props.
  */
 
 interface TaskProps {
   /** How the task is rendered. */
   type?: 'icon' | 'checkbox';
-  /** The content of the dropdown. If there is not content we will not render the triple dot dropdown button. */
+  /** The content of the dropdown. If there is no content we will not render the triple dot dropdown button. */
   children?: ReactNode;
   /** The label for the task. */
   label: string;
@@ -41,7 +37,6 @@ interface TaskProps {
  */
 
 interface StyledTaskProps {
-  $isLoading?: boolean;
   $isChecked?: boolean;
 }
 
@@ -50,7 +45,7 @@ const StyledLoadingWrapperDiv = styled.div`
   border-radius: 8px;
 `;
 
-const StyledTaskWrapperDiv = styled.div<StyledTaskProps>`
+const StyledTaskWrapperDiv = styled.div`
   padding: 4px 6px;
   border: 1px solid ${alphas.black30};
   border-radius: 8px;
@@ -116,7 +111,7 @@ export const Task: FC<TaskProps> = props => {
     );
 
   return (
-    <StyledTaskWrapperDiv $isLoading={isLoading}>
+    <StyledTaskWrapperDiv>
       <StyledTaskIconCheckboxDiv>
         {maybeRenderTaskIconOrCheckbox(type, icon, isChecked, onChange)}
       </StyledTaskIconCheckboxDiv>
