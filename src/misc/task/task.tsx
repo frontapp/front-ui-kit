@@ -5,6 +5,7 @@ import {Button} from '../../components/button/button';
 import {Dropdown} from '../../components/dropdown/dropdown';
 import {DropdownCoordinator} from '../../components/dropdown/dropdownCoordinator';
 import {Icon, IconName} from '../../components/icon/icon';
+import { Skeleton } from '../../components/skeleton/skeleton';
 import {Tooltip} from '../../components/tooltip/tooltip';
 import {TooltipCoordinator} from '../../components/tooltip/tooltipCoordinator';
 import {alphas, greys, palette} from '../../helpers/colorHelpers';
@@ -43,6 +44,11 @@ interface StyledTaskProps {
   $isLoading?: boolean;
   $isChecked?: boolean;
 }
+
+const StyledLoadingWrapperDiv = styled.div`
+  width: 100%;
+  border-radius: 8px;
+`
 
 const StyledTaskWrapperDiv = styled.div<StyledTaskProps>`
   padding: 4px 6px;
@@ -102,6 +108,12 @@ function addTaskCheckboxStyles(props: StyledTaskProps) {
 
 export const Task: FC<TaskProps> = props => {
   const {type, children, label, isLoading = false, icon, isChecked = false, onChange} = props;
+  if (isLoading)
+    return (
+      <StyledLoadingWrapperDiv>
+        <Skeleton height={40} variant='dark'/>
+      </StyledLoadingWrapperDiv>
+    );
 
   return (
     <StyledTaskWrapperDiv $isLoading={isLoading}>

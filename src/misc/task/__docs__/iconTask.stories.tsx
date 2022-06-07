@@ -35,7 +35,7 @@ const TaskWithIconComponent: FC<TaskWithIconProps> = props => (
     <StyledShowcaseDiv>
       <Task
         type="icon"
-        icon={props.icon}
+        icon={props.icon || 'AttachmentCalendar'}
         label="Apply changes to feature"
       />
     </StyledShowcaseDiv>
