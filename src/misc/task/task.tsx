@@ -55,6 +55,10 @@ const StyledTaskWrapperDiv = styled.div<StyledTaskProps>`
   font-weight: ${fontWeights.medium};
   font-size: ${fontSizes.medium};
   line-height: 15px;
+
+  &:hover {
+    background: ${greys.shade10};
+  }
 `;
 
 const StyledTaskIconCheckboxDiv = styled.div`
@@ -62,6 +66,7 @@ const StyledTaskIconCheckboxDiv = styled.div`
 `;
 
 const StyledTaskIconDiv = styled.div`
+  padding: 7px;
 `;
 
 const StyledTaskCheckboxDiv = styled.div<StyledTaskProps>`
