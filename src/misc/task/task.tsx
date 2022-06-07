@@ -126,7 +126,7 @@ export const Task: FC<TaskProps> = props => {
             type: 'overflow'
           }}
           renderTooltip={() => (
-            <Tooltip placement="top" maxWidth={150}>
+            <Tooltip placement="top" maxWidth={240}>
               {label}
             </Tooltip>
           )}
