@@ -1,6 +1,7 @@
 import {ComponentMeta, ComponentStory} from '@storybook/react';
 import React, {FC, useState} from 'react';
 import styled from 'styled-components';
+import { DropdownItem } from '../../../components/dropdown/dropdownItem';
 
 import {greys} from '../../../helpers/colorHelpers';
 import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
@@ -21,7 +22,7 @@ const StyledShowcaseDiv = styled.div`
  * Component.
  */
 
-const TaskWithCheckboxComponent: FC = props => {
+const TaskWithDropdownComponent: FC = props => {
   const [isChecked, setIsChecked] = useState(false);
   const onToggleCheckbox = (checked: boolean) => {
     setIsChecked(checked);
@@ -34,11 +35,15 @@ const TaskWithCheckboxComponent: FC = props => {
           isChecked={isChecked}
           onChange={onToggleCheckbox}
           label="Apply changes to feature"
-        />
+        >
+          <DropdownItem>View Task Details</DropdownItem>
+          <DropdownItem>Close Task</DropdownItem>
+        </Task>
       </StyledShowcaseDiv>
     </DefaultStyleProvider>
   );
 };
+
 
 /*
  * Storybook.
@@ -46,11 +51,11 @@ const TaskWithCheckboxComponent: FC = props => {
 
 export default {
   title: 'Misc/Task',
-  component: TaskWithCheckboxComponent
-} as ComponentMeta<typeof TaskWithCheckboxComponent>;
+  component: TaskWithDropdownComponent
+} as ComponentMeta<typeof TaskWithDropdownComponent>;
 
-const ShowcaseTemplate: ComponentStory<typeof TaskWithCheckboxComponent> = () => <TaskWithCheckboxComponent />;
-export const TaskWithCheckbox = ShowcaseTemplate.bind({});
-TaskWithCheckbox.parameters = {
+const ShowcaseTemplate: ComponentStory<typeof TaskWithDropdownComponent> = () => <TaskWithDropdownComponent />;
+export const TaskWithDropdown = ShowcaseTemplate.bind({});
+TaskWithDropdown.parameters = {
   controls: {hideNoControlsWarning: true}
 };

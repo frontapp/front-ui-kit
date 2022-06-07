@@ -1,10 +1,10 @@
 import {ComponentMeta, ComponentStory} from '@storybook/react';
-import React, { FC, useState } from 'react';
+import React, {FC} from 'react';
 import styled from 'styled-components';
-import { IconName, icons } from '../../../components/icon/icon';
-import { greys } from '../../../helpers/colorHelpers';
-import { DefaultStyleProvider } from '../../../utils/defaultStyleProvider';
 
+import {IconName, icons} from '../../../components/icon/icon';
+import {greys} from '../../../helpers/colorHelpers';
+import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
 import {Task} from '../task';
 
 /*
@@ -30,19 +30,17 @@ const StyledShowcaseDiv = styled.div`
  * Component.
  */
 
-const TaskWithIconComponent: FC<TaskWithIconProps> = props => {
-  return (
-    <DefaultStyleProvider>
-      <StyledShowcaseDiv>
-        <Task
-          type="icon"
-          icon={props.icon}
-          label="Apply changes to feature"
-        />
-      </StyledShowcaseDiv>
-    </DefaultStyleProvider>
-  );
-};
+const TaskWithIconComponent: FC<TaskWithIconProps> = props => (
+  <DefaultStyleProvider>
+    <StyledShowcaseDiv>
+      <Task
+        type="icon"
+        icon={props.icon}
+        label="Apply changes to feature"
+      />
+    </StyledShowcaseDiv>
+  </DefaultStyleProvider>
+);
 
 /*
  * Storybook.
@@ -56,5 +54,5 @@ export default {
   }
 } as ComponentMeta<typeof TaskWithIconComponent>;
 
-const ShowcaseTemplate: ComponentStory<typeof TaskWithIconComponent> = (props: TaskWithIconProps) => <TaskWithIconComponent icon={props.icon}/>;
+const ShowcaseTemplate: ComponentStory<typeof TaskWithIconComponent> = (props: TaskWithIconProps) => <TaskWithIconComponent icon={props.icon} />;
 export const TaskWithIcon = ShowcaseTemplate.bind({});

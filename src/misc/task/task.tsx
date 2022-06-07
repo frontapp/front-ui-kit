@@ -2,8 +2,8 @@ import React, {FC, ReactNode} from 'react';
 import styled, {css} from 'styled-components';
 
 import {Button} from '../../components/button/button';
-import { Dropdown } from '../../components/dropdown/dropdown';
-import { DropdownCoordinator } from '../../components/dropdown/dropdownCoordinator';
+import {Dropdown} from '../../components/dropdown/dropdown';
+import {DropdownCoordinator} from '../../components/dropdown/dropdownCoordinator';
 import {Icon, IconName} from '../../components/icon/icon';
 import {alphas, greys, palette} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
@@ -81,6 +81,10 @@ const StyledTaskLabelDiv = styled.div`
   align-items: center
 `;
 
+const StyledTaskChildrenDiv = styled.div`
+  margin-left: auto;
+`;
+
 function addTaskCheckboxStyles(props: StyledTaskProps) {
   if (props.$isChecked)
     return css`
@@ -107,7 +111,9 @@ export const Task: FC<TaskProps> = props => {
       <StyledTaskLabelDiv>
         {label}
       </StyledTaskLabelDiv>
-      {maybeRenderDropdown(children)}
+      <StyledTaskChildrenDiv>
+        {maybeRenderDropdown(children)}
+      </StyledTaskChildrenDiv>
     </StyledTaskWrapperDiv>
   );
 };
@@ -153,8 +159,8 @@ function maybeRenderDropdown(children?: ReactNode) {
         <Dropdown>
           {children}
         </Dropdown>
-      )}/>
+      )}
+    />
   );
-
 }
 

@@ -1,9 +1,9 @@
 import {ComponentMeta, ComponentStory} from '@storybook/react';
-import React, { FC, useState } from 'react';
+import React, {FC} from 'react';
 import styled from 'styled-components';
-import { greys } from '../../../helpers/colorHelpers';
-import { DefaultStyleProvider } from '../../../utils/defaultStyleProvider';
 
+import {greys} from '../../../helpers/colorHelpers';
+import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
 import {Task} from '../task';
 
 /*
@@ -21,17 +21,15 @@ const StyledShowcaseDiv = styled.div`
  * Component.
  */
 
-const SimpleTaskComponent: FC = props => {
-  return (
-    <DefaultStyleProvider>
-      <StyledShowcaseDiv>
-        <Task
-          label="Apply changes to feature"
-        />
-      </StyledShowcaseDiv>
-    </DefaultStyleProvider>
-  );
-};
+const SimpleTaskComponent: FC = props => (
+  <DefaultStyleProvider>
+    <StyledShowcaseDiv>
+      <Task
+        label="Apply changes to feature"
+      />
+    </StyledShowcaseDiv>
+  </DefaultStyleProvider>
+);
 
 /*
  * Storybook.
