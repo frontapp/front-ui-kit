@@ -110,7 +110,7 @@ const Template: ComponentStory<typeof Dropdown> = args => {
               </>
             )}
             {dogBreeds.map(breed => (
-              <DropdownItem key={breed} onClick={() => setSelectedDogBreed(breed)}>
+              <DropdownItem key={breed} isSelected={selectedDogBreed === breed} onClick={() => setSelectedDogBreed(breed)}>
                 {breed}
               </DropdownItem>
             ))}
