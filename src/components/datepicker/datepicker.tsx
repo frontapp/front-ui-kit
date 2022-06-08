@@ -69,7 +69,8 @@ export const DatePicker: FC<DatePickerProps> = props => {
     maxDate,
     onChange,
     type = 'date',
-    onRequestClose
+    onRequestClose,
+    onClear
   } = props;
   const [selectedDate, setSelectedDate] = useState(value && DateTime.fromJSDate(value));
   const selectedDateMonth = selectedDate ? selectedDate.startOf('month') : DateTime.now().startOf('month');
@@ -124,6 +125,12 @@ export const DatePicker: FC<DatePickerProps> = props => {
     onRequestClose();
   };
 
+  const onClearClick: (MouseEventHandler | undefined) = onClear && (() => {
+    if (type === 'dateAndTime' && selectedDate)
+      onClear();
+    onRequestClose();
+  });
+
   return (
     <StyledWrapperDiv onClick={event => event.preventDefault()}>
       <StyledDatePickerDiv>
@@ -142,7 +149,7 @@ export const DatePicker: FC<DatePickerProps> = props => {
         />
         {maybeRenderTimePicker(selectedView, onTimeSelect, timeFormat, selectedDate)}
       </StyledDatePickerDiv>
-      {maybeRenderDatePickerFooter(type, selectedView, onDateChange, onViewChange, onDone, timeFormat, onRequestClose, selectedDate)}
+      {maybeRenderDatePickerFooter(type, selectedView, onDateChange, onViewChange, onDone, timeFormat, onRequestClose, selectedDate, onClearClick)}
     </StyledWrapperDiv>
   );
 };
@@ -178,7 +185,8 @@ function maybeRenderDatePickerFooter(
   onDone: MouseEventHandler,
   timeFormat: '12h' | '24h',
   onRequestClose: () => void,
-  selectedDate?: DateTime
+  selectedDate?: DateTime,
+  onClearClick?: MouseEventHandler
 ) {
   if (!type || type !== 'dateAndTime')
     return null;
@@ -192,6 +200,7 @@ function maybeRenderDatePickerFooter(
         onDoneClick={onDone}
         timeFormat={timeFormat}
         onRequestClose={onRequestClose}
+        onClearClick={onClearClick}
       />
     </StyledInputsDiv>
   );

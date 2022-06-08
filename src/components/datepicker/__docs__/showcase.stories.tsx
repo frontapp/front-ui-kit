@@ -47,6 +47,9 @@ const ShowcaseDatePickerComponent: FC<ShowcaseDatePickerProps> = props => {
   const onChange = (newDate: Date) => {
     setDescription(formatDateTime(newDate, type, timeFormat));
   };
+  const onClear = () => {
+    setDescription("");
+  };
   const {value, minDate, maxDate, type, calendarWeekStartDay, timeFormat} = props;
   const [description, setDescription] = useState(value && formatDateTime(value, type, timeFormat));
 
@@ -62,6 +65,7 @@ const ShowcaseDatePickerComponent: FC<ShowcaseDatePickerProps> = props => {
           onChange={onChange}
           type={type}
           timeFormat={timeFormat}
+          onClear={onClear}
         />
       </StyledShowcaseDiv>
     </DefaultStyleProvider>
