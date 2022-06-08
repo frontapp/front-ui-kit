@@ -21,7 +21,7 @@ const StyledFormDiv = styled.div`
   width: 100%;
   display: flex;
   flex-flow: column;
-  gap: 8px;
+  gap: 16px;
 `;
 
 const Template: ComponentStory<typeof FormField> = args => {
