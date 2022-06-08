@@ -1,10 +1,10 @@
 import React, {FC} from 'react';
-import styled, {css} from 'styled-components';
+import styled from 'styled-components';
 
 import {Button} from '../../components/button/button';
 import {Icon, IconName} from '../../components/icon/icon';
-import { Tooltip } from '../../components/tooltip/tooltip';
-import { TooltipCoordinator } from '../../components/tooltip/tooltipCoordinator';
+import {Tooltip} from '../../components/tooltip/tooltip';
+import {TooltipCoordinator} from '../../components/tooltip/tooltipCoordinator';
 import {greys, palette} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 
@@ -83,9 +83,9 @@ const StyledFileWrapperDiv = styled.div<StyledFileProps>`
   line-height: 17px;
   color: ${greys.shade90};
 
-  background: ${p => p.$isErred ? palette.red.shade10 : greys.white};
+  background: ${p => (p.$isErred ? palette.red.shade10 : greys.white)};
   &:hover {
-    background: ${p => p.$isErred ? palette.red.shade20 : greys.shade20};
+    background: ${p => (p.$isErred ? palette.red.shade20 : greys.shade20)};
   }
 `;
 
@@ -118,10 +118,10 @@ const StyledFileClearIconDiv = styled.div<StyledFileProps>`
   margin-top: 5px;
 
   button {
-    background: ${p => p.$isErred ? palette.red.shade40 : greys.black};
+    background: ${p => (p.$isErred ? palette.red.shade40 : greys.black)};
     color: ${greys.white};
     &:hover {
-      background: ${p => p.$isErred ? palette.red.shade50 : palette.blue.shade40};
+      background: ${p => (p.$isErred ? palette.red.shade50 : palette.blue.shade40)};
       color: ${greys.white};
     }
     padding: 3px;
