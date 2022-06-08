@@ -81,7 +81,7 @@ export const FormField: FC<FormFieldProps> = props => {
         {isRequired && <StyledRequiredTagDiv>*</StyledRequiredTagDiv>}
       </StyledFormFieldLabelDiv>
       {React.cloneElement(children, {isErred})}
-      {errorMessage || hint && (
+      {(errorMessage || hint) && (
         <StyledFormFieldHelperTextDiv $isErred={isErred}>{errorMessage || hint}</StyledFormFieldHelperTextDiv>
       )}
     </StyledFormFieldWrapperDiv>
