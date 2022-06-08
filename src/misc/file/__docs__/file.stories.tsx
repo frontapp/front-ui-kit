@@ -41,8 +41,9 @@ const StyledDescriptionDiv = styled.div`
 
 const ShowcaseFileComponent: FC<ShowcaseFileProps> = props => {
   const [isErred, setIsErred] = useState(false);
-  const {fileName, fileSize, fileType = AttachmentTypesEnum.GENERIC} = props;
+  const {fileName = 'fileName.csv', fileSize = 30, fileType = AttachmentTypesEnum.GENERIC} = props;
   const [isVisible, setIsVisible] = useState(true);
+  const [description, setDescription] = useState("");
 
   useEffect(() => {
     if (!fileName || fileName.startsWith("Error"))
@@ -52,10 +53,12 @@ const ShowcaseFileComponent: FC<ShowcaseFileProps> = props => {
   }, [fileName]);
   const onClear = () => {
     setIsVisible(false);
+    setDescription("Please refresh to view the file.");
   };
   return (
     <DefaultStyleProvider>
       <StyledShowcaseDiv>
+        {description && <StyledDescriptionDiv>{description}</StyledDescriptionDiv>}
         {isVisible && <File fileName={fileName} fileSize={fileSize} fileType={fileType} isErred={isErred} onClear={onClear} />}
       </StyledShowcaseDiv>
     </DefaultStyleProvider>
