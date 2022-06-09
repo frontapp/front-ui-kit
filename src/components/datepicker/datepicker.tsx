@@ -18,6 +18,8 @@ import {TimePicker} from './timepicker';
 interface DatePickerProps extends Omit<DatePickerDropdownProps, 'placeholder'> {
   /** The dropdown's close method which is called when Cancel is clicked. */
   onRequestClose: () => void;
+  /**  */
+  onClear?: () => void;
 }
 
 /*
@@ -101,10 +103,6 @@ export const DatePicker: FC<DatePickerProps> = props => {
     if (!(isDateSelectable(mergedDate, minDateTime, maxDateTime)))
       return;
     setSelectedDate(mergedDate);
-    if (type === 'date') {
-      onChange(mergedDate.toJSDate());
-      onRequestClose();
-    }
   };
 
   const onTimeSelect = (date: DateTime) => {
@@ -120,14 +118,13 @@ export const DatePicker: FC<DatePickerProps> = props => {
   };
 
   const onDone: MouseEventHandler = () => {
-    if (type === 'dateAndTime' && selectedDate)
+    if (selectedDate)
       onChange(selectedDate?.toJSDate());
     onRequestClose();
   };
 
   const onClearClick: (MouseEventHandler | undefined) = onClear && (() => {
-    if (type === 'dateAndTime' && selectedDate)
-      onClear();
+    onClear();
     onRequestClose();
   });
 
@@ -188,11 +185,10 @@ function maybeRenderDatePickerFooter(
   selectedDate?: DateTime,
   onClearClick?: MouseEventHandler
 ) {
-  if (!type || type !== 'dateAndTime')
-    return null;
   return (
     <StyledInputsDiv>
       <DatePickerFooter
+        type={type}
         selectedDate={selectedDate}
         selectedView={selectedView}
         onDateChange={onDateChange}

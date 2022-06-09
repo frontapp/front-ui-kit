@@ -22,6 +22,8 @@ const MAX_INPUT_WIDTH = 107;
 interface DatePickerFooterProps {
   /** The selected date */
   selectedDate?: DateTime;
+  /** Whether to render the time input. */
+  type: 'date' | 'dateAndTime';
   /** The format to display time in. */
   timeFormat: '12h' | '24h';
   /** Controls which input is focused */
@@ -99,7 +101,7 @@ const StyledFooterDiv = styled.div`
  */
 
 export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
-  const {selectedDate, timeFormat, selectedView, onViewChange, onDateChange, onDoneClick, onRequestClose, onClearClick} = props;
+  const {selectedDate, type, timeFormat, selectedView, onViewChange, onDateChange, onDoneClick, onRequestClose, onClearClick} = props;
   const [dateValue, setDateValue] = useState(selectedDate?.toFormat("MM/dd/yyyy"));
   const [timeValue, setTimeValue] = useState(selectedDate && formatTime(selectedDate, timeFormat));
 
@@ -158,7 +160,7 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
     <StyledWrapperDiv>
       <StyledLabelsDiv>
         <StyledLabelDiv>Date</StyledLabelDiv>
-        <StyledLabelDiv>Time</StyledLabelDiv>
+        {type === 'dateAndTime' && <StyledLabelDiv>Time</StyledLabelDiv>}
       </StyledLabelsDiv>
       <StyledInputsDiv>
         <Input
@@ -166,17 +168,19 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
           onFocus={onDateFocus}
           onBlur={onDateBlur}
           shouldFocus={selectedView === DatepickerViewsEnum.DATE}
-          maxWidth={MAX_INPUT_WIDTH}
+          maxWidth={type === 'dateAndTime' ? MAX_INPUT_WIDTH : undefined}
           onChange={onDateValueChange}
         />
-        <Input
-          value={timeValue}
-          shouldFocus={selectedView === DatepickerViewsEnum.TIME}
-          onFocus={onTimeFocus}
-          onBlur={onTimeBlur}
-          maxWidth={MAX_INPUT_WIDTH}
-          onChange={onTimeValueChange}
-        />
+        {type === 'dateAndTime' && (
+          <Input
+            value={timeValue}
+            shouldFocus={selectedView === DatepickerViewsEnum.TIME}
+            onFocus={onTimeFocus}
+            onBlur={onTimeBlur}
+            maxWidth={MAX_INPUT_WIDTH}
+            onChange={onTimeValueChange}
+          />
+        )}
       </StyledInputsDiv>
       <StyledFooterDiv>
         {onClearClick && (
