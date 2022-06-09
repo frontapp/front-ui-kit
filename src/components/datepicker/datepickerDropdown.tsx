@@ -73,7 +73,6 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = props => {
           onChange={onChangeDate}
           type={type}
           onRequestClose={onCloseDropdown}
-          onClear={onClearDate}
         />
       )}
     />

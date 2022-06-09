@@ -18,8 +18,6 @@ import {TimePicker} from './timepicker';
 interface DatePickerProps extends Omit<DatePickerDropdownProps, 'placeholder'> {
   /** The dropdown's close method which is called when Cancel is clicked. */
   onRequestClose: () => void;
-  /**  */
-  onClear?: () => void;
 }
 
 /*
@@ -72,7 +70,6 @@ export const DatePicker: FC<DatePickerProps> = props => {
     onChange,
     type = 'date',
     onRequestClose,
-    onClear
   } = props;
   const [selectedDate, setSelectedDate] = useState(value && DateTime.fromJSDate(value));
   const selectedDateMonth = selectedDate ? selectedDate.startOf('month') : DateTime.now().startOf('month');
@@ -123,8 +120,8 @@ export const DatePicker: FC<DatePickerProps> = props => {
     onRequestClose();
   };
 
-  const onClearClick: (MouseEventHandler | undefined) = onClear && (() => {
-    onClear();
+  const onClearClick: (MouseEventHandler | undefined) = value && (() => {
+    onChange(undefined);
     onRequestClose();
   });
 
