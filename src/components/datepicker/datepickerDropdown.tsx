@@ -43,14 +43,12 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = props => {
     type = 'date',
     timeFormat = '12h'
   } = props;
+  
   const [selectedDate, setSelectedDate] = useState(value);
   const onChangeDate = (date?: Date) => {
     setSelectedDate(date);
     onChange(date);
   };
-  const onClearDate = selectedDate && (() => {
-    onChangeDate(undefined);
-  });
 
   return (
     <DropdownCoordinator
