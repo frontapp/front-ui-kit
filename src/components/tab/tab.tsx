@@ -32,6 +32,7 @@ const StyledTabWrapperDiv = styled.div<StyledTabWrapperDivProps>`
   font-family: ${fonts.system};
   position: relative;
   font-weight: ${fontWeights.semibold};
+  font-size: 14px;
   color: ${greys.shade60};
   overflow: hidden;
   cursor: default;
@@ -47,7 +48,7 @@ const StyledTabWrapperDiv = styled.div<StyledTabWrapperDivProps>`
 `;
 
 const StyledTabNameDiv = styled.div`
-  margin-bottom: 12px;
+  margin-bottom: 11px;
   ${ellipsis()}; // TODO: Remove this when we have tooltip support.
 `;
 

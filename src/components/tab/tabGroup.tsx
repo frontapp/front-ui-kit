@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
-import * as ReactIs from "react-is";
 import styled from 'styled-components';
+import {renderChildrenSpecifiedComponents} from '../../helpers/renderHelpers';
 
 /*
  * Props.
@@ -32,26 +32,11 @@ const StyledTabGroupWrapperDiv = styled.div<StyledTabGroupWrapperDivProps>`
  * Component.
  */
 
-export const TabGroup: FC<TabGroupProps> = ({children, maxWidth}) => (
-  <StyledTabGroupWrapperDiv $maxWidth={maxWidth}>{renderTabGroupContent(children)}</StyledTabGroupWrapperDiv>
-);
-
-/*
- * Helpers.
- */
-
-function renderTabGroupContent(children: React.ReactNode) {
-  return React.Children.toArray(children).map(child => {
-    if (typeof child === 'string' || typeof child === 'number')
-      return null;
-    if (ReactIs.isFragment(child) || !ReactIs.isElement(child))
-      return null;
-
-    // Only allow tabs to be rendered.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/consistent-type-assertions
-    if ((child.type as any)?.displayName === 'Tab')
-      return child;
-
-    return null;
-  });
-}
+export const TabGroup: FC<TabGroupProps> = ({children, maxWidth}) => {
+  const tabGroupContent = renderChildrenSpecifiedComponents(children, ['Tab']);
+  return (
+    <StyledTabGroupWrapperDiv $maxWidth={maxWidth}>
+      {tabGroupContent}
+    </StyledTabGroupWrapperDiv>
+  );
+};
