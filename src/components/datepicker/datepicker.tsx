@@ -69,7 +69,7 @@ export const DatePicker: FC<DatePickerProps> = props => {
     maxDate,
     onChange,
     type = 'date',
-    onRequestClose,
+    onRequestClose
   } = props;
   const [selectedDate, setSelectedDate] = useState(value && DateTime.fromJSDate(value));
   const selectedDateMonth = selectedDate ? selectedDate.startOf('month') : DateTime.now().startOf('month');

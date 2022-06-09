@@ -43,7 +43,7 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = props => {
     type = 'date',
     timeFormat = '12h'
   } = props;
-  
+
   const [selectedDate, setSelectedDate] = useState(value);
   const onChangeDate = (date?: Date) => {
     setSelectedDate(date);
