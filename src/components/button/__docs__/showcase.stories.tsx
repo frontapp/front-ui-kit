@@ -41,7 +41,7 @@ const StyledCustomButtom = styled(Button)`
     color: ${greys.white};
   }
   border-radius: 50%;
-`
+`;
 
 const ShowcaseComponent: FC = props => (
   <DefaultStyleProvider>
