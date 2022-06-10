@@ -25,16 +25,6 @@ const StyledButtonsContainerDiv = styled.div`
   display: flex;
   flex-flow: column;
   gap: 16px;
-
-  .customButton {
-    background: ${p => (greys.black)};
-    color: ${greys.white};
-    &:hover {
-      background: ${p => (palette.blue.shade40)};
-      color: ${greys.white};
-    }
-    border-radius: 50%;
-  }
 `;
 
 const StyledTitleDiv = styled.div`
@@ -42,6 +32,16 @@ const StyledTitleDiv = styled.div`
   font-size: ${fontSizes.veryLarge};
   font-weight: ${fontWeights.semibold};
 `;
+
+const StyledCustomButtom = styled(Button)`
+  background: ${greys.black};
+  color: ${greys.white};
+  &:hover {
+    background: ${palette.blue.shade40};
+    color: ${greys.white};
+  }
+  border-radius: 50%;
+`
 
 const ShowcaseComponent: FC = props => (
   <DefaultStyleProvider>
@@ -103,9 +103,9 @@ const ShowcaseComponent: FC = props => (
       <StyledButtonsContainerDiv>
         <StyledTitleDiv>Custom Icon Buttons</StyledTitleDiv>
         <ButtonGroup>
-          <Button type="icon" className="customButton"><Icon name="CheckmarkCircle" /></Button>
-          <Button type="icon" className="customButton"><Icon name="Close" /></Button>
-          <Button type="icon" className="customButton"><Icon name="Search" /></Button>
+          <StyledCustomButtom type="icon"><Icon name="CheckmarkCircle" /></StyledCustomButtom>
+          <StyledCustomButtom type="icon"><Icon name="Close" /></StyledCustomButtom>
+          <StyledCustomButtom type="icon"><Icon name="Search" /></StyledCustomButtom>
         </ButtonGroup>
       </StyledButtonsContainerDiv>
       <StyledButtonsContainerDiv>
