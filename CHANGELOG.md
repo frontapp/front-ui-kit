@@ -1,6 +1,23 @@
 # Changelog
 
 
+## [0.3.4](https://github.com/frontapp/front-ui-kit/compare/v0.3.3...v0.3.4) (2022-06-10)
+
+
+### Features
+
+* add ActionMenu component ([#117](https://github.com/frontapp/front-ui-kit/issues/117)) ([c73cbd7](https://github.com/frontapp/front-ui-kit/commit/c73cbd7eda11a898414ca75ad1f10c637d89f3fa))
+* add ActionMenuItem component ([c73cbd7](https://github.com/frontapp/front-ui-kit/commit/c73cbd7eda11a898414ca75ad1f10c637d89f3fa))
+* add ActionMenuItemSpacer component ([c73cbd7](https://github.com/frontapp/front-ui-kit/commit/c73cbd7eda11a898414ca75ad1f10c637d89f3fa))
+* add DropdownItemSpacer component ([c73cbd7](https://github.com/frontapp/front-ui-kit/commit/c73cbd7eda11a898414ca75ad1f10c637d89f3fa))
+* add shouldUseItemsHeight to the dropdown to use the height of the children ([c73cbd7](https://github.com/frontapp/front-ui-kit/commit/c73cbd7eda11a898414ca75ad1f10c637d89f3fa))
+
+
+### Bug Fixes
+
+* issue with tooltip width being calculated incorrectly ([c73cbd7](https://github.com/frontapp/front-ui-kit/commit/c73cbd7eda11a898414ca75ad1f10c637d89f3fa))
+* tooltip taking only the width it is needed ([c73cbd7](https://github.com/frontapp/front-ui-kit/commit/c73cbd7eda11a898414ca75ad1f10c637d89f3fa))
+
 ## [0.3.3](https://github.com/frontapp/front-ui-kit/compare/v0.3.2...v0.3.3) (2022-06-09)
 
 
