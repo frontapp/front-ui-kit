@@ -13,7 +13,7 @@ import {useTimeout} from '../../helpers/hookHelpers';
  * Constants.
  */
 
-const BYTE_SIZE = 1024;
+const BASE_BYTES_SIZE = 1024;
 
 export enum AttachmentTypesEnum {
   ARCHIVE = 'ARCHIVE',
@@ -176,7 +176,7 @@ export const File: FC<FileProps> = props => {
           {fileName}
         </TooltipCoordinator>
         <StyledFileSizeDiv>
-          {bytesToSize(fileSize * BYTE_SIZE)}
+          {bytesToSize(fileSize * BASE_BYTES_SIZE)}
         </StyledFileSizeDiv>
       </StyledFileDetailsDiv>
       {maybeRenderFileClearButton(shouldRenderClearButton, isErred, onClear)}
@@ -192,8 +192,8 @@ function bytesToSize(bytes: number) {
   const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
   if (bytes === 0)
     return '0B';
-  const index = Math.floor(Math.log(bytes) / Math.log(BYTE_SIZE));
-  return Math.round(bytes / BYTE_SIZE**index) + sizes[index];
+  const index = Math.floor(Math.log(bytes) / Math.log(BASE_BYTES_SIZE));
+  return Math.round(bytes / BASE_BYTES_SIZE**index) + sizes[index];
 }
 
 function maybeRenderFileClearButton(shouldRenderClearButton: boolean, isErred: boolean, onClear?: () => void) {
