@@ -32,7 +32,7 @@ const StyledDescriptionDiv = styled.div`
   font-size: ${fontSizes.medium};
   color: ${greys.black};
   text-align: center;
-  padding: 10px 10px
+  padding: 10px 10px;
 `;
 
 /*
@@ -51,10 +51,12 @@ const ShowcaseFileComponent: FC<ShowcaseFileProps> = props => {
     else
       setIsErred(false);
   }, [fileName]);
+
   const onClear = () => {
     setIsVisible(false);
     setDescription("Please refresh to view the file.");
   };
+
   return (
     <DefaultStyleProvider>
       <StyledShowcaseDiv>

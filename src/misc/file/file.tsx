@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import styled from 'styled-components';
 
 import {Button} from '../../components/button/button';
@@ -7,10 +7,13 @@ import {Tooltip} from '../../components/tooltip/tooltip';
 import {TooltipCoordinator} from '../../components/tooltip/tooltipCoordinator';
 import {greys, palette} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
+import {useTimeout} from '../../helpers/hookHelpers';
 
 /*
  * Constants.
  */
+
+const BYTE_SIZE = 1024;
 
 export enum AttachmentTypesEnum {
   ARCHIVE = 'ARCHIVE',
@@ -29,7 +32,7 @@ export enum AttachmentTypesEnum {
 
 type FileTypeIcons = {[T in AttachmentTypesEnum]: IconName};
 
-export const fileTypeIcons: FileTypeIcons = {
+const fileTypeIcons: FileTypeIcons = {
   [AttachmentTypesEnum.ARCHIVE]: 'AttachmentArchive',
   [AttachmentTypesEnum.CALENDAR]: 'AttachmentCalendar',
   [AttachmentTypesEnum.CODE]: 'AttachmentCode',
@@ -138,9 +141,23 @@ export const File: FC<FileProps> = props => {
   const iconName = fileTypeIcons[fileType];
   const errorMessage = "[Failed to upload]";
   const fileLabel = isErred ? `${errorMessage} ${fileName}` : fileName;
+  const [shouldRenderClearButton, setShouldRenderClearButton] = useState(false);
+
+  const [setSafeTimeout, clearSafeTimeout] = useTimeout();
+
+  const onMouseEnter = () => {
+    setSafeTimeout(() => {
+      setShouldRenderClearButton(true);
+    }, 1);
+  };
+
+  const onMouseLeave = () => {
+    clearSafeTimeout();
+    setShouldRenderClearButton(false);
+  };
 
   return (
-    <StyledFileWrapperDiv $isErred={isErred}>
+    <StyledFileWrapperDiv $isErred={isErred} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       <StyledFileIconDiv>
         <Icon name={iconName} />
       </StyledFileIconDiv>
@@ -159,10 +176,10 @@ export const File: FC<FileProps> = props => {
           {fileName}
         </TooltipCoordinator>
         <StyledFileSizeDiv>
-          {bytesToSize(fileSize * 1024)}
+          {bytesToSize(fileSize * BYTE_SIZE)}
         </StyledFileSizeDiv>
       </StyledFileDetailsDiv>
-      {maybeRenderFileClearButton(isErred, onClear)}
+      {maybeRenderFileClearButton(shouldRenderClearButton, isErred, onClear)}
     </StyledFileWrapperDiv>
   );
 };
@@ -175,16 +192,18 @@ function bytesToSize(bytes: number) {
   const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
   if (bytes === 0)
     return '0B';
-  const index = Math.floor(Math.log(bytes) / Math.log(1024));
-  return Math.round(bytes / 1024**index) + sizes[index];
+  const index = Math.floor(Math.log(bytes) / Math.log(BYTE_SIZE));
+  return Math.round(bytes / BYTE_SIZE**index) + sizes[index];
 }
 
-function maybeRenderFileClearButton(isErred: boolean, onClear?: () => void) {
-  if (!onClear)
+function maybeRenderFileClearButton(shouldRenderClearButton: boolean, isErred: boolean, onClear?: () => void) {
+  if (!shouldRenderClearButton || !onClear)
     return null;
   return (
     <StyledFileClearIconDiv $isErred={isErred}>
-      <Button type="icon" onClick={onClear}><Icon name="Close" color={greys.white} /></Button>
+      <Button type="icon" onClick={onClear}>
+        <Icon name="Close" color={greys.white} />
+      </Button>
     </StyledFileClearIconDiv>
   );
 }
