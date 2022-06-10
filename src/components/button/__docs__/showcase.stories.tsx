@@ -2,7 +2,7 @@ import {ComponentMeta, ComponentStory} from '@storybook/react';
 import React, {FC} from 'react';
 import styled from 'styled-components';
 
-import {greys} from '../../../helpers/colorHelpers';
+import {greys, palette} from '../../../helpers/colorHelpers';
 import {fontSizes, fontWeights, VisualSizesEnum} from '../../../helpers/fontHelpers';
 import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
 import {Icon} from '../../icon/icon';
@@ -25,6 +25,16 @@ const StyledButtonsContainerDiv = styled.div`
   display: flex;
   flex-flow: column;
   gap: 16px;
+
+  .customButton {
+    background: ${p => (greys.black)};
+    color: ${greys.white};
+    &:hover {
+      background: ${p => (palette.blue.shade40)};
+      color: ${greys.white};
+    }
+    border-radius: 50%;
+  }
 `;
 
 const StyledTitleDiv = styled.div`
@@ -88,6 +98,14 @@ const ShowcaseComponent: FC = props => (
           <Button type="icon"><Icon name="CheckmarkCircle" /></Button>
           <Button type="icon"><Icon name="Close" /></Button>
           <Button type="icon"><Icon name="Search" /></Button>
+        </ButtonGroup>
+      </StyledButtonsContainerDiv>
+      <StyledButtonsContainerDiv>
+        <StyledTitleDiv>Custom Icon Buttons</StyledTitleDiv>
+        <ButtonGroup>
+          <Button type="icon" className="customButton"><Icon name="CheckmarkCircle" /></Button>
+          <Button type="icon" className="customButton"><Icon name="Close" /></Button>
+          <Button type="icon" className="customButton"><Icon name="Search" /></Button>
         </ButtonGroup>
       </StyledButtonsContainerDiv>
       <StyledButtonsContainerDiv>

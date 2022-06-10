@@ -120,7 +120,7 @@ const StyledFileClearIconDiv = styled.div<StyledFileProps>`
   margin-left: auto;
   margin-top: 5px;
 
-  button {
+  .fileClearButton {
     background: ${p => (p.$isErred ? palette.red.shade40 : greys.black)};
     color: ${greys.white};
     &:hover {
@@ -201,7 +201,7 @@ function maybeRenderFileClearButton(shouldRenderClearButton: boolean, isErred: b
     return null;
   return (
     <StyledFileClearIconDiv $isErred={isErred}>
-      <Button type="icon" onClick={onClear}>
+      <Button type="icon" onClick={onClear} className="fileClearButton">
         <Icon name="Close" color={greys.white} />
       </Button>
     </StyledFileClearIconDiv>

@@ -19,6 +19,8 @@ interface IconButtonProps {
   isActive?: boolean;
   /** Called when the user click on the button. */
   onClick: MouseEventHandler;
+  /** Class name to enable custom styling of the icon button. */
+  className?: string;
 }
 
 /*
@@ -71,9 +73,9 @@ function addIconColorStyles(isDanger?: boolean, isDisabled?: boolean, isActive?:
  */
 
 export const IconButton: FC<IconButtonProps> = props => {
-  const {children, isDanger, isDisabled, isActive, onClick} = props;
+  const {children, isDanger, isDisabled, isActive, onClick, className} = props;
   return (
-    <StyledIconButton $isDanger={isDanger} $isDisabled={isDisabled} $isActive={isActive} onClick={onClick}>
+    <StyledIconButton className={className} $isDanger={isDanger} $isDisabled={isDisabled} $isActive={isActive} onClick={onClick}>
       {renderFirstIconOnly(children)}
     </StyledIconButton>
   );

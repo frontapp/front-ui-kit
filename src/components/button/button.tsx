@@ -43,6 +43,8 @@ interface ButtonProps {
   isActive?: boolean;
   /** Called when the user click on the button. */
   onClick?: MouseEventHandler;
+  /** Class name to allow custom styling of the button. */
+  className?: string;
 }
 
 /*
@@ -170,7 +172,8 @@ export const Button: FC<ButtonProps> = props => {
     children,
     isDisabled,
     isActive,
-    onClick
+    onClick,
+    className
   } = props;
 
   // Wrap the onClick to check if it is disabled or not defined.
@@ -183,13 +186,13 @@ export const Button: FC<ButtonProps> = props => {
   // Check if we should be rendering an icon.
   if (type === 'icon' || type === 'icon-danger')
     return (
-      <IconButton isDanger={type === 'icon-danger'} isDisabled={isDisabled} isActive={isActive} onClick={onButtonClick}>
+      <IconButton isDanger={type === 'icon-danger'} className={className} isDisabled={isDisabled} isActive={isActive} onClick={onButtonClick}>
         {children}
       </IconButton>
     );
   return (
     <StyledButtonWrapperDiv>
-      <StyledButton $type={type} $size={size} $isDisabled={isDisabled} $isActive={isActive} onClick={onButtonClick}>
+      <StyledButton className={className} $type={type} $size={size} $isDisabled={isDisabled} $isActive={isActive} onClick={onButtonClick}>
         {renderButtonChildren(children)}
       </StyledButton>
     </StyledButtonWrapperDiv>
