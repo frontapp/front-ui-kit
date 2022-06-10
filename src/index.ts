@@ -40,6 +40,7 @@ export {DropdownItem} from './components/dropdown/dropdownItem';
 export {DropdownItemFormField} from './components/dropdown/dropdownItemFormField';
 export {DropdownFooter} from './components/dropdown/dropdownFooter';
 export {DropdownItemSkeleton} from './components/dropdown/skeleton/dropdownItemSkeleton';
+export {DropdownItemSpacer} from './components/dropdown/dropdownItemSpacer';
 
 export {EmptyState} from './components/emptyState/emptyState';
 
