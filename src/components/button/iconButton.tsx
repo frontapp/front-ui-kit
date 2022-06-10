@@ -19,7 +19,7 @@ interface IconButtonProps {
   isActive?: boolean;
   /** Called when the user click on the button. */
   onClick: MouseEventHandler;
-  /** Class name to enable custom styling of the icon button. */
+  /** Class name to allow custom styling of the icon button. */
   className?: string;
 }
 
