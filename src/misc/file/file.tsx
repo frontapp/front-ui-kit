@@ -120,7 +120,7 @@ const StyledFileClearIconDiv = styled.div<StyledFileProps>`
   margin-left: auto;
   margin-top: 5px;
 
-  .fileClearButton {
+  & .fileClearButton {
     background: ${p => (p.$isErred ? palette.red.shade40 : greys.black)};
     color: ${greys.white};
     &:hover {
