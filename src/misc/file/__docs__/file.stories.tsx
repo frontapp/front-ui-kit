@@ -1,5 +1,5 @@
 import {ComponentMeta, ComponentStory} from '@storybook/react';
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useState} from 'react';
 import styled from 'styled-components';
 
 import {greys} from '../../../helpers/colorHelpers';
@@ -50,7 +50,7 @@ const ShowcaseFileComponent: FC<FileProps> = props => {
 
 export default {
   title: 'Misc/File',
-  component: File,
+  component: File
 } as ComponentMeta<typeof File>;
 
 const Template: ComponentStory<typeof File> = args => <ShowcaseFileComponent {...args} />;
