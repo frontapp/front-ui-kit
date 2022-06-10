@@ -22,9 +22,8 @@ interface ShowcaseFileProps {
  */
 
 const StyledShowcaseDiv = styled.div`
-  background: ${greys.shade50};
   border-radius: 8px;
-  padding: 16px;
+  padding: 10px;
   width: 300px;
 `;
 

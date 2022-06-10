@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 import styled from 'styled-components';
 
 import {Button} from '../../components/button/button';
@@ -7,7 +7,7 @@ import {Tooltip} from '../../components/tooltip/tooltip';
 import {TooltipCoordinator} from '../../components/tooltip/tooltipCoordinator';
 import {greys, palette} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
-import {useTimeout} from '../../helpers/hookHelpers';
+import {buildHoverParentClassName, hoverSelector} from '../../helpers/hoverHelpers';
 
 /*
  * Constants.
@@ -94,7 +94,7 @@ const StyledFileWrapperDiv = styled.div<StyledFileProps>`
 
 const StyledFileIconDiv = styled.div`
   pointer-events: none;
-  margin-top: 2px;
+  margin-top: 1px;
 `;
 
 const StyledFileDetailsDiv = styled.div`
@@ -116,20 +116,25 @@ const StyledFileSizeDiv = styled.div`
   color: ${greys.shade70};
 `;
 
-const StyledFileClearIconDiv = styled.div<StyledFileProps>`
+const StyledFileClearIconDiv = styled.div`
   margin-left: auto;
   margin-top: 5px;
+  display: none;
 
-  & .fileClearButton {
-    background: ${p => (p.$isErred ? palette.red.shade40 : greys.black)};
-    color: ${greys.white};
-    &:hover {
-      background: ${p => (p.$isErred ? palette.red.shade50 : palette.blue.shade40)};
-      color: ${greys.white};
-    }
-    padding: 3px;
-    border-radius: 50%;
+  ${hoverSelector} {
+    display: block;
   }
+`;
+
+const StyledButton = styled(Button)<StyledFileProps>`
+  background: ${p => (p.$isErred ? palette.red.shade40 : greys.black)};
+  color: ${greys.white};
+  &:hover {
+    background: ${p => (p.$isErred ? palette.red.shade50 : palette.blue.shade40)};
+    color: ${greys.white};
+  }
+  padding: 3px;
+  border-radius: 50%;
 `;
 
 /*
@@ -141,23 +146,9 @@ export const File: FC<FileProps> = props => {
   const iconName = fileTypeIcons[fileType];
   const errorMessage = "[Failed to upload]";
   const fileLabel = isErred ? `${errorMessage} ${fileName}` : fileName;
-  const [shouldRenderClearButton, setShouldRenderClearButton] = useState(false);
-
-  const [setSafeTimeout, clearSafeTimeout] = useTimeout();
-
-  const onMouseEnter = () => {
-    setSafeTimeout(() => {
-      setShouldRenderClearButton(true);
-    }, 1);
-  };
-
-  const onMouseLeave = () => {
-    clearSafeTimeout();
-    setShouldRenderClearButton(false);
-  };
 
   return (
-    <StyledFileWrapperDiv $isErred={isErred} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+    <StyledFileWrapperDiv className={buildHoverParentClassName()} $isErred={isErred}>
       <StyledFileIconDiv>
         <Icon name={iconName} />
       </StyledFileIconDiv>
@@ -179,7 +170,7 @@ export const File: FC<FileProps> = props => {
           {bytesToSize(fileSize * BASE_BYTES_SIZE)}
         </StyledFileSizeDiv>
       </StyledFileDetailsDiv>
-      {maybeRenderFileClearButton(shouldRenderClearButton, isErred, onClear)}
+      {maybeRenderFileClearButton(isErred, onClear)}
     </StyledFileWrapperDiv>
   );
 };
@@ -196,14 +187,14 @@ function bytesToSize(bytes: number) {
   return Math.round(bytes / BASE_BYTES_SIZE**index) + sizes[index];
 }
 
-function maybeRenderFileClearButton(shouldRenderClearButton: boolean, isErred: boolean, onClear?: () => void) {
-  if (!shouldRenderClearButton || !onClear)
+function maybeRenderFileClearButton(isErred: boolean, onClear?: () => void) {
+  if (!onClear)
     return null;
   return (
-    <StyledFileClearIconDiv $isErred={isErred}>
-      <Button type="icon" onClick={onClear} className="fileClearButton">
+    <StyledFileClearIconDiv>
+      <StyledButton $isErred={isErred} type="icon" onClick={onClear}>
         <Icon name="Close" color={greys.white} />
-      </Button>
+      </StyledButton>
     </StyledFileClearIconDiv>
   );
 }
