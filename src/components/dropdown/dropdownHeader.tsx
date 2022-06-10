@@ -118,6 +118,7 @@ function maybeRenderSearchDropdown(searchValue?: string, placeholder?: string, o
           if (onSearchChange && typeof val !== 'undefined')
             onSearchChange(`${val}`);
         }}
+        shouldFocus
       />
     </StyledSearchWrapperDiv>
   );

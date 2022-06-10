@@ -20,6 +20,9 @@ export {DefaultStyleProvider} from './utils/defaultStyleProvider';
  * Components.
  */
 
+export {Accordion} from './components/accordion/accordion';
+export {AccordionSection} from './components/accordion/accordionSection';
+
 export {Avatar} from './components/avatar/avatar';
 
 export {Button, ButtonTypes} from './components/button/button';
