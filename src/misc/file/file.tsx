@@ -51,7 +51,7 @@ const fileTypeIcons: FileTypeIcons = {
  * Props.
  */
 
-interface FileProps {
+export interface FileProps {
   /** The name of the file. */
   fileName: string;
   /** The type of file. Default will be GENERIC. */

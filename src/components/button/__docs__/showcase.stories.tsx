@@ -33,7 +33,7 @@ const StyledTitleDiv = styled.div`
   font-weight: ${fontWeights.semibold};
 `;
 
-const StyledCustomButtom = styled(Button)`
+const StyledCustomButton = styled(Button)`
   background: ${greys.black};
   color: ${greys.white};
   &:hover {
@@ -103,9 +103,9 @@ const ShowcaseComponent: FC = props => (
       <StyledButtonsContainerDiv>
         <StyledTitleDiv>Custom Icon Buttons</StyledTitleDiv>
         <ButtonGroup>
-          <StyledCustomButtom type="icon"><Icon name="CheckmarkCircle" /></StyledCustomButtom>
-          <StyledCustomButtom type="icon"><Icon name="Close" /></StyledCustomButtom>
-          <StyledCustomButtom type="icon"><Icon name="Search" /></StyledCustomButtom>
+          <StyledCustomButton type="icon"><Icon name="CheckmarkCircle" /></StyledCustomButton>
+          <StyledCustomButton type="icon"><Icon name="Close" /></StyledCustomButton>
+          <StyledCustomButton type="icon"><Icon name="Search" /></StyledCustomButton>
         </ButtonGroup>
       </StyledButtonsContainerDiv>
       <StyledButtonsContainerDiv>

@@ -5,17 +5,7 @@ import styled from 'styled-components';
 import {greys} from '../../../helpers/colorHelpers';
 import {fontSizes} from '../../../helpers/fontHelpers';
 import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
-import {AttachmentTypesEnum, File} from '../file';
-
-/*
- * Props.
- */
-
-interface ShowcaseFileProps {
-  fileName: string;
-  fileType?: AttachmentTypesEnum;
-  fileSize: number;
-}
+import {AttachmentTypesEnum, File, FileProps} from '../file';
 
 /*
  * Style.
@@ -38,18 +28,10 @@ const StyledDescriptionDiv = styled.div`
  * Component.
  */
 
-const ShowcaseFileComponent: FC<ShowcaseFileProps> = props => {
-  const [isErred, setIsErred] = useState(false);
-  const {fileName = 'fileName.csv', fileSize = 30, fileType = AttachmentTypesEnum.GENERIC} = props;
+const ShowcaseFileComponent: FC<FileProps> = props => {
+  const {fileName = 'fileName.csv', fileSize = 30, fileType = AttachmentTypesEnum.GENERIC, isErred} = props;
   const [isVisible, setIsVisible] = useState(true);
   const [description, setDescription] = useState("");
-
-  useEffect(() => {
-    if (!fileName || fileName.startsWith("Error"))
-      setIsErred(true);
-    else
-      setIsErred(false);
-  }, [fileName]);
 
   const onClear = () => {
     setIsVisible(false);
@@ -68,17 +50,8 @@ const ShowcaseFileComponent: FC<ShowcaseFileProps> = props => {
 
 export default {
   title: 'Misc/File',
-  component: ShowcaseFileComponent,
-  argTypes: {
-    fileName: {control: 'text'},
-    fileSize: {control: 'number'},
-    fileType: {control: 'radio', options: AttachmentTypesEnum}
-  }
-} as ComponentMeta<typeof ShowcaseFileComponent>;
+  component: File,
+} as ComponentMeta<typeof File>;
 
-const Template: ComponentStory<typeof ShowcaseFileComponent> = (props: ShowcaseFileProps) => <ShowcaseFileComponent
-  fileName={props.fileName}
-  fileType={props.fileType}
-  fileSize={props.fileSize}
-/>;
+const Template: ComponentStory<typeof File> = args => <ShowcaseFileComponent {...args} />;
 export const BasicFile = Template.bind({});
