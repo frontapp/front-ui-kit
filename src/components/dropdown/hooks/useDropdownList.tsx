@@ -5,14 +5,17 @@ import _ from 'lodash';
 import React, {useCallback, useMemo} from 'react';
 import ReactIs from 'react-is';
 
+import {ActionMenuItem, ActionMenuItemProps} from '../../../misc/actionMenu/actionMenuItem';
 import {DropdownHeading, DropdownHeadingProps} from '../dropdownHeading';
 import {DropdownItem, DropdownItemProps} from '../dropdownItem';
+import {DropdownItemSpacer} from '../dropdownItemSpacer';
 
 /*
  * Constants.
  */
 
 const defaultDropdownItemHeight = 30;
+const dropdownItemSpacerHeight = 17;
 const defaultDropdownItemHeightWithDescription = 46;
 
 /*
@@ -29,7 +32,16 @@ interface DropdownHeadingType {
   props: DropdownHeadingProps;
 }
 
-type DropdownRenderTypes = DropdownItemType | DropdownHeadingType;
+interface ActionMenuItemType {
+  type: 'ActionMenuItem',
+  props: ActionMenuItemProps;
+}
+
+interface DropdownItemSpacerType {
+  type: 'DropdownItemSpacer',
+}
+
+type DropdownRenderTypes = DropdownItemType | DropdownHeadingType | ActionMenuItemType | DropdownItemSpacerType;
 
 /*
  * Hook.
@@ -42,6 +54,9 @@ export function useDropdownList(children: React.ReactNode) {
   // A function to get the height of the specified dropdown item.
   const getItemHeight = useCallback((index: number) => {
     const item = items[index];
+
+    if (item.type === 'DropdownItemSpacer')
+      return dropdownItemSpacerHeight;
 
     // If the item is of type "DropdownItem" it could have a custom height specified.
     if (item.type === 'DropdownItem') {
@@ -67,8 +82,12 @@ export function useDropdownList(children: React.ReactNode) {
 
     if (item.type === 'DropdownItem')
       return <DropdownItem {...item.props} />;
+    if (item.type === "ActionMenuItem")
+      return <ActionMenuItem {...item.props} />;
     if (item.type === 'DropdownHeading')
       return <DropdownHeading {...item.props} />;
+    if (item.type === "DropdownItemSpacer")
+      return <DropdownItemSpacer />;
 
     return null;
   }, [items]);
@@ -117,11 +136,20 @@ function buildDropdownItemsFromChildren(children: React.ReactNode): ReadonlyArra
         type: 'DropdownItem',
         props: child.props
       } as DropdownItemType;
+    if ((child.type as any)?.displayName === "ActionMenuItem")
+      return {
+        type: 'ActionMenuItem',
+        props: child.props
+      } as ActionMenuItemType;
     if ((child.type as any)?.displayName === "DropdownHeading")
       return {
         type: 'DropdownHeading',
         props: child.props
       } as DropdownHeadingType;
+    if ((child.type as any)?.displayName === "DropdownItemSpacer" || (child.type as any)?.displayName === "ActionMenuItemSpacer")
+      return {
+        type: 'DropdownItemSpacer'
+      } as DropdownItemSpacerType;
 
     // Catchall for all other types, we will not render anything.
     return undefined;

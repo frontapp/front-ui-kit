@@ -2,7 +2,7 @@ import {Placement} from '@popperjs/core';
 import React, {FC} from 'react';
 import styled from 'styled-components';
 
-import {greys} from '../../helpers/colorHelpers';
+import {alphas, greys} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 import {RepositionPopover} from '../popover/repositionPopover';
 
@@ -31,9 +31,10 @@ const StyledTooltipDiv = styled.div<StyledTooltipDivProps>`
   font-family: ${fonts.system};
   padding: 6px 8px;
   max-width: ${p => `${p.$maxWidth || 400}px`};
+  width: max-content;
   border-radius: 8px;
   background-color: ${greys.shade90};
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); // TODO: replace with alphas.black40
+  box-shadow: 0 2px 4px ${alphas.black40};
 
   color: ${greys.white};
   font-size: ${fontSizes.verySmall};
