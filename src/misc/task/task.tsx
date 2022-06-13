@@ -136,7 +136,7 @@ function maybeRenderTaskIconOrCheckbox(
     );
 
   const checkboxIcon = isChecked ? "CheckmarkCircle" : "CheckmarkCircleEmpty";
-  const iconColor = isChecked ? palette.green.shade40 : greys.white;
+  const iconColor = isChecked ? palette.green.shade40 : greys.shade50;
 
   const onCheckboxChange = (type === 'checkbox' && onChange) ? (() => {
     if (onChange)
