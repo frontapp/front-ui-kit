@@ -98,15 +98,13 @@ const StyledFileIconDiv = styled.div`
 `;
 
 const StyledFileDetailsDiv = styled.div`
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
   cursor: default;
 `;
 
 const StyledNoFileNameDiv = styled.div`
   font-style: italic;
-  float: right;
+  overflow: hidden;
 `;
 
 const StyledErrorLabelDiv = styled.div`
@@ -150,7 +148,8 @@ export const File: FC<FileProps> = props => {
   const {fileName, fileType = AttachmentTypesEnum.GENERIC, fileSize, isErred = false, onClear} = props;
   const iconName = fileTypeIcons[fileType];
   const errorMessage = "[Failed to upload]";
-  const fileLabel = isErred ? `${errorMessage} ${fileName}` : fileName;
+  const fileLabel = fileName || "Untitled file";
+  const fileTooltipLabel = isErred ? `${errorMessage} ${fileLabel}` : fileLabel;
 
   return (
     <StyledFileWrapperDiv className={buildHoverParentClassName()} $isErred={isErred}>
@@ -164,7 +163,7 @@ export const File: FC<FileProps> = props => {
           }}
           renderTooltip={() => (
             <Tooltip placement="top" maxWidth={240}>
-              {fileLabel}
+              {fileTooltipLabel}
             </Tooltip>
           )}
         >
