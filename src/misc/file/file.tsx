@@ -185,7 +185,7 @@ function bytesToSize(bytes: number) {
     return '0B';
   const index = Math.floor(Math.log(bytes) / Math.log(BASE_BYTES_SIZE));
   if (index >= sizes.length)
-    return "Extremely large file"
+    return "Extremely large file";
   return Math.round(bytes / BASE_BYTES_SIZE**index) + sizes[index];
 }
 
