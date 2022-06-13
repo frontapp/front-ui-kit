@@ -101,7 +101,7 @@ const StyledFileDetailsDiv = styled.div`
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  pointer-events: none;
+  cursor: default;
 `;
 
 const StyledErrorLabelDiv = styled.div`
@@ -184,6 +184,8 @@ function bytesToSize(bytes: number) {
   if (bytes === 0)
     return '0B';
   const index = Math.floor(Math.log(bytes) / Math.log(BASE_BYTES_SIZE));
+  if (index >= sizes.length)
+    return "Extremely large file"
   return Math.round(bytes / BASE_BYTES_SIZE**index) + sizes[index];
 }
 
