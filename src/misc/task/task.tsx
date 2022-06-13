@@ -12,6 +12,12 @@ import {alphas, greys, palette} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 
 /*
+ * Constants.
+ */
+
+const dropdownWidth = 150; // px.
+
+/*
  * Props.
  */
 
@@ -35,10 +41,6 @@ interface TaskProps {
 /*
  * Style.
  */
-
-interface StyledTaskProps {
-  $isChecked?: boolean;
-}
 
 const StyledLoadingWrapperDiv = styled.div`
   width: 100%;
@@ -154,9 +156,13 @@ function maybeRenderDropdown(children?: ReactNode) {
   return (
     <DropdownCoordinator
       placement="bottom-start"
-      renderButton={isDropdownOpen => <Button type="icon" isActive={isDropdownOpen}><Icon name="EllipsisVertical" /></Button>}
-      renderDropdown={onCloseDropdown => (
-        <Dropdown>
+      renderButton={isDropdownOpen => (
+        <Button type="icon" isActive={isDropdownOpen}>
+          <Icon name="EllipsisVertical" />
+        </Button>
+      )}
+      renderDropdown={() => (
+        <Dropdown shouldUseItemsHeight maxWidth={dropdownWidth}>
           {children}
         </Dropdown>
       )}
