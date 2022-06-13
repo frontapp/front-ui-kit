@@ -14,6 +14,7 @@ const StyledShowcaseDiv = styled.div`
   padding: 10px;
   width: 300px;
 `;
+
 /*
  * Component.
  */

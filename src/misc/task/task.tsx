@@ -134,14 +134,13 @@ function maybeRenderTaskIconOrCheckbox(
         <Icon name={iconName} />
       </StyledTaskIconDiv>
     );
+  if (!onChange)
+    return null;
 
   const checkboxIcon = isChecked ? "CheckmarkCircle" : "CheckmarkCircleEmpty";
   const iconColor = isChecked ? palette.green.shade40 : greys.shade50;
 
-  const onCheckboxChange = (type === 'checkbox' && onChange) ? (() => {
-    if (onChange)
-      onChange(!isChecked);
-  }) : undefined;
+  const onCheckboxChange = () => onChange(!isChecked);
 
   return (
     <Button type="icon" onClick={onCheckboxChange} iconColor={iconColor}>
@@ -155,7 +154,7 @@ function maybeRenderDropdown(children?: ReactNode) {
     return null;
   return (
     <DropdownCoordinator
-      placement="bottom-start"
+      placement="bottom-end"
       renderButton={isDropdownOpen => (
         <Button type="icon" isActive={isDropdownOpen}>
           <Icon name="EllipsisVertical" />
