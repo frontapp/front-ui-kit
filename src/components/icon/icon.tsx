@@ -20,6 +20,7 @@ import Calendar from '../../assets/icons/calendar.svg';
 import CalendarFilled from '../../assets/icons/calendarFilled.svg';
 import CheckmarkBox from '../../assets/icons/checkmarkBox.svg';
 import CheckmarkCircle from '../../assets/icons/checkmarkCircle.svg';
+import CheckmarkCircleEmpty from '../../assets/icons/checkmarkCircleEmpty.svg';
 import Checkmark from '../../assets/icons/checkmarkSelected.svg';
 import ChevronDown from '../../assets/icons/chevronDown.svg';
 import ChevronLeft from '../../assets/icons/chevronLeft.svg';
@@ -78,6 +79,7 @@ const importedIcons = {
   Calendar,
   CalendarFilled,
   CheckmarkCircle,
+  CheckmarkCircleEmpty,
   CheckmarkBox,
   Checkmark,
   ChevronDown,

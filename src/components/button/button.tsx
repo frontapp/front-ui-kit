@@ -45,6 +45,8 @@ interface ButtonProps {
   onClick?: MouseEventHandler;
   /** Class name to allow custom styling of the button. */
   className?: string;
+  /** The color of the icon to be displayed. */
+  iconColor?: string;
 }
 
 /*
@@ -173,7 +175,8 @@ export const Button: FC<ButtonProps> = props => {
     isDisabled,
     isActive,
     onClick,
-    className
+    className,
+    iconColor
   } = props;
 
   // Wrap the onClick to check if it is disabled or not defined.
@@ -186,7 +189,14 @@ export const Button: FC<ButtonProps> = props => {
   // Check if we should be rendering an icon.
   if (type === 'icon' || type === 'icon-danger')
     return (
-      <IconButton isDanger={type === 'icon-danger'} className={className} isDisabled={isDisabled} isActive={isActive} onClick={onButtonClick}>
+      <IconButton
+        isDanger={type === 'icon-danger'}
+        className={className}
+        isDisabled={isDisabled}
+        isActive={isActive}
+        onClick={onButtonClick}
+        iconColor={iconColor}
+      >
         {children}
       </IconButton>
     );
