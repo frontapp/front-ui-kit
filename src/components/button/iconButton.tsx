@@ -20,7 +20,7 @@ interface IconButtonProps {
   /** Called when the user click on the button. */
   onClick: MouseEventHandler;
   /** The color of the icon to be displayed. */
-  iconColor?: string
+  iconColor?: string;
 }
 
 /*
