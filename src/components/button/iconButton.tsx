@@ -89,7 +89,7 @@ function addIconColorStyles(isDanger?: boolean, isDisabled?: boolean, isActive?:
 export const IconButton: FC<IconButtonProps> = props => {
   const {children, isDanger, isDisabled, isActive, onClick, className, iconColor} = props;
   return (
-    <StyledIconButton 
+    <StyledIconButton
       className={className}
       $isDanger={isDanger}
       $isDisabled={isDisabled}
