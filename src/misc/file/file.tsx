@@ -104,6 +104,11 @@ const StyledFileDetailsDiv = styled.div`
   cursor: default;
 `;
 
+const StyledNoFileNameDiv = styled.div`
+  font-style: italic;
+  float: right;
+`;
+
 const StyledErrorLabelDiv = styled.div`
   color: ${palette.red.shade50};
   float: left;
@@ -164,7 +169,7 @@ export const File: FC<FileProps> = props => {
           )}
         >
           {isErred && <StyledErrorLabelDiv>{errorMessage}</StyledErrorLabelDiv>}
-          {fileName}
+          {fileName || <StyledNoFileNameDiv>Untitled file</StyledNoFileNameDiv>}
         </TooltipCoordinator>
         <StyledFileSizeDiv>
           {bytesToSize(fileSize * BASE_BYTES_SIZE)}
