@@ -3,7 +3,6 @@ import React, {FC} from 'react';
 import styled from 'styled-components';
 
 import {IconName, icons} from '../../../components/icon/icon';
-import {greys} from '../../../helpers/colorHelpers';
 import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
 import {Task} from '../task';
 

@@ -3,7 +3,6 @@ import React, {FC, useState} from 'react';
 import styled from 'styled-components';
 
 import {DropdownItem} from '../../../components/dropdown/dropdownItem';
-import {greys} from '../../../helpers/colorHelpers';
 import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
 import {Task} from '../task';
 

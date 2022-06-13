@@ -2,7 +2,6 @@ import {ComponentMeta, ComponentStory} from '@storybook/react';
 import React, {FC, useState} from 'react';
 import styled from 'styled-components';
 
-import {greys} from '../../../helpers/colorHelpers';
 import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
 import {Task} from '../task';
 

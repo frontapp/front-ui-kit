@@ -1,5 +1,5 @@
 import React, {FC, ReactNode} from 'react';
-import styled, {css} from 'styled-components';
+import styled from 'styled-components';
 
 import {Button} from '../../components/button/button';
 import {Dropdown} from '../../components/dropdown/dropdown';
@@ -134,14 +134,12 @@ function maybeRenderTaskIconOrCheckbox(
     );
 
   const checkboxIcon = isChecked ? "CheckmarkCircle" : "CheckmarkCircleEmpty";
-  const iconColor = isChecked ? palette.green.shade40 : undefined;
+  const iconColor = isChecked ? palette.green.shade40 : greys.white;
 
-  const onCheckboxChange = () => {
-    if (type === 'checkbox' && !onChange)
-      return null;
+  const onCheckboxChange = (type === 'checkbox' && onChange) ? (() => {
     if (onChange)
       onChange(!isChecked);
-  };
+  }) : undefined;
 
   return (
     <Button type="icon" onClick={onCheckboxChange} iconColor={iconColor}>

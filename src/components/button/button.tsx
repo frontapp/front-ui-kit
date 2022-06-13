@@ -182,7 +182,7 @@ export const Button: FC<ButtonProps> = props => {
       return;
     onClick(event);
   };
- 
+
   // Check if we should be rendering an icon.
   if (type === 'icon' || type === 'icon-danger')
     return (
