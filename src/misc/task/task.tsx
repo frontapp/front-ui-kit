@@ -16,7 +16,7 @@ import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
  */
 
 interface TaskProps {
-  /** How the task is rendered. */
+  /** Whether to render an icon or a checkbox on the left side of the task. */
   type?: 'icon' | 'checkbox';
   /** The content of the dropdown. If there is no content we will not render the triple dot dropdown button. */
   children?: ReactNode;
@@ -63,17 +63,8 @@ const StyledTaskWrapperDiv = styled.div`
   }
 `;
 
-const StyledTaskIconCheckboxDiv = styled.div`
-`;
-
 const StyledTaskIconDiv = styled.div`
   padding: 7px;
-`;
-
-const StyledTaskCheckboxDiv = styled.div<StyledTaskProps>`
-  button {
-    ${addTaskCheckboxStyles}
-  }
 `;
 
 const StyledTaskLabelDiv = styled.div`
@@ -85,17 +76,6 @@ const StyledTaskLabelDiv = styled.div`
 const StyledTaskChildrenDiv = styled.div`
   margin-left: auto;
 `;
-
-function addTaskCheckboxStyles(props: StyledTaskProps) {
-  if (props.$isChecked)
-    return css`
-      color: ${palette.green.shade40};
-      &:hover {
-        color: ${palette.green.shade40};
-      }
-    `;
-  return css``;
-}
 
 /*
  * Component.
@@ -112,9 +92,7 @@ export const Task: FC<TaskProps> = props => {
 
   return (
     <StyledTaskWrapperDiv>
-      <StyledTaskIconCheckboxDiv>
-        {maybeRenderTaskIconOrCheckbox(type, icon, isChecked, onChange)}
-      </StyledTaskIconCheckboxDiv>
+      {maybeRenderTaskIconOrCheckbox(type, icon, isChecked, onChange)}
       <StyledTaskLabelDiv>
         <TooltipCoordinator
           condition={{
@@ -144,7 +122,8 @@ function maybeRenderTaskIconOrCheckbox(
   type?: 'icon' | 'checkbox',
   iconName?: IconName,
   isChecked?: boolean,
-  onChange?: (isChecked: boolean) => void) {
+  onChange?: (isChecked: boolean) => void
+) {
   if (!type)
     return null;
   if (type === 'icon' && iconName)
@@ -155,14 +134,19 @@ function maybeRenderTaskIconOrCheckbox(
     );
 
   const checkboxIcon = isChecked ? "CheckmarkCircle" : "CheckmarkCircleEmpty";
+  const iconColor = isChecked ? palette.green.shade40 : undefined;
+
   const onCheckboxChange = () => {
+    if (type === 'checkbox' && !onChange)
+      return null;
     if (onChange)
       onChange(!isChecked);
   };
+
   return (
-    <StyledTaskCheckboxDiv $isChecked={isChecked}>
-      <Button type="icon" onClick={onCheckboxChange}><Icon name={checkboxIcon} /></Button>
-    </StyledTaskCheckboxDiv>
+    <Button type="icon" onClick={onCheckboxChange} iconColor={iconColor}>
+      <Icon name={checkboxIcon} />
+    </Button>
   );
 }
 

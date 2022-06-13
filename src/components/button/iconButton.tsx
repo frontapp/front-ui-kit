@@ -19,6 +19,8 @@ interface IconButtonProps {
   isActive?: boolean;
   /** Called when the user click on the button. */
   onClick: MouseEventHandler;
+  /** The color of the icon to be displayed. */
+  iconColor?: string
 }
 
 /*
@@ -29,6 +31,7 @@ interface StyledIconButtonProps {
   $isDanger?: boolean;
   $isDisabled?: boolean;
   $isActive?: boolean;
+  $iconColor?: string;
 }
 
 const StyledIconButton = styled.button<StyledIconButtonProps>`
@@ -37,10 +40,10 @@ const StyledIconButton = styled.button<StyledIconButtonProps>`
   padding: 7px;
   border-radius: 8px;
 
-  ${p => addIconColorStyles(p.$isDanger, p.$isDisabled, p.$isActive)};
+  ${p => addIconColorStyles(p.$isDanger, p.$isDisabled, p.$isActive, p.$iconColor)};
 `;
 
-function addIconColorStyles(isDanger?: boolean, isDisabled?: boolean, isActive?: boolean) {
+function addIconColorStyles(isDanger?: boolean, isDisabled?: boolean, isActive?: boolean, iconColor?: string) {
   if (isDisabled)
     return css`
       color: ${greys.shade40};
@@ -55,6 +58,17 @@ function addIconColorStyles(isDanger?: boolean, isDisabled?: boolean, isActive?:
         background: ${alphas.gray20};
       }
     `;
+
+  if (iconColor)
+    return css`
+      color: ${iconColor};
+      background: ${isActive ? alphas.gray20 : 'unset'};
+
+      &:hover {
+        background: ${alphas.gray20};
+      }
+    `;
+
   return css`
     color: ${greys[isActive ? 'shade80' : 'shade70']};
     background: ${isActive ? alphas.gray20 : 'unset'};
@@ -71,9 +85,9 @@ function addIconColorStyles(isDanger?: boolean, isDisabled?: boolean, isActive?:
  */
 
 export const IconButton: FC<IconButtonProps> = props => {
-  const {children, isDanger, isDisabled, isActive, onClick} = props;
+  const {children, isDanger, isDisabled, isActive, onClick, iconColor} = props;
   return (
-    <StyledIconButton $isDanger={isDanger} $isDisabled={isDisabled} $isActive={isActive} onClick={onClick}>
+    <StyledIconButton $isDanger={isDanger} $isDisabled={isDisabled} $isActive={isActive} onClick={onClick} $iconColor={iconColor}>
       {renderFirstIconOnly(children)}
     </StyledIconButton>
   );

@@ -12,10 +12,9 @@ import {Task} from '../task';
  */
 
 const StyledShowcaseDiv = styled.div`
-  background: ${greys.shade50};
   border-radius: 8px;
-  padding: 16px;
-  width: 200px;
+  padding: 10px;
+  width: 300px;
 `;
 
 /*
