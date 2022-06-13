@@ -1,6 +1,24 @@
 # Changelog
 
 
+## [0.3.3](https://github.com/frontapp/front-ui-kit/compare/v0.3.2...v0.3.3) (2022-06-09)
+
+
+### Features
+
+* add Accordion component ([#78](https://github.com/frontapp/front-ui-kit/issues/78)) ([e281a8a](https://github.com/frontapp/front-ui-kit/commit/e281a8a5a7e1e89fe75c584c3355b1239186ec57))
+* add Heading component ([#81](https://github.com/frontapp/front-ui-kit/issues/81)) ([c8d8fcc](https://github.com/frontapp/front-ui-kit/commit/c8d8fcc5080de4920e2d86d84d2240e1bc919ec8))
+* add Paragraph component ([#82](https://github.com/frontapp/front-ui-kit/issues/82)) ([dceb793](https://github.com/frontapp/front-ui-kit/commit/dceb793f98f364346d2217f3193fe529bceb50b5))
+
+
+### Bug Fixes
+
+* adjust fontSize and bottom margin of tab ([#93](https://github.com/frontapp/front-ui-kit/issues/93)) ([b84688a](https://github.com/frontapp/front-ui-kit/commit/b84688a73da4ec77fdef1364f6ec82ce7f6f9087))
+* allow textarea component to only resize vertically ([#83](https://github.com/frontapp/front-ui-kit/issues/83)) ([12ea70f](https://github.com/frontapp/front-ui-kit/commit/12ea70f25db2ab4ad84c3b4105f70f552a7d6387))
+* automatically focus dropdown search input on open ([#89](https://github.com/frontapp/front-ui-kit/issues/89)) ([49939c5](https://github.com/frontapp/front-ui-kit/commit/49939c54c4fa4d0f93b558301cba7771a0085912))
+* do not display hint/error div if the prop isn't provided in the FormField component ([#90](https://github.com/frontapp/front-ui-kit/issues/90)) ([4ff3479](https://github.com/frontapp/front-ui-kit/commit/4ff34793366f192f6a1e9cc4bbf9b0f4bc49c905))
+* horizontally center align checkbox and label ([#79](https://github.com/frontapp/front-ui-kit/issues/79)) ([8796345](https://github.com/frontapp/front-ui-kit/commit/8796345a3c6abd9b76977155a2278c7b850b3a0e))
+
 ### [0.3.2](https://github.com/frontapp/front-ui-kit/compare/v0.3.1...v0.3.2) (2022-05-31)
 
 

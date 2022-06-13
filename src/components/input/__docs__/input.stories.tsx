@@ -56,3 +56,10 @@ BasicUrlInput.args = {
   value: "http://google.com",
   type: 'url'
 };
+
+export const BasicInputWithIcon = Template.bind({});
+BasicInputWithIcon.args = {
+  value: "Hello",
+  type: 'text',
+  iconName: "Checkmark"
+};
