@@ -100,10 +100,6 @@ export const DatePicker: FC<DatePickerProps> = props => {
     if (!(isDateSelectable(mergedDate, minDateTime, maxDateTime)))
       return;
     setSelectedDate(mergedDate);
-    if (type === 'date') {
-      onChange(mergedDate.toJSDate());
-      onRequestClose();
-    }
   };
 
   const onTimeSelect = (date: DateTime) => {
@@ -119,10 +115,15 @@ export const DatePicker: FC<DatePickerProps> = props => {
   };
 
   const onDone: MouseEventHandler = () => {
-    if (type === 'dateAndTime' && selectedDate)
+    if (selectedDate)
       onChange(selectedDate?.toJSDate());
     onRequestClose();
   };
+
+  const onClearClick: (MouseEventHandler | undefined) = value && (() => {
+    onChange(undefined);
+    onRequestClose();
+  });
 
   return (
     <StyledWrapperDiv onClick={event => event.preventDefault()}>
@@ -142,7 +143,7 @@ export const DatePicker: FC<DatePickerProps> = props => {
         />
         {maybeRenderTimePicker(selectedView, onTimeSelect, timeFormat, selectedDate)}
       </StyledDatePickerDiv>
-      {maybeRenderDatePickerFooter(type, selectedView, onDateChange, onViewChange, onDone, timeFormat, onRequestClose, selectedDate)}
+      {maybeRenderDatePickerFooter(type, selectedView, onDateChange, onViewChange, onDone, timeFormat, onRequestClose, selectedDate, onClearClick)}
     </StyledWrapperDiv>
   );
 };
@@ -178,13 +179,13 @@ function maybeRenderDatePickerFooter(
   onDone: MouseEventHandler,
   timeFormat: '12h' | '24h',
   onRequestClose: () => void,
-  selectedDate?: DateTime
+  selectedDate?: DateTime,
+  onClearClick?: MouseEventHandler
 ) {
-  if (!type || type !== 'dateAndTime')
-    return null;
   return (
     <StyledInputsDiv>
       <DatePickerFooter
+        type={type}
         selectedDate={selectedDate}
         selectedView={selectedView}
         onDateChange={onDateChange}
@@ -192,6 +193,7 @@ function maybeRenderDatePickerFooter(
         onDoneClick={onDone}
         timeFormat={timeFormat}
         onRequestClose={onRequestClose}
+        onClearClick={onClearClick}
       />
     </StyledInputsDiv>
   );

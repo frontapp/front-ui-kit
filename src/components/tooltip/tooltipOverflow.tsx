@@ -1,5 +1,7 @@
-import React, {FC, useLayoutEffect, useRef} from 'react';
+import React, {FC, useEffect, useRef} from 'react';
 import styled from 'styled-components';
+
+import {useMeasureElement} from '../../helpers/hookHelpers';
 
 /*
  * Props.
@@ -28,17 +30,26 @@ const StyledTooltipOverflowDiv = styled.div`
 
 export const TooltipOverflow: FC<TooltipOverflowProps> = props => {
   const {children, onConditionChange} = props;
-  const overflowRef = useRef<HTMLDivElement>(null);
+  const overflowHTMLRef = useRef<HTMLDivElement | null>();
+  const [overflowRef, {width}] = useMeasureElement();
 
-  useLayoutEffect(() => {
-    const currentOverflow = overflowRef.current;
+  useEffect(() => {
+    const currentOverflow = overflowHTMLRef.current;
     if (!currentOverflow) {
       onConditionChange(false);
       return;
     }
-
     onConditionChange(currentOverflow.scrollWidth > currentOverflow.offsetWidth);
-  }, [onConditionChange, overflowRef]);
+  }, [onConditionChange, overflowRef, width]);
 
-  return <StyledTooltipOverflowDiv ref={overflowRef}>{children}</StyledTooltipOverflowDiv>;
+  return (
+    <StyledTooltipOverflowDiv
+      ref={ref => {
+        overflowRef(ref);
+        overflowHTMLRef.current = ref;
+      }}
+    >
+      {children}
+    </StyledTooltipOverflowDiv>
+  );
 };
