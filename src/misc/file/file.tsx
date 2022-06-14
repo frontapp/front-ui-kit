@@ -102,9 +102,8 @@ const StyledFileDetailsDiv = styled.div`
   cursor: default;
 `;
 
-const StyledNoFileNameDiv = styled.div`
+const StyledNoFileNameSpan = styled.span`
   font-style: italic;
-  overflow: hidden;
 `;
 
 const StyledErrorLabelDiv = styled.div`
@@ -168,7 +167,7 @@ export const File: FC<FileProps> = props => {
           )}
         >
           {isErred && <StyledErrorLabelDiv>{errorMessage}</StyledErrorLabelDiv>}
-          {fileName || <StyledNoFileNameDiv>Untitled file</StyledNoFileNameDiv>}
+          {fileName || <StyledNoFileNameSpan>Untitled file</StyledNoFileNameSpan>}
         </TooltipCoordinator>
         <StyledFileSizeDiv>
           {bytesToSize(fileSize * BASE_BYTES_SIZE)}
