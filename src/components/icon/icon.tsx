@@ -11,6 +11,7 @@ import AttachmentCode from '../../assets/icons/attachmentCode.svg';
 import AttachmentExcel from '../../assets/icons/attachmentExcel.svg';
 import AttachmentGeneric from '../../assets/icons/attachmentGeneric.svg';
 import AttachmentImage from '../../assets/icons/attachmentImage.svg';
+import AttachmentMusic from '../../assets/icons/attachmentMusic.svg';
 import AttachmentPdf from '../../assets/icons/attachmentPdf.svg';
 import AttachmentPowerpoint from '../../assets/icons/attachmentPowerpoint.svg';
 import AttachmentVideo from '../../assets/icons/attachmentVideo.svg';
@@ -70,6 +71,7 @@ const importedIcons = {
   AttachmentExcel,
   AttachmentGeneric,
   AttachmentImage,
+  AttachmentMusic,
   AttachmentPdf,
   AttachmentPowerpoint,
   AttachmentVideo,

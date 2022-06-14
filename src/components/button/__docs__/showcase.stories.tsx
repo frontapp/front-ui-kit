@@ -2,7 +2,7 @@ import {ComponentMeta, ComponentStory} from '@storybook/react';
 import React, {FC} from 'react';
 import styled from 'styled-components';
 
-import {greys} from '../../../helpers/colorHelpers';
+import {greys, palette} from '../../../helpers/colorHelpers';
 import {fontSizes, fontWeights, VisualSizesEnum} from '../../../helpers/fontHelpers';
 import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
 import {Icon} from '../../icon/icon';
@@ -31,6 +31,16 @@ const StyledTitleDiv = styled.div`
   color: ${greys.shade80};
   font-size: ${fontSizes.veryLarge};
   font-weight: ${fontWeights.semibold};
+`;
+
+const StyledCustomButton = styled(Button)`
+  background: ${greys.black};
+  color: ${greys.white};
+  &:hover {
+    background: ${palette.blue.shade40};
+    color: ${greys.white};
+  }
+  border-radius: 50%;
 `;
 
 const ShowcaseComponent: FC = props => (
@@ -88,6 +98,14 @@ const ShowcaseComponent: FC = props => (
           <Button type="icon"><Icon name="CheckmarkCircle" /></Button>
           <Button type="icon"><Icon name="Close" /></Button>
           <Button type="icon"><Icon name="Search" /></Button>
+        </ButtonGroup>
+      </StyledButtonsContainerDiv>
+      <StyledButtonsContainerDiv>
+        <StyledTitleDiv>Custom Icon Buttons</StyledTitleDiv>
+        <ButtonGroup>
+          <StyledCustomButton type="icon"><Icon name="CheckmarkCircle" /></StyledCustomButton>
+          <StyledCustomButton type="icon"><Icon name="Close" /></StyledCustomButton>
+          <StyledCustomButton type="icon"><Icon name="Search" /></StyledCustomButton>
         </ButtonGroup>
       </StyledButtonsContainerDiv>
       <StyledButtonsContainerDiv>
