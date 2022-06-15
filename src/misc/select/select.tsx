@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import React, {FC, useMemo} from 'react';
-import styled from 'styled-components';
 
 import {Dropdown} from '../../components/dropdown/dropdown';
 import {DropdownButton} from '../../components/dropdown/dropdownButton';
@@ -53,12 +52,6 @@ interface SelectProps {
   /** Called when the select is closed. */
   onSelectClosed?: () => void;
 }
-
-/*
- * Style.
- */
-
-const StyledDiv = styled.div``;
 
 /*
  * Component.
