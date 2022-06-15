@@ -20,7 +20,7 @@ interface DropdownHeaderProps {
   searchValue?: string;
   /** If this function is supplied, a back button will be rendered. This is called when the back button is clicked. */
   onBackClick?: MouseEventHandler;
-  /** Called when the search bar is rendered. */
+  /** Called when the search bar value is changed. */
   onSearchChange?: (value: string) => void;
 }
 

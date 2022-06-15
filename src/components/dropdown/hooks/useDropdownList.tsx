@@ -6,6 +6,7 @@ import React, {useCallback, useMemo} from 'react';
 import ReactIs from 'react-is';
 
 import {ActionMenuItem, ActionMenuItemProps} from '../../../misc/actionMenu/actionMenuItem';
+import {SelectItem, SelectItemProps} from '../../../misc/select/selectItem';
 import {DropdownHeading, DropdownHeadingProps} from '../dropdownHeading';
 import {DropdownItem, DropdownItemProps} from '../dropdownItem';
 import {DropdownItemSpacer} from '../dropdownItemSpacer';
@@ -37,11 +38,16 @@ interface ActionMenuItemType {
   props: ActionMenuItemProps;
 }
 
+interface SelectItemType {
+  type: 'SelectItem',
+  props: SelectItemProps;
+}
+
 interface DropdownItemSpacerType {
   type: 'DropdownItemSpacer',
 }
 
-type DropdownRenderTypes = DropdownItemType | DropdownHeadingType | ActionMenuItemType | DropdownItemSpacerType;
+type DropdownRenderTypes = DropdownItemType | DropdownHeadingType | ActionMenuItemType | DropdownItemSpacerType | SelectItemType;
 
 /*
  * Hook.
@@ -84,6 +90,8 @@ export function useDropdownList(children: React.ReactNode) {
       return <DropdownItem {...item.props} />;
     if (item.type === "ActionMenuItem")
       return <ActionMenuItem {...item.props} />;
+    if (item.type === 'SelectItem')
+      return <SelectItem {...item.props} />;
     if (item.type === 'DropdownHeading')
       return <DropdownHeading {...item.props} />;
     if (item.type === "DropdownItemSpacer")
@@ -141,6 +149,11 @@ function buildDropdownItemsFromChildren(children: React.ReactNode): ReadonlyArra
         type: 'ActionMenuItem',
         props: child.props
       } as ActionMenuItemType;
+    if ((child.type as any)?.displayName === "SelectItem")
+      return {
+        type: 'SelectItem',
+        props: child.props
+      } as SelectItemType;
     if ((child.type as any)?.displayName === "DropdownHeading")
       return {
         type: 'DropdownHeading',

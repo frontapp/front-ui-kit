@@ -59,7 +59,7 @@ interface DropdownProps {
 
 interface StyledDropdownWrapperDivProps {
   $maxWidth: number;
-  $maxHeight: number;
+  $maxHeight?: number;
 }
 
 const StyledDropdownWrapperDiv = styled.div<StyledDropdownWrapperDivProps>`
@@ -75,8 +75,10 @@ const StyledDropdownWrapperDiv = styled.div<StyledDropdownWrapperDivProps>`
   overflow: auto;
   ${p => css`
     max-width: ${p.$maxWidth}px;
-    max-height: ${p.$maxHeight}px;
   `}
+  ${p => p.$maxHeight && css`
+    max-height: ${p.$maxHeight}px;
+  `};
 `;
 
 interface StyledDropdownContentWrapperDivProps {
@@ -125,7 +127,11 @@ export const Dropdown: FC<DropdownProps> = props => {
   // Look at the supplied loading skeleton or default the loading skeleton.
   const loadingSkeletonDefaulted = useMemo(() => buildLoadingSkeleton(loadingSkeleton), [loadingSkeleton]);
   const loadingSkeletonHeight = useMemo(() => computeLoadingSkeletonHeight(loadingSkeletonDefaulted), [loadingSkeletonDefaulted]);
-  const maxDropdownHeight = shouldUseItemsHeight && itemsHeight < maxHeight ? itemsHeight + (dropdownListPadding * 2) : maxHeight;
+
+  const headerAndFooterComponents = useMemo(() => _(renderChildrenSpecifiedComponents(children, ['DropdownHeader', 'DropdownFooter'])).compact().value(), [children]);
+
+  const isCustomDropdownHeightRequired = shouldUseItemsHeight && !isEmpty && itemsHeight < maxHeight && itemsCount !== 0;
+  const maxDropdownHeight = isCustomDropdownHeightRequired ? itemsHeight + (dropdownListPadding * 2) : maxHeight;
 
   const formFields = useMemo(() => _(renderChildrenSpecifiedComponents(children, ['DropdownItemFormField'])).compact().value(), [children]);
 
@@ -154,9 +160,9 @@ export const Dropdown: FC<DropdownProps> = props => {
   };
 
   return (
-    <StyledDropdownWrapperDiv $maxWidth={maxWidth} $maxHeight={maxDropdownHeight}>
+    <StyledDropdownWrapperDiv $maxWidth={maxWidth} $maxHeight={headerAndFooterComponents.length === 0 ? maxDropdownHeight : undefined}>
       {/* Render Dropdown headers / footers. */}
-      {renderChildrenSpecifiedComponents(children, ['DropdownHeader', 'DropdownFooter'])}
+      {headerAndFooterComponents}
       <StyledDropdownContentWrapperDiv $maxHeight={maxDropdownHeight} $minHeight={minHeight > maxDropdownHeight ? maxDropdownHeight : minHeight}>
         {renderDropdownContent()}
       </StyledDropdownContentWrapperDiv>
@@ -197,7 +203,7 @@ function computeHeight(itemsHeight: number, itemsCount: number, loadingSkeletonH
   const totalLoadingRowsToRender = computeTotalLoadingItems(itemsCount, maxHeight, loadingSkeletonHeight);
 
   // If we should use the height of the dropdown items
-  if (shouldUseItemsHeight)
+  if (shouldUseItemsHeight && itemsCount !== 0)
     return itemsHeight < maxHeight ? itemsHeight + (dropdownListPadding * 2) : maxHeight;
 
   // If we are at the first page, we should fill up the dropdown with loading indicators.

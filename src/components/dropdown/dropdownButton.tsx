@@ -31,6 +31,8 @@ interface DropdownButtonProps {
   iconName?: IconName;
   /** The max width of the button. Default is 100%. */
   maxWidth?: number;
+  /** Reference the button itself. */
+  buttonRef?: (instance: HTMLDivElement | null) => void;
 }
 
 /*
@@ -113,6 +115,7 @@ const StyledPlaceholderWrapperDiv = styled.div`
   ${ellipsis()};
   color: ${greys.shade50};
   cursor: default;
+  user-select: none;
 
   ${hoverSelector} {
     color: ${greys.shade60};
@@ -148,11 +151,12 @@ const StyledChevronWrapperDiv = styled.div`
  */
 
 export const DropdownButton: FC<DropdownButtonProps> = props => {
-  const {maxWidth, value, iconName, isDisabled, isActive, isErred} = props;
-  const [childrenContainerRef, {width}] = useMeasureElement();
+  const {maxWidth, value, iconName, isDisabled, isActive, isErred, buttonRef} = props;
+  const [childrenContainerRef, {buttonWidth: width}] = useMeasureElement();
 
   return (
     <StyledDropdownButtonWrapperDiv
+      ref={buttonRef}
       className={!isDisabled ? buildHoverParentClassName(isActive) : undefined}
       $maxWidth={maxWidth}
       $isActive={isActive}
