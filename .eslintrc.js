@@ -62,6 +62,8 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'off',
     'unused-imports/no-unused-imports': 2,
 
+    "storybook/default-exports": 0,
+
     // Use @ts-expect-error with a comment instead.
     '@typescript-eslint/ban-ts-comment': 'warn',
     '@typescript-eslint/ban-types': [

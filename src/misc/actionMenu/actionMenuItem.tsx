@@ -12,10 +12,10 @@ import {greys} from '../../helpers/colorHelpers';
  */
 
 export interface ActionMenuItemProps {
+  /** Label for the menu item. */
+  children: string;
   /** Controls if an icon is rendered on the left. */
   iconName?: IconName;
-  /** Label for the item. */
-  children: string;
   /** Called when the action menu item is clicked. */
   onClick?: MouseEventHandler;
 }

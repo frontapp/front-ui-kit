@@ -1,4 +1,3 @@
-/* eslint-disable storybook/default-exports */
 import {ComponentStory} from '@storybook/react';
 import React, {useState} from 'react';
 import styled from 'styled-components';
