@@ -21,6 +21,8 @@ interface HeadingProps {
   children: ReactNode;
   /** The size of the heading. */
   size?: VisualSizesEnum;
+  /** Color of the text. */
+  color?: string;
 }
 
 /*
@@ -29,6 +31,7 @@ interface HeadingProps {
 
 interface HeadingStyleProps {
   $size: VisualSizesEnum;
+  $color: string;
 }
 
 const StyledHeadingDiv = styled.div<HeadingStyleProps>`
@@ -38,15 +41,15 @@ const StyledHeadingDiv = styled.div<HeadingStyleProps>`
   font-weight: ${fontWeights.bold};
   font-family: ${fonts.system};
   line-height: ${p => `${lineHeights[p.$size]}px`};
-  color: ${greys.shade80};
+  color: ${p => p.$color};
 `;
 
 /*
  * Component.
  */
 
-export const Heading: FC<HeadingProps> = props => (
-  <StyledHeadingDiv $size={props.size || VisualSizesEnum.MEDIUM}>
-    {props.children}
+export const Heading: FC<HeadingProps> = ({children, size = VisualSizesEnum.MEDIUM, color = greys.shade80}) => (
+  <StyledHeadingDiv $size={size} $color={color}>
+    {children}
   </StyledHeadingDiv>
 );

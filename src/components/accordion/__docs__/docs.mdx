@@ -1,0 +1,45 @@
+import { ArgsTable, Canvas, Story } from '@storybook/addon-docs';
+import { Accordion } from '../accordion';
+import { AccordionSection } from '../accordionSection';
+
+# Accordion
+
+The `Accordion` component delivers large amounts of content in a small space through progressive disclosure. 
+The header title give the user a high level overview of the content allowing the user to decide which sections to read.
+
+Accordions can make information processing and discovering more effective. However, it does hide content from users and 
+it's important to account for a user not noticing or reading all of the included content. If a user is likely to read 
+all of the content then don't use an accordion as it adds the burden of an extra click.
+
+## Props
+
+<ArgsTable of={Accordion} />
+
+# AccordionSection
+
+The `AccordionSection` component is required to use the `Accordion` component. It wraps all the content you would like to render for
+the section with no limiations of what can be rendered within it.
+
+## Props
+
+<ArgsTable of={AccordionSection} />
+
+# Stories
+
+### Basic Story
+
+In this example, we are using the defaults for the accordion. This example shows what it would be like to render settings where 
+a user can configure an item's properties by selecting multiple fields to show/hide. This example only allows a single section to
+be open at a time.
+
+<Canvas>
+  <Story id="components-accordion--basic" />
+</Canvas>
+
+### Multi Expand Story
+
+In this example, it is almost exactly the same as the Basic example except you can expand multiple sections at a time.
+
+<Canvas>
+  <Story id="components-accordion--multi" />
+</Canvas>

@@ -9,17 +9,17 @@ import {Icon} from '../icon/icon';
  * Props
  */
 interface AccordionSectionProps {
-  /** Accordion sections to be rendered */
+  /** Contents of the section to be rendered. */
   children: React.ReactNode
-  /** The unique id of the section */
+  /** The unique id of the section. */
   id: string;
-  /** The title to render for the accordion section */
+  /** The title to render for the accordion section. */
   title: string;
-  /** Controls whether the section is expanded or not */
+  /** Controls whether the section is expanded or not. */
   isOpen?: boolean;
   /** Called when the section is opened/closed. */
   onSectionToggled?: (isOpen: boolean) => void;
-  /** Render actions on the right had side of the title */
+  /** Render actions on the right had side of the title. */
   renderActions?: () => void
 }
 
@@ -63,6 +63,7 @@ const StyledAccordionSectionContentDiv = styled.div`
 
 const StyledChevronIconDiv = styled.div`
   margin-bottom: 4px;
+  margin-left: 4px;
 `;
 
 /*

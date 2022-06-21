@@ -24,6 +24,7 @@
         "name": "typescript-styled-plugin"
       }
     ],
+    "typeRoots": ["node_modules/@types"],
   },
   "include": [
     "src",
