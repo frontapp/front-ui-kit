@@ -3,8 +3,10 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 
 import {greys} from '../../../../helpers/colorHelpers';
+import {VisualSizesEnum} from '../../../../helpers/fontHelpers';
 import {DefaultStyleProvider} from '../../../../utils/defaultStyleProvider';
 import {Checkbox} from '../../../checkbox/checkbox';
+import {Heading} from '../../../heading/heading';
 import {Accordion} from '../../accordion';
 import {AccordionSection} from '../../accordionSection';
 
@@ -92,6 +94,7 @@ const Template: ComponentStory<typeof Accordion> = () => {
   return (
     <DefaultStyleProvider>
       <StyledShowcaseDiv>
+        <Heading size={VisualSizesEnum.SMALL} color={greys.shade70}>Show/Hide Fields</Heading>
         <Accordion expandMode="multi">
           {DATA.map(section => (
             <AccordionSection
