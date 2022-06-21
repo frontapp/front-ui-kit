@@ -8,7 +8,7 @@ module.exports = {
     builder: "webpack5"
   },
   webpackFinal: async config => ({
-    ...config, 
+    ...config,
     module: {
       ...config.module,
       rules: [
