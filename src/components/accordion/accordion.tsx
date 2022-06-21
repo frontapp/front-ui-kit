@@ -11,7 +11,7 @@ import {AccordionSection} from './accordionSection';
  */
 
 interface AccordionProps {
-  /** Accordion sections to be rendered. */
+  /** Accordion sections to be rendered. Only supports rendering AccordionSection components. */
   children: React.ReactNode
   /** Option to determine if only a single or multiple sections can be expanded. */
   expandMode?: 'single' | 'multi';
@@ -29,8 +29,7 @@ const StyledAccordionSectionDiv = styled.div`
  * Component
  */
 
-export const Accordion: FC<AccordionProps> = props => {
-  const {children, expandMode = 'single'} = props;
+export const Accordion: FC<AccordionProps> = ({children, expandMode = 'single'}) => {
   const accordionSections = useMemo(() => _(
     renderChildrenSpecifiedComponents(children, ['AccordionSection'])
   ).compact().value(), [children]);
@@ -54,6 +53,7 @@ export const Accordion: FC<AccordionProps> = props => {
         return (
           <AccordionSection
             {...section.props}
+            key={id}
             isOpen={openAccordionSections.includes(id)}
             onSectionToggled={() => {
               const isOpen = toggleSection(id);
