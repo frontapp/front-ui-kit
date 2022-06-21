@@ -19,8 +19,6 @@ interface AccordionSectionProps {
   isOpen?: boolean;
   /** Called when the section is opened/closed. */
   onSectionToggled?: (isOpen: boolean) => void;
-  /** Render actions on the right had side of the title. */
-  renderActions?: () => void
 }
 
 /*
