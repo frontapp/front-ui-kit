@@ -10,7 +10,7 @@ import {renderFirstIconOnly} from '../../helpers/renderHelpers';
 interface ButtonContentIconProps {
   /** Position of the icon. If you want an icon in the center, use ButtonContent and Icon. */
   position?: 'left' | 'right';
-  /** Children to render. */
+  /** Icon to render, will only render the first Icon passed in. */
   children: React.ReactNode;
 }
 

@@ -3,7 +3,7 @@ import styled, {css} from 'styled-components';
 
 import {alphas, greys, palette} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights, VisualSizesEnum} from '../../helpers/fontHelpers';
-import {isComponentInChildren} from '../../helpers/renderHelpers';
+import {isComponentInChildren, renderChildrenIgnoreSpecifiedComponents, renderChildrenSpecifiedComponents} from '../../helpers/renderHelpers';
 import {makeSizeConstants} from '../../helpers/styleHelpers';
 import {ButtonContent} from './buttonContent';
 import {IconButton} from './iconButton';
@@ -16,6 +16,9 @@ const lineHeights = makeSizeConstants(16, 16, 20);
 const verticalPadding = makeSizeConstants(5, 7, 9);
 const horizontalPadding = makeSizeConstants(12, 14);
 const buttonFontSize = makeSizeConstants(fontSizes.small, fontSizes.medium, fontSizes.large);
+const nonButtonContentChildren = [
+  'ButtonContentIcon'
+];
 
 /*
  * Props.
@@ -33,20 +36,20 @@ export type ButtonTypes =
 interface ButtonProps {
   /** The type of button to render. */
   type?: ButtonTypes;
+  /** The size of the button. Note EXTRA_LARGE is not supported. */
+  size?: VisualSizesEnum;
   /** Whether the button is disabled. If disabled the onClick will not fire. */
   isDisabled?: boolean;
   /** Content to render. If there is no ButtonContent specified, we will automatically wrap it for you. */
   children?: React.ReactNode;
-  /** The size of the button. Note EXTRA_LARGE is not supported. */
-  size?: VisualSizesEnum;
   /** Whether the button is currently active. */
   isActive?: boolean;
-  /** Called when the user click on the button. */
-  onClick?: MouseEventHandler;
   /** Class name to allow custom styling of the button. */
   className?: string;
   /** The color of the icon to be displayed. */
   iconColor?: string;
+  /** Called when the user click on the button. */
+  onClick?: MouseEventHandler;
 }
 
 /*
@@ -167,18 +170,16 @@ function addSharedSecondaryStyles(isActive?: boolean) {
  * Component.
  */
 
-export const Button: FC<ButtonProps> = props => {
-  const {
-    type = 'secondary',
-    size = VisualSizesEnum.MEDIUM,
-    children,
-    isDisabled,
-    isActive,
-    onClick,
-    className,
-    iconColor
-  } = props;
-
+export const Button: FC<ButtonProps> = ({
+  type = 'secondary',
+  size = VisualSizesEnum.MEDIUM,
+  children,
+  isDisabled,
+  isActive,
+  onClick,
+  className,
+  iconColor
+}) => {
   // Wrap the onClick to check if it is disabled or not defined.
   const onButtonClick = (event: MouseEvent) => {
     if (isDisabled || !onClick)
@@ -203,6 +204,7 @@ export const Button: FC<ButtonProps> = props => {
   return (
     <StyledButtonWrapperDiv>
       <StyledButton className={className} $type={type} $size={size} $isDisabled={isDisabled} $isActive={isActive} onClick={onButtonClick}>
+        {renderChildrenSpecifiedComponents(children, nonButtonContentChildren)}
         {renderButtonChildren(children)}
       </StyledButton>
     </StyledButtonWrapperDiv>
@@ -218,5 +220,5 @@ function renderButtonChildren(children: React.ReactNode) {
   const shouldWrapInContent = !isComponentInChildren(children, 'ButtonContent');
   if (!shouldWrapInContent)
     return children;
-  return <ButtonContent>{children}</ButtonContent>;
+  return <ButtonContent>{renderChildrenIgnoreSpecifiedComponents(children, nonButtonContentChildren)}</ButtonContent>;
 }

@@ -6,7 +6,7 @@ import styled from 'styled-components';
  */
 
 interface ButtonContentProps {
-  /** Children to render. */
+  /** Button content to render. */
   children: React.ReactNode;
 }
 
