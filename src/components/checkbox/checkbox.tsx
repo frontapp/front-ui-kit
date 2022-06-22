@@ -68,9 +68,12 @@ const StyledChildrenDiv = styled.div`
   line-height: 17px;
   color: ${greys.shade80};
   margin-left: 8px;
+  cursor: default;
+  user-select: none;
 
   &:empty {
     margin-left: 0;
+    display: none;
   }
 `;
 
@@ -102,8 +105,13 @@ function addCheckboxStyles(props: StyledCheckboxInputProps) {
  * Component.
  */
 
-export const Checkbox: FC<CheckboxProps> = props => {
-  const {isChecked, children, isDisabled = false, isIndeterminate = false, onChange} = props;
+export const Checkbox: FC<CheckboxProps> = ({
+  isChecked,
+  children,
+  isDisabled = false,
+  isIndeterminate = false,
+  onChange
+}) => {
   const onInputChange = () => {
     if (isDisabled)
       return;
@@ -144,7 +152,7 @@ export const Checkbox: FC<CheckboxProps> = props => {
         />
         <StyledIconDiv>{getCheckboxIcon(isDisabled, isChecked, isIndeterminate)}</StyledIconDiv>
       </StyledCheckboxDiv>
-      <StyledChildrenDiv>{children}</StyledChildrenDiv>
+      <StyledChildrenDiv onClick={onInputChange}>{children}</StyledChildrenDiv>
     </StyledWrapperDiv>
   );
 };
