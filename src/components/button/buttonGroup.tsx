@@ -8,7 +8,7 @@ import styled, {css} from 'styled-components';
 interface ButtonGroupProps {
   /** How to align the buttons. Default is left. */
   align?: 'left' | 'right';
-  /** Children to render. */
+  /** Buttons to render. */
   children: React.ReactNode;
 }
 

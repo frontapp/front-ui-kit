@@ -1,0 +1,114 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Button } from '../button';
+import { ButtonContent } from '../buttonContent';
+import { ButtonContentIcon } from '../buttonContentIcon';
+import { ButtonGroup } from '../buttonGroup';
+
+<Meta title="Components/Button" of={Button} />
+
+# Button
+
+<Canvas>
+  <Story id="components-button--basic" />
+</Canvas>
+
+Buttons communicate actions that users can take. Do not use buttons for navigation, instead use links. 
+
+Button labels should be clear and predictable. Button labels should clearly indicate the action of the button. 
+To provide enough context, use the {verb} + {noun} format except in the case of common actions like “Done”, “Close”, 
+“Cancel”, “Add”, or “Delete”.
+
+There are exceptions to this rule for situations in which button length could cause problems in compact UIs or 
+negatively impact translation, but the {verb} + {noun} formula is still best practice.
+
+<br />
+
+## Props
+
+<ArgsTable of={Button} />
+
+## Icon Button
+
+<Canvas>
+  <Story id="components-button--icon-basic" />
+</Canvas>
+
+An icon button is not a different component but instead is rendered when the `type` of the button is set to:
+
+- `icon`
+- `icon-danger`
+
+We will ignore all the content of the button except for the first `Icon` passed in.
+
+<br/>
+
+<hr /><hr />
+
+# Button Content
+
+`ButtonContent` is a component that wraps the content of a button and renders it in the correct grid area.
+You will not need to use this component as the button automatically wraps the content with this.
+
+## Props
+
+<ArgsTable of={ButtonContent} />
+
+<hr /><hr />
+
+# Button Content Icon
+
+<Canvas>
+  <Story id="components-button--icon-content-basic" />
+</Canvas>
+
+`ButtonContentIcon` is used to easily align icons with the two supported positions we have.
+We will ignore all the content of the `ButtonContentIcon` except for the first `Icon` passed in.
+
+#### Note: Use `Icon` when `type` is set to `icon` or `icon-danger`.
+
+## Props
+
+<ArgsTable of={ButtonContentIcon} />
+
+<hr /><hr />
+
+# Button Group
+
+<Canvas>
+  <Story id="components-button--group-basic" />
+</Canvas>
+
+`ButtonGroup` groups buttons together with a standard spacing. You can align the buttons on either the
+`left` or `right` of the group. 
+
+## Props
+
+<ArgsTable of={ButtonGroup} />
+
+<hr /><hr />
+
+# Stories
+
+## Sizes
+
+<Canvas>
+  <Story id="components-button--sizes" />
+</Canvas>
+
+Front supports 3 different button sizes: Small, medium and large. Sizes are defined by difference in height, padding, and label scale. 
+<br/>
+
+## Variants
+
+<Canvas>
+  <Story id="components-button--variants" />
+</Canvas>
+
+Front uses 3 button variants which include the following: primary, secondary and tertiary.
+
+Each button variant has a unique purpose based on several variables including emphasis, grouping and effect.
+- `primary`: Main call to action. A container (e.g. a pane, a modal, etc.) should have only one primary button. 
+- `secondary`: Secondary actions. Typically in conjuction with a primary.
+- `tertiary`: For less prominent actions; tertiary buttons can be used in isolation or paired with a primary or secondary button when there are multiple calls to action.
+- `primary-danger`: When the primary action has a destructive effect on the user's data.
+- `secondary-danger`: When the secondary action(s) have a destructive effect on the user's data.
