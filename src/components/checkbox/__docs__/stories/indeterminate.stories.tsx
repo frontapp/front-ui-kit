@@ -28,7 +28,8 @@ const Template: ComponentStory<typeof Checkbox> = () => {
           else
             setIsChecked({1: false, 2: false, 3: false});
         }}
-      >All options
+      >
+        All options
       </Checkbox>
       <Checkbox isChecked={isChecked['1']} onChange={isOptionChecked => setIsChecked(checked => ({...checked, 1: isOptionChecked}))}>
         Option 1
