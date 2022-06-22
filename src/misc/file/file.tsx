@@ -15,7 +15,7 @@ import {buildHoverParentClassName, hoverSelector} from '../../helpers/hoverHelpe
 
 const BASE_BYTES_SIZE = 1024;
 
-export enum AttachmentTypesEnum {
+export enum FileTypesEnum {
   ARCHIVE = 'ARCHIVE',
   AUDIO = 'AUDIO',
   CALENDAR = 'CALENDAR',
@@ -30,21 +30,21 @@ export enum AttachmentTypesEnum {
   WORD = 'WORD'
 }
 
-type FileTypeIcons = {[T in AttachmentTypesEnum]: IconName};
+type FileTypeIcons = {[T in FileTypesEnum]: IconName};
 
 const fileTypeIcons: FileTypeIcons = {
-  [AttachmentTypesEnum.ARCHIVE]: 'AttachmentArchive',
-  [AttachmentTypesEnum.CALENDAR]: 'AttachmentCalendar',
-  [AttachmentTypesEnum.CODE]: 'AttachmentCode',
-  [AttachmentTypesEnum.EXCEL]: 'AttachmentExcel',
-  [AttachmentTypesEnum.GENERIC]: 'AttachmentGeneric',
-  [AttachmentTypesEnum.IMAGE]: 'AttachmentImage',
-  [AttachmentTypesEnum.AUDIO]: 'AttachmentMusic',
-  [AttachmentTypesEnum.PDF]: 'AttachmentPdf',
-  [AttachmentTypesEnum.POWERPOINT]: 'AttachmentPowerpoint',
-  [AttachmentTypesEnum.TEXT]: 'AttachmentGeneric',
-  [AttachmentTypesEnum.VIDEO]: 'AttachmentVideo',
-  [AttachmentTypesEnum.WORD]: 'AttachmentWord'
+  [FileTypesEnum.ARCHIVE]: 'AttachmentArchive',
+  [FileTypesEnum.CALENDAR]: 'AttachmentCalendar',
+  [FileTypesEnum.CODE]: 'AttachmentCode',
+  [FileTypesEnum.EXCEL]: 'AttachmentExcel',
+  [FileTypesEnum.GENERIC]: 'AttachmentGeneric',
+  [FileTypesEnum.IMAGE]: 'AttachmentImage',
+  [FileTypesEnum.AUDIO]: 'AttachmentMusic',
+  [FileTypesEnum.PDF]: 'AttachmentPdf',
+  [FileTypesEnum.POWERPOINT]: 'AttachmentPowerpoint',
+  [FileTypesEnum.TEXT]: 'AttachmentGeneric',
+  [FileTypesEnum.VIDEO]: 'AttachmentVideo',
+  [FileTypesEnum.WORD]: 'AttachmentWord'
 };
 
 /*
@@ -55,11 +55,13 @@ export interface FileProps {
   /** The name of the file. */
   fileName: string;
   /** The type of file. Default will be GENERIC. */
-  fileType?: AttachmentTypesEnum;
+  fileType?: FileTypesEnum;
   /** The size of the file in Kbs */
   fileSize: number;
   /** Whether to render the error state of the file. */
   isErred?: boolean;
+  /** The reason why the file is in an isErred state. */
+  errorMessage?: string;
   /** Whether a clear button should be displayed when hovering over the file. */
   onClear?: () => void;
 }
@@ -143,10 +145,16 @@ const StyledButton = styled(Button)<StyledFileProps>`
  * Component.
  */
 
-export const File: FC<FileProps> = props => {
-  const {fileName, fileType = AttachmentTypesEnum.GENERIC, fileSize, isErred = false, onClear} = props;
+export const File: FC<FileProps> = ({
+  fileName,
+  fileType = FileTypesEnum.GENERIC,
+  fileSize,
+  isErred = false,
+  errorMessage: passedInErrorMessage = "Failed to upload",
+  onClear
+}) => {
   const iconName = fileTypeIcons[fileType];
-  const errorMessage = "[Failed to upload]";
+  const errorMessage = `[${passedInErrorMessage}]`;
   const fileLabel = fileName || "Untitled file";
   const fileTooltipLabel = isErred ? `${errorMessage} ${fileLabel}` : fileLabel;
 
