@@ -42,9 +42,9 @@ const Template: ComponentStory<typeof File> = () => {
     <StyledWrapperDiv>
       <StyledFileWrapperDiv>
         {file && <File
-          fileName="Test File.csv"
-          fileSize={12330}
-          fileType={FileTypesEnum.EXCEL}
+          fileName={file.name}
+          fileSize={file.size}
+          fileType={file.type}
           onClear={() => setFile(undefined)}
         />}
         {!file && (
