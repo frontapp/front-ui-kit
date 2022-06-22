@@ -18,7 +18,7 @@ export interface FormFieldProps {
   errorMessage?: string;
   /** Whether we should show the "*". */
   isRequired?: boolean;
-  /** Children to render. */
+  /** Content to render. */
   children: React.ReactElement;
 }
 
@@ -31,6 +31,10 @@ const StyledFormFieldWrapperDiv = styled.div`
   display: flex;
   flex-flow: column;
   gap: 6px;
+
+  &:not(:first-of-type) {
+    margin-top: 8px;
+  }
 `;
 
 const StyledFormFieldLabelDiv = styled.div`
