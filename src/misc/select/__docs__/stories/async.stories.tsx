@@ -1,29 +1,27 @@
-import {ComponentMeta, ComponentStory} from '@storybook/react';
+import {ComponentStory} from '@storybook/react';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import {Select} from '../select';
-import {SelectItem} from '../selectItem';
-import {disabledSelectStoryFields} from './selectStoryHelpers';
+import {Select} from '../../select';
+import {SelectItem} from '../../selectItem';
 
 interface UserData {
   id: string;
   name: string;
 }
 
-export default {
-  title: 'Misc/Select',
-  component: Select,
-  argTypes: {
-    ...disabledSelectStoryFields
-  }
-} as ComponentMeta<typeof Select>;
+const StyledWrapperDiv = styled.div`
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  height: 375px;
+`;
 
 const StyledMenuWrapperDiv = styled.div`
   padding: 8px;
   border-radius: 8px;
   background: white;
-  max-width: 350px;
+  width: 350px;
 `;
 
 const Template: ComponentStory<typeof Select> = args => {
@@ -47,22 +45,25 @@ const Template: ComponentStory<typeof Select> = args => {
   };
 
   return (
-    <StyledMenuWrapperDiv>
-      <Select
-        {...args}
-        selectedValues={users.find(user => user.id === selectedUserId)?.name}
-        isLoading={isLoading}
-        hasMore={page < 5}
-        onLoadMore={fetchUserData}
-      >
-        {users.map(user => (
-          <SelectItem key={user.id} onClick={() => setSelectedUserId(user.id)} isSelected={user.id === selectedUserId}>
-            {user.name}
-          </SelectItem>
-        ))}
-      </Select>
-    </StyledMenuWrapperDiv>
+    <StyledWrapperDiv>
+      <StyledMenuWrapperDiv>
+        <Select
+          {...args}
+          selectedValues={users.find(user => user.id === selectedUserId)?.name}
+          isLoading={isLoading}
+          hasMore={page < 5}
+          onLoadMore={fetchUserData}
+          layerRootId="story--components-select--async"
+        >
+          {users.map(user => (
+            <SelectItem key={user.id} onClick={() => setSelectedUserId(user.id)} isSelected={user.id === selectedUserId}>
+              {user.name}
+            </SelectItem>
+          ))}
+        </Select>
+      </StyledMenuWrapperDiv>
+    </StyledWrapperDiv>
   );
 };
 
-export const AsyncSimple = Template.bind({});
+export const Async = Template.bind({});
