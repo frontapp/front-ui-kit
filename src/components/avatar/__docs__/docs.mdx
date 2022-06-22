@@ -1,0 +1,48 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Avatar } from '../avatar';
+
+<Meta title="Components/Avatar" of={Avatar} />
+
+# Avatar
+
+<Canvas>
+  <Story id="components-avatar--basic" />
+</Canvas>
+
+An avatar is used to represent a user, team, teamate or entity.
+
+<br />
+
+## Props
+
+<ArgsTable of={Avatar} />
+
+<hr /><hr />
+
+# Stories
+
+## Initial Avatars
+
+When supplied with only a name the component will try to initials from the passed in name automatically.
+Depending on the `size` passed in we will render a different amount of initials.
+
+<Canvas>
+  <Story id="components-avatar--initials" />
+</Canvas>
+
+## Image Avatars
+
+You can also supply an `imgSrc` and we will render an image instead of initials for the avatar.
+
+<Canvas>
+  <Story id="components-avatar--images" />
+</Canvas>
+
+
+## Different Sized Avatars
+
+The avatar component supports 4 different sizes for the avatar. They are all exposed via the `VisualSizesEnum` enum.
+
+<Canvas>
+  <Story id="components-avatar--sizes" />
+</Canvas>

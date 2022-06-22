@@ -23,7 +23,7 @@ export interface AvatarProps {
   name: string;
   /** If specified, we will render the image instead of initials. */
   imgSrc?: string;
-  /** The size of the avatar. Defaults to VisualSizesEnum.LARGE. */
+  /** The size of the avatar. */
   size?: VisualSizesEnum;
 }
 
@@ -68,8 +68,7 @@ function addImageSrcStyles(imgSrc?: string) {
  * Component.
  */
 
-export const Avatar: FC<AvatarProps> = props => {
-  const {name, imgSrc, size = VisualSizesEnum.LARGE} = props;
+export const Avatar: FC<AvatarProps> = ({name, imgSrc, size = VisualSizesEnum.LARGE}) => {
   const avatarColor = useMemo(() => computeColorFromName(name.trim()), [name]);
   const initials = useMemo(() => computeInitialsFromName(name.trim(), size), [name, size]);
 
