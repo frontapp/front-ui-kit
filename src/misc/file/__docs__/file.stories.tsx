@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import {greys} from '../../../helpers/colorHelpers';
 import {fontSizes} from '../../../helpers/fontHelpers';
 import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
-import {AttachmentTypesEnum, File, FileProps} from '../file';
+import {File, FileProps, FileTypesEnum} from '../file';
 
 /*
  * Style.
@@ -29,7 +29,7 @@ const StyledDescriptionDiv = styled.div`
  */
 
 const ShowcaseFileComponent: FC<FileProps> = props => {
-  const {fileName = 'fileName.csv', fileSize = 30, fileType = AttachmentTypesEnum.GENERIC, isErred} = props;
+  const {fileName = 'fileName.csv', fileSize = 30, fileType = FileTypesEnum.GENERIC, isErred} = props;
   const [isVisible, setIsVisible] = useState(true);
   const [description, setDescription] = useState("");
 
