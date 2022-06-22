@@ -63,7 +63,7 @@ const StyledLabelDiv = styled.div`
   font-size: ${fontSizes.small};
   font-weight: ${fontWeights.semibold};
   line-height: 15px;
-  color: ${greys.shade70}
+  color: ${greys.shade70};
 `;
 
 const StyledInputsDiv = styled.div`
@@ -164,7 +164,7 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
       </StyledLabelsDiv>
       <StyledInputsDiv>
         <Input
-          value={dateValue}
+          value={dateValue || ''}
           onFocus={onDateFocus}
           onBlur={onDateBlur}
           shouldFocus={selectedView === DatepickerViewsEnum.DATE}
@@ -173,7 +173,7 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
         />
         {type === 'dateAndTime' && (
           <Input
-            value={timeValue}
+            value={timeValue || ''}
             shouldFocus={selectedView === DatepickerViewsEnum.TIME}
             onFocus={onTimeFocus}
             onBlur={onTimeBlur}

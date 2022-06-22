@@ -11,6 +11,8 @@ import {Reposition, RepositionProps} from './reposition';
 export interface RepositionPopoverProps extends LayerProps, RepositionProps {
   /** Controls if the overlay should be transparent or has a slight black shade. */
   hasVisibleOverlay?: boolean;
+  /** Specify a different layer id to tie the dropdown to. */
+  layerRootId?: string;
   onRequestClose?: () => void;
 }
 
@@ -35,10 +37,11 @@ const StyledBackgroundDiv = styled.div<StyledBackgroundDivProps>`
  */
 
 export const RepositionPopover: FC<RepositionPopoverProps> = props => {
-  const {hasVisibleOverlay, isExclusive, placement, children, onRequestClose} = props;
+  const {hasVisibleOverlay, isExclusive, placement, children, layerRootId, onRequestClose} = props;
   return (
     <Layer
       isExclusive={isExclusive}
+      layerRootId={layerRootId}
       onClick={event => {
         // If this click event was already handled, do not request to close.
         if (event.defaultPrevented || !onRequestClose)

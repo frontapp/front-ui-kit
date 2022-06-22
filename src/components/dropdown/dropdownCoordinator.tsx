@@ -20,6 +20,8 @@ interface DropdownCoordinatorProps extends Pick<RepositionPopoverProps, 'hasVisi
   isInline?: boolean;
   /** The max width of the anchor item. */
   maxWidth?: number;
+  /** Specify a different layer id to tie the dropdown to. */
+  layerRootId?: string;
   /** Render the button that triggers the dropdown. */
   renderButton: (isDropdownOpen: boolean, isDisabled: boolean, buttonRef: (instance: HTMLDivElement | null) => void) => React.ReactNode;
   /** Render the dropdown. */
@@ -55,7 +57,19 @@ const StyledAnchorDiv = styled.div<StyledAnchorDivProps>`
  */
 
 export const DropdownCoordinator: FC<DropdownCoordinatorProps> = props => {
-  const {isDisabled, hasVisibleOverlay, placement, isOverlayCloseDisabled, isInline, maxWidth, onDropdownOpen, onDropdownClosed, renderButton, renderDropdown} = props;
+  const {
+    isDisabled,
+    hasVisibleOverlay,
+    placement,
+    isOverlayCloseDisabled,
+    isInline,
+    maxWidth,
+    layerRootId,
+    onDropdownOpen,
+    onDropdownClosed,
+    renderButton,
+    renderDropdown
+  } = props;
   const [anchorElement, setAnchorElement] = useState<HTMLDivElement | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [context, setContext] = useState<PopoverContextProps | undefined>();
@@ -104,6 +118,7 @@ export const DropdownCoordinator: FC<DropdownCoordinatorProps> = props => {
           hasVisibleOverlay={hasVisibleOverlay}
           onRequestClose={isOverlayCloseDisabled ? undefined : onCloseDropdown}
           isExclusive
+          layerRootId={layerRootId}
         >
           {renderDropdown(onCloseDropdown, buttonWidth)}
         </RepositionPopover>
