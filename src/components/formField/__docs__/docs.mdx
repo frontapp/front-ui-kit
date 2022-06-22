@@ -1,0 +1,53 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { FormField } from '../formField';
+
+<Meta title="Components/Form Field" of={FormField} />
+
+# Form Field
+
+<Canvas>
+  <Story id="components-form-field--basic" />
+</Canvas>
+
+The `FormField` component is a wrapper component that can render anything within it. Typically
+you would use this to render `Input`'s in a form. 
+
+<br />
+
+## Props
+
+<ArgsTable of={FormField} />
+
+<hr /><hr />
+
+# Stories
+
+## Erred Form Field
+
+<Canvas>
+  <Story id="components-form-field--erred" />
+</Canvas>
+
+When you set the `isErred` on the form field, it will automatically set the `isErred` for any children that supports it.
+
+<br />
+
+## Required Form Field
+
+<Canvas>
+  <Story id="components-form-field--required" />
+</Canvas>
+
+When you set the `isRequired` we will mark it as required. It will still be up to you to validate they attach a value as
+this component is a purely visual one.
+
+<br />
+
+## Multiple Form Fields
+
+<Canvas>
+  <Story id="components-form-field--multiple" />
+</Canvas>
+
+The above is a simple example of multiple `FormField`'s. When there are more than 1 in a container component we will automatically
+add some margin between the fields.
