@@ -46,10 +46,16 @@ exports[`<Checkbox /> Spec Snapshots should render a checkbox with a label 1`] =
   line-height: 17px;
   color: #3e3e40;
   margin-left: 8px;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .c4:empty {
   margin-left: 0;
+  display: none;
 }
 
 <div>
@@ -128,10 +134,16 @@ exports[`<Checkbox /> Spec Snapshots should render a checked and disabled checkb
   line-height: 17px;
   color: #3e3e40;
   margin-left: 8px;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .c5:empty {
   margin-left: 0;
+  display: none;
 }
 
 <div>
@@ -221,10 +233,16 @@ exports[`<Checkbox /> Spec Snapshots should render a checked checkbox 1`] = `
   line-height: 17px;
   color: #3e3e40;
   margin-left: 8px;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .c5:empty {
   margin-left: 0;
+  display: none;
 }
 
 <div>
@@ -308,10 +326,16 @@ exports[`<Checkbox /> Spec Snapshots should render an empty and disabled checkbo
   line-height: 17px;
   color: #3e3e40;
   margin-left: 8px;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .c4:empty {
   margin-left: 0;
+  display: none;
 }
 
 <div>
@@ -383,10 +407,16 @@ exports[`<Checkbox /> Spec Snapshots should render an empty checkbox 1`] = `
   line-height: 17px;
   color: #3e3e40;
   margin-left: 8px;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .c4:empty {
   margin-left: 0;
+  display: none;
 }
 
 <div>
@@ -463,10 +493,16 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate and disabled
   line-height: 17px;
   color: #3e3e40;
   margin-left: 8px;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .c5:empty {
   margin-left: 0;
+  display: none;
 }
 
 <div>
@@ -556,10 +592,16 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate checkbox 1`]
   line-height: 17px;
   color: #3e3e40;
   margin-left: 8px;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .c5:empty {
   margin-left: 0;
+  display: none;
 }
 
 <div>
