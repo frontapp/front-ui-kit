@@ -1,0 +1,44 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Input } from '../input';
+
+<Meta title="Elements/Input" of={Input} />
+
+# Input
+
+<Canvas>
+  <Story id="elements-input--basic" />
+</Canvas>
+
+The input component is a simple component that wraps the standard `input` element.
+
+This component supports generic type-casting and defaults to `string`.
+
+<br />
+
+## Props
+
+<ArgsTable of={Input} />
+
+<hr /><hr />
+
+# Stories
+
+## Basic Input
+
+<Canvas>
+  <Story id="elements-input--basic" />
+</Canvas>
+
+## Disabled Input
+
+<Canvas>
+  <Story id="elements-input--disabled" />
+</Canvas>
+
+## Erred Input
+
+<Canvas>
+  <Story id="elements-input--erred" />
+</Canvas>
+
+#### Note: If you are wanting to show an error message, wrap the input in a `FormField` component
