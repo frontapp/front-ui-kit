@@ -1,8 +1,7 @@
 import {ComponentStory} from '@storybook/react';
-import React, {FC, useState} from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import {DefaultStyleProvider} from '../../../../utils/defaultStyleProvider';
 import {Task} from '../../task';
 
 /*
@@ -22,33 +21,25 @@ const StyledShowcaseDiv = styled.div`
 `;
 
 /*
- * Component.
+ * Storybook.
  */
 
-const TaskWithCheckboxComponent: FC = props => {
+const ShowcaseTemplate: ComponentStory<typeof Task> = () => {
   const [isChecked, setIsChecked] = useState(false);
   const onToggleCheckbox = (checked: boolean) => {
     setIsChecked(checked);
   };
   return (
-    <DefaultStyleProvider>
-      <StyledWrapperDiv>
-        <StyledShowcaseDiv>
-          <Task
-            type="checkbox"
-            isChecked={isChecked}
-            onChange={onToggleCheckbox}
-            label="Apply changes to feature"
-          />
-        </StyledShowcaseDiv>
-      </StyledWrapperDiv>
-    </DefaultStyleProvider>
+    <StyledWrapperDiv>
+      <StyledShowcaseDiv>
+        <Task
+          type="checkbox"
+          isChecked={isChecked}
+          onChange={onToggleCheckbox}
+          label="Apply changes to feature"
+        />
+      </StyledShowcaseDiv>
+    </StyledWrapperDiv>
   );
 };
-
-/*
- * Storybook.
- */
-
-const ShowcaseTemplate: ComponentStory<typeof TaskWithCheckboxComponent> = () => <TaskWithCheckboxComponent />;
 export const Checkbox = ShowcaseTemplate.bind({});

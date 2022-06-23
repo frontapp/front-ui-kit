@@ -1,8 +1,7 @@
 import {ComponentStory} from '@storybook/react';
-import React, {FC} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-import {DefaultStyleProvider} from '../../../../utils/defaultStyleProvider';
 import {Task} from '../../task';
 
 /*
@@ -22,24 +21,14 @@ const StyledShowcaseDiv = styled.div`
 `;
 
 /*
- * Component.
- */
-
-const SimpleTaskComponent: FC = props => (
-  <DefaultStyleProvider>
-    <StyledWrapperDiv>
-      <StyledShowcaseDiv>
-        <Task
-          label="Apply changes to feature"
-        />
-      </StyledShowcaseDiv>
-    </StyledWrapperDiv>
-  </DefaultStyleProvider>
-);
-
-/*
  * Storybook.
  */
 
-const ShowcaseTemplate: ComponentStory<typeof SimpleTaskComponent> = () => <SimpleTaskComponent />;
+const ShowcaseTemplate: ComponentStory<typeof Task> = () => (
+  <StyledWrapperDiv>
+    <StyledShowcaseDiv>
+      <Task label="Apply changes to feature" />
+    </StyledShowcaseDiv>
+  </StyledWrapperDiv>
+);
 export const Basic = ShowcaseTemplate.bind({});
