@@ -8,6 +8,7 @@ import {alphas} from '../../helpers/colorHelpers';
  */
 
 interface DropdownFooterProps {
+  /** Content to render in the footer. */
   children: React.ReactNode;
 }
 
@@ -26,5 +27,7 @@ const StyledDropdownFooterWrapperDiv = styled.div`
  */
 
 export const DropdownFooter: FC<DropdownFooterProps> = ({children}) => (
-  <StyledDropdownFooterWrapperDiv onClick={event => event.preventDefault()}>{children}</StyledDropdownFooterWrapperDiv>
+  <StyledDropdownFooterWrapperDiv onClick={event => event.preventDefault()}>
+    {children}
+  </StyledDropdownFooterWrapperDiv>
 );

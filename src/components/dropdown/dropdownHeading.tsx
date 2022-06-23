@@ -9,6 +9,7 @@ import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
  */
 
 export interface DropdownHeadingProps {
+  /** Content to render for the heading. */
   children: React.ReactNode;
 }
 

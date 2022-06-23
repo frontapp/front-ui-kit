@@ -18,6 +18,8 @@ interface DropdownHeaderProps {
   searchPlaceholder?: string;
   /** The value for the search bar input, if this value is supplied we will render the search bar. */
   searchValue?: string;
+  /** Whether when they open the dropdown we should auto focus the search input. */
+  shouldAutoFocusSearchInput?: boolean;
   /** If this function is supplied, a back button will be rendered. This is called when the back button is clicked. */
   onBackClick?: MouseEventHandler;
   /** Called when the search bar value is changed. */
@@ -62,18 +64,22 @@ const StyledSearchWrapperDiv = styled.div``;
  * Component.
  */
 
-export const DropdownHeader: FC<DropdownHeaderProps> = props => {
-  const {children, searchPlaceholder, searchValue, onSearchChange, onBackClick} = props;
-  return (
-    <StyledDropdownHeaderWrapperDiv onClick={event => event.preventDefault()}>
-      <StyledHeaderTopRowDiv>
-        {maybeRenderBackButton(onBackClick)}
-        <StyledHeaderLabelDiv>{children}</StyledHeaderLabelDiv>
-      </StyledHeaderTopRowDiv>
-      {maybeRenderSearchDropdown(searchValue, searchPlaceholder, onSearchChange)}
-    </StyledDropdownHeaderWrapperDiv>
-  );
-};
+export const DropdownHeader: FC<DropdownHeaderProps> = ({
+  children,
+  searchPlaceholder,
+  searchValue,
+  shouldAutoFocusSearchInput = true,
+  onSearchChange,
+  onBackClick
+}) => (
+  <StyledDropdownHeaderWrapperDiv onClick={event => event.preventDefault()}>
+    <StyledHeaderTopRowDiv>
+      {maybeRenderBackButton(onBackClick)}
+      <StyledHeaderLabelDiv>{children}</StyledHeaderLabelDiv>
+    </StyledHeaderTopRowDiv>
+    {maybeRenderSearchDropdown(searchValue, searchPlaceholder, shouldAutoFocusSearchInput, onSearchChange)}
+  </StyledDropdownHeaderWrapperDiv>
+);
 
 /*
  * Helpers.
@@ -99,7 +105,12 @@ function maybeRenderBackButton(onBackClick?: MouseEventHandler) {
   );
 }
 
-function maybeRenderSearchDropdown(searchValue?: string, placeholder?: string, onSearchChange?: (value: string) => void) {
+function maybeRenderSearchDropdown(
+  searchValue?: string,
+  placeholder?: string,
+  shouldAutoFocusSearchInput?: boolean,
+  onSearchChange?: (value: string) => void
+) {
   // We will only render the dropdown if the value is supplied.
   if (typeof searchValue === 'undefined')
     return null;
@@ -118,7 +129,7 @@ function maybeRenderSearchDropdown(searchValue?: string, placeholder?: string, o
           if (onSearchChange && typeof val !== 'undefined')
             onSearchChange(`${val}`);
         }}
-        shouldFocus
+        shouldFocus={shouldAutoFocusSearchInput}
       />
     </StyledSearchWrapperDiv>
   );
