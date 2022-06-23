@@ -7,6 +7,7 @@ import styled from 'styled-components';
  */
 
 export interface LayerProps {
+  layerRootId?: string;
   isExclusive?: boolean;
   onClick?: MouseEventHandler;
   children?: React.ReactNode;
@@ -36,7 +37,7 @@ const StyledLayerDiv = styled.div<LayerStyleProps>`
  */
 
 export const Layer: FC<LayerProps> = props => {
-  const {isExclusive, children, onClick} = props;
+  const {isExclusive, children, layerRootId, onClick} = props;
   const [nodes, setNodes] = useState<{nodeWrapper: HTMLElement; nodeContent: HTMLElement}>();
 
   useLayoutEffect(() => {
@@ -57,13 +58,13 @@ export const Layer: FC<LayerProps> = props => {
     nodeContent.style.pointerEvents = isExclusive ? 'auto' : 'none';
     nodeWrapper.appendChild(nodeContent);
 
-    const destroyLayer = createLayer(nodeWrapper);
+    const destroyLayer = createLayer(nodeWrapper, layerRootId);
 
     setNodes({nodeWrapper, nodeContent});
     return () => {
       destroyLayer();
     };
-  }, [isExclusive]);
+  }, [isExclusive, layerRootId]);
 
   if (!nodes)
     return null;
@@ -81,8 +82,13 @@ export const Layer: FC<LayerProps> = props => {
  * Helpers.
  */
 
-function createLayer(node: HTMLElement) {
-  window.document.body.appendChild(node);
+function createLayer(node: HTMLElement, layerRootId?: string) {
+  // Check if we need a different root element to append to instead of just the body.
+  const layerRootElement = layerRootId && window.document.getElementById(layerRootId);
+  if (layerRootElement)
+    layerRootElement.appendChild(node);
+  else
+    window.document.body.appendChild(node);
 
   return () => {
     node.remove();

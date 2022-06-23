@@ -115,13 +115,14 @@ export const DatePicker: FC<DatePickerProps> = props => {
   };
 
   const onDone: MouseEventHandler = () => {
-    if (selectedDate)
+    if (selectedDate && onChange)
       onChange(selectedDate?.toJSDate());
     onRequestClose();
   };
 
   const onClearClick: (MouseEventHandler | undefined) = value && (() => {
-    onChange(undefined);
+    if (onChange)
+      onChange(undefined);
     onRequestClose();
   });
 
@@ -143,7 +144,19 @@ export const DatePicker: FC<DatePickerProps> = props => {
         />
         {maybeRenderTimePicker(selectedView, onTimeSelect, timeFormat, selectedDate)}
       </StyledDatePickerDiv>
-      {maybeRenderDatePickerFooter(type, selectedView, onDateChange, onViewChange, onDone, timeFormat, onRequestClose, selectedDate, onClearClick)}
+      <StyledInputsDiv>
+        <DatePickerFooter
+          type={type}
+          selectedDate={selectedDate}
+          selectedView={selectedView}
+          onDateChange={onDateChange}
+          onViewChange={onViewChange}
+          onDoneClick={onDone}
+          timeFormat={timeFormat}
+          onRequestClose={onRequestClose}
+          onClearClick={onClearClick}
+        />
+      </StyledInputsDiv>
     </StyledWrapperDiv>
   );
 };
@@ -168,34 +181,6 @@ function maybeRenderTimePicker(
         onChange={onTimeSelect}
       />
     </StyledTimePickerDiv>
-  );
-}
-
-function maybeRenderDatePickerFooter(
-  type: 'date' | 'dateAndTime',
-  selectedView: DatepickerViewsEnum,
-  onDateChange: (date: DateTime) => void,
-  onViewChange: (view: DatepickerViewsEnum) => void,
-  onDone: MouseEventHandler,
-  timeFormat: '12h' | '24h',
-  onRequestClose: () => void,
-  selectedDate?: DateTime,
-  onClearClick?: MouseEventHandler
-) {
-  return (
-    <StyledInputsDiv>
-      <DatePickerFooter
-        type={type}
-        selectedDate={selectedDate}
-        selectedView={selectedView}
-        onDateChange={onDateChange}
-        onViewChange={onViewChange}
-        onDoneClick={onDone}
-        timeFormat={timeFormat}
-        onRequestClose={onRequestClose}
-        onClearClick={onClearClick}
-      />
-    </StyledInputsDiv>
   );
 }
 

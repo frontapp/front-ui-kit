@@ -1,0 +1,54 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { DatePickerDropdown } from '../datepickerDropdown';
+
+<Meta title="Components/Date Picker" of={DatePickerDropdown} />
+
+# Date Picker
+
+<Canvas>
+  <Story id="components-date-picker--basic" />
+</Canvas>
+
+This datepicker component can be used to select a date and time. Often used in plugins that require a “due date” field or something similar.
+
+<br />
+
+## Props
+
+<ArgsTable of={DatePickerDropdown} />
+
+<hr /><hr />
+
+# Stories
+
+## Min and Max Dates
+
+<Canvas>
+  <Story id="components-date-picker--min-max-date" />
+</Canvas>
+
+You can specify the min and max dates when constructing the component. This will limit the user to only select a certain
+range of dates. In this example we only allow selecting a week before or after the current date.
+
+<br />
+
+## Different Start Date
+
+<Canvas>
+  <Story id="components-date-picker--start-date" />
+</Canvas>
+
+You can change the start date of the date picker to any date of the week.
+
+<br /><br />
+
+
+## 24 hour mode
+
+<Canvas>
+  <Story id="components-date-picker--twenty-four-hour" />
+</Canvas>
+
+You can change the time to be rendered in 24 hour format.
+
+<br /><br />

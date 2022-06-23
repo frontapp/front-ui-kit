@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 
 import {CalendarWeekDaysEnum, formatDateTime} from '../../helpers/calendarHelpers';
 import {DropdownButton} from '../dropdown/dropdownButton';
@@ -14,48 +14,49 @@ export interface DatePickerDropdownProps {
   value?: Date;
   /** The placeholder value */
   placeholder?: string;
-  /** Controls allowing selecting a time. Default is date. */
+  /** Controls allowing selecting a time. */
   type?: 'date' | 'dateAndTime';
-  /** The format to display time in. This is only used if dateAndTime type is selected. Default is 12h. */
+  /** The format to display time in. This is only used if dateAndTime type is selected. */
   timeFormat?: '12h' | '24h';
   /** The minimum date allowed to be selected. */
   minDate?: Date;
   /** The maximum date allowed to be selected. */
   maxDate?: Date;
   /** Called either when a date (or date and time) is selected on hitting Done or when the date is cleared. */
-  onChange: (value?: Date) => void;
-  /** The day of the the week the calendar should start on. The default is Sunday */
+  onChange?: (value?: Date) => void;
+  /** The day of the the week the calendar should start on. */
   calendarWeekStartDay?: CalendarWeekDaysEnum;
+  /** Specify a different layer id to tie the dropdown to. */
+  layerRootId?: string;
 }
 
 /*
  * Component.
  */
 
-export const DatePickerDropdown: FC<DatePickerDropdownProps> = props => {
-  const {
-    value,
-    placeholder,
-    calendarWeekStartDay,
-    minDate,
-    maxDate,
-    onChange,
-    type = 'date',
-    timeFormat = '12h'
-  } = props;
-
-  const [selectedDate, setSelectedDate] = useState(value);
+export const DatePickerDropdown: FC<DatePickerDropdownProps> = ({
+  value,
+  placeholder,
+  calendarWeekStartDay = CalendarWeekDaysEnum.SUNDAY,
+  minDate,
+  maxDate,
+  onChange,
+  type = 'date',
+  timeFormat = '12h',
+  layerRootId
+}) => {
   const onChangeDate = (date?: Date) => {
-    setSelectedDate(date);
-    onChange(date);
+    if (onChange)
+      onChange(date);
   };
 
   return (
     <DropdownCoordinator
+      layerRootId={layerRootId}
       placement="bottom-start"
       renderButton={isDropdownOpen => (
         <DropdownButton
-          value={(selectedDate && formatDateTime(selectedDate, type, timeFormat)) || ""}
+          value={(value && formatDateTime(value, type, timeFormat)) || ""}
           placeholder={placeholder}
           iconName="Calendar"
           isActive={isDropdownOpen}
@@ -63,7 +64,7 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = props => {
       )}
       renderDropdown={onCloseDropdown => (
         <DatePicker
-          value={selectedDate}
+          value={value}
           timeFormat={timeFormat}
           calendarWeekStartDay={calendarWeekStartDay}
           minDate={minDate}
