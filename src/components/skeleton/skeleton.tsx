@@ -23,11 +23,11 @@ interface SkeletonProps {
   className?: string;
   /** Width of the skeleton in px. Default is 100%. */
   width?: number;
-  /** Height of the skeleton in px. Default is 16px. */
+  /** Height of the skeleton in px. */
   height?: number;
-  /** The color for the skeleton. Default is 'light' */
+  /** The color for the skeleton. */
   variant?: SkeletonVariantTypes;
-  /** Controls the border-radius of the skeleton. Default is 8px. */
+  /** Controls the border-radius of the skeleton. */
   borderRadius?: string;
 }
 
@@ -46,16 +46,16 @@ const skeletonKeyFrames = keyframes`
 
 interface StyledSkeletonDivProps {
   $width?: number;
-  $height?: number;
-  $borderRadius?: string;
+  $height: number;
+  $borderRadius: string;
   $variant: SkeletonVariantTypes;
 }
 
 const StyledSkeletonDiv = styled.div<StyledSkeletonDivProps>`
   position: relative;
   width: ${p => (p.$width ? `${p.$width}px` : '100%')};
-  height: ${p => (p.$height ? `${p.$height}px` : '16px')};
-  border-radius: ${p => (p.$borderRadius ? p.$borderRadius : '8px')};
+  height: ${p => `${p.$height}px`};
+  border-radius: ${p => p.$borderRadius};
   overflow: hidden;
 
   &::before {
@@ -89,7 +89,10 @@ function addSchemeStyles(variant: SkeletonVariantTypes) {
  * Component.
  */
 
-export const Skeleton: FC<SkeletonProps> = props => {
-  const {className, width, height, variant, borderRadius} = props;
-  return <StyledSkeletonDiv className={className} $width={width} $height={height} $variant={variant || 'light'} $borderRadius={borderRadius} />;
-};
+export const Skeleton: FC<SkeletonProps> = ({
+  className,
+  width,
+  height = 16,
+  variant = 'light',
+  borderRadius = '8px'
+}) => <StyledSkeletonDiv className={className} $width={width} $height={height} $variant={variant} $borderRadius={borderRadius} />;
