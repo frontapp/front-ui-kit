@@ -45,6 +45,8 @@ interface SelectProps {
   searchPlaceholder?: string;
   /** The value for the search bar input, if this value is supplied we will render the search bar. */
   searchValue?: string;
+  /** Specify a different layer id to tie the select to. */
+  layerRootId?: string;
   /** Called when the search bar value is changed. */
   onSearchChange?: (value: string) => void;
   /** Called when we request to load more items. */
@@ -57,26 +59,25 @@ interface SelectProps {
  * Component.
  */
 
-export const Select: FC<SelectProps> = props => {
-  const {
-    children,
-    selectedValues = '',
-    maxHeight,
-    maxWidth,
-    minHeight,
-    placeholder = 'Select from options',
-    emptyStateMessage,
-    isDisabled,
-    isLoading,
-    hasMore,
-    headerLabel,
-    searchPlaceholder,
-    searchValue,
-    onSearchChange,
-    onLoadMore,
-    onSelectClosed
-  } = props;
-
+export const Select: FC<SelectProps> = ({
+  children,
+  selectedValues = '',
+  maxHeight,
+  maxWidth,
+  minHeight,
+  placeholder = 'Select from options',
+  emptyStateMessage,
+  isDisabled,
+  isLoading,
+  hasMore,
+  headerLabel,
+  searchPlaceholder,
+  searchValue,
+  layerRootId,
+  onSearchChange,
+  onLoadMore,
+  onSelectClosed
+}) => {
   const childrenToRender = useMemo(() => _(renderChildrenSpecifiedComponents(children, ['SelectItem'])).compact().value(), [children]);
   const isEmpty = childrenToRender.length === 0 && !hasMore;
 
@@ -85,6 +86,7 @@ export const Select: FC<SelectProps> = props => {
       placement="bottom-end"
       maxWidth={maxWidth}
       isDisabled={isDisabled}
+      layerRootId={layerRootId}
       onDropdownClosed={onSelectClosed}
       renderButton={(isDropdownOpen, isButtonDisabled, buttonRef) => (
         <DropdownButton

@@ -23,7 +23,7 @@ type DropdownTypes = 'simple' | 'multi';
 export interface DropdownItemProps {
   /** Content to render. */
   children: React.ReactNode;
-  /** Type of the dropdown item. Default is simple. */
+  /** Type of the dropdown item. */
   type?: DropdownTypes;
   /** Optional description to render for the item. This will be rendered on a second line. */
   description?: string;
@@ -95,34 +95,36 @@ const StyledDropdownItemDescriptionDiv = styled.div`
  * Component.
  */
 
-export const DropdownItem: FC<DropdownItemProps> = props => {
-  const {children, type = 'simple', isSelected, description, onClick} = props;
-
-  return (
-    <StyledDropdownItemWrapperDiv
-      onClick={event => {
-        // If we are in multi mode, we should not close the dropdown when clicked.
-        if (type === 'multi')
-          event.preventDefault();
-        if (onClick)
-          onClick(event);
-      }}
-    >
-      {/* Render non-content items. Avatar, icons, etc. */}
-      {renderChildrenSpecifiedComponents(children, nonDropdownContentComponents)}
-      {/* Render content items. */}
-      <StyledDropdownItemContentWrapperDiv>
-        <StyledDropdownItemTitleDiv $isSelected={isSelected}>
-          {renderChildrenIgnoreSpecifiedComponents(children, nonDropdownContentComponents)}
-        </StyledDropdownItemTitleDiv>
-        {maybeRenderDescription(description)}
-      </StyledDropdownItemContentWrapperDiv>
-      <StyledDropdownItemRightContentDiv>
-        {renderSelectedState(type, isSelected)}
-      </StyledDropdownItemRightContentDiv>
-    </StyledDropdownItemWrapperDiv>
-  );
-};
+export const DropdownItem: FC<DropdownItemProps> = ({
+  children,
+  type = 'simple',
+  isSelected,
+  description,
+  onClick
+}) => (
+  <StyledDropdownItemWrapperDiv
+    onClick={event => {
+      // If we are in multi mode, we should not close the dropdown when clicked.
+      if (type === 'multi')
+        event.preventDefault();
+      if (onClick)
+        onClick(event);
+    }}
+  >
+    {/* Render non-content items. Avatar, icons, etc. */}
+    {renderChildrenSpecifiedComponents(children, nonDropdownContentComponents)}
+    {/* Render content items. */}
+    <StyledDropdownItemContentWrapperDiv>
+      <StyledDropdownItemTitleDiv $isSelected={isSelected}>
+        {renderChildrenIgnoreSpecifiedComponents(children, nonDropdownContentComponents)}
+      </StyledDropdownItemTitleDiv>
+      {maybeRenderDescription(description)}
+    </StyledDropdownItemContentWrapperDiv>
+    <StyledDropdownItemRightContentDiv>
+      {renderSelectedState(type, isSelected)}
+    </StyledDropdownItemRightContentDiv>
+  </StyledDropdownItemWrapperDiv>
+);
 
 /*
  * Helpers.
