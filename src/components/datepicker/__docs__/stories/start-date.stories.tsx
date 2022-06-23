@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 
 import {CalendarWeekDaysEnum} from '../../../../helpers/calendarHelpers';
-import {DatePickerDropdown} from '../../datepickerDropdown';
+import {DatePickerDropdown as DatePicker} from '../../datepickerDropdown';
 
 const StyledDatePickerDiv = styled.div`
   display: flex;
@@ -16,12 +16,12 @@ const StyledDatePickerWrapperDiv = styled.div`
   width: 300px;
 `;
 
-const Template: ComponentStory<typeof DatePickerDropdown> = () => {
+const Template: ComponentStory<typeof DatePicker> = () => {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
   return (
     <StyledDatePickerDiv>
       <StyledDatePickerWrapperDiv>
-        <DatePickerDropdown
+        <DatePicker
           value={selectedDate}
           onChange={setSelectedDate}
           type="dateAndTime"
