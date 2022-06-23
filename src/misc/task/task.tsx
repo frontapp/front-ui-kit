@@ -83,8 +83,7 @@ const StyledTaskChildrenDiv = styled.div`
  * Component.
  */
 
-export const Task: FC<TaskProps> = props => {
-  const {type, children, label, isLoading = false, icon, isChecked = false, onChange} = props;
+export const Task: FC<TaskProps> = ({type, children, label, isLoading = false, icon, isChecked = false, onChange}) => {
   if (isLoading)
     return (
       <StyledLoadingWrapperDiv>

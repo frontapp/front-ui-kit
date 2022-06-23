@@ -1,0 +1,48 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Task } from '../task';
+
+<Meta title="Components/Task" of={Task} />
+
+# Task
+
+<Canvas>
+  <Story id="components-task--basic" />
+</Canvas>
+
+The task cards are used for tasks/issues/items in plugins.
+
+<br />
+
+## Props
+
+<ArgsTable of={Task} />
+
+<hr /><hr />
+
+# Stories
+
+## Checkbox Task
+
+<Canvas>
+  <Story id="components-task--checkbox" />
+</Canvas>
+
+With the `Task` component you can create a list of `Task`'s the user would need to complete.
+
+## Icon Task
+
+<Canvas>
+  <Story id="components-task--icon" />
+</Canvas>
+
+Instead of a checkbox you may just want a visual representation. You can display any `Icon` available
+on the left hand side.
+
+## Dropdown Task
+
+<Canvas>
+  <Story id="components-task--dropdown" />
+</Canvas>
+
+Any `Task` can show a quick menu dropdown. To use this you would just add `DropdownItem`'s to the `Task`. Click
+`view code` to see how that is achieved.
