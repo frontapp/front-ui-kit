@@ -1,6 +1,35 @@
 # Changelog
 
 
+## [0.4.0](https://github.com/frontapp/front-ui-kit/compare/v0.3.4...v0.4.0) (2022-06-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove renderActions from accordionSection (#130)
+
+### Features
+
+* add color support to heading component ([6797f93](https://github.com/frontapp/front-ui-kit/commit/6797f933e2f17e93f938604ebb1d6135cc382e14))
+* add File component ([#84](https://github.com/frontapp/front-ui-kit/issues/84)) ([31ce42d](https://github.com/frontapp/front-ui-kit/commit/31ce42d609e5ca5ce420de49832b03d2bdc4f35a))
+* add select component ([#129](https://github.com/frontapp/front-ui-kit/issues/129)) ([869b604](https://github.com/frontapp/front-ui-kit/commit/869b60458779ffaa8b4392096723169855d02c85))
+* add selectItem component ([869b604](https://github.com/frontapp/front-ui-kit/commit/869b60458779ffaa8b4392096723169855d02c85))
+* add support for getting DropdownButton ref ([869b604](https://github.com/frontapp/front-ui-kit/commit/869b60458779ffaa8b4392096723169855d02c85))
+* add support to select for layerRootId ([ee7831d](https://github.com/frontapp/front-ui-kit/commit/ee7831d773acae1904686c39f1c33d680334a9e0))
+* add Task component ([#87](https://github.com/frontapp/front-ui-kit/issues/87)) ([f887ee3](https://github.com/frontapp/front-ui-kit/commit/f887ee36107a785dfa2be7ab6921cb5c21c46e59))
+
+
+### Bug Fixes
+
+* add className prop to button and iconButton ([31ce42d](https://github.com/frontapp/front-ui-kit/commit/31ce42d609e5ca5ce420de49832b03d2bdc4f35a))
+* add clear button to clear the selected date (or date and time) in the datepicker ([#92](https://github.com/frontapp/front-ui-kit/issues/92)) ([6c2f3a8](https://github.com/frontapp/front-ui-kit/commit/6c2f3a820c020ccad631ad1d18c6a99f7da8d390))
+* add iconColor prop to button and icon components to render the icon in a specific color ([f887ee3](https://github.com/frontapp/front-ui-kit/commit/f887ee36107a785dfa2be7ab6921cb5c21c46e59))
+* button content wrapping ButtonContentIcon ([fed0220](https://github.com/frontapp/front-ui-kit/commit/fed022045181f9441804c8fbf9b4a21107428bc5))
+* form field spacing when multiple in a row ([ead4024](https://github.com/frontapp/front-ui-kit/commit/ead40247620de4316d0bfe272fa534503b9920cb))
+* remove renderActions from accordionSection ([#130](https://github.com/frontapp/front-ui-kit/issues/130)) ([6797f93](https://github.com/frontapp/front-ui-kit/commit/6797f933e2f17e93f938604ebb1d6135cc382e14))
+* styling for accordion section chevron ([6797f93](https://github.com/frontapp/front-ui-kit/commit/6797f933e2f17e93f938604ebb1d6135cc382e14))
+* using shouldUseItemsHeight with headers and footers ([869b604](https://github.com/frontapp/front-ui-kit/commit/869b60458779ffaa8b4392096723169855d02c85))
+
 ## [0.3.4](https://github.com/frontapp/front-ui-kit/compare/v0.3.3...v0.3.4) (2022-06-10)
 
 
