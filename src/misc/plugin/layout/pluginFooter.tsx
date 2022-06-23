@@ -8,6 +8,7 @@ import {greys} from '../../../helpers/colorHelpers';
  */
 
 interface PluginFooterProps {
+  /** Footer content to render. */
   children: React.ReactNode;
 }
 
