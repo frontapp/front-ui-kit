@@ -1,0 +1,52 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Pill } from '../pill';
+import { PillContent } from '../pillContent';
+import { PillContentIcon } from '../pillContentIcon';
+
+<Meta title="Components/Pill" of={Pill} />
+
+# Pill
+
+<Canvas>
+  <Story id="components-pill--basic" />
+</Canvas>
+
+A pill is a way to render information in a specific format. You can customize all the colors of the pill.
+
+<br />
+
+## Props
+
+<ArgsTable of={Pill} />
+
+<hr /><hr />
+
+# Pill Content
+
+`PillContent` is a component that wraps the content of a pill and renders it in the correct grid area.
+You will not need to use this component as the pill automatically wraps the content with this.
+
+<br />
+
+## Props
+
+<ArgsTable of={PillContent} />
+
+<hr /><hr />
+
+# Pill Content Icon
+
+<Canvas>
+  <Story id="components-pill--icon-pill" />
+</Canvas>
+
+`PillContentIcon` is used to easily align icons with the two supported positions we have.
+We will ignore all the content of the `PillContentIcon` except for the first `Icon` passed in.
+
+<br />
+
+## Props
+
+<ArgsTable of={PillContentIcon} />
+
+<hr /><hr />

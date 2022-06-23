@@ -3,7 +3,7 @@ import styled, {css} from 'styled-components';
 
 import {alphas, greys} from '../../helpers/colorHelpers';
 import {fonts, fontSizes} from '../../helpers/fontHelpers';
-import {isComponentInChildren} from '../../helpers/renderHelpers';
+import {isComponentInChildren, renderChildrenIgnoreSpecifiedComponents, renderChildrenSpecifiedComponents} from '../../helpers/renderHelpers';
 import {getBackgroundColorFromStyles, getTextColorFromStyles, SelectableComponentColors} from '../../helpers/styleHelpers';
 import {PillContent} from './pillContent';
 
@@ -84,6 +84,7 @@ export const Pill: FC<PillProps> = props => {
 
   return (
     <StyledPillDiv $colors={colors} $isSelected={isSelected} onClick={onClick}>
+      {renderChildrenSpecifiedComponents(children, ['PillContentIcon'])}
       {renderPillChildren(children)}
     </StyledPillDiv>
   );
@@ -98,5 +99,5 @@ function renderPillChildren(children: React.ReactNode) {
   const shouldWrapInContent = !isComponentInChildren(children, 'PillContent');
   if (!shouldWrapInContent)
     return children;
-  return <PillContent>{children}</PillContent>;
+  return <PillContent>{renderChildrenIgnoreSpecifiedComponents(children, ['PillContentIcon'])}</PillContent>;
 }
