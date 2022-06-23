@@ -1,0 +1,67 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Tooltip } from '../tooltip';
+import { TooltipCoordinator } from '../tooltipCoordinator';
+
+<Meta title="Components/Tooltip" of={Tooltip} />
+
+# Tooltip
+
+<Canvas>
+  <Story id="components-tooltip--basic" />
+</Canvas>
+
+A tooltip is a message box that is displayed when a user hovers over or gives focus to a UI element.
+
+#### When to use
+
+- Describe icon buttons
+- When more information is useful in helping a user make decisions
+- When an element needs more context or explanation
+
+<br />
+
+## Props
+
+<ArgsTable of={Tooltip} />
+
+<hr /><hr />
+
+# Tooltip Coordinator
+
+The `TooltipCoordinator` is a component that handles all the displaying logic and when to display a tooltip.
+You can specify conditions for the tooltip to be rendered. The available options are:
+
+- `overflow`: Controls if the tooltip should be enabled by checking if the text is overflowing. Only supports single line.
+- `explicit`: Controls if the tooltip should be enabled via the `isEnabled` option.
+
+<br />
+
+## Props
+
+<ArgsTable of={TooltipCoordinator} />
+
+<hr /><hr />
+
+# Stories
+
+## Explicit Condition Tooltip
+
+<Canvas>
+  <Story id="components-tooltip--explicit" />
+</Canvas>
+
+In this story it shows how you can control if a tooltip is enabled via the `explicit` condition. When the tooltip
+is not enabled, we will not render anything. If you are wanting to only render a tooltip when text is overflowing
+see the below example.
+
+<br />
+
+## Overflow Condition Tooltip
+
+<Canvas>
+  <Story id="components-tooltip--overflow" />
+</Canvas>
+
+In this story we have two different lines of text but both of them have the `TooltipCoordinator` condition set to `overflow`.
+You can change the size of the parent box and you will see that the condition is checked for each render to see if the tooltip
+should be enabled when the user hovers.

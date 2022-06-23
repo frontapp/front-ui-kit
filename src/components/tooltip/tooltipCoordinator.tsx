@@ -29,14 +29,14 @@ type TooltipAvailableConditions = TooltipOverflowCondition | TooltipExplicitCond
  */
 
 interface TooltipCoordinatorProps {
-  /** Delay in ms before the tooltip appears. Default is 0. */
-  delay?: number;
   /** Children that is wrapped by the tooltip coordinator. */
   children: React.ReactNode;
-  /** Conditions that the tooltip would need to pass to be displayed. */
-  condition?: TooltipAvailableConditions;
   /** Tooltip to be rendered. */
   renderTooltip: () => React.ReactNode;
+  /** Delay in ms before the tooltip appears. */
+  delay?: number;
+  /** Conditions that the tooltip would need to pass to be displayed. */
+  condition?: TooltipAvailableConditions;
 }
 
 /*
@@ -55,9 +55,7 @@ const StyledTooltipCoordinatorDiv = styled.div<StyledTooltipCoordinatorDivProps>
  * Component.
  */
 
-export const TooltipCoordinator: FC<TooltipCoordinatorProps> = props => {
-  const {children, delay = 0, condition, renderTooltip} = props;
-
+export const TooltipCoordinator: FC<TooltipCoordinatorProps> = ({children, delay = 0, condition, renderTooltip}) => {
   const [anchorElement, setAnchorElement] = useState<HTMLDivElement | null>(null);
   const [shouldRenderTooltip, setShouldRenderTooltip] = useState(false);
   const [isConditionPassed, setIsConditionPassed] = useState(!condition);
