@@ -10,11 +10,11 @@ import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 
 interface TextareaProps {
   /** The id of the textarea field */
-  id?: string
+  id?: string;
   /** The content of the textarea field */
   value?: string;
   /** The number of lines in the textarea field */
-  rows: number;
+  rows?: number;
   /** The name of the textarea field */
   name?: string;
   /** Whether the textarea is resizable */
@@ -51,7 +51,11 @@ const StyledTextareaDiv = styled.div<StyledTextareaDivProps>`
   flex-flow: row;
   width: 100%;
 
-  ${p => p.$maxWidth && css`max-width: ${p.$maxWidth}px;`};
+  ${p =>
+    p.$maxWidth &&
+    css`
+      max-width: ${p.$maxWidth}px;
+    `};
 `;
 
 interface StyledTextareaProps {
@@ -126,22 +130,21 @@ function addTextareaStyles(props: StyledTextareaProps) {
  * Component.
  */
 
-export const Textarea: FC<TextareaProps> = props => {
-  const {
-    id,
-    value,
-    rows,
-    shouldAllowResize = true,
-    placeholder,
-    name = "",
-    isDisabled = false,
-    isErred = false,
-    maxWidth,
-    onChange,
-    onFocus,
-    onBlur,
-    shouldFocus = false
-  } = props;
+export const Textarea: FC<TextareaProps> = ({
+  id,
+  value,
+  rows,
+  shouldAllowResize = true,
+  placeholder,
+  name = '',
+  isDisabled = false,
+  isErred = false,
+  maxWidth,
+  onChange,
+  onFocus,
+  onBlur,
+  shouldFocus = false
+}) => {
   const onTextareaChange: ChangeEventHandler<HTMLTextAreaElement> = event => {
     if (isDisabled || !onChange)
       return;
