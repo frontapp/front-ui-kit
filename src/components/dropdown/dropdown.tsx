@@ -24,11 +24,11 @@ const defaultLoadingThreshold = 5;
  */
 
 interface DropdownProps {
-  /** The maximum width of the dropdown. Defaults to 260. */
+  /** The maximum width of the dropdown. */
   maxWidth?: number;
   /** The minimum height of the dropdown. Defaults to the max height. */
   minHeight?: number;
-  /** The maximum height of the dropdown. Defaults to 342. */
+  /** The maximum height of the dropdown. */
   maxHeight?: number;
   /** If set, the dropdown will use the height of the dropdown items if it is below the max height. */
   shouldUseItemsHeight?: boolean;
@@ -39,7 +39,7 @@ interface DropdownProps {
   isLoading?: boolean;
   /** The loading skeleton we would render. Only supports DropdownItemSkeleton. */
   loadingSkeleton?: React.ReactNode;
-  /** Controls when we will call the "onLoadMore" function. Default is when we are within 5 items of the bottom. */
+  /** Controls when we will call the "onLoadMore" function. */
   loadingThreshold?: number;
 
   /** Controls if we will try to load more items when they reach the loadingThreshold.  */
@@ -64,9 +64,10 @@ interface StyledDropdownWrapperDivProps {
 
 const StyledDropdownWrapperDiv = styled.div<StyledDropdownWrapperDivProps>`
   display: grid;
-  grid-template-areas: "header"
-                       "content"
-                       "footer";
+  grid-template-areas:
+    'header'
+    'content'
+    'footer';
   border-radius: 8px;
   background: white;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -76,9 +77,11 @@ const StyledDropdownWrapperDiv = styled.div<StyledDropdownWrapperDivProps>`
   ${p => css`
     max-width: ${p.$maxWidth}px;
   `}
-  ${p => p.$maxHeight && css`
-    max-height: ${p.$maxHeight}px;
-  `};
+  ${p =>
+    p.$maxHeight &&
+    css`
+      max-height: ${p.$maxHeight}px;
+    `};
 `;
 
 interface StyledDropdownContentWrapperDivProps {
@@ -106,34 +109,51 @@ const StyledDropdownFormContentDiv = styled.div`
  * Component.
  */
 
-export const Dropdown: FC<DropdownProps> = props => {
-  const {
-    children,
-    maxWidth = defaultMaxWidth,
-    maxHeight = defaultMaxHeight,
-    // The minHeight should default to the max height
-    minHeight = maxHeight,
-    shouldUseItemsHeight,
-    isLoading,
-    hasMore,
-    loadingThreshold = defaultLoadingThreshold,
-    loadingSkeleton,
-    isEmpty,
-    onLoadMore,
-    renderEmptyState
-  } = props;
+export const Dropdown: FC<DropdownProps> = ({
+  children,
+  maxWidth = defaultMaxWidth,
+  maxHeight = defaultMaxHeight,
+  // The minHeight should default to the max height
+  minHeight = maxHeight,
+  shouldUseItemsHeight,
+  isLoading,
+  hasMore,
+  loadingThreshold = defaultLoadingThreshold,
+  loadingSkeleton,
+  isEmpty,
+  onLoadMore,
+  renderEmptyState
+}) => {
   const {itemsCount, itemsHeight, getItemHeight, renderItem} = useDropdownList(children);
 
   // Look at the supplied loading skeleton or default the loading skeleton.
   const loadingSkeletonDefaulted = useMemo(() => buildLoadingSkeleton(loadingSkeleton), [loadingSkeleton]);
-  const loadingSkeletonHeight = useMemo(() => computeLoadingSkeletonHeight(loadingSkeletonDefaulted), [loadingSkeletonDefaulted]);
+  const loadingSkeletonHeight = useMemo(
+    () => computeLoadingSkeletonHeight(loadingSkeletonDefaulted),
+    [loadingSkeletonDefaulted]
+  );
 
-  const headerAndFooterComponents = useMemo(() => _(renderChildrenSpecifiedComponents(children, ['DropdownHeader', 'DropdownFooter'])).compact().value(), [children]);
+  const headerAndFooterComponents = useMemo(
+    () =>
+      _(renderChildrenSpecifiedComponents(children, ['DropdownHeader', 'DropdownFooter']))
+        .compact()
+        .value(),
+    [children]
+  );
 
-  const isCustomDropdownHeightRequired = shouldUseItemsHeight && !isEmpty && itemsHeight < maxHeight && itemsCount !== 0;
-  const maxDropdownHeight = isCustomDropdownHeightRequired ? itemsHeight + (dropdownListPadding * 2) : maxHeight;
+  const isCustomDropdownHeightRequired =
+    shouldUseItemsHeight && !isEmpty && itemsHeight < maxHeight && itemsCount !== 0;
+  const maxDropdownHeight = isCustomDropdownHeightRequired
+    ? itemsHeight + dropdownListPadding * 2
+    : maxHeight;
 
-  const formFields = useMemo(() => _(renderChildrenSpecifiedComponents(children, ['DropdownItemFormField'])).compact().value(), [children]);
+  const formFields = useMemo(
+    () =>
+      _(renderChildrenSpecifiedComponents(children, ['DropdownItemFormField']))
+        .compact()
+        .value(),
+    [children]
+  );
 
   const renderDropdownContent = () => {
     if (isEmpty && renderEmptyState)
@@ -145,8 +165,17 @@ export const Dropdown: FC<DropdownProps> = props => {
     return (
       <DropdownList
         itemsCount={itemsCount}
-        loadingItemsCount={hasMore || isLoading ? computeTotalLoadingItems(itemsCount, maxHeight, loadingSkeletonHeight) : 0}
-        height={computeHeight(itemsHeight, itemsCount, loadingSkeletonHeight, maxHeight, hasMore, shouldUseItemsHeight)}
+        loadingItemsCount={
+          hasMore || isLoading ? computeTotalLoadingItems(itemsCount, maxHeight, loadingSkeletonHeight) : 0
+        }
+        height={computeHeight(
+          itemsHeight,
+          itemsCount,
+          loadingSkeletonHeight,
+          maxHeight,
+          hasMore,
+          shouldUseItemsHeight
+        )}
         isLoading={isLoading}
         hasMore={hasMore}
         loadingThreshold={loadingThreshold}
@@ -160,10 +189,16 @@ export const Dropdown: FC<DropdownProps> = props => {
   };
 
   return (
-    <StyledDropdownWrapperDiv $maxWidth={maxWidth} $maxHeight={headerAndFooterComponents.length === 0 ? maxDropdownHeight : undefined}>
+    <StyledDropdownWrapperDiv
+      $maxWidth={maxWidth}
+      $maxHeight={headerAndFooterComponents.length === 0 ? maxDropdownHeight : undefined}
+    >
       {/* Render Dropdown headers / footers. */}
       {headerAndFooterComponents}
-      <StyledDropdownContentWrapperDiv $maxHeight={maxDropdownHeight} $minHeight={minHeight > maxDropdownHeight ? maxDropdownHeight : minHeight}>
+      <StyledDropdownContentWrapperDiv
+        $maxHeight={maxDropdownHeight}
+        $minHeight={minHeight > maxDropdownHeight ? maxDropdownHeight : minHeight}
+      >
         {renderDropdownContent()}
       </StyledDropdownContentWrapperDiv>
     </StyledDropdownWrapperDiv>
@@ -182,7 +217,7 @@ function buildLoadingSkeleton(skeleton?: React.ReactNode): React.ReactNode {
 
   // Try to pull the DropdownItemSkeleton from the children and return the first one found.
   const dropdownSkeletons = renderChildrenSpecifiedComponents(skeleton, ['DropdownItemSkeleton']);
-  return dropdownSkeletons?.[0] || (<DropdownItemSkeleton />);
+  return dropdownSkeletons?.[0] || <DropdownItemSkeleton />;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -199,18 +234,26 @@ function computeTotalLoadingItems(itemsCount: number, maxHeight: number, loading
   return Math.floor(maxHeight / loadingSkeletonHeight);
 }
 
-function computeHeight(itemsHeight: number, itemsCount: number, loadingSkeletonHeight: number, maxHeight: number, hasMore?: boolean, shouldUseItemsHeight?: boolean) {
+function computeHeight(
+  itemsHeight: number,
+  itemsCount: number,
+  loadingSkeletonHeight: number,
+  maxHeight: number,
+  hasMore?: boolean,
+  shouldUseItemsHeight?: boolean
+) {
   const totalLoadingRowsToRender = computeTotalLoadingItems(itemsCount, maxHeight, loadingSkeletonHeight);
 
   // If we should use the height of the dropdown items
   if (shouldUseItemsHeight && itemsCount !== 0)
-    return itemsHeight < maxHeight ? itemsHeight + (dropdownListPadding * 2) : maxHeight;
+    return itemsHeight < maxHeight ? itemsHeight + dropdownListPadding * 2 : maxHeight;
 
   // If we are at the first page, we should fill up the dropdown with loading indicators.
   if (itemsCount === 0)
     return maxHeight;
 
   // If we have more items we can load, make sure to take that into account when calculating the height.
-  const itemsWithLoadingHeight = itemsHeight + (hasMore ? loadingSkeletonHeight * totalLoadingRowsToRender : 0);
-  return itemsWithLoadingHeight < maxHeight ? itemsWithLoadingHeight + (dropdownListPadding * 2) : maxHeight;
+  const itemsWithLoadingHeight =
+    itemsHeight + (hasMore ? loadingSkeletonHeight * totalLoadingRowsToRender : 0);
+  return itemsWithLoadingHeight < maxHeight ? itemsWithLoadingHeight + dropdownListPadding * 2 : maxHeight;
 }

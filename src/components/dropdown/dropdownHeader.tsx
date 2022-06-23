@@ -99,7 +99,11 @@ function maybeRenderBackButton(onBackClick?: MouseEventHandler) {
   );
 }
 
-function maybeRenderSearchDropdown(searchValue?: string, placeholder?: string, onSearchChange?: (value: string) => void) {
+function maybeRenderSearchDropdown(
+  searchValue?: string,
+  placeholder?: string,
+  onSearchChange?: (value: string) => void
+) {
   // We will only render the dropdown if the value is supplied.
   if (typeof searchValue === 'undefined')
     return null;
@@ -118,7 +122,6 @@ function maybeRenderSearchDropdown(searchValue?: string, placeholder?: string, o
           if (onSearchChange && typeof val !== 'undefined')
             onSearchChange(`${val}`);
         }}
-        shouldFocus
       />
     </StyledSearchWrapperDiv>
   );

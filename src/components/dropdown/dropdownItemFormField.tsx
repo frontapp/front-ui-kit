@@ -10,6 +10,10 @@ import {FormField, FormFieldProps} from '../formField/formField';
 
 const StyledDropdownItemFormFieldWrapperDiv = styled.div`
   padding: 0 8px;
+
+  &:not(:first-of-type) {
+    margin-top: 8px;
+  }
 `;
 
 /*
