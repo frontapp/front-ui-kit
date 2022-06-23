@@ -17,7 +17,7 @@ const DefaultMessage = 'No results';
  */
 
 interface EmptyStateProps {
-  /** The message to render for the empty state. Default is "No results" */
+  /** The message to render for the empty state. */
   message?: string;
   /** Text for the button to render, required to render a button.  */
   buttonText?: string;
@@ -84,12 +84,7 @@ const StyledButtonWrapperDiv = styled.div`
  * Component.
  */
 
-export const EmptyState: FC<EmptyStateProps> = props => {
-  const {
-    message = DefaultMessage,
-    buttonText,
-    onButtonClick
-  } = props;
+export const EmptyState: FC<EmptyStateProps> = ({message = DefaultMessage, buttonText, onButtonClick}) => {
   const hasVisibleButton = Boolean(buttonText && onButtonClick);
 
   return (
@@ -98,9 +93,7 @@ export const EmptyState: FC<EmptyStateProps> = props => {
         <StyledSearchIconWrapperDiv>
           <Icon name="Search" size={40} color={greys.shade50} />
         </StyledSearchIconWrapperDiv>
-        <StyledSearchTextDiv>
-          {message}
-        </StyledSearchTextDiv>
+        <StyledSearchTextDiv>{message}</StyledSearchTextDiv>
         {maybeRenderButton(buttonText, onButtonClick)}
       </StyledContentWrapperDiv>
     </StyledEmptyStateWrapperDiv>
