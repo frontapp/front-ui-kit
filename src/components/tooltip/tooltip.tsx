@@ -11,12 +11,12 @@ import {RepositionPopover} from '../popover/repositionPopover';
  */
 
 interface TooltipProps {
-  /** Placement of the tooltip. Default is bottom. */
+  /** Content of the tooltip to render. */
+  children: React.ReactNode;
+  /** Placement of the tooltip. */
   placement?: Placement;
   /** Max width of the tooltip. */
   maxWidth?: number;
-  /** Content of the tooltip to render. */
-  children: React.ReactNode;
 }
 
 /*
@@ -24,13 +24,13 @@ interface TooltipProps {
  */
 
 interface StyledTooltipDivProps {
-  $maxWidth?: number;
+  $maxWidth: number;
 }
 
 const StyledTooltipDiv = styled.div<StyledTooltipDivProps>`
   font-family: ${fonts.system};
   padding: 6px 8px;
-  max-width: ${p => `${p.$maxWidth || 400}px`};
+  max-width: ${p => `${p.$maxWidth}px`};
   width: max-content;
   border-radius: 8px;
   background-color: ${greys.shade90};
@@ -46,14 +46,10 @@ const StyledTooltipDiv = styled.div<StyledTooltipDivProps>`
  * Component.
  */
 
-export const Tooltip: FC<TooltipProps> = props => {
-  const {children, placement = 'bottom', maxWidth} = props;
-
-  return (
-    <RepositionPopover placement={placement}>
-      <StyledTooltipDiv $maxWidth={maxWidth}>
-        {children}
-      </StyledTooltipDiv>
-    </RepositionPopover>
-  );
-};
+export const Tooltip: FC<TooltipProps> = ({children, placement = 'bottom', maxWidth = 400}) => (
+  <RepositionPopover placement={placement}>
+    <StyledTooltipDiv $maxWidth={maxWidth}>
+      {children}
+    </StyledTooltipDiv>
+  </RepositionPopover>
+);
