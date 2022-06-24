@@ -23,6 +23,10 @@ export {DefaultStyleProvider} from './utils/defaultStyleProvider';
 export {Accordion} from './components/accordion/accordion';
 export {AccordionSection} from './components/accordion/accordionSection';
 
+export {ActionMenu} from './components/_pre-built/actionMenu/actionMenu';
+export {ActionMenuItem} from './components/_pre-built/actionMenu/actionMenuItem';
+export {ActionMenuItemSpacer} from './components/_pre-built/actionMenu/actionMenuItemSpacer';
+
 export {Avatar} from './components/avatar/avatar';
 
 export {Button, ButtonTypes} from './components/button/button';
@@ -34,23 +38,7 @@ export {Checkbox} from './components/checkbox/checkbox';
 
 export {DatePickerDropdown as DatePicker} from './components/datepicker/datepickerDropdown';
 
-export {DropdownCoordinator} from './components/dropdown/dropdownCoordinator';
-export {Dropdown} from './components/dropdown/dropdown';
-export {DropdownItem} from './components/dropdown/dropdownItem';
-export {DropdownItemFormField} from './components/dropdown/dropdownItemFormField';
-export {DropdownFooter} from './components/dropdown/dropdownFooter';
-export {DropdownItemSkeleton} from './components/dropdown/skeleton/dropdownItemSkeleton';
-export {DropdownItemSpacer} from './components/dropdown/dropdownItemSpacer';
-
-export {EmptyState} from './components/emptyState/emptyState';
-
-export {Heading} from './components/heading/heading';
-
-export {Icon, IconName} from './components/icon/icon';
-
-export {Input} from './components/input/input';
-
-export {Paragraph} from './components/paragraph/paragraph';
+export {File} from './components/_pre-built/file/file';
 
 export {Pill} from './components/pill/pill';
 export {PillContent} from './components/pill/pillContent';
@@ -61,7 +49,7 @@ export {Skeleton} from './components/skeleton/skeleton';
 export {Tab} from './components/tab/tab';
 export {TabGroup} from './components/tab/tabGroup';
 
-export {Textarea} from './components/textarea/textarea';
+export {Task} from './components/_pre-built/task/task';
 
 export {Tooltip} from './components/tooltip/tooltip';
 export {TooltipCoordinator} from './components/tooltip/tooltipCoordinator';

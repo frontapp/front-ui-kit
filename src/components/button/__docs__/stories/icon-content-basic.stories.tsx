@@ -2,7 +2,7 @@ import {ComponentStory} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import {Icon} from '../../../icon/icon';
+import {Icon} from '../../../../elements/icon/icon';
 import {Button} from '../../button';
 import {ButtonContentIcon} from '../../buttonContentIcon';
 

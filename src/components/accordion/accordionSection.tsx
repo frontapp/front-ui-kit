@@ -1,16 +1,16 @@
 import React, {FC} from 'react';
 import styled from 'styled-components';
 
+import {Icon} from '../../elements/icon/icon';
 import {greys} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
-import {Icon} from '../icon/icon';
 
 /*
  * Props
  */
 interface AccordionSectionProps {
   /** Contents of the section to be rendered. */
-  children: React.ReactNode
+  children: React.ReactNode;
   /** The unique id of the section. */
   id: string;
   /** The title to render for the accordion section. */
@@ -28,7 +28,7 @@ interface AccordionSectionProps {
 const StyledAccordionSectionDiv = styled.div`
   display: flex;
   flex-direction: column;
-  
+
   cursor: default;
   font-family: ${fonts.system};
   font-size: ${fontSizes.medium};
@@ -76,7 +76,7 @@ export const AccordionSection: FC<AccordionSectionProps> = props => {
       <StyledAccordionSectionContainerDiv>
         <StyledAccordionSectionTitleDiv onClick={() => onSectionToggled && onSectionToggled(isOpen)}>
           <StyledChevronIconDiv>
-            <Icon name={isOpen? "ChevronDown" : "ChevronRight"} size={12} />
+            <Icon name={isOpen ? 'ChevronDown' : 'ChevronRight'} size={12} />
           </StyledChevronIconDiv>
           {title}
         </StyledAccordionSectionTitleDiv>
@@ -93,9 +93,5 @@ export const AccordionSection: FC<AccordionSectionProps> = props => {
 function maybeRenderAccordionSectionContent(children: React.ReactNode, isOpen?: boolean) {
   if (!isOpen)
     return null;
-  return (
-    <StyledAccordionSectionContentDiv>
-      {children}
-    </StyledAccordionSectionContentDiv>
-  );
+  return <StyledAccordionSectionContentDiv>{children}</StyledAccordionSectionContentDiv>;
 }

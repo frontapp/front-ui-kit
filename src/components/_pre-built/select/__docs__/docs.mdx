@@ -1,0 +1,96 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Select } from '../select';
+import { SelectItem } from '../selectItem';
+
+<Meta title="Components/Select" of={Select} />
+
+# Select
+
+<Canvas>
+  <Story id="components-select--basic" />
+</Canvas>
+
+```typescript
+import {Select} from '@frontapp/ui-kit';
+```
+
+The `Select` component allows a single or multiple items to be selected. This is built from components in the library
+and is exposed as a pre-built component.
+
+<br />
+
+## Props
+
+<ArgsTable of={Select} />
+
+<hr /><hr />
+
+# Select Item
+
+```typescript
+import {SelectItem} from '@frontapp/ui-kit';
+```
+
+The items that should be passed into the `Select` component.
+
+<br />
+
+## Props
+
+<ArgsTable of={SelectItem} />
+
+<hr /><hr />
+
+# Stories
+
+## Select with Header
+
+<Canvas>
+  <Story id="components-select--select-header" />
+</Canvas>
+
+This story shows a simple select dropdown with a header.
+
+<br />
+
+## Select allowing Multiple Options
+
+<Canvas>
+  <Story id="components-select--multi" />
+</Canvas>
+
+This story shows how you would support selecting multiple options in the select. Note that selecting an option
+no longer closes the dropdown when in multi select mode.
+
+You will also notice that when the items overflow, we will automatically just hide the overflowing items and show
+a `+X` for the amount of items that were overflowing. 
+
+<br />
+
+## Async Select
+
+<Canvas>
+  <Story id="components-select--async" />
+</Canvas>
+
+This story shows how you would set up a simple select that gets data from an async source.
+
+<br />
+
+## Async Select allowing Multiple Options
+
+<Canvas>
+  <Story id="components-select--async-multi" />
+</Canvas>
+
+This story is the same as above but allows multiple selections.
+
+<br />
+
+## Search Select
+
+<Canvas>
+  <Story id="components-select--search" />
+</Canvas>
+
+This story shows how you would set up a select that supports search.

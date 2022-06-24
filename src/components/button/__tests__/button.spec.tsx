@@ -2,8 +2,8 @@ import {render} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 
+import {Icon} from '../../../elements/icon/icon';
 import {VisualSizesEnum} from '../../../helpers/fontHelpers';
-import {Icon} from '../../icon/icon';
 import {Button} from '../button';
 import {ButtonGroup} from '../buttonGroup';
 
@@ -82,7 +82,11 @@ describe('<Button /> Spec', () => {
   it('should not issue onClick events when clicked when isDisabled', async () => {
     const user = userEvent.setup();
     const onClickMock = jest.fn();
-    const view = render(<Button onClick={onClickMock} isDisabled>Button</Button>);
+    const view = render(
+      <Button onClick={onClickMock} isDisabled>
+        Button
+      </Button>
+    );
 
     await user.click(view.getByRole('button', {name: /Button/i}));
 

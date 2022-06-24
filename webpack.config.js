@@ -5,16 +5,18 @@ const isProduction = process.argv.indexOf('--mode=production') !== -1;
 module.exports = {
   entry: {
     index: './src/index.ts',
-    'misc/index': './src/misc/index.ts'
+    'elements/index': './src/elements/index.ts',
+    'layout/index': './src/layout/index.ts',
+    'text/index': './src/text/index.ts'
   },
   devtool: !isProduction ? 'inline-source-map' : undefined,
   externals: {
     react: 'react',
     'react-dom': 'react-dom',
-    "styled-components": {
-      commonjs: "styled-components",
-      commonjs2: "styled-components",
-      amd: "styled-components"
+    'styled-components': {
+      commonjs: 'styled-components',
+      commonjs2: 'styled-components',
+      amd: 'styled-components'
     }
   },
   module: {
@@ -30,13 +32,17 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             compact: true,
-            presets: [['@babel/preset-env', {modules: false}], '@babel/preset-typescript', ["@babel/preset-react", {runtime: "automatic"}]],
+            presets: [
+              ['@babel/preset-env', {modules: false}],
+              '@babel/preset-typescript',
+              ['@babel/preset-react', {runtime: 'automatic'}]
+            ],
             plugins: [
-              "add-react-displayname",
+              'add-react-displayname',
               [
                 'babel-plugin-styled-components',
                 {
-                // Disable the dev-friendly classNames on styled-components
+                  // Disable the dev-friendly classNames on styled-components
                   displayName: !isProduction,
                   // Minify the CSS
                   minify: true,
@@ -48,9 +54,7 @@ module.exports = {
             ]
           }
         },
-        exclude: [
-          /node_modules/
-        ]
+        exclude: [/node_modules/]
       },
       {
         test: /\.svg$/i,
@@ -64,10 +68,12 @@ module.exports = {
               svgo: true,
               svgoConfig: {
                 // We want to keep the view box for the components.
-                plugins: [{
-                  name: 'removeViewBox',
-                  active: false
-                }]
+                plugins: [
+                  {
+                    name: 'removeViewBox',
+                    active: false
+                  }
+                ]
               }
             }
           }

@@ -1,0 +1,330 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Dropdown } from '../dropdown';
+import { DropdownCoordinator } from '../dropdownCoordinator';
+import { DropdownButton } from '../dropdownButton';
+import { DropdownHeader } from '../dropdownHeader';
+import { DropdownFooter } from '../dropdownFooter';
+import { DropdownHeading } from '../dropdownHeading';
+import { DropdownItem } from '../dropdownItem';
+import { DropdownItemAvatar } from '../dropdownItemAvatar';
+import { DropdownItemIcon } from '../dropdownItemIcon';
+import { DropdownItemSpacer } from '../dropdownItemSpacer';
+import { DropdownItemFormField } from '../dropdownItemFormField';
+import { Button } from  '../../../components/button/button';
+import { ButtonGroup } from '../../../components/button/buttonGroup';
+
+<Meta title="Elements/Dropdown" of={Dropdown} />
+
+# Dropdown
+
+<Canvas>
+  <Story id="elements-dropdown--basic" />
+</Canvas>
+
+```typescript
+import {Dropdown} from '@frontapp/ui-kit/elements';
+```
+
+The dropdown components listed here enables you to easily build out custom dropdowns with many
+different ways to customize the dropdown.
+
+If you are wanting to have a simple interface for a dropdown look at using the following components:
+- `Select`
+- `ActionMenu`
+
+These components wrap the boilerplate required to create a dropdown for a simple interface.
+
+The `Dropdown` component will automatically wrap all the content you supply in a virtualized list
+so it should stay performant when you have 5 items to 5,000 items.
+
+#### Note: The `Dropdown` is not used as the base component but instead used in the `renderDropdown` prop on the `DropdownCoorindator`.
+
+<br />
+
+## Props
+
+<ArgsTable of={Dropdown} />
+
+<hr /><hr />
+
+# Dropdown Coordinator
+
+```typescript
+import {DropdownCoordinator} from '@frontapp/ui-kit/elements';
+```
+
+The `DropdownCoordinator` is the master component that controls how the render the dropdown, the button
+that will open the dropdown, etc.
+
+<br />
+
+## Props
+
+<ArgsTable of={DropdownCoordinator} />
+
+<hr /><hr />
+
+# Dropdown Button
+
+<Canvas>
+  <div style={{display: 'flex', justifyContent: 'center'}}>
+    <DropdownButton maxWidth={300} placeholder="Example Dropdown Button" />
+  </div>
+</Canvas>
+
+```typescript
+import {DropdownButton} from '@frontapp/ui-kit/elements';
+```
+
+The `DropdownButton` is a simple, opinionated component for rendering a button that is specific to `Dropdown`s.
+
+Any component can be used in the `renderButton` of the `DropdownCoordinator` component but this component is usually
+the preferred button.
+
+<br />
+
+## Props
+
+<ArgsTable of={DropdownButton} />
+
+<hr /><hr />
+
+# Dropdown Header
+
+<Canvas>
+  <div style={{display: 'flex', justifyContent: 'center'}}>
+    <div style={{boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px", width: "300px"}}>
+      <DropdownHeader searchValue="" searchPlaceholder="Search for an item" onBackClick={() => {}} shouldAutoFocusSearchInput={false}>
+        Example Header
+      </DropdownHeader>
+    </div>
+  </div>
+</Canvas>
+
+```typescript
+import {DropdownHeader} from '@frontapp/ui-kit/elements';
+```
+
+The `DropdownHeader` will render in the `header` grid area of the `Dropdown` component. 
+
+If the `seachValue` is not passed in as either a blank stirng `""` or a string value, we will not render the
+search bar.
+
+If the `onBackClick` is not supplied, we will not render the back button in the top right.
+
+<br />
+
+## Props
+
+<ArgsTable of={DropdownHeader} />
+
+<hr /><hr />
+
+# Dropdown Footer
+
+<Canvas>
+  <div style={{display: 'flex', justifyContent: 'center'}}>
+    <div style={{boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px", width: "300px"}}>
+      <DropdownFooter>
+        <ButtonGroup align="right">
+          <Button size="small">Cancel</Button>
+          <Button size="small" type="primary">Save</Button>
+        </ButtonGroup>
+      </DropdownFooter>
+    </div>
+  </div>
+</Canvas>
+
+```typescript
+import {DropdownFooter} from '@frontapp/ui-kit/elements';
+```
+
+The `DropdownFooter` is a simple component that you would use in the `Dropdown` component to render things in the
+`footer` grid area of the `Dropdown`.
+
+<br />
+
+## Props
+
+<ArgsTable of={DropdownFooter} />
+
+<hr /><hr />
+
+# Dropdown Heading
+
+<Canvas>
+  <div style={{display: 'flex', justifyContent: 'center'}}>
+    <div style={{boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px", width: "300px", padding: "16px"}}>
+      <DropdownHeading>Example Heading</DropdownHeading>
+    </div>
+  </div>
+</Canvas>
+
+```typescript
+import {DropdownHeading} from '@frontapp/ui-kit/elements';
+```
+
+The `DropdownHeading` is used to separate areas of the dropdown.
+
+<br />
+
+## Props
+
+<ArgsTable of={DropdownHeading} />
+
+<hr /><hr />
+
+# Dropdown Item
+
+<Canvas>
+  <div style={{display: 'flex', justifyContent: 'center'}}>
+    <div style={{display: 'flex', flexFlow: 'column', boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px", width: "300px", height: "60px", padding: "4px 0"}}>
+      <DropdownItem>Example Simple Dropdown Item</DropdownItem>
+      <DropdownItem type="multi">Example Multi Dropdown Item</DropdownItem>
+    </div>
+  </div>
+</Canvas>
+
+```typescript
+import {DropdownItem} from '@frontapp/ui-kit/elements';
+```
+
+The `DropdownItem` is the main item for rendering items in the `Dropdown` component.
+
+<br />
+
+## Props
+
+<ArgsTable of={DropdownItem} />
+
+<hr /><hr />
+
+# Dropdown Item Avatar
+
+```typescript
+import {DropdownItemAvatar} from '@frontapp/ui-kit/elements';
+```
+
+The `DropdownItemAvatar` allows easily adding an avatar to the left side of a `DropdownItem`.
+
+
+<br />
+
+## Props
+
+<ArgsTable of={DropdownItemAvatar} />
+
+<hr /><hr />
+
+# Dropdown Item Icon
+
+```typescript
+import {DropdownItemIcon} from '@frontapp/ui-kit/elements';
+```
+
+The `DropdownItemIcon` allows easily adding an icon to the right or left of the dropdown item.
+
+#### Note: If the dropdownItem is set to `multi` you may get some unwanted styling.
+
+<br />
+
+## Props
+
+<ArgsTable of={DropdownItemIcon} />
+
+<hr /><hr />
+
+# Dropdown Form Field
+
+```typescript
+import {DropdownFormField} from '@frontapp/ui-kit/elements';
+```
+
+Sometimes you may need input from the user in a Dropdown such as a simple create form.
+The `DropdownItemFormField` is a special wrapper around the `FormField` component which
+enables rendering in a dropdown.
+
+#### Note: The dropdown will only render `DropdownItemFormField`s or `DropdownItem`s not both at once. It takes preference over `DropdownItemFormField`.
+
+<br />
+
+## Props
+
+<ArgsTable of={DropdownItemFormField} />
+
+<hr /><hr />
+
+# Dropdown Item Spacer
+
+<Canvas>
+  <div style={{display: 'flex', justifyContent: 'center'}}>
+    <div style={{display: 'flex', flexFlow: 'column', boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px", width: "300px", height: "60px", padding: "4px 0"}}>
+      <DropdownItemSpacer />
+      <div style={{height: '30px'}}>
+        <DropdownItem>Spacers</DropdownItem>
+      </div>
+      <DropdownItemSpacer />
+    </div>
+  </div>
+</Canvas>
+
+```typescript
+import {DropdownItemSpacer} from '@frontapp/ui-kit/elements';
+```
+
+The `DropdownItemSpacer` is a simple component to break up a long list of dropdown items.
+
+<br />
+
+## Props
+
+No props are available for this component.
+
+<hr /><hr />
+
+# Stories
+
+## Simple Dropdown
+
+<Canvas>
+  <Story id="elements-dropdown--simple" />
+</Canvas>
+
+The simple dropdown shows off how we can render many 1,000's of items without any performance issues.
+
+## Multi-line Async Dropdown
+
+<Canvas>
+  <Story id="elements-dropdown--multi-line" />
+</Canvas>
+
+When your source is async it is quite simple to get the information and display it in a dropdown. You can also
+display 2 lines of details if you supply a `description`.
+
+## Dropdown with Avatar
+
+<Canvas>
+  <Story id="elements-dropdown--avatar" />
+</Canvas>
+
+You can easily render a dropdown with an avatar by using the `DropdownItemAvatar` component. You could also use the
+`DropdownItemIcon` instead to render an icon.
+
+## Dropdown with Header
+
+<Canvas>
+  <Story id="elements-dropdown--header" />
+</Canvas>
+
+This story shows off how the header for a dropdown would work.
+
+#### Note: Typically the back button would not be used to clear the search field, this is to just show off the functionality.
+
+## Dropdown Form
+
+<Canvas>
+  <Story id="elements-dropdown--form" />
+</Canvas>
+
+Creating forms in the dropdown is simple. Above shows how to create a simple form, you can even nest dropdowns
+in other dropdowns.

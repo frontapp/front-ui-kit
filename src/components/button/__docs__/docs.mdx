@@ -12,6 +12,10 @@ import { ButtonGroup } from '../buttonGroup';
   <Story id="components-button--basic" />
 </Canvas>
 
+```typescript
+import {Button} from '@frontapp/ui-kit';
+```
+
 Buttons communicate actions that users can take. Do not use buttons for navigation, instead use links. 
 
 Button labels should be clear and predictable. Button labels should clearly indicate the action of the button. 
@@ -33,6 +37,10 @@ negatively impact translation, but the {verb} + {noun} formula is still best pra
   <Story id="components-button--icon-basic" />
 </Canvas>
 
+```typescript
+import {Button} from '@frontapp/ui-kit';
+```
+
 An icon button is not a different component but instead is rendered when the `type` of the button is set to:
 
 - `icon`
@@ -45,6 +53,10 @@ We will ignore all the content of the button except for the first `Icon` passed 
 <hr /><hr />
 
 # Button Content
+
+```typescript
+import {ButtonContent} from '@frontapp/ui-kit';
+```
 
 `ButtonContent` is a component that wraps the content of a button and renders it in the correct grid area.
 You will not need to use this component as the button automatically wraps the content with this.
@@ -60,6 +72,10 @@ You will not need to use this component as the button automatically wraps the co
 <Canvas>
   <Story id="components-button--icon-content-basic" />
 </Canvas>
+
+```typescript
+import {ButtonContentIcon} from '@frontapp/ui-kit';
+```
 
 `ButtonContentIcon` is used to easily align icons with the two supported positions we have.
 We will ignore all the content of the `ButtonContentIcon` except for the first `Icon` passed in.
@@ -77,6 +93,10 @@ We will ignore all the content of the `ButtonContentIcon` except for the first `
 <Canvas>
   <Story id="components-button--group-basic" />
 </Canvas>
+
+```typescript
+import {ButtonGroup} from '@frontapp/ui-kit';
+```
 
 `ButtonGroup` groups buttons together with a standard spacing. You can align the buttons on either the
 `left` or `right` of the group. 

@@ -16,7 +16,9 @@
   ],
   "exports": {
     ".": "./dist/index.js",
-    "./misc": "./dist/misc/index.js"
+    "./elements": "./dist/elements/index.js",
+    "./layout": "./dist/layout/index.js",
+    "./text": "./dist/text/index.js"
   },
   "scripts": {
     "build": "yarn build:dev",

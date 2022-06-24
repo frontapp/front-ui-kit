@@ -2,9 +2,9 @@ import {ComponentStory} from '@storybook/react';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
+import {Input} from '../../../../elements/input/input';
 import {greys} from '../../../../helpers/colorHelpers';
 import {FormField} from '../../../formField/formField';
-import {Input} from '../../../input/input';
 import {Tooltip} from '../../tooltip';
 import {TooltipCoordinator} from '../../tooltipCoordinator';
 
@@ -44,11 +44,7 @@ const Template: ComponentStory<typeof Tooltip> = () => {
         <StyledTooltipWrapperDiv $width={width}>
           <TooltipCoordinator
             condition={{type: 'overflow'}}
-            renderTooltip={() => (
-              <Tooltip>
-                This text is smaller.
-              </Tooltip>
-            )}
+            renderTooltip={() => <Tooltip>This text is smaller.</Tooltip>}
           >
             This text is smaller.
           </TooltipCoordinator>
@@ -59,9 +55,7 @@ const Template: ComponentStory<typeof Tooltip> = () => {
           <TooltipCoordinator
             condition={{type: 'overflow'}}
             renderTooltip={() => (
-              <Tooltip>
-                This is really long text that is overflowing, looooooooooooooong text.
-              </Tooltip>
+              <Tooltip>This is really long text that is overflowing, looooooooooooooong text.</Tooltip>
             )}
           >
             This is really long text that is overflowing, looooooooooooooong text.

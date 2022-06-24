@@ -3,11 +3,11 @@ import {DateTime} from 'luxon';
 import React, {FC, FocusEventHandler, MouseEventHandler, useEffect, useState} from 'react';
 import styled from 'styled-components';
 
+import {Input} from '../../elements/input/input';
 import {DatepickerViewsEnum, formatTime, mergeDateAndTime} from '../../helpers/calendarHelpers';
 import {greys} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights, VisualSizesEnum} from '../../helpers/fontHelpers';
 import {Button} from '../button/button';
-import {Input} from '../input/input';
 
 /*
  * Constants
@@ -101,8 +101,18 @@ const StyledFooterDiv = styled.div`
  */
 
 export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
-  const {selectedDate, type, timeFormat, selectedView, onViewChange, onDateChange, onDoneClick, onRequestClose, onClearClick} = props;
-  const [dateValue, setDateValue] = useState(selectedDate?.toFormat("MM/dd/yyyy"));
+  const {
+    selectedDate,
+    type,
+    timeFormat,
+    selectedView,
+    onViewChange,
+    onDateChange,
+    onDoneClick,
+    onRequestClose,
+    onClearClick
+  } = props;
+  const [dateValue, setDateValue] = useState(selectedDate?.toFormat('MM/dd/yyyy'));
   const [timeValue, setTimeValue] = useState(selectedDate && formatTime(selectedDate, timeFormat));
 
   const selectedDateMillis = selectedDate?.toMillis();
@@ -111,7 +121,7 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
       return;
     const date = DateTime.fromMillis(selectedDateMillis);
     setTimeValue(formatTime(date, timeFormat));
-    setDateValue(date.toFormat("MM/dd/yyyy"));
+    setDateValue(date.toFormat('MM/dd/yyyy'));
   }, [selectedDateMillis, timeFormat]);
 
   // Focus handlers
@@ -125,7 +135,7 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
   // Blur handlers
   const onTimeBlur: FocusEventHandler = () => {
     if (!selectedDate) {
-      setTimeValue("");
+      setTimeValue('');
       return;
     }
     const selectedTimeValue = formatTime(selectedDate, timeFormat);
@@ -134,10 +144,10 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
   };
   const onDateBlur: FocusEventHandler = () => {
     if (!selectedDate) {
-      setDateValue("");
+      setDateValue('');
       return;
     }
-    const selectedDateValue = selectedDate.toFormat("MM/dd/yyyy");
+    const selectedDateValue = selectedDate.toFormat('MM/dd/yyyy');
     if (selectedDateValue !== dateValue)
       setDateValue(selectedDateValue);
   };
@@ -151,7 +161,7 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
   };
   const onDateValueChange = (newDateValue: string) => {
     setDateValue(newDateValue);
-    const dateAndTime = parseDate(newDateValue, selectedDate || DateTime.now().startOf("day"));
+    const dateAndTime = parseDate(newDateValue, selectedDate || DateTime.now().startOf('day'));
     if (dateAndTime)
       onDateChange(dateAndTime);
   };
@@ -212,7 +222,9 @@ function parseTime(date: DateTime, timeValue?: string) {
   if (!timeValue)
     return undefined;
   const formattedTime = DateTime.fromFormatExplain(
-    `${date.toLocaleString(DateTime.DATE_SHORT)} ${timeValue}`, "M/d/yyyy h:mm a");
+    `${date.toLocaleString(DateTime.DATE_SHORT)} ${timeValue}`,
+    'M/d/yyyy h:mm a'
+  );
   if (!formattedTime.matches || _.isEmpty(formattedTime.matches))
     return undefined;
 
@@ -225,7 +237,7 @@ function parseTime(date: DateTime, timeValue?: string) {
 
 /** Given a date string and a time, merge them together to give a DateTime object */
 function parseDate(dateValue: string, time: DateTime) {
-  const parsedDate = DateTime.fromFormat(dateValue, "MM/dd/yyyy");
+  const parsedDate = DateTime.fromFormat(dateValue, 'MM/dd/yyyy');
   if (!parsedDate.isValid)
     return undefined;
   return mergeDateAndTime(parsedDate, time);
