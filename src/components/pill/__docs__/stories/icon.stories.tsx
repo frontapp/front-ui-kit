@@ -3,7 +3,7 @@ import {ComponentStory} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import {Icon, IconName} from '../../../icon/icon';
+import {Icon, IconName} from '../../../../elements/icon/icon';
 import {Pill} from '../../pill';
 import {PillContentIcon} from '../../pillContentIcon';
 

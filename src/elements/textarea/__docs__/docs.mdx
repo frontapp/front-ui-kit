@@ -1,0 +1,48 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Textarea } from '../textarea';
+
+<Meta title="Elements/Textarea" of={Textarea} />
+
+# Textarea
+
+<Canvas>
+  <Story id="elements-textarea--basic" />
+</Canvas>
+
+```typescript
+import {Textarea} from '@frontapp/ui-kit/elements';
+```
+
+The `Textarea` is used when you want to allow multiple lines of text input from the user.
+
+We only support resizing the textarea vertically.
+
+<br />
+
+## Props
+
+<ArgsTable of={Textarea} />
+
+<hr /><hr />
+
+# Stories
+
+## Basic Input
+
+<Canvas>
+  <Story id="elements-textarea--basic" />
+</Canvas>
+
+## Disabled Input
+
+<Canvas>
+  <Story id="elements-textarea--disabled" />
+</Canvas>
+
+## Erred Input
+
+<Canvas>
+  <Story id="elements-textarea--erred" />
+</Canvas>
+
+#### Note: If you are wanting to show an error message, wrap the textarea in a `FormField` component

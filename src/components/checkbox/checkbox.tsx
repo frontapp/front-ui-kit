@@ -1,7 +1,7 @@
 import React, {FC, useLayoutEffect, useRef} from 'react';
 import styled, {css} from 'styled-components';
 
-import {Icon} from '../..';
+import {Icon} from '../../elements/icon/icon';
 import {greys, palette} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 
@@ -19,7 +19,7 @@ interface CheckboxProps {
   /** Whether the checkbox is in an indeterminate state. */
   isIndeterminate?: boolean;
   /** Handler to check or uncheck the checkbox */
-  onChange: (isChecked: boolean) => void
+  onChange: (isChecked: boolean) => void;
 }
 
 /*
@@ -163,8 +163,8 @@ export const Checkbox: FC<CheckboxProps> = ({
 
 function getCheckboxIcon(isDisabled: boolean, isChecked: boolean, isIndeterminate: boolean) {
   if (isChecked)
-    return <Icon name="CheckmarkBox" color={isDisabled? greys.shade60 : greys.white} />;
+    return <Icon name="CheckmarkBox" color={isDisabled ? greys.shade60 : greys.white} />;
   if (isIndeterminate)
-    return <Icon name="Minus" color={isDisabled? greys.shade60 : greys.white} />;
+    return <Icon name="Minus" color={isDisabled ? greys.shade60 : greys.white} />;
   return null;
 }

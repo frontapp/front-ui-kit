@@ -1,0 +1,70 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { ActionMenu } from '../actionMenu';
+import { ActionMenuItem } from '../actionMenuItem';
+import { ActionMenuItemSpacer } from '../actionMenuItemSpacer';
+
+<Meta title="Components/Action Menu" of={ActionMenuItem} />
+
+# Action Menu
+
+<Canvas>
+  <Story id="components-action-menu--basic" />
+</Canvas>
+
+```typescript
+import {ActionMenu} from '@frontapp/ui-kit';
+```
+
+An action menu is a small menu that appears from a triple dots button. The button is not customizable, only the content
+of the menu is customizable.
+
+<br />
+
+## Props
+
+<ArgsTable of={ActionMenu} />
+
+<hr /><hr />
+
+# Action Menu Item
+
+```typescript
+import {ActionMenuItem} from '@frontapp/ui-kit';
+```
+
+The `ActionMenuItem` is the component that you should use when using the `ActionMenu`. If the label overflows it will automatically render
+a tooltip for the overflowing content.
+
+## Props
+
+<ArgsTable of={ActionMenuItem} />
+
+<hr /><hr />
+
+# Action Menu Item Spacer
+
+```typescript
+import {ActionMenuItemSpacer} from '@frontapp/ui-kit';
+```
+
+The `ActionMenuItemSpacer` is the component that you should use when using the `ActionMenu`.
+
+## Props
+
+No props are available for `ActionMenuItemSpacer`.
+
+<br /><hr /><hr />
+
+# Stories
+
+### Basic Story
+
+In this example it shows off the different options available for an action menu including items with icons, without icons and the spacer.
+
+<Canvas>
+  <Story id="components-action-menu--basic" />
+</Canvas>
+<br/>
+<br/>
+<br/>
+<br/>

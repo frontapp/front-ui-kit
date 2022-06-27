@@ -2,10 +2,10 @@ import {render} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 
-import {Icon} from '../../icon/icon';
+import {Icon} from '../../../elements/icon/icon';
 import {Pill} from '../pill';
-import {PillContent} from "../pillContent";
-import {PillContentIcon} from "../pillContentIcon";
+import {PillContent} from '../pillContent';
+import {PillContentIcon} from '../pillContentIcon';
 
 describe('<Pill /> Spec', () => {
   describe('Snapshots', () => {

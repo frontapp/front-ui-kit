@@ -3,10 +3,10 @@ import {DateTime} from 'luxon';
 import React, {FC, MouseEventHandler} from 'react';
 import styled from 'styled-components';
 
+import {Icon} from '../../elements/icon/icon';
 import {greys} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 import {Button} from '../button/button';
-import {Icon} from '../icon/icon';
 
 /*
  * Props.
@@ -69,30 +69,30 @@ export const DatePickerHeader: FC<DatePickerHeaderProps> = props => {
   return (
     <StyledCalendarHeader>
       <StyledLeftButtonDiv>
-        <Button type="icon" onClick={onFocusPreviousMonth}><Icon name="ChevronLeft" /></Button>
+        <Button type="icon" onClick={onFocusPreviousMonth}>
+          <Icon name="ChevronLeft" />
+        </Button>
       </StyledLeftButtonDiv>
       {renderAllMonths(value)}
       <StyledTitleDiv data-testid="value">{renderMonth(value)}</StyledTitleDiv>
       <StyledRightButtonDiv>
-        <Button type="icon" onClick={onFocusNextMonth}><Icon name="ChevronRight" /></Button>
+        <Button type="icon" onClick={onFocusNextMonth}>
+          <Icon name="ChevronRight" />
+        </Button>
       </StyledRightButtonDiv>
     </StyledCalendarHeader>
   );
 };
 
 /*
-* Helpers
-*/
+ * Helpers
+ */
 
 /** Render all months in the year at opacity 0 for spacing. */
 function renderAllMonths(focusedMonth: DateTime) {
   return range(1, 13).map(m => {
     const month = focusedMonth.set({month: m});
-    return (
-      <StyledInvisibleDiv key={m}>
-        {renderMonth(month)}
-      </StyledInvisibleDiv>
-    );
+    return <StyledInvisibleDiv key={m}>{renderMonth(month)}</StyledInvisibleDiv>;
   });
 }
 

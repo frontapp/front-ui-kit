@@ -2,8 +2,8 @@ import {ComponentStory} from '@storybook/react';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
+import {Input} from '../../../../elements/input/input';
 import {greys} from '../../../../helpers/colorHelpers';
-import {Input} from '../../../input/input';
 import {FormField} from '../../formField';
 
 const StyledWrapperDiv = styled.div`

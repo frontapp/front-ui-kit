@@ -2,8 +2,8 @@ import {ComponentStory} from '@storybook/react';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
+import {Input} from '../../../../elements/input/input';
 import {greys} from '../../../../helpers/colorHelpers';
-import {Input} from '../../../input/input';
 import {FormField} from '../../formField';
 
 const StyledWrapperDiv = styled.div`
@@ -35,6 +35,6 @@ const Template: ComponentStory<typeof FormField> = args => {
 
 export const Basic = Template.bind({});
 Basic.args = {
-  label: "Example form field",
-  hint: "This is an example hint."
+  label: 'Example form field',
+  hint: 'This is an example hint.'
 };

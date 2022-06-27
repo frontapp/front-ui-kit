@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
 
+import {DropdownButton} from '../../elements/dropdown/dropdownButton';
+import {DropdownCoordinator} from '../../elements/dropdown/dropdownCoordinator';
 import {CalendarWeekDaysEnum, formatDateTime} from '../../helpers/calendarHelpers';
-import {DropdownButton} from '../dropdown/dropdownButton';
-import {DropdownCoordinator} from '../dropdown/dropdownCoordinator';
 import {DatePicker} from './datepicker';
 
 /*
@@ -56,7 +56,7 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = ({
       placement="bottom-start"
       renderButton={isDropdownOpen => (
         <DropdownButton
-          value={(value && formatDateTime(value, type, timeFormat)) || ""}
+          value={(value && formatDateTime(value, type, timeFormat)) || ''}
           placeholder={placeholder}
           iconName="Calendar"
           isActive={isDropdownOpen}
