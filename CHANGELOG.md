@@ -1,6 +1,17 @@
 # Changelog
 
 
+## [0.5.0](https://github.com/frontapp/front-ui-kit/compare/v0.4.0...v0.5.0) (2022-06-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* move code exports to match new format (#151)
+
+### Features
+
+* move code exports to match new format ([#151](https://github.com/frontapp/front-ui-kit/issues/151)) ([583d50b](https://github.com/frontapp/front-ui-kit/commit/583d50b111e8fbf5f470512bda5f86405e0a37d2))
+
 ## [0.4.0](https://github.com/frontapp/front-ui-kit/compare/v0.3.4...v0.4.0) (2022-06-23)
 
 
