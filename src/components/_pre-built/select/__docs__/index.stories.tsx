@@ -22,7 +22,7 @@ export default {
     },
     viewMode: 'docs'
   },
-  id: "Components/Select"
+  id: 'Components/Select'
 } as ComponentMeta<typeof Select>;
 
 export {Basic} from './stories/basic.stories';
@@ -31,3 +31,4 @@ export {Multi} from './stories/multiple.stories';
 export {Async} from './stories/async.stories';
 export {AsyncMulti} from './stories/async-multi.stories';
 export {Search} from './stories/search.stories';
+export {AsyncSearch} from './stories/async-search.stories';
