@@ -1,6 +1,14 @@
 # Changelog
 
 
+## [0.5.1](https://github.com/frontapp/front-ui-kit/compare/v0.5.0...v0.5.1) (2022-07-05)
+
+
+### Features
+
+* add async search story to select ([#153](https://github.com/frontapp/front-ui-kit/issues/153)) ([3c43b97](https://github.com/frontapp/front-ui-kit/commit/3c43b976674e0f3cf8bbf736bdfad6329ff56a1e))
+* update README ([3c43b97](https://github.com/frontapp/front-ui-kit/commit/3c43b976674e0f3cf8bbf736bdfad6329ff56a1e))
+
 ## [0.5.0](https://github.com/frontapp/front-ui-kit/compare/v0.4.0...v0.5.0) (2022-06-27)
 
 
