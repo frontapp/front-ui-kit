@@ -1,4 +1,4 @@
-import React, {FC, ReactNode} from 'react';
+import React, {FC, MouseEvent, MouseEventHandler, ReactNode} from 'react';
 import styled from 'styled-components';
 
 import {Dropdown} from '../../../elements/dropdown/dropdown';
@@ -36,6 +36,8 @@ interface TaskProps {
   isChecked?: boolean;
   /** Handler when the checkbox is clicked. */
   onChange?: (isChecked: boolean) => void;
+  /** Handler when the task it clicked. */
+  onClick?: MouseEventHandler;
 }
 
 /*
@@ -73,6 +75,7 @@ const StyledTaskLabelDiv = styled.div`
   color: ${greys.shade80};
   padding: 7px 4px;
   overflow: hidden;
+  user-select: none;
 `;
 
 const StyledTaskChildrenDiv = styled.div`
@@ -90,7 +93,8 @@ export const Task: FC<TaskProps> = ({
   isLoading = false,
   icon,
   isChecked = false,
-  onChange
+  onChange,
+  onClick
 }) => {
   if (isLoading)
     return (
@@ -99,8 +103,14 @@ export const Task: FC<TaskProps> = ({
       </StyledLoadingWrapperDiv>
     );
 
+  const onClickWrapper = (event: MouseEvent) => {
+    if (event.defaultPrevented || !onClick)
+      return;
+    onClick(event);
+  };
+
   return (
-    <StyledTaskWrapperDiv>
+    <StyledTaskWrapperDiv onClick={onClickWrapper}>
       {maybeRenderTaskIconOrCheckbox(type, icon, isChecked, onChange)}
       <StyledTaskLabelDiv>
         <TooltipCoordinator
@@ -145,7 +155,10 @@ function maybeRenderTaskIconOrCheckbox(
   const checkboxIcon = isChecked ? 'CheckmarkCircle' : 'CheckmarkCircleEmpty';
   const iconColor = isChecked ? palette.green.shade40 : greys.shade50;
 
-  const onCheckboxChange = () => onChange(!isChecked);
+  const onCheckboxChange = (event: MouseEvent) => {
+    event.preventDefault();
+    onChange(!isChecked);
+  };
 
   return (
     <Button type="icon" onClick={onCheckboxChange} iconColor={iconColor}>

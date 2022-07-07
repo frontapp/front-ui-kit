@@ -20,13 +20,15 @@ interface ActionMenuProps {
   children: React.ReactNode;
   /** The width of the action menu. */
   width?: number;
+  /** Specify a different layer id to tie the dropdown to. */
+  layerRootId?: string;
 }
 
 /*
  * Component.
  */
 
-export const ActionMenu: FC<ActionMenuProps> = ({children, width = defaultDropdownWidth}) => (
+export const ActionMenu: FC<ActionMenuProps> = ({children, width = defaultDropdownWidth, layerRootId}) => (
   <DropdownCoordinator
     placement="bottom-end"
     isInline
@@ -40,5 +42,6 @@ export const ActionMenu: FC<ActionMenuProps> = ({children, width = defaultDropdo
         {children}
       </Dropdown>
     )}
+    layerRootId={layerRootId}
   />
 );

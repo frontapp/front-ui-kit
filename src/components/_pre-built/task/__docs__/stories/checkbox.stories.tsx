@@ -36,6 +36,7 @@ const ShowcaseTemplate: ComponentStory<typeof Task> = () => {
           type="checkbox"
           isChecked={isChecked}
           onChange={onToggleCheckbox}
+          onClick={() => console.log('Clicked Task')}
           label="Apply changes to feature"
         />
       </StyledShowcaseDiv>
