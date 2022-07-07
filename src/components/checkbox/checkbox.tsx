@@ -18,6 +18,8 @@ interface CheckboxProps {
   isDisabled?: boolean;
   /** Whether the checkbox is in an indeterminate state. */
   isIndeterminate?: boolean;
+  /** The side to render the label on. */
+  labelSide?: 'left' | 'right';
   /** Handler to check or uncheck the checkbox */
   onChange: (isChecked: boolean) => void;
 }
@@ -32,10 +34,20 @@ interface StyledCheckboxInputProps {
   $isDisabled: boolean;
 }
 
-const StyledWrapperDiv = styled.div`
+interface StyledWrapperDivProps {
+  $labelSide: 'left' | 'right';
+}
+
+const StyledWrapperDiv = styled.div<StyledWrapperDivProps>`
   display: flex;
   flex-flow: row;
   align-items: center;
+
+  ${p =>
+    p.$labelSide === 'left' &&
+    css`
+      flex-flow: row-reverse;
+    `};
 `;
 
 const StyledCheckboxDiv = styled.div`
@@ -70,6 +82,7 @@ const StyledChildrenDiv = styled.div`
   margin-left: 8px;
   cursor: default;
   user-select: none;
+  flex: 1;
 
   &:empty {
     margin-left: 0;
@@ -110,6 +123,7 @@ export const Checkbox: FC<CheckboxProps> = ({
   children,
   isDisabled = false,
   isIndeterminate = false,
+  labelSide = 'right',
   onChange
 }) => {
   const onInputChange = () => {
@@ -140,7 +154,7 @@ export const Checkbox: FC<CheckboxProps> = ({
   }, [isDisabled, isChecked, isIndeterminate]);
 
   return (
-    <StyledWrapperDiv>
+    <StyledWrapperDiv $labelSide={labelSide}>
       <StyledCheckboxDiv>
         <StyledInput
           ref={inputRef}

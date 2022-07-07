@@ -11,10 +11,17 @@ import {ActionMenuItemSpacer} from '../../actionMenuItemSpacer';
  * Styles.
  */
 
+const StyledStoryWrapperDiv = styled.div`
+  height: 215px;
+  display: flex;
+  justify-content: center;
+`;
+
 const StyledMenuWrapperDiv = styled.div`
   display: flex;
   flex-flow: row-reverse;
   width: 250px;
+  height: 30px;
   padding: 8px;
   border-radius: 8px;
   background: white;
@@ -26,19 +33,21 @@ const StyledMenuWrapperDiv = styled.div`
  * Story.
  */
 
-const Template: ComponentStory<typeof ActionMenu> = args => (
-  <StyledMenuWrapperDiv>
-    <ActionMenu {...args}>
-      <ActionMenuItem iconName="Assign">Merge Contact</ActionMenuItem>
-      <ActionMenuItem iconName="Copy">Copy Account Id</ActionMenuItem>
-      <ActionMenuItem>Extra Long Name For A Dropdown</ActionMenuItem>
-      <ActionMenuItemSpacer />
-      <ActionMenuItem iconName="Preferences">
-        Super long name dropdown item that should cause the tooltip to wrap when hovered over.
-      </ActionMenuItem>
-      <ActionMenuItem iconName="Close">Close</ActionMenuItem>
-    </ActionMenu>
-  </StyledMenuWrapperDiv>
+const Template: ComponentStory<typeof ActionMenu> = () => (
+  <StyledStoryWrapperDiv>
+    <StyledMenuWrapperDiv>
+      <ActionMenu layerRootId="story--components-action-menu--basic">
+        <ActionMenuItem iconName="Assign">Merge Contact</ActionMenuItem>
+        <ActionMenuItem iconName="Copy">Copy Account Id</ActionMenuItem>
+        <ActionMenuItem>Extra Long Name For A Dropdown</ActionMenuItem>
+        <ActionMenuItemSpacer />
+        <ActionMenuItem iconName="Preferences">
+          Super long name dropdown item that should cause the tooltip to wrap when hovered over.
+        </ActionMenuItem>
+        <ActionMenuItem iconName="Close">Close</ActionMenuItem>
+      </ActionMenu>
+    </StyledMenuWrapperDiv>
+  </StyledStoryWrapperDiv>
 );
 
 export const Basic = Template.bind({});

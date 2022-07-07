@@ -22,8 +22,9 @@ export default {
     },
     viewMode: 'docs'
   },
-  id: "Components/Checkbox"
+  id: 'Components/Checkbox'
 } as ComponentMeta<typeof Checkbox>;
 
 export {Basic} from './stories/basic.stories';
+export {BasicReverse} from './stories/basic-reverse.stories';
 export {Indeterminate} from './stories/indeterminate.stories';
