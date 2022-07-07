@@ -1,6 +1,14 @@
 # Changelog
 
 
+## [0.5.2](https://github.com/frontapp/front-ui-kit/compare/v0.5.1...v0.5.2) (2022-07-07)
+
+
+### Features
+
+* add ability to specify label side for checkbox ([9abff01](https://github.com/frontapp/front-ui-kit/commit/9abff0130e2e5f781021b3416ef2a7b9d98442c6))
+* add onClick handler to task ([9abff01](https://github.com/frontapp/front-ui-kit/commit/9abff0130e2e5f781021b3416ef2a7b9d98442c6))
+
 ## [0.5.1](https://github.com/frontapp/front-ui-kit/compare/v0.5.0...v0.5.1) (2022-07-05)
 
 
