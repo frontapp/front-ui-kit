@@ -4,10 +4,7 @@ const isProduction = process.argv.indexOf('--mode=production') !== -1;
 
 module.exports = {
   entry: {
-    index: './src/index.ts',
-    'elements/index': './src/elements/index.ts',
-    'layout/index': './src/layout/index.ts',
-    'text/index': './src/text/index.ts'
+    index: './src/index.ts'
   },
   devtool: !isProduction ? 'inline-source-map' : undefined,
   externals: {
