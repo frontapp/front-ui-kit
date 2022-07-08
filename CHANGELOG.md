@@ -1,6 +1,18 @@
 # Changelog
 
 
+## [0.6.0](https://github.com/frontapp/front-ui-kit/compare/v0.5.2...v0.6.0) (2022-07-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* move all components to export from base
+
+### Bug Fixes
+
+* export select and formfield ([#157](https://github.com/frontapp/front-ui-kit/issues/157)) ([8155ff9](https://github.com/frontapp/front-ui-kit/commit/8155ff9032a7e0d5267f0b1dc0ff4439652f4960))
+* move all components to export from base ([8155ff9](https://github.com/frontapp/front-ui-kit/commit/8155ff9032a7e0d5267f0b1dc0ff4439652f4960))
+
 ## [0.5.2](https://github.com/frontapp/front-ui-kit/compare/v0.5.1...v0.5.2) (2022-07-07)
 
 
