@@ -14,12 +14,7 @@
   "files": [
     "dist"
   ],
-  "exports": {
-    ".": "./dist/index.js",
-    "./elements": "./dist/elements/index.js",
-    "./layout": "./dist/layout/index.js",
-    "./text": "./dist/text/index.js"
-  },
+  "exports": "./dist/index.js",
   "scripts": {
     "build": "yarn build:dev",
     "build:watch": "yarn build:dev --watch",

@@ -40,9 +40,14 @@ export {DatePickerDropdown as DatePicker} from './components/datepicker/datepick
 
 export {File} from './components/_pre-built/file/file';
 
+export {FormField} from './components/formField/formField';
+
 export {Pill} from './components/pill/pill';
 export {PillContent} from './components/pill/pillContent';
 export {PillContentIcon} from './components/pill/pillContentIcon';
+
+export {Select} from './components/_pre-built/select/select';
+export {SelectItem} from './components/_pre-built/select/selectItem';
 
 export {Skeleton} from './components/skeleton/skeleton';
 
@@ -53,3 +58,11 @@ export {Task} from './components/_pre-built/task/task';
 
 export {Tooltip} from './components/tooltip/tooltip';
 export {TooltipCoordinator} from './components/tooltip/tooltipCoordinator';
+
+/*
+ * Additional Exports.
+ */
+
+export * from './elements/index';
+export * from './layout/index';
+export * from './text/index';
