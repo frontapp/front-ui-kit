@@ -84,13 +84,6 @@ export const DropdownCoordinator: FC<DropdownCoordinatorProps> = props => {
   const [context, setContext] = useState<PopoverContextProps | undefined>();
   const [buttonRef, {width: buttonWidth}] = useMeasureElement();
 
-  // When the dropdown is first opened.
-  useEffect(() => {
-    if (onDropdownOpen)
-      onDropdownOpen();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   useEffect(() => {
     if (!anchorElement)
       return;
@@ -102,6 +95,8 @@ export const DropdownCoordinator: FC<DropdownCoordinatorProps> = props => {
   const onClick = () => {
     if (isDisabled)
       return;
+    if (onDropdownOpen)
+      onDropdownOpen();
     setIsDropdownOpen(true);
   };
 

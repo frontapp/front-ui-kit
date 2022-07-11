@@ -83,10 +83,10 @@ export const DropdownList: FC<DropdownListProps> = props => {
   }, [isLoading, previousIsLoading, itemsCount]);
 
   // If there are more items to be loaded then add an extra row to hold a loading indicator.
-  const itemCount = hasMore ? itemsCount + loadingItemsCount : itemsCount;
+  const itemCount = hasMore || isLoading ? itemsCount + loadingItemsCount : itemsCount;
 
   // Every row is loaded except for our loading indicator row.
-  const isItemLoaded = (index: number) => !hasMore || index < itemsCount;
+  const isItemLoaded = (index: number) => (!hasMore && !isLoading) || index < itemsCount;
 
   // Compute the item height for the row. If the row is the loading row, we need to pull a custom height.
   const computeItemHeight = (index: number) => {

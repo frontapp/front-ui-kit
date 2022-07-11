@@ -41,7 +41,7 @@ const Template: ComponentStory<typeof Select> = () => {
   }, [searchValue, users]);
 
   const fetchUserData = async () => {
-    if (isLoading)
+    if (isLoading || users.length > 0)
       return;
     setIsLoading(true);
     // Create a 1 second delay between requests.
@@ -62,8 +62,6 @@ const Template: ComponentStory<typeof Select> = () => {
         <Select
           selectedValues={users.find(user => user.id === selectedUserId)?.name}
           isLoading={isLoading}
-          hasMore={users.length === 0}
-          onLoadMore={fetchUserData}
           headerLabel="Search for a user"
           searchValue={searchValue}
           onSearchChange={value => {
@@ -71,6 +69,9 @@ const Template: ComponentStory<typeof Select> = () => {
           }}
           onSelectClosed={() => {
             setSearchValue('');
+          }}
+          onSelectOpen={() => {
+            fetchUserData();
           }}
           layerRootId="story--components-select--async-search"
         >
