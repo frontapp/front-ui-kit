@@ -79,7 +79,7 @@ export const Select: FC<SelectProps> = ({
   searchPlaceholder,
   searchValue,
   layerRootId,
-  placement = 'bottom-end',
+  placement = 'bottom-start',
   onSearchChange,
   onLoadMore,
   onSelectClosed,
@@ -102,9 +102,8 @@ export const Select: FC<SelectProps> = ({
       layerRootId={layerRootId}
       onDropdownClosed={onSelectClosed}
       onDropdownOpen={onSelectOpen}
-      renderButton={(isDropdownOpen, isButtonDisabled, buttonRef) => (
+      renderButton={(isDropdownOpen, isButtonDisabled) => (
         <DropdownButton
-          buttonRef={buttonRef}
           isDisabled={isButtonDisabled}
           isActive={isDropdownOpen}
           value={selectedValues}
@@ -112,10 +111,9 @@ export const Select: FC<SelectProps> = ({
           placeholder={placeholder}
         />
       )}
-      renderDropdown={(_onRequestClose, dropdownButtonWidth) => (
+      renderDropdown={() => (
         <Dropdown
           maxHeight={maxHeight}
-          maxWidth={dropdownButtonWidth}
           minHeight={minHeight}
           shouldUseItemsHeight
           isEmpty={isEmpty}
