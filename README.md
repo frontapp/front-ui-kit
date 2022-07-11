@@ -25,7 +25,9 @@ yarn add @frontapp/ui-kit
 
 ## Documentation
 
-You can view the source code for the different components in this repo but for full documentation view the developer portal https://dev.frontapp.com/docs (Documentation is a work in progress).
+The Front UI Kit is a set of React components that you can use to build Front plugins. You can view the source code for the different components in this repo.
+
+For full documentation, refer the [Front Developer Portal](https://dev.frontapp.com/docs/front-ui-kit).
 
 ## Bugs or issues?
 
