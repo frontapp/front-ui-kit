@@ -46,10 +46,13 @@ export const RepositionPopover: FC<RepositionPopoverProps> = props => {
         // If this click event was already handled, do not request to close.
         if (event.defaultPrevented || !onRequestClose)
           return;
+        event.preventDefault();
         onRequestClose();
       }}
     >
-      {props.isExclusive && <StyledBackgroundDiv $hasVisibleOverlay={hasVisibleOverlay} onClick={onRequestClose} />}
+      {props.isExclusive && (
+        <StyledBackgroundDiv $hasVisibleOverlay={hasVisibleOverlay} onClick={onRequestClose} />
+      )}
       <Reposition placement={placement}>{children}</Reposition>
     </Layer>
   );

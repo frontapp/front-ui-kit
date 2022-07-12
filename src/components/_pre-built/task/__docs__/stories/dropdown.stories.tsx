@@ -13,6 +13,7 @@ const StyledWrapperDiv = styled.div`
   display: flex;
   flex-flow: row;
   justify-content: center;
+  height: 150px;
 `;
 
 const StyledShowcaseDiv = styled.div`
@@ -37,7 +38,9 @@ const ShowcaseTemplate: ComponentStory<typeof Task> = () => {
           type="checkbox"
           isChecked={isChecked}
           onChange={onToggleCheckbox}
+          onClick={() => console.log('Task Clicked.')}
           label="Apply changes to feature"
+          layerRootId="story--components-task--dropdown"
         >
           <DropdownItem>View Task Details</DropdownItem>
           <DropdownItem>Close Task</DropdownItem>

@@ -34,6 +34,8 @@ interface TaskProps {
   icon?: IconName;
   /** Whether the checkbox is checked. */
   isChecked?: boolean;
+  /** Specify a different layer id to tie the select to. */
+  layerRootId?: string;
   /** Handler when the checkbox is clicked. */
   onChange?: (isChecked: boolean) => void;
   /** Handler when the task it clicked. */
@@ -93,6 +95,7 @@ export const Task: FC<TaskProps> = ({
   isLoading = false,
   icon,
   isChecked = false,
+  layerRootId,
   onChange,
   onClick
 }) => {
@@ -126,7 +129,7 @@ export const Task: FC<TaskProps> = ({
           {label}
         </TooltipCoordinator>
       </StyledTaskLabelDiv>
-      <StyledTaskChildrenDiv>{maybeRenderDropdown(children)}</StyledTaskChildrenDiv>
+      <StyledTaskChildrenDiv>{maybeRenderDropdown(children, layerRootId)}</StyledTaskChildrenDiv>
     </StyledTaskWrapperDiv>
   );
 };
@@ -167,11 +170,12 @@ function maybeRenderTaskIconOrCheckbox(
   );
 }
 
-function maybeRenderDropdown(children?: ReactNode) {
+function maybeRenderDropdown(children?: ReactNode, layerRootId?: string) {
   if (!children)
     return null;
   return (
     <DropdownCoordinator
+      layerRootId={layerRootId}
       placement="bottom-end"
       renderButton={isDropdownOpen => (
         <Button type="icon" isActive={isDropdownOpen}>
