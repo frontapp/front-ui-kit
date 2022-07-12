@@ -183,7 +183,7 @@ function maybeRenderDropdown(children?: ReactNode, layerRootId?: string) {
         </Button>
       )}
       renderDropdown={() => (
-        <Dropdown shouldUseItemsHeight maxWidth={dropdownWidth}>
+        <Dropdown shouldUseItemsHeight maxWidth={dropdownWidth} minWidth={dropdownWidth}>
           {children}
         </Dropdown>
       )}
