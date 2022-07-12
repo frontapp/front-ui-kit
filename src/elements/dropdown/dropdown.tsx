@@ -26,6 +26,8 @@ const defaultLoadingThreshold = 5;
 interface DropdownProps {
   /** The maximum width of the dropdown. */
   maxWidth?: number;
+  /** The minimum width of the dropdown. */
+  minWidth?: number;
   /** The minimum height of the dropdown. Defaults to the max height. */
   minHeight?: number;
   /** The maximum height of the dropdown. */
@@ -59,6 +61,7 @@ interface DropdownProps {
 
 interface StyledDropdownWrapperDivProps {
   $maxWidth: number;
+  $minWidth?: number;
   $maxHeight?: number;
 }
 
@@ -81,6 +84,11 @@ const StyledDropdownWrapperDiv = styled.div<StyledDropdownWrapperDivProps>`
     p.$maxHeight &&
     css`
       max-height: ${p.$maxHeight}px;
+    `};
+  ${p =>
+    p.$minWidth &&
+    css`
+      min-width: ${p.$minWidth}px;
     `};
 `;
 
