@@ -33,7 +33,7 @@ interface ParagraphStyleProps {
 }
 
 const StyledParagraphDiv = styled.div<ParagraphStyleProps>`
-  display: inline-block;
+  display: block;
 
   font-size: ${fontSizes.medium};
   font-weight: ${p => (p.$isBold ? fontWeights.bold : fontWeights.normal)};
