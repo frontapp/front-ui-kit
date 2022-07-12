@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, MouseEvent, useEffect, useState} from 'react';
 import styled, {css} from 'styled-components';
 
 import {PopoverContext, PopoverContextProps} from '../../components/popover/popoverContext';
@@ -92,9 +92,10 @@ export const DropdownCoordinator: FC<DropdownCoordinatorProps> = props => {
     });
   }, [anchorElement]);
 
-  const onClick = () => {
+  const onClick = (event: MouseEvent) => {
     if (isDisabled)
       return;
+    event.preventDefault();
     if (onDropdownOpen)
       onDropdownOpen();
     setIsDropdownOpen(true);
