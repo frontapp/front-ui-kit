@@ -1,6 +1,20 @@
 # Changelog
 
 
+## [0.7.1](https://github.com/frontapp/front-ui-kit/compare/v0.7.0...v0.7.1) (2022-07-12)
+
+
+### Features
+
+* add minWidth to dropdown ([#163](https://github.com/frontapp/front-ui-kit/issues/163)) ([67ece7e](https://github.com/frontapp/front-ui-kit/commit/67ece7e6054cf29b1cdab47318890ad2e4f6b50a))
+
+
+### Bug Fixes
+
+* actionMenu should always be the correct size ([#163](https://github.com/frontapp/front-ui-kit/issues/163)) ([67ece7e](https://github.com/frontapp/front-ui-kit/commit/67ece7e6054cf29b1cdab47318890ad2e4f6b50a))
+* popover not marking click as handled ([#163](https://github.com/frontapp/front-ui-kit/issues/163)) ([67ece7e](https://github.com/frontapp/front-ui-kit/commit/67ece7e6054cf29b1cdab47318890ad2e4f6b50a))
+* set min width for task dropdown ([#163](https://github.com/frontapp/front-ui-kit/issues/163)) ([67ece7e](https://github.com/frontapp/front-ui-kit/commit/67ece7e6054cf29b1cdab47318890ad2e4f6b50a))
+
 ## [0.7.0](https://github.com/frontapp/front-ui-kit/compare/v0.6.0...v0.7.0) (2022-07-12)
 
 
