@@ -38,7 +38,7 @@ export const ActionMenu: FC<ActionMenuProps> = ({children, width = defaultDropdo
       </Button>
     )}
     renderDropdown={() => (
-      <Dropdown maxWidth={width} shouldUseItemsHeight>
+      <Dropdown maxWidth={width} minWidth={width} shouldUseItemsHeight>
         {children}
       </Dropdown>
     )}
