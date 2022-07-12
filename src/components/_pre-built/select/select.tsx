@@ -1,3 +1,4 @@
+import {Placement} from '@popperjs/core';
 import _ from 'lodash';
 import React, {FC, useMemo} from 'react';
 
@@ -47,12 +48,16 @@ interface SelectProps {
   searchValue?: string;
   /** Specify a different layer id to tie the select to. */
   layerRootId?: string;
+  /** Control where the placement of the select is. */
+  placement?: Placement;
   /** Called when the search bar value is changed. */
   onSearchChange?: (value: string) => void;
   /** Called when we request to load more items. */
   onLoadMore?: () => Promise<void>;
   /** Called when the select is closed. */
   onSelectClosed?: () => void;
+  /** Called when the select is opened. */
+  onSelectOpen?: () => void;
 }
 
 /*
@@ -74,9 +79,11 @@ export const Select: FC<SelectProps> = ({
   searchPlaceholder,
   searchValue,
   layerRootId,
+  placement = 'bottom-start',
   onSearchChange,
   onLoadMore,
-  onSelectClosed
+  onSelectClosed,
+  onSelectOpen
 }) => {
   const childrenToRender = useMemo(
     () =>
@@ -85,18 +92,18 @@ export const Select: FC<SelectProps> = ({
         .value(),
     [children]
   );
-  const isEmpty = childrenToRender.length === 0 && !hasMore;
+  const isEmpty = childrenToRender.length === 0 && !hasMore && !isLoading;
 
   return (
     <DropdownCoordinator
-      placement="bottom-end"
+      placement={placement}
       maxWidth={maxWidth}
       isDisabled={isDisabled}
       layerRootId={layerRootId}
       onDropdownClosed={onSelectClosed}
-      renderButton={(isDropdownOpen, isButtonDisabled, buttonRef) => (
+      onDropdownOpen={onSelectOpen}
+      renderButton={(isDropdownOpen, isButtonDisabled) => (
         <DropdownButton
-          buttonRef={buttonRef}
           isDisabled={isButtonDisabled}
           isActive={isDropdownOpen}
           value={selectedValues}
@@ -104,10 +111,9 @@ export const Select: FC<SelectProps> = ({
           placeholder={placeholder}
         />
       )}
-      renderDropdown={(_onRequestClose, dropdownButtonWidth) => (
+      renderDropdown={() => (
         <Dropdown
           maxHeight={maxHeight}
-          maxWidth={dropdownButtonWidth}
           minHeight={minHeight}
           shouldUseItemsHeight
           isEmpty={isEmpty}

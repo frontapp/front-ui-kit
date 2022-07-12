@@ -2,7 +2,7 @@
 
 exports[`<Paragraph /> Spec Snapshots should render a paragraph with a bold font 1`] = `
 .c0 {
-  display: inline-block;
+  display: block;
   font-size: 14px;
   font-weight: 700;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -21,7 +21,7 @@ exports[`<Paragraph /> Spec Snapshots should render a paragraph with a bold font
 
 exports[`<Paragraph /> Spec Snapshots should render a paragraph with a colored font 1`] = `
 .c0 {
-  display: inline-block;
+  display: block;
   font-size: 14px;
   font-weight: 400;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -40,7 +40,7 @@ exports[`<Paragraph /> Spec Snapshots should render a paragraph with a colored f
 
 exports[`<Paragraph /> Spec Snapshots should render a paragraph with defaults 1`] = `
 .c0 {
-  display: inline-block;
+  display: block;
   font-size: 14px;
   font-weight: 400;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";

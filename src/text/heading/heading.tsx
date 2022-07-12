@@ -9,7 +9,12 @@ import {makeSizeConstants} from '../../helpers/styleHelpers';
  * Constants.
  */
 
-const headingFontSizes = makeSizeConstants(fontSizes.small, fontSizes.medium, fontSizes.large, fontSizes.veryLarge);
+const headingFontSizes = makeSizeConstants(
+  fontSizes.small,
+  fontSizes.medium,
+  fontSizes.large,
+  fontSizes.veryLarge
+);
 const lineHeights = makeSizeConstants(16, 16, 20, 30);
 
 /*
@@ -35,7 +40,7 @@ interface HeadingStyleProps {
 }
 
 const StyledHeadingDiv = styled.div<HeadingStyleProps>`
-  display: inline-block;
+  display: block;
 
   font-size: ${p => headingFontSizes[p.$size]};
   font-weight: ${fontWeights.bold};
@@ -48,7 +53,11 @@ const StyledHeadingDiv = styled.div<HeadingStyleProps>`
  * Component.
  */
 
-export const Heading: FC<HeadingProps> = ({children, size = VisualSizesEnum.MEDIUM, color = greys.shade80}) => (
+export const Heading: FC<HeadingProps> = ({
+  children,
+  size = VisualSizesEnum.MEDIUM,
+  color = greys.shade80
+}) => (
   <StyledHeadingDiv $size={size} $color={color}>
     {children}
   </StyledHeadingDiv>
