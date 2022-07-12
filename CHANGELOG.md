@@ -1,6 +1,28 @@
 # Changelog
 
 
+## [0.7.0](https://github.com/frontapp/front-ui-kit/compare/v0.6.0...v0.7.0) (2022-07-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* onDropdownOpen now only fires when the dropdown is opened
+* isLoading will now work regardless of hasMore for dropdown (#160)
+
+### Features
+
+* select now has a placement option ([9504096](https://github.com/frontapp/front-ui-kit/commit/9504096caebf0ec5a925f37564854564f79dd977))
+
+
+### Bug Fixes
+
+* dropdownCoordinator prevents default on clicks ([9504096](https://github.com/frontapp/front-ui-kit/commit/9504096caebf0ec5a925f37564854564f79dd977))
+* heading is now rendered in a block ([9504096](https://github.com/frontapp/front-ui-kit/commit/9504096caebf0ec5a925f37564854564f79dd977))
+* isLoading will now work regardless of hasMore for dropdown ([#160](https://github.com/frontapp/front-ui-kit/issues/160)) ([9504096](https://github.com/frontapp/front-ui-kit/commit/9504096caebf0ec5a925f37564854564f79dd977))
+* onDropdownOpen now only fires when the dropdown is opened ([9504096](https://github.com/frontapp/front-ui-kit/commit/9504096caebf0ec5a925f37564854564f79dd977))
+* paragraph is now rendered in a block ([9504096](https://github.com/frontapp/front-ui-kit/commit/9504096caebf0ec5a925f37564854564f79dd977))
+* select should have a set width for dropdown ([9504096](https://github.com/frontapp/front-ui-kit/commit/9504096caebf0ec5a925f37564854564f79dd977))
+
 ## [0.6.0](https://github.com/frontapp/front-ui-kit/compare/v0.5.2...v0.6.0) (2022-07-08)
 
 
