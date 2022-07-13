@@ -35,11 +35,7 @@ function addPlacementStyles(placement?: Placement) {
   // If we have any left or top-end or bottom-end placements we need to change
   // how the content is rendered since we use max-sizing, this can cause it to be rendered
   // off screen.
-  if (
-    placement.includes('left') ||
-    placement === 'top-end' ||
-    placement === 'bottom-end'
-  )
+  if (placement.includes('left') || placement === 'top-end' || placement === 'bottom-end')
     return css`
       display: flex;
       flex-flow: row-reverse;
@@ -64,8 +60,8 @@ const applyMaxSize: Modifier<any> = {
     // eslint-disable-next-line no-param-reassign
     state.styles.popper = {
       ...state.styles.popper,
-      maxWidth: `${width}px`,
-      maxHeight: `${height}px`,
+      maxWidth: `${Math.max(160, width)}px`,
+      maxHeight: `${Math.max(100, height)}px`,
       width: '100%'
     };
   }
@@ -122,9 +118,7 @@ export const Reposition: FC<RepositionProps> = props => {
     // Enable prop spreading here as it comes from the popper docs.
     // eslint-disable-next-line react/jsx-props-no-spreading
     <div ref={setPopperElement} style={styles.popper} {...attributes.popper}>
-      <StyledPlacementCoordinatorDiv $placement={placement}>
-        {children}
-      </StyledPlacementCoordinatorDiv>
+      <StyledPlacementCoordinatorDiv $placement={placement}>{children}</StyledPlacementCoordinatorDiv>
     </div>
   );
 };
