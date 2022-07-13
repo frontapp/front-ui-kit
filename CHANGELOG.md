@@ -1,6 +1,13 @@
 # Changelog
 
 
+## [0.7.2](https://github.com/frontapp/front-ui-kit/compare/v0.7.1...v0.7.2) (2022-07-13)
+
+
+### Bug Fixes
+
+* minimum popover max width ([#165](https://github.com/frontapp/front-ui-kit/issues/165)) ([62078f2](https://github.com/frontapp/front-ui-kit/commit/62078f25493663eabc98b2a9f9baabebd5110ca8))
+
 ## [0.7.1](https://github.com/frontapp/front-ui-kit/compare/v0.7.0...v0.7.1) (2022-07-12)
 
 
