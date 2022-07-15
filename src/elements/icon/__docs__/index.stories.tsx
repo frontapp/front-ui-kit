@@ -26,3 +26,5 @@ export default {
 } as ComponentMeta<typeof Icon>;
 
 export {Basic} from './stories/basic.stories';
+export {BasicIcons} from './stories/basic-icon-showcase.stories';
+export {AttachmentIcons} from './stories/attachment-icon-showcase.stories';
