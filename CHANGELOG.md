@@ -1,6 +1,13 @@
 # Changelog
 
 
+## [0.7.3](https://github.com/frontapp/front-ui-kit/compare/v0.7.2...v0.7.3) (2022-07-15)
+
+
+### Features
+
+* better icon showcase in docs ([#167](https://github.com/frontapp/front-ui-kit/issues/167)) ([a323700](https://github.com/frontapp/front-ui-kit/commit/a323700f181f73c0df20496eea3197e73c3670a8))
+
 ## [0.7.2](https://github.com/frontapp/front-ui-kit/compare/v0.7.1...v0.7.2) (2022-07-13)
 
 
