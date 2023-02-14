@@ -122,6 +122,7 @@ export const Dropdown: FC<DropdownProps> = ({
   maxWidth = defaultMaxWidth,
   maxHeight = defaultMaxHeight,
   // The minHeight should default to the max height
+  minWidth,
   minHeight = maxHeight,
   shouldUseItemsHeight,
   isLoading,
@@ -198,6 +199,7 @@ export const Dropdown: FC<DropdownProps> = ({
 
   return (
     <StyledDropdownWrapperDiv
+      $minWidth={minWidth}
       $maxWidth={maxWidth}
       $maxHeight={headerAndFooterComponents.length === 0 ? maxDropdownHeight : undefined}
     >
