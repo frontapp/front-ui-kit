@@ -1,6 +1,14 @@
 # Changelog
 
 
+## [0.7.4](https://github.com/frontapp/front-ui-kit/compare/v0.7.3...v0.7.4) (2023-02-14)
+
+
+### Bug Fixes
+
+* add missing dropdown exports ([#175](https://github.com/frontapp/front-ui-kit/issues/175)) ([ca3b126](https://github.com/frontapp/front-ui-kit/commit/ca3b1267c5a7979e9ae4c5385812521bed96b188))
+* dropdown usage of min width param ([#177](https://github.com/frontapp/front-ui-kit/issues/177)) ([b294424](https://github.com/frontapp/front-ui-kit/commit/b2944248b729c4d726fbd9cdf9aeb7622f1dc55f))
+
 ## [0.7.3](https://github.com/frontapp/front-ui-kit/compare/v0.7.2...v0.7.3) (2022-07-15)
 
 
