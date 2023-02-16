@@ -1,4 +1,4 @@
-# Front UI Kit - Beta
+# Front UI Kit
 
 <p align="center">
   <a href="https://badge.fury.io/js/@frontapp%2Fui-kit">
