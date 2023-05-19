@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@juggle/resize-observer": "^3.4.0",
-    "@popperjs/core": "^2.11.6",
+    "@popperjs/core": "^2.11.7",
     "lodash": "^4.17.21",
     "luxon": "^3.0.1",
     "polished": "^4.2.2",
@@ -37,7 +37,7 @@
     "react-popper": "^2.3.0",
     "react-use-measure": "^2.1.1",
     "react-window": "^1.8.9",
-    "react-window-infinite-loader": "^1.0.8"
+    "react-window-infinite-loader": "^1.0.9"
   },
   "peerDependencies": {
     "react": ">= 18 < 19",
