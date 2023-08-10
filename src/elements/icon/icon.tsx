@@ -51,6 +51,7 @@ import Star from '../../assets/icons/star.svg';
 import StarFilled from '../../assets/icons/starFilled.svg';
 import Trash from '../../assets/icons/trash.svg';
 import TrashFilled from '../../assets/icons/trashFilled.svg';
+import WarningFilled from '../../assets/icons/warningFilled.svg';
 import {greys} from '../../helpers/colorHelpers';
 
 /*
@@ -110,11 +111,14 @@ const importedIcons = {
   Star,
   StarFilled,
   Trash,
-  TrashFilled
+  TrashFilled,
+  WarningFilled
 };
 export type IconName = keyof typeof importedIcons;
 // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-export const icons = importedIcons as {[name in IconName]: (props: React.SVGAttributes<SVGElement>) => React.ReactElement};
+export const icons = importedIcons as {
+  [name in IconName]: (props: React.SVGAttributes<SVGElement>) => React.ReactElement;
+};
 
 /*
  * Props.
@@ -164,7 +168,7 @@ export const Icon: FC<IconProps> = props => {
         width: size,
         height: size,
         color: shouldDisableColor ? '' : color,
-        preserveAspectRatio: "none"
+        preserveAspectRatio: 'none'
       })}
     </StyledIconDiv>
   );

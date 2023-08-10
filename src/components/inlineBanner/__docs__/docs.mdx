@@ -1,0 +1,51 @@
+import {ArgsTable, Canvas, Meta, Story} from '@storybook/addon-docs';
+import {InlineBanner} from '../inlineBanner';
+
+<Meta title="Components/Inline Banner" of={InlineBanner} />
+
+# Inline Banner
+
+<Canvas>
+  <Story id="components-inline-banner--basic" />
+</Canvas>
+
+```typescript
+import {InlineBanner} from '@frontapp/ui-kit';
+```
+
+The `InlineBanner` component allows you to display a banner with a message depending on a specific "type". Think of it as a temporary "toast" displayed to your users to inform them of something.
+
+<br />
+
+## Props
+
+<ArgsTable of={InlineBanner} />
+
+<hr />
+<hr />
+
+# Stories
+
+## Success
+
+<Canvas>
+  <Story id="components-inline-banner--success" />
+</Canvas>
+
+## Error
+
+<Canvas>
+  <Story id="components-inline-banner--error" />
+</Canvas>
+
+## Warning
+
+<Canvas>
+  <Story id="components-inline-banner--warning" />
+</Canvas>
+
+## Info
+
+<Canvas>
+  <Story id="components-inline-banner--info" />
+</Canvas>

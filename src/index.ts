@@ -40,6 +40,8 @@ export {DatePickerDropdown as DatePicker} from './components/datepicker/datepick
 
 export {File} from './components/_pre-built/file/file';
 
+export {InlineBanner} from './components/inlineBanner/inlineBanner';
+
 export {FormField} from './components/formField/formField';
 
 export {Pill} from './components/pill/pill';
