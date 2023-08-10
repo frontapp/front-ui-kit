@@ -1,7 +1,7 @@
 /* eslint-disable storybook/story-exports */
 import {ComponentMeta} from '@storybook/react';
 
-import {InfoBanner} from '../infoBanner';
+import {InlineBanner} from '../inlineBanner';
 import DocumentationMDX from './docs.mdx';
 
 /*
@@ -9,8 +9,9 @@ import DocumentationMDX from './docs.mdx';
  */
 
 export default {
-  title: 'Components/Info Banner',
-  component: InfoBanner,
+  title: 'Components/Inline Banner',
+  id: 'Components/Inline Banner',
+  component: InlineBanner,
   parameters: {
     docs: {
       page: DocumentationMDX
@@ -22,4 +23,7 @@ export default {
     },
     viewMode: 'docs'
   }
-} as ComponentMeta<typeof InfoBanner>;
+} as ComponentMeta<typeof InlineBanner>;
+
+export {Basic} from './stories/basic.stories';
+export {Success, Error, Warning, Info} from './stories/showcase.stories';
