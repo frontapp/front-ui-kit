@@ -144,21 +144,22 @@ interface StyledIconDivProps {
 }
 
 const StyledIconDiv = styled.div<StyledIconDivProps>`
-  width: ${(p) => `${p.$size}px`};
-  height: ${(p) => `${p.$size}px`};
+  width: ${p => `${p.$size}px`};
+  height: ${p => `${p.$size}px`};
 `;
 
 /*
  * Component.
  */
 
-export const Icon: FC<IconProps> = (props) => {
+export const Icon: FC<IconProps> = props => {
   const {name, size = defaultSize, color = defaultColor, shouldDisableColor} = props;
 
   // Pull the icon from the list of available icons.
   // The svg file is converted to a function that is called.
   const icon = icons[name];
-  if (!icon) return null;
+  if (!icon)
+    return null;
 
   return (
     <StyledIconDiv $size={size}>

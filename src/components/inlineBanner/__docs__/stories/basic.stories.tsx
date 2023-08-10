@@ -4,7 +4,7 @@ import React from 'react';
 import {VisualSizesEnum} from '../../../../helpers/fontHelpers';
 import {InlineBanner} from '../../inlineBanner';
 
-export const Basic: ComponentStory<typeof InlineBanner> = (args) => <InlineBanner {...args} />;
+export const Basic: ComponentStory<typeof InlineBanner> = args => <InlineBanner {...args} />;
 
 Basic.args = {
   size: VisualSizesEnum.SMALL,

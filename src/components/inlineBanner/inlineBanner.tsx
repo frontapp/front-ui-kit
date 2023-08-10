@@ -88,7 +88,7 @@ const bannerLineHeights = makeSizeConstants('18px', '20px');
 const bannerBorderRadii = makeSizeConstants('8px', '16px');
 
 const StyledBannerDiv = styled.div<BannerStyleProps>`
-  ${(p) => css`
+  ${p => css`
     font-family: ${fonts.system};
     background-color: ${bannerConstants[p.$type].backgroundColor};
     color: ${bannerConstants[p.$type].iconColor};
@@ -189,7 +189,7 @@ interface BannerTitleStyleProps
   $isBold?: boolean;
 }
 const StyledTitleDiv = styled.div<BannerTitleStyleProps>`
-  ${(p) => css`
+  ${p => css`
     grid-area: title;
     color: ${greys.shade80};
     font-weight: ${p.$isBold ? fontWeights.bold : fontWeights.normal};
@@ -197,7 +197,7 @@ const StyledTitleDiv = styled.div<BannerTitleStyleProps>`
     font-size: ${bannerFontSizes[p.$size]};
   `}
 
-  ${(p) =>
+  ${p =>
     p.$hasInlineActionsWithClose &&
     css`
       flex: 1;
@@ -209,7 +209,7 @@ interface BannerContentProps extends BannerInsideCardStyleProps, BannerSizeStyle
   $hasTitle: boolean;
 }
 const StyledContentDiv = styled.div<BannerContentProps>`
-  ${(p) => css`
+  ${p => css`
     grid-area: content;
     line-height: ${bannerLineHeights[p.$size]};
     color: ${greys.shade80};
@@ -227,7 +227,7 @@ const StyledContentDiv = styled.div<BannerContentProps>`
 
 const StyledIconDiv = styled.div<BannerIconStyleProps>`
   grid-area: icon;
-  color: ${(p) => bannerConstants[p.$type].iconColor};
+  color: ${p => bannerConstants[p.$type].iconColor};
   margin-top: 2px;
 `;
 
@@ -245,7 +245,7 @@ const StyledCloseButton = styled(IconButton)`
  * Component.
  */
 
-export const InlineBanner: FC<PropsWithChildren<InlineBannerProps>> = (props) => {
+export const InlineBanner: FC<PropsWithChildren<InlineBannerProps>> = props => {
   const hasMoreThanTitle = Boolean(props.title && props.children);
   const actualSize = props.size;
   const hasInlineActions = false;
@@ -262,7 +262,8 @@ export const InlineBanner: FC<PropsWithChildren<InlineBannerProps>> = (props) =>
       $hasInlineActionsWithClose={hasInlineActionsWithClose}
       $hasImage={false}
       $hasCloseInSmall={props.onClose && actualSize === VisualSizesEnum.SMALL}
-      $hasTitle={Boolean(props.title)}>
+      $hasTitle={Boolean(props.title)}
+    >
       {props.onClose && (
         <StyledCloseButton onClick={props.onClose} iconColor={greys.shade80}>
           <Icon name="Close" />
@@ -277,7 +278,8 @@ export const InlineBanner: FC<PropsWithChildren<InlineBannerProps>> = (props) =>
           $hasColorfulText={false}
           $hasSmallBorderRadius
           $isBold={hasMoreThanTitle}
-          $hasInlineActionsWithClose={hasInlineActionsWithClose}>
+          $hasInlineActionsWithClose={hasInlineActionsWithClose}
+        >
           {props.title}
         </StyledTitleDiv>
       )}
@@ -286,7 +288,8 @@ export const InlineBanner: FC<PropsWithChildren<InlineBannerProps>> = (props) =>
           $size={actualSize}
           $hasColorfulText={false}
           $hasSmallBorderRadius
-          $hasTitle={Boolean(props.title)}>
+          $hasTitle={Boolean(props.title)}
+        >
           {props.children}
         </StyledContentDiv>
       )}
