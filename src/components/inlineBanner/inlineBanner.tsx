@@ -69,7 +69,7 @@ const bannerLineHeights = makeSizeConstants('18px', '20px');
 const bannerBorderRadii = makeSizeConstants('8px', '16px');
 
 const StyledBannerDiv = styled.div<BannerStyleProps>`
-  ${(p) => css`
+  ${p => css`
     font-family: ${fonts.system};
     background-color: ${bannerConstants[p.$type].backgroundColor};
     color: ${bannerConstants[p.$type].iconColor};
@@ -125,7 +125,7 @@ interface BannerTitleStyleProps {
   $size: VisualSizesEnum;
 }
 const StyledTitleDiv = styled.div<BannerTitleStyleProps>`
-  ${(p) => css`
+  ${p => css`
     grid-area: title;
     color: ${greys.shade80};
     font-weight: ${p.$isBold ? fontWeights.bold : fontWeights.normal};
@@ -139,7 +139,7 @@ interface BannerContentProps {
   $size: VisualSizesEnum;
 }
 const StyledContentDiv = styled.div<BannerContentProps>`
-  ${(p) => css`
+  ${p => css`
     grid-area: content;
     line-height: ${bannerLineHeights[p.$size]};
     color: ${greys.shade80};
@@ -157,7 +157,7 @@ const StyledContentDiv = styled.div<BannerContentProps>`
 
 const StyledIconDiv = styled.div<{$size: VisualSizesEnum; $type: InlineBannerTypes}>`
   grid-area: icon;
-  color: ${(p) => bannerConstants[p.$type].iconColor};
+  color: ${p => bannerConstants[p.$type].iconColor};
   margin-top: 2px;
 `;
 
@@ -175,7 +175,7 @@ const StyledCloseButton = styled(IconButton)`
  * Component.
  */
 
-export const InlineBanner: FC<PropsWithChildren<InlineBannerProps>> = (props) => {
+export const InlineBanner: FC<PropsWithChildren<InlineBannerProps>> = props => {
   const hasMoreThanTitle = Boolean(props.title && props.children);
   const actualSize = props.size;
 
@@ -185,7 +185,8 @@ export const InlineBanner: FC<PropsWithChildren<InlineBannerProps>> = (props) =>
       $type={props.type}
       $hasContent={hasMoreThanTitle}
       $hasCloseInSmall={props.onClose && actualSize === VisualSizesEnum.SMALL}
-      $hasTitle={Boolean(props.title)}>
+      $hasTitle={Boolean(props.title)}
+    >
       {props.onClose && (
         <StyledCloseButton onClick={props.onClose} iconColor={greys.shade80}>
           <Icon name="Close" />
