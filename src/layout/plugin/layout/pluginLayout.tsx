@@ -1,10 +1,7 @@
-import React, {forwardRef} from 'react';
+import React, {FC} from 'react';
 import styled from 'styled-components';
 
-import {
-  renderChildrenIgnoreSpecifiedComponents,
-  renderChildrenSpecifiedComponents
-} from '../../../helpers/renderHelpers';
+import {renderChildrenIgnoreSpecifiedComponents, renderChildrenSpecifiedComponents} from '../../../helpers/renderHelpers';
 
 /*
  * Props.
@@ -37,11 +34,11 @@ const StyledPluginContentWrapperDiv = styled.div`
  * Component.
  */
 
-export const PluginLayout = forwardRef<HTMLDivElement, PluginLayoutProps>(({children}, ref) => (
+export const PluginLayout: FC<PluginLayoutProps> = ({children}) => (
   <StyledPluginLayoutWrapperDiv>
     {renderChildrenSpecifiedComponents(children, ['PluginHeader', 'PluginFooter'])}
-    <StyledPluginContentWrapperDiv ref={ref}>
+    <StyledPluginContentWrapperDiv>
       {renderChildrenIgnoreSpecifiedComponents(children, ['PluginHeader', 'PluginFooter'])}
     </StyledPluginContentWrapperDiv>
   </StyledPluginLayoutWrapperDiv>
-));
+);
