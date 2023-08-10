@@ -1,6 +1,14 @@
 # Changelog
 
 
+## [0.7.5](https://github.com/frontapp/front-ui-kit/compare/v0.7.4...v0.7.5) (2023-08-10)
+
+
+### Features
+
+* add InlineBanner component ([#186](https://github.com/frontapp/front-ui-kit/issues/186)) ([ba252c8](https://github.com/frontapp/front-ui-kit/commit/ba252c8f04d6aaf6b5982b656ffec806eff51934))
+* forward ref in `PluginLayout` ([#187](https://github.com/frontapp/front-ui-kit/issues/187)) ([53e6f01](https://github.com/frontapp/front-ui-kit/commit/53e6f011cb71df111d11ced33f18ff25a107269e))
+
 ## [0.7.4](https://github.com/frontapp/front-ui-kit/compare/v0.7.3...v0.7.4) (2023-02-14)
 
 
