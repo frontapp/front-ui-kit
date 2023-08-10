@@ -1,4 +1,4 @@
-import React, {FC, PropsWithChildren, ReactNode} from 'react';
+import React, {FC, PropsWithChildren} from 'react';
 import styled, {css} from 'styled-components';
 
 import {Icon, IconName} from '../../elements/icon/icon';
@@ -19,7 +19,7 @@ interface InlineBannerProps {
   /** Size of the banner */
   size: VisualSizesEnum;
   /** Title to render for the banner. */
-  title: ReactNode;
+  title: string;
   onClose?: () => void;
 }
 
@@ -56,29 +56,10 @@ const bannerConstants: Record<InlineBannerTypes, BannerConstants> = {
  * Style.
  */
 
-interface BannerInlineActionStyleProps {
-  $hasInlineActionsWithClose?: boolean;
-}
-
-interface BannerIconStyleProps {
+interface BannerStyleProps {
   $type: InlineBannerTypes;
-}
-interface BannerInsideCardStyleProps {
-  $hasSmallBorderRadius?: boolean;
-  $hasColorfulText?: boolean;
-  $isNewDesign?: boolean;
-}
-interface BannerSizeStyleProps {
   $size: VisualSizesEnum;
-}
-interface BannerStyleProps
-  extends BannerIconStyleProps,
-    BannerInsideCardStyleProps,
-    BannerSizeStyleProps,
-    BannerInlineActionStyleProps {
-  $hasImage?: boolean;
   $hasContent?: boolean;
-  $hasInlineActions?: boolean;
   $hasCloseInSmall?: boolean;
   $hasTitle?: boolean;
 }
@@ -88,7 +69,7 @@ const bannerLineHeights = makeSizeConstants('18px', '20px');
 const bannerBorderRadii = makeSizeConstants('8px', '16px');
 
 const StyledBannerDiv = styled.div<BannerStyleProps>`
-  ${p => css`
+  ${(p) => css`
     font-family: ${fonts.system};
     background-color: ${bannerConstants[p.$type].backgroundColor};
     color: ${bannerConstants[p.$type].iconColor};
@@ -96,9 +77,10 @@ const StyledBannerDiv = styled.div<BannerStyleProps>`
 
     grid-column-gap: 9px;
     align-items: flex-start;
+    border-radius: ${bannerBorderRadii.small};
+
     ${addGridStyles(p)};
     ${addPaddingStyles(p)};
-    ${addBorderRadiusStyles(p)}
     ${p.$hasCloseInSmall &&
     css`
       padding-right: 36px;
@@ -107,34 +89,6 @@ const StyledBannerDiv = styled.div<BannerStyleProps>`
 `;
 
 function addGridStyles(props: BannerStyleProps) {
-  if (props.$hasImage)
-    return css`
-      display: grid;
-      grid-template-columns: auto 1fr 40%;
-      grid-template-areas:
-        'icon title image'
-        '. content image'
-        'footer footer image';
-    `;
-
-  if (props.$hasInlineActionsWithClose)
-    return css`
-      display: flex;
-      align-items: center;
-      flex-flow: row;
-      flex-wrap: wrap;
-    `;
-
-  if (props.$hasInlineActions)
-    return css`
-      display: grid;
-      align-items: center;
-      grid-template-columns: auto 1fr auto;
-      grid-template-areas:
-        'icon title actions'
-        '. content .';
-    `;
-
   if (!props.$hasTitle)
     return css`
       display: grid;
@@ -155,26 +109,10 @@ function addGridStyles(props: BannerStyleProps) {
   `;
 }
 
-function addBorderRadiusStyles(props: BannerStyleProps) {
-  if (props.$hasSmallBorderRadius)
-    return css`
-      border-radius: ${bannerBorderRadii.small};
-    `;
-
-  return css`
-    border-radius: ${bannerBorderRadii.medium};
-  `;
-}
-
 function addPaddingStyles(props: BannerStyleProps) {
   if (props.$size === VisualSizesEnum.MEDIUM || props.$size === VisualSizesEnum.LARGE)
     return css`
       padding: 20px;
-    `;
-
-  if (props.$hasInlineActions)
-    return css`
-      padding: 6px 12px;
     `;
 
   return css`
@@ -182,34 +120,26 @@ function addPaddingStyles(props: BannerStyleProps) {
   `;
 }
 
-interface BannerTitleStyleProps
-  extends BannerInsideCardStyleProps,
-    BannerSizeStyleProps,
-    BannerInlineActionStyleProps {
+interface BannerTitleStyleProps {
   $isBold?: boolean;
+  $size: VisualSizesEnum;
 }
 const StyledTitleDiv = styled.div<BannerTitleStyleProps>`
-  ${p => css`
+  ${(p) => css`
     grid-area: title;
     color: ${greys.shade80};
     font-weight: ${p.$isBold ? fontWeights.bold : fontWeights.normal};
     line-height: 20px;
     font-size: ${bannerFontSizes[p.$size]};
   `}
-
-  ${p =>
-    p.$hasInlineActionsWithClose &&
-    css`
-      flex: 1;
-      min-width: 65%;
-    `}
 `;
 
-interface BannerContentProps extends BannerInsideCardStyleProps, BannerSizeStyleProps {
+interface BannerContentProps {
   $hasTitle: boolean;
+  $size: VisualSizesEnum;
 }
 const StyledContentDiv = styled.div<BannerContentProps>`
-  ${p => css`
+  ${(p) => css`
     grid-area: content;
     line-height: ${bannerLineHeights[p.$size]};
     color: ${greys.shade80};
@@ -225,9 +155,9 @@ const StyledContentDiv = styled.div<BannerContentProps>`
   `}
 `;
 
-const StyledIconDiv = styled.div<BannerIconStyleProps>`
+const StyledIconDiv = styled.div<{$size: VisualSizesEnum; $type: InlineBannerTypes}>`
   grid-area: icon;
-  color: ${p => bannerConstants[p.$type].iconColor};
+  color: ${(p) => bannerConstants[p.$type].iconColor};
   margin-top: 2px;
 `;
 
@@ -245,51 +175,32 @@ const StyledCloseButton = styled(IconButton)`
  * Component.
  */
 
-export const InlineBanner: FC<PropsWithChildren<InlineBannerProps>> = props => {
+export const InlineBanner: FC<PropsWithChildren<InlineBannerProps>> = (props) => {
   const hasMoreThanTitle = Boolean(props.title && props.children);
   const actualSize = props.size;
-  const hasInlineActions = false;
-  const hasInlineActionsWithClose = hasInlineActions && Boolean(props.onClose);
 
   return (
     <StyledBannerDiv
       $size={actualSize}
       $type={props.type}
       $hasContent={hasMoreThanTitle}
-      $hasColorfulText={false}
-      $hasSmallBorderRadius
-      $hasInlineActions={hasInlineActions}
-      $hasInlineActionsWithClose={hasInlineActionsWithClose}
-      $hasImage={false}
       $hasCloseInSmall={props.onClose && actualSize === VisualSizesEnum.SMALL}
-      $hasTitle={Boolean(props.title)}
-    >
+      $hasTitle={Boolean(props.title)}>
       {props.onClose && (
         <StyledCloseButton onClick={props.onClose} iconColor={greys.shade80}>
           <Icon name="Close" />
         </StyledCloseButton>
       )}
-      <StyledIconDiv $type={props.type}>
+      <StyledIconDiv $type={props.type} $size={actualSize}>
         <Icon color={bannerConstants[props.type].iconColor} name={bannerConstants[props.type].icon} />
       </StyledIconDiv>
       {props.title && (
-        <StyledTitleDiv
-          $size={actualSize}
-          $hasColorfulText={false}
-          $hasSmallBorderRadius
-          $isBold={hasMoreThanTitle}
-          $hasInlineActionsWithClose={hasInlineActionsWithClose}
-        >
+        <StyledTitleDiv $size={actualSize} $isBold={hasMoreThanTitle}>
           {props.title}
         </StyledTitleDiv>
       )}
       {props.children && (
-        <StyledContentDiv
-          $size={actualSize}
-          $hasColorfulText={false}
-          $hasSmallBorderRadius
-          $hasTitle={Boolean(props.title)}
-        >
+        <StyledContentDiv $size={actualSize} $hasTitle={Boolean(props.title)}>
           {props.children}
         </StyledContentDiv>
       )}
