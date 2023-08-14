@@ -3,7 +3,11 @@ import styled, {css} from 'styled-components';
 
 import {alphas, greys, palette} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights, VisualSizesEnum} from '../../helpers/fontHelpers';
-import {isComponentInChildren, renderChildrenIgnoreSpecifiedComponents, renderChildrenSpecifiedComponents} from '../../helpers/renderHelpers';
+import {
+  isComponentInChildren,
+  renderChildrenIgnoreSpecifiedComponents,
+  renderChildrenSpecifiedComponents
+} from '../../helpers/renderHelpers';
 import {makeSizeConstants} from '../../helpers/styleHelpers';
 import {ButtonContent} from './buttonContent';
 import {IconButton} from './iconButton';
@@ -16,22 +20,20 @@ const lineHeights = makeSizeConstants(16, 16, 20);
 const verticalPadding = makeSizeConstants(5, 7, 9);
 const horizontalPadding = makeSizeConstants(12, 14);
 const buttonFontSize = makeSizeConstants(fontSizes.small, fontSizes.medium, fontSizes.large);
-const nonButtonContentChildren = [
-  'ButtonContentIcon'
-];
+const nonButtonContentChildren = ['ButtonContentIcon'];
 
 /*
  * Props.
  */
 
 export type ButtonTypes =
-  'primary' |
-  'secondary' |
-  'tertiary' |
-  'primary-danger' |
-  'secondary-danger' |
-  'icon' |
-  'icon-danger';
+  | 'primary'
+  | 'secondary'
+  | 'tertiary'
+  | 'primary-danger'
+  | 'secondary-danger'
+  | 'icon'
+  | 'icon-danger';
 
 interface ButtonProps {
   /** The type of button to render. */
@@ -50,6 +52,7 @@ interface ButtonProps {
   iconColor?: string;
   /** Called when the user click on the button. */
   onClick?: MouseEventHandler;
+  isRounded?: boolean;
 }
 
 /*
@@ -69,7 +72,7 @@ interface StyledButtonProps {
 
 const StyledButton = styled.button<StyledButtonProps>`
   display: grid;
-  grid-template-areas: "left-content content right-content";
+  grid-template-areas: 'left-content content right-content';
   font-family: ${fonts.system};
   border-radius: 100px;
   box-sizing: border-box;
@@ -87,7 +90,11 @@ function addButtonSizeStyles(size: VisualSizesEnum) {
   `;
 }
 
-function addButtonTypeStyles(type: Omit<ButtonTypes, 'icon' | 'icon-danger'>, isDisabled?: boolean, isActive?: boolean) {
+function addButtonTypeStyles(
+  type: Omit<ButtonTypes, 'icon' | 'icon-danger'>,
+  isDisabled?: boolean,
+  isActive?: boolean
+) {
   if (isDisabled)
     return css`
       color: ${greys.shade70};
@@ -96,7 +103,8 @@ function addButtonTypeStyles(type: Omit<ButtonTypes, 'icon' | 'icon-danger'>, is
       background: ${greys.shade40};
 
       /* For tertiary we have slightly different styles. */
-      ${type === 'tertiary' && css`
+      ${type === 'tertiary' &&
+      css`
         color: ${greys.shade60};
         background: transparent;
         box-shadow: none;
@@ -178,7 +186,8 @@ export const Button: FC<ButtonProps> = ({
   isActive,
   onClick,
   className,
-  iconColor
+  iconColor,
+  isRounded
 }) => {
   // Wrap the onClick to check if it is disabled or not defined.
   const onButtonClick = (event: MouseEvent) => {
@@ -197,13 +206,21 @@ export const Button: FC<ButtonProps> = ({
         isActive={isActive}
         onClick={onButtonClick}
         iconColor={iconColor}
+        isRounded={isRounded}
       >
         {children}
       </IconButton>
     );
   return (
     <StyledButtonWrapperDiv>
-      <StyledButton className={className} $type={type} $size={size} $isDisabled={isDisabled} $isActive={isActive} onClick={onButtonClick}>
+      <StyledButton
+        className={className}
+        $type={type}
+        $size={size}
+        $isDisabled={isDisabled}
+        $isActive={isActive}
+        onClick={onButtonClick}
+      >
         {renderChildrenSpecifiedComponents(children, nonButtonContentChildren)}
         {renderButtonChildren(children)}
       </StyledButton>
@@ -220,5 +237,9 @@ function renderButtonChildren(children: React.ReactNode) {
   const shouldWrapInContent = !isComponentInChildren(children, 'ButtonContent');
   if (!shouldWrapInContent)
     return children;
-  return <ButtonContent>{renderChildrenIgnoreSpecifiedComponents(children, nonButtonContentChildren)}</ButtonContent>;
+  return (
+    <ButtonContent>
+      {renderChildrenIgnoreSpecifiedComponents(children, nonButtonContentChildren)}
+    </ButtonContent>
+  );
 }
