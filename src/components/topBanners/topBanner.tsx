@@ -68,7 +68,7 @@ const StyledDiv = styled.div<{$styles: BannerConstants}>`
   grid-template-columns: 12px 16px 10px auto 4px auto 4px;
   align-items: center;
 
-  ${(p) => css`
+  ${p => css`
     background-color: ${p.$styles.backgroundColor};
   `}
 `;
@@ -86,7 +86,7 @@ const StyledTextDiv = styled.div`
  * Component.
  */
 
-export const TopBanner: FC<PropsWithChildren<TopBannerProps>> = (props) => {
+export const TopBanner: FC<PropsWithChildren<TopBannerProps>> = props => {
   const bannerStyles = bannerConstants[props.type];
 
   return (
