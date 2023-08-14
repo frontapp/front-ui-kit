@@ -1,8 +1,25 @@
+import React, {FC, PropsWithChildren} from 'react';
 import styled from 'styled-components';
 
+/*
+ * Props.
+ */
 interface GridAreaItemProps {
   area: string;
 }
-export const GridAreaItem = styled.div<GridAreaItemProps>`
-  grid-area: ${p => p.area};
+
+/*
+ * Style.
+ */
+
+const GridAreaItemDiv = styled.div<{$area: string}>`
+  grid-area: ${p => p.$area};
 `;
+
+/*
+ * Component.
+ */
+
+export const GridAreaTime: FC<PropsWithChildren<GridAreaItemProps>> = props => (
+  <GridAreaItemDiv $area={props.area}>{props.children}</GridAreaItemDiv>
+);
