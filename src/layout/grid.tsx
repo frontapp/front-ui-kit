@@ -20,6 +20,6 @@ const GridAreaItemDiv = styled.div<{$area: string}>`
  * Component.
  */
 
-export const GridAreaTime: FC<PropsWithChildren<GridAreaItemProps>> = props => (
+export const GridAreaItem: FC<PropsWithChildren<GridAreaItemProps>> = props => (
   <GridAreaItemDiv $area={props.area}>{props.children}</GridAreaItemDiv>
 );
