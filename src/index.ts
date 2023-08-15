@@ -67,7 +67,9 @@ export {TopBannersProvider} from './components/topBanners/topBannersProvider';
 export {
   TopBannerContext,
   TopBannersEnum,
-  TopBannerDefinition
+  TopBannerDefinition,
+  TopBannerContextProps,
+  useTopBanners
 } from './components/topBanners/topBannersContext';
 
 /*
