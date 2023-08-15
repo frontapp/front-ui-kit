@@ -1,6 +1,13 @@
 # Changelog
 
 
+## [0.7.6](https://github.com/frontapp/front-ui-kit/compare/v0.7.5...v0.7.6) (2023-08-15)
+
+
+### Features
+
+* add `TopBanner` component ([#189](https://github.com/frontapp/front-ui-kit/issues/189)) ([d024a81](https://github.com/frontapp/front-ui-kit/commit/d024a8185a1aaa596bcc78af3f1de044e1868209))
+
 ## [0.7.5](https://github.com/frontapp/front-ui-kit/compare/v0.7.4...v0.7.5) (2023-08-10)
 
 
