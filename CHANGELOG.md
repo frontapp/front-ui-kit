@@ -1,6 +1,13 @@
 # Changelog
 
 
+## [0.7.7](https://github.com/frontapp/front-ui-kit/compare/v0.7.6...v0.7.7) (2023-08-15)
+
+
+### Bug Fixes
+
+* properly export `useTopBanners` ([#192](https://github.com/frontapp/front-ui-kit/issues/192)) ([c0ea0eb](https://github.com/frontapp/front-ui-kit/commit/c0ea0ebc8dadce8138656d7ebbbbc4210a2fcaaa))
+
 ## [0.7.6](https://github.com/frontapp/front-ui-kit/compare/v0.7.5...v0.7.6) (2023-08-15)
 
 
