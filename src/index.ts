@@ -61,6 +61,15 @@ export {Task} from './components/_pre-built/task/task';
 export {Tooltip} from './components/tooltip/tooltip';
 export {TooltipCoordinator} from './components/tooltip/tooltipCoordinator';
 
+export {TopBanner} from './components/topBanners/topBanner';
+export {TopBannersHost} from './components/topBanners/topBannersHost';
+export {TopBannersProvider} from './components/topBanners/topBannersProvider';
+export {
+  TopBannerContext,
+  TopBannersEnum,
+  TopBannerDefinition
+} from './components/topBanners/topBannersContext';
+
 /*
  * Additional Exports.
  */

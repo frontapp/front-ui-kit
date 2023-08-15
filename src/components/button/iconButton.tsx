@@ -23,6 +23,8 @@ interface IconButtonProps {
   className?: string;
   /** The color of the icon to be displayed. */
   iconColor?: string;
+  /** Make the button completely round. */
+  isRounded?: boolean;
 }
 
 /*
@@ -34,18 +36,24 @@ interface StyledIconButtonProps {
   $isDisabled?: boolean;
   $isActive?: boolean;
   $iconColor?: string;
+  $isRounded?: boolean;
 }
 
 const StyledIconButton = styled.button<StyledIconButtonProps>`
   background: transparent;
   border: none;
   padding: 7px;
-  border-radius: 8px;
+  border-radius: ${p => (p.$isRounded ? '99999px' : '8px')};
 
   ${p => addIconColorStyles(p.$isDanger, p.$isDisabled, p.$isActive, p.$iconColor)};
 `;
 
-function addIconColorStyles(isDanger?: boolean, isDisabled?: boolean, isActive?: boolean, iconColor?: string) {
+function addIconColorStyles(
+  isDanger?: boolean,
+  isDisabled?: boolean,
+  isActive?: boolean,
+  iconColor?: string
+) {
   if (isDisabled)
     return css`
       color: ${greys.shade40};
@@ -87,13 +95,14 @@ function addIconColorStyles(isDanger?: boolean, isDisabled?: boolean, isActive?:
  */
 
 export const IconButton: FC<IconButtonProps> = props => {
-  const {children, isDanger, isDisabled, isActive, onClick, className, iconColor} = props;
+  const {children, isDanger, isDisabled, isActive, onClick, className, iconColor, isRounded} = props;
   return (
     <StyledIconButton
       className={className}
       $isDanger={isDanger}
       $isDisabled={isDisabled}
       $isActive={isActive}
+      $isRounded={Boolean(isRounded)}
       onClick={onClick}
       $iconColor={iconColor}
     >
