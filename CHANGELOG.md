@@ -1,6 +1,13 @@
 # Changelog
 
 
+## [0.7.8](https://github.com/frontapp/front-ui-kit/compare/v0.7.7...v0.7.8) (2023-08-16)
+
+
+### Features
+
+* add `Info20` icon ([#194](https://github.com/frontapp/front-ui-kit/issues/194)) ([3a9a669](https://github.com/frontapp/front-ui-kit/commit/3a9a66966bb600cdcdf922aaa58b8c2f26856ad1))
+
 ## [0.7.7](https://github.com/frontapp/front-ui-kit/compare/v0.7.6...v0.7.7) (2023-08-15)
 
 
