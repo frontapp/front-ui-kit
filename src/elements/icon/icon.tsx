@@ -36,6 +36,7 @@ import Gear from '../../assets/icons/gear.svg';
 import GearFilled from '../../assets/icons/gearFilled.svg';
 import Import from '../../assets/icons/import.svg';
 import Info from '../../assets/icons/info.svg';
+import Info20 from '../../assets/icons/info20.svg';
 import InfoFilled from '../../assets/icons/infoFilled.svg';
 import Minus from '../../assets/icons/minus.svg';
 import EllipsisHorizontal from '../../assets/icons/moreHorizontal.svg';
@@ -100,6 +101,7 @@ const importedIcons = {
   Import,
   Info,
   InfoFilled,
+  Info20,
   Minus,
   NewContact,
   Participant,
