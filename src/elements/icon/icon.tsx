@@ -36,6 +36,7 @@ import Gear from '../../assets/icons/gear.svg';
 import GearFilled from '../../assets/icons/gearFilled.svg';
 import Import from '../../assets/icons/import.svg';
 import Info from '../../assets/icons/info.svg';
+import Info20 from '../../assets/icons/info20.svg';
 import InfoFilled from '../../assets/icons/infoFilled.svg';
 import Minus from '../../assets/icons/minus.svg';
 import EllipsisHorizontal from '../../assets/icons/moreHorizontal.svg';
@@ -100,6 +101,7 @@ const importedIcons = {
   Import,
   Info,
   InfoFilled,
+  Info20,
   Minus,
   NewContact,
   Participant,
@@ -144,22 +146,21 @@ interface StyledIconDivProps {
 }
 
 const StyledIconDiv = styled.div<StyledIconDivProps>`
-  width: ${p => `${p.$size}px`};
-  height: ${p => `${p.$size}px`};
+  width: ${(p) => `${p.$size}px`};
+  height: ${(p) => `${p.$size}px`};
 `;
 
 /*
  * Component.
  */
 
-export const Icon: FC<IconProps> = props => {
+export const Icon: FC<IconProps> = (props) => {
   const {name, size = defaultSize, color = defaultColor, shouldDisableColor} = props;
 
   // Pull the icon from the list of available icons.
   // The svg file is converted to a function that is called.
   const icon = icons[name];
-  if (!icon)
-    return null;
+  if (!icon) return null;
 
   return (
     <StyledIconDiv $size={size}>
