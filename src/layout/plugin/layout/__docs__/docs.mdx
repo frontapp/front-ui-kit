@@ -1,7 +1,7 @@
-import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
-import { PluginLayout } from '../pluginLayout';
-import { PluginHeader } from '../pluginHeader';
-import { PluginFooter } from '../pluginFooter';
+import {ArgsTable, Canvas, Meta, Story} from '@storybook/addon-docs';
+import {PluginLayout} from '../pluginLayout';
+import {PluginHeader} from '../pluginHeader';
+import {PluginFooter} from '../pluginFooter';
 
 <Meta title="Layout/Plugin Layout" of={PluginLayout} />
 
@@ -24,7 +24,8 @@ plugins will want to follow.
 
 <ArgsTable of={PluginLayout} />
 
-<hr /><hr />
+<hr />
+<hr />
 
 # Plugin Header
 
@@ -40,7 +41,8 @@ The `PluginHeader` will render the content supplied in the `header` grid-area of
 
 <ArgsTable of={PluginHeader} />
 
-<hr /><hr />
+<hr />
+<hr />
 
 # Plugin Footer
 
@@ -56,7 +58,8 @@ The `PluginFooter` will render the content supplied in the `footer` grid-area of
 
 <ArgsTable of={PluginFooter} />
 
-<hr /><hr />
+<hr />
+<hr />
 
 # Stories
 
@@ -67,6 +70,14 @@ The `PluginFooter` will render the content supplied in the `footer` grid-area of
 </Canvas>
 
 This story shows what a layout would look like when you are at a top level page on a plugin.
+
+## Top Level Plugin Layout With Search Input
+
+<Canvas>
+  <Story id="layout-plugin-layout--search" />
+</Canvas>
+
+This story shows what a layout would look like when you are at a top level page on a plugin and add a search input.
 
 ## Sub-level Plugin Layout
 

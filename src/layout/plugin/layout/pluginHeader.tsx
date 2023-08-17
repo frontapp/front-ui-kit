@@ -2,6 +2,7 @@ import React, {FC, MouseEventHandler} from 'react';
 import styled, {css} from 'styled-components';
 
 import {Button} from '../../../components/button/button';
+import {Input} from '../../../elements';
 import {Icon} from '../../../elements/icon/icon';
 import {greys} from '../../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../../helpers/fontHelpers';
@@ -17,6 +18,10 @@ interface PluginHeaderProps {
   actions?: React.ReactNode;
   /** Controls if we are on a sub-page. If not passed in we will assume we are at a top level. */
   onBackClick?: MouseEventHandler;
+  search?: {
+    query: string;
+    onChange: (query: string) => void;
+  };
 }
 
 /*
@@ -25,10 +30,15 @@ interface PluginHeaderProps {
 
 const StyledPluginHeaderWrapperDiv = styled.div`
   display: flex;
+  flex-direction: column;
+`;
+
+const StyledPluginHeaderContentWrapperDiv = styled.div`
+  display: flex;
   flex-flow: row;
   font-family: ${fonts.system};
   grid-area: plugin-header;
-  height: 56px;
+  height: 40px;
   flex-flow: row;
 `;
 
@@ -42,9 +52,9 @@ const StyledPluginTitleDiv = styled.div<StyledPluginTitleDivProps>`
   align-items: center;
   flex: 1;
   color: ${greys.shade90};
-  font-weight: ${fontWeights.bold};
-  font-size: ${fontSizes.large};
-  padding-left: 16px;
+  font-weight: ${fontWeights.medium};
+  font-size: ${fontSizes.medium};
+  justify-content: center;
 
   ${p =>
     p.$isSubPage &&
@@ -70,17 +80,27 @@ const StyledActionsWrapperDiv = styled.div`
   align-items: center;
 `;
 
+const StyledSearchWrapper = styled.div`
+  padding: 12px;
+  padding-top: 0;
+`;
+
 /*
  * Component.
  */
 
 export const PluginHeader: FC<PluginHeaderProps> = props => {
-  const {children, onBackClick, actions} = props;
+  const {children, onBackClick, actions, search} = props;
   return (
     <StyledPluginHeaderWrapperDiv>
-      {maybeRenderBackButton(onBackClick)}
-      <StyledPluginTitleDiv $isSubPage={Boolean(onBackClick)}>{children}</StyledPluginTitleDiv>
-      {maybeRenderActions(actions)}
+      <StyledPluginHeaderContentWrapperDiv>
+        {maybeRenderBackButton(onBackClick)}
+        <StyledPluginTitleDiv $isSubPage={Boolean(onBackClick)}>{children}</StyledPluginTitleDiv>
+        {maybeRenderActions(actions)}
+      </StyledPluginHeaderContentWrapperDiv>
+      <StyledSearchWrapper>
+        {search && <Input iconName="Search" value={search.query} onChange={search.onChange} />}
+      </StyledSearchWrapper>
     </StyledPluginHeaderWrapperDiv>
   );
 };
