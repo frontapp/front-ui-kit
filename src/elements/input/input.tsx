@@ -76,7 +76,6 @@ const StyledInput = styled.input<StyledInputProps>`
   font-size: ${fontSizes.medium};
   font-weight: ${fontWeights.normal};
   line-height: 17px;
-  text-overflow: ellipsis;
   border-radius: 6px;
   box-sizing: border-box;
   appearance: none;
