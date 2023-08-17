@@ -21,7 +21,6 @@ exports[`<Checkbox /> Spec Snapshots should render a filled and disabled input 1
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  text-overflow: ellipsis;
   border-radius: 6px;
   box-sizing: border-box;
   -webkit-appearance: none;
@@ -123,7 +122,6 @@ exports[`<Checkbox /> Spec Snapshots should render an empty and disabled input 1
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  text-overflow: ellipsis;
   border-radius: 6px;
   box-sizing: border-box;
   -webkit-appearance: none;
@@ -231,7 +229,6 @@ exports[`<Checkbox /> Spec Snapshots should render an input of type email 1`] = 
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  text-overflow: ellipsis;
   border-radius: 6px;
   box-sizing: border-box;
   -webkit-appearance: none;
@@ -343,7 +340,6 @@ exports[`<Checkbox /> Spec Snapshots should render an input of type number 1`] =
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  text-overflow: ellipsis;
   border-radius: 6px;
   box-sizing: border-box;
   -webkit-appearance: none;
@@ -450,7 +446,6 @@ exports[`<Checkbox /> Spec Snapshots should render an input with an error 1`] = 
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  text-overflow: ellipsis;
   border-radius: 6px;
   box-sizing: border-box;
   -webkit-appearance: none;
@@ -560,7 +555,6 @@ exports[`<Checkbox /> Spec Snapshots should render an input with an icon 1`] = `
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  text-overflow: ellipsis;
   border-radius: 6px;
   box-sizing: border-box;
   -webkit-appearance: none;
