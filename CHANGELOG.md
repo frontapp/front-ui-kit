@@ -1,6 +1,13 @@
 # Changelog
 
 
+## [0.7.10](https://github.com/frontapp/front-ui-kit/compare/v0.7.9...v0.7.10) (2023-08-17)
+
+
+### Features
+
+* add search prop for PluginHeader ([#198](https://github.com/frontapp/front-ui-kit/issues/198)) ([a45f9ce](https://github.com/frontapp/front-ui-kit/commit/a45f9cedad01b7ba15794af3459b2d5f92179768))
+
 ## [0.7.9](https://github.com/frontapp/front-ui-kit/compare/v0.7.8...v0.7.9) (2023-08-17)
 
 
