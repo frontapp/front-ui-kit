@@ -1,6 +1,13 @@
 # Changelog
 
 
+## [0.7.9](https://github.com/frontapp/front-ui-kit/compare/v0.7.8...v0.7.9) (2023-08-17)
+
+
+### Bug Fixes
+
+* remove text-overflow: ellipsis on Input ([#196](https://github.com/frontapp/front-ui-kit/issues/196)) ([66402ed](https://github.com/frontapp/front-ui-kit/commit/66402ede882925456a1bed0d25ca407be5688bff))
+
 ## [0.7.8](https://github.com/frontapp/front-ui-kit/compare/v0.7.7...v0.7.8) (2023-08-16)
 
 
