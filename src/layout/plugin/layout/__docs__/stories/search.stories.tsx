@@ -2,9 +2,6 @@ import {ComponentStory} from '@storybook/react';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import {Button} from '../../../../../components/button/button';
-import {Icon} from '../../../../../elements/icon/icon';
-import {Input} from '../../../../../elements/input/input';
 import {greys} from '../../../../../helpers/colorHelpers';
 import {DefaultStyleProvider} from '../../../../../utils/defaultStyleProvider';
 import {PluginFooter} from '../../pluginFooter';
