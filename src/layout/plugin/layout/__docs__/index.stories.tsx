@@ -26,4 +26,5 @@ export default {
 } as ComponentMeta<typeof PluginLayout>;
 
 export {Basic} from './stories/basic.stories';
+export {Search} from './stories/search.stories';
 export {SubLevel} from './stories/sub-level.stories';
