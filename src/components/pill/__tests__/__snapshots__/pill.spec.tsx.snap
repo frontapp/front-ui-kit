@@ -10,7 +10,7 @@ exports[`<Pill /> Spec Snapshots should render selected state 1`] = `
   border-radius: 100px;
   border-radius: 4px;
   display: inline-grid;
-  grid-template-areas: "left-content content right-content";
+  grid-template-areas: 'left-content content right-content';
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   box-sizing: border-box;
   font-size: 14px;
@@ -46,7 +46,7 @@ exports[`<Pill /> Spec Snapshots should render using defaults 1`] = `
   border-radius: 100px;
   border-radius: 4px;
   display: inline-grid;
-  grid-template-areas: "left-content content right-content";
+  grid-template-areas: 'left-content content right-content';
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   box-sizing: border-box;
   font-size: 14px;
@@ -92,7 +92,7 @@ exports[`<Pill /> Spec Snapshots should support rendering a pill with icon 1`] =
   border-radius: 100px;
   border-radius: 4px;
   display: inline-grid;
-  grid-template-areas: "left-content content right-content";
+  grid-template-areas: 'left-content content right-content';
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   box-sizing: border-box;
   font-size: 14px;

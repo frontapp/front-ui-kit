@@ -22,7 +22,7 @@ export default {
     },
     viewMode: 'docs'
   },
-  id: "Components/Form Field"
+  id: 'Components/Form Field'
 } as ComponentMeta<typeof FormField>;
 
 export {Basic} from './stories/basic.stories';

@@ -28,7 +28,7 @@ const StyledTooltipOverflowDiv = styled.div`
  * Component.
  */
 
-export const TooltipOverflow: FC<TooltipOverflowProps> = props => {
+export const TooltipOverflow: FC<TooltipOverflowProps> = (props) => {
   const {children, onConditionChange} = props;
   const overflowHTMLRef = useRef<HTMLDivElement | null>();
   const [overflowRef, {width}] = useMeasureElement();
@@ -44,11 +44,10 @@ export const TooltipOverflow: FC<TooltipOverflowProps> = props => {
 
   return (
     <StyledTooltipOverflowDiv
-      ref={ref => {
+      ref={(ref) => {
         overflowRef(ref);
         overflowHTMLRef.current = ref;
-      }}
-    >
+      }}>
       {children}
     </StyledTooltipOverflowDiv>
   );

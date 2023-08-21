@@ -98,24 +98,22 @@ const Template: ComponentStory<typeof Accordion> = () => {
           Show/Hide Fields
         </Heading>
         <Accordion expandMode="multi">
-          {DATA.map(section => (
+          {DATA.map((section) => (
             <AccordionSection
               key={section.id}
               id={section.id}
               title={section.title}
-              onSectionToggled={isOpen => console.log(getSectionDetails(section.title, isOpen))}
-            >
-              {section.tasks.map(task => (
+              onSectionToggled={(isOpen) => console.log(getSectionDetails(section.title, isOpen))}>
+              {section.tasks.map((task) => (
                 <StyledTaskDiv key={task.name}>
                   <StyledTaskNameDiv
-                    onClick={() => setCheckedState(state => ({...state, [task.id]: !state[task.id]}))}
-                  >
+                    onClick={() => setCheckedState((state) => ({...state, [task.id]: !state[task.id]}))}>
                     {task.name}
                   </StyledTaskNameDiv>
                   <StyledCheckboxDiv>
                     <Checkbox
                       isChecked={checkedState[task.id]}
-                      onChange={isChecked => setCheckedState(state => ({...state, [task.id]: isChecked}))}
+                      onChange={(isChecked) => setCheckedState((state) => ({...state, [task.id]: isChecked}))}
                     />
                   </StyledCheckboxDiv>
                 </StyledTaskDiv>
@@ -135,7 +133,6 @@ export const Multi = Template.bind({});
  */
 
 function getSectionDetails(title: string, isOpen: boolean) {
-  if (isOpen)
-    return `Showing details for ${title}.`;
+  if (isOpen) return `Showing details for ${title}.`;
   return `Hiding details for ${title}.`;
 }

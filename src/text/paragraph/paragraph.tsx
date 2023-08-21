@@ -36,17 +36,17 @@ const StyledParagraphDiv = styled.div<ParagraphStyleProps>`
   display: block;
 
   font-size: ${fontSizes.medium};
-  font-weight: ${p => (p.$isBold ? fontWeights.bold : fontWeights.normal)};
+  font-weight: ${(p) => (p.$isBold ? fontWeights.bold : fontWeights.normal)};
   font-family: ${fonts.system};
   line-height: 16px;
-  color: ${p => p.$color};
+  color: ${(p) => p.$color};
 `;
 
 /*
  * Component.
  */
 
-export const Paragraph: FC<ParagraphProps> = props => (
+export const Paragraph: FC<ParagraphProps> = (props) => (
   <StyledParagraphDiv $color={props.color || defaultColor} $isBold={props.isBold || false}>
     {props.children}
   </StyledParagraphDiv>

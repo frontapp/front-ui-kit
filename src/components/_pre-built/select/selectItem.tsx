@@ -13,4 +13,4 @@ export interface SelectItemProps extends DropdownItemProps {}
  */
 
 // eslint-disable-next-line react/jsx-props-no-spreading
-export const SelectItem: FC<SelectItemProps> = props => <DropdownItem {...props} />;
+export const SelectItem: FC<SelectItemProps> = (props) => <DropdownItem {...props} />;

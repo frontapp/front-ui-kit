@@ -18,13 +18,13 @@ describe('<Button /> Spec', () => {
     });
 
     it('should render tab group', () => {
-      const view = render((
+      const view = render(
         <TabGroup>
           <Tab name="Example Tab 1" isSelected />
           <Tab name="Example Tab 2" />
           <Tab name="Example Tab 3" />
         </TabGroup>
-      ));
+      );
       expect(view.container).toMatchSnapshot();
     });
   });

@@ -72,7 +72,7 @@ export const DropdownHeader: FC<DropdownHeaderProps> = ({
   onSearchChange,
   onBackClick
 }) => (
-  <StyledDropdownHeaderWrapperDiv onClick={event => event.preventDefault()}>
+  <StyledDropdownHeaderWrapperDiv onClick={(event) => event.preventDefault()}>
     <StyledHeaderTopRowDiv>
       {maybeRenderBackButton(onBackClick)}
       <StyledHeaderLabelDiv>{children}</StyledHeaderLabelDiv>
@@ -87,18 +87,16 @@ export const DropdownHeader: FC<DropdownHeaderProps> = ({
 
 function maybeRenderBackButton(onBackClick?: MouseEventHandler) {
   // We will not render the back button unless an event handler is supplied.
-  if (!onBackClick)
-    return null;
+  if (!onBackClick) return null;
   return (
     <StyledButtonWrapperDiv>
       <Button
         type="icon"
-        onClick={event => {
+        onClick={(event) => {
           onBackClick(event);
           // Mark the input as handled.
           event.preventDefault();
-        }}
-      >
+        }}>
         <Icon name="ChevronLeft" />
       </Button>
     </StyledButtonWrapperDiv>
@@ -112,22 +110,19 @@ function maybeRenderSearchDropdown(
   onSearchChange?: (value: string) => void
 ) {
   // We will only render the dropdown if the value is supplied.
-  if (typeof searchValue === 'undefined')
-    return null;
+  if (typeof searchValue === 'undefined') return null;
   return (
     <StyledSearchWrapperDiv
-      onClick={event => {
+      onClick={(event) => {
         // Mark the input as handled.
         event.preventDefault();
-      }}
-    >
+      }}>
       <Input
         iconName="Search"
         placeholder={placeholder}
         value={searchValue}
-        onChange={val => {
-          if (onSearchChange && typeof val !== 'undefined')
-            onSearchChange(`${val}`);
+        onChange={(val) => {
+          if (onSearchChange && typeof val !== 'undefined') onSearchChange(`${val}`);
         }}
         shouldFocus={shouldAutoFocusSearchInput}
       />

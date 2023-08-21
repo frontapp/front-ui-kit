@@ -6,18 +6,14 @@ module.exports = {
     '^.+\\.(ts|tsx)?$': 'babel-jest'
   },
   globals: {
-    "ts-jest": {
+    'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.json',
       babelConfig: true
     }
   },
-  moduleDirectories: [
-    'node_modules'
-  ],
-  modulePathIgnorePatterns: ["<rootDir>/dist/"],
-  setupFilesAfterEnv: [
-    "<rootDir>/src/setupTests.ts"
-  ],
+  moduleDirectories: ['node_modules'],
+  modulePathIgnorePatterns: ['<rootDir>/dist/'],
+  setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
   moduleNameMapper: {
     '\\.svg$': '<rootDir>/__mocks__/svg.ts'
   }

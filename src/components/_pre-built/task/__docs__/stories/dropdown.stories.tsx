@@ -40,8 +40,7 @@ const ShowcaseTemplate: ComponentStory<typeof Task> = () => {
           onChange={onToggleCheckbox}
           onClick={() => console.log('Task Clicked.')}
           label="Apply changes to feature"
-          layerRootId="story--components-task--dropdown"
-        >
+          layerRootId="story--components-task--dropdown">
           <DropdownItem>View Task Details</DropdownItem>
           <DropdownItem>Close Task</DropdownItem>
         </Task>

@@ -3,8 +3,16 @@ import styled, {css} from 'styled-components';
 
 import {alphas, greys} from '../../helpers/colorHelpers';
 import {fonts, fontSizes} from '../../helpers/fontHelpers';
-import {isComponentInChildren, renderChildrenIgnoreSpecifiedComponents, renderChildrenSpecifiedComponents} from '../../helpers/renderHelpers';
-import {getBackgroundColorFromStyles, getTextColorFromStyles, SelectableComponentColors} from '../../helpers/styleHelpers';
+import {
+  isComponentInChildren,
+  renderChildrenIgnoreSpecifiedComponents,
+  renderChildrenSpecifiedComponents
+} from '../../helpers/renderHelpers';
+import {
+  getBackgroundColorFromStyles,
+  getTextColorFromStyles,
+  SelectableComponentColors
+} from '../../helpers/styleHelpers';
 import {PillContent} from './pillContent';
 
 /*
@@ -48,14 +56,14 @@ const StyledPillDiv = styled.div<StyledPillDivProps>`
   border-radius: 100px;
   border-radius: 4px;
   display: inline-grid;
-  grid-template-areas: "left-content content right-content";
+  grid-template-areas: 'left-content content right-content';
   font-family: ${fonts.system};
   box-sizing: border-box;
   font-size: ${fontSizes.medium};
   user-select: none;
   line-height: 16px;
 
-  ${p => addPillStyles(p.$colors, p.$isSelected)}
+  ${(p) => addPillStyles(p.$colors, p.$isSelected)}
 `;
 
 function addPillStyles(colors: SelectableComponentColors, isSelected?: boolean) {
@@ -79,7 +87,7 @@ function addPillStyles(colors: SelectableComponentColors, isSelected?: boolean) 
  * Component.
  */
 
-export const Pill: FC<PillProps> = props => {
+export const Pill: FC<PillProps> = (props) => {
   const {children, colors = defaultPillColors, isSelected, onClick} = props;
 
   return (
@@ -97,7 +105,6 @@ export const Pill: FC<PillProps> = props => {
 /** Renders the children and checks if we need to wrap the passed in children in the PillContent. */
 function renderPillChildren(children: React.ReactNode) {
   const shouldWrapInContent = !isComponentInChildren(children, 'PillContent');
-  if (!shouldWrapInContent)
-    return children;
+  if (!shouldWrapInContent) return children;
   return <PillContent>{renderChildrenIgnoreSpecifiedComponents(children, ['PillContentIcon'])}</PillContent>;
 }

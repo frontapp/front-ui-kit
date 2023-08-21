@@ -52,7 +52,7 @@ interface StyledTitleWrapperDivProps {
 }
 
 const StyledTitleWrapperDiv = styled.div<StyledTitleWrapperDivProps>`
-  ${p => css`
+  ${(p) => css`
     max-width: ${p.$hasDescription ? '60%' : 'unset'};
   `};
 `;

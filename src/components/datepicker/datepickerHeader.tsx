@@ -64,7 +64,7 @@ const StyledInvisibleDiv = styled(StyledTitleDiv)`
  * Component.
  */
 
-export const DatePickerHeader: FC<DatePickerHeaderProps> = props => {
+export const DatePickerHeader: FC<DatePickerHeaderProps> = (props) => {
   const {value = DateTime.now(), onFocusPreviousMonth, onFocusNextMonth} = props;
   return (
     <StyledCalendarHeader>
@@ -90,7 +90,7 @@ export const DatePickerHeader: FC<DatePickerHeaderProps> = props => {
 
 /** Render all months in the year at opacity 0 for spacing. */
 function renderAllMonths(focusedMonth: DateTime) {
-  return range(1, 13).map(m => {
+  return range(1, 13).map((m) => {
     const month = focusedMonth.set({month: m});
     return <StyledInvisibleDiv key={m}>{renderMonth(month)}</StyledInvisibleDiv>;
   });

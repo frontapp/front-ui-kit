@@ -13,7 +13,7 @@ const StyledWrapperDiv = styled.div`
   justify-content: center;
 `;
 
-const IconTemplate: ComponentStory<typeof Pill & {iconName: IconName}> = args => (
+const IconTemplate: ComponentStory<typeof Pill & {iconName: IconName}> = (args) => (
   <StyledWrapperDiv>
     <Pill>
       Example Pill

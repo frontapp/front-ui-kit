@@ -32,22 +32,21 @@ const Template: ComponentStory<typeof DropdownCoordinator> = () => {
   const [selectedUserId, setSelectedUserId] = useState<string>();
 
   const fetchUserData = async () => {
-    if (isLoading)
-      return;
+    if (isLoading) return;
     setIsLoading(true);
     // Create a 1 second delay between requests.
     setTimeout(async () => {
       const data = await fetch(`https://randomuser.me/api/?page=${page}&results=15&seed=12345`);
       const jsonData = await data.json();
-      setUsers(existingUsers => [
+      setUsers((existingUsers) => [
         ...existingUsers,
-        ...jsonData.results.map(d => ({
+        ...jsonData.results.map((d) => ({
           id: d.login.uuid,
           name: `${d.name.first} ${d.name.last}`,
           email: d.email
         }))
       ]);
-      setPage(currentPage => currentPage + 1);
+      setPage((currentPage) => currentPage + 1);
       setIsLoading(false);
     }, 1000);
   };
@@ -62,7 +61,7 @@ const Template: ComponentStory<typeof DropdownCoordinator> = () => {
             <DropdownButton
               buttonRef={buttonRef}
               isDisabled={isDisabled}
-              value={users.find(u => u.id === selectedUserId)?.name || ''}
+              value={users.find((u) => u.id === selectedUserId)?.name || ''}
               isActive={isDropdownOpen}
               placeholder="Select an option"
             />
@@ -77,15 +76,13 @@ const Template: ComponentStory<typeof DropdownCoordinator> = () => {
               isLoading={isLoading}
               hasMore={page < 5}
               onLoadMore={fetchUserData}
-              loadingSkeleton={<DropdownItemSkeleton hasDescription />}
-            >
-              {users.map(user => (
+              loadingSkeleton={<DropdownItemSkeleton hasDescription />}>
+              {users.map((user) => (
                 <DropdownItem
                   key={user.id}
                   description={user.email}
                   onClick={() => setSelectedUserId(user.id)}
-                  isSelected={user.id === selectedUserId}
-                >
+                  isSelected={user.id === selectedUserId}>
                   {user.name}
                 </DropdownItem>
               ))}

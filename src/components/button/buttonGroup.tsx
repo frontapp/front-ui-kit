@@ -25,7 +25,7 @@ const StyledButtonGroupDiv = styled.div<StyledButtonGroupDivProps>`
   flex-flow: row;
   gap: 8px;
 
-  ${p => css`
+  ${(p) => css`
     justify-content: ${p.$align === 'left' ? 'unset' : 'end'};
   `};
 `;

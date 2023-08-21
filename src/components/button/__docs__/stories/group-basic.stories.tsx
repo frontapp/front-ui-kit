@@ -14,12 +14,8 @@ const StyledCenteredDiv = styled.div`
 const Template: ComponentStory<typeof Button> = () => (
   <StyledCenteredDiv>
     <ButtonGroup>
-      <Button>
-        Cancel
-      </Button>
-      <Button type="primary">
-        Submit
-      </Button>
+      <Button>Cancel</Button>
+      <Button type="primary">Submit</Button>
     </ButtonGroup>
   </StyledCenteredDiv>
 );

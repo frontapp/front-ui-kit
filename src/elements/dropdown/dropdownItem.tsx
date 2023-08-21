@@ -74,7 +74,7 @@ const StyledDropdownItemTitleDiv = styled.div<StyledDropdownItemTitleDivProps>`
   font-size: ${fontSizes.medium};
   ${ellipsis()};
 
-  ${p =>
+  ${(p) =>
     p.$isSelected &&
     css`
       font-weight: ${fontWeights.bold};
@@ -108,14 +108,11 @@ export const DropdownItem: FC<DropdownItemProps> = ({
   onClick
 }) => (
   <StyledDropdownItemWrapperDiv
-    onClick={event => {
+    onClick={(event) => {
       // If we are in multi mode, we should not close the dropdown when clicked.
-      if (type === 'multi')
-        event.preventDefault();
-      if (onClick)
-        onClick(event);
-    }}
-  >
+      if (type === 'multi') event.preventDefault();
+      if (onClick) onClick(event);
+    }}>
     {/* Render non-content items. Avatar, icons, etc. */}
     {renderChildrenSpecifiedComponents(children, nonDropdownContentComponents)}
     {/* Render content items. */}
@@ -141,15 +138,13 @@ function renderSelectedState(type: DropdownTypes, isSelected?: boolean) {
       return <Checkbox isChecked={Boolean(isSelected)} onChange={() => {}} />;
     case 'simple':
     default: {
-      if (!isSelected)
-        return null;
+      if (!isSelected) return null;
       return <Icon name="Checkmark" color={palette.blue.shade40} />;
     }
   }
 }
 
 function maybeRenderDescription(description?: string) {
-  if (!description)
-    return null;
+  if (!description) return null;
   return <StyledDropdownItemDescriptionDiv>{description}</StyledDropdownItemDescriptionDiv>;
 }

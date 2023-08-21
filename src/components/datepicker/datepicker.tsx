@@ -28,7 +28,9 @@ const StyledWrapperDiv = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${greys.white};
-  box-shadow: 0px 0px 1px ${alphas.black50}, 0px 3px 10px ${alphas.black30};
+  box-shadow:
+    0px 0px 1px ${alphas.black50},
+    0px 3px 10px ${alphas.black30};
   width: 254px;
   overflow: auto;
   border-radius: 8px;
@@ -60,7 +62,7 @@ const StyledInputsDiv = styled.div`
  * Component.
  */
 
-export const DatePicker: FC<DatePickerProps> = props => {
+export const DatePicker: FC<DatePickerProps> = (props) => {
   const {
     value,
     calendarWeekStartDay = CalendarWeekDaysEnum.SUNDAY,
@@ -79,8 +81,7 @@ export const DatePicker: FC<DatePickerProps> = props => {
   // When the selected date changes, updated the focused month.
   const selectedDateMonthMillis = selectedDateMonth?.toMillis();
   useEffect(() => {
-    if (isUndefined(selectedDateMonthMillis))
-      return;
+    if (isUndefined(selectedDateMonthMillis)) return;
     setFocusedMonth(DateTime.fromMillis(selectedDateMonthMillis));
   }, [selectedDateMonthMillis]);
 
@@ -88,17 +89,16 @@ export const DatePicker: FC<DatePickerProps> = props => {
   const maxDateTime = useMemo(() => maxDate && DateTime.fromJSDate(maxDate), [maxDate]);
 
   const onFocusPreviousMonth = () => {
-    setFocusedMonth(month => month && month.minus({months: 1}));
+    setFocusedMonth((month) => month && month.minus({months: 1}));
   };
 
   const onFocusNextMonth = () => {
-    setFocusedMonth(month => month && month.plus({months: 1}));
+    setFocusedMonth((month) => month && month.plus({months: 1}));
   };
 
   const onDateSelect = (date: DateTime) => {
-    const mergedDate = mergeDateAndTime(date, selectedDate || DateTime.now().startOf("day"));
-    if (!(isDateSelectable(mergedDate, minDateTime, maxDateTime)))
-      return;
+    const mergedDate = mergeDateAndTime(date, selectedDate || DateTime.now().startOf('day'));
+    if (!isDateSelectable(mergedDate, minDateTime, maxDateTime)) return;
     setSelectedDate(mergedDate);
   };
 
@@ -115,19 +115,19 @@ export const DatePicker: FC<DatePickerProps> = props => {
   };
 
   const onDone: MouseEventHandler = () => {
-    if (selectedDate && onChange)
-      onChange(selectedDate?.toJSDate());
+    if (selectedDate && onChange) onChange(selectedDate?.toJSDate());
     onRequestClose();
   };
 
-  const onClearClick: (MouseEventHandler | undefined) = value && (() => {
-    if (onChange)
-      onChange(undefined);
-    onRequestClose();
-  });
+  const onClearClick: MouseEventHandler | undefined =
+    value &&
+    (() => {
+      if (onChange) onChange(undefined);
+      onRequestClose();
+    });
 
   return (
-    <StyledWrapperDiv onClick={event => event.preventDefault()}>
+    <StyledWrapperDiv onClick={(event) => event.preventDefault()}>
       <StyledDatePickerDiv>
         <DatePickerHeader
           value={focusedMonth}
@@ -171,15 +171,10 @@ function maybeRenderTimePicker(
   timeFormat: '12h' | '24h',
   selectedDate?: DateTime
 ) {
-  if (selectedView === DatepickerViewsEnum.DATE)
-    return null;
+  if (selectedView === DatepickerViewsEnum.DATE) return null;
   return (
     <StyledTimePickerDiv>
-      <TimePicker
-        timeFormat={timeFormat}
-        value={selectedDate}
-        onChange={onTimeSelect}
-      />
+      <TimePicker timeFormat={timeFormat} value={selectedDate} onChange={onTimeSelect} />
     </StyledTimePickerDiv>
   );
 }
@@ -187,15 +182,11 @@ function maybeRenderTimePicker(
 function isDateSelectable(date: DateTime, minDate?: DateTime, maxDate?: DateTime) {
   const startMillis = minDate && minDate.toMillis();
   const endMillis = maxDate && maxDate.toMillis();
-  if (!startMillis && !endMillis)
-    return true;
+  if (!startMillis && !endMillis) return true;
 
   const dateMillis = date.toMillis();
-  if (startMillis && !endMillis)
-    return dateMillis >= startMillis;
-  if (!startMillis && endMillis)
-    return dateMillis <= endMillis;
-  if (startMillis && endMillis)
-    return dateMillis >= startMillis && dateMillis <= endMillis;
+  if (startMillis && !endMillis) return dateMillis >= startMillis;
+  if (!startMillis && endMillis) return dateMillis <= endMillis;
+  if (startMillis && endMillis) return dateMillis >= startMillis && dateMillis <= endMillis;
   return false;
 }

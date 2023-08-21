@@ -57,11 +57,11 @@ const StyledDropdownButtonWrapperDiv = styled.div<StyledDropdownButtonWrapperDiv
   border: 2px solid transparent;
   min-height: 30px;
 
-  ${p => css`
+  ${(p) => css`
     max-width: ${p.$maxWidth ? `${p.$maxWidth}px` : 'unset'};
   `};
 
-  ${p => addDropdownButtonWrapperStyles(p.$isActive, p.$isDisabled, p.$isErred)};
+  ${(p) => addDropdownButtonWrapperStyles(p.$isActive, p.$isDisabled, p.$isErred)};
 `;
 
 function addDropdownButtonWrapperStyles(isActive?: boolean, isDisabled?: boolean, isErred?: boolean) {
@@ -100,7 +100,7 @@ const StyledContentWrapperDiv = styled.div<StyledContentWrapperDivProps>`
   overflow: hidden;
   place-content: center;
 
-  ${p =>
+  ${(p) =>
     p.$isDisabled &&
     css`
       opacity: 0.5;
@@ -152,7 +152,7 @@ const StyledChevronWrapperDiv = styled.div`
  * Component.
  */
 
-export const DropdownButton: FC<DropdownButtonProps> = props => {
+export const DropdownButton: FC<DropdownButtonProps> = (props) => {
   const {maxWidth, value, iconName, isDisabled, isActive, isErred, buttonRef} = props;
   const [childrenContainerRef, {buttonWidth: width}] = useMeasureElement();
 
@@ -163,8 +163,7 @@ export const DropdownButton: FC<DropdownButtonProps> = props => {
       $maxWidth={maxWidth}
       $isActive={isActive}
       $isDisabled={isDisabled}
-      $isErred={isErred}
-    >
+      $isErred={isErred}>
       <StyledContentWrapperDiv $isDisabled={isDisabled}>
         {maybeRenderIcon(iconName)}
         <StyledChildrenWrapperDiv ref={childrenContainerRef}>
@@ -193,8 +192,7 @@ function renderDropdownContent(value: string | ReadonlyArray<string>, childrenCo
           elementRenderer={(element, index) => (
             <Pill
               key={`${index}-${element}`}
-              colors={{backgroundColor: alphas.black30, textColor: greys.shade90}}
-            >
+              colors={{backgroundColor: alphas.black30, textColor: greys.shade90}}>
               {element}
             </Pill>
           )}
@@ -206,8 +204,7 @@ function renderDropdownContent(value: string | ReadonlyArray<string>, childrenCo
 }
 
 function maybeRenderIcon(iconName?: IconName) {
-  if (!iconName)
-    return null;
+  if (!iconName) return null;
   return (
     <StyledIconWrapperDiv>
       <Icon name={iconName} color={greys.shade50} />
@@ -217,10 +214,8 @@ function maybeRenderIcon(iconName?: IconName) {
 
 function maybeRenderPlaceholder(props: DropdownButtonProps) {
   const {value, placeholder} = props;
-  if (!placeholder)
-    return null;
+  if (!placeholder) return null;
   // If the value is a string and we have a value or the value is an array and it has items do not render placeholder.
-  if ((typeof value === 'string' && value !== '') || (isArray(value) && value.length !== 0))
-    return null;
+  if ((typeof value === 'string' && value !== '') || (isArray(value) && value.length !== 0)) return null;
   return <StyledPlaceholderWrapperDiv>{placeholder}</StyledPlaceholderWrapperDiv>;
 }

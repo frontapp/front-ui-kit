@@ -7,11 +7,11 @@ import {TooltipCoordinator} from '../tooltipCoordinator';
 
 describe('<Tooltip /> Spec', () => {
   it('should show tooltip when hovered', async () => {
-    render((
+    render(
       <TooltipCoordinator renderTooltip={() => <Tooltip>Example Tooltip</Tooltip>}>
         <div>anchor</div>
       </TooltipCoordinator>
-    ));
+    );
 
     // Hover over the anchor.
     await userEvent.hover(screen.getByText('anchor'));
@@ -23,11 +23,13 @@ describe('<Tooltip /> Spec', () => {
   });
 
   it('should not render tooltip when hovered when explicit condition is not enabled.', async () => {
-    render((
-      <TooltipCoordinator renderTooltip={() => <Tooltip>Example Tooltip</Tooltip>} condition={{type: 'explicit', isEnabled: false}}>
+    render(
+      <TooltipCoordinator
+        renderTooltip={() => <Tooltip>Example Tooltip</Tooltip>}
+        condition={{type: 'explicit', isEnabled: false}}>
         <div>anchor</div>
       </TooltipCoordinator>
-    ));
+    );
 
     // Hover over the anchor.
     await userEvent.hover(screen.getByText('anchor'));
@@ -39,11 +41,13 @@ describe('<Tooltip /> Spec', () => {
   });
 
   it('should render tooltip when hovered when explicit condition is enabled.', async () => {
-    render((
-      <TooltipCoordinator renderTooltip={() => <Tooltip>Example Tooltip</Tooltip>} condition={{type: 'explicit', isEnabled: true}}>
+    render(
+      <TooltipCoordinator
+        renderTooltip={() => <Tooltip>Example Tooltip</Tooltip>}
+        condition={{type: 'explicit', isEnabled: true}}>
         <div>anchor</div>
       </TooltipCoordinator>
-    ));
+    );
 
     // Hover over the anchor.
     await userEvent.hover(screen.getByText('anchor'));

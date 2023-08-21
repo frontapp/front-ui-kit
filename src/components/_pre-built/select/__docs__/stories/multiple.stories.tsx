@@ -33,21 +33,22 @@ const Template: ComponentStory<typeof Select> = () => {
   return (
     <StyledWrapperDiv>
       <StyledMenuWrapperDiv>
-        <Select selectedValues={_(selectedItemIds.map(id => items.find(i => i.id === id)?.display)).compact().value()} layerRootId="story--components-select--multi">
-          {items.map(item => (
+        <Select
+          selectedValues={_(selectedItemIds.map((id) => items.find((i) => i.id === id)?.display))
+            .compact()
+            .value()}
+          layerRootId="story--components-select--multi">
+          {items.map((item) => (
             <SelectItem
               key={item.id}
               type="multi"
               isSelected={selectedItemIds.includes(item.id)}
-              onClick={() => setSelectedItemIds(itemIds => {
-                if (itemIds?.includes(item.id))
-                  return itemIds.filter(id => id !== item.id);
-                return [
-                  ...itemIds,
-                  item.id
-                ];
-              })}
-            >
+              onClick={() =>
+                setSelectedItemIds((itemIds) => {
+                  if (itemIds?.includes(item.id)) return itemIds.filter((id) => id !== item.id);
+                  return [...itemIds, item.id];
+                })
+              }>
               {item.display}
             </SelectItem>
           ))}

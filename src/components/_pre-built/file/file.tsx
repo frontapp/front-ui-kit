@@ -88,9 +88,9 @@ const StyledFileWrapperDiv = styled.div<StyledFileProps>`
   line-height: 17px;
   color: ${greys.shade90};
 
-  background: ${p => (p.$isErred ? palette.red.shade10 : greys.white)};
+  background: ${(p) => (p.$isErred ? palette.red.shade10 : greys.white)};
   &:hover {
-    background: ${p => (p.$isErred ? palette.red.shade20 : greys.shade20)};
+    background: ${(p) => (p.$isErred ? palette.red.shade20 : greys.shade20)};
   }
 `;
 
@@ -131,10 +131,10 @@ const StyledFileClearIconDiv = styled.div`
 `;
 
 const StyledButton = styled(Button)<StyledFileProps>`
-  background: ${p => (p.$isErred ? palette.red.shade40 : greys.black)};
+  background: ${(p) => (p.$isErred ? palette.red.shade40 : greys.black)};
   color: ${greys.white};
   &:hover {
-    background: ${p => (p.$isErred ? palette.red.shade50 : palette.blue.shade40)};
+    background: ${(p) => (p.$isErred ? palette.red.shade50 : palette.blue.shade40)};
     color: ${greys.white};
   }
   padding: 3px;
@@ -172,8 +172,7 @@ export const File: FC<FileProps> = ({
             <Tooltip placement="top" maxWidth={240}>
               {fileTooltipLabel}
             </Tooltip>
-          )}
-        >
+          )}>
           {isErred && <StyledErrorLabelDiv>{errorMessage}</StyledErrorLabelDiv>}
           {fileName || <StyledNoFileNameSpan>Untitled file</StyledNoFileNameSpan>}
         </TooltipCoordinator>
@@ -190,17 +189,14 @@ export const File: FC<FileProps> = ({
 
 function bytesToSize(bytes: number) {
   const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
-  if (bytes === 0)
-    return '0B';
+  if (bytes === 0) return '0B';
   const index = Math.floor(Math.log(bytes) / Math.log(BASE_BYTES_SIZE));
-  if (index >= sizes.length)
-    return 'Extremely large file';
+  if (index >= sizes.length) return 'Extremely large file';
   return Math.round(bytes / BASE_BYTES_SIZE ** index) + sizes[index];
 }
 
 function maybeRenderFileClearButton(isErred: boolean, onClear?: () => void) {
-  if (!onClear)
-    return null;
+  if (!onClear) return null;
   return (
     <StyledFileClearIconDiv>
       <StyledButton $isErred={isErred} type="icon" onClick={onClear}>

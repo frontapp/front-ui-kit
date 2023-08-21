@@ -26,7 +26,7 @@ const StyledDiv = styled.div`
  * Component.
  */
 
-export const TopBannersHost: FC<TopBannersHostProps> = props => {
+export const TopBannersHost: FC<TopBannersHostProps> = (props) => {
   const {currentBanner, dismissBanner} = useTopBanners();
   const transitions = useTransition(currentBanner, {
     from: {opacity: 0, transform: 'translateY(-44px)'},

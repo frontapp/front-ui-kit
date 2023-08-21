@@ -43,7 +43,9 @@ describe('<Textarea /> Spec', () => {
   it('should issue an onBlur when some part of the screen is clicked after the textarea is focused', async () => {
     const user = userEvent.setup();
     const onBlurMock = jest.fn();
-    const view = render(<Textarea rows={5} id="id" placeholder="Placeholder" shouldFocus onBlur={onBlurMock} />);
+    const view = render(
+      <Textarea rows={5} id="id" placeholder="Placeholder" shouldFocus onBlur={onBlurMock} />
+    );
     await user.click(view.container);
     expect(onBlurMock).toBeCalled();
   });
@@ -52,7 +54,16 @@ describe('<Textarea /> Spec', () => {
     const user = userEvent.setup();
     const onFocusMock = jest.fn();
     const onBlurMock = jest.fn();
-    const view = render(<Textarea rows={5} id="id" isDisabled placeholder="Placeholder" onFocus={onFocusMock} onBlur={onBlurMock} />);
+    const view = render(
+      <Textarea
+        rows={5}
+        id="id"
+        isDisabled
+        placeholder="Placeholder"
+        onFocus={onFocusMock}
+        onBlur={onBlurMock}
+      />
+    );
     await user.click(view.getByRole('textbox'));
     expect(onFocusMock).not.toBeCalled();
     await user.click(view.container);
@@ -63,16 +74,18 @@ describe('<Textarea /> Spec', () => {
     const user = userEvent.setup();
     const onChangeMock = jest.fn();
     const view = render(<Textarea rows={5} id="id" placeholder="Placeholder" onChange={onChangeMock} />);
-    await user.type(view.getByRole('textbox'), "t");
+    await user.type(view.getByRole('textbox'), 't');
     expect(onChangeMock).toBeCalled();
-    expect(onChangeMock.mock.lastCall[0]).toBe("t");
+    expect(onChangeMock.mock.lastCall[0]).toBe('t');
   });
 
   it('should not issue an onChange when the user types into the textarea if the textarea is disabled', async () => {
     const user = userEvent.setup();
     const onChangeMock = jest.fn();
-    const view = render(<Textarea rows={5} id="id" isDisabled placeholder="Placeholder" onChange={onChangeMock} />);
-    await user.type(view.getByRole('textbox'), "t");
+    const view = render(
+      <Textarea rows={5} id="id" isDisabled placeholder="Placeholder" onChange={onChangeMock} />
+    );
+    await user.type(view.getByRole('textbox'), 't');
     expect(onChangeMock).not.toBeCalled();
   });
 });

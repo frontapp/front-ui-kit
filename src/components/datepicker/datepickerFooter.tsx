@@ -100,7 +100,7 @@ const StyledFooterDiv = styled.div`
  * Component.
  */
 
-export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
+export const DatePickerFooter: FC<DatePickerFooterProps> = (props) => {
   const {
     selectedDate,
     type,
@@ -117,8 +117,7 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
 
   const selectedDateMillis = selectedDate?.toMillis();
   useEffect(() => {
-    if (isUndefined(selectedDateMillis))
-      return;
+    if (isUndefined(selectedDateMillis)) return;
     const date = DateTime.fromMillis(selectedDateMillis);
     setTimeValue(formatTime(date, timeFormat));
     setDateValue(date.toFormat('MM/dd/yyyy'));
@@ -139,8 +138,7 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
       return;
     }
     const selectedTimeValue = formatTime(selectedDate, timeFormat);
-    if (selectedTimeValue !== timeValue)
-      setTimeValue(selectedTimeValue);
+    if (selectedTimeValue !== timeValue) setTimeValue(selectedTimeValue);
   };
   const onDateBlur: FocusEventHandler = () => {
     if (!selectedDate) {
@@ -148,22 +146,19 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
       return;
     }
     const selectedDateValue = selectedDate.toFormat('MM/dd/yyyy');
-    if (selectedDateValue !== dateValue)
-      setDateValue(selectedDateValue);
+    if (selectedDateValue !== dateValue) setDateValue(selectedDateValue);
   };
 
   // Change handlers
   const onTimeValueChange = (newTimeValue: string) => {
     setTimeValue(newTimeValue);
     const dateAndTime = parseTime(selectedDate || DateTime.now(), newTimeValue);
-    if (dateAndTime)
-      onDateChange(dateAndTime);
+    if (dateAndTime) onDateChange(dateAndTime);
   };
   const onDateValueChange = (newDateValue: string) => {
     setDateValue(newDateValue);
     const dateAndTime = parseDate(newDateValue, selectedDate || DateTime.now().startOf('day'));
-    if (dateAndTime)
-      onDateChange(dateAndTime);
+    if (dateAndTime) onDateChange(dateAndTime);
   };
 
   return (
@@ -219,26 +214,25 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = props => {
 
 /** Given a date and a time string, merge them together to give a DateTime object */
 function parseTime(date: DateTime, timeValue?: string) {
-  if (!timeValue)
-    return undefined;
+  if (!timeValue) return undefined;
   const formattedTime = DateTime.fromFormatExplain(
     `${date.toLocaleString(DateTime.DATE_SHORT)} ${timeValue}`,
     'M/d/yyyy h:mm a'
   );
-  if (!formattedTime.matches || _.isEmpty(formattedTime.matches))
-    return undefined;
+  if (!formattedTime.matches || _.isEmpty(formattedTime.matches)) return undefined;
 
-  const parsedTime = DateTime.now().startOf('minute').set({
-    hour: formattedTime?.matches.h,
-    minute: formattedTime?.matches.m
-  });
+  const parsedTime = DateTime.now()
+    .startOf('minute')
+    .set({
+      hour: formattedTime?.matches.h,
+      minute: formattedTime?.matches.m
+    });
   return mergeDateAndTime(date, parsedTime);
 }
 
 /** Given a date string and a time, merge them together to give a DateTime object */
 function parseDate(dateValue: string, time: DateTime) {
   const parsedDate = DateTime.fromFormat(dateValue, 'MM/dd/yyyy');
-  if (!parsedDate.isValid)
-    return undefined;
+  if (!parsedDate.isValid) return undefined;
   return mergeDateAndTime(parsedDate, time);
 }

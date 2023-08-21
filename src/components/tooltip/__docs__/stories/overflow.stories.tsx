@@ -26,7 +26,7 @@ interface StyledTooltipWrapperDivProps {
 }
 
 const StyledTooltipWrapperDiv = styled.div<StyledTooltipWrapperDivProps>`
-  width: ${p => `${p.$width}px`};
+  width: ${(p) => `${p.$width}px`};
   border: 1px solid ${greys.shade30};
   text-align: center;
   padding: 4px;
@@ -44,8 +44,7 @@ const Template: ComponentStory<typeof Tooltip> = () => {
         <StyledTooltipWrapperDiv $width={width}>
           <TooltipCoordinator
             condition={{type: 'overflow'}}
-            renderTooltip={() => <Tooltip>This text is smaller.</Tooltip>}
-          >
+            renderTooltip={() => <Tooltip>This text is smaller.</Tooltip>}>
             This text is smaller.
           </TooltipCoordinator>
         </StyledTooltipWrapperDiv>
@@ -56,8 +55,7 @@ const Template: ComponentStory<typeof Tooltip> = () => {
             condition={{type: 'overflow'}}
             renderTooltip={() => (
               <Tooltip>This is really long text that is overflowing, looooooooooooooong text.</Tooltip>
-            )}
-          >
+            )}>
             This is really long text that is overflowing, looooooooooooooong text.
           </TooltipCoordinator>
         </StyledTooltipWrapperDiv>

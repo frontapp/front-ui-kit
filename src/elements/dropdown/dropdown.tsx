@@ -77,15 +77,15 @@ const StyledDropdownWrapperDiv = styled.div<StyledDropdownWrapperDivProps>`
   border: 1px solid ${greys.shade40};
   width: 100%;
   overflow: auto;
-  ${p => css`
+  ${(p) => css`
     max-width: ${p.$maxWidth}px;
   `}
-  ${p =>
+  ${(p) =>
     p.$maxHeight &&
     css`
       max-height: ${p.$maxHeight}px;
     `};
-  ${p =>
+  ${(p) =>
     p.$minWidth &&
     css`
       min-width: ${p.$minWidth}px;
@@ -99,7 +99,7 @@ interface StyledDropdownContentWrapperDivProps {
 
 const StyledDropdownContentWrapperDiv = styled.div<StyledDropdownContentWrapperDivProps>`
   grid-area: content;
-  ${p => addDropdownContentStyles(p)};
+  ${(p) => addDropdownContentStyles(p)};
 `;
 
 function addDropdownContentStyles(props: StyledDropdownContentWrapperDivProps) {
@@ -165,8 +165,7 @@ export const Dropdown: FC<DropdownProps> = ({
   );
 
   const renderDropdownContent = () => {
-    if (isEmpty && renderEmptyState)
-      return renderEmptyState();
+    if (isEmpty && renderEmptyState) return renderEmptyState();
     // We will not support rendering the input items in the list. Since the virtual list re-renders so often
     // and inputs need to keep focus they do not really mix well.
     if (formFields.length > 0)
@@ -201,14 +200,12 @@ export const Dropdown: FC<DropdownProps> = ({
     <StyledDropdownWrapperDiv
       $minWidth={minWidth}
       $maxWidth={maxWidth}
-      $maxHeight={headerAndFooterComponents.length === 0 ? maxDropdownHeight : undefined}
-    >
+      $maxHeight={headerAndFooterComponents.length === 0 ? maxDropdownHeight : undefined}>
       {/* Render Dropdown headers / footers. */}
       {headerAndFooterComponents}
       <StyledDropdownContentWrapperDiv
         $maxHeight={maxDropdownHeight}
-        $minHeight={minHeight > maxDropdownHeight ? maxDropdownHeight : minHeight}
-      >
+        $minHeight={minHeight > maxDropdownHeight ? maxDropdownHeight : minHeight}>
         {renderDropdownContent()}
       </StyledDropdownContentWrapperDiv>
     </StyledDropdownWrapperDiv>
@@ -222,8 +219,7 @@ export const Dropdown: FC<DropdownProps> = ({
 /** Children may not be a DropdownItemSkeleton, so we need to verify. */
 function buildLoadingSkeleton(skeleton?: React.ReactNode): React.ReactNode {
   // If we do not have a skeleton supplied, default to a generic one.
-  if (!skeleton)
-    return <DropdownItemSkeleton />;
+  if (!skeleton) return <DropdownItemSkeleton />;
 
   // Try to pull the DropdownItemSkeleton from the children and return the first one found.
   const dropdownSkeletons = renderChildrenSpecifiedComponents(skeleton, ['DropdownItemSkeleton']);
@@ -232,15 +228,13 @@ function buildLoadingSkeleton(skeleton?: React.ReactNode): React.ReactNode {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function computeLoadingSkeletonHeight(loadingSkeleton: any): number {
-  if (loadingSkeleton?.props?.hasDescription)
-    return defaultLoadingSkeletonHeightWithDescription;
+  if (loadingSkeleton?.props?.hasDescription) return defaultLoadingSkeletonHeightWithDescription;
   return defaultLoadingSkeletonHeight;
 }
 
 /** If we are initially loading the dropdown, we should fill the entire dropdown with loading indicators, otherwise only should 3. */
 function computeTotalLoadingItems(itemsCount: number, maxHeight: number, loadingSkeletonHeight: number) {
-  if (itemsCount > 0)
-    return totalLoadingRows;
+  if (itemsCount > 0) return totalLoadingRows;
   return Math.floor(maxHeight / loadingSkeletonHeight);
 }
 
@@ -259,8 +253,7 @@ function computeHeight(
     return itemsHeight < maxHeight ? itemsHeight + dropdownListPadding * 2 : maxHeight;
 
   // If we are at the first page, we should fill up the dropdown with loading indicators.
-  if (itemsCount === 0)
-    return maxHeight;
+  if (itemsCount === 0) return maxHeight;
 
   // If we have more items we can load, make sure to take that into account when calculating the height.
   const itemsWithLoadingHeight =

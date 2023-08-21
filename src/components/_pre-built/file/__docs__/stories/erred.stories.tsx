@@ -17,12 +17,7 @@ const StyledFileWrapperDiv = styled.div`
 const Template: ComponentStory<typeof File> = () => (
   <StyledWrapperDiv>
     <StyledFileWrapperDiv>
-      <File
-        fileName="Test File.txt"
-        fileSize={12330}
-        errorMessage="Invalid File"
-        isErred
-      />
+      <File fileName="Test File.txt" fileSize={12330} errorMessage="Invalid File" isErred />
     </StyledFileWrapperDiv>
   </StyledWrapperDiv>
 );

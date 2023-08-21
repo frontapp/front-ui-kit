@@ -18,7 +18,7 @@ const StyledDropdownAvatarWrapperDiv = styled.div`
  * Component.
  */
 
-export const DropdownItemAvatar: FC<AvatarProps> = props => (
+export const DropdownItemAvatar: FC<AvatarProps> = (props) => (
   <StyledDropdownAvatarWrapperDiv>
     <Avatar {...props} size={props.size || VisualSizesEnum.MEDIUM} />
   </StyledDropdownAvatarWrapperDiv>

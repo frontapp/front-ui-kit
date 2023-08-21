@@ -29,14 +29,14 @@ const StyledLayerDiv = styled.div<LayerStyleProps>`
   height: 100%;
 
   /** Catch pointer events if and only if we are an exclusive layer. */
-  pointer-events: ${p => (p.$isExclusive ? 'auto' : 'none')};
+  pointer-events: ${(p) => (p.$isExclusive ? 'auto' : 'none')};
 `;
 
 /*
  * Component.
  */
 
-export const Layer: FC<LayerProps> = props => {
+export const Layer: FC<LayerProps> = (props) => {
   const {isExclusive, children, layerRootId, onClick} = props;
   const [nodes, setNodes] = useState<{nodeWrapper: HTMLElement; nodeContent: HTMLElement}>();
 
@@ -66,8 +66,7 @@ export const Layer: FC<LayerProps> = props => {
     };
   }, [isExclusive, layerRootId]);
 
-  if (!nodes)
-    return null;
+  if (!nodes) return null;
 
   const content = (
     <StyledLayerDiv $isExclusive={isExclusive} onClick={onClick}>
@@ -85,10 +84,8 @@ export const Layer: FC<LayerProps> = props => {
 function createLayer(node: HTMLElement, layerRootId?: string) {
   // Check if we need a different root element to append to instead of just the body.
   const layerRootElement = layerRootId && window.document.getElementById(layerRootId);
-  if (layerRootElement)
-    layerRootElement.appendChild(node);
-  else
-    window.document.body.appendChild(node);
+  if (layerRootElement) layerRootElement.appendChild(node);
+  else window.document.body.appendChild(node);
 
   return () => {
     node.remove();

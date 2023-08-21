@@ -22,7 +22,7 @@ export default {
     },
     viewMode: 'docs'
   },
-  id: "Components/Avatar"
+  id: 'Components/Avatar'
 } as ComponentMeta<typeof Avatar>;
 
 export {Basic} from './stories/basic.stories';
