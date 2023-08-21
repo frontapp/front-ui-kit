@@ -90,6 +90,7 @@ exports[`<Checkbox /> Spec Snapshots should render a filled and disabled input 1
       class="c1"
     />
     <input
+      aria-invalid="false"
       class="c2"
       disabled=""
       id="id"
@@ -191,6 +192,7 @@ exports[`<Checkbox /> Spec Snapshots should render an empty and disabled input 1
       class="c1"
     />
     <input
+      aria-invalid="false"
       class="c2"
       disabled=""
       id="id"
@@ -304,6 +306,7 @@ exports[`<Checkbox /> Spec Snapshots should render an input of type email 1`] = 
       </div>
     </div>
     <input
+      aria-invalid="false"
       class="c3"
       id="id"
       name=""
@@ -415,6 +418,7 @@ exports[`<Checkbox /> Spec Snapshots should render an input of type number 1`] =
       </div>
     </div>
     <input
+      aria-invalid="false"
       class="c3"
       id="id"
       name=""
@@ -519,6 +523,7 @@ exports[`<Checkbox /> Spec Snapshots should render an input with an error 1`] = 
       class="c1"
     />
     <input
+      aria-invalid="true"
       class="c2"
       id="id"
       name=""
@@ -630,6 +635,7 @@ exports[`<Checkbox /> Spec Snapshots should render an input with an icon 1`] = `
       </div>
     </div>
     <input
+      aria-invalid="false"
       class="c3"
       id="id"
       name=""
