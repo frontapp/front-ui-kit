@@ -1,6 +1,13 @@
 # Changelog
 
 
+## [0.7.11](https://github.com/frontapp/front-ui-kit/compare/v0.7.10...v0.7.11) (2023-08-21)
+
+
+### Features
+
+* add aria-invalid to Input ([#200](https://github.com/frontapp/front-ui-kit/issues/200)) ([f38e49d](https://github.com/frontapp/front-ui-kit/commit/f38e49da43bbfd382c217829fd5c148bf6f52fb7))
+
 ## [0.7.10](https://github.com/frontapp/front-ui-kit/compare/v0.7.9...v0.7.10) (2023-08-17)
 
 
