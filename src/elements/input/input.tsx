@@ -198,7 +198,6 @@ export function Input<T = string>(props: InputProps<T>) {
         onFocus={onInputFocus}
         onBlur={onInputBlur}
         aria-invalid={isErred}
-        aria-disabled={isDisabled}
       />
     </StyledInputDiv>
   );
