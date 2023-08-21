@@ -49,12 +49,12 @@ interface LoaderStyleProps {
   $isEnabled: boolean;
 }
 const StyledLoaderDiv = styled.div<LoaderStyleProps>`
-  width: ${p => sizes[p.$size]}px;
-  height: ${p => sizes[p.$size]}px;
-  background-image: url(${p => images[p.$variant][p.$size]});
-  background-size: ${p => sizes[p.$size]}px;
+  width: ${(p) => sizes[p.$size]}px;
+  height: ${(p) => sizes[p.$size]}px;
+  background-image: url(${(p) => images[p.$variant][p.$size]});
+  background-size: ${(p) => sizes[p.$size]}px;
 
-  ${p => maybeAnimate(p.$isEnabled)};
+  ${(p) => maybeAnimate(p.$isEnabled)};
 `;
 
 const rotate360 = keyframes`
@@ -67,8 +67,7 @@ const rotate360 = keyframes`
 `;
 
 function maybeAnimate(isEnabled: boolean) {
-  if (!isEnabled)
-    return '';
+  if (!isEnabled) return '';
 
   return css`
     animation: ${rotate360} 0.6s linear infinite;
@@ -79,7 +78,7 @@ function maybeAnimate(isEnabled: boolean) {
  * Component.
  */
 
-export const Loader: FC<LoaderProps> = props => (
+export const Loader: FC<LoaderProps> = (props) => (
   <StyledLoaderDiv
     $size={props.size ?? defaultProps.size}
     $variant={props.color ?? defaultProps.variant}
