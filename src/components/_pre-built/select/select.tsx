@@ -121,8 +121,7 @@ export const Select: FC<SelectProps> = ({
           isLoading={isLoading}
           hasMore={hasMore}
           loadingThreshold={loadingThreshold}
-          onLoadMore={onLoadMore}
-        >
+          onLoadMore={onLoadMore}>
           {maybeRenderHeader(headerLabel, searchPlaceholder, searchValue, onSearchChange)}
           {children}
         </Dropdown>
@@ -141,14 +140,12 @@ function maybeRenderHeader(
   searchValue?: string,
   onSearchChange?: (value: string) => void
 ) {
-  if (!label)
-    return null;
+  if (!label) return null;
   return (
     <DropdownHeader
       searchPlaceholder={searchPlaceholder}
       searchValue={searchValue}
-      onSearchChange={onSearchChange}
-    >
+      onSearchChange={onSearchChange}>
       {label}
     </DropdownHeader>
   );

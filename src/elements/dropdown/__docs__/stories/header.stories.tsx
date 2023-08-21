@@ -59,7 +59,7 @@ const Template: ComponentStory<typeof DropdownCoordinator> = () => {
 
   useEffect(() => {
     const lowerSearchValue = searchValue.toLowerCase();
-    setDogBreeds(dogBreedsSource.filter(b => b.toLowerCase().includes(lowerSearchValue)));
+    setDogBreeds(dogBreedsSource.filter((b) => b.toLowerCase().includes(lowerSearchValue)));
   }, [searchValue]);
 
   return (
@@ -85,14 +85,12 @@ const Template: ComponentStory<typeof DropdownCoordinator> = () => {
               isEmpty={dogBreeds.length === 0}
               renderEmptyState={() => <EmptyState message="Could not find dog breed." />}
               maxHeight={200}
-              maxWidth={buttonWidth}
-            >
+              maxWidth={buttonWidth}>
               <DropdownHeader
                 searchValue={searchValue}
                 searchPlaceholder="Search dog breeds..."
                 onBackClick={searchValue ? onBackClick : undefined}
-                onSearchChange={setSearchValue}
-              >
+                onSearchChange={setSearchValue}>
                 Dog Breeds
               </DropdownHeader>
               {!searchValue && (
@@ -105,12 +103,11 @@ const Template: ComponentStory<typeof DropdownCoordinator> = () => {
                   <DropdownHeading>Dog Breeds</DropdownHeading>
                 </>
               )}
-              {dogBreeds.map(breed => (
+              {dogBreeds.map((breed) => (
                 <DropdownItem
                   key={breed}
                   isSelected={selectedDogBreed === breed}
-                  onClick={() => setSelectedDogBreed(breed)}
-                >
+                  onClick={() => setSelectedDogBreed(breed)}>
                   {breed}
                 </DropdownItem>
               ))}

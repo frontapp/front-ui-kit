@@ -38,9 +38,11 @@ const StyledTabWrapperDiv = styled.div<StyledTabWrapperDivProps>`
   cursor: default;
   text-align: center;
 
-  ${p => p.$isSelected && css`
-    color: ${greys.black};
-  `}
+  ${(p) =>
+    p.$isSelected &&
+    css`
+      color: ${greys.black};
+    `}
 
   &:hover {
     color: ${greys.black};
@@ -62,9 +64,11 @@ const StyledSelectedBorderDiv = styled.div<StyledSelectedBorderDivProps>`
   border-top-left-radius: 100px;
   border-top-right-radius: 100px;
 
-  ${p => p.$isSelected && css`
-    background: ${greys.black};
-  `}
+  ${(p) =>
+    p.$isSelected &&
+    css`
+      background: ${greys.black};
+    `}
 `;
 
 /*
@@ -72,7 +76,7 @@ const StyledSelectedBorderDiv = styled.div<StyledSelectedBorderDivProps>`
  */
 
 // TODO: Add tooltip support for overflowing names.
-export const Tab: FC<TabProps> = props => {
+export const Tab: FC<TabProps> = (props) => {
   const {name, isSelected, onClick} = props;
   return (
     <StyledTabWrapperDiv $isSelected={isSelected} onClick={onClick}>

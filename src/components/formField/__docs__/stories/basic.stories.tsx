@@ -20,7 +20,7 @@ const StyledFormDiv = styled.div`
   width: 100%;
 `;
 
-const Template: ComponentStory<typeof FormField> = args => {
+const Template: ComponentStory<typeof FormField> = (args) => {
   const [value, setValue] = useState('');
   return (
     <StyledWrapperDiv>

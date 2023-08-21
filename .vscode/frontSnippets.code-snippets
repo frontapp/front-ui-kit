@@ -2,22 +2,14 @@
   "Front Comment™": {
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": "fc",
-    "body": [
-      "/*",
-      " * $1",
-      " */"
-    ],
+    "body": ["/*", " * $1", " */"],
     "description": "Add a Front Style™ comment."
   },
   "Front Style Props": {
     "scope": "typescript, typescriptreact",
     "prefix": "fsp",
     "description": "Creates a *StyleProps type",
-    "body": [
-      "interface $1StyleProps {",
-      "$2",
-      "}"
-    ],
+    "body": ["interface $1StyleProps {", "$2", "}"]
   },
   "Front React Functional Component": {
     "scope": "typescriptreact",

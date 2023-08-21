@@ -32,9 +32,14 @@ const Template: ComponentStory<typeof Select> = () => {
   return (
     <StyledWrapperDiv>
       <StyledSelectWrapperDiv>
-        <Select selectedValues={items.find(item => item.id === selectedItemId)?.display} layerRootId="story--components-select--basic">
-          {items.map(item => (
-            <SelectItem key={item.id} onClick={() => setSelectedItemId(item.id)} isSelected={item.id === selectedItemId}>
+        <Select
+          selectedValues={items.find((item) => item.id === selectedItemId)?.display}
+          layerRootId="story--components-select--basic">
+          {items.map((item) => (
+            <SelectItem
+              key={item.id}
+              onClick={() => setSelectedItemId(item.id)}
+              isSelected={item.id === selectedItemId}>
               {item.display}
             </SelectItem>
           ))}

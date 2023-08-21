@@ -23,7 +23,7 @@ interface StyledContentIconDivProps {
 }
 
 const StyledContentIconDiv = styled.div<StyledContentIconDivProps>`
-  ${p => {
+  ${(p) => {
     if (p.$position === 'left')
       return css`
         grid-area: left-content;
@@ -34,7 +34,6 @@ const StyledContentIconDiv = styled.div<StyledContentIconDivProps>`
       margin-left: 8px;
     `;
   }}
-  
 `;
 
 /*

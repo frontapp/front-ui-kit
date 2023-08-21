@@ -24,7 +24,7 @@ export interface ActionMenuItemProps {
  * Component.
  */
 
-export const ActionMenuItem: FC<ActionMenuItemProps> = props => {
+export const ActionMenuItem: FC<ActionMenuItemProps> = (props) => {
   const {iconName, children, onClick} = props;
   return (
     <DropdownItem onClick={onClick}>

@@ -107,8 +107,7 @@ export const Task: FC<TaskProps> = ({
     );
 
   const onClickWrapper = (event: MouseEvent) => {
-    if (event.defaultPrevented || !onClick)
-      return;
+    if (event.defaultPrevented || !onClick) return;
     onClick(event);
   };
 
@@ -124,8 +123,7 @@ export const Task: FC<TaskProps> = ({
             <Tooltip placement="top" maxWidth={240}>
               {label}
             </Tooltip>
-          )}
-        >
+          )}>
           {label}
         </TooltipCoordinator>
       </StyledTaskLabelDiv>
@@ -144,16 +142,14 @@ function maybeRenderTaskIconOrCheckbox(
   isChecked?: boolean,
   onChange?: (isChecked: boolean) => void
 ) {
-  if (!type)
-    return null;
+  if (!type) return null;
   if (type === 'icon' && iconName)
     return (
       <StyledTaskIconDiv>
         <Icon name={iconName} />
       </StyledTaskIconDiv>
     );
-  if (!onChange)
-    return null;
+  if (!onChange) return null;
 
   const checkboxIcon = isChecked ? 'CheckmarkCircle' : 'CheckmarkCircleEmpty';
   const iconColor = isChecked ? palette.green.shade40 : greys.shade50;
@@ -171,13 +167,12 @@ function maybeRenderTaskIconOrCheckbox(
 }
 
 function maybeRenderDropdown(children?: ReactNode, layerRootId?: string) {
-  if (!children)
-    return null;
+  if (!children) return null;
   return (
     <DropdownCoordinator
       layerRootId={layerRootId}
       placement="bottom-end"
-      renderButton={isDropdownOpen => (
+      renderButton={(isDropdownOpen) => (
         <Button type="icon" isActive={isDropdownOpen}>
           <Icon name="EllipsisVertical" />
         </Button>

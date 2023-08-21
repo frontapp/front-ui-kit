@@ -22,9 +22,10 @@ interface PluginLayoutProps {
 const StyledPluginLayoutWrapperDiv = styled.div`
   height: 100%;
   display: grid;
-  grid-template-areas: "plugin-header"
-                       "plugin-content"
-                       "plugin-footer";
+  grid-template-areas:
+    'plugin-header'
+    'plugin-content'
+    'plugin-footer';
   grid-template-rows: auto 1fr auto;
 `;
 

@@ -40,7 +40,7 @@ const StyledDayDiv = styled.div<DayStyleProps>`
   font-size: ${fontSizes.small};
   font-weight: ${fontWeights.normal};
   line-height: 24px;
-  cursor: default
+  cursor: default;
 `;
 
 function addDayStyles(props: DayStyleProps) {
@@ -77,12 +77,11 @@ function addDayStyles(props: DayStyleProps) {
  * Component.
  */
 
-export const DatePickerCalendarItem: FC<DatePickerCalendarItemProps> = props => {
+export const DatePickerCalendarItem: FC<DatePickerCalendarItemProps> = (props) => {
   const {day, isSelectable, isSelected, isDifferentMonth, onSelect} = props;
-  const onClick: MouseEventHandler = event => {
+  const onClick: MouseEventHandler = (event) => {
     event.preventDefault();
-    if (onSelect)
-      onSelect(day);
+    if (onSelect) onSelect(day);
   };
   return (
     <StyledDayDiv
@@ -90,8 +89,7 @@ export const DatePickerCalendarItem: FC<DatePickerCalendarItemProps> = props => 
       $isSelectable={isSelectable}
       $isDisabled={!isSelectable}
       $isDifferentMonth={isDifferentMonth}
-      onClick={onClick}
-    >
+      onClick={onClick}>
       {day.day}
     </StyledDayDiv>
   );

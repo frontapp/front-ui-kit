@@ -5,11 +5,7 @@ import styled from 'styled-components';
 import {Tab} from '../../tab';
 import {TabGroup} from '../../tabGroup';
 
-const tabs = [
-  "Example Tab 1",
-  "Example Tab 2",
-  "Example Tab 3"
-];
+const tabs = ['Example Tab 1', 'Example Tab 2', 'Example Tab 3'];
 
 const StyledWrapperDiv = styled.div`
   display: flex;
@@ -28,7 +24,7 @@ const Template: ComponentStory<typeof Tab> = () => {
     <StyledWrapperDiv>
       <StyledTabWrapperDiv>
         <TabGroup>
-          {tabs.map(tab => (
+          {tabs.map((tab) => (
             <Tab key={tab} name={tab} isSelected={tab === selectedTab} onClick={() => setSelectedTab(tab)} />
           ))}
         </TabGroup>

@@ -13,7 +13,7 @@ interface TopBannersProviderProps {}
  * Component.
  */
 
-export const TopBannersProvider: FC<PropsWithChildren<TopBannersProviderProps>> = props => {
+export const TopBannersProvider: FC<PropsWithChildren<TopBannersProviderProps>> = (props) => {
   const [banner, setBanner] = useState<TopBannerDefinition | undefined>();
 
   const [localSetTimeout, localClearTimeout] = useTimeout();

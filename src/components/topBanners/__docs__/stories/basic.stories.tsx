@@ -16,8 +16,7 @@ const BasicContent = () => {
             type: TopBannersEnum.INFO,
             dismissAfter: 10_000
           });
-        }}
-      >
+        }}>
         Show banner
       </Button>
     </div>

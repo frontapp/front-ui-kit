@@ -68,7 +68,7 @@ const StyledChevronIconDiv = styled.div`
  * Component
  */
 
-export const AccordionSection: FC<AccordionSectionProps> = props => {
+export const AccordionSection: FC<AccordionSectionProps> = (props) => {
   const {children, isOpen = false, title, id, onSectionToggled} = props;
 
   return (
@@ -91,7 +91,6 @@ export const AccordionSection: FC<AccordionSectionProps> = props => {
  */
 
 function maybeRenderAccordionSectionContent(children: React.ReactNode, isOpen?: boolean) {
-  if (!isOpen)
-    return null;
+  if (!isOpen) return null;
   return <StyledAccordionSectionContentDiv>{children}</StyledAccordionSectionContentDiv>;
 }

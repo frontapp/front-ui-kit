@@ -32,7 +32,7 @@ export const ActionMenu: FC<ActionMenuProps> = ({children, width = defaultDropdo
   <DropdownCoordinator
     placement="bottom-end"
     isInline
-    renderButton={isDropdownOpen => (
+    renderButton={(isDropdownOpen) => (
       <Button type="icon" isActive={isDropdownOpen}>
         <Icon name="EllipsisVertical" />
       </Button>

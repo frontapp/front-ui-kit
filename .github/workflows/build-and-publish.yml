@@ -35,7 +35,7 @@ jobs:
       - run: yarn publish --non-interactive --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-      
+
   # Build and publish storybook when a new version is released.
   storybook:
     runs-on: ubuntu-latest

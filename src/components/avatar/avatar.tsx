@@ -39,21 +39,20 @@ interface StyledAvatarWrapperDivProps {
 
 const StyledAvatarWrapperDiv = styled.div<StyledAvatarWrapperDivProps>`
   font-family: ${fonts.system};
-  width: ${p => `${avatarSizes[p.$size]}px`};
-  height: ${p => `${avatarSizes[p.$size]}px`};
-  line-height: ${p => `${lineHeights[p.$size]}px`};
-  font-size: ${p => avatarFontSizes[p.$size]};
-  background: ${p => p.$color};
+  width: ${(p) => `${avatarSizes[p.$size]}px`};
+  height: ${(p) => `${avatarSizes[p.$size]}px`};
+  line-height: ${(p) => `${lineHeights[p.$size]}px`};
+  font-size: ${(p) => avatarFontSizes[p.$size]};
+  background: ${(p) => p.$color};
   border-radius: 50%;
   text-align: center;
   color: ${greys.white};
 
-  ${p => addImageSrcStyles(p.$imgSrc)};
+  ${(p) => addImageSrcStyles(p.$imgSrc)};
 `;
 
 function addImageSrcStyles(imgSrc?: string) {
-  if (!imgSrc)
-    return '';
+  if (!imgSrc) return '';
   return css`
     background: transparent;
     background-image: url(${imgSrc});
@@ -84,11 +83,11 @@ export const Avatar: FC<AvatarProps> = ({name, imgSrc, size = VisualSizesEnum.LA
  */
 
 function computeColorFromName(name: string) {
-  if (name.length === 0)
-    return palette.blue.shade40;
+  if (name.length === 0) return palette.blue.shade40;
   // Count the list of available colors and remove 1 since we do not allow grey as a default color.
   const availableColorsCount = Object.keys(palette).length - 1;
-  const selectedColorIndex = ((name.length * name.charCodeAt(0) * name.charCodeAt(name.length - 1)) % availableColorsCount) + 1;
+  const selectedColorIndex =
+    ((name.length * name.charCodeAt(0) * name.charCodeAt(name.length - 1)) % availableColorsCount) + 1;
 
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   const selectedColorPalette = Object.keys(palette)[selectedColorIndex] as PaletteColorsEnum;
@@ -97,5 +96,9 @@ function computeColorFromName(name: string) {
 
 function computeInitialsFromName(name: string, size: VisualSizesEnum) {
   const initialLimits = characterLimits[size];
-  return name.split(' ').map(word => word[0]).slice(0, initialLimits).join('');
+  return name
+    .split(' ')
+    .map((word) => word[0])
+    .slice(0, initialLimits)
+    .join('');
 }

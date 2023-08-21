@@ -46,15 +46,14 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = ({
   layerRootId
 }) => {
   const onChangeDate = (date?: Date) => {
-    if (onChange)
-      onChange(date);
+    if (onChange) onChange(date);
   };
 
   return (
     <DropdownCoordinator
       layerRootId={layerRootId}
       placement="bottom-start"
-      renderButton={isDropdownOpen => (
+      renderButton={(isDropdownOpen) => (
         <DropdownButton
           value={(value && formatDateTime(value, type, timeFormat)) || ''}
           placeholder={placeholder}
@@ -62,7 +61,7 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = ({
           isActive={isDropdownOpen}
         />
       )}
-      renderDropdown={onCloseDropdown => (
+      renderDropdown={(onCloseDropdown) => (
         <DatePicker
           value={value}
           timeFormat={timeFormat}

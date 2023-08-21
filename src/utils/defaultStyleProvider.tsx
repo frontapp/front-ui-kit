@@ -17,8 +17,7 @@ const defaultStylesClassName = 'default-front-base-styles';
 export const DefaultStyleProvider: FC<{children?: React.ReactNode}> = ({children}) => {
   useEffect(() => {
     // Make sure the window object exists.
-    if (!window || !window.document)
-      return;
+    if (!window || !window.document) return;
 
     // Pull the values from the document we need.
     const {document} = window;

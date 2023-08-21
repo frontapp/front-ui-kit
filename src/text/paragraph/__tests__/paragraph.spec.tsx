@@ -9,8 +9,8 @@ describe('<Paragraph /> Spec', () => {
     it('should render a paragraph with defaults', () => {
       const view = render(
         <Paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at mattis lorem, id varius sem. Praesent commodo
-          eu ex sit amet cursus
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at mattis lorem, id varius sem.
+          Praesent commodo eu ex sit amet cursus
         </Paragraph>
       );
       expect(view.container).toMatchSnapshot();
@@ -19,8 +19,8 @@ describe('<Paragraph /> Spec', () => {
     it('should render a paragraph with a bold font', () => {
       const view = render(
         <Paragraph isBold>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at mattis lorem, id varius sem. Praesent commodo
-          eu ex sit amet cursus
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at mattis lorem, id varius sem.
+          Praesent commodo eu ex sit amet cursus
         </Paragraph>
       );
       expect(view.container).toMatchSnapshot();
@@ -29,8 +29,8 @@ describe('<Paragraph /> Spec', () => {
     it('should render a paragraph with a colored font', () => {
       const view = render(
         <Paragraph color={palette.green.shade40}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at mattis lorem, id varius sem. Praesent commodo
-          eu ex sit amet cursus
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at mattis lorem, id varius sem.
+          Praesent commodo eu ex sit amet cursus
         </Paragraph>
       );
       expect(view.container).toMatchSnapshot();

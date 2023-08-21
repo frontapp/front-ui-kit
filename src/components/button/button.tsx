@@ -79,8 +79,8 @@ const StyledButton = styled.button<StyledButtonProps>`
   box-sizing: border-box;
   font-weight: ${fontWeights.semibold};
 
-  ${p => addButtonSizeStyles(p.$size)};
-  ${p => addButtonTypeStyles(p.$type, p.$isDisabled, p.$isActive)};
+  ${(p) => addButtonSizeStyles(p.$size)};
+  ${(p) => addButtonTypeStyles(p.$type, p.$isDisabled, p.$isActive)};
 `;
 
 function addButtonSizeStyles(size: VisualSizesEnum) {
@@ -192,8 +192,7 @@ export const Button: FC<ButtonProps> = ({
 }) => {
   // Wrap the onClick to check if it is disabled or not defined.
   const onButtonClick = (event: MouseEvent) => {
-    if (isDisabled || !onClick)
-      return;
+    if (isDisabled || !onClick) return;
     onClick(event);
   };
 
@@ -207,8 +206,7 @@ export const Button: FC<ButtonProps> = ({
         isActive={isActive}
         onClick={onButtonClick}
         iconColor={iconColor}
-        isRounded={isRounded}
-      >
+        isRounded={isRounded}>
         {children}
       </IconButton>
     );
@@ -220,8 +218,7 @@ export const Button: FC<ButtonProps> = ({
         $size={size}
         $isDisabled={isDisabled}
         $isActive={isActive}
-        onClick={onButtonClick}
-      >
+        onClick={onButtonClick}>
         {renderChildrenSpecifiedComponents(children, nonButtonContentChildren)}
         {renderButtonChildren(children)}
       </StyledButton>
@@ -236,8 +233,7 @@ export const Button: FC<ButtonProps> = ({
 /** Renders the children and checks if we need to wrap the passed in children in the ButtonContent. */
 function renderButtonChildren(children: React.ReactNode) {
   const shouldWrapInContent = !isComponentInChildren(children, 'ButtonContent');
-  if (!shouldWrapInContent)
-    return children;
+  if (!shouldWrapInContent) return children;
   return (
     <ButtonContent>
       {renderChildrenIgnoreSpecifiedComponents(children, nonButtonContentChildren)}

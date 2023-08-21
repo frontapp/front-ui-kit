@@ -37,20 +37,19 @@ const Template: ComponentStory<typeof Select> = () => {
       return;
     }
 
-    setUsersToDisplay(users.filter(u => u.name.toLowerCase().includes(searchValue.toLowerCase())));
+    setUsersToDisplay(users.filter((u) => u.name.toLowerCase().includes(searchValue.toLowerCase())));
   }, [searchValue, users]);
 
   const fetchUserData = async () => {
-    if (isLoading || users.length > 0)
-      return;
+    if (isLoading || users.length > 0) return;
     setIsLoading(true);
     // Create a 1 second delay between requests.
     setTimeout(async () => {
       const data = await fetch(`https://randomuser.me/api/?results=50&seed=example`);
       const jsonData = await data.json();
-      setUsers(existingUsers => [
+      setUsers((existingUsers) => [
         ...existingUsers,
-        ...jsonData.results.map(d => ({id: d.login.uuid, name: `${d.name.first} ${d.name.last}`}))
+        ...jsonData.results.map((d) => ({id: d.login.uuid, name: `${d.name.first} ${d.name.last}`}))
       ]);
       setIsLoading(false);
     }, 1000);
@@ -60,11 +59,11 @@ const Template: ComponentStory<typeof Select> = () => {
     <StyledWrapperDiv>
       <StyledMenuWrapperDiv>
         <Select
-          selectedValues={users.find(user => user.id === selectedUserId)?.name}
+          selectedValues={users.find((user) => user.id === selectedUserId)?.name}
           isLoading={isLoading}
           headerLabel="Search for a user"
           searchValue={searchValue}
-          onSearchChange={value => {
+          onSearchChange={(value) => {
             setSearchValue(value);
           }}
           onSelectClosed={() => {
@@ -73,14 +72,12 @@ const Template: ComponentStory<typeof Select> = () => {
           onSelectOpen={() => {
             fetchUserData();
           }}
-          layerRootId="story--components-select--async-search"
-        >
-          {usersToDisplay.map(user => (
+          layerRootId="story--components-select--async-search">
+          {usersToDisplay.map((user) => (
             <SelectItem
               key={user.id}
               onClick={() => setSelectedUserId(user.id)}
-              isSelected={user.id === selectedUserId}
-            >
+              isSelected={user.id === selectedUserId}>
               {user.name}
             </SelectItem>
           ))}

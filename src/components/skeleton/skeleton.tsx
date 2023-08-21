@@ -53,9 +53,9 @@ interface StyledSkeletonDivProps {
 
 const StyledSkeletonDiv = styled.div<StyledSkeletonDivProps>`
   position: relative;
-  width: ${p => (p.$width ? `${p.$width}px` : '100%')};
-  height: ${p => `${p.$height}px`};
-  border-radius: ${p => p.$borderRadius};
+  width: ${(p) => (p.$width ? `${p.$width}px` : '100%')};
+  height: ${(p) => `${p.$height}px`};
+  border-radius: ${(p) => p.$borderRadius};
   overflow: hidden;
 
   &::before {
@@ -70,7 +70,7 @@ const StyledSkeletonDiv = styled.div<StyledSkeletonDivProps>`
     background-repeat: no-repeat;
     animation: ${skeletonKeyFrames} 1.5s ease-in-out infinite;
   }
-  ${p => addSchemeStyles(p.$variant)};
+  ${(p) => addSchemeStyles(p.$variant)};
 `;
 
 function addSchemeStyles(variant: SkeletonVariantTypes) {
@@ -95,4 +95,12 @@ export const Skeleton: FC<SkeletonProps> = ({
   height = 16,
   variant = 'light',
   borderRadius = '8px'
-}) => <StyledSkeletonDiv className={className} $width={width} $height={height} $variant={variant} $borderRadius={borderRadius} />;
+}) => (
+  <StyledSkeletonDiv
+    className={className}
+    $width={width}
+    $height={height}
+    $variant={variant}
+    $borderRadius={borderRadius}
+  />
+);

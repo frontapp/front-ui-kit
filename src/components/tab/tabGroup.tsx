@@ -26,7 +26,7 @@ const StyledTabGroupWrapperDiv = styled.div<StyledTabGroupWrapperDivProps>`
   display: flex;
   flex-flow: row;
   gap: 16px;
-  max-width: ${p => (p.$maxWidth ? `${p.$maxWidth}px` : '100%')};
+  max-width: ${(p) => (p.$maxWidth ? `${p.$maxWidth}px` : '100%')};
 `;
 
 /*
@@ -35,9 +35,5 @@ const StyledTabGroupWrapperDiv = styled.div<StyledTabGroupWrapperDivProps>`
 
 export const TabGroup: FC<TabGroupProps> = ({children, maxWidth}) => {
   const tabGroupContent = renderChildrenSpecifiedComponents(children, ['Tab']);
-  return (
-    <StyledTabGroupWrapperDiv $maxWidth={maxWidth}>
-      {tabGroupContent}
-    </StyledTabGroupWrapperDiv>
-  );
+  return <StyledTabGroupWrapperDiv $maxWidth={maxWidth}>{tabGroupContent}</StyledTabGroupWrapperDiv>;
 };

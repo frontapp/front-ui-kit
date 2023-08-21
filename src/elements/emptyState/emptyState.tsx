@@ -52,7 +52,7 @@ const StyledContentWrapperDiv = styled.div<StyledContentWrapperDivProps>`
   flex-flow: column;
   gap: 10px;
 
-  ${p => css`
+  ${(p) => css`
     height: ${p.$hasVisibleButton ? '140px' : '97px'};
   `};
 `;
@@ -105,8 +105,7 @@ export const EmptyState: FC<EmptyStateProps> = ({message = DefaultMessage, butto
  */
 
 function maybeRenderButton(buttonText?: string, onButtonClick?: () => void) {
-  if (!buttonText || !onButtonClick)
-    return null;
+  if (!buttonText || !onButtonClick) return null;
   return (
     <StyledButtonWrapperDiv>
       <Button type="tertiary" onClick={onButtonClick}>

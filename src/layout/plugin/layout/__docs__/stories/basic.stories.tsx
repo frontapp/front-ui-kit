@@ -39,8 +39,7 @@ const Template: ComponentStory<typeof PluginLayout> = () => (
               <Button type="icon">
                 <Icon name="Search" />
               </Button>
-            }
-          >
+            }>
             Top-level Plugin Page
           </PluginHeader>
           <StyledPluginContentDiv>

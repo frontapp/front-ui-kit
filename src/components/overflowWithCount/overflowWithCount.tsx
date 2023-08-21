@@ -50,7 +50,7 @@ const StyledVisibleElementsDiv = styled.div<StyledVisibleElementsDivProps>`
   flex-flow: row;
   white-space: nowrap;
   overflow: hidden;
-  ${p => css`
+  ${(p) => css`
     gap: ${p.$itemGap}px;
   `};
 `;
@@ -62,22 +62,20 @@ interface StyledElementWrapperSpanProps {
 }
 const StyledElementWrapperDiv = styled.div<StyledElementWrapperSpanProps>`
   white-space: nowrap;
-  ${p =>
-    css`
-      max-width: ${p.$maxWidth}px;
-    `}
+  ${(p) => css`
+    max-width: ${p.$maxWidth}px;
+  `}
 
-  ${p =>
+  ${(p) =>
     p.$isEllipsisElement &&
     css`
       ${ellipsis()}
     `}
-  ${p => addHiddenStyles(p)};
+  ${(p) => addHiddenStyles(p)};
 `;
 
 function addHiddenStyles(p: StyledElementWrapperSpanProps) {
-  if (!p.$isHidden)
-    return '';
+  if (!p.$isHidden) return '';
   return css`
     visibility: hidden;
     position: absolute;
@@ -109,8 +107,7 @@ export function OverflowWithCount<T extends {}>(props: OverflowWithCountProps<T>
   const [hideStartIndex, setHideStartIndex] = useState<number | undefined>(undefined);
 
   useLayoutEffect(() => {
-    if (!visibleContainerRef.current || !rowWidth)
-      return;
+    if (!visibleContainerRef.current || !rowWidth) return;
 
     // First calculate the widths of the elements.
     const visibleRender = visibleContainerRef.current;
@@ -153,11 +150,7 @@ export function OverflowWithCount<T extends {}>(props: OverflowWithCountProps<T>
           rowWidth - hiddenIndicatorWidth
         )}
       </StyledVisibleElementsDiv>
-      {maybeRenderHiddenIndicator(
-        hiddenIndicatorRef,
-        elements.length,
-        hideStartIndex
-      )}
+      {maybeRenderHiddenIndicator(hiddenIndicatorRef, elements.length, hideStartIndex)}
     </StyledOverflowWithCountContainerDiv>
   );
 }
@@ -184,8 +177,7 @@ function renderVisibleElements<T>(
           $isEllipsisElement={
             Boolean(shouldRenderPartial && elements.length === 1) ||
             Boolean(shouldRenderPartial && hideStartIndex && hideStartIndex - 1 === index)
-          }
-        >
+          }>
           {elementRenderer(element, index)}
         </StyledElementWrapperDiv>
       ))}
@@ -198,12 +190,10 @@ function maybeRenderHiddenIndicator(
   numberOfElements: number,
   hideStartIndex: number | undefined
 ) {
-  if (!hideStartIndex || hideStartIndex > numberOfElements)
-    return null;
+  if (!hideStartIndex || hideStartIndex > numberOfElements) return null;
 
   const numberOfHiddenElements = numberOfElements - hideStartIndex;
-  if (numberOfHiddenElements === 0)
-    return null;
+  if (numberOfHiddenElements === 0) return null;
   return <StyledOverflowSpan ref={ref}>+{numberOfHiddenElements}</StyledOverflowSpan>;
 }
 
@@ -229,8 +219,7 @@ function computeHideStartIndex(
         // If we're at the boundary, also check if we can fit inside the row width without the indicator width.
         // Applies if we're already showing the indicator and the user resizes the pane such that we don't
         // need to show the indicator anymore.
-        if (hideStartIndex === sizeDetails.length - 1 && currentWidth < rowWidth)
-          hideStartIndex = undefined;
+        if (hideStartIndex === sizeDetails.length - 1 && currentWidth < rowWidth) hideStartIndex = undefined;
       }
 
       return {currentWidth, hideStartIndex};
@@ -238,7 +227,6 @@ function computeHideStartIndex(
     {hideStartIndex: undefined, currentWidth: 0} as {hideStartIndex: number | undefined; currentWidth: number}
   );
 
-  if (shouldRenderPartial)
-    return reducedResult.hideStartIndex ? reducedResult.hideStartIndex + 1 : undefined;
+  if (shouldRenderPartial) return reducedResult.hideStartIndex ? reducedResult.hideStartIndex + 1 : undefined;
   return reducedResult.hideStartIndex;
 }

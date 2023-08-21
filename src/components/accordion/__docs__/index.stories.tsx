@@ -22,7 +22,7 @@ export default {
     },
     viewMode: 'docs'
   },
-  id: "Components/Accordion"
+  id: 'Components/Accordion'
 } as ComponentMeta<typeof Accordion>;
 
 export {Basic} from './stories/basic.stories';

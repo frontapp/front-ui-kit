@@ -44,7 +44,7 @@ const Template: ComponentStory<typeof PluginLayout> = () => (
               <DropdownCoordinator
                 layerRootId="story--layout-plugin-layout--sub-level"
                 placement="bottom-end"
-                renderButton={isDropdownOpen => (
+                renderButton={(isDropdownOpen) => (
                   <Button type="icon" isActive={isDropdownOpen}>
                     <Icon name="EllipsisHorizontal" />
                   </Button>
@@ -62,8 +62,7 @@ const Template: ComponentStory<typeof PluginLayout> = () => (
                   </Dropdown>
                 )}
               />
-            }
-          >
+            }>
             Sub-level Plugin Page
           </PluginHeader>
           <StyledPluginContentDiv>

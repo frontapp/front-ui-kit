@@ -20,8 +20,8 @@ const StyledDropdownItemFormFieldWrapperDiv = styled.div`
  * Component.
  */
 
-export const DropdownItemFormField: FC<FormFieldProps> = props => (
-  <StyledDropdownItemFormFieldWrapperDiv onClick={event => event.preventDefault()}>
+export const DropdownItemFormField: FC<FormFieldProps> = (props) => (
+  <StyledDropdownItemFormFieldWrapperDiv onClick={(event) => event.preventDefault()}>
     <FormField {...props}>{props.children}</FormField>
   </StyledDropdownItemFormFieldWrapperDiv>
 );

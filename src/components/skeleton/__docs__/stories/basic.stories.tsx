@@ -10,7 +10,7 @@ const StyledWrapperDiv = styled.div`
   justify-content: center;
 `;
 
-const Template: ComponentStory<typeof Skeleton> = args => (
+const Template: ComponentStory<typeof Skeleton> = (args) => (
   <StyledWrapperDiv>
     <Skeleton {...args} />
   </StyledWrapperDiv>

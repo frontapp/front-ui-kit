@@ -43,9 +43,9 @@ const StyledIconButton = styled.button<StyledIconButtonProps>`
   background: transparent;
   border: none;
   padding: 7px;
-  border-radius: ${p => (p.$isRounded ? '99999px' : '8px')};
+  border-radius: ${(p) => (p.$isRounded ? '99999px' : '8px')};
 
-  ${p => addIconColorStyles(p.$isDanger, p.$isDisabled, p.$isActive, p.$iconColor)};
+  ${(p) => addIconColorStyles(p.$isDanger, p.$isDisabled, p.$isActive, p.$iconColor)};
 `;
 
 function addIconColorStyles(
@@ -94,7 +94,7 @@ function addIconColorStyles(
  * Component.
  */
 
-export const IconButton: FC<IconButtonProps> = props => {
+export const IconButton: FC<IconButtonProps> = (props) => {
   const {children, isDanger, isDisabled, isActive, onClick, className, iconColor, isRounded} = props;
   return (
     <StyledIconButton
@@ -104,8 +104,7 @@ export const IconButton: FC<IconButtonProps> = props => {
       $isActive={isActive}
       $isRounded={Boolean(isRounded)}
       onClick={onClick}
-      $iconColor={iconColor}
-    >
+      $iconColor={iconColor}>
       {renderFirstIconOnly(children)}
     </StyledIconButton>
   );

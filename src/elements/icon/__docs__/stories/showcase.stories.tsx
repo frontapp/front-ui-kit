@@ -76,7 +76,7 @@ const StyledCopiedTextDiv = styled.div`
  * Component.
  */
 
-export const IconShowcase: FC<IconShowcaseProps> = props => {
+export const IconShowcase: FC<IconShowcaseProps> = (props) => {
   const {iconNames} = props;
   const [copiedIconName, setCopiedIconName] = useState<string | undefined>();
 
@@ -92,7 +92,7 @@ export const IconShowcase: FC<IconShowcaseProps> = props => {
   return (
     <DefaultStyleProvider>
       <StyledIconsContainerDiv>
-        {iconNames.map(iconName => {
+        {iconNames.map((iconName) => {
           if (copiedIconName && copiedIconName === iconName)
             return (
               <StyledIconWrapperDiv key={iconName}>
@@ -111,8 +111,7 @@ export const IconShowcase: FC<IconShowcaseProps> = props => {
               <StyledIconNameDiv>
                 <TooltipCoordinator
                   condition={{type: 'overflow'}}
-                  renderTooltip={() => <Tooltip>{iconName}</Tooltip>}
-                >
+                  renderTooltip={() => <Tooltip>{iconName}</Tooltip>}>
                   {iconName}
                 </TooltipCoordinator>
               </StyledIconNameDiv>
