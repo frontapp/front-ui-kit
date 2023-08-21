@@ -30,7 +30,7 @@ interface StyledTooltipDivProps {
 const StyledTooltipDiv = styled.div<StyledTooltipDivProps>`
   font-family: ${fonts.system};
   padding: 6px 8px;
-  max-width: ${p => `${p.$maxWidth}px`};
+  max-width: ${(p) => `${p.$maxWidth}px`};
   width: max-content;
   border-radius: 8px;
   background-color: ${greys.shade90};
@@ -48,8 +48,6 @@ const StyledTooltipDiv = styled.div<StyledTooltipDivProps>`
 
 export const Tooltip: FC<TooltipProps> = ({children, placement = 'bottom', maxWidth = 400}) => (
   <RepositionPopover placement={placement}>
-    <StyledTooltipDiv $maxWidth={maxWidth}>
-      {children}
-    </StyledTooltipDiv>
+    <StyledTooltipDiv $maxWidth={maxWidth}>{children}</StyledTooltipDiv>
   </RepositionPopover>
 );

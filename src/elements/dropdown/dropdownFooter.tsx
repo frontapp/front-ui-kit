@@ -27,7 +27,7 @@ const StyledDropdownFooterWrapperDiv = styled.div`
  */
 
 export const DropdownFooter: FC<DropdownFooterProps> = ({children}) => (
-  <StyledDropdownFooterWrapperDiv onClick={event => event.preventDefault()}>
+  <StyledDropdownFooterWrapperDiv onClick={(event) => event.preventDefault()}>
     {children}
   </StyledDropdownFooterWrapperDiv>
 );

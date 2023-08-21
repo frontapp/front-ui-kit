@@ -63,7 +63,7 @@ const StyledFormFieldHelperTextDiv = styled.div<StyledFormFieldHelperTextDivProp
   line-height: 14px;
   margin-top: -4px; // Minor offset to bring the hint and error closed to the input.
 
-  ${p => css`
+  ${(p) => css`
     font-size: ${fontSizes.verySmall};
     color: ${p.$isErred ? palette.red.shade40 : greys.shade60};
     font-weight: ${p.$isErred ? fontWeights.medium : fontWeights.normal};
@@ -74,7 +74,7 @@ const StyledFormFieldHelperTextDiv = styled.div<StyledFormFieldHelperTextDivProp
  * Component.
  */
 
-export const FormField: FC<FormFieldProps> = props => {
+export const FormField: FC<FormFieldProps> = (props) => {
   const {label, children, errorMessage, hint, isRequired} = props;
   const isErred = Boolean(errorMessage);
 
@@ -91,4 +91,3 @@ export const FormField: FC<FormFieldProps> = props => {
     </StyledFormFieldWrapperDiv>
   );
 };
-

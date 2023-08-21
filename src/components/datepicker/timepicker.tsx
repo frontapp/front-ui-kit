@@ -76,16 +76,12 @@ function addTimesStyles(props: TimePickerItemStyleProps) {
  * Component.
  */
 
-export const TimePicker: FC<TimePickerProps> = props => {
+export const TimePicker: FC<TimePickerProps> = (props) => {
   const selectedRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    selectedRef.current?.scrollIntoView({block: "center"});
+    selectedRef.current?.scrollIntoView({block: 'center'});
   }, []);
-  return (
-    <StyledTimePickerDiv>
-      {renderItems(props, selectedRef)}
-    </StyledTimePickerDiv>
-  );
+  return <StyledTimePickerDiv>{renderItems(props, selectedRef)}</StyledTimePickerDiv>;
 };
 
 /*
@@ -95,7 +91,7 @@ export const TimePicker: FC<TimePickerProps> = props => {
 function renderItems(props: TimePickerProps, selectedRef: RefObject<HTMLDivElement>) {
   // Render each hour in the day.
   const {value = DateTime.now(), onChange, timeFormat} = props;
-  return range(24).map(hour => {
+  return range(24).map((hour) => {
     // Check if this hour is selected.
     const hourTime = value.startOf('hour').set({hour});
     const isSelected = areTimesEqual(hourTime, value);
@@ -105,8 +101,7 @@ function renderItems(props: TimePickerProps, selectedRef: RefObject<HTMLDivEleme
         key={hour}
         ref={isSelected ? selectedRef : undefined}
         $isSelected={isSelected}
-        onClick={() => onChange && onChange(hourTime)}
-      >
+        onClick={() => onChange && onChange(hourTime)}>
         {formatTime(hourTime, timeFormat)}
       </StyledItemDiv>
     );

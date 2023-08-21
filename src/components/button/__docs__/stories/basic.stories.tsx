@@ -12,9 +12,7 @@ const StyledCenteredDiv = styled.div`
 
 const Template: ComponentStory<typeof Button> = () => (
   <StyledCenteredDiv>
-    <Button>
-      Example
-    </Button>
+    <Button>Example</Button>
   </StyledCenteredDiv>
 );
 

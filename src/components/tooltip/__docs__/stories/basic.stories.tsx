@@ -17,13 +17,7 @@ const StyledTooltipWrapperDiv = styled.div``;
 const Template: ComponentStory<typeof Tooltip> = () => (
   <StyledWrapperDiv>
     <StyledTooltipWrapperDiv>
-      <TooltipCoordinator
-        renderTooltip={() => (
-          <Tooltip>
-            This is an example tooltip.
-          </Tooltip>
-        )}
-      >
+      <TooltipCoordinator renderTooltip={() => <Tooltip>This is an example tooltip.</Tooltip>}>
         Hover over me for a tooltip.
       </TooltipCoordinator>
     </StyledTooltipWrapperDiv>

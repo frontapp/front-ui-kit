@@ -24,22 +24,24 @@ const StyledMenuWrapperDiv = styled.div`
   width: 350px;
 `;
 
-const Template: ComponentStory<typeof Select> = args => {
+const Template: ComponentStory<typeof Select> = (args) => {
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [users, setUsers] = useState<ReadonlyArray<UserData>>([]);
   const [selectedUserId, setSelectedUserId] = useState<string>();
 
   const fetchUserData = async () => {
-    if (isLoading)
-      return;
+    if (isLoading) return;
     setIsLoading(true);
     // Create a 1 second delay between requests.
     setTimeout(async () => {
       const data = await fetch(`https://randomuser.me/api/?page=${page}&results=15&seed=example`);
       const jsonData = await data.json();
-      setUsers(existingUsers => [...existingUsers, ...jsonData.results.map(d => ({id: d.login.uuid, name: `${d.name.first} ${d.name.last}`}))]);
-      setPage(currentPage => currentPage + 1);
+      setUsers((existingUsers) => [
+        ...existingUsers,
+        ...jsonData.results.map((d) => ({id: d.login.uuid, name: `${d.name.first} ${d.name.last}`}))
+      ]);
+      setPage((currentPage) => currentPage + 1);
       setIsLoading(false);
     }, 1000);
   };
@@ -49,14 +51,16 @@ const Template: ComponentStory<typeof Select> = args => {
       <StyledMenuWrapperDiv>
         <Select
           {...args}
-          selectedValues={users.find(user => user.id === selectedUserId)?.name}
+          selectedValues={users.find((user) => user.id === selectedUserId)?.name}
           isLoading={isLoading}
           hasMore={page < 5}
           onLoadMore={fetchUserData}
-          layerRootId="story--components-select--async"
-        >
-          {users.map(user => (
-            <SelectItem key={user.id} onClick={() => setSelectedUserId(user.id)} isSelected={user.id === selectedUserId}>
+          layerRootId="story--components-select--async">
+          {users.map((user) => (
+            <SelectItem
+              key={user.id}
+              onClick={() => setSelectedUserId(user.id)}
+              isSelected={user.id === selectedUserId}>
               {user.name}
             </SelectItem>
           ))}

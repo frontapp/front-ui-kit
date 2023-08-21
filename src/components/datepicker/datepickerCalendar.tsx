@@ -54,7 +54,7 @@ const StyledWeekdayDiv = styled.div`
  * Component.
  */
 
-export const DatePickerCalendar: FC<DatePickerCalendarProps> = props => {
+export const DatePickerCalendar: FC<DatePickerCalendarProps> = (props) => {
   const {calendarWeekStartDay} = props;
   const weekdays = getSortedWeekdays(calendarWeekStartDay);
   return (
@@ -71,27 +71,16 @@ export const DatePickerCalendar: FC<DatePickerCalendarProps> = props => {
 
 /** Render the weekday headers. */
 function renderWeekdays(weekdays: ReadonlyArray<number>) {
-  return weekdays.map(weekDay => (
-    <StyledWeekdayDiv key={`weekday-${weekDay}`}>
-      {Info.weekdays('short')[weekDay - 1]}
-    </StyledWeekdayDiv>
+  return weekdays.map((weekDay) => (
+    <StyledWeekdayDiv key={`weekday-${weekDay}`}>{Info.weekdays('short')[weekDay - 1]}</StyledWeekdayDiv>
   ));
 }
 
 /** Render all the calendar days. */
-function renderDays(
-  props: DatePickerCalendarProps,
-  weekdays: ReadonlyArray<number>
-) {
-  const {
-    monthBeingViewed,
-    selectedDate,
-    minDate,
-    maxDate,
-    onDateSelect
-  } = props;
+function renderDays(props: DatePickerCalendarProps, weekdays: ReadonlyArray<number>) {
+  const {monthBeingViewed, selectedDate, minDate, maxDate, onDateSelect} = props;
   const days = getCalendarDays(monthBeingViewed, weekdays);
-  return days.map(day => {
+  return days.map((day) => {
     // Check if this day is in range.
     const isAfterMinDate = !minDate || minDate <= day.endOf('day');
     const isBeforeMaxDate = !maxDate || maxDate >= day.startOf('day');

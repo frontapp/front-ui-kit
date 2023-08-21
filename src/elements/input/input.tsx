@@ -55,7 +55,7 @@ const StyledInputDiv = styled.div<StyledInputDivProps>`
   display: flex;
   flex-flow: row;
 
-  ${p =>
+  ${(p) =>
     p.$maxWidth &&
     css`
       max-width: ${p.$maxWidth}px;
@@ -80,7 +80,7 @@ const StyledInput = styled.input<StyledInputProps>`
   box-sizing: border-box;
   appearance: none;
   padding: 4.5px 8px 4.5px 8px;
-  padding-left: ${p => (p.$hasIcon ? `25px` : `8px`)};
+  padding-left: ${(p) => (p.$hasIcon ? `25px` : `8px`)};
   outline: none;
   color: ${greys.shade90};
 
@@ -97,7 +97,7 @@ const StyledInput = styled.input<StyledInputProps>`
     background: ${greys.white};
   }
 
-  ${p => addInputStyles(p)};
+  ${(p) => addInputStyles(p)};
 `;
 
 const StyledIconDiv = styled.div`
@@ -159,24 +159,21 @@ export function Input<T = string>(props: InputProps<T>) {
     onBlur,
     shouldFocus = false
   } = props;
-  const onInputChange: ChangeEventHandler<HTMLInputElement> = event => {
-    if (isDisabled || !onChange)
-      return;
+  const onInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    if (isDisabled || !onChange) return;
     const inputValue = event.currentTarget.value;
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     onChange(type === 'number' ? Number(inputValue) : inputValue);
   };
 
-  const onInputFocus: FocusEventHandler<HTMLInputElement> = event => {
-    if (isDisabled || !onFocus)
-      return;
+  const onInputFocus: FocusEventHandler<HTMLInputElement> = (event) => {
+    if (isDisabled || !onFocus) return;
     onFocus(event);
   };
 
-  const onInputBlur: FocusEventHandler<HTMLInputElement> = event => {
-    if (isDisabled || !onBlur)
-      return;
+  const onInputBlur: FocusEventHandler<HTMLInputElement> = (event) => {
+    if (isDisabled || !onBlur) return;
     onBlur(event);
   };
 
@@ -208,7 +205,6 @@ export function Input<T = string>(props: InputProps<T>) {
  */
 
 function getInputIcon(iconName?: IconName) {
-  if (iconName)
-    return <Icon name={iconName} />;
+  if (iconName) return <Icon name={iconName} />;
   return null;
 }

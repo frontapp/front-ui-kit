@@ -22,4 +22,6 @@ const StyledButtonContentDiv = styled.div`
  * Component.
  */
 
-export const ButtonContent: FC<ButtonContentProps> = ({children}) => <StyledButtonContentDiv>{children}</StyledButtonContentDiv>;
+export const ButtonContent: FC<ButtonContentProps> = ({children}) => (
+  <StyledButtonContentDiv>{children}</StyledButtonContentDiv>
+);

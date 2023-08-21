@@ -43,7 +43,7 @@ const StyledWrapperDiv = styled.div<StyledWrapperDivProps>`
   flex-flow: row;
   align-items: center;
 
-  ${p =>
+  ${(p) =>
     p.$labelSide === 'left' &&
     css`
       flex-flow: row-reverse;
@@ -70,7 +70,7 @@ const StyledInput = styled.input<StyledCheckboxInputProps>`
   appearance: none;
   margin: 0px;
 
-  ${p => addCheckboxStyles(p)};
+  ${(p) => addCheckboxStyles(p)};
 `;
 
 const StyledChildrenDiv = styled.div`
@@ -127,8 +127,7 @@ export const Checkbox: FC<CheckboxProps> = ({
   onChange
 }) => {
   const onInputChange = () => {
-    if (isDisabled)
-      return;
+    if (isDisabled) return;
     onChange(!isChecked);
   };
   const inputRef = useRef<HTMLInputElement>(null);
@@ -136,13 +135,10 @@ export const Checkbox: FC<CheckboxProps> = ({
   // Set the attributes of the input on every render.
   useLayoutEffect(() => {
     const input = inputRef.current;
-    if (!input)
-      return;
+    if (!input) return;
 
-    if (isDisabled)
-      input.disabled = true;
-    else
-      input.disabled = false;
+    if (isDisabled) input.disabled = true;
+    else input.disabled = false;
 
     if (isChecked) {
       input.indeterminate = false;
@@ -176,9 +172,7 @@ export const Checkbox: FC<CheckboxProps> = ({
  */
 
 function getCheckboxIcon(isDisabled: boolean, isChecked: boolean, isIndeterminate: boolean) {
-  if (isChecked)
-    return <Icon name="CheckmarkBox" color={isDisabled ? greys.shade60 : greys.white} />;
-  if (isIndeterminate)
-    return <Icon name="Minus" color={isDisabled ? greys.shade60 : greys.white} />;
+  if (isChecked) return <Icon name="CheckmarkBox" color={isDisabled ? greys.shade60 : greys.white} />;
+  if (isIndeterminate) return <Icon name="Minus" color={isDisabled ? greys.shade60 : greys.white} />;
   return null;
 }

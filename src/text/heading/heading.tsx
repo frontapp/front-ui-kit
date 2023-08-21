@@ -42,11 +42,11 @@ interface HeadingStyleProps {
 const StyledHeadingDiv = styled.div<HeadingStyleProps>`
   display: block;
 
-  font-size: ${p => headingFontSizes[p.$size]};
+  font-size: ${(p) => headingFontSizes[p.$size]};
   font-weight: ${fontWeights.bold};
   font-family: ${fonts.system};
-  line-height: ${p => `${lineHeights[p.$size]}px`};
-  color: ${p => p.$color};
+  line-height: ${(p) => `${lineHeights[p.$size]}px`};
+  color: ${(p) => p.$color};
 `;
 
 /*

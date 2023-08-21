@@ -45,7 +45,7 @@ type RenderChild = ComponentType<ListChildComponentProps>;
  * Component.
  */
 
-export const DropdownList: FC<DropdownListProps> = props => {
+export const DropdownList: FC<DropdownListProps> = (props) => {
   const {
     itemsCount,
     loadingItemsCount,
@@ -71,8 +71,7 @@ export const DropdownList: FC<DropdownListProps> = props => {
 
       // When we first load, there is a chance that we are maintaining the last measurements from the previous
       // render of the dropdown if it was opened. This clears those values.
-      if (itemsCount === 0 && listRef.current)
-        listRef.current.resetAfterIndex(0);
+      if (itemsCount === 0 && listRef.current) listRef.current.resetAfterIndex(0);
     }
 
     // If we were loading but we are no longer, we should reset the measurements for the list after the last
@@ -90,8 +89,7 @@ export const DropdownList: FC<DropdownListProps> = props => {
 
   // Compute the item height for the row. If the row is the loading row, we need to pull a custom height.
   const computeItemHeight = (index: number) => {
-    if (!isItemLoaded(index))
-      return loadingSkeletonHeight;
+    if (!isItemLoaded(index)) return loadingSkeletonHeight;
     return getItemHeight(index);
   };
 
@@ -100,8 +98,7 @@ export const DropdownList: FC<DropdownListProps> = props => {
       ...style,
       top: `${parseFloat(style.top?.toString() || '0') + dropdownListPadding}px`
     };
-    if (!isItemLoaded(index))
-      return <div style={updateStyle}>{loadingSkeleton}</div>;
+    if (!isItemLoaded(index)) return <div style={updateStyle}>{loadingSkeleton}</div>;
     return <div style={updateStyle}>{renderItem(index)}</div>;
   };
 
@@ -110,8 +107,7 @@ export const DropdownList: FC<DropdownListProps> = props => {
       isItemLoaded={isItemLoaded}
       itemCount={itemCount}
       loadMoreItems={isLoading ? () => {} : onLoadMore}
-      threshold={loadingThreshold}
-    >
+      threshold={loadingThreshold}>
       {({onItemsRendered, ref: infiniteLoaderListRef}) => (
         <VariableSizeList
           ref={(ref: VariableSizeList) => {
@@ -123,8 +119,7 @@ export const DropdownList: FC<DropdownListProps> = props => {
           itemSize={computeItemHeight}
           innerElementType={innerElementType}
           width="100%"
-          onItemsRendered={onItemsRendered}
-        >
+          onItemsRendered={onItemsRendered}>
           {renderChild}
         </VariableSizeList>
       )}

@@ -67,17 +67,14 @@ export function useDropdownList(children: React.ReactNode) {
     (index: number) => {
       const item = items[index];
 
-      if (item.type === 'DropdownItemSpacer')
-        return dropdownItemSpacerHeight;
+      if (item.type === 'DropdownItemSpacer') return dropdownItemSpacerHeight;
 
       // If the item is of type "DropdownItem" it could have a custom height specified.
       if (item.type === 'DropdownItem') {
         // Prioritize rendering the height if specified.
-        if (item.props.height)
-          return item.props.height;
+        if (item.props.height) return item.props.height;
         // If it has a description, pass back the default with description
-        if (item.props.description)
-          return defaultDropdownItemHeightWithDescription;
+        if (item.props.description) return defaultDropdownItemHeightWithDescription;
         // Catch-all item height.
         return defaultDropdownItemHeight;
       }
@@ -95,16 +92,11 @@ export function useDropdownList(children: React.ReactNode) {
     (index: number) => {
       const item = items[index];
 
-      if (item.type === 'DropdownItem')
-        return <DropdownItem {...item.props} />;
-      if (item.type === 'ActionMenuItem')
-        return <ActionMenuItem {...item.props} />;
-      if (item.type === 'SelectItem')
-        return <SelectItem {...item.props} />;
-      if (item.type === 'DropdownHeading')
-        return <DropdownHeading {...item.props} />;
-      if (item.type === 'DropdownItemSpacer')
-        return <DropdownItemSpacer />;
+      if (item.type === 'DropdownItem') return <DropdownItem {...item.props} />;
+      if (item.type === 'ActionMenuItem') return <ActionMenuItem {...item.props} />;
+      if (item.type === 'SelectItem') return <SelectItem {...item.props} />;
+      if (item.type === 'DropdownHeading') return <DropdownHeading {...item.props} />;
+      if (item.type === 'DropdownItemSpacer') return <DropdownItemSpacer />;
 
       return null;
     },
@@ -137,21 +129,18 @@ export function useDropdownList(children: React.ReactNode) {
  */
 function buildDropdownItemsFromChildren(children: React.ReactNode): ReadonlyArray<DropdownRenderTypes> {
   return _(
-    React.Children.toArray(children).map(child => {
+    React.Children.toArray(children).map((child) => {
       // We do not need to support an arbitrary number or string being rendered. If we may need to support these
       // we can look at removing this.
-      if (typeof child === 'string' || typeof child === 'number')
-        return undefined;
+      if (typeof child === 'string' || typeof child === 'number') return undefined;
 
       // If the child item is a fragment, we can just look directly at the children instead and this will work recursively.
       // This enables users to pass content like:
       // {BooleanCheck && (<><DropdownItem>Test</DropdownItem></>)}
-      if (ReactIs.isFragment(child))
-        return buildDropdownItemsFromChildren(child.props.children);
+      if (ReactIs.isFragment(child)) return buildDropdownItemsFromChildren(child.props.children);
 
       // This is a check for arbitrary elements such as div, span, etc.
-      if (!ReactIs.isElement(child))
-        return undefined;
+      if (!ReactIs.isElement(child)) return undefined;
 
       // Check for specific items that we will support rendering in the list.
       if ((child.type as any)?.displayName === 'DropdownItem')

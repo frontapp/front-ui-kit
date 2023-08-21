@@ -22,7 +22,7 @@ export default {
     },
     viewMode: 'docs'
   },
-  id: "Components/Action Menu"
+  id: 'Components/Action Menu'
 } as ComponentMeta<typeof ActionMenu>;
 
 export {Basic} from './stories/basic.stories';

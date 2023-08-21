@@ -27,14 +27,20 @@ const items = [
   {display: 'Example Item 5', id: '5'}
 ];
 
-const Template: ComponentStory<typeof Select> = args => {
+const Template: ComponentStory<typeof Select> = (args) => {
   const [selectedItemId, setSelectedItemId] = useState<string>();
   return (
     <StyledWrapperDiv>
       <StyledMenuWrapperDiv>
-        <Select {...args} selectedValues={items.find(item => item.id === selectedItemId)?.display} layerRootId="story--components-select--select-header">
-          {items.map(item => (
-            <SelectItem key={item.id} onClick={() => setSelectedItemId(item.id)} isSelected={item.id === selectedItemId}>
+        <Select
+          {...args}
+          selectedValues={items.find((item) => item.id === selectedItemId)?.display}
+          layerRootId="story--components-select--select-header">
+          {items.map((item) => (
+            <SelectItem
+              key={item.id}
+              onClick={() => setSelectedItemId(item.id)}
+              isSelected={item.id === selectedItemId}>
               {item.display}
             </SelectItem>
           ))}
@@ -46,5 +52,5 @@ const Template: ComponentStory<typeof Select> = args => {
 
 export const SelectHeader = Template.bind({});
 SelectHeader.args = {
-  headerLabel: "Simple Select"
+  headerLabel: 'Simple Select'
 };

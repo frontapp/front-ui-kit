@@ -25,12 +25,11 @@ interface StyledPlacementCoordinatorDivProps {
 }
 
 const StyledPlacementCoordinatorDiv = styled.div<StyledPlacementCoordinatorDivProps>`
-  ${p => addPlacementStyles(p.$placement)};
+  ${(p) => addPlacementStyles(p.$placement)};
 `;
 
 function addPlacementStyles(placement?: Placement) {
-  if (!placement)
-    return '';
+  if (!placement) return '';
 
   // If we have any left or top-end or bottom-end placements we need to change
   // how the content is rendered since we use max-sizing, this can cause it to be rendered
@@ -67,7 +66,7 @@ const applyMaxSize: Modifier<any> = {
   }
 };
 
-export const Reposition: FC<RepositionProps> = props => {
+export const Reposition: FC<RepositionProps> = (props) => {
   const {placement, children} = props;
   const popoverContext = usePopoverContext();
   const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);

@@ -21,21 +21,14 @@ const Template: ComponentStory<typeof Tooltip> = () => {
   const [isEnabled, setIsEnabled] = useState(true);
   return (
     <StyledWrapperDiv>
-      <Button onClick={() => setIsEnabled(!isEnabled)}>
-        Toggle Tooltip
-      </Button>
+      <Button onClick={() => setIsEnabled(!isEnabled)}>Toggle Tooltip</Button>
       <StyledTooltipWrapperDiv>
         <TooltipCoordinator
           condition={{
             type: 'explicit',
             isEnabled
           }}
-          renderTooltip={() => (
-            <Tooltip>
-              This is an example tooltip.
-            </Tooltip>
-          )}
-        >
+          renderTooltip={() => <Tooltip>This is an example tooltip.</Tooltip>}>
           Hover over me to see tooltip. Is the tooltip enabled? {isEnabled ? 'Yes' : 'No'}
         </TooltipCoordinator>
       </StyledTooltipWrapperDiv>

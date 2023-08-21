@@ -16,7 +16,7 @@ const StyledTabWrapperDiv = styled.div`
   width: 100px;
 `;
 
-const Template: ComponentStory<typeof Tab> = args => (
+const Template: ComponentStory<typeof Tab> = (args) => (
   <StyledWrapperDiv>
     <StyledTabWrapperDiv>
       <Tab {...args} />
@@ -26,6 +26,6 @@ const Template: ComponentStory<typeof Tab> = args => (
 
 export const Basic = Template.bind({});
 Basic.args = {
-  name: "Example Tab",
+  name: 'Example Tab',
   isSelected: true
 };

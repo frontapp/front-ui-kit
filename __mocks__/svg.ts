@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const ReactComponent = (props: React.SVGAttributes<SVGElement>) => React.createElement('div', props);
 export {ReactComponent};

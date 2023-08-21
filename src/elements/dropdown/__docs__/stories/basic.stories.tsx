@@ -39,12 +39,11 @@ const Template: ComponentStory<typeof DropdownCoordinator> = () => {
           )}
           renderDropdown={(_onRequestClose, buttonWidth) => (
             <Dropdown maxWidth={buttonWidth} maxHeight={200}>
-              {itemsToRender.map(itemId => (
+              {itemsToRender.map((itemId) => (
                 <DropdownItem
                   key={itemId}
                   onClick={() => setSelectedItemId(itemId)}
-                  isSelected={itemId === selectedItemId}
-                >
+                  isSelected={itemId === selectedItemId}>
                   Dropdown Item: {itemId}
                 </DropdownItem>
               ))}

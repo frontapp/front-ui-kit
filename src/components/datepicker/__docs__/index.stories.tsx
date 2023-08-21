@@ -22,7 +22,7 @@ export default {
     },
     viewMode: 'docs'
   },
-  id: "Components/Date Picker"
+  id: 'Components/Date Picker'
 } as ComponentMeta<typeof DatePickerDropdown>;
 
 export {Basic} from './stories/basic.stories';

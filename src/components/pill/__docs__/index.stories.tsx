@@ -22,7 +22,7 @@ export default {
     },
     viewMode: 'docs'
   },
-  id: "Components/Pill"
+  id: 'Components/Pill'
 } as ComponentMeta<typeof Pill>;
 
 export {Basic} from './stories/basic.stories';

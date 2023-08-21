@@ -22,4 +22,6 @@ const StyledPillContentDiv = styled.div`
  * Component.
  */
 
-export const PillContent: FC<PillContentProps> = ({children}) => <StyledPillContentDiv>{children}</StyledPillContentDiv>;
+export const PillContent: FC<PillContentProps> = ({children}) => (
+  <StyledPillContentDiv>{children}</StyledPillContentDiv>
+);

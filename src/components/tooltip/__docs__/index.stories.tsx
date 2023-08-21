@@ -22,7 +22,7 @@ export default {
     },
     viewMode: 'docs'
   },
-  id: "Components/Tooltip"
+  id: 'Components/Tooltip'
 } as ComponentMeta<typeof TooltipCoordinator>;
 
 export {Basic} from './stories/basic.stories';

@@ -10,6 +10,10 @@ const StyledWrapperDiv = styled.div`
   justify-content: center;
 `;
 
-const Template: ComponentStory<typeof Pill> = args => <StyledWrapperDiv><Pill {...args}>Example Pill</Pill></StyledWrapperDiv>;
+const Template: ComponentStory<typeof Pill> = (args) => (
+  <StyledWrapperDiv>
+    <Pill {...args}>Example Pill</Pill>
+  </StyledWrapperDiv>
+);
 
 export const Basic = Template.bind({});

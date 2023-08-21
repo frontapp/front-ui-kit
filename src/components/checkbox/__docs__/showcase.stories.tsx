@@ -28,7 +28,7 @@ const StyledShowcaseDiv = styled.div`
  * Component.
  */
 
-const ShowcaseComponent: FC = props => (
+const ShowcaseComponent: FC = (props) => (
   <div>
     <ShowcaseCheckboxComponent isDisabled />
     <ShowcaseCheckboxComponent isIndeterminate />
@@ -37,31 +37,31 @@ const ShowcaseComponent: FC = props => (
   </div>
 );
 
-const ShowcaseCheckboxComponent: FC<ShowcaseCheckboxProps> = props => {
+const ShowcaseCheckboxComponent: FC<ShowcaseCheckboxProps> = (props) => {
   const {isDisabled} = props;
   const [isChecked, setIsChecked] = useState(false);
   const [isIndeterminate, setIsIndeterminate] = useState(props.isIndeterminate);
-  const onToggleCheckbox = checked => {
+  const onToggleCheckbox = (checked) => {
     setIsChecked(!checked);
     setIsIndeterminate(false);
   };
 
   const getCheckBoxLabel = () => {
-    let label = "";
-    if (isDisabled)
-      label = "Disabled ";
-    if (isIndeterminate)
-      label += "Indeterminate ";
-    if (isChecked)
-      label +="Checked";
-    if (label)
-      return label;
-    return "Unchecked";
+    let label = '';
+    if (isDisabled) label = 'Disabled ';
+    if (isIndeterminate) label += 'Indeterminate ';
+    if (isChecked) label += 'Checked';
+    if (label) return label;
+    return 'Unchecked';
   };
 
   return (
     <StyledShowcaseDiv>
-      <Checkbox isDisabled={isDisabled} isIndeterminate={isIndeterminate} isChecked={isChecked} onChange={() => onToggleCheckbox(isChecked)}>
+      <Checkbox
+        isDisabled={isDisabled}
+        isIndeterminate={isIndeterminate}
+        isChecked={isChecked}
+        onChange={() => onToggleCheckbox(isChecked)}>
         {getCheckBoxLabel()}
       </Checkbox>
     </StyledShowcaseDiv>

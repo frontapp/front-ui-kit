@@ -23,7 +23,7 @@ interface StyledDropdownIconWrapperDivProps {
 }
 
 const StyledDropdownIconWrapperDiv = styled.div<StyledDropdownIconWrapperDivProps>`
-  ${p => {
+  ${(p) => {
     if (p.$position === 'left')
       return css`
         grid-area: left-content;

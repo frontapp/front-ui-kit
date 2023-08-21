@@ -59,8 +59,8 @@ const Template: ComponentStory<typeof DropdownCoordinator> = () => {
         <DropdownCoordinator
           layerRootId="story--elements-dropdown--form"
           placement="bottom-start"
-          renderButton={isDropdownOpen => <Button isActive={isDropdownOpen}>View Dropdown Form</Button>}
-          renderDropdown={onRequestClose => (
+          renderButton={(isDropdownOpen) => <Button isActive={isDropdownOpen}>View Dropdown Form</Button>}
+          renderDropdown={(onRequestClose) => (
             <Dropdown maxHeight={200}>
               <DropdownHeader>Sign up</DropdownHeader>
 
@@ -74,7 +74,7 @@ const Template: ComponentStory<typeof DropdownCoordinator> = () => {
                 <DropdownCoordinator
                   layerRootId="story--elements-dropdown--form"
                   placement="bottom-start"
-                  renderButton={isDropdownOpen => (
+                  renderButton={(isDropdownOpen) => (
                     <DropdownButton
                       placeholder="Select dog breed"
                       isActive={isDropdownOpen}
@@ -84,7 +84,7 @@ const Template: ComponentStory<typeof DropdownCoordinator> = () => {
                   renderDropdown={() => (
                     <Dropdown maxWidth={244} maxHeight={200}>
                       <DropdownHeader>Dog Breeds</DropdownHeader>
-                      {dogBreedsSource.map(breed => (
+                      {dogBreedsSource.map((breed) => (
                         <DropdownItem key={breed} onClick={() => setSelectedDog(breed)}>
                           {breed}
                         </DropdownItem>

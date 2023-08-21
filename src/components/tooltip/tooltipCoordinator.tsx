@@ -48,14 +48,19 @@ interface StyledTooltipCoordinatorDivProps {
 }
 
 const StyledTooltipCoordinatorDiv = styled.div<StyledTooltipCoordinatorDivProps>`
-  display: ${p => (p.$condition?.type === 'overflow' ? 'block' : 'inline-block')};
+  display: ${(p) => (p.$condition?.type === 'overflow' ? 'block' : 'inline-block')};
 `;
 
 /*
  * Component.
  */
 
-export const TooltipCoordinator: FC<TooltipCoordinatorProps> = ({children, delay = 0, condition, renderTooltip}) => {
+export const TooltipCoordinator: FC<TooltipCoordinatorProps> = ({
+  children,
+  delay = 0,
+  condition,
+  renderTooltip
+}) => {
   const [anchorElement, setAnchorElement] = useState<HTMLDivElement | null>(null);
   const [shouldRenderTooltip, setShouldRenderTooltip] = useState(false);
   const [isConditionPassed, setIsConditionPassed] = useState(!condition);
@@ -64,8 +69,7 @@ export const TooltipCoordinator: FC<TooltipCoordinatorProps> = ({children, delay
   const [setSafeTimeout, clearSafeTimeout] = useTimeout();
 
   useEffect(() => {
-    if (!anchorElement)
-      return;
+    if (!anchorElement) return;
     setContext({
       anchor: anchorElement
     });
@@ -84,7 +88,11 @@ export const TooltipCoordinator: FC<TooltipCoordinatorProps> = ({children, delay
 
   return (
     <PopoverContext.Provider value={context}>
-      <StyledTooltipCoordinatorDiv $condition={condition} ref={setAnchorElement} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+      <StyledTooltipCoordinatorDiv
+        $condition={condition}
+        ref={setAnchorElement}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}>
         {renderWithPotentialConditions(condition, children, isConditionPassed, setIsConditionPassed)}
         {shouldRenderTooltip && isConditionPassed && renderTooltip()}
       </StyledTooltipCoordinatorDiv>
@@ -102,23 +110,17 @@ function renderWithPotentialConditions(
   isConditionPassed: boolean,
   onConditionChange: (isConditionPassed: boolean) => void
 ) {
-  if (!condition)
-    return children;
+  if (!condition) return children;
 
   switch (condition.type) {
     // If the type is explicit, set the condition passed to whatever value we currently have.
     case 'explicit': {
-      if (isConditionPassed !== condition.isEnabled)
-        onConditionChange(condition.isEnabled);
+      if (isConditionPassed !== condition.isEnabled) onConditionChange(condition.isEnabled);
       return children;
     }
     // If the type is overflow, wrap in the tooltip overflow wrapper.
     case 'overflow':
-      return (
-        <TooltipOverflow onConditionChange={onConditionChange}>
-          {children}
-        </TooltipOverflow>
-      );
+      return <TooltipOverflow onConditionChange={onConditionChange}>{children}</TooltipOverflow>;
     default:
       return children;
   }

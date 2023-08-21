@@ -29,27 +29,25 @@ const StyledBackgroundDiv = styled.div<StyledBackgroundDivProps>`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: ${p => (p.$hasVisibleOverlay ? 'rgba(0, 0, 0, 0.3)' : 'transparent')};
+  background-color: ${(p) => (p.$hasVisibleOverlay ? 'rgba(0, 0, 0, 0.3)' : 'transparent')};
 `;
 
 /*
  * Component.
  */
 
-export const RepositionPopover: FC<RepositionPopoverProps> = props => {
+export const RepositionPopover: FC<RepositionPopoverProps> = (props) => {
   const {hasVisibleOverlay, isExclusive, placement, children, layerRootId, onRequestClose} = props;
   return (
     <Layer
       isExclusive={isExclusive}
       layerRootId={layerRootId}
-      onClick={event => {
+      onClick={(event) => {
         // If this click event was already handled, do not request to close.
-        if (event.defaultPrevented || !onRequestClose)
-          return;
+        if (event.defaultPrevented || !onRequestClose) return;
         event.preventDefault();
         onRequestClose();
-      }}
-    >
+      }}>
       {props.isExclusive && (
         <StyledBackgroundDiv $hasVisibleOverlay={hasVisibleOverlay} onClick={onRequestClose} />
       )}

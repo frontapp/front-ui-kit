@@ -27,29 +27,33 @@ const items = [
   {display: 'Example Item 5', id: '5'}
 ];
 
-const Template: ComponentStory<typeof Select> = args => {
+const Template: ComponentStory<typeof Select> = (args) => {
   const [selectedItemId, setSelectedItemId] = useState<string>();
   const [searchValue, setSearchValue] = useState<string>('');
-  const [itemsToDisplay, setItemsToDisplay] = useState<ReadonlyArray<{display: string, id: string}>>(items);
+  const [itemsToDisplay, setItemsToDisplay] = useState<ReadonlyArray<{display: string; id: string}>>(items);
   return (
     <StyledWrapperDiv>
       <StyledMenuWrapperDiv>
         <Select
           {...args}
-          selectedValues={items.find(item => item.id === selectedItemId)?.display}
+          selectedValues={items.find((item) => item.id === selectedItemId)?.display}
           searchValue={searchValue}
-          onSearchChange={value => {
+          onSearchChange={(value) => {
             setSearchValue(value);
-            setItemsToDisplay(items.filter(item => item.display.toLowerCase().includes(value.toLocaleLowerCase())));
+            setItemsToDisplay(
+              items.filter((item) => item.display.toLowerCase().includes(value.toLocaleLowerCase()))
+            );
           }}
           onSelectClosed={() => {
             setItemsToDisplay(items);
             setSearchValue('');
           }}
-          layerRootId="story--components-select--search"
-        >
-          {itemsToDisplay.map(item => (
-            <SelectItem key={item.id} onClick={() => setSelectedItemId(item.id)} isSelected={item.id === selectedItemId}>
+          layerRootId="story--components-select--search">
+          {itemsToDisplay.map((item) => (
+            <SelectItem
+              key={item.id}
+              onClick={() => setSelectedItemId(item.id)}
+              isSelected={item.id === selectedItemId}>
               {item.display}
             </SelectItem>
           ))}
@@ -61,6 +65,6 @@ const Template: ComponentStory<typeof Select> = args => {
 
 export const Search = Template.bind({});
 Search.args = {
-  headerLabel: "Simple Search Select",
+  headerLabel: 'Simple Search Select',
   maxHeight: 200
 };

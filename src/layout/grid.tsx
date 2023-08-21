@@ -13,13 +13,13 @@ interface GridAreaItemProps {
  */
 
 const GridAreaItemDiv = styled.div<{$area: string}>`
-  grid-area: ${p => p.$area};
+  grid-area: ${(p) => p.$area};
 `;
 
 /*
  * Component.
  */
 
-export const GridAreaItem: FC<PropsWithChildren<GridAreaItemProps>> = props => (
+export const GridAreaItem: FC<PropsWithChildren<GridAreaItemProps>> = (props) => (
   <GridAreaItemDiv $area={props.area}>{props.children}</GridAreaItemDiv>
 );

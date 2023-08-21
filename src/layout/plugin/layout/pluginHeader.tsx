@@ -56,7 +56,7 @@ const StyledPluginTitleDiv = styled.div<StyledPluginTitleDivProps>`
   font-size: ${fontSizes.medium};
   justify-content: center;
 
-  ${p =>
+  ${(p) =>
     p.$isSubPage &&
     css`
       color: ${greys.shade70};
@@ -89,7 +89,7 @@ const StyledSearchWrapper = styled.div`
  * Component.
  */
 
-export const PluginHeader: FC<PluginHeaderProps> = props => {
+export const PluginHeader: FC<PluginHeaderProps> = (props) => {
   const {children, onBackClick, actions, search} = props;
   return (
     <StyledPluginHeaderWrapperDiv>
@@ -110,8 +110,7 @@ export const PluginHeader: FC<PluginHeaderProps> = props => {
  */
 
 function maybeRenderBackButton(onBackClick?: MouseEventHandler) {
-  if (!onBackClick)
-    return null;
+  if (!onBackClick) return null;
   return (
     <StyledButtonWrapperDiv>
       <Button type="icon" onClick={onBackClick}>
@@ -122,7 +121,6 @@ function maybeRenderBackButton(onBackClick?: MouseEventHandler) {
 }
 
 function maybeRenderActions(actions?: React.ReactNode) {
-  if (!actions)
-    return null;
+  if (!actions) return null;
   return <StyledActionsWrapperDiv>{actions}</StyledActionsWrapperDiv>;
 }

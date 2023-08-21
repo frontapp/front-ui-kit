@@ -37,7 +37,7 @@ export const calendarWeekdayToWeekdayNumber = {
 /** Get the sorted weekdays number, starting with Sunday. */
 export function getSortedWeekdays(calendarWeekStartDay: CalendarWeekDaysEnum) {
   const sortedCalendarWeekdays = getSortedWeekdayNames(calendarWeekStartDay);
-  return sortedCalendarWeekdays.map(weekdayName => calendarWeekdayToWeekdayNumber[weekdayName]);
+  return sortedCalendarWeekdays.map((weekdayName) => calendarWeekdayToWeekdayNumber[weekdayName]);
 }
 
 export function getSortedWeekdayNames(calendarWeekStartDay: CalendarWeekDaysEnum) {
@@ -90,14 +90,12 @@ export function mergeDateAndTime(date: DateTime, time: DateTime) {
 }
 
 export function formatTime(time: DateTime, timeFormat?: '12h' | '24h') {
-  if (!timeFormat || timeFormat === '12h')
-    return time.toLocaleString(DateTime.TIME_SIMPLE);
+  if (!timeFormat || timeFormat === '12h') return time.toLocaleString(DateTime.TIME_SIMPLE);
   return time.toLocaleString(DateTime.TIME_24_SIMPLE);
 }
 
 export function formatDateTime(date: Date, type: 'date' | 'dateAndTime', timeFormat?: '12h' | '24h') {
   const dateTime = DateTime.fromJSDate(date);
-  if (type === 'date')
-    return `${dateTime.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)}`;
+  if (type === 'date') return `${dateTime.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)}`;
   return `${dateTime.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)} ${formatTime(dateTime, timeFormat)}`;
 }

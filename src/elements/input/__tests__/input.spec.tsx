@@ -57,7 +57,9 @@ describe('<Checkbox /> Spec', () => {
     const user = userEvent.setup();
     const onFocusMock = jest.fn();
     const onBlurMock = jest.fn();
-    const view = render(<Input id="id" isDisabled placeholder="Placeholder" onFocus={onFocusMock} onBlur={onBlurMock} />);
+    const view = render(
+      <Input id="id" isDisabled placeholder="Placeholder" onFocus={onFocusMock} onBlur={onBlurMock} />
+    );
     await user.click(view.getByRole('textbox'));
     expect(onFocusMock).not.toBeCalled();
     await user.click(view.container);
@@ -68,16 +70,16 @@ describe('<Checkbox /> Spec', () => {
     const user = userEvent.setup();
     const onChangeMock = jest.fn();
     const view = render(<Input id="id" placeholder="Placeholder" onChange={onChangeMock} />);
-    await user.type(view.getByRole('textbox'), "t");
+    await user.type(view.getByRole('textbox'), 't');
     expect(onChangeMock).toBeCalled();
-    expect(onChangeMock.mock.lastCall[0]).toBe("t");
+    expect(onChangeMock.mock.lastCall[0]).toBe('t');
   });
 
   it('should not issue an onChange when the user types into the input if the input is disabled', async () => {
     const user = userEvent.setup();
     const onChangeMock = jest.fn();
     const view = render(<Input id="id" isDisabled placeholder="Placeholder" onChange={onChangeMock} />);
-    await user.type(view.getByRole('textbox'), "t");
+    await user.type(view.getByRole('textbox'), 't');
     expect(onChangeMock).not.toBeCalled();
   });
 });

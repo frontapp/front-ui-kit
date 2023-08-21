@@ -25,22 +25,24 @@ const StyledMenuWrapperDiv = styled.div`
   width: 350px;
 `;
 
-const Template: ComponentStory<typeof Select> = args => {
+const Template: ComponentStory<typeof Select> = (args) => {
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [users, setUsers] = useState<ReadonlyArray<UserData>>([]);
   const [selectedUserIds, setSelectedUserIds] = useState<ReadonlyArray<string>>([]);
 
   const fetchUserData = async () => {
-    if (isLoading)
-      return;
+    if (isLoading) return;
     setIsLoading(true);
     // Create a 1 second delay between requests.
     setTimeout(async () => {
       const data = await fetch(`https://randomuser.me/api/?page=${page}&results=15&seed=example`);
       const jsonData = await data.json();
-      setUsers(existingUsers => [...existingUsers, ...jsonData.results.map(d => ({id: d.login.uuid, name: `${d.name.first} ${d.name.last}`}))]);
-      setPage(currentPage => currentPage + 1);
+      setUsers((existingUsers) => [
+        ...existingUsers,
+        ...jsonData.results.map((d) => ({id: d.login.uuid, name: `${d.name.first} ${d.name.last}`}))
+      ]);
+      setPage((currentPage) => currentPage + 1);
       setIsLoading(false);
     }, 1000);
   };
@@ -50,26 +52,24 @@ const Template: ComponentStory<typeof Select> = args => {
       <StyledMenuWrapperDiv>
         <Select
           {...args}
-          selectedValues={_(selectedUserIds.map(id => users.find(i => i.id === id)?.name)).compact().value()}
+          selectedValues={_(selectedUserIds.map((id) => users.find((i) => i.id === id)?.name))
+            .compact()
+            .value()}
           isLoading={isLoading}
           hasMore={page < 5}
           onLoadMore={fetchUserData}
-          layerRootId="story--components-select--async-multi"
-        >
-          {users.map(user => (
+          layerRootId="story--components-select--async-multi">
+          {users.map((user) => (
             <SelectItem
               key={user.id}
               type="multi"
               isSelected={selectedUserIds.includes(user.id)}
-              onClick={() => setSelectedUserIds(userIds => {
-                if (userIds?.includes(user.id))
-                  return userIds.filter(id => id !== user.id);
-                return [
-                  ...userIds,
-                  user.id
-                ];
-              })}
-            >
+              onClick={() =>
+                setSelectedUserIds((userIds) => {
+                  if (userIds?.includes(user.id)) return userIds.filter((id) => id !== user.id);
+                  return [...userIds, user.id];
+                })
+              }>
               {user.name}
             </SelectItem>
           ))}

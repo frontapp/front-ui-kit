@@ -48,13 +48,13 @@ interface StyledAnchorDivProps {
 
 const StyledAnchorDiv = styled.div<StyledAnchorDivProps>`
   display: block;
-  ${p =>
+  ${(p) =>
     p.$maxWidth &&
     css`
       max-width: ${p.$maxWidth}px;
     `}
 
-  ${p =>
+  ${(p) =>
     p.$isInline &&
     css`
       display: inline-block;
@@ -65,7 +65,7 @@ const StyledAnchorDiv = styled.div<StyledAnchorDivProps>`
  * Component.
  */
 
-export const DropdownCoordinator: FC<DropdownCoordinatorProps> = props => {
+export const DropdownCoordinator: FC<DropdownCoordinatorProps> = (props) => {
   const {
     isDisabled,
     hasVisibleOverlay,
@@ -85,26 +85,22 @@ export const DropdownCoordinator: FC<DropdownCoordinatorProps> = props => {
   const [buttonRef, {width: buttonWidth}] = useMeasureElement();
 
   useEffect(() => {
-    if (!anchorElement)
-      return;
+    if (!anchorElement) return;
     setContext({
       anchor: anchorElement
     });
   }, [anchorElement]);
 
   const onClick = (event: MouseEvent) => {
-    if (isDisabled)
-      return;
+    if (isDisabled) return;
     event.preventDefault();
-    if (onDropdownOpen)
-      onDropdownOpen();
+    if (onDropdownOpen) onDropdownOpen();
     setIsDropdownOpen(true);
   };
 
   const onCloseDropdown = () => {
     setIsDropdownOpen(false);
-    if (onDropdownClosed)
-      onDropdownClosed();
+    if (onDropdownClosed) onDropdownClosed();
   };
 
   return (
@@ -118,8 +114,7 @@ export const DropdownCoordinator: FC<DropdownCoordinatorProps> = props => {
           hasVisibleOverlay={hasVisibleOverlay}
           onRequestClose={isOverlayCloseDisabled ? undefined : onCloseDropdown}
           isExclusive
-          layerRootId={layerRootId}
-        >
+          layerRootId={layerRootId}>
           {renderDropdown(onCloseDropdown, buttonWidth)}
         </RepositionPopover>
       )}

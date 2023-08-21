@@ -51,7 +51,7 @@ const StyledTextareaDiv = styled.div<StyledTextareaDivProps>`
   flex-flow: row;
   width: 100%;
 
-  ${p =>
+  ${(p) =>
     p.$maxWidth &&
     css`
       max-width: ${p.$maxWidth}px;
@@ -92,9 +92,9 @@ const StyledTextarea = styled.textarea<StyledTextareaProps>`
     background: ${greys.white};
   }
 
-  resize: ${p => (!p.$shouldAllowResize ? `none` : `vertical`)};
+  resize: ${(p) => (!p.$shouldAllowResize ? `none` : `vertical`)};
 
-  ${p => addTextareaStyles(p)};
+  ${(p) => addTextareaStyles(p)};
 `;
 
 function addTextareaStyles(props: StyledTextareaProps) {
@@ -145,22 +145,19 @@ export const Textarea: FC<TextareaProps> = ({
   onBlur,
   shouldFocus = false
 }) => {
-  const onTextareaChange: ChangeEventHandler<HTMLTextAreaElement> = event => {
-    if (isDisabled || !onChange)
-      return;
+  const onTextareaChange: ChangeEventHandler<HTMLTextAreaElement> = (event) => {
+    if (isDisabled || !onChange) return;
     const textAreaValue = event.currentTarget.value;
     onChange(textAreaValue);
   };
 
-  const onTextareaFocus: FocusEventHandler<HTMLTextAreaElement> = event => {
-    if (isDisabled || !onFocus)
-      return;
+  const onTextareaFocus: FocusEventHandler<HTMLTextAreaElement> = (event) => {
+    if (isDisabled || !onFocus) return;
     onFocus();
   };
 
-  const onTextareaBlur: FocusEventHandler<HTMLTextAreaElement> = event => {
-    if (isDisabled || !onBlur)
-      return;
+  const onTextareaBlur: FocusEventHandler<HTMLTextAreaElement> = (event) => {
+    if (isDisabled || !onBlur) return;
     onBlur();
   };
 
@@ -179,8 +176,7 @@ export const Textarea: FC<TextareaProps> = ({
         value={value}
         onChange={onTextareaChange}
         onFocus={onTextareaFocus}
-        onBlur={onTextareaBlur}
-      >
+        onBlur={onTextareaBlur}>
         {value}
       </StyledTextarea>
     </StyledTextareaDiv>
