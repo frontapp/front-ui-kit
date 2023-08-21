@@ -1,21 +1,17 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'react-hooks', 'unused-imports', 'simple-import-sort'],
-  extends: ['plugin:storybook/recommended', 'plugin:@typescript-eslint/recommended', 'airbnb'],
+  extends: [
+    'plugin:storybook/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'airbnb',
+    'airbnb/hooks',
+    'prettier'
+  ],
 
   rules: {
-    // Commas on the last property of an object.
-    'comma-dangle': [2, 'never'],
     // Affects curly braces in if/else statements.
     curly: [2, 'multi', 'consistent'],
-    /**
-     * Enforces:
-     * if (foo)
-     *  bar();
-     */
-    'nonblock-statement-body-position': [2, 'below'],
-    // Enforces parenthesis around arrow functions parameters only when needed.
-    'arrow-parens': [2, 'as-needed'],
     // Don't require extensions for filenames in import
     'import/extensions': 0,
     // Avoid default exports
@@ -26,8 +22,6 @@ module.exports = {
     'import/order': 0,
     'import/no-unresolved': 0,
     'sort-imports': 0,
-    // Don't allow spaces inside {curlyBraces}
-    'object-curly-spacing': [2, 'never'],
     'object-curly-newline': 0,
     'function-paren-newline': 0,
     'react/sort-comp': 0,
@@ -39,8 +33,7 @@ module.exports = {
     'react/no-unused-prop-types': 0,
     'react-hooks/rules-of-hooks': 2,
     'react-hooks/exhaustive-deps': 1,
-    'react/function-component-definition': [2, {namedComponents: "arrow-function"}],
-    'no-trailing-spaces': 2,
+    'react/function-component-definition': [2, {namedComponents: 'arrow-function'}],
     'max-classes-per-file': 0,
     'implicit-arrow-linebreak': 0,
     'lines-between-class-members': 0,
@@ -48,7 +41,6 @@ module.exports = {
     quotes: 0,
     'no-multi-str': 0,
     'no-plusplus': 0,
-    indent: [2, 2, {SwitchCase: 1}],
     'max-len': [2, {code: 200}],
     'space-infix-ops': 0,
     'no-return-await': 0,
@@ -62,7 +54,7 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'off',
     'unused-imports/no-unused-imports': 2,
 
-    "storybook/default-exports": 0,
+    'storybook/default-exports': 0,
 
     // Use @ts-expect-error with a comment instead.
     '@typescript-eslint/ban-ts-comment': 'warn',
@@ -147,8 +139,7 @@ module.exports = {
         'react/no-multi-comp': 0,
         'no-restricted-globals': 0,
         'operator-linebreak': 0,
-        'simple-import-sort/imports': 2,
-        'no-multiple-empty-lines': [2, {max: 1}]
+        'simple-import-sort/imports': 2
       }
     },
     {
