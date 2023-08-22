@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.14](https://github.com/frontapp/front-ui-kit/compare/v0.7.13...v0.7.14) (2023-08-22)
+
+
+### Bug Fixes
+
+* inline loader pngs ([#208](https://github.com/frontapp/front-ui-kit/issues/208)) ([79998f8](https://github.com/frontapp/front-ui-kit/commit/79998f82d3f38d75c1688524ff4461c44c5aca7e))
+
 ## [0.7.13](https://github.com/frontapp/front-ui-kit/compare/v0.7.12...v0.7.13) (2023-08-22)
 
 
