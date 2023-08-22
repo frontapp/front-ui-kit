@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.7.13](https://github.com/frontapp/front-ui-kit/compare/v0.7.12...v0.7.13) (2023-08-22)
+
+
+### Features
+
+* export `useTimeout` and `PaletteColorsEnum` ([#207](https://github.com/frontapp/front-ui-kit/issues/207)) ([002d99c](https://github.com/frontapp/front-ui-kit/commit/002d99c503483a4aad37aa1c36b0c91adf3e8db8))
+
+
+### Bug Fixes
+
+* actually export `Loader` ([#205](https://github.com/frontapp/front-ui-kit/issues/205)) ([0325b30](https://github.com/frontapp/front-ui-kit/commit/0325b30dba399e38591d7ac8d028f4da8f9f514e))
+
 ## [0.7.12](https://github.com/frontapp/front-ui-kit/compare/v0.7.11...v0.7.12) (2023-08-22)
 
 
