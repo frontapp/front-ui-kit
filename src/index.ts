@@ -11,6 +11,12 @@ export {SelectableComponentColors} from './helpers/styleHelpers';
 export {VisualSizesEnum, fonts} from './helpers/fontHelpers';
 
 /*
+ * Helpers.
+ */
+
+export {useTimeout} from './helpers/hookHelpers';
+
+/*
  * Utils.
  */
 
