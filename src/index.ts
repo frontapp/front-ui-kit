@@ -72,6 +72,8 @@ export {
   useTopBanners
 } from './components/topBanners/topBannersContext';
 
+export {Loader} from './components/loader/loader';
+
 /*
  * Additional Exports.
  */
