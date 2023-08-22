@@ -5,6 +5,7 @@ import loader from '../../assets/images/loader.png';
 import loaderGrey from '../../assets/images/loaderGrey.png';
 import loaderGreySmall from '../../assets/images/loaderGreySmall.png';
 import loaderSmall from '../../assets/images/loaderSmall.png';
+import {PaletteColorsEnum} from '../../helpers/colorHelpers';
 import {VisualSizesEnum} from '../../helpers/fontHelpers';
 import {makeSizeConstants} from '../../helpers/styleHelpers';
 
@@ -12,26 +13,21 @@ import {makeSizeConstants} from '../../helpers/styleHelpers';
  * Props.
  */
 
-export enum LoaderColorVariantsEnum {
-  BLUE = 'BASE',
-  GREY = 'GREY'
-}
-
 interface LoaderProps {
   className?: string;
   /** Size of the loader. */
   size?: VisualSizesEnum;
   /** Color scheme of the loader. */
-  color?: LoaderColorVariantsEnum;
+  color?: PaletteColorsEnum.GREY | PaletteColorsEnum.BLUE;
   /** Whether or not the loader rotates. */
-  isEnabled?: boolean;
+  isAnimated?: boolean;
 }
 
 const defaultProps = {
   size: VisualSizesEnum.LARGE,
-  variant: LoaderColorVariantsEnum.BLUE,
-  isEnabled: true
-};
+  color: PaletteColorsEnum.BLUE,
+  isAnimated: true
+} as const;
 
 /*
  * Style.
@@ -39,13 +35,13 @@ const defaultProps = {
 
 const sizes = makeSizeConstants(16, 20, 40);
 const images = {
-  [LoaderColorVariantsEnum.BLUE]: makeSizeConstants(loaderSmall, loaderSmall, loader),
-  [LoaderColorVariantsEnum.GREY]: makeSizeConstants(loaderGreySmall, loaderGreySmall, loaderGrey)
+  [PaletteColorsEnum.BLUE]: makeSizeConstants(loaderSmall, loaderSmall, loader),
+  [PaletteColorsEnum.GREY]: makeSizeConstants(loaderGreySmall, loaderGreySmall, loaderGrey)
 };
 
 interface LoaderStyleProps {
   $size: VisualSizesEnum;
-  $variant: LoaderColorVariantsEnum;
+  $variant: PaletteColorsEnum.GREY | PaletteColorsEnum.BLUE;
   $isEnabled: boolean;
 }
 const StyledLoaderDiv = styled.div<LoaderStyleProps>`
@@ -81,8 +77,8 @@ function maybeAnimate(isEnabled: boolean) {
 export const Loader: FC<LoaderProps> = (props) => (
   <StyledLoaderDiv
     $size={props.size ?? defaultProps.size}
-    $variant={props.color ?? defaultProps.variant}
-    $isEnabled={props.isEnabled ?? defaultProps.isEnabled}
+    $variant={props.color ?? defaultProps.color}
+    $isEnabled={props.isAnimated ?? defaultProps.isAnimated}
     className={props.className}
     data-testid="loader"
   />
