@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.12](https://github.com/frontapp/front-ui-kit/compare/v0.7.11...v0.7.12) (2023-08-22)
+
+
+### Features
+
+* add `Loader` component ([#202](https://github.com/frontapp/front-ui-kit/issues/202)) ([8d1b7f7](https://github.com/frontapp/front-ui-kit/commit/8d1b7f7a0a8ff82a5a13e484241c72113f2f8b6a))
+
 ## [0.7.11](https://github.com/frontapp/front-ui-kit/compare/v0.7.10...v0.7.11) (2023-08-21)
 
 ### Features
