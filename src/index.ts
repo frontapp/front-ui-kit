@@ -44,8 +44,8 @@ export {ButtonGroup} from './components/button/buttonGroup';
 export {Checkbox} from './components/checkbox/checkbox';
 
 export {DatePickerDropdown as DatePicker} from './components/datepicker/datepickerDropdown';
-
-export {File} from './components/_pre-built/file/file';
+ 
+export {File, FileTypesEnum} from './components/_pre-built/file/file';
 
 export {InlineBanner} from './components/inlineBanner/inlineBanner';
 
