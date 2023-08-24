@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.15](https://github.com/frontapp/front-ui-kit/compare/v0.7.14...v0.7.15) (2023-08-24)
+
+
+### Features
+
+* export FileTypesEnum ([#210](https://github.com/frontapp/front-ui-kit/issues/210)) ([42391f8](https://github.com/frontapp/front-ui-kit/commit/42391f807d54358e0ba89cc2a109cfde0724697a))
+
 ## [0.7.14](https://github.com/frontapp/front-ui-kit/compare/v0.7.13...v0.7.14) (2023-08-22)
 
 
