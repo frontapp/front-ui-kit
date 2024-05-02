@@ -54,19 +54,19 @@ export function getCalendarDays(month: DateTime, weekdays: ReadonlyArray<number>
   const previousMonth = month.minus({months: 1});
   const nextMonth = month.plus({months: 1});
 
+  const daysInMonth = month.daysInMonth ?? 0;
+  const daysInPreviousMonth = previousMonth.daysInMonth ?? 0;
+
   // Figure out the size of the left & right padding.
   const startOfmonth = month.startOf('month');
   const previousPad = weekdays.indexOf(startOfmonth.weekday);
-  const rows = Math.ceil((month.daysInMonth + previousPad) / 7);
+  const rows = Math.ceil((daysInMonth + previousPad) / 7);
   const totalBoxes = rows * 7;
-  const nextPad = totalBoxes - (previousPad + month.daysInMonth);
+  const nextPad = totalBoxes - (previousPad + daysInMonth);
 
   // Build the day numbers for each range.
-  const previousMonthDayNumbers = range(
-    previousMonth.daysInMonth - previousPad + 1,
-    previousMonth.daysInMonth + 1
-  );
-  const currentMonthDayNumbers = range(1, month.daysInMonth + 1);
+  const previousMonthDayNumbers = range(daysInPreviousMonth - previousPad + 1, daysInPreviousMonth + 1);
+  const currentMonthDayNumbers = range(1, daysInMonth + 1);
   const nextMonthDayNumbers = range(1, nextPad + 1);
 
   // Map the day numbers to datetimes.
