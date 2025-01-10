@@ -59,7 +59,6 @@ interface StyledFormFieldHelperTextDivProps {
 }
 
 const StyledFormFieldHelperTextDiv = styled.div<StyledFormFieldHelperTextDivProps>`
-  height: 14px;
   line-height: 14px;
   margin-top: -4px; // Minor offset to bring the hint and error closed to the input.
 
