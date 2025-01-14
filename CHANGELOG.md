@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.16](https://github.com/frontapp/front-ui-kit/compare/v0.7.15...v0.7.16) (2025-01-14)
+
+
+### Bug Fixes
+
+* **style:** remove fixed height ([#227](https://github.com/frontapp/front-ui-kit/issues/227)) ([cd29900](https://github.com/frontapp/front-ui-kit/commit/cd29900e31733c6568df55762f4186a92d0acb96))
+
 ## [0.7.15](https://github.com/frontapp/front-ui-kit/compare/v0.7.14...v0.7.15) (2023-08-24)
 
 
