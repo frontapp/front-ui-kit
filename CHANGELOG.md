@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.17](https://github.com/frontapp/front-ui-kit/compare/v0.7.16...v0.7.17) (2025-01-21)
+
+
+### Bug Fixes
+
+* **deps:** upgrade webpack to 5.94.0 ([#229](https://github.com/frontapp/front-ui-kit/issues/229)) ([6868c6e](https://github.com/frontapp/front-ui-kit/commit/6868c6e93d33d63a92dc07ad4d46c3438b074e29))
+
 ## [0.7.16](https://github.com/frontapp/front-ui-kit/compare/v0.7.15...v0.7.16) (2025-01-14)
 
 
