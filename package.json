@@ -39,7 +39,7 @@
     "react-spring": "^9.7.5",
     "react-use-measure": "^2.1.1",
     "react-window": "^1.8.11",
-    "react-window-infinite-loader": "^1.0.9"
+    "react-window-infinite-loader": "^1.0.10"
   },
   "peerDependencies": {
     "react": ">= 18 < 19",
@@ -73,7 +73,7 @@
     "@types/react-dom": "^18.0.5",
     "@types/react-is": "^18.3.0",
     "@types/react-window": "^1.8.8",
-    "@types/react-window-infinite-loader": "^1.0.6",
+    "@types/react-window-infinite-loader": "^1.0.9",
     "@types/styled-components": "^5.1.25",
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.28.0",
