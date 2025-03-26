@@ -31,7 +31,7 @@
     "@juggle/resize-observer": "^3.4.0",
     "@popperjs/core": "^2.11.8",
     "lodash": "^4.17.21",
-    "luxon": "^3.4.4",
+    "luxon": "^3.6.0",
     "polished": "^4.3.1",
     "popper-max-size-modifier": "^0.2.0",
     "react-is": "^18.3.1",
