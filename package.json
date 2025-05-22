@@ -36,7 +36,7 @@
     "popper-max-size-modifier": "^0.2.0",
     "react-is": "^18.3.1",
     "react-popper": "^2.3.0",
-    "react-spring": "^9.7.5",
+    "react-spring": "^10.0.1",
     "react-use-measure": "^2.1.7",
     "react-window": "^1.8.11",
     "react-window-infinite-loader": "^1.0.10"
