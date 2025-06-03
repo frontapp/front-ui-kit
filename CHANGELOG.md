@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.18](https://github.com/frontapp/front-ui-kit/compare/v0.7.17...v0.7.18) (2025-06-03)
+
+
+### Bug Fixes
+
+* pin actions in pr-name-lint workflow ([#240](https://github.com/frontapp/front-ui-kit/issues/240)) ([cd9bb0c](https://github.com/frontapp/front-ui-kit/commit/cd9bb0c5a4cb6e75238415c4e48d03506a0a840c))
+
 ## [0.7.17](https://github.com/frontapp/front-ui-kit/compare/v0.7.16...v0.7.17) (2025-01-21)
 
 
