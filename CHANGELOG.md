@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.19](https://github.com/frontapp/front-ui-kit/compare/v0.7.18...v0.7.19) (2025-06-11)
+
+
+### Bug Fixes
+
+* migrate and pin actions in release-please-action SEC-704 ([#242](https://github.com/frontapp/front-ui-kit/issues/242)) ([f255c63](https://github.com/frontapp/front-ui-kit/commit/f255c63b02cde46b686db420e96d95b1247fb78d))
+* pin all actions other than release-please-action SEC-704 ([#243](https://github.com/frontapp/front-ui-kit/issues/243)) ([83c55f4](https://github.com/frontapp/front-ui-kit/commit/83c55f44c9890aa4116e7f1cda67b47d451ae089))
+
 ## [0.7.18](https://github.com/frontapp/front-ui-kit/compare/v0.7.17...v0.7.18) (2025-06-03)
 
 
