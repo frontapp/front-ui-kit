@@ -28,7 +28,7 @@ module.exports = {
             compact: true,
             presets: [
               ['@babel/preset-env', {modules: false}],
-              ['@babel/preset-typescript', {allowNamespaces: true, allExtensions: true, isTSX: true, onlyRemoveTypeImports: true}],
+              '@babel/preset-typescript',
               ['@babel/preset-react', {runtime: 'automatic'}]
             ],
             plugins: [
@@ -58,7 +58,7 @@ module.exports = {
             compact: true,
             presets: [
               ['@babel/preset-env', {modules: false}],
-              ['@babel/preset-typescript', {allowNamespaces: true, allExtensions: true, isTSX: true, onlyRemoveTypeImports: true}],
+              '@babel/preset-typescript',
               ['@babel/preset-react', {runtime: 'automatic'}]
             ],
             plugins: [
