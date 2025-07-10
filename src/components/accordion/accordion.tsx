@@ -53,17 +53,21 @@ export const Accordion: FC<AccordionProps> = ({children, expandMode = 'single'})
     <StyledAccordionSectionDiv>
       {accordionSections.map((section) => {
         if (!React.isValidElement(section)) return null;
-        const {id, onSectionToggled} = (section as React.ReactElement<any>).props;
+        if (!isAccordionSectionElement(section)) return null;
+        const {id, onSectionToggled, children: sectionChildren, title} = section.props;
         return (
           <AccordionSection
-            {...(section as React.ReactElement<any>).props}
             key={id}
+            id={id}
+            title={title}
             isOpen={openAccordionSections.includes(id)}
             onSectionToggled={() => {
               const isOpen = toggleSection(id);
               if (onSectionToggled) onSectionToggled(isOpen);
             }}
-          />
+          >
+            {sectionChildren}
+          </AccordionSection>
         );
       })}
     </StyledAccordionSectionDiv>
@@ -94,4 +98,20 @@ function findOpenAccordionSections(accordionSections: any, expandMode: 'single' 
   if (expandMode === 'single') return openAccordionSections.slice(0, 1);
 
   return openAccordionSections;
+}
+
+function isAccordionSectionElement(
+  section: unknown
+): section is React.ReactElement<{
+  id: string;
+  onSectionToggled?: (isOpen: boolean) => void;
+  children: React.ReactNode;
+  title: string;
+}> {
+  if (!React.isValidElement(section)) return false;
+  const props = section.props as Record<string, unknown>;
+  return (
+    typeof props.id === 'string' &&
+    typeof props.title === 'string'
+  );
 }

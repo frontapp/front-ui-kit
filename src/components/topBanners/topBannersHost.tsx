@@ -36,12 +36,13 @@ export const TopBannersHost: FC<TopBannersHostProps> = (props) => {
 
   return (
     <StyledDiv>
-      {/* @ts-expect-error React 19 type incompatibility */}
       {transitions(
         (styles, banner) =>
           banner && (
             <animated.div key={banner.type} style={styles}>
-              <TopBanner {...banner} onDismissClick={dismissBanner} />
+              <TopBanner type={banner.type} onDismissClick={dismissBanner}>
+                {banner.message}
+              </TopBanner>
             </animated.div>
           )
       )}

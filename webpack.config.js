@@ -128,13 +128,13 @@ module.exports = {
   plugins: [
     // Suppress warnings about type-only exports
     new (class {
-      apply(compiler) {
+      static apply(compiler) {
         compiler.hooks.done.tap('SuppressTypeExportWarnings', (stats) => {
-          if (stats.compilation.warnings) {
+          if (stats.compilation.warnings)
+            // eslint-disable-next-line no-param-reassign
             stats.compilation.warnings = stats.compilation.warnings.filter(
-              (warning) => !warning.message.includes('export') || !warning.message.includes('was not found')
+              warning => !warning.message.includes('export') || !warning.message.includes('was not found')
             );
-          }
         });
       }
     })()
