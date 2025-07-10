@@ -19,7 +19,7 @@ export interface FormFieldProps {
   /** Whether we should show the "*". */
   isRequired?: boolean;
   /** Content to render. */
-  children: React.ReactElement;
+  children: React.ReactElement<{isErred?: boolean}>;
 }
 
 /*
@@ -83,7 +83,7 @@ export const FormField: FC<FormFieldProps> = (props) => {
         <StyledLabelWrapperDiv>{label}</StyledLabelWrapperDiv>
         {isRequired && <StyledRequiredTagDiv>*</StyledRequiredTagDiv>}
       </StyledFormFieldLabelDiv>
-      {React.cloneElement(children, {isErred})}
+      {React.cloneElement(children, {isErred} as any)}
       {(errorMessage || hint) && (
         <StyledFormFieldHelperTextDiv $isErred={isErred}>{errorMessage || hint}</StyledFormFieldHelperTextDiv>
       )}

@@ -2,6 +2,8 @@ const path = require('path');
 
 const isProduction = process.argv.indexOf('--mode=production') !== -1;
 
+
+
 module.exports = {
   entry: {
     index: './src/index.ts'
@@ -20,8 +22,33 @@ module.exports = {
     rules: [
       {
         test: /\.ts$/,
-        use: 'ts-loader',
-        exclude: /node_modules/
+        use: {
+          loader: 'babel-loader',
+          options: {
+            compact: true,
+            presets: [
+              ['@babel/preset-env', {modules: false}],
+              ['@babel/preset-typescript', {allowNamespaces: true, allExtensions: true, isTSX: true, onlyRemoveTypeImports: true}],
+              ['@babel/preset-react', {runtime: 'automatic'}]
+            ],
+            plugins: [
+              'add-react-displayname',
+              [
+                'babel-plugin-styled-components',
+                {
+                  // Disable the dev-friendly classNames on styled-components
+                  displayName: !isProduction,
+                  // Minify the CSS
+                  minify: true,
+                  // Helps with dead code elimination
+                  // https://www.styled-components.com/docs/tooling#dead-code-elimination
+                  pure: true
+                }
+              ]
+            ]
+          }
+        },
+        exclude: [/node_modules/]
       },
       {
         test: /\.tsx$/,
@@ -31,7 +58,7 @@ module.exports = {
             compact: true,
             presets: [
               ['@babel/preset-env', {modules: false}],
-              '@babel/preset-typescript',
+              ['@babel/preset-typescript', {allowNamespaces: true, allExtensions: true, isTSX: true, onlyRemoveTypeImports: true}],
               ['@babel/preset-react', {runtime: 'automatic'}]
             ],
             plugins: [
@@ -97,5 +124,19 @@ module.exports = {
     library: {
       type: 'commonjs'
     }
-  }
+  },
+  plugins: [
+    // Suppress warnings about type-only exports
+    new (class {
+      apply(compiler) {
+        compiler.hooks.done.tap('SuppressTypeExportWarnings', (stats) => {
+          if (stats.compilation.warnings) {
+            stats.compilation.warnings = stats.compilation.warnings.filter(
+              (warning) => !warning.message.includes('export') || !warning.message.includes('was not found')
+            );
+          }
+        });
+      }
+    })()
+  ]
 };

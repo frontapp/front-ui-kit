@@ -12,13 +12,13 @@
     "esModuleInterop": true,
     "isolatedModules": false,
     "emitDecoratorMetadata": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "sourceMap": true,
     "strict": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "plugins": [
       {
         "name": "typescript-styled-plugin"

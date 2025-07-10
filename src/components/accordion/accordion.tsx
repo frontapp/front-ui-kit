@@ -52,10 +52,11 @@ export const Accordion: FC<AccordionProps> = ({children, expandMode = 'single'})
   return (
     <StyledAccordionSectionDiv>
       {accordionSections.map((section) => {
-        const {id, onSectionToggled} = section.props;
+        if (!React.isValidElement(section)) return null;
+        const {id, onSectionToggled} = (section as React.ReactElement<any>).props;
         return (
           <AccordionSection
-            {...section.props}
+            {...(section as React.ReactElement<any>).props}
             key={id}
             isOpen={openAccordionSections.includes(id)}
             onSectionToggled={() => {

@@ -30,7 +30,7 @@ interface DropdownListProps {
   /** The height of the loading skeleton. */
   loadingSkeletonHeight: number;
   /** The threshold for when we should call onLoadMore. */
-  loadingThreshold: number;
+  loadingThreshold?: number;
   /** Returns the height of the item at the index. */
   getItemHeight: (index: number) => number;
   /** Renders the item at the index. */
@@ -53,14 +53,14 @@ export const DropdownList: FC<DropdownListProps> = (props) => {
     isLoading,
     hasMore,
     loadingSkeletonHeight,
-    loadingThreshold,
+    loadingThreshold = 5,
     loadingSkeleton,
     getItemHeight,
     renderItem,
     onLoadMore
   } = props;
 
-  const listRef = useRef<VariableSizeList>();
+  const listRef = useRef<VariableSizeList | null>(null);
   const previousIsLoading = usePrevious(isLoading);
   const loadingIndexRef = useRef<number>(itemsCount);
 
@@ -103,12 +103,14 @@ export const DropdownList: FC<DropdownListProps> = (props) => {
   };
 
   return (
+    // @ts-expect-error React 19 type incompatibility
     <InfiniteLoader
       isItemLoaded={isItemLoaded}
       itemCount={itemCount}
       loadMoreItems={isLoading ? () => {} : onLoadMore}
       threshold={loadingThreshold}>
       {({onItemsRendered, ref: infiniteLoaderListRef}) => (
+        // @ts-expect-error React 19 type incompatibility
         <VariableSizeList
           ref={(ref: VariableSizeList) => {
             listRef.current = ref;

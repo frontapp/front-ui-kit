@@ -8,16 +8,18 @@ import useMeasure, {Options as UseMeasureOptions, RectReadOnly} from 'react-use-
 
 /** Returns a setTimeout-like function that clears the previous timeout when re-invoked or when the component unmounts. */
 export function useTimeout(): [(handler: () => void, timeout?: number) => void, () => void] {
-  const handleRef = useRef<number>();
+  const handleRef = useRef<number | null>(null);
 
-  useEffect(() => () => clearTimeout(handleRef.current), []);
+  useEffect(() => () => { if (handleRef.current) clearTimeout(handleRef.current); }, []);
 
   const safeSetTimeout = useCallback((handler: () => void, timeout?: number) => {
-    clearTimeout(handleRef.current);
+    if (handleRef.current) clearTimeout(handleRef.current);
     // eslint-disable-next-line @typescript-eslint/consistent-type-assertions, @typescript-eslint/no-explicit-any
     handleRef.current = setTimeout(handler, timeout) as any;
   }, []);
-  const safeClearTimeout = useCallback(() => clearTimeout(handleRef.current), []);
+  const safeClearTimeout = useCallback(() => {
+    if (handleRef.current) clearTimeout(handleRef.current);
+  }, []);
 
   return [safeSetTimeout, safeClearTimeout];
 }
@@ -27,7 +29,7 @@ export function usePrevious<T>(value: T) {
   const ref = useRef<T | null>(null);
   useEffect(() => {
     ref.current = value;
-  });
+  }, [value]);
   return ref.current;
 }
 
