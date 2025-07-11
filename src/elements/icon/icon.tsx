@@ -115,9 +115,10 @@ const importedIcons = {
   Trash,
   TrashFilled,
   WarningFilled
-};
+} as const;
+
 export type IconName = keyof typeof importedIcons;
-// eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+
 export const icons = importedIcons as {
   [name in IconName]: (props: React.SVGAttributes<SVGElement>) => React.ReactElement;
 };
