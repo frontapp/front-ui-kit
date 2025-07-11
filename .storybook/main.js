@@ -5,19 +5,18 @@ module.exports = {
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
-    '@storybook/addon-docs'
+    '@storybook/addon-interactions'
   ],
-  framework: '@storybook/react',
-  core: {
-    builder: 'webpack5'
+  framework: {
+    name: '@storybook/react-webpack5',
+    options: {}
   },
   webpackFinal: async (config) => ({
     ...config,
     module: {
       ...config.module,
       rules: [
-        ...config.module.rules.filter((r) => !r.test.toString().includes('svg')),
+        ...config.module.rules.filter((r) => !r.test || !r.test.toString().includes('svg')),
         ...custom.module.rules
       ]
     }

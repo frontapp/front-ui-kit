@@ -39,7 +39,7 @@ export const TopBannersHost: FC<TopBannersHostProps> = (props) => {
       {transitions(
         (styles, banner) =>
           banner && (
-            <animated.div style={styles}>
+            <animated.div key={banner.type} style={styles}>
               <TopBanner type={banner.type} onDismissClick={dismissBanner}>
                 {banner.message}
               </TopBanner>

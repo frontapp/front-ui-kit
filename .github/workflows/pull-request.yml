@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
-          node-version: 16
+          node-version: 18
       - run: yarn install --frozen-lockfile
       - run: yarn lint
 
@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
-          node-version: 16
+          node-version: 18
       - run: yarn install --frozen-lockfile
       - run: yarn test
 
@@ -35,6 +35,10 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           fetch-depth: 0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 18
+          cache: 'yarn'
       - name: Install dependencies
         run: yarn install --frozen-lockfile
       - name: Publish to Chromatic

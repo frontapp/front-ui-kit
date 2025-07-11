@@ -32,6 +32,7 @@ export function renderFirstIconOnly(children: React.ReactNode, shouldDisableColo
     // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/consistent-type-assertions
     if ((child.type as any)?.displayName === 'Icon' && !hasFoundIcon) {
       hasFoundIcon = true;
+      // @ts-expect-error React 19 type incompatibility
       return React.cloneElement(child, {shouldDisableColor});
     }
     return null;
@@ -63,7 +64,7 @@ export function renderChildrenIgnoreSpecifiedComponents(
 export function renderChildrenSpecifiedComponents(
   children: React.ReactNode,
   componentsToInclude: ReadonlyArray<string>
-) {
+): React.ReactNode[] {
   return React.Children.toArray(children).map((child) => {
     if (typeof child === 'string' || typeof child === 'number') return null;
     if (ReactIs.isFragment(child) || !ReactIs.isElement(child)) return null;

@@ -19,7 +19,7 @@ export interface FormFieldProps {
   /** Whether we should show the "*". */
   isRequired?: boolean;
   /** Content to render. */
-  children: React.ReactElement;
+  children: React.ReactElement<{isErred?: boolean}>;
 }
 
 /*

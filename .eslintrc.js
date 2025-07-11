@@ -184,6 +184,14 @@ module.exports = {
         '@typescript-eslint/no-non-null-assertion': 'off',
         'no-console': 0
       }
+    },
+    {
+      files: ['webpack.config.js'],
+      rules: {
+        'class-methods-use-this': 'off',
+        'curly': 'off',
+        'no-param-reassign': 'off'
+      }
     }
   ]
 };
