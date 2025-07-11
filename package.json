@@ -6,7 +6,7 @@
   "author": "",
   "license": "Apache-2.0",
   "engines": {
-    "node": ">=16",
+    "node": ">=18",
     "npm": "please-use-yarn-instead"
   },
   "main": "dist/index.js",
