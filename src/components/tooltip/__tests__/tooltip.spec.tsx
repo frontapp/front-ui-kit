@@ -1,9 +1,9 @@
-import {act, render, screen, waitFor} from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 
-import {Tooltip} from '../tooltip';
-import {TooltipCoordinator} from '../tooltipCoordinator';
+import { Tooltip } from '../tooltip';
+import { TooltipCoordinator } from '../tooltipCoordinator';
 
 describe('<Tooltip /> Spec', () => {
   it('should show tooltip when hovered', async () => {
@@ -14,7 +14,10 @@ describe('<Tooltip /> Spec', () => {
     );
 
     // Hover over the anchor.
-    await userEvent.hover(screen.getByText('anchor'));
+    await act(async () => {
+      await userEvent.hover(screen.getByText('anchor'));
+    });
+
     // Make sure the tooltip is visible.
     await waitFor(() => {
       const tooltip = screen.queryByText('Example Tooltip');
@@ -26,14 +29,15 @@ describe('<Tooltip /> Spec', () => {
     render(
       <TooltipCoordinator
         renderTooltip={() => <Tooltip>Example Tooltip</Tooltip>}
-        condition={{type: 'explicit', isEnabled: false}}>
+        condition={{ type: 'explicit', isEnabled: false }}>
         <div>anchor</div>
       </TooltipCoordinator>
     );
 
     // Hover over the anchor.
-    await userEvent.hover(screen.getByText('anchor'));
-    await act(() => {});
+    await act(async () => {
+      await userEvent.hover(screen.getByText('anchor'));
+    });
 
     // Make sure the tooltip is not visible.
     const tooltip = screen.queryByText('Example Tooltip');
@@ -44,13 +48,16 @@ describe('<Tooltip /> Spec', () => {
     render(
       <TooltipCoordinator
         renderTooltip={() => <Tooltip>Example Tooltip</Tooltip>}
-        condition={{type: 'explicit', isEnabled: true}}>
+        condition={{ type: 'explicit', isEnabled: true }}>
         <div>anchor</div>
       </TooltipCoordinator>
     );
 
     // Hover over the anchor.
-    await userEvent.hover(screen.getByText('anchor'));
+    await act(async () => {
+      await userEvent.hover(screen.getByText('anchor'));
+    });
+
     // Make sure the tooltip is visible.
     await waitFor(() => {
       const tooltip = screen.queryByText('Example Tooltip');

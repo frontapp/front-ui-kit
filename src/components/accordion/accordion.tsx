@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import _ from 'lodash';
-import React, {FC, useMemo, useState} from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import styled from 'styled-components';
 
-import {renderChildrenSpecifiedComponents} from '../../helpers/renderHelpers';
-import {AccordionSection} from './accordionSection';
+import { renderChildrenSpecifiedComponents } from '../../helpers/renderHelpers';
+import { AccordionSection } from './accordionSection';
 
 /*
  * Props
@@ -29,7 +29,7 @@ const StyledAccordionSectionDiv = styled.div`
  * Component
  */
 
-export const Accordion: FC<AccordionProps> = ({children, expandMode = 'single'}) => {
+export const Accordion: FC<AccordionProps> = ({ children, expandMode = 'single' }) => {
   const accordionSections = useMemo(
     () =>
       _(renderChildrenSpecifiedComponents(children, ['AccordionSection']))
@@ -54,7 +54,7 @@ export const Accordion: FC<AccordionProps> = ({children, expandMode = 'single'})
       {accordionSections.map((section) => {
         if (!React.isValidElement(section)) return null;
         if (!isAccordionSectionElement(section)) return null;
-        const {id, onSectionToggled, children: sectionChildren, title} = section.props;
+        const { id, onSectionToggled, children: sectionChildren, title } = section.props;
         return (
           <AccordionSection
             key={id}
@@ -109,6 +109,7 @@ function isAccordionSectionElement(
   title: string;
 }> {
   if (!React.isValidElement(section)) return false;
+  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   const props = section.props as Record<string, unknown>;
   return (
     typeof props.id === 'string' &&
