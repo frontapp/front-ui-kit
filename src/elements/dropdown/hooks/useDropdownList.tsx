@@ -2,14 +2,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 import _ from 'lodash';
-import React, {useCallback, useMemo} from 'react';
+import React, { useCallback, useMemo } from 'react';
 import ReactIs from 'react-is';
 
-import {ActionMenuItem, ActionMenuItemProps} from '../../../components/_pre-built/actionMenu/actionMenuItem';
-import {SelectItem, SelectItemProps} from '../../../components/_pre-built/select/selectItem';
-import {DropdownHeading, DropdownHeadingProps} from '../dropdownHeading';
-import {DropdownItem, DropdownItemProps} from '../dropdownItem';
-import {DropdownItemSpacer} from '../dropdownItemSpacer';
+import { ActionMenuItem, ActionMenuItemProps } from '../../../components/_pre-built/actionMenu/actionMenuItem';
+import { SelectItem, SelectItemProps } from '../../../components/_pre-built/select/selectItem';
+import { DropdownHeading, DropdownHeadingProps } from '../dropdownHeading';
+import { DropdownItem, DropdownItemProps } from '../dropdownItem';
+import { DropdownItemSpacer } from '../dropdownItemSpacer';
 
 /*
  * Constants.
@@ -139,8 +139,15 @@ function buildDropdownItemsFromChildren(children: React.ReactNode): ReadonlyArra
       // {BooleanCheck && (<><DropdownItem>Test</DropdownItem></>)}
       if (ReactIs.isFragment(child)) return buildDropdownItemsFromChildren(child.props.children);
 
+      // Check if it's a React element by looking for the necessary properties
+      const isReactElement = child &&
+        typeof child === 'object' &&
+        '$$typeof' in child &&
+        'type' in child &&
+        'props' in child;
+
       // This is a check for arbitrary elements such as div, span, etc.
-      if (!ReactIs.isElement(child)) return undefined;
+      if (!isReactElement) return undefined;
 
       // Check for specific items that we will support rendering in the list.
       if ((child.type as any)?.displayName === 'DropdownItem')

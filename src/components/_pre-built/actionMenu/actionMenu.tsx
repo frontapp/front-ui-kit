@@ -1,9 +1,9 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 
-import {Dropdown} from '../../../elements/dropdown/dropdown';
-import {DropdownCoordinator} from '../../../elements/dropdown/dropdownCoordinator';
-import {Icon} from '../../../elements/icon/icon';
-import {Button} from '../../button/button';
+import { Dropdown } from '../../../elements/dropdown/dropdown';
+import { DropdownCoordinator } from '../../../elements/dropdown/dropdownCoordinator';
+import { Icon } from '../../../elements/icon/icon';
+import { Button } from '../../button/button';
 
 /*
  * Constants.
@@ -28,16 +28,16 @@ interface ActionMenuProps {
  * Component.
  */
 
-export const ActionMenu: FC<ActionMenuProps> = ({children, width = defaultDropdownWidth, layerRootId}) => (
+export const ActionMenu: FC<ActionMenuProps> = ({ children, width = defaultDropdownWidth, layerRootId }) => (
   <DropdownCoordinator
     placement="bottom-end"
     isInline
-    renderButton={(isDropdownOpen) => (
-      <Button type="icon" isActive={isDropdownOpen}>
+    renderButton={(isDropdownOpen, isDisabled, buttonRef, onClick) => (
+      <Button type="icon" isActive={isDropdownOpen} onClick={onClick}>
         <Icon name="EllipsisVertical" />
       </Button>
     )}
-    renderDropdown={() => (
+    renderDropdown={(onCloseDropdown, buttonWidth) => (
       <Dropdown maxWidth={width} minWidth={width} shouldUseItemsHeight>
         {children}
       </Dropdown>

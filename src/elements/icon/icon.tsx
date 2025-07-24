@@ -161,7 +161,10 @@ export const Icon: FC<IconProps> = (props) => {
   // Pull the icon from the list of available icons.
   // The svg file is converted to a function that is called.
   const icon = icons[name];
-  if (!icon) return null;
+  if (!icon) {
+    console.warn(`Icon "${name}" not found`);
+    return null;
+  }
 
   return (
     <StyledIconDiv $size={size}>
@@ -169,9 +172,11 @@ export const Icon: FC<IconProps> = (props) => {
         name,
         width: size,
         height: size,
-        color: shouldDisableColor ? '' : color,
+        color: shouldDisableColor ? 'currentColor' : color,
         preserveAspectRatio: 'none'
       })}
     </StyledIconDiv>
   );
 };
+
+Icon.displayName = 'Icon';

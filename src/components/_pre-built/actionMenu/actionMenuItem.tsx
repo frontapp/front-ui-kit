@@ -1,11 +1,11 @@
-import React, {FC, MouseEventHandler} from 'react';
+import React, { FC, MouseEventHandler } from 'react';
 
-import {DropdownItem} from '../../../elements/dropdown/dropdownItem';
-import {DropdownItemIcon} from '../../../elements/dropdown/dropdownItemIcon';
-import {IconName} from '../../../elements/icon/icon';
-import {greys} from '../../../helpers/colorHelpers';
-import {Tooltip} from '../../tooltip/tooltip';
-import {TooltipCoordinator} from '../../tooltip/tooltipCoordinator';
+import { DropdownItem } from '../../../elements/dropdown/dropdownItem';
+import { DropdownItemIcon } from '../../../elements/dropdown/dropdownItemIcon';
+import { IconName } from '../../../elements/icon/icon';
+import { greys } from '../../../helpers/colorHelpers';
+import { Tooltip } from '../../tooltip/tooltip';
+import { TooltipCoordinator } from '../../tooltip/tooltipCoordinator';
 
 /*
  * Props.
@@ -25,16 +25,18 @@ export interface ActionMenuItemProps {
  */
 
 export const ActionMenuItem: FC<ActionMenuItemProps> = (props) => {
-  const {iconName, children, onClick} = props;
+  const { iconName, children, onClick } = props;
   return (
     <DropdownItem onClick={onClick}>
       {iconName && <DropdownItemIcon iconName={iconName} color={greys.shade70} />}
-      <TooltipCoordinator condition={{type: 'overflow'}} renderTooltip={() => renderTooltip(children)}>
+      <TooltipCoordinator condition={{ type: 'overflow' }} renderTooltip={() => renderTooltip(children)}>
         {children}
       </TooltipCoordinator>
     </DropdownItem>
   );
 };
+
+ActionMenuItem.displayName = 'ActionMenuItem';
 
 /*
  * Helpers.

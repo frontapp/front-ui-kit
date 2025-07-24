@@ -1,20 +1,18 @@
-import {ComponentStory} from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import {greys} from '../../../../../helpers/colorHelpers';
-import {ActionMenu} from '../../actionMenu';
-import {ActionMenuItem} from '../../actionMenuItem';
-import {ActionMenuItemSpacer} from '../../actionMenuItemSpacer';
-
-/*
- * Styles.
- */
+import { greys } from '../../../../../helpers/colorHelpers';
+import { ActionMenu } from '../../actionMenu';
+import { ActionMenuItem } from '../../actionMenuItem';
+import { ActionMenuItemSpacer } from '../../actionMenuItemSpacer';
 
 const StyledStoryWrapperDiv = styled.div`
   height: 215px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  position: relative;
 `;
 
 const StyledMenuWrapperDiv = styled.div`
@@ -27,24 +25,43 @@ const StyledMenuWrapperDiv = styled.div`
   background: white;
   border: 1px solid ${greys.shade30};
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  position: relative;
 `;
 
-/*
- * Story.
- */
-
-const Template: ComponentStory<typeof ActionMenu> = () => (
+const Template: StoryFn<typeof ActionMenu> = () => (
   <StyledStoryWrapperDiv>
     <StyledMenuWrapperDiv>
-      <ActionMenu layerRootId="story--components-action-menu--basic">
-        <ActionMenuItem iconName="Assign">Merge Contact</ActionMenuItem>
-        <ActionMenuItem iconName="Copy">Copy Account Id</ActionMenuItem>
-        <ActionMenuItem>Extra Long Name For A Dropdown</ActionMenuItem>
+      <ActionMenu>
+        <ActionMenuItem
+          iconName="Assign"
+          onClick={() => alert('Merge Contact clicked')}
+        >
+          Merge Contact
+        </ActionMenuItem>
+        <ActionMenuItem
+          iconName="Copy"
+          onClick={() => alert('Copy Account Id clicked')}
+        >
+          Copy Account Id
+        </ActionMenuItem>
+        <ActionMenuItem
+          onClick={() => alert('Extra Long Name clicked')}
+        >
+          Extra Long Name For A Dropdown
+        </ActionMenuItem>
         <ActionMenuItemSpacer />
-        <ActionMenuItem iconName="Preferences">
+        <ActionMenuItem
+          iconName="Preferences"
+          onClick={() => alert('Preferences clicked')}
+        >
           Super long name dropdown item that should cause the tooltip to wrap when hovered over.
         </ActionMenuItem>
-        <ActionMenuItem iconName="Close">Close</ActionMenuItem>
+        <ActionMenuItem
+          iconName="Close"
+          onClick={() => alert('Close clicked')}
+        >
+          Close
+        </ActionMenuItem>
       </ActionMenu>
     </StyledMenuWrapperDiv>
   </StyledStoryWrapperDiv>
