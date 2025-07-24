@@ -27,9 +27,9 @@ module.exports = {
           options: {
             compact: true,
             presets: [
-              ['@babel/preset-env', {modules: false}],
+              ['@babel/preset-env', { modules: false }],
               '@babel/preset-typescript',
-              ['@babel/preset-react', {runtime: 'automatic'}]
+              ['@babel/preset-react', { runtime: 'automatic' }]
             ],
             plugins: [
               'add-react-displayname',
@@ -57,9 +57,9 @@ module.exports = {
           options: {
             compact: true,
             presets: [
-              ['@babel/preset-env', {modules: false}],
+              ['@babel/preset-env', { modules: false }],
               '@babel/preset-typescript',
-              ['@babel/preset-react', {runtime: 'automatic'}]
+              ['@babel/preset-react', { runtime: 'automatic' }]
             ],
             plugins: [
               'add-react-displayname',
@@ -125,18 +125,5 @@ module.exports = {
       type: 'commonjs'
     }
   },
-  plugins: [
-    // Suppress warnings about type-only exports
-    new (class {
-      apply(compiler) {
-        compiler.hooks.done.tap('SuppressTypeExportWarnings', (stats) => {
-          if (stats.compilation.warnings) {
-            stats.compilation.warnings = stats.compilation.warnings.filter(
-              (warning) => !warning.message.includes('export') || !warning.message.includes('was not found')
-            );
-          }
-        });
-      }
-    })()
-  ]
+  plugins: []
 };
