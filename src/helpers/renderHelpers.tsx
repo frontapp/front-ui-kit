@@ -32,8 +32,7 @@ export function renderFirstIconOnly(children: React.ReactNode, shouldDisableColo
     // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/consistent-type-assertions
     if ((child.type as any)?.displayName === 'Icon' && !hasFoundIcon) {
       hasFoundIcon = true;
-      // @ts-expect-error React 19 type incompatibility
-      return React.cloneElement(child, {shouldDisableColor});
+      return React.cloneElement(child, { shouldDisableColor });
     }
     return null;
   });
@@ -67,11 +66,16 @@ export function renderChildrenSpecifiedComponents(
 ): React.ReactNode[] {
   return React.Children.toArray(children).map((child) => {
     if (typeof child === 'string' || typeof child === 'number') return null;
-    if (ReactIs.isFragment(child) || !ReactIs.isElement(child)) return null;
+    if (ReactIs.isFragment(child)) return null;
 
-    // Check if the display name is one we should not render.
+    // Check if it's a React element by looking for $$typeof property
+    if (!child || typeof child !== 'object' || !('$$typeof' in child)) return null;
+
+    // Check if the display name is one we should render.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/consistent-type-assertions
-    if (componentsToInclude.includes((child.type as any)?.displayName)) return child;
+    const childElement = child as any;
+    const displayName = childElement.type?.displayName;
+    if (componentsToInclude.includes(displayName)) return child;
 
     return null;
   });

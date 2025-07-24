@@ -1,9 +1,9 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
-import {Icon} from '../../elements/icon/icon';
-import {greys} from '../../helpers/colorHelpers';
-import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
+import { Icon } from '../../elements/icon/icon';
+import { greys } from '../../helpers/colorHelpers';
+import { fonts, fontSizes, fontWeights } from '../../helpers/fontHelpers';
 
 /*
  * Props
@@ -69,7 +69,7 @@ const StyledChevronIconDiv = styled.div`
  */
 
 export const AccordionSection: FC<AccordionSectionProps> = (props) => {
-  const {children, isOpen = false, title, id, onSectionToggled} = props;
+  const { children, isOpen = false, title, id, onSectionToggled } = props;
 
   return (
     <StyledAccordionSectionDiv id={id}>
@@ -85,6 +85,8 @@ export const AccordionSection: FC<AccordionSectionProps> = (props) => {
     </StyledAccordionSectionDiv>
   );
 };
+
+AccordionSection.displayName = 'AccordionSection';
 
 /*
  * Helpers
