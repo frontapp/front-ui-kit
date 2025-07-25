@@ -1,16 +1,16 @@
-import {StoryFn} from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import {Dropdown} from '../../../../../elements/dropdown/dropdown';
-import {DropdownCoordinator} from '../../../../../elements/dropdown/dropdownCoordinator';
-import {DropdownItem} from '../../../../../elements/dropdown/dropdownItem';
-import {DropdownItemIcon} from '../../../../../elements/dropdown/dropdownItemIcon';
-import {greys, palette} from '../../../../../helpers/colorHelpers';
-import {DefaultStyleProvider} from '../../../../../utils/defaultStyleProvider';
-import {PluginFooter} from '../../pluginFooter';
-import {PluginHeader} from '../../pluginHeader';
-import {PluginLayout} from '../../pluginLayout';
+import { Dropdown } from '../../../../../elements/dropdown/dropdown';
+import { DropdownCoordinator } from '../../../../../elements/dropdown/dropdownCoordinator';
+import { DropdownItem } from '../../../../../elements/dropdown/dropdownItem';
+import { DropdownItemIcon } from '../../../../../elements/dropdown/dropdownItemIcon';
+import { greys, palette } from '../../../../../helpers/colorHelpers';
+import { DefaultStyleProvider } from '../../../../../utils/defaultStyleProvider';
+import { PluginFooter } from '../../pluginFooter';
+import { PluginHeader } from '../../pluginHeader';
+import { PluginLayout } from '../../pluginLayout';
 
 const StyledCenteredDiv = styled.div`
   display: flex;
@@ -31,7 +31,7 @@ const StyledPluginContentDiv = styled.div`
   white-space: pre-wrap;
 `;
 
-const StyledThreeDotsButton = styled.button<{$isActive: boolean}>`
+const StyledThreeDotsButton = styled.button<{ $isActive: boolean }>`
   background: ${(props) => (props.$isActive ? '#e0e0e0' : 'transparent')};
   border: none;
   border-radius: 4px;
@@ -58,7 +58,7 @@ const Template: StoryFn<typeof PluginLayout> = () => (
             onBackClick={() => console.log('On back click')}
             actions={
               <DropdownCoordinator
-                placement="bottom-start"
+                placement="bottom-end"
                 onDropdownOpen={() => console.log('Dropdown opened!')}
                 onDropdownClosed={() => console.log('Dropdown closed!')}
                 renderButton={(isDropdownOpen, isDisabled, buttonRef, onClick) => (
