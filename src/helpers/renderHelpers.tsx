@@ -46,7 +46,7 @@ export function renderFirstIconOnly(children: React.ReactNode, shouldDisableColo
 
     if (isIcon && !hasFoundIcon) {
       hasFoundIcon = true;
-      return React.cloneElement(child as React.ReactElement, {shouldDisableColor} as any);
+      return React.cloneElement(child as React.ReactElement, { shouldDisableColor } as any);
     }
     return null;
   });

@@ -170,6 +170,11 @@ exports[`<Button /> Spec Snapshots should render different sized button 1`] = `
 `;
 
 exports[`<Button /> Spec Snapshots should render icon button 1`] = `
+.c1 {
+  width: 16px;
+  height: 16px;
+}
+
 .c0 {
   background: transparent;
   border: none;
@@ -187,11 +192,28 @@ exports[`<Button /> Spec Snapshots should render icon button 1`] = `
 <div>
   <button
     class="c0"
-  />
+  >
+    <div
+      class="c1"
+    >
+      <div
+        color="currentColor"
+        height="16"
+        name="Close"
+        preserveaspectratio="none"
+        width="16"
+      />
+    </div>
+  </button>
 </div>
 `;
 
 exports[`<Button /> Spec Snapshots should render icon-danger button 1`] = `
+.c1 {
+  width: 16px;
+  height: 16px;
+}
+
 .c0 {
   background: transparent;
   border: none;
@@ -209,7 +231,19 @@ exports[`<Button /> Spec Snapshots should render icon-danger button 1`] = `
 <div>
   <button
     class="c0"
-  />
+  >
+    <div
+      class="c1"
+    >
+      <div
+        color="currentColor"
+        height="16"
+        name="Close"
+        preserveaspectratio="none"
+        width="16"
+      />
+    </div>
+  </button>
 </div>
 `;
 

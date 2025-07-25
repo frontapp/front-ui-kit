@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
 import Archive from '../../assets/icons/archive.svg';
@@ -53,7 +53,7 @@ import StarFilled from '../../assets/icons/starFilled.svg';
 import Trash from '../../assets/icons/trash.svg';
 import TrashFilled from '../../assets/icons/trashFilled.svg';
 import WarningFilled from '../../assets/icons/warningFilled.svg';
-import {greys} from '../../helpers/colorHelpers';
+import { greys } from '../../helpers/colorHelpers';
 
 /*
  * Constants.
@@ -156,7 +156,7 @@ const StyledIconDiv = styled.div<StyledIconDivProps>`
  */
 
 export const Icon: FC<IconProps> = (props) => {
-  const {name, size = defaultSize, color = defaultColor, shouldDisableColor} = props;
+  const { name, size = defaultSize, color = defaultColor, shouldDisableColor } = props;
 
   // Pull the icon from the list of available icons.
   // The svg file is converted to a function that is called.
@@ -170,7 +170,7 @@ export const Icon: FC<IconProps> = (props) => {
         width: size,
         height: size,
         color: shouldDisableColor ? 'currentColor' : color,
-        preserveAspectRatio: 'xMidYMid meet'
+        preserveAspectRatio: 'none'
       })}
     </StyledIconDiv>
   );

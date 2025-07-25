@@ -72,7 +72,12 @@ exports[`<Pill /> Spec Snapshots should render using defaults 1`] = `
 `;
 
 exports[`<Pill /> Spec Snapshots should support rendering a pill with icon 1`] = `
-.c1 {
+.c2 {
+  width: 16px;
+  height: 16px;
+}
+
+.c3 {
   grid-area: content;
 }
 
@@ -96,7 +101,7 @@ exports[`<Pill /> Spec Snapshots should support rendering a pill with icon 1`] =
   background-color: rgba(0, 0, 0, 0.15);
 }
 
-.c2 {
+.c1 {
   grid-area: left-content;
   margin-right: 8px;
 }
@@ -109,13 +114,25 @@ exports[`<Pill /> Spec Snapshots should support rendering a pill with icon 1`] =
       class="c1"
     >
       <div
-        class="c1"
+        class="c2"
+      >
+        <div
+          color="currentColor"
+          height="16"
+          name="Checkmark"
+          preserveaspectratio="none"
+          width="16"
+        />
+      </div>
+    </div>
+    <div
+      class="c3"
+    >
+      <div
+        class="c3"
       >
         Pill
       </div>
-      <div
-        class="c2"
-      />
     </div>
   </div>
 </div>
