@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { FC } from 'react';
-import styled, { css } from 'styled-components';
+import React, {FC} from 'react';
+import styled, {css} from 'styled-components';
 
-import { Icon, IconName } from '../icon/icon';
+import {Icon, IconName} from '../icon/icon';
 
 /*
  * Props.
@@ -40,7 +40,7 @@ const StyledDropdownIconWrapperDiv = styled.div<StyledDropdownIconWrapperDivProp
  * Component.
  */
 
-export const DropdownItemIcon: FC<DropdownItemIconProps> = ({ position = 'left', iconName, color }) => (
+export const DropdownItemIcon: FC<DropdownItemIconProps> = ({position = 'left', iconName, color}) => (
   <StyledDropdownIconWrapperDiv $position={position}>
     <Icon name={iconName} color={color} />
   </StyledDropdownIconWrapperDiv>

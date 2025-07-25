@@ -12,7 +12,7 @@ export function isComponentInChildren(children: React.ReactNode, componentDispla
   return React.Children.toArray(children).some((child) => {
     if (typeof child === 'string' || typeof child === 'number') return null;
     if (ReactIs.isFragment(child) || !ReactIs.isElement(child)) return false;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/consistent-type-assertions
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return (child.type as any)?.displayName === componentDisplayName;
   });
 }
@@ -24,20 +24,13 @@ export function renderFirstIconOnly(children: React.ReactNode, shouldDisableColo
   let hasFoundIcon = false;
 
   return React.Children.toArray(children).map((child) => {
-    if (typeof child === 'string' || typeof child === 'number') {
-      return null;
-    }
+    if (typeof child === 'string' || typeof child === 'number') return null;
 
     // Check if it's a React element by looking for the necessary properties
-    const isReactElement = child &&
-      typeof child === 'object' &&
-      '$$typeof' in child &&
-      'type' in child &&
-      'props' in child;
+    const isReactElement =
+      child && typeof child === 'object' && '$$typeof' in child && 'type' in child && 'props' in child;
 
-    if (ReactIs.isFragment(child) || !isReactElement) {
-      return null;
-    }
+    if (ReactIs.isFragment(child) || !isReactElement) return null;
 
     // Check for an icon and if we find one make sure we only have 1 icon
     // total that we could render. We also need to display any set colors
@@ -46,13 +39,14 @@ export function renderFirstIconOnly(children: React.ReactNode, shouldDisableColo
     const childType = (child as any).type;
 
     // Check multiple ways to identify the Icon component
-    const isIcon = childType?.displayName === 'Icon' ||
+    const isIcon =
+      childType?.displayName === 'Icon' ||
       childType?.name === 'Icon' ||
       (typeof childType === 'function' && childType.toString().includes('Icon'));
 
     if (isIcon && !hasFoundIcon) {
       hasFoundIcon = true;
-      return React.cloneElement(child as React.ReactElement, { shouldDisableColor });
+      return React.cloneElement(child as React.ReactElement, {shouldDisableColor});
     }
     return null;
   });
@@ -69,16 +63,13 @@ export function renderChildrenIgnoreSpecifiedComponents(
     if (typeof child === 'string' || typeof child === 'number') return child;
 
     // Check if it's a React element by looking for the necessary properties
-    const isReactElement = child &&
-      typeof child === 'object' &&
-      '$$typeof' in child &&
-      'type' in child &&
-      'props' in child;
+    const isReactElement =
+      child && typeof child === 'object' && '$$typeof' in child && 'type' in child && 'props' in child;
 
     if (ReactIs.isFragment(child) || !isReactElement) return child;
 
     // Check if the display name is one we should not render.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/consistent-type-assertions
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     if (componentsToIgnore.includes((child as any).type?.displayName)) return null;
 
     return child;
@@ -100,7 +91,7 @@ export function renderChildrenSpecifiedComponents(
     if (!child || typeof child !== 'object' || !('$$typeof' in child)) return null;
 
     // Check if the display name is one we should render.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/consistent-type-assertions
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const childElement = child as any;
     const displayName = childElement.type?.displayName;
     if (componentsToInclude.includes(displayName)) return child;

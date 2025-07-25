@@ -1,13 +1,13 @@
-import _, {isUndefined} from 'lodash';
-import {DateTime} from 'luxon';
-import React, {FC, FocusEventHandler, MouseEventHandler, useEffect, useState} from 'react';
+import _, { isUndefined } from 'lodash';
+import { DateTime } from 'luxon';
+import React, { FC, FocusEventHandler, MouseEventHandler, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import {Input} from '../../elements/input/input';
-import {DatepickerViewsEnum, formatTime, mergeDateAndTime} from '../../helpers/calendarHelpers';
-import {greys} from '../../helpers/colorHelpers';
-import {fonts, fontSizes, fontWeights, VisualSizesEnum} from '../../helpers/fontHelpers';
-import {Button} from '../button/button';
+import { Input } from '../../elements/input/input';
+import { DatepickerViewsEnum, formatTime, mergeDateAndTime } from '../../helpers/calendarHelpers';
+import { greys } from '../../helpers/colorHelpers';
+import { fonts, fontSizes, fontWeights, VisualSizesEnum } from '../../helpers/fontHelpers';
+import { Button } from '../button/button';
 
 /*
  * Constants
@@ -162,7 +162,7 @@ export const DatePickerFooter: FC<DatePickerFooterProps> = (props) => {
   };
 
   return (
-    <StyledWrapperDiv>
+    <StyledWrapperDiv onClick={(event) => event.stopPropagation()}>
       <StyledLabelsDiv>
         <StyledLabelDiv>Date</StyledLabelDiv>
         {type === 'dateAndTime' && <StyledLabelDiv>Time</StyledLabelDiv>}
@@ -221,12 +221,10 @@ function parseTime(date: DateTime, timeValue?: string) {
   );
   if (!formattedTime.matches || _.isEmpty(formattedTime.matches)) return undefined;
 
-  const parsedTime = DateTime.now()
-    .startOf('minute')
-    .set({
-      hour: formattedTime?.matches.h,
-      minute: formattedTime?.matches.m
-    });
+  const parsedTime = DateTime.now().startOf('minute').set({
+    hour: formattedTime?.matches.h,
+    minute: formattedTime?.matches.m
+  });
   return mergeDateAndTime(date, parsedTime);
 }
 

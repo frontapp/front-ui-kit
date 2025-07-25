@@ -1,8 +1,8 @@
-import React, { FC, MouseEventHandler } from 'react';
-import styled, { css } from 'styled-components';
+import React, {FC, MouseEventHandler} from 'react';
+import styled, {css} from 'styled-components';
 
-import { alphas, greys, palette } from '../../helpers/colorHelpers';
-import { renderFirstIconOnly } from '../../helpers/renderHelpers';
+import {alphas, greys, palette} from '../../helpers/colorHelpers';
+import {renderFirstIconOnly} from '../../helpers/renderHelpers';
 
 /*
  * Props.
@@ -95,7 +95,7 @@ function addIconColorStyles(
  */
 
 export const IconButton: FC<IconButtonProps> = (props) => {
-  const { children, isDanger, isDisabled, isActive, onClick, className, iconColor, isRounded } = props;
+  const {children, isDanger, isDisabled, isActive, onClick, className, iconColor, isRounded} = props;
 
   return (
     <StyledIconButton

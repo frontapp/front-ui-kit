@@ -1,9 +1,9 @@
-import { act, render, screen, waitFor } from '@testing-library/react';
+import {act, render, screen, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 
-import { Tooltip } from '../tooltip';
-import { TooltipCoordinator } from '../tooltipCoordinator';
+import {Tooltip} from '../tooltip';
+import {TooltipCoordinator} from '../tooltipCoordinator';
 
 describe('<Tooltip /> Spec', () => {
   it('should show tooltip when hovered', async () => {
@@ -29,7 +29,7 @@ describe('<Tooltip /> Spec', () => {
     render(
       <TooltipCoordinator
         renderTooltip={() => <Tooltip>Example Tooltip</Tooltip>}
-        condition={{ type: 'explicit', isEnabled: false }}>
+        condition={{type: 'explicit', isEnabled: false}}>
         <div>anchor</div>
       </TooltipCoordinator>
     );
@@ -48,7 +48,7 @@ describe('<Tooltip /> Spec', () => {
     render(
       <TooltipCoordinator
         renderTooltip={() => <Tooltip>Example Tooltip</Tooltip>}
-        condition={{ type: 'explicit', isEnabled: true }}>
+        condition={{type: 'explicit', isEnabled: true}}>
         <div>anchor</div>
       </TooltipCoordinator>
     );

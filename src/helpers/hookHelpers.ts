@@ -10,7 +10,12 @@ import useMeasure, {Options as UseMeasureOptions, RectReadOnly} from 'react-use-
 export function useTimeout(): [(handler: () => void, timeout?: number) => void, () => void] {
   const handleRef = useRef<number | null>(null);
 
-  useEffect(() => () => { if (handleRef.current) clearTimeout(handleRef.current); }, []);
+  useEffect(
+    () => () => {
+      if (handleRef.current) clearTimeout(handleRef.current);
+    },
+    []
+  );
 
   const safeSetTimeout = useCallback((handler: () => void, timeout?: number) => {
     if (handleRef.current) clearTimeout(handleRef.current);

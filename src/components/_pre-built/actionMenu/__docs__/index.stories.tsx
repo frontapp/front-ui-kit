@@ -1,7 +1,7 @@
 /* eslint-disable storybook/story-exports */
-import { Meta } from '@storybook/react';
+import {Meta} from '@storybook/react';
 
-import { ActionMenu } from '../actionMenu';
+import {ActionMenu} from '../actionMenu';
 import DocumentationMDX from './docs.mdx';
 
 /*
@@ -25,4 +25,4 @@ export default {
   id: 'Components/Action Menu'
 } as Meta<typeof ActionMenu>;
 
-export { Basic } from './stories/basic.stories';
+export {Basic} from './stories/basic.stories';

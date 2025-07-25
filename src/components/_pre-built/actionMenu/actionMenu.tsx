@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
+import React, {FC} from 'react';
 
-import { Dropdown } from '../../../elements/dropdown/dropdown';
-import { DropdownCoordinator } from '../../../elements/dropdown/dropdownCoordinator';
-import { Icon } from '../../../elements/icon/icon';
-import { Button } from '../../button/button';
+import {Dropdown} from '../../../elements/dropdown/dropdown';
+import {DropdownCoordinator} from '../../../elements/dropdown/dropdownCoordinator';
+import {Icon} from '../../../elements/icon/icon';
+import {Button} from '../../button/button';
 
 /*
  * Constants.
@@ -28,7 +28,7 @@ interface ActionMenuProps {
  * Component.
  */
 
-export const ActionMenu: FC<ActionMenuProps> = ({ children, width = defaultDropdownWidth, layerRootId }) => (
+export const ActionMenu: FC<ActionMenuProps> = ({children, width = defaultDropdownWidth, layerRootId}) => (
   <DropdownCoordinator
     placement="bottom-end"
     isInline

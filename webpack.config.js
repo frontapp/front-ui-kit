@@ -2,8 +2,6 @@ const path = require('path');
 
 const isProduction = process.argv.indexOf('--mode=production') !== -1;
 
-
-
 module.exports = {
   entry: {
     index: './src/index.ts'
@@ -27,9 +25,9 @@ module.exports = {
           options: {
             compact: true,
             presets: [
-              ['@babel/preset-env', { modules: false }],
+              ['@babel/preset-env', {modules: false}],
               '@babel/preset-typescript',
-              ['@babel/preset-react', { runtime: 'automatic' }]
+              ['@babel/preset-react', {runtime: 'automatic'}]
             ],
             plugins: [
               'add-react-displayname',
@@ -57,9 +55,9 @@ module.exports = {
           options: {
             compact: true,
             presets: [
-              ['@babel/preset-env', { modules: false }],
+              ['@babel/preset-env', {modules: false}],
               '@babel/preset-typescript',
-              ['@babel/preset-react', { runtime: 'automatic' }]
+              ['@babel/preset-react', {runtime: 'automatic'}]
             ],
             plugins: [
               'add-react-displayname',

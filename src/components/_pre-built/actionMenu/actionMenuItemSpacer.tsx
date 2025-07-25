@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, {FC} from 'react';
 
-import { DropdownItemSpacer } from '../../../elements/dropdown/dropdownItemSpacer';
+import {DropdownItemSpacer} from '../../../elements/dropdown/dropdownItemSpacer';
 
 /*
  * Component.

@@ -189,7 +189,7 @@ module.exports = {
       files: ['webpack.config.js'],
       rules: {
         'class-methods-use-this': 'off',
-        'curly': 'off',
+        curly: 'off',
         'no-param-reassign': 'off'
       }
     }

@@ -1,16 +1,16 @@
 /* eslint-disable react/no-array-index-key */
-import { isArray } from 'lodash';
-import { ellipsis } from 'polished';
-import React, { FC, MouseEventHandler } from 'react';
-import styled, { css } from 'styled-components';
+import {isArray} from 'lodash';
+import {ellipsis} from 'polished';
+import React, {FC, MouseEventHandler} from 'react';
+import styled, {css} from 'styled-components';
 
-import { OverflowWithCount } from '../../components/overflowWithCount/overflowWithCount';
-import { Pill } from '../../components/pill/pill';
-import { alphas, greys, palette } from '../../helpers/colorHelpers';
-import { fonts, fontSizes } from '../../helpers/fontHelpers';
-import { useMeasureElement } from '../../helpers/hookHelpers';
-import { buildHoverParentClassName, hoverSelector } from '../../helpers/hoverHelpers';
-import { Icon, IconName } from '../icon/icon';
+import {OverflowWithCount} from '../../components/overflowWithCount/overflowWithCount';
+import {Pill} from '../../components/pill/pill';
+import {alphas, greys, palette} from '../../helpers/colorHelpers';
+import {fonts, fontSizes} from '../../helpers/fontHelpers';
+import {useMeasureElement} from '../../helpers/hookHelpers';
+import {buildHoverParentClassName, hoverSelector} from '../../helpers/hoverHelpers';
+import {Icon, IconName} from '../icon/icon';
 
 /*
  * Props.
@@ -155,8 +155,12 @@ const StyledChevronWrapperDiv = styled.div`
  */
 
 export const DropdownButton: FC<DropdownButtonProps> = (props) => {
-  const { maxWidth, value, iconName, isDisabled, isActive, isErred, buttonRef, onClick } = props;
-  const [childrenContainerRef, { buttonWidth: width }] = useMeasureElement();
+  const {maxWidth, value, iconName, isDisabled, isActive, isErred, buttonRef, onClick} = props;
+  const [childrenContainerRef, {buttonWidth: width}] = useMeasureElement();
+
+  const handleClick = (event: React.MouseEvent) => {
+    if (onClick) onClick(event);
+  };
 
   return (
     <StyledDropdownButtonWrapperDiv
@@ -166,7 +170,7 @@ export const DropdownButton: FC<DropdownButtonProps> = (props) => {
       $isActive={isActive}
       $isDisabled={isDisabled}
       $isErred={isErred}
-      onClick={onClick}>
+      onClick={handleClick}>
       <StyledContentWrapperDiv $isDisabled={isDisabled}>
         {maybeRenderIcon(iconName)}
         <StyledChildrenWrapperDiv ref={childrenContainerRef}>
@@ -195,7 +199,7 @@ function renderDropdownContent(value: string | ReadonlyArray<string>, childrenCo
           elementRenderer={(element, index) => (
             <Pill
               key={`${index}-${element}`}
-              colors={{ backgroundColor: alphas.black30, textColor: greys.shade90 }}>
+              colors={{backgroundColor: alphas.black30, textColor: greys.shade90}}>
               {element}
             </Pill>
           )}
@@ -216,7 +220,7 @@ function maybeRenderIcon(iconName?: IconName) {
 }
 
 function maybeRenderPlaceholder(props: DropdownButtonProps) {
-  const { value, placeholder } = props;
+  const {value, placeholder} = props;
   if (!placeholder) return null;
   // If the value is a string and we have a value or the value is an array and it has items do not render placeholder.
   if ((typeof value === 'string' && value !== '') || (isArray(value) && value.length !== 0)) return null;

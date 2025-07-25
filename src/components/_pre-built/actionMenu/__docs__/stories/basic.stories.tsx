@@ -1,11 +1,11 @@
-import { StoryFn } from '@storybook/react';
+import {StoryFn} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import { greys } from '../../../../../helpers/colorHelpers';
-import { ActionMenu } from '../../actionMenu';
-import { ActionMenuItem } from '../../actionMenuItem';
-import { ActionMenuItemSpacer } from '../../actionMenuItemSpacer';
+import {greys} from '../../../../../helpers/colorHelpers';
+import {ActionMenu} from '../../actionMenu';
+import {ActionMenuItem} from '../../actionMenuItem';
+import {ActionMenuItemSpacer} from '../../actionMenuItemSpacer';
 
 const StyledStoryWrapperDiv = styled.div`
   height: 215px;
@@ -32,34 +32,20 @@ const Template: StoryFn<typeof ActionMenu> = () => (
   <StyledStoryWrapperDiv>
     <StyledMenuWrapperDiv>
       <ActionMenu>
-        <ActionMenuItem
-          iconName="Assign"
-          onClick={() => alert('Merge Contact clicked')}
-        >
+        <ActionMenuItem iconName="Assign" onClick={() => console.log('Merge Contact clicked')}>
           Merge Contact
         </ActionMenuItem>
-        <ActionMenuItem
-          iconName="Copy"
-          onClick={() => alert('Copy Account Id clicked')}
-        >
+        <ActionMenuItem iconName="Copy" onClick={() => console.log('Copy Account Id clicked')}>
           Copy Account Id
         </ActionMenuItem>
-        <ActionMenuItem
-          onClick={() => alert('Extra Long Name clicked')}
-        >
+        <ActionMenuItem onClick={() => console.log('Extra Long Name clicked')}>
           Extra Long Name For A Dropdown
         </ActionMenuItem>
         <ActionMenuItemSpacer />
-        <ActionMenuItem
-          iconName="Preferences"
-          onClick={() => alert('Preferences clicked')}
-        >
+        <ActionMenuItem iconName="Preferences" onClick={() => console.log('Preferences clicked')}>
           Super long name dropdown item that should cause the tooltip to wrap when hovered over.
         </ActionMenuItem>
-        <ActionMenuItem
-          iconName="Close"
-          onClick={() => alert('Close clicked')}
-        >
+        <ActionMenuItem iconName="Close" onClick={() => console.log('Close clicked')}>
           Close
         </ActionMenuItem>
       </ActionMenu>

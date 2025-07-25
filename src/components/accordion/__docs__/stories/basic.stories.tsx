@@ -1,14 +1,14 @@
-import { ComponentStory } from '@storybook/react';
-import React, { useState } from 'react';
+import {ComponentStory} from '@storybook/react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import { greys } from '../../../../helpers/colorHelpers';
-import { VisualSizesEnum } from '../../../../helpers/fontHelpers';
-import { Heading } from '../../../../text/heading/heading';
-import { DefaultStyleProvider } from '../../../../utils/defaultStyleProvider';
-import { Checkbox } from '../../../checkbox/checkbox';
-import { Accordion } from '../../accordion';
-import { AccordionSection } from '../../accordionSection';
+import {greys} from '../../../../helpers/colorHelpers';
+import {VisualSizesEnum} from '../../../../helpers/fontHelpers';
+import {Heading} from '../../../../text/heading/heading';
+import {DefaultStyleProvider} from '../../../../utils/defaultStyleProvider';
+import {Checkbox} from '../../../checkbox/checkbox';
+import {Accordion} from '../../accordion';
+import {AccordionSection} from '../../accordionSection';
 
 /*
  * Constants
@@ -19,25 +19,25 @@ const DATA = [
     id: 'task',
     title: 'Task',
     tasks: [
-      { id: 'task-1', name: 'Project' },
-      { id: 'task-2', name: 'Type' },
-      { id: 'task-3', name: 'Summary' },
-      { id: 'task-4', name: 'Components' },
-      { id: 'task-5', name: 'Description' },
-      { id: 'task-6', name: 'Attachments' },
-      { id: 'task-7', name: 'Assignee' },
-      { id: 'task-8', name: 'Priority' }
+      {id: 'task-1', name: 'Project'},
+      {id: 'task-2', name: 'Type'},
+      {id: 'task-3', name: 'Summary'},
+      {id: 'task-4', name: 'Components'},
+      {id: 'task-5', name: 'Description'},
+      {id: 'task-6', name: 'Attachments'},
+      {id: 'task-7', name: 'Assignee'},
+      {id: 'task-8', name: 'Priority'}
     ]
   },
   {
     id: 'bug',
     title: 'Bug',
     tasks: [
-      { id: 'bug-1', name: 'Project' },
-      { id: 'bug-2', name: 'Type' },
-      { id: 'bug-3', name: 'Summary' },
-      { id: 'bug-4', name: 'Components' },
-      { id: 'bug-5', name: 'Description' }
+      {id: 'bug-1', name: 'Project'},
+      {id: 'bug-2', name: 'Type'},
+      {id: 'bug-3', name: 'Summary'},
+      {id: 'bug-4', name: 'Components'},
+      {id: 'bug-5', name: 'Description'}
     ]
   }
 ];
@@ -106,13 +106,13 @@ const Template: ComponentStory<typeof Accordion> = () => {
               {section.tasks.map((task) => (
                 <StyledTaskDiv key={task.name}>
                   <StyledTaskNameDiv
-                    onClick={() => setCheckedState((state) => ({ ...state, [task.id]: !state[task.id] }))}>
+                    onClick={() => setCheckedState((state) => ({...state, [task.id]: !state[task.id]}))}>
                     {task.name}
                   </StyledTaskNameDiv>
                   <StyledCheckboxDiv>
                     <Checkbox
                       isChecked={checkedState[task.id]}
-                      onChange={(isChecked) => setCheckedState((state) => ({ ...state, [task.id]: isChecked }))}
+                      onChange={(isChecked) => setCheckedState((state) => ({...state, [task.id]: isChecked}))}
                     />
                   </StyledCheckboxDiv>
                 </StyledTaskDiv>

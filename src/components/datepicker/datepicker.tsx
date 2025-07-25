@@ -107,6 +107,7 @@ export const DatePicker: FC<DatePickerProps> = (props) => {
   };
 
   const onViewChange = (changedView: DatepickerViewsEnum) => {
+    console.log('DatePicker: onViewChange called', {changedView, currentView: selectedView});
     setSelectedView(changedView);
   };
 
@@ -127,7 +128,7 @@ export const DatePicker: FC<DatePickerProps> = (props) => {
     });
 
   return (
-    <StyledWrapperDiv onClick={(event) => event.preventDefault()}>
+    <StyledWrapperDiv onClick={(event) => event.stopPropagation()}>
       <StyledDatePickerDiv>
         <DatePickerHeader
           value={focusedMonth}

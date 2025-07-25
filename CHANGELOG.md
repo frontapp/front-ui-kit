@@ -2,65 +2,56 @@
 
 ## [0.7.19](https://github.com/frontapp/front-ui-kit/compare/v0.7.18...v0.7.19) (2025-06-11)
 
-
 ### Bug Fixes
 
-* migrate and pin actions in release-please-action SEC-704 ([#242](https://github.com/frontapp/front-ui-kit/issues/242)) ([f255c63](https://github.com/frontapp/front-ui-kit/commit/f255c63b02cde46b686db420e96d95b1247fb78d))
-* pin all actions other than release-please-action SEC-704 ([#243](https://github.com/frontapp/front-ui-kit/issues/243)) ([83c55f4](https://github.com/frontapp/front-ui-kit/commit/83c55f44c9890aa4116e7f1cda67b47d451ae089))
+- migrate and pin actions in release-please-action SEC-704 ([#242](https://github.com/frontapp/front-ui-kit/issues/242)) ([f255c63](https://github.com/frontapp/front-ui-kit/commit/f255c63b02cde46b686db420e96d95b1247fb78d))
+- pin all actions other than release-please-action SEC-704 ([#243](https://github.com/frontapp/front-ui-kit/issues/243)) ([83c55f4](https://github.com/frontapp/front-ui-kit/commit/83c55f44c9890aa4116e7f1cda67b47d451ae089))
 
 ## [0.7.18](https://github.com/frontapp/front-ui-kit/compare/v0.7.17...v0.7.18) (2025-06-03)
 
-
 ### Bug Fixes
 
-* pin actions in pr-name-lint workflow ([#240](https://github.com/frontapp/front-ui-kit/issues/240)) ([cd9bb0c](https://github.com/frontapp/front-ui-kit/commit/cd9bb0c5a4cb6e75238415c4e48d03506a0a840c))
+- pin actions in pr-name-lint workflow ([#240](https://github.com/frontapp/front-ui-kit/issues/240)) ([cd9bb0c](https://github.com/frontapp/front-ui-kit/commit/cd9bb0c5a4cb6e75238415c4e48d03506a0a840c))
 
 ## [0.7.17](https://github.com/frontapp/front-ui-kit/compare/v0.7.16...v0.7.17) (2025-01-21)
 
-
 ### Bug Fixes
 
-* **deps:** upgrade webpack to 5.94.0 ([#229](https://github.com/frontapp/front-ui-kit/issues/229)) ([6868c6e](https://github.com/frontapp/front-ui-kit/commit/6868c6e93d33d63a92dc07ad4d46c3438b074e29))
+- **deps:** upgrade webpack to 5.94.0 ([#229](https://github.com/frontapp/front-ui-kit/issues/229)) ([6868c6e](https://github.com/frontapp/front-ui-kit/commit/6868c6e93d33d63a92dc07ad4d46c3438b074e29))
 
 ## [0.7.16](https://github.com/frontapp/front-ui-kit/compare/v0.7.15...v0.7.16) (2025-01-14)
 
-
 ### Bug Fixes
 
-* **style:** remove fixed height ([#227](https://github.com/frontapp/front-ui-kit/issues/227)) ([cd29900](https://github.com/frontapp/front-ui-kit/commit/cd29900e31733c6568df55762f4186a92d0acb96))
+- **style:** remove fixed height ([#227](https://github.com/frontapp/front-ui-kit/issues/227)) ([cd29900](https://github.com/frontapp/front-ui-kit/commit/cd29900e31733c6568df55762f4186a92d0acb96))
 
 ## [0.7.15](https://github.com/frontapp/front-ui-kit/compare/v0.7.14...v0.7.15) (2023-08-24)
 
-
 ### Features
 
-* export FileTypesEnum ([#210](https://github.com/frontapp/front-ui-kit/issues/210)) ([42391f8](https://github.com/frontapp/front-ui-kit/commit/42391f807d54358e0ba89cc2a109cfde0724697a))
+- export FileTypesEnum ([#210](https://github.com/frontapp/front-ui-kit/issues/210)) ([42391f8](https://github.com/frontapp/front-ui-kit/commit/42391f807d54358e0ba89cc2a109cfde0724697a))
 
 ## [0.7.14](https://github.com/frontapp/front-ui-kit/compare/v0.7.13...v0.7.14) (2023-08-22)
 
-
 ### Bug Fixes
 
-* inline loader pngs ([#208](https://github.com/frontapp/front-ui-kit/issues/208)) ([79998f8](https://github.com/frontapp/front-ui-kit/commit/79998f82d3f38d75c1688524ff4461c44c5aca7e))
+- inline loader pngs ([#208](https://github.com/frontapp/front-ui-kit/issues/208)) ([79998f8](https://github.com/frontapp/front-ui-kit/commit/79998f82d3f38d75c1688524ff4461c44c5aca7e))
 
 ## [0.7.13](https://github.com/frontapp/front-ui-kit/compare/v0.7.12...v0.7.13) (2023-08-22)
 
-
 ### Features
 
-* export `useTimeout` and `PaletteColorsEnum` ([#207](https://github.com/frontapp/front-ui-kit/issues/207)) ([002d99c](https://github.com/frontapp/front-ui-kit/commit/002d99c503483a4aad37aa1c36b0c91adf3e8db8))
-
+- export `useTimeout` and `PaletteColorsEnum` ([#207](https://github.com/frontapp/front-ui-kit/issues/207)) ([002d99c](https://github.com/frontapp/front-ui-kit/commit/002d99c503483a4aad37aa1c36b0c91adf3e8db8))
 
 ### Bug Fixes
 
-* actually export `Loader` ([#205](https://github.com/frontapp/front-ui-kit/issues/205)) ([0325b30](https://github.com/frontapp/front-ui-kit/commit/0325b30dba399e38591d7ac8d028f4da8f9f514e))
+- actually export `Loader` ([#205](https://github.com/frontapp/front-ui-kit/issues/205)) ([0325b30](https://github.com/frontapp/front-ui-kit/commit/0325b30dba399e38591d7ac8d028f4da8f9f514e))
 
 ## [0.7.12](https://github.com/frontapp/front-ui-kit/compare/v0.7.11...v0.7.12) (2023-08-22)
 
-
 ### Features
 
-* add `Loader` component ([#202](https://github.com/frontapp/front-ui-kit/issues/202)) ([8d1b7f7](https://github.com/frontapp/front-ui-kit/commit/8d1b7f7a0a8ff82a5a13e484241c72113f2f8b6a))
+- add `Loader` component ([#202](https://github.com/frontapp/front-ui-kit/issues/202)) ([8d1b7f7](https://github.com/frontapp/front-ui-kit/commit/8d1b7f7a0a8ff82a5a13e484241c72113f2f8b6a))
 
 ## [0.7.11](https://github.com/frontapp/front-ui-kit/compare/v0.7.10...v0.7.11) (2023-08-21)
 
