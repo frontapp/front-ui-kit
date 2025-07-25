@@ -1,7 +1,7 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
-import {greys} from '../../helpers/colorHelpers';
+import { greys } from '../../helpers/colorHelpers';
 
 /*
  * Style.
@@ -18,3 +18,5 @@ const StyledDropdownItemSpacerDiv = styled.div`
  */
 
 export const DropdownItemSpacer: FC = () => <StyledDropdownItemSpacerDiv />;
+
+DropdownItemSpacer.displayName = 'DropdownItemSpacer';

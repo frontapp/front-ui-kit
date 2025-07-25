@@ -46,7 +46,7 @@ export function renderFirstIconOnly(children: React.ReactNode, shouldDisableColo
 
     if (isIcon && !hasFoundIcon) {
       hasFoundIcon = true;
-      return React.cloneElement(child as React.ReactElement, {shouldDisableColor});
+      return React.cloneElement(child as React.ReactElement, { shouldDisableColor } as any);
     }
     return null;
   });
@@ -58,7 +58,7 @@ export function renderFirstIconOnly(children: React.ReactNode, shouldDisableColo
 export function renderChildrenIgnoreSpecifiedComponents(
   children: React.ReactNode,
   componentsToIgnore: ReadonlyArray<string>
-) {
+): React.ReactNode[] {
   return React.Children.toArray(children).map((child) => {
     if (typeof child === 'string' || typeof child === 'number') return child;
 

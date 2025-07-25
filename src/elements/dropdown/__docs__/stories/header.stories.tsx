@@ -1,16 +1,16 @@
-import {ComponentStory} from '@storybook/react';
-import React, {useEffect, useState} from 'react';
+import type { StoryFn } from '@storybook/react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import {palette} from '../../../../helpers/colorHelpers';
-import {EmptyState} from '../../../emptyState/emptyState';
-import {Dropdown} from '../../dropdown';
-import {DropdownButton} from '../../dropdownButton';
-import {DropdownCoordinator} from '../../dropdownCoordinator';
-import {DropdownHeader} from '../../dropdownHeader';
-import {DropdownHeading} from '../../dropdownHeading';
-import {DropdownItem} from '../../dropdownItem';
-import {DropdownItemIcon} from '../../dropdownItemIcon';
+import { palette } from '../../../../helpers/colorHelpers';
+import { EmptyState } from '../../../emptyState/emptyState';
+import { Dropdown } from '../../dropdown';
+import { DropdownButton } from '../../dropdownButton';
+import { DropdownCoordinator } from '../../dropdownCoordinator';
+import { DropdownHeader } from '../../dropdownHeader';
+import { DropdownHeading } from '../../dropdownHeading';
+import { DropdownItem } from '../../dropdownItem';
+import { DropdownItemIcon } from '../../dropdownItemIcon';
 
 const StyledWrapperDiv = styled.div`
   display: flex;
@@ -46,7 +46,7 @@ const dogBreedsSource = [
   'Volpino Italiano'
 ];
 
-const Template: ComponentStory<typeof DropdownCoordinator> = () => {
+const Template: StoryFn<typeof DropdownCoordinator> = () => {
   const [searchValue, setSearchValue] = useState('');
   const [dogBreeds, setDogBreeds] = useState(dogBreedsSource);
   const [selectedDogBreed, setSelectedDogBreed] = useState('');
@@ -68,7 +68,7 @@ const Template: ComponentStory<typeof DropdownCoordinator> = () => {
         <DropdownCoordinator
           layerRootId="story--elements-dropdown--header"
           placement="bottom-start"
-          renderButton={(isDropdownOpen, isDisabled, buttonRef) => (
+          renderButton={(isDropdownOpen, isDisabled, buttonRef, onClick) => (
             <DropdownButton
               placeholder="Select dog breed"
               isActive={isDropdownOpen}
@@ -77,6 +77,7 @@ const Template: ComponentStory<typeof DropdownCoordinator> = () => {
               iconName="Search"
               maxWidth={300}
               value={selectedDogBreed}
+              onClick={onClick}
             />
           )}
           onDropdownClosed={() => setSearchValue('')}

@@ -1,18 +1,18 @@
-import {ComponentStory} from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import {Button} from '../../../../../components/button/button';
-import {Dropdown} from '../../../../../elements/dropdown/dropdown';
-import {DropdownCoordinator} from '../../../../../elements/dropdown/dropdownCoordinator';
-import {DropdownItem} from '../../../../../elements/dropdown/dropdownItem';
-import {DropdownItemIcon} from '../../../../../elements/dropdown/dropdownItemIcon';
-import {Icon} from '../../../../../elements/icon/icon';
-import {greys, palette} from '../../../../../helpers/colorHelpers';
-import {DefaultStyleProvider} from '../../../../../utils/defaultStyleProvider';
-import {PluginFooter} from '../../pluginFooter';
-import {PluginHeader} from '../../pluginHeader';
-import {PluginLayout} from '../../pluginLayout';
+import { Button } from '../../../../../components/button/button';
+import { Dropdown } from '../../../../../elements/dropdown/dropdown';
+import { DropdownCoordinator } from '../../../../../elements/dropdown/dropdownCoordinator';
+import { DropdownItem } from '../../../../../elements/dropdown/dropdownItem';
+import { DropdownItemIcon } from '../../../../../elements/dropdown/dropdownItemIcon';
+import { Icon } from '../../../../../elements/icon/icon';
+import { greys, palette } from '../../../../../helpers/colorHelpers';
+import { DefaultStyleProvider } from '../../../../../utils/defaultStyleProvider';
+import { PluginFooter } from '../../pluginFooter';
+import { PluginHeader } from '../../pluginHeader';
+import { PluginLayout } from '../../pluginLayout';
 
 const StyledCenteredDiv = styled.div`
   display: flex;
@@ -33,7 +33,7 @@ const StyledPluginContentDiv = styled.div`
   white-space: pre-wrap;
 `;
 
-const Template: ComponentStory<typeof PluginLayout> = () => (
+const Template: StoryFn<typeof PluginLayout> = () => (
   <StyledCenteredDiv>
     <DefaultStyleProvider>
       <StyledLayoutWrapperDiv>
@@ -42,12 +42,27 @@ const Template: ComponentStory<typeof PluginLayout> = () => (
             onBackClick={() => console.log('On back click')}
             actions={
               <DropdownCoordinator
-                layerRootId="story--layout-plugin-layout--sub-level"
                 placement="bottom-end"
-                renderButton={(isDropdownOpen) => (
-                  <Button type="icon" isActive={isDropdownOpen}>
-                    <Icon name="EllipsisHorizontal" />
-                  </Button>
+                hasVisibleOverlay
+                onDropdownOpen={() => console.log('Dropdown opened!')}
+                onDropdownClosed={() => console.log('Dropdown closed!')}
+                renderButton={(isDropdownOpen, isDisabled, buttonRef, onClick) => (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      console.log('Button clicked!');
+                      onClick(e);
+                    }}
+                    style={{
+                      background: isDropdownOpen ? '#e0e0e0' : 'white',
+                      border: '1px solid #ccc',
+                      borderRadius: '4px',
+                      padding: '8px',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    ⋯
+                  </button>
                 )}
                 renderDropdown={() => (
                   <Dropdown maxHeight={70} maxWidth={175}>

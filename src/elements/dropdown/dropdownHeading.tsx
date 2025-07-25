@@ -1,8 +1,8 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
-import {greys} from '../../helpers/colorHelpers';
-import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
+import { greys } from '../../helpers/colorHelpers';
+import { fonts, fontSizes, fontWeights } from '../../helpers/fontHelpers';
 
 /*
  * Props.
@@ -32,6 +32,8 @@ const StyledDropdownHeadingDiv = styled.div`
  * Component.
  */
 
-export const DropdownHeading: FC<DropdownHeadingProps> = ({children}) => (
+export const DropdownHeading: FC<DropdownHeadingProps> = ({ children }) => (
   <StyledDropdownHeadingDiv onClick={(event) => event.preventDefault()}>{children}</StyledDropdownHeadingDiv>
 );
+
+DropdownHeading.displayName = 'DropdownHeading';
