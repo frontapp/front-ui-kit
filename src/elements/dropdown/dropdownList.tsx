@@ -1,8 +1,8 @@
-import React, { ComponentType, FC, forwardRef, useEffect, useRef } from 'react';
-import { ListChildComponentProps, VariableSizeList } from 'react-window';
+import React, {ComponentType, FC, forwardRef, useEffect, useRef} from 'react';
+import {ListChildComponentProps, VariableSizeList} from 'react-window';
 import InfiniteLoader from 'react-window-infinite-loader';
 
-import { usePrevious } from '../../helpers/hookHelpers';
+import {usePrevious} from '../../helpers/hookHelpers';
 
 /*
  * Constants.
@@ -93,7 +93,7 @@ export const DropdownList: FC<DropdownListProps> = (props) => {
     return getItemHeight(index);
   };
 
-  const renderChild: RenderChild = ({ index, style }) => {
+  const renderChild: RenderChild = ({index, style}) => {
     const updateStyle = {
       ...style,
       top: `${parseFloat(style.top?.toString() || '0') + dropdownListPadding}px`
@@ -106,9 +106,9 @@ export const DropdownList: FC<DropdownListProps> = (props) => {
     <InfiniteLoader
       isItemLoaded={isItemLoaded}
       itemCount={itemCount}
-      loadMoreItems={isLoading ? () => { } : onLoadMore}
+      loadMoreItems={isLoading ? () => {} : onLoadMore}
       threshold={loadingThreshold}>
-      {({ onItemsRendered, ref: infiniteLoaderListRef }) => (
+      {({onItemsRendered, ref: infiniteLoaderListRef}) => (
         <VariableSizeList
           ref={(ref: VariableSizeList) => {
             listRef.current = ref;
@@ -128,7 +128,7 @@ export const DropdownList: FC<DropdownListProps> = (props) => {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const innerElementType = forwardRef<any, any>(({ style, ...rest }, ref) => (
+const innerElementType = forwardRef<any, any>(({style, ...rest}, ref) => (
   <div
     ref={ref}
     style={{

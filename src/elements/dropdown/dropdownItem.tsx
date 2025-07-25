@@ -1,15 +1,15 @@
-import { ellipsis } from 'polished';
-import React, { FC, MouseEventHandler } from 'react';
-import styled, { css } from 'styled-components';
+import {ellipsis} from 'polished';
+import React, {FC, MouseEventHandler} from 'react';
+import styled, {css} from 'styled-components';
 
-import { Checkbox } from '../../components/checkbox/checkbox';
-import { alphas, greys, palette } from '../../helpers/colorHelpers';
-import { fonts, fontSizes, fontWeights } from '../../helpers/fontHelpers';
+import {Checkbox} from '../../components/checkbox/checkbox';
+import {alphas, greys, palette} from '../../helpers/colorHelpers';
+import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 import {
   renderChildrenIgnoreSpecifiedComponents,
   renderChildrenSpecifiedComponents
 } from '../../helpers/renderHelpers';
-import { Icon } from '../icon/icon';
+import {Icon} from '../icon/icon';
 
 /*
  * Constants.
@@ -135,7 +135,7 @@ export const DropdownItem: FC<DropdownItemProps> = ({
 function renderSelectedState(type: DropdownTypes, isSelected?: boolean) {
   switch (type) {
     case 'multi':
-      return <Checkbox isChecked={Boolean(isSelected)} onChange={() => { }} />;
+      return <Checkbox isChecked={Boolean(isSelected)} onChange={() => {}} />;
     case 'simple':
     default: {
       if (!isSelected) return null;

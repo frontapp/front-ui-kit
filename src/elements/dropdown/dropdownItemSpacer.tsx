@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import React, {FC} from 'react';
 import styled from 'styled-components';
 
-import { greys } from '../../helpers/colorHelpers';
+import {greys} from '../../helpers/colorHelpers';
 
 /*
  * Style.

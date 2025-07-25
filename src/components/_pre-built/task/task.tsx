@@ -1,15 +1,15 @@
-import React, { FC, MouseEvent, MouseEventHandler, ReactNode } from 'react';
+import React, {FC, MouseEvent, MouseEventHandler, ReactNode} from 'react';
 import styled from 'styled-components';
 
-import { Dropdown } from '../../../elements/dropdown/dropdown';
-import { DropdownCoordinator } from '../../../elements/dropdown/dropdownCoordinator';
-import { Icon, IconName } from '../../../elements/icon/icon';
-import { alphas, greys, palette } from '../../../helpers/colorHelpers';
-import { fonts, fontSizes, fontWeights } from '../../../helpers/fontHelpers';
-import { Button } from '../../button/button';
-import { Skeleton } from '../../skeleton/skeleton';
-import { Tooltip } from '../../tooltip/tooltip';
-import { TooltipCoordinator } from '../../tooltip/tooltipCoordinator';
+import {Dropdown} from '../../../elements/dropdown/dropdown';
+import {DropdownCoordinator} from '../../../elements/dropdown/dropdownCoordinator';
+import {Icon, IconName} from '../../../elements/icon/icon';
+import {alphas, greys, palette} from '../../../helpers/colorHelpers';
+import {fonts, fontSizes, fontWeights} from '../../../helpers/fontHelpers';
+import {Button} from '../../button/button';
+import {Skeleton} from '../../skeleton/skeleton';
+import {Tooltip} from '../../tooltip/tooltip';
+import {TooltipCoordinator} from '../../tooltip/tooltipCoordinator';
 
 /*
  * Constants.
@@ -127,9 +127,7 @@ export const Task: FC<TaskProps> = ({
           {label}
         </TooltipCoordinator>
       </StyledTaskLabelDiv>
-      <StyledTaskChildrenDiv>
-        {maybeRenderDropdown(children, layerRootId)}
-      </StyledTaskChildrenDiv>
+      <StyledTaskChildrenDiv>{maybeRenderDropdown(children, layerRootId)}</StyledTaskChildrenDiv>
     </StyledTaskWrapperDiv>
   );
 };

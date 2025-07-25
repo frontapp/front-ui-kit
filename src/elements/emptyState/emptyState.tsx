@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
-import styled, { css } from 'styled-components';
+import React, {FC} from 'react';
+import styled, {css} from 'styled-components';
 
-import { Button } from '../../components/button/button';
-import { greys } from '../../helpers/colorHelpers';
-import { fonts, fontSizes } from '../../helpers/fontHelpers';
+import {Button} from '../../components/button/button';
+import {greys} from '../../helpers/colorHelpers';
+import {fonts, fontSizes} from '../../helpers/fontHelpers';
 
 /*
  * Constants.
@@ -83,7 +83,7 @@ const StyledButtonWrapperDiv = styled.div`
  * Component.
  */
 
-export const EmptyState: FC<EmptyStateProps> = ({ message = DefaultMessage, buttonText, onButtonClick }) => {
+export const EmptyState: FC<EmptyStateProps> = ({message = DefaultMessage, buttonText, onButtonClick}) => {
   const hasVisibleButton = Boolean(buttonText && onButtonClick);
 
   return (
@@ -96,12 +96,17 @@ export const EmptyState: FC<EmptyStateProps> = ({ message = DefaultMessage, butt
             viewBox="0 0 16 16"
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
-            style={{ color: greys.shade50 }}
-          >
+            style={{color: greys.shade50}}>
             <path
               fillRule="evenodd"
               clipRule="evenodd"
-              d="M3.00244 7.00299C3.00244 4.79385 4.7933 3.00299 7.00244 3.00299C9.21158 3.00299 11.0024 4.79385 11.0024 7.00299C11.0024 9.21213 9.21158 11.003 7.00244 11.003C4.7933 11.003 3.00244 9.21213 3.00244 7.00299ZM7.00244 2.00299C4.24102 2.00299 2.00244 4.24157 2.00244 7.00299C2.00244 9.76441 4.24102 12.003 7.00244 12.003C8.20308 12.003 9.30487 11.5798 10.1668 10.8745L13.1489 13.8565C13.3442 14.0518 13.6607 14.0518 13.856 13.8565C14.0513 13.6613 14.0513 13.3447 13.856 13.1494L10.8739 10.1674C11.5793 9.30542 12.0024 8.20363 12.0024 7.00299C12.0024 4.24157 9.76387 2.00299 7.00244 2.00299Z"
+              d="M3.00244 7.00299C3.00244 4.79385 4.7933 3.00299 7.00244 3.00299C9.21158 3.00299 
+              11.0024 4.79385 11.0024 7.00299C11.0024 9.21213 9.21158 11.003 7.00244 11.003C4.7933 
+              11.003 3.00244 9.21213 3.00244 7.00299ZM7.00244 2.00299C4.24102 2.00299 2.00244 
+              4.24157 2.00244 7.00299C2.00244 9.76441 4.24102 12.003 7.00244 12.003C8.20308 12.003 
+              9.30487 11.5798 10.1668 10.8745L13.1489 13.8565C13.3442 14.0518 13.6607 14.0518 
+              13.856 13.8565C14.0513 13.6613 14.0513 13.3447 13.856 13.1494L10.8739 10.1674C11.5793 
+              9.30542 12.0024 8.20363 12.0024 7.00299C12.0024 4.24157 9.76387 2.00299 7.00244 2.00299Z"
             />
           </svg>
         </StyledSearchIconWrapperDiv>
