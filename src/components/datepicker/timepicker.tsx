@@ -105,7 +105,7 @@ function renderItems(props: TimePickerProps, selectedRef: RefObject<HTMLDivEleme
         key={hour}
         ref={isSelected ? selectedRef : undefined}
         $isSelected={isSelected}
-        onClick={() => onChange(hourTime)}>
+        onClick={() => onChange && onChange(hourTime)}>
         {formatTime(hourTime, timeFormat)}
       </StyledItemDiv>
     );
