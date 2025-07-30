@@ -1,10 +1,10 @@
-import {ComponentStory} from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 import _ from 'lodash';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import {Select} from '../../select';
-import {SelectItem} from '../../selectItem';
+import { Select } from '../../select';
+import { SelectItem } from '../../selectItem';
 
 interface UserData {
   id: string;
@@ -25,7 +25,7 @@ const StyledMenuWrapperDiv = styled.div`
   width: 350px;
 `;
 
-const Template: ComponentStory<typeof Select> = (args) => {
+const Template: StoryFn<typeof Select> = (args) => {
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [users, setUsers] = useState<ReadonlyArray<UserData>>([]);
@@ -40,7 +40,7 @@ const Template: ComponentStory<typeof Select> = (args) => {
       const jsonData = await data.json();
       setUsers((existingUsers) => [
         ...existingUsers,
-        ...jsonData.results.map((d) => ({id: d.login.uuid, name: `${d.name.first} ${d.name.last}`}))
+        ...jsonData.results.map((d) => ({ id: d.login.uuid, name: `${d.name.first} ${d.name.last}` }))
       ]);
       setPage((currentPage) => currentPage + 1);
       setIsLoading(false);

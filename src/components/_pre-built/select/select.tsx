@@ -102,14 +102,13 @@ export const Select: FC<SelectProps> = ({
       layerRootId={layerRootId}
       onDropdownClosed={onSelectClosed}
       onDropdownOpen={onSelectOpen}
-      renderButton={(isDropdownOpen, isButtonDisabled, buttonRef) => (
+      renderButton={(isDropdownOpen, isButtonDisabled) => (
         <DropdownButton
           isDisabled={isButtonDisabled}
           isActive={isDropdownOpen}
           value={selectedValues}
           maxWidth={maxWidth}
           placeholder={placeholder}
-          buttonRef={buttonRef}
         />
       )}
       renderDropdown={() => (
