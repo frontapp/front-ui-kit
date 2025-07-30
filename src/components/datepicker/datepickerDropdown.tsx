@@ -1,9 +1,9 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 
-import {DropdownButton} from '../../elements/dropdown/dropdownButton';
-import {DropdownCoordinator} from '../../elements/dropdown/dropdownCoordinator';
-import {CalendarWeekDaysEnum, formatDateTime} from '../../helpers/calendarHelpers';
-import {DatePicker} from './datepicker';
+import { DropdownButton } from '../../elements/dropdown/dropdownButton';
+import { DropdownCoordinator } from '../../elements/dropdown/dropdownCoordinator';
+import { CalendarWeekDaysEnum, formatDateTime } from '../../helpers/calendarHelpers';
+import { DatePicker } from './datepicker';
 
 /*
  * Props.
@@ -53,7 +53,7 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = ({
     <DropdownCoordinator
       layerRootId={layerRootId}
       placement="bottom-start"
-      renderButton={(isDropdownOpen, isDisabled, buttonRef, onClick) => (
+      renderButton={(isDropdownOpen, isDisabled, buttonRef) => (
         <DropdownButton
           value={(value && formatDateTime(value, type, timeFormat)) || ''}
           placeholder={placeholder}
@@ -61,7 +61,6 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = ({
           isActive={isDropdownOpen}
           isDisabled={isDisabled}
           buttonRef={buttonRef}
-          onClick={onClick}
         />
       )}
       renderDropdown={(onCloseDropdown) => (
