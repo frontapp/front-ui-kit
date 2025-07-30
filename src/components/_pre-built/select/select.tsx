@@ -1,13 +1,13 @@
-import {Placement} from '@popperjs/core';
+import { Placement } from '@popperjs/core';
 import _ from 'lodash';
-import React, {FC, useMemo} from 'react';
+import React, { FC, useMemo } from 'react';
 
-import {Dropdown} from '../../../elements/dropdown/dropdown';
-import {DropdownButton} from '../../../elements/dropdown/dropdownButton';
-import {DropdownCoordinator} from '../../../elements/dropdown/dropdownCoordinator';
-import {DropdownHeader} from '../../../elements/dropdown/dropdownHeader';
-import {EmptyState} from '../../../elements/emptyState/emptyState';
-import {renderChildrenSpecifiedComponents} from '../../../helpers/renderHelpers';
+import { Dropdown } from '../../../elements/dropdown/dropdown';
+import { DropdownButton } from '../../../elements/dropdown/dropdownButton';
+import { DropdownCoordinator } from '../../../elements/dropdown/dropdownCoordinator';
+import { DropdownHeader } from '../../../elements/dropdown/dropdownHeader';
+import { EmptyState } from '../../../elements/emptyState/emptyState';
+import { renderChildrenSpecifiedComponents } from '../../../helpers/renderHelpers';
 
 /*
  * Constants.
@@ -102,7 +102,7 @@ export const Select: FC<SelectProps> = ({
       layerRootId={layerRootId}
       onDropdownClosed={onSelectClosed}
       onDropdownOpen={onSelectOpen}
-      renderButton={(isDropdownOpen, isButtonDisabled, buttonRef, onClick) => (
+      renderButton={(isDropdownOpen, isButtonDisabled, buttonRef) => (
         <DropdownButton
           isDisabled={isButtonDisabled}
           isActive={isDropdownOpen}
@@ -110,7 +110,6 @@ export const Select: FC<SelectProps> = ({
           maxWidth={maxWidth}
           placeholder={placeholder}
           buttonRef={buttonRef}
-          onClick={onClick}
         />
       )}
       renderDropdown={() => (

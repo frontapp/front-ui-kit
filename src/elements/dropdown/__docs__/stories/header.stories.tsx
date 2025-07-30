@@ -1,16 +1,16 @@
-import type {StoryFn} from '@storybook/react';
-import React, {useEffect, useState} from 'react';
+import type { StoryFn } from '@storybook/react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import {palette} from '../../../../helpers/colorHelpers';
-import {EmptyState} from '../../../emptyState/emptyState';
-import {Dropdown} from '../../dropdown';
-import {DropdownButton} from '../../dropdownButton';
-import {DropdownCoordinator} from '../../dropdownCoordinator';
-import {DropdownHeader} from '../../dropdownHeader';
-import {DropdownHeading} from '../../dropdownHeading';
-import {DropdownItem} from '../../dropdownItem';
-import {DropdownItemIcon} from '../../dropdownItemIcon';
+import { palette } from '../../../../helpers/colorHelpers';
+import { EmptyState } from '../../../emptyState/emptyState';
+import { Dropdown } from '../../dropdown';
+import { DropdownButton } from '../../dropdownButton';
+import { DropdownCoordinator } from '../../dropdownCoordinator';
+import { DropdownHeader } from '../../dropdownHeader';
+import { DropdownHeading } from '../../dropdownHeading';
+import { DropdownItem } from '../../dropdownItem';
+import { DropdownItemIcon } from '../../dropdownItemIcon';
 
 const StyledWrapperDiv = styled.div`
   display: flex;
@@ -68,7 +68,7 @@ const Template: StoryFn<typeof DropdownCoordinator> = () => {
         <DropdownCoordinator
           layerRootId="story--elements-dropdown--header"
           placement="bottom-start"
-          renderButton={(isDropdownOpen, isDisabled, buttonRef, onClick) => (
+          renderButton={(isDropdownOpen, isDisabled, buttonRef) => (
             <DropdownButton
               placeholder="Select dog breed"
               isActive={isDropdownOpen}
@@ -77,7 +77,6 @@ const Template: StoryFn<typeof DropdownCoordinator> = () => {
               iconName="Search"
               maxWidth={300}
               value={selectedDogBreed}
-              onClick={onClick}
             />
           )}
           onDropdownClosed={() => setSearchValue('')}

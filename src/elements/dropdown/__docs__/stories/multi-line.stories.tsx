@@ -1,12 +1,12 @@
-import type {StoryFn} from '@storybook/react';
-import React, {useState} from 'react';
+import type { StoryFn } from '@storybook/react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import {Dropdown} from '../../dropdown';
-import {DropdownButton} from '../../dropdownButton';
-import {DropdownCoordinator} from '../../dropdownCoordinator';
-import {DropdownItem} from '../../dropdownItem';
-import {DropdownItemSkeleton} from '../../skeleton/dropdownItemSkeleton';
+import { Dropdown } from '../../dropdown';
+import { DropdownButton } from '../../dropdownButton';
+import { DropdownCoordinator } from '../../dropdownCoordinator';
+import { DropdownItem } from '../../dropdownItem';
+import { DropdownItemSkeleton } from '../../skeleton/dropdownItemSkeleton';
 
 interface UserData {
   id: string;
@@ -57,14 +57,13 @@ const Template: StoryFn<typeof DropdownCoordinator> = () => {
         <DropdownCoordinator
           layerRootId="story--elements-dropdown--multi-line"
           placement="bottom-start"
-          renderButton={(isDropdownOpen, isDisabled, buttonRef, onClick) => (
+          renderButton={(isDropdownOpen, isDisabled, buttonRef) => (
             <DropdownButton
               buttonRef={buttonRef}
               isDisabled={isDisabled}
               value={users.find((u) => u.id === selectedUserId)?.name || ''}
               isActive={isDropdownOpen}
               placeholder="Select an option"
-              onClick={onClick}
             />
           )}
           onDropdownClosed={() => {

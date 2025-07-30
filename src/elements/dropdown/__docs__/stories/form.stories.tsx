@@ -1,18 +1,18 @@
-import type {StoryFn} from '@storybook/react';
-import React, {useState} from 'react';
+import type { StoryFn } from '@storybook/react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import {Button} from '../../../../components/button/button';
-import {ButtonGroup} from '../../../../components/button/buttonGroup';
-import {VisualSizesEnum} from '../../../../helpers/fontHelpers';
-import {Input} from '../../../input/input';
-import {Dropdown} from '../../dropdown';
-import {DropdownButton} from '../../dropdownButton';
-import {DropdownCoordinator} from '../../dropdownCoordinator';
-import {DropdownFooter} from '../../dropdownFooter';
-import {DropdownHeader} from '../../dropdownHeader';
-import {DropdownItem} from '../../dropdownItem';
-import {DropdownItemFormField} from '../../dropdownItemFormField';
+import { Button } from '../../../../components/button/button';
+import { ButtonGroup } from '../../../../components/button/buttonGroup';
+import { VisualSizesEnum } from '../../../../helpers/fontHelpers';
+import { Input } from '../../../input/input';
+import { Dropdown } from '../../dropdown';
+import { DropdownButton } from '../../dropdownButton';
+import { DropdownCoordinator } from '../../dropdownCoordinator';
+import { DropdownFooter } from '../../dropdownFooter';
+import { DropdownHeader } from '../../dropdownHeader';
+import { DropdownItem } from '../../dropdownItem';
+import { DropdownItemFormField } from '../../dropdownItemFormField';
 
 const dogBreedsSource = [
   'Affenpinscher',
@@ -59,11 +59,7 @@ const Template: StoryFn<typeof DropdownCoordinator> = () => {
         <DropdownCoordinator
           layerRootId="story--elements-dropdown--form"
           placement="bottom-start"
-          renderButton={(isDropdownOpen, isDisabled, _buttonRef, onClick) => (
-            <Button isActive={isDropdownOpen} isDisabled={isDisabled} onClick={onClick}>
-              View Dropdown Form
-            </Button>
-          )}
+          renderButton={(isDropdownOpen) => <Button isActive={isDropdownOpen}>View Dropdown Form</Button>}
           renderDropdown={(onRequestClose) => (
             <Dropdown maxHeight={200}>
               <DropdownHeader>Sign up</DropdownHeader>
@@ -78,14 +74,11 @@ const Template: StoryFn<typeof DropdownCoordinator> = () => {
                 <DropdownCoordinator
                   layerRootId="story--elements-dropdown--form-nested"
                   placement="bottom-start"
-                  renderButton={(isDropdownOpen, isDisabled, buttonRef, onClick) => (
+                  renderButton={(isDropdownOpen) => (
                     <DropdownButton
                       placeholder="Select dog breed"
                       isActive={isDropdownOpen}
-                      isDisabled={isDisabled}
-                      buttonRef={buttonRef}
                       value={selectedDog}
-                      onClick={onClick}
                     />
                   )}
                   renderDropdown={(_onRequestClose, buttonWidth) => (
