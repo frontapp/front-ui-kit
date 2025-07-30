@@ -1,15 +1,15 @@
-import {isUndefined} from 'lodash';
-import {DateTime} from 'luxon';
-import React, {FC, MouseEventHandler, useEffect, useMemo, useState} from 'react';
+import { isUndefined } from 'lodash';
+import { DateTime } from 'luxon';
+import React, { FC, MouseEventHandler, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 
-import {CalendarWeekDaysEnum, DatepickerViewsEnum, mergeDateAndTime} from '../../helpers/calendarHelpers';
-import {alphas, greys} from '../../helpers/colorHelpers';
-import {DatePickerCalendar} from './datepickerCalendar';
-import {DatePickerDropdownProps} from './datepickerDropdown';
-import {DatePickerFooter} from './datepickerFooter';
-import {DatePickerHeader} from './datepickerHeader';
-import {TimePicker} from './timepicker';
+import { CalendarWeekDaysEnum, DatepickerViewsEnum, mergeDateAndTime } from '../../helpers/calendarHelpers';
+import { alphas, greys } from '../../helpers/colorHelpers';
+import { DatePickerCalendar } from './datepickerCalendar';
+import { DatePickerDropdownProps } from './datepickerDropdown';
+import { DatePickerFooter } from './datepickerFooter';
+import { DatePickerHeader } from './datepickerHeader';
+import { TimePicker } from './timepicker';
 
 /*
  * Props.
@@ -89,11 +89,11 @@ export const DatePicker: FC<DatePickerProps> = (props) => {
   const maxDateTime = useMemo(() => maxDate && DateTime.fromJSDate(maxDate), [maxDate]);
 
   const onFocusPreviousMonth = () => {
-    setFocusedMonth((month) => month && month.minus({months: 1}));
+    setFocusedMonth((month) => month && month.minus({ months: 1 }));
   };
 
   const onFocusNextMonth = () => {
-    setFocusedMonth((month) => month && month.plus({months: 1}));
+    setFocusedMonth((month) => month && month.plus({ months: 1 }));
   };
 
   const onDateSelect = (date: DateTime) => {
@@ -107,7 +107,6 @@ export const DatePicker: FC<DatePickerProps> = (props) => {
   };
 
   const onViewChange = (changedView: DatepickerViewsEnum) => {
-    console.log('DatePicker: onViewChange called', {changedView, currentView: selectedView});
     setSelectedView(changedView);
   };
 
