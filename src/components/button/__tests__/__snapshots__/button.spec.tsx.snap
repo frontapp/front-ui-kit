@@ -197,7 +197,7 @@ exports[`<Button /> Spec Snapshots should render icon button 1`] = `
       class="c1"
     >
       <div
-        color="currentColor"
+        color=""
         height="16"
         name="Close"
         preserveaspectratio="none"
@@ -236,7 +236,7 @@ exports[`<Button /> Spec Snapshots should render icon-danger button 1`] = `
       class="c1"
     >
       <div
-        color="currentColor"
+        color=""
         height="16"
         name="Close"
         preserveaspectratio="none"

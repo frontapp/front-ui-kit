@@ -117,7 +117,7 @@ exports[`<Pill /> Spec Snapshots should support rendering a pill with icon 1`] =
         class="c2"
       >
         <div
-          color="currentColor"
+          color=""
           height="16"
           name="Checkmark"
           preserveaspectratio="none"
