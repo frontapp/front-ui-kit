@@ -53,14 +53,12 @@ export const DatePickerDropdown: FC<DatePickerDropdownProps> = ({
     <DropdownCoordinator
       layerRootId={layerRootId}
       placement="bottom-start"
-      renderButton={(isDropdownOpen, isDisabled, buttonRef) => (
+      renderButton={(isDropdownOpen) => (
         <DropdownButton
           value={(value && formatDateTime(value, type, timeFormat)) || ''}
           placeholder={placeholder}
           iconName="Calendar"
           isActive={isDropdownOpen}
-          isDisabled={isDisabled}
-          buttonRef={buttonRef}
         />
       )}
       renderDropdown={(onCloseDropdown) => (
