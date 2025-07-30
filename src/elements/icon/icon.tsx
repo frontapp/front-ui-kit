@@ -151,6 +151,9 @@ interface StyledIconDivProps {
 const StyledIconDiv = styled.div<StyledIconDivProps>`
   width: ${(p) => `${p.$size}px`};
   height: ${(p) => `${p.$size}px`};
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 /*
@@ -173,7 +176,7 @@ export const Icon: FC<IconProps> = (props) => {
         height: size,
         color: shouldDisableColor ? '' : color,
         preserveAspectRatio: 'none',
-        viewBox: viewBox || ''
+        viewBox: viewBox
       })}
     </StyledIconDiv>
   );
