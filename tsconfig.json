@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "es6"],
+    "lib": [
+      "dom",
+      "es6"
+    ],
     "outDir": "dist",
     "target": "es6",
     "module": "es6",
@@ -12,7 +15,7 @@
     "esModuleInterop": true,
     "isolatedModules": false,
     "emitDecoratorMetadata": true,
-    "noUnusedLocals": false,
+    "noUnusedLocals": true,
     "sourceMap": true,
     "strict": true,
     "skipLibCheck": true,
@@ -24,9 +27,14 @@
         "name": "typescript-styled-plugin"
       }
     ],
-    "typeRoots": ["node_modules/@types"]
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   },
-  "include": ["src", ".storybook"],
+  "include": [
+    "src",
+    ".storybook"
+  ],
   "exclude": [
     "node_modules",
     "dist",

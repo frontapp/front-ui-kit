@@ -176,7 +176,7 @@ export const Icon: FC<IconProps> = (props) => {
         height: size,
         color: shouldDisableColor ? '' : color,
         preserveAspectRatio: 'none',
-        viewBox: viewBox
+        viewBox,
       })}
     </StyledIconDiv>
   );
