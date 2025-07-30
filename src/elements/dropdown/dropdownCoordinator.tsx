@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { FC, MouseEvent, MouseEventHandler, useEffect, useState } from 'react';
+import React, { FC, MouseEvent, useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 
 import { PopoverContext, PopoverContextProps } from '../../components/popover/popoverContext';
@@ -27,8 +27,7 @@ interface DropdownCoordinatorProps
   renderButton: (
     isDropdownOpen: boolean,
     isDisabled: boolean,
-    buttonRef: (instance: HTMLDivElement | null) => void,
-    onClick?: MouseEventHandler
+    buttonRef: (instance: HTMLDivElement | null) => void
   ) => React.ReactNode;
   /** Render the dropdown. */
   renderDropdown: (onCloseDropdown: () => void, buttonWidth: number) => React.ReactNode;
