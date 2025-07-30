@@ -4,6 +4,9 @@ exports[`<Icon /> Spec Snapshots should render with defaults 1`] = `
 .c0 {
   width: 16px;
   height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 <div>
@@ -25,6 +28,9 @@ exports[`<Icon /> Spec Snapshots should support different colors 1`] = `
 .c0 {
   width: 16px;
   height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 <div>
@@ -46,6 +52,9 @@ exports[`<Icon /> Spec Snapshots should support different sizes 1`] = `
 .c0 {
   width: 32px;
   height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 <div>

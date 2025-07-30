@@ -75,6 +75,9 @@ exports[`<Pill /> Spec Snapshots should support rendering a pill with icon 1`] =
 .c2 {
   width: 16px;
   height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .c3 {

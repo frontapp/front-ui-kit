@@ -173,6 +173,9 @@ exports[`<Button /> Spec Snapshots should render icon button 1`] = `
 .c1 {
   width: 16px;
   height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .c0 {
@@ -212,6 +215,9 @@ exports[`<Button /> Spec Snapshots should render icon-danger button 1`] = `
 .c1 {
   width: 16px;
   height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .c0 {

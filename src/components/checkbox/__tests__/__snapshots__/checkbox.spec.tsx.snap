@@ -74,6 +74,9 @@ exports[`<Checkbox /> Spec Snapshots should render a checked and disabled checkb
 .c4 {
   width: 16px;
   height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .c0 {
@@ -161,6 +164,9 @@ exports[`<Checkbox /> Spec Snapshots should render a checked checkbox 1`] = `
 .c4 {
   width: 16px;
   height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .c0 {
@@ -385,6 +391,9 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate and disabled
 .c4 {
   width: 16px;
   height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .c0 {
@@ -472,6 +481,9 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate checkbox 1`]
 .c4 {
   width: 16px;
   height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .c0 {

@@ -154,6 +154,9 @@ exports[`<Checkbox /> Spec Snapshots should render an input of type email 1`] = 
 .c2 {
   width: 16px;
   height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .c0 {
@@ -239,6 +242,9 @@ exports[`<Checkbox /> Spec Snapshots should render an input of type number 1`] =
 .c2 {
   width: 16px;
   height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .c0 {
@@ -402,6 +408,9 @@ exports[`<Checkbox /> Spec Snapshots should render an input with an icon 1`] = `
 .c2 {
   width: 16px;
   height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .c0 {
