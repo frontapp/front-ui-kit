@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import { isArray } from 'lodash';
 import { ellipsis } from 'polished';
-import React, { FC, MouseEventHandler } from 'react';
+import React, { FC } from 'react';
 import styled, { css } from 'styled-components';
 
 import { OverflowWithCount } from '../../components/overflowWithCount/overflowWithCount';
