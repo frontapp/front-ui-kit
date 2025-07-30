@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, {FC, MouseEvent, MouseEventHandler, useEffect, useState} from 'react';
-import styled, {css} from 'styled-components';
+import React, { FC, MouseEvent, MouseEventHandler, useEffect, useState } from 'react';
+import styled, { css } from 'styled-components';
 
-import {PopoverContext, PopoverContextProps} from '../../components/popover/popoverContext';
-import {RepositionPopover, RepositionPopoverProps} from '../../components/popover/repositionPopover';
-import {useMeasureElement} from '../../helpers/hookHelpers';
+import { PopoverContext, PopoverContextProps } from '../../components/popover/popoverContext';
+import { RepositionPopover, RepositionPopoverProps } from '../../components/popover/repositionPopover';
+import { useMeasureElement } from '../../helpers/hookHelpers';
 
 /*
  * Props.
@@ -27,8 +27,7 @@ interface DropdownCoordinatorProps
   renderButton: (
     isDropdownOpen: boolean,
     isDisabled: boolean,
-    buttonRef: (instance: HTMLDivElement | null) => void,
-    onClick: MouseEventHandler
+    buttonRef: (instance: HTMLDivElement | null) => void
   ) => React.ReactNode;
   /** Render the dropdown. */
   renderDropdown: (onCloseDropdown: () => void, buttonWidth: number) => React.ReactNode;
@@ -83,7 +82,7 @@ export const DropdownCoordinator: FC<DropdownCoordinatorProps> = (props) => {
   const [anchorElement, setAnchorElement] = useState<HTMLDivElement | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [context, setContext] = useState<PopoverContextProps | undefined>();
-  const [buttonRef, {width: buttonWidth}] = useMeasureElement();
+  const [buttonRef, { width: buttonWidth }] = useMeasureElement();
 
   useEffect(() => {
     if (!anchorElement) return;
@@ -106,8 +105,8 @@ export const DropdownCoordinator: FC<DropdownCoordinatorProps> = (props) => {
 
   return (
     <PopoverContext.Provider value={context}>
-      <StyledAnchorDiv ref={setAnchorElement} $isInline={isInline} $maxWidth={maxWidth}>
-        {renderButton(isDropdownOpen, Boolean(isDisabled), buttonRef, onClick)}
+      <StyledAnchorDiv ref={setAnchorElement} onClick={onClick} $isInline={isInline} $maxWidth={maxWidth}>
+        {renderButton(isDropdownOpen, Boolean(isDisabled), buttonRef)}
       </StyledAnchorDiv>
       {isDropdownOpen && (
         <RepositionPopover
