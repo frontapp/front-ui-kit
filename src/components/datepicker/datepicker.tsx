@@ -127,7 +127,7 @@ export const DatePicker: FC<DatePickerProps> = (props) => {
     });
 
   return (
-    <StyledWrapperDiv onClick={(event) => event.stopPropagation()}>
+    <StyledWrapperDiv onClick={(event) => event.preventDefault()}>
       <StyledDatePickerDiv>
         <DatePickerHeader
           value={focusedMonth}
