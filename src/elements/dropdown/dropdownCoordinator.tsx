@@ -27,7 +27,8 @@ interface DropdownCoordinatorProps
   renderButton: (
     isDropdownOpen: boolean,
     isDisabled: boolean,
-    buttonRef: (instance: HTMLDivElement | null) => void
+    buttonRef: (instance: HTMLDivElement | null) => void,
+    onClick?: MouseEventHandler
   ) => React.ReactNode;
   /** Render the dropdown. */
   renderDropdown: (onCloseDropdown: () => void, buttonWidth: number) => React.ReactNode;
