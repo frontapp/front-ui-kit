@@ -54,6 +54,7 @@ import Trash from '../../assets/icons/trash.svg';
 import TrashFilled from '../../assets/icons/trashFilled.svg';
 import WarningFilled from '../../assets/icons/warningFilled.svg';
 import { greys } from '../../helpers/colorHelpers';
+import { getIconViewBox } from './iconViewBoxes';
 
 /*
  * Constants.
@@ -174,7 +175,7 @@ export const Icon: FC<IconProps> = (props) => {
     height: size,
     color: shouldDisableColor ? '' : color,
     preserveAspectRatio: 'none',
-    viewBox: viewBox || '0 0 16 16',
+    viewBox: viewBox || getIconViewBox(name),
   };
 
   return (

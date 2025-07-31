@@ -88,15 +88,6 @@ module.exports = {
               typescript: true,
               jsx: true,
               svgo: true,
-              svgoConfig: {
-                // We want to keep the view box for the components.
-                plugins: [
-                  {
-                    name: 'removeViewBox',
-                    active: false
-                  }
-                ]
-              }
             }
           }
         ]
