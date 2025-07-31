@@ -168,16 +168,18 @@ export const Icon: FC<IconProps> = (props) => {
   const icon = icons[name];
   if (!icon) return null;
 
+  const iconProps: React.SVGAttributes<SVGElement> = {
+    name,
+    width: size,
+    height: size,
+    color: shouldDisableColor ? '' : color,
+    preserveAspectRatio: 'none',
+    viewBox: viewBox || '0 0 16 16',
+  };
+
   return (
     <StyledIconDiv $size={size}>
-      {icon({
-        name,
-        width: size,
-        height: size,
-        color: shouldDisableColor ? '' : color,
-        preserveAspectRatio: 'none',
-        viewBox,
-      })}
+      {icon(iconProps)}
     </StyledIconDiv>
   );
 };
