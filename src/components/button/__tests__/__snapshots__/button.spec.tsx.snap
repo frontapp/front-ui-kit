@@ -204,6 +204,7 @@ exports[`<Button /> Spec Snapshots should render icon button 1`] = `
         height="16"
         name="Close"
         preserveaspectratio="none"
+        viewbox="0 0 16 16"
         width="16"
       />
     </div>
@@ -246,6 +247,7 @@ exports[`<Button /> Spec Snapshots should render icon-danger button 1`] = `
         height="16"
         name="Close"
         preserveaspectratio="none"
+        viewbox="0 0 16 16"
         width="16"
       />
     </div>
