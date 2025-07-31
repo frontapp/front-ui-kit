@@ -54,6 +54,7 @@ import Trash from '../../assets/icons/trash.svg';
 import TrashFilled from '../../assets/icons/trashFilled.svg';
 import WarningFilled from '../../assets/icons/warningFilled.svg';
 import { greys } from '../../helpers/colorHelpers';
+import { getIconViewBox } from './iconViewBoxes';
 
 /*
  * Constants.
@@ -168,16 +169,18 @@ export const Icon: FC<IconProps> = (props) => {
   const icon = icons[name];
   if (!icon) return null;
 
+  const iconProps: React.SVGAttributes<SVGElement> = {
+    name,
+    width: size,
+    height: size,
+    color: shouldDisableColor ? '' : color,
+    preserveAspectRatio: 'none',
+    viewBox: viewBox || getIconViewBox(name),
+  };
+
   return (
     <StyledIconDiv $size={size}>
-      {icon({
-        name,
-        width: size,
-        height: size,
-        color: shouldDisableColor ? '' : color,
-        preserveAspectRatio: 'none',
-        viewBox,
-      })}
+      {icon(iconProps)}
     </StyledIconDiv>
   );
 };

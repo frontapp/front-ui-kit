@@ -148,6 +148,7 @@ exports[`<Checkbox /> Spec Snapshots should render a checked and disabled checkb
             height="16"
             name="CheckmarkBox"
             preserveaspectratio="none"
+            viewbox="0 0 16 16"
             width="16"
           />
         </div>
@@ -237,6 +238,7 @@ exports[`<Checkbox /> Spec Snapshots should render a checked checkbox 1`] = `
             height="16"
             name="CheckmarkBox"
             preserveaspectratio="none"
+            viewbox="0 0 16 16"
             width="16"
           />
         </div>
@@ -465,6 +467,7 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate and disabled
             height="16"
             name="Minus"
             preserveaspectratio="none"
+            viewbox="0 0 16 16"
             width="16"
           />
         </div>
@@ -554,6 +557,7 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate checkbox 1`]
             height="16"
             name="Minus"
             preserveaspectratio="none"
+            viewbox="0 0 16 16"
             width="16"
           />
         </div>
