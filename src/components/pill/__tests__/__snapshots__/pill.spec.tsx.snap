@@ -132,10 +132,22 @@ exports[`<Pill /> Spec Snapshots should support rendering a pill with icon 1`] =
     <div
       class="c3"
     >
+      Pill
+    </div>
+    <div
+      class="c1"
+    >
       <div
-        class="c3"
+        class="c2"
       >
-        Pill
+        <div
+          color=""
+          height="16"
+          name="Checkmark"
+          preserveaspectratio="none"
+          viewbox="0 0 16 16"
+          width="16"
+        />
       </div>
     </div>
   </div>
