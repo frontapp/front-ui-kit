@@ -1,6 +1,6 @@
-import {ResizeObserver} from '@juggle/resize-observer';
-import {useCallback, useEffect, useRef} from 'react';
-import useMeasure, {Options as UseMeasureOptions, RectReadOnly} from 'react-use-measure';
+import { ResizeObserver } from '@juggle/resize-observer';
+import { useCallback, useEffect, useRef } from 'react';
+import useMeasure, { Options as UseMeasureOptions, RectReadOnly } from 'react-use-measure';
 
 /*
  * Use Timeout.
