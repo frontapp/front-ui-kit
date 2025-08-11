@@ -1,5 +1,5 @@
 import { ellipsis } from 'polished';
-import React, { forwardRef } from 'react';
+import React, { FC } from 'react';
 import styled, { css } from 'styled-components';
 
 import { greys, palette } from '../../helpers/colorHelpers';
@@ -73,7 +73,7 @@ const StyledFormFieldHelperTextDiv = styled.div<StyledFormFieldHelperTextDivProp
  * Component.
  */
 
-export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props) => {
+export const FormField: FC<FormFieldProps> = (props) => {
   const { label, children, errorMessage, hint, isRequired } = props;
   const isErred = Boolean(errorMessage);
 
@@ -89,4 +89,4 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props) => {
       )}
     </StyledFormFieldWrapperDiv>
   );
-});
+};
