@@ -3,7 +3,6 @@ import React, { createRef, useState } from 'react';
 import styled from 'styled-components';
 
 import { Input } from '../../input';
-import { greys } from '../../../../helpers/colorHelpers';
 
 const StyledCenteredDiv = styled.div`
   display: flex;
