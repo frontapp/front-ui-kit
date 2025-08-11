@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { greys } from '../../../../../helpers/colorHelpers';
+import { DefaultStyleProvider } from '../../../../../utils/defaultStyleProvider';
 import { PluginFooter } from '../../pluginFooter';
 import { PluginHeader } from '../../pluginHeader';
 import { PluginLayout } from '../../pluginLayout';
-import { DefaultStyleProvider } from '../../../../../utils/defaultStyleProvider';
 
 const StyledCenteredDiv = styled.div`
   display: flex;
