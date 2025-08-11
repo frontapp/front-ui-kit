@@ -1,9 +1,9 @@
-import {ComponentStory} from '@storybook/react';
+import { StoryObj } from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import {Button} from '../../button';
-import {ButtonGroup} from '../../buttonGroup';
+import { Button } from '../../button';
+import { ButtonGroup } from '../../buttonGroup';
 
 const StyledCenteredDiv = styled.div`
   display: flex;
@@ -11,16 +11,16 @@ const StyledCenteredDiv = styled.div`
   justify-content: center;
 `;
 
-const Template: ComponentStory<typeof Button> = () => (
-  <StyledCenteredDiv>
-    <ButtonGroup>
-      <Button type="secondary">Secondary</Button>
-      <Button type="secondary-danger">Secondary Danger</Button>
-      <Button type="primary">Primary</Button>
-      <Button type="primary-danger">Primary Danger</Button>
-      <Button type="tertiary">Tertiary</Button>
-    </ButtonGroup>
-  </StyledCenteredDiv>
-);
-
-export const Variants = Template.bind({});
+export const Variants: StoryObj<typeof Button> = {
+  render: () => (
+    <StyledCenteredDiv>
+      <ButtonGroup>
+        <Button type="secondary">Secondary</Button>
+        <Button type="secondary-danger">Secondary Danger</Button>
+        <Button type="primary">Primary</Button>
+        <Button type="primary-danger">Primary Danger</Button>
+        <Button type="tertiary">Tertiary</Button>
+      </ButtonGroup>
+    </StyledCenteredDiv>
+  ),
+};

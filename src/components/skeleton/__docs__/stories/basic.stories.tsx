@@ -1,8 +1,8 @@
-import {ComponentStory} from '@storybook/react';
+import { StoryObj } from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import {Skeleton} from '../../skeleton';
+import { Skeleton } from '../../skeleton';
 
 const StyledWrapperDiv = styled.div`
   display: flex;
@@ -10,15 +10,15 @@ const StyledWrapperDiv = styled.div`
   justify-content: center;
 `;
 
-const Template: ComponentStory<typeof Skeleton> = (args) => (
-  <StyledWrapperDiv>
-    <Skeleton {...args} />
-  </StyledWrapperDiv>
-);
-
-export const Basic = Template.bind({});
-Basic.args = {
-  variant: 'dark',
-  width: 400,
-  height: 40
+export const Basic: StoryObj<typeof Skeleton> = {
+  render: (args) => (
+    <StyledWrapperDiv>
+      <Skeleton {...args} />
+    </StyledWrapperDiv>
+  ),
+  args: {
+    variant: 'dark',
+    width: 400,
+    height: 40,
+  },
 };

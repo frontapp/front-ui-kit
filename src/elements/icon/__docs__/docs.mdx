@@ -1,9 +1,12 @@
-import {Meta, Title, Story} from '@storybook/addon-docs';
-import {Icon as IconExample} from '../icon';
+import { Meta, Title, Story } from '@storybook/addon-docs';
+import * as IconStories from './index.stories';
 
-<Meta title="Elements/Icon" />
+<Meta of={IconStories} />
 
 # Icon
+
+<Primary />
+<Controls />
 
 ```typescript
 import {Icon} from '@frontapp/ui-kit';
@@ -13,8 +16,8 @@ You can click on the icon to copy the IconName for easy usage.
 
 ## Generic Icons
 
-<Story id="elements-icon--basic-icons" />
+<Story of={IconStories.BasicIcons} />
 
 ## Attachment Icons
 
-<Story id="elements-icon--attachment-icons" />
+<Story of={IconStories.AttachmentIcons} />

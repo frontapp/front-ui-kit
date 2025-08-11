@@ -1,9 +1,9 @@
-import {ComponentStory} from '@storybook/react';
+import { StoryObj } from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import {Icon} from '../../../../elements/icon/icon';
-import {Button} from '../../button';
+import { Icon } from '../../../../elements/icon/icon';
+import { Button } from '../../button';
 
 const StyledCenteredDiv = styled.div`
   display: flex;
@@ -11,12 +11,12 @@ const StyledCenteredDiv = styled.div`
   justify-content: center;
 `;
 
-const Template: ComponentStory<typeof Button> = () => (
-  <StyledCenteredDiv>
-    <Button type="icon">
-      <Icon name="Archive" />
-    </Button>
-  </StyledCenteredDiv>
-);
-
-export const IconBasic = Template.bind({});
+export const IconBasic: StoryObj<typeof Button> = {
+  render: () => (
+    <StyledCenteredDiv>
+      <Button type="icon">
+        <Icon name="Archive" />
+      </Button>
+    </StyledCenteredDiv>
+  ),
+};

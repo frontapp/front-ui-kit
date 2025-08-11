@@ -1,14 +1,14 @@
-import {ComponentStory} from '@storybook/react';
-import React, {useState} from 'react';
+import { StoryObj } from '@storybook/react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import {Checkbox} from '../../checkbox';
+import { Checkbox } from '../../checkbox';
 
 const StyledWrapperDiv = styled.div`
   max-width: 400px;
 `;
 
-const Template: ComponentStory<typeof Checkbox> = () => {
+const Template = () => {
   const [isChecked, setIsChecked] = useState(false);
   return (
     <StyledWrapperDiv>
@@ -19,4 +19,6 @@ const Template: ComponentStory<typeof Checkbox> = () => {
   );
 };
 
-export const BasicReverse = Template.bind({});
+export const BasicReverse: StoryObj<typeof Checkbox> = {
+  render: () => <Template />,
+};

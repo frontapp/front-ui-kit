@@ -1,12 +1,9 @@
-import {ComponentStory} from '@storybook/react';
-import React, {useState} from 'react';
+import { StoryObj } from '@storybook/react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import {Input} from '../../../../elements/input/input';
-import {greys} from '../../../../helpers/colorHelpers';
-import {FormField} from '../../../formField/formField';
-import {Tooltip} from '../../tooltip';
-import {TooltipCoordinator} from '../../tooltipCoordinator';
+import { Button } from '../../../../components/button/button';
+import { TooltipOverflow } from '../../tooltipOverflow';
 
 const StyledWrapperDiv = styled.div`
   display: flex;
@@ -32,36 +29,33 @@ const StyledTooltipWrapperDiv = styled.div<StyledTooltipWrapperDivProps>`
   padding: 4px;
 `;
 
-const Template: ComponentStory<typeof Tooltip> = () => {
-  const [width, setWidth] = useState(350);
+const StyledTooltipDiv = styled.div`
+  width: 100px;
+`;
+
+const StyledOverflowDiv = styled.div`
+  width: 100px;
+`;
+
+const Template = () => {
+  const [isLong, setIsLong] = useState(false);
+
   return (
     <StyledWrapperDiv>
-      <FormField label="Width of Container">
-        <Input<number> type="number" value={width} onChange={setWidth} />
-      </FormField>
-      <br />
-      <StyledTooltipRowWrapperDiv>
-        <StyledTooltipWrapperDiv $width={width}>
-          <TooltipCoordinator
-            condition={{type: 'overflow'}}
-            renderTooltip={() => <Tooltip>This text is smaller.</Tooltip>}>
-            This text is smaller.
-          </TooltipCoordinator>
-        </StyledTooltipWrapperDiv>
-      </StyledTooltipRowWrapperDiv>
-      <StyledTooltipRowWrapperDiv>
-        <StyledTooltipWrapperDiv $width={width}>
-          <TooltipCoordinator
-            condition={{type: 'overflow'}}
-            renderTooltip={() => (
-              <Tooltip>This is really long text that is overflowing, looooooooooooooong text.</Tooltip>
-            )}>
-            This is really long text that is overflowing, looooooooooooooong text.
-          </TooltipCoordinator>
-        </StyledTooltipWrapperDiv>
-      </StyledTooltipRowWrapperDiv>
+      <Button onClick={() => setIsLong(!isLong)}>Toggle Text Length</Button>
+      <StyledTooltipDiv>
+        <TooltipOverflow message={isLong ? 'This is a long message that will overflow' : 'Short'}>
+          {(ref) => (
+            <StyledOverflowDiv ref={ref}>
+              {isLong ? 'This is a long message that will overflow' : 'Short'}
+            </StyledOverflowDiv>
+          )}
+        </TooltipOverflow>
+      </StyledTooltipDiv>
     </StyledWrapperDiv>
   );
 };
 
-export const Overflow = Template.bind({});
+export const Overflow: StoryObj<typeof TooltipOverflow> = {
+  render: () => <Template />,
+};

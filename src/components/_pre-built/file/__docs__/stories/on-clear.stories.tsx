@@ -1,10 +1,10 @@
-import {ComponentStory} from '@storybook/react';
-import React, {useState} from 'react';
+import { StoryObj } from '@storybook/react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import {greys} from '../../../../../helpers/colorHelpers';
-import {Button} from '../../../../button/button';
-import {File, FileTypesEnum} from '../../file';
+import { greys } from '../../../../../helpers/colorHelpers';
+import { Button } from '../../../../button/button';
+import { File, FileTypesEnum } from '../../file';
 
 interface FileObj {
   name: string;
@@ -36,7 +36,7 @@ const StyledRestoreWrapperDiv = styled.div`
   padding: 7.5px;
 `;
 
-const Template: ComponentStory<typeof File> = () => {
+const Template = () => {
   const [file, setFile] = useState<FileObj | undefined>(fileObj);
   return (
     <StyledWrapperDiv>
@@ -60,4 +60,7 @@ const Template: ComponentStory<typeof File> = () => {
     </StyledWrapperDiv>
   );
 };
-export const OnClear = Template.bind({});
+
+export const OnClear: StoryObj<typeof File> = {
+  render: () => <Template />,
+};

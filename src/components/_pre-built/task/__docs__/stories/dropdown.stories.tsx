@@ -1,9 +1,9 @@
-import {ComponentStory} from '@storybook/react';
-import React, {useState} from 'react';
+import { StoryObj } from '@storybook/react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import {DropdownItem} from '../../../../../elements/dropdown/dropdownItem';
-import {Task} from '../../task';
+import { DropdownItem } from '../../../../../elements/dropdown/dropdownItem';
+import { Task } from '../../task';
 
 /*
  * Style.
@@ -22,11 +22,7 @@ const StyledShowcaseDiv = styled.div`
   width: 300px;
 `;
 
-/*
- * Storybook.
- */
-
-const ShowcaseTemplate: ComponentStory<typeof Task> = () => {
+const Template = () => {
   const [isChecked, setIsChecked] = useState(false);
   const onToggleCheckbox = (checked: boolean) => {
     setIsChecked(checked);
@@ -40,7 +36,8 @@ const ShowcaseTemplate: ComponentStory<typeof Task> = () => {
           onChange={onToggleCheckbox}
           onClick={() => console.log('Task Clicked.')}
           label="Apply changes to feature"
-          layerRootId="story--components-task--dropdown">
+          layerRootId="story--components-task--dropdown"
+        >
           <DropdownItem>View Task Details</DropdownItem>
           <DropdownItem>Close Task</DropdownItem>
         </Task>
@@ -48,4 +45,11 @@ const ShowcaseTemplate: ComponentStory<typeof Task> = () => {
     </StyledWrapperDiv>
   );
 };
-export const Dropdown = ShowcaseTemplate.bind({});
+
+/*
+ * Storybook.
+ */
+
+export const Dropdown: StoryObj<typeof Task> = {
+  render: () => <Template />,
+};

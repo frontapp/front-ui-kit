@@ -1,8 +1,8 @@
-import {ComponentStory} from '@storybook/react';
+import { StoryObj } from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import {Task} from '../../task';
+import { Task } from '../../task';
 
 /*
  * Style.
@@ -24,11 +24,12 @@ const StyledShowcaseDiv = styled.div`
  * Storybook.
  */
 
-const ShowcaseTemplate: ComponentStory<typeof Task> = () => (
-  <StyledWrapperDiv>
-    <StyledShowcaseDiv>
-      <Task type="icon" icon="AttachmentCalendar" label="Apply changes to feature" />
-    </StyledShowcaseDiv>
-  </StyledWrapperDiv>
-);
-export const Icon = ShowcaseTemplate.bind({});
+export const Icon: StoryObj<typeof Task> = {
+  render: () => (
+    <StyledWrapperDiv>
+      <StyledShowcaseDiv>
+        <Task type="icon" icon="AttachmentCalendar" label="Apply changes to feature" />
+      </StyledShowcaseDiv>
+    </StyledWrapperDiv>
+  ),
+};
