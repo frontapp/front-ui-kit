@@ -16,7 +16,7 @@ const StyledDatePickerWrapperDiv = styled.div`
 `;
 
 const Template = () => {
-  const [selectedDate, setSelectedDate] = useState<Date>();
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
   return (
     <StyledDatePickerDiv>
       <StyledDatePickerWrapperDiv>
