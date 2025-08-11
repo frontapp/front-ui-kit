@@ -33,12 +33,7 @@ export function renderFirstIconOnly(children: React.ReactNode, shouldDisableColo
     // so the component itself can style the color.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/consistent-type-assertions
     const childType = (child as any).type;
-
-    // Check multiple ways to identify the Icon component
-    const isIcon =
-      childType?.displayName === 'Icon' ||
-      childType?.name === 'Icon' ||
-      (typeof childType === 'function' && childType.toString().includes('Icon'));
+    const isIcon = childType?.displayName === 'Icon'
 
     if (isIcon && !hasFoundIcon) {
       hasFoundIcon = true;
