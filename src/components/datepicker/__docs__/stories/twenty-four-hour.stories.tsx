@@ -1,8 +1,8 @@
-import {StoryObj} from '@storybook/react';
-import React, {useState} from 'react';
+import { StoryObj } from '@storybook/react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import {DatePickerDropdown as DatePicker} from '../../datepickerDropdown';
+import { DatePickerDropdown as DatePicker } from '../../datepickerDropdown';
 
 const StyledDatePickerDiv = styled.div`
   display: flex;
@@ -24,7 +24,7 @@ const Template = () => {
           value={selectedDate}
           onChange={setSelectedDate}
           type="dateAndTime"
-          is24Hour
+          timeFormat="24h"
           placeholder="Select a date and time"
           layerRootId="story--components-date-picker--twenty-four-hour"
         />

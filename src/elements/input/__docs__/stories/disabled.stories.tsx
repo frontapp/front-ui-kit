@@ -1,8 +1,8 @@
-import {StoryObj} from '@storybook/react';
-import React, {useState} from 'react';
+import { StoryObj } from '@storybook/react';
+import React, { createRef,useState } from 'react';
 import styled from 'styled-components';
 
-import {Input} from '../../input';
+import { Input } from '../../input';
 
 const StyledCenteredDiv = styled.div`
   display: flex;
@@ -16,9 +16,10 @@ const StyledInputWrapperDiv = styled.div`
 
 const Template = () => {
   const [value, setValue] = useState('');
+  const ref = createRef<HTMLInputElement>();
   return (
     <StyledInputWrapperDiv>
-      <Input value={value} onChange={(event) => setValue(event.target.value)} isDisabled />
+      <Input value={value} onChange={(v) => setValue(v)} isDisabled ref={ref} />
     </StyledInputWrapperDiv>
   );
 };

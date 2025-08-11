@@ -1,8 +1,8 @@
-import {StoryObj} from '@storybook/react';
-import React, {useState} from 'react';
+import { StoryObj } from '@storybook/react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import {DatePickerDropdown as DatePicker} from '../../datepickerDropdown';
+import { DatePickerDropdown as DatePicker } from '../../datepickerDropdown';
 
 const StyledDatePickerDiv = styled.div`
   display: flex;
@@ -25,7 +25,7 @@ const Template = () => {
           onChange={setSelectedDate}
           type="dateAndTime"
           placeholder="Select a date and time"
-          startDate={new Date(2022, 0, 15)}
+          minDate={new Date(Date.now() - 604800000)}
           layerRootId="story--components-date-picker--start-date"
         />
       </StyledDatePickerWrapperDiv>

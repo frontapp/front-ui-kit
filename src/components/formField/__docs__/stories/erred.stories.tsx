@@ -1,10 +1,10 @@
-import {StoryObj} from '@storybook/react';
-import React, {useState} from 'react';
+import { StoryObj } from '@storybook/react';
+import React, { createRef,useState } from 'react';
 import styled from 'styled-components';
 
-import {Input} from '../../../../elements/input/input';
-import {greys} from '../../../../helpers/colorHelpers';
-import {FormField} from '../../formField';
+import { Input } from '../../../../elements/input/input';
+import { greys } from '../../../../helpers/colorHelpers';
+import { FormField } from '../../formField';
 
 const StyledWrapperDiv = styled.div`
   display: flex;
@@ -30,10 +30,11 @@ const StyledFormFieldDiv = styled.div`
 
 const Template = () => {
   const [value, setValue] = useState('invalid@email');
+  const ref = createRef<HTMLInputElement>();
   return (
     <StyledFormFieldDiv>
-      <FormField label="Name" errorMessage="Please enter a valid email.">
-        <Input value={value} onChange={(event) => setValue(event.target.value)} isErred />
+      <FormField label="Name" errorMessage="Please enter a valid email." ref={ref}>
+        <Input value={value} onChange={(v) => setValue(v)} isErred />
       </FormField>
     </StyledFormFieldDiv>
   );

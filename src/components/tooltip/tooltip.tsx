@@ -1,10 +1,10 @@
-import {Placement} from '@popperjs/core';
-import React, {FC} from 'react';
+import { Placement } from '@popperjs/core';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
-import {alphas, greys} from '../../helpers/colorHelpers';
-import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
-import {RepositionPopover} from '../popover/repositionPopover';
+import { alphas, greys } from '../../helpers/colorHelpers';
+import { fonts, fontSizes, fontWeights } from '../../helpers/fontHelpers';
+import { RepositionPopover } from '../popover/repositionPopover';
 
 /*
  * Props.
@@ -46,7 +46,7 @@ const StyledTooltipDiv = styled.div<StyledTooltipDivProps>`
  * Component.
  */
 
-export const Tooltip: FC<TooltipProps> = ({children, placement = 'bottom', maxWidth = 400}) => (
+export const Tooltip: FC<TooltipProps> = ({ children, placement = 'bottom', maxWidth = 400 }) => (
   <RepositionPopover placement={placement}>
     <StyledTooltipDiv $maxWidth={maxWidth}>{children}</StyledTooltipDiv>
   </RepositionPopover>

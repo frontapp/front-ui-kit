@@ -1,9 +1,9 @@
-import {ellipsis} from 'polished';
-import React, {FC} from 'react';
-import styled, {css} from 'styled-components';
+import { ellipsis } from 'polished';
+import React, { forwardRef } from 'react';
+import styled, { css } from 'styled-components';
 
-import {greys, palette} from '../../helpers/colorHelpers';
-import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
+import { greys, palette } from '../../helpers/colorHelpers';
+import { fonts, fontSizes, fontWeights } from '../../helpers/fontHelpers';
 
 /*
  * Props.
@@ -19,7 +19,7 @@ export interface FormFieldProps {
   /** Whether we should show the "*". */
   isRequired?: boolean;
   /** Content to render. */
-  children: React.ReactElement<{isErred?: boolean}>;
+  children: React.ReactElement<{ isErred?: boolean }>;
 }
 
 /*
@@ -73,20 +73,20 @@ const StyledFormFieldHelperTextDiv = styled.div<StyledFormFieldHelperTextDivProp
  * Component.
  */
 
-export const FormField: FC<FormFieldProps> = (props) => {
-  const {label, children, errorMessage, hint, isRequired} = props;
+export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
+  const { label, children, errorMessage, hint, isRequired } = props;
   const isErred = Boolean(errorMessage);
 
   return (
-    <StyledFormFieldWrapperDiv>
+    <StyledFormFieldWrapperDiv ref={ref}>
       <StyledFormFieldLabelDiv>
         <StyledLabelWrapperDiv>{label}</StyledLabelWrapperDiv>
         {isRequired && <StyledRequiredTagDiv>*</StyledRequiredTagDiv>}
       </StyledFormFieldLabelDiv>
-      {React.cloneElement(children, {isErred})}
+      {React.cloneElement(children, { isErred })}
       {(errorMessage || hint) && (
         <StyledFormFieldHelperTextDiv $isErred={isErred}>{errorMessage || hint}</StyledFormFieldHelperTextDiv>
       )}
     </StyledFormFieldWrapperDiv>
   );
-};
+});

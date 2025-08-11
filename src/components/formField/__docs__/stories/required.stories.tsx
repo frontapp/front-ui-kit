@@ -1,10 +1,10 @@
-import {StoryObj} from '@storybook/react';
-import React, {useState} from 'react';
+import { StoryObj } from '@storybook/react';
+import React, { createRef,useState } from 'react';
 import styled from 'styled-components';
 
-import {Input} from '../../../../elements/input/input';
-import {greys} from '../../../../helpers/colorHelpers';
-import {FormField} from '../../formField';
+import { Input } from '../../../../elements/input/input';
+import { greys } from '../../../../helpers/colorHelpers';
+import { FormField } from '../../formField';
 
 const StyledWrapperDiv = styled.div`
   display: flex;
@@ -30,10 +30,11 @@ const StyledFormFieldDiv = styled.div`
 
 const Template = () => {
   const [value, setValue] = useState('');
+  const ref = createRef<HTMLInputElement>();
   return (
     <StyledFormFieldDiv>
-      <FormField label="Name" isRequired>
-        <Input value={value} onChange={(event) => setValue(event.target.value)} />
+      <FormField label="Name" isRequired ref={ref}>
+        <Input value={value} onChange={(v) => setValue(v)} />
       </FormField>
     </StyledFormFieldDiv>
   );
