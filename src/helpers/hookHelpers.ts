@@ -1,6 +1,6 @@
-import {ResizeObserver} from '@juggle/resize-observer';
-import {useCallback, useEffect, useRef} from 'react';
-import useMeasure, {Options as UseMeasureOptions, RectReadOnly} from 'react-use-measure';
+import { ResizeObserver } from '@juggle/resize-observer';
+import { useCallback, useEffect, useRef } from 'react';
+import useMeasure, { Options as UseMeasureOptions, RectReadOnly } from 'react-use-measure';
 
 /*
  * Use Timeout.
@@ -8,7 +8,7 @@ import useMeasure, {Options as UseMeasureOptions, RectReadOnly} from 'react-use-
 
 /** Returns a setTimeout-like function that clears the previous timeout when re-invoked or when the component unmounts. */
 export function useTimeout(): [(handler: () => void, timeout?: number) => void, () => void] {
-  const handleRef = useRef<number | null>(null);
+  const handleRef = useRef<number>(null);
 
   useEffect(
     () => () => {

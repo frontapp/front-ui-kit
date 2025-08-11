@@ -11,7 +11,7 @@ import * as ReactIs from 'react-is';
 export function isComponentInChildren(children: React.ReactNode, componentDisplayName: string) {
   return React.Children.toArray(children).some((child) => {
     if (typeof child === 'string' || typeof child === 'number') return null;
-    if (ReactIs.isFragment(child) || !ReactIs.isElement(child)) return false;
+    if (ReactIs.isFragment(child) || !React.isValidElement(child)) return false;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return (child.type as any)?.displayName === componentDisplayName;
   });
@@ -26,11 +26,7 @@ export function renderFirstIconOnly(children: React.ReactNode, shouldDisableColo
   return React.Children.toArray(children).map((child) => {
     if (typeof child === 'string' || typeof child === 'number') return null;
 
-    // Check if it's a React element by looking for the necessary properties
-    const isReactElement =
-      child && typeof child === 'object' && '$$typeof' in child && 'type' in child && 'props' in child;
-
-    if (ReactIs.isFragment(child) || !isReactElement) return null;
+    if (ReactIs.isFragment(child) || !React.isValidElement(child)) return null;
 
     // Check for an icon and if we find one make sure we only have 1 icon
     // total that we could render. We also need to display any set colors
@@ -46,7 +42,7 @@ export function renderFirstIconOnly(children: React.ReactNode, shouldDisableColo
 
     if (isIcon && !hasFoundIcon) {
       hasFoundIcon = true;
-      return React.cloneElement(child as React.ReactElement, {shouldDisableColor} as any);
+      return React.cloneElement(child as React.ReactElement, { shouldDisableColor } as any);
     }
     return null;
   });
@@ -62,11 +58,7 @@ export function renderChildrenIgnoreSpecifiedComponents(
   return React.Children.toArray(children).map((child) => {
     if (typeof child === 'string' || typeof child === 'number') return child;
 
-    // Check if it's a React element by looking for the necessary properties
-    const isReactElement =
-      child && typeof child === 'object' && '$$typeof' in child && 'type' in child && 'props' in child;
-
-    if (ReactIs.isFragment(child) || !isReactElement) return child;
+    if (ReactIs.isFragment(child) || !React.isValidElement(child)) return child;
 
     // Check if the display name is one we should not render.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -85,10 +77,7 @@ export function renderChildrenSpecifiedComponents(
 ): React.ReactNode[] {
   return React.Children.toArray(children).map((child) => {
     if (typeof child === 'string' || typeof child === 'number') return null;
-    if (ReactIs.isFragment(child)) return null;
-
-    // Check if it's a React element by looking for $$typeof property
-    if (!child || typeof child !== 'object' || !('$$typeof' in child)) return null;
+    if (ReactIs.isFragment(child) || !React.isValidElement(child)) return null;
 
     // Check if the display name is one we should render.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
