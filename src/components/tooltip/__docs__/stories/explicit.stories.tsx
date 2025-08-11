@@ -1,10 +1,9 @@
-import {ComponentStory} from '@storybook/react';
-import React, {useState} from 'react';
+import { StoryObj } from '@storybook/react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import {Button} from '../../../button/button';
-import {Tooltip} from '../../tooltip';
-import {TooltipCoordinator} from '../../tooltipCoordinator';
+import { Button } from '../../../../components/button/button';
+import { Tooltip } from '../../tooltip';
 
 const StyledWrapperDiv = styled.div`
   display: flex;
@@ -17,23 +16,21 @@ const StyledWrapperDiv = styled.div`
 
 const StyledTooltipWrapperDiv = styled.div``;
 
-const Template: ComponentStory<typeof Tooltip> = () => {
-  const [isEnabled, setIsEnabled] = useState(true);
+const StyledTooltipDiv = styled.div`
+  width: 300px;
+`;
+
+const Template = () => {
+  const [isShown, setIsShown] = useState(false);
   return (
-    <StyledWrapperDiv>
-      <Button onClick={() => setIsEnabled(!isEnabled)}>Toggle Tooltip</Button>
-      <StyledTooltipWrapperDiv>
-        <TooltipCoordinator
-          condition={{
-            type: 'explicit',
-            isEnabled
-          }}
-          renderTooltip={() => <Tooltip>This is an example tooltip.</Tooltip>}>
-          Hover over me to see tooltip. Is the tooltip enabled? {isEnabled ? 'Yes' : 'No'}
-        </TooltipCoordinator>
-      </StyledTooltipWrapperDiv>
-    </StyledWrapperDiv>
+    <StyledTooltipDiv>
+      <Tooltip message="An explicit tooltip" isExplicitlyShown={isShown}>
+        <Button onClick={() => setIsShown(!isShown)}>Click me to toggle the tooltip</Button>
+      </Tooltip>
+    </StyledTooltipDiv>
   );
 };
 
-export const Explicit = Template.bind({});
+export const Explicit: StoryObj<typeof Tooltip> = {
+  render: () => <Template />,
+};

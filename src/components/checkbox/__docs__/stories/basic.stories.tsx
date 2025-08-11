@@ -1,9 +1,9 @@
-import {ComponentStory} from '@storybook/react';
-import React, {useState} from 'react';
+import { StoryObj } from '@storybook/react';
+import React, { useState } from 'react';
 
-import {Checkbox} from '../../checkbox';
+import { Checkbox } from '../../checkbox';
 
-const Template: ComponentStory<typeof Checkbox> = () => {
+const Template = () => {
   const [isChecked, setIsChecked] = useState(false);
   return (
     <Checkbox isChecked={isChecked} onChange={setIsChecked}>
@@ -12,4 +12,6 @@ const Template: ComponentStory<typeof Checkbox> = () => {
   );
 };
 
-export const Basic = Template.bind({});
+export const Basic: StoryObj<typeof Checkbox> = {
+  render: () => <Template />,
+};

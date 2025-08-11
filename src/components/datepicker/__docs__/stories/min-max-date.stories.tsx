@@ -1,8 +1,8 @@
-import {ComponentStory} from '@storybook/react';
-import React, {useState} from 'react';
+import { StoryObj } from '@storybook/react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import {DatePickerDropdown as DatePicker} from '../../datepickerDropdown';
+import { DatePickerDropdown as DatePicker } from '../../datepickerDropdown';
 
 const StyledDatePickerDiv = styled.div`
   display: flex;
@@ -15,8 +15,8 @@ const StyledDatePickerWrapperDiv = styled.div`
   width: 300px;
 `;
 
-const Template: ComponentStory<typeof DatePicker> = () => {
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
+const Template = () => {
+  const [selectedDate, setSelectedDate] = useState<Date>();
   return (
     <StyledDatePickerDiv>
       <StyledDatePickerWrapperDiv>
@@ -25,13 +25,15 @@ const Template: ComponentStory<typeof DatePicker> = () => {
           onChange={setSelectedDate}
           type="dateAndTime"
           placeholder="Select a date and time"
-          minDate={new Date(Date.now() - 604800000)}
-          maxDate={new Date(Date.now() + 604800000)}
           layerRootId="story--components-date-picker--min-max-date"
+          minDate={new Date(2022, 0, 10)}
+          maxDate={new Date(2022, 0, 20)}
         />
       </StyledDatePickerWrapperDiv>
     </StyledDatePickerDiv>
   );
 };
 
-export const MinMaxDate = Template.bind({});
+export const MinMaxDate: StoryObj<typeof DatePicker> = {
+  render: () => <Template />,
+};

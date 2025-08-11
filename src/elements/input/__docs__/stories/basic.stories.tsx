@@ -1,8 +1,8 @@
-import {ComponentStory} from '@storybook/react';
-import React, {useState} from 'react';
+import { StoryObj } from '@storybook/react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import {Input} from '../../input';
+import { Input } from '../../input';
 
 const StyledCenteredDiv = styled.div`
   display: flex;
@@ -14,15 +14,15 @@ const StyledInputWrapperDiv = styled.div`
   width: 300px;
 `;
 
-const Template: ComponentStory<typeof Input> = () => {
+const Template = () => {
   const [value, setValue] = useState('');
   return (
-    <StyledCenteredDiv>
-      <StyledInputWrapperDiv>
-        <Input value={value} onChange={setValue} placeholder="Simple Input Example" />
-      </StyledInputWrapperDiv>
-    </StyledCenteredDiv>
+    <StyledInputWrapperDiv>
+      <Input value={value} onChange={(event) => setValue(event.target.value)} />
+    </StyledInputWrapperDiv>
   );
 };
 
-export const Basic = Template.bind({});
+export const Basic: StoryObj<typeof Input> = {
+  render: () => <Template />,
+};
