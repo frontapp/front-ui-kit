@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable react/function-component-definition */
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
-import React, { ChangeEventHandler, FocusEventHandler, forwardRef } from 'react';
+import React, { ChangeEventHandler, FocusEventHandler } from 'react';
 import styled, { css } from 'styled-components';
 
 import { greys, palette } from '../../helpers/colorHelpers';
@@ -143,7 +143,7 @@ function addInputStyles(props: StyledInputProps) {
  * Component.
  */
 
-export const Input = forwardRef<HTMLInputElement, InputProps<string | number>>((props) => {
+export function Input<T = string>(props: InputProps<T>) {
   const {
     id,
     value,
@@ -162,7 +162,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps<string | number>>((
   const onInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     if (isDisabled || !onChange) return;
     const inputValue = event.currentTarget.value;
-    onChange(type === 'number' ? Number(inputValue) : inputValue);
+    onChange(inputValue as T);
   };
 
   const onInputFocus: FocusEventHandler<HTMLInputElement> = (event) => {
@@ -196,7 +196,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps<string | number>>((
       />
     </StyledInputDiv>
   );
-});
+};
 
 /*
  * Helpers.

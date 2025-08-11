@@ -176,8 +176,9 @@ export const Textarea: FC<TextareaProps> = ({
         value={value}
         onChange={onTextareaChange}
         onFocus={onTextareaFocus}
-        onBlur={onTextareaBlur}
-      />
+        onBlur={onTextareaBlur}>
+        {value}
+      </StyledTextarea>
     </StyledTextareaDiv>
   );
 };
