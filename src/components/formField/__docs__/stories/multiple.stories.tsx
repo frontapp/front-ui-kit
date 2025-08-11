@@ -1,10 +1,10 @@
-import { StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
+import {StoryObj} from '@storybook/react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import { Input } from '../../../../elements/input/input';
-import { greys } from '../../../../helpers/colorHelpers';
-import { FormField } from '../../formField';
+import {Input} from '../../../../elements/input/input';
+import {greys} from '../../../../helpers/colorHelpers';
+import {FormField} from '../../formField';
 
 const StyledWrapperDiv = styled.div`
   display: flex;
@@ -48,5 +48,5 @@ const Template = () => {
 };
 
 export const Multiple: StoryObj<typeof FormField> = {
-  render: () => <Template />,
+  render: () => <Template />
 };

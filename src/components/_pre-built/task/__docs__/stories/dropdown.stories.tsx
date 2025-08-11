@@ -1,9 +1,9 @@
-import { StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
+import {StoryObj} from '@storybook/react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import { DropdownItem } from '../../../../../elements/dropdown/dropdownItem';
-import { Task } from '../../task';
+import {DropdownItem} from '../../../../../elements/dropdown/dropdownItem';
+import {Task} from '../../task';
 
 /*
  * Style.
@@ -36,8 +36,7 @@ const Template = () => {
           onChange={onToggleCheckbox}
           onClick={() => console.log('Task Clicked.')}
           label="Apply changes to feature"
-          layerRootId="story--components-task--dropdown"
-        >
+          layerRootId="story--components-task--dropdown">
           <DropdownItem>View Task Details</DropdownItem>
           <DropdownItem>Close Task</DropdownItem>
         </Task>
@@ -51,5 +50,5 @@ const Template = () => {
  */
 
 export const Dropdown: StoryObj<typeof Task> = {
-  render: () => <Template />,
+  render: () => <Template />
 };

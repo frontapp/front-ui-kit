@@ -1,8 +1,8 @@
-import { StoryObj } from '@storybook/react';
+import {StoryObj} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import { Pill } from '../../pill';
+import {Pill} from '../../pill';
 
 const StyledWrapperDiv = styled.div`
   display: flex;
@@ -15,5 +15,5 @@ export const Basic: StoryObj<typeof Pill> = {
     <StyledWrapperDiv>
       <Pill {...args}>Example Pill</Pill>
     </StyledWrapperDiv>
-  ),
+  )
 };

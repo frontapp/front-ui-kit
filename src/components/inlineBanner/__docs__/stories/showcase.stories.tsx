@@ -1,12 +1,12 @@
-import { StoryObj } from '@storybook/react';
+import {StoryObj} from '@storybook/react';
 import React from 'react';
 
-import { VisualSizesEnum } from '../../../../helpers/fontHelpers';
-import { InlineBanner } from '../../inlineBanner';
+import {VisualSizesEnum} from '../../../../helpers/fontHelpers';
+import {InlineBanner} from '../../inlineBanner';
 
 export const Success: StoryObj<typeof InlineBanner> = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+    <div style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
       <InlineBanner
         size={VisualSizesEnum.MEDIUM}
         type="success"
@@ -20,12 +20,12 @@ export const Success: StoryObj<typeof InlineBanner> = {
         onClose={console.log}
       />
     </div>
-  ),
+  )
 };
 
 export const Error: StoryObj<typeof InlineBanner> = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+    <div style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
       <InlineBanner
         size={VisualSizesEnum.MEDIUM}
         type="error"
@@ -39,12 +39,12 @@ export const Error: StoryObj<typeof InlineBanner> = {
         onClose={console.log}
       />
     </div>
-  ),
+  )
 };
 
 export const Warning: StoryObj<typeof InlineBanner> = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+    <div style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
       <InlineBanner
         size={VisualSizesEnum.MEDIUM}
         type="warning"
@@ -58,12 +58,12 @@ export const Warning: StoryObj<typeof InlineBanner> = {
         onClose={console.log}
       />
     </div>
-  ),
+  )
 };
 
 export const Info: StoryObj<typeof InlineBanner> = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+    <div style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
       <InlineBanner
         size={VisualSizesEnum.MEDIUM}
         type="info"
@@ -77,5 +77,5 @@ export const Info: StoryObj<typeof InlineBanner> = {
         onClose={console.log}
       />
     </div>
-  ),
+  )
 };

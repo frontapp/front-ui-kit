@@ -1,8 +1,8 @@
-import { StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
+import {StoryObj} from '@storybook/react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import { DatePickerDropdown as DatePicker } from '../../datepickerDropdown';
+import {DatePickerDropdown as DatePicker} from '../../datepickerDropdown';
 
 const StyledDatePickerDiv = styled.div`
   display: flex;
@@ -35,5 +35,5 @@ const Template = () => {
 };
 
 export const MinMaxDate: StoryObj<typeof DatePicker> = {
-  render: () => <Template />,
+  render: () => <Template />
 };

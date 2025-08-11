@@ -1,9 +1,9 @@
-import { StoryObj } from '@storybook/react';
+import {StoryObj} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import { Button } from '../../button';
-import { ButtonGroup } from '../../buttonGroup';
+import {Button} from '../../button';
+import {ButtonGroup} from '../../buttonGroup';
 
 const StyledCenteredDiv = styled.div`
   display: flex;
@@ -22,5 +22,5 @@ export const Variants: StoryObj<typeof Button> = {
         <Button type="tertiary">Tertiary</Button>
       </ButtonGroup>
     </StyledCenteredDiv>
-  ),
+  )
 };

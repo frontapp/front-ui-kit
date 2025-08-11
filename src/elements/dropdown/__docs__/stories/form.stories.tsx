@@ -1,18 +1,18 @@
-import type { StoryFn } from '@storybook/react';
-import React, { useState } from 'react';
+import type {StoryFn} from '@storybook/react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import { Button } from '../../../../components/button/button';
-import { ButtonGroup } from '../../../../components/button/buttonGroup';
-import { VisualSizesEnum } from '../../../../helpers/fontHelpers';
-import { Input } from '../../../input/input';
-import { Dropdown } from '../../dropdown';
-import { DropdownButton } from '../../dropdownButton';
-import { DropdownCoordinator } from '../../dropdownCoordinator';
-import { DropdownFooter } from '../../dropdownFooter';
-import { DropdownHeader } from '../../dropdownHeader';
-import { DropdownItem } from '../../dropdownItem';
-import { DropdownItemFormField } from '../../dropdownItemFormField';
+import {Button} from '../../../../components/button/button';
+import {ButtonGroup} from '../../../../components/button/buttonGroup';
+import {VisualSizesEnum} from '../../../../helpers/fontHelpers';
+import {Input} from '../../../input/input';
+import {Dropdown} from '../../dropdown';
+import {DropdownButton} from '../../dropdownButton';
+import {DropdownCoordinator} from '../../dropdownCoordinator';
+import {DropdownFooter} from '../../dropdownFooter';
+import {DropdownHeader} from '../../dropdownHeader';
+import {DropdownItem} from '../../dropdownItem';
+import {DropdownItemFormField} from '../../dropdownItemFormField';
 
 const dogBreedsSource = [
   'Affenpinscher',

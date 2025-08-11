@@ -1,8 +1,8 @@
-import { StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
+import {StoryObj} from '@storybook/react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import { Input } from '../../input';
+import {Input} from '../../input';
 
 const StyledCenteredDiv = styled.div`
   display: flex;
@@ -24,5 +24,5 @@ const Template = () => {
 };
 
 export const Disabled: StoryObj<typeof Input> = {
-  render: () => <Template />,
+  render: () => <Template />
 };

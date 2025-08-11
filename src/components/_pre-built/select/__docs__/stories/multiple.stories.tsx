@@ -1,10 +1,10 @@
-import { StoryFn } from '@storybook/react';
+import {StoryFn} from '@storybook/react';
 import _ from 'lodash';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import { Select } from '../../select';
-import { SelectItem } from '../../selectItem';
+import {Select} from '../../select';
+import {SelectItem} from '../../selectItem';
 
 const StyledWrapperDiv = styled.div`
   display: flex;
@@ -21,11 +21,11 @@ const StyledMenuWrapperDiv = styled.div`
 `;
 
 const items = [
-  { display: 'Example Item 1', id: '1' },
-  { display: 'Example Item 2', id: '2' },
-  { display: 'Example Item 3', id: '3' },
-  { display: 'Example Item 4', id: '4' },
-  { display: 'Example Item 5', id: '5' }
+  {display: 'Example Item 1', id: '1'},
+  {display: 'Example Item 2', id: '2'},
+  {display: 'Example Item 3', id: '3'},
+  {display: 'Example Item 4', id: '4'},
+  {display: 'Example Item 5', id: '5'}
 ];
 
 const Template: StoryFn<typeof Select> = () => {

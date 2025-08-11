@@ -1,12 +1,12 @@
-import { StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
+import {StoryObj} from '@storybook/react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import { Button } from '../../../../../components/button/button';
-import { greys } from '../../../../../helpers/colorHelpers';
-import { PluginFooter } from '../../pluginFooter';
-import { PluginHeader } from '../../pluginHeader';
-import { PluginLayout } from '../../pluginLayout';
+import {Button} from '../../../../../components/button/button';
+import {greys} from '../../../../../helpers/colorHelpers';
+import {PluginFooter} from '../../pluginFooter';
+import {PluginHeader} from '../../pluginHeader';
+import {PluginLayout} from '../../pluginLayout';
 
 const StyledCenteredDiv = styled.div`
   display: flex;
@@ -30,7 +30,10 @@ const Template = () => {
   return (
     <StyledLayoutDiv>
       <PluginLayout>
-        <PluginHeader onBack={() => alert('onBack fired!')} onSearchChange={(event) => setValue(event.target.value)} />
+        <PluginHeader
+          onBack={() => alert('onBack fired!')}
+          onSearchChange={(event) => setValue(event.target.value)}
+        />
         <StyledContentDiv>
           <div>Search value: {value}</div>
           <br />
@@ -46,5 +49,5 @@ const Template = () => {
 };
 
 export const Search: StoryObj<typeof PluginLayout> = {
-  render: () => <Template />,
+  render: () => <Template />
 };

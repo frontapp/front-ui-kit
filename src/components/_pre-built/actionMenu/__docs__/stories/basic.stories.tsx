@@ -1,11 +1,11 @@
-import { StoryFn } from '@storybook/react';
+import {StoryFn} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import { greys } from '../../../../../helpers/colorHelpers';
-import { ActionMenu } from '../../actionMenu';
-import { ActionMenuItem } from '../../actionMenuItem';
-import { ActionMenuItemSpacer } from '../../actionMenuItemSpacer';
+import {greys} from '../../../../../helpers/colorHelpers';
+import {ActionMenu} from '../../actionMenu';
+import {ActionMenuItem} from '../../actionMenuItem';
+import {ActionMenuItemSpacer} from '../../actionMenuItemSpacer';
 
 const StyledStoryWrapperDiv = styled.div`
   height: 215px;
@@ -32,22 +32,14 @@ const Template: StoryFn<typeof ActionMenu> = () => (
   <StyledStoryWrapperDiv>
     <StyledMenuWrapperDiv>
       <ActionMenu>
-        <ActionMenuItem iconName="Assign">
-          Merge Contact
-        </ActionMenuItem>
-        <ActionMenuItem iconName="Copy">
-          Copy Account Id
-        </ActionMenuItem>
-        <ActionMenuItem>
-          Extra Long Name For A Dropdown
-        </ActionMenuItem>
+        <ActionMenuItem iconName="Assign">Merge Contact</ActionMenuItem>
+        <ActionMenuItem iconName="Copy">Copy Account Id</ActionMenuItem>
+        <ActionMenuItem>Extra Long Name For A Dropdown</ActionMenuItem>
         <ActionMenuItemSpacer />
         <ActionMenuItem iconName="Preferences">
           Super long name dropdown item that should cause the tooltip to wrap when hovered over.
         </ActionMenuItem>
-        <ActionMenuItem iconName="Close">
-          Close
-        </ActionMenuItem>
+        <ActionMenuItem iconName="Close">Close</ActionMenuItem>
       </ActionMenu>
     </StyledMenuWrapperDiv>
   </StyledStoryWrapperDiv>

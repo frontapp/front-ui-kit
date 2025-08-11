@@ -1,8 +1,8 @@
-import { StoryFn } from '@storybook/react';
+import {StoryFn} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import { Tab } from '../../tab';
+import {Tab} from '../../tab';
 
 const StyledWrapperDiv = styled.div`
   display: flex;

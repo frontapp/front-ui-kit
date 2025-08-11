@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import _ from 'lodash';
-import React, { FC, useMemo, useState } from 'react';
+import React, {FC, useMemo, useState} from 'react';
 import styled from 'styled-components';
 
-import { renderChildrenSpecifiedComponents } from '../../helpers/renderHelpers';
-import { AccordionSection } from './accordionSection';
+import {renderChildrenSpecifiedComponents} from '../../helpers/renderHelpers';
+import {AccordionSection} from './accordionSection';
 
 /*
  * Props
@@ -29,7 +29,7 @@ const StyledAccordionSectionDiv = styled.div`
  * Component
  */
 
-export const Accordion: FC<AccordionProps> = ({ children, expandMode = 'single' }) => {
+export const Accordion: FC<AccordionProps> = ({children, expandMode = 'single'}) => {
   const accordionSections = useMemo(
     () =>
       _(renderChildrenSpecifiedComponents(children, ['AccordionSection']))
@@ -52,7 +52,7 @@ export const Accordion: FC<AccordionProps> = ({ children, expandMode = 'single' 
   return (
     <StyledAccordionSectionDiv>
       {accordionSections.map((section) => {
-        const { id, onSectionToggled } = section.props;
+        const {id, onSectionToggled} = section.props;
         return (
           <AccordionSection
             {...section.props}

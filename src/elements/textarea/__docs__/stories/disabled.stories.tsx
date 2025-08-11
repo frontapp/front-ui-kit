@@ -1,8 +1,8 @@
-import { StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
+import {StoryObj} from '@storybook/react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import { Textarea } from '../../textarea';
+import {Textarea} from '../../textarea';
 
 const StyledCenteredDiv = styled.div`
   display: flex;
@@ -24,5 +24,5 @@ const Template = () => {
 };
 
 export const Disabled: StoryObj<typeof Textarea> = {
-  render: () => <Template />,
+  render: () => <Template />
 };

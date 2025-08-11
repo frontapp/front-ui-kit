@@ -1,10 +1,10 @@
-import { StoryObj } from '@storybook/react';
+import {StoryObj} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import { VisualSizesEnum } from '../../../../helpers/fontHelpers';
-import { Button } from '../../button';
-import { ButtonGroup } from '../../buttonGroup';
+import {VisualSizesEnum} from '../../../../helpers/fontHelpers';
+import {Button} from '../../button';
+import {ButtonGroup} from '../../buttonGroup';
 
 const StyledCenteredDiv = styled.div`
   display: flex;
@@ -27,5 +27,5 @@ export const Sizes: StoryObj<typeof Button> = {
         </Button>
       </ButtonGroup>
     </StyledCenteredDiv>
-  ),
+  )
 };

@@ -1,10 +1,10 @@
-import { StoryObj } from '@storybook/react';
+import {StoryObj} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import { Icon } from '../../../../elements/icon/icon';
-import { Button } from '../../button';
-import { ButtonContentIcon } from '../../buttonContentIcon';
+import {Icon} from '../../../../elements/icon/icon';
+import {Button} from '../../button';
+import {ButtonContentIcon} from '../../buttonContentIcon';
 
 const StyledCenteredDiv = styled.div`
   display: flex;
@@ -22,5 +22,5 @@ export const IconContentBasic: StoryObj<typeof Button> = {
         </ButtonContentIcon>
       </Button>
     </StyledCenteredDiv>
-  ),
+  )
 };

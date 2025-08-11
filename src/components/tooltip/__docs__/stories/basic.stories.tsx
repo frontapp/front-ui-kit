@@ -1,9 +1,9 @@
-import { StoryObj } from '@storybook/react';
+import {StoryObj} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import { Tooltip } from '../../tooltip';
-import { TooltipCoordinator } from '../../tooltipCoordinator';
+import {Tooltip} from '../../tooltip';
+import {TooltipCoordinator} from '../../tooltipCoordinator';
 
 const StyledWrapperDiv = styled.div`
   display: flex;
@@ -23,5 +23,5 @@ export const Basic: StoryObj<typeof Tooltip> = {
         </TooltipCoordinator>
       </StyledTooltipWrapperDiv>
     </StyledWrapperDiv>
-  ),
+  )
 };

@@ -1,8 +1,8 @@
-import { StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
+import {StoryObj} from '@storybook/react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import { Task } from '../../task';
+import {Task} from '../../task';
 
 /*
  * Style.
@@ -45,5 +45,5 @@ const Template = () => {
  */
 
 export const Checkbox: StoryObj<typeof Task> = {
-  render: () => <Template />,
+  render: () => <Template />
 };

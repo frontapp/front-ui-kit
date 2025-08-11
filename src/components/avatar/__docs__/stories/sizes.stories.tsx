@@ -1,9 +1,9 @@
-import { StoryObj } from '@storybook/react';
+import {StoryObj} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import { VisualSizesEnum } from '../../../../helpers/fontHelpers';
-import { Avatar } from '../../avatar';
+import {VisualSizesEnum} from '../../../../helpers/fontHelpers';
+import {Avatar} from '../../avatar';
 
 const StyledAvatarWrapperDiv = styled.div`
   display: flex;
@@ -19,5 +19,5 @@ export const Sizes: StoryObj<typeof Avatar> = {
       <Avatar name="Doug" imgSrc="https://picsum.photos/id/1062/200/200" size={VisualSizesEnum.LARGE} />
       <Avatar name="Doug" imgSrc="https://picsum.photos/id/1062/200/200" size={VisualSizesEnum.EXTRA_LARGE} />
     </StyledAvatarWrapperDiv>
-  ),
+  )
 };

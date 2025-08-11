@@ -1,16 +1,16 @@
-import type { StoryFn } from '@storybook/react';
-import React, { useEffect, useState } from 'react';
+import type {StoryFn} from '@storybook/react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
-import { palette } from '../../../../helpers/colorHelpers';
-import { EmptyState } from '../../../emptyState/emptyState';
-import { Dropdown } from '../../dropdown';
-import { DropdownButton } from '../../dropdownButton';
-import { DropdownCoordinator } from '../../dropdownCoordinator';
-import { DropdownHeader } from '../../dropdownHeader';
-import { DropdownHeading } from '../../dropdownHeading';
-import { DropdownItem } from '../../dropdownItem';
-import { DropdownItemIcon } from '../../dropdownItemIcon';
+import {palette} from '../../../../helpers/colorHelpers';
+import {EmptyState} from '../../../emptyState/emptyState';
+import {Dropdown} from '../../dropdown';
+import {DropdownButton} from '../../dropdownButton';
+import {DropdownCoordinator} from '../../dropdownCoordinator';
+import {DropdownHeader} from '../../dropdownHeader';
+import {DropdownHeading} from '../../dropdownHeading';
+import {DropdownItem} from '../../dropdownItem';
+import {DropdownItemIcon} from '../../dropdownItemIcon';
 
 const StyledWrapperDiv = styled.div`
   display: flex;

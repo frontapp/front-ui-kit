@@ -1,7 +1,7 @@
 /* eslint-disable storybook/story-exports */
-import { Meta } from '@storybook/react';
+import {Meta} from '@storybook/react';
 
-import { Button } from '../button';
+import {Button} from '../button';
 import DocumentationMDX from './docs.mdx';
 
 /*
@@ -25,9 +25,9 @@ export default {
   id: 'Components/Button'
 } as Meta<typeof Button>;
 
-export { Basic } from './stories/basic.stories';
-export { IconBasic } from './stories/icon-basic.stories';
-export { IconContentBasic } from './stories/icon-content-basic.stories';
-export { GroupBasic } from './stories/group-basic.stories';
-export { Sizes } from './stories/sizes.stories';
-export { Variants } from './stories/variants.stories';
+export {Basic} from './stories/basic.stories';
+export {IconBasic} from './stories/icon-basic.stories';
+export {IconContentBasic} from './stories/icon-content-basic.stories';
+export {GroupBasic} from './stories/group-basic.stories';
+export {Sizes} from './stories/sizes.stories';
+export {Variants} from './stories/variants.stories';

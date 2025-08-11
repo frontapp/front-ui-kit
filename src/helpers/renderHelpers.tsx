@@ -33,11 +33,11 @@ export function renderFirstIconOnly(children: React.ReactNode, shouldDisableColo
     // so the component itself can style the color.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/consistent-type-assertions
     const childType = (child as any).type;
-    const isIcon = childType?.displayName === 'Icon'
+    const isIcon = childType?.displayName === 'Icon';
 
     if (isIcon && !hasFoundIcon) {
       hasFoundIcon = true;
-      return React.cloneElement(child as React.ReactElement, { shouldDisableColor } as any);
+      return React.cloneElement(child as React.ReactElement, {shouldDisableColor} as any);
     }
     return null;
   });

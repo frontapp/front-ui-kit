@@ -1,8 +1,8 @@
-import { StoryObj } from '@storybook/react';
+import {StoryObj} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import { Heading } from '../../heading';
+import {Heading} from '../../heading';
 
 const StyledCenteredDiv = styled.div`
   display: flex;
@@ -15,5 +15,5 @@ export const Basic: StoryObj<typeof Heading> = {
     <StyledCenteredDiv>
       <Heading>Example Heading</Heading>
     </StyledCenteredDiv>
-  ),
+  )
 };

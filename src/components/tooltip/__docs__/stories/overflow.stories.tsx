@@ -1,9 +1,9 @@
-import { StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
+import {StoryObj} from '@storybook/react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import { Button } from '../../../../components/button/button';
-import { TooltipOverflow } from '../../tooltipOverflow';
+import {Button} from '../../../../components/button/button';
+import {TooltipOverflow} from '../../tooltipOverflow';
 
 const StyledWrapperDiv = styled.div`
   display: flex;
@@ -57,5 +57,5 @@ const Template = () => {
 };
 
 export const Overflow: StoryObj<typeof TooltipOverflow> = {
-  render: () => <Template />,
+  render: () => <Template />
 };

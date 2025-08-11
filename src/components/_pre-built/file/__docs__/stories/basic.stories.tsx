@@ -1,8 +1,8 @@
-import { StoryObj } from '@storybook/react';
+import {StoryObj} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import { File } from '../../file';
+import {File} from '../../file';
 
 const StyledWrapperDiv = styled.div`
   display: flex;
@@ -21,5 +21,5 @@ export const Basic: StoryObj<typeof File> = {
         <File fileName="Test File.txt" fileSize={12330} />
       </StyledFileWrapperDiv>
     </StyledWrapperDiv>
-  ),
+  )
 };

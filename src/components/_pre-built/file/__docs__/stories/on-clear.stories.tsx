@@ -1,10 +1,10 @@
-import { StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
+import {StoryObj} from '@storybook/react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import { greys } from '../../../../../helpers/colorHelpers';
-import { Button } from '../../../../button/button';
-import { File, FileTypesEnum } from '../../file';
+import {greys} from '../../../../../helpers/colorHelpers';
+import {Button} from '../../../../button/button';
+import {File, FileTypesEnum} from '../../file';
 
 interface FileObj {
   name: string;
@@ -62,5 +62,5 @@ const Template = () => {
 };
 
 export const OnClear: StoryObj<typeof File> = {
-  render: () => <Template />,
+  render: () => <Template />
 };

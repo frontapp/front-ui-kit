@@ -1,8 +1,8 @@
-import { StoryObj } from '@storybook/react';
+import {StoryObj} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import { Task } from '../../task';
+import {Task} from '../../task';
 
 /*
  * Style.
@@ -31,5 +31,5 @@ export const Icon: StoryObj<typeof Task> = {
         <Task type="icon" icon="AttachmentCalendar" label="Apply changes to feature" />
       </StyledShowcaseDiv>
     </StyledWrapperDiv>
-  ),
+  )
 };

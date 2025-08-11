@@ -1,8 +1,8 @@
-import { StoryObj } from '@storybook/react';
+import {StoryObj} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import { Icon } from '../../icon';
+import {Icon} from '../../icon';
 
 const StyledCenteredDiv = styled.div`
   display: flex;
@@ -15,5 +15,5 @@ export const Basic: StoryObj<typeof Icon> = {
     <StyledCenteredDiv>
       <Icon name="Archive" />
     </StyledCenteredDiv>
-  ),
+  )
 };

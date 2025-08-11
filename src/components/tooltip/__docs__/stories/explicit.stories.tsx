@@ -1,9 +1,9 @@
-import { StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
+import {StoryObj} from '@storybook/react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import { Button } from '../../../../components/button/button';
-import { Tooltip } from '../../tooltip';
+import {Button} from '../../../../components/button/button';
+import {Tooltip} from '../../tooltip';
 
 const StyledWrapperDiv = styled.div`
   display: flex;
@@ -32,5 +32,5 @@ const Template = () => {
 };
 
 export const Explicit: StoryObj<typeof Tooltip> = {
-  render: () => <Template />,
+  render: () => <Template />
 };

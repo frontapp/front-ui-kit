@@ -1,9 +1,9 @@
-import { StoryFn } from '@storybook/react';
-import React, { useEffect, useState } from 'react';
+import {StoryFn} from '@storybook/react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
-import { Select } from '../../select';
-import { SelectItem } from '../../selectItem';
+import {Select} from '../../select';
+import {SelectItem} from '../../selectItem';
 
 interface UserData {
   id: string;
@@ -49,7 +49,7 @@ const Template: StoryFn<typeof Select> = () => {
       const jsonData = await data.json();
       setUsers((existingUsers) => [
         ...existingUsers,
-        ...jsonData.results.map((d) => ({ id: d.login.uuid, name: `${d.name.first} ${d.name.last}` }))
+        ...jsonData.results.map((d) => ({id: d.login.uuid, name: `${d.name.first} ${d.name.last}`}))
       ]);
       setIsLoading(false);
     }, 1000);

@@ -1,8 +1,8 @@
-import { StoryObj } from '@storybook/react';
+import {StoryObj} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import { Skeleton } from '../../skeleton';
+import {Skeleton} from '../../skeleton';
 
 const StyledWrapperDiv = styled.div`
   display: flex;
@@ -19,6 +19,6 @@ export const Basic: StoryObj<typeof Skeleton> = {
   args: {
     variant: 'dark',
     width: 400,
-    height: 40,
-  },
+    height: 40
+  }
 };

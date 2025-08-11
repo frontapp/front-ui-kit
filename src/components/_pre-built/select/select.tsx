@@ -1,13 +1,13 @@
-import { Placement } from '@popperjs/core';
+import {Placement} from '@popperjs/core';
 import _ from 'lodash';
-import React, { FC, useMemo } from 'react';
+import React, {FC, useMemo} from 'react';
 
-import { Dropdown } from '../../../elements/dropdown/dropdown';
-import { DropdownButton } from '../../../elements/dropdown/dropdownButton';
-import { DropdownCoordinator } from '../../../elements/dropdown/dropdownCoordinator';
-import { DropdownHeader } from '../../../elements/dropdown/dropdownHeader';
-import { EmptyState } from '../../../elements/emptyState/emptyState';
-import { renderChildrenSpecifiedComponents } from '../../../helpers/renderHelpers';
+import {Dropdown} from '../../../elements/dropdown/dropdown';
+import {DropdownButton} from '../../../elements/dropdown/dropdownButton';
+import {DropdownCoordinator} from '../../../elements/dropdown/dropdownCoordinator';
+import {DropdownHeader} from '../../../elements/dropdown/dropdownHeader';
+import {EmptyState} from '../../../elements/emptyState/emptyState';
+import {renderChildrenSpecifiedComponents} from '../../../helpers/renderHelpers';
 
 /*
  * Constants.

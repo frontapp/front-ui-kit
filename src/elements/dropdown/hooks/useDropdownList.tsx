@@ -2,14 +2,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 import _ from 'lodash';
-import React, { useCallback, useMemo, isValidElement } from 'react';
+import React, {useCallback, useMemo, isValidElement} from 'react';
 import ReactIs from 'react-is';
 
-import { ActionMenuItem, ActionMenuItemProps } from '../../../components/_pre-built/actionMenu/actionMenuItem';
-import { SelectItem, SelectItemProps } from '../../../components/_pre-built/select/selectItem';
-import { DropdownHeading, DropdownHeadingProps } from '../dropdownHeading';
-import { DropdownItem, DropdownItemProps } from '../dropdownItem';
-import { DropdownItemSpacer } from '../dropdownItemSpacer';
+import {ActionMenuItem, ActionMenuItemProps} from '../../../components/_pre-built/actionMenu/actionMenuItem';
+import {SelectItem, SelectItemProps} from '../../../components/_pre-built/select/selectItem';
+import {DropdownHeading, DropdownHeadingProps} from '../dropdownHeading';
+import {DropdownItem, DropdownItemProps} from '../dropdownItem';
+import {DropdownItemSpacer} from '../dropdownItemSpacer';
 
 /*
  * Constants.
