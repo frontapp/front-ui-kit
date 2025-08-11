@@ -1,8 +1,8 @@
-import React, {ChangeEventHandler, FC, FocusEventHandler} from 'react';
-import styled, {css} from 'styled-components';
+import React, { ChangeEventHandler, FC, FocusEventHandler } from 'react';
+import styled, { css } from 'styled-components';
 
-import {greys, palette} from '../../helpers/colorHelpers';
-import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
+import { greys, palette } from '../../helpers/colorHelpers';
+import { fonts, fontSizes, fontWeights } from '../../helpers/fontHelpers';
 
 /*
  * Props
@@ -176,9 +176,8 @@ export const Textarea: FC<TextareaProps> = ({
         value={value}
         onChange={onTextareaChange}
         onFocus={onTextareaFocus}
-        onBlur={onTextareaBlur}>
-        {value}
-      </StyledTextarea>
+        onBlur={onTextareaBlur}
+      />
     </StyledTextareaDiv>
   );
 };

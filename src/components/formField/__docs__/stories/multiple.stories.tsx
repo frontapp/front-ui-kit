@@ -1,5 +1,5 @@
 import { StoryObj } from '@storybook/react';
-import React, { createRef,useState } from 'react';
+import React, { createRef, useState } from 'react';
 import styled from 'styled-components';
 
 import { Input } from '../../../../elements/input/input';
@@ -38,13 +38,13 @@ const Template = () => {
   return (
     <StyledFormFieldDiv>
       <FormField label="Name" ref={ref1}>
-        <Input value={value1} onChange={(v) => setValue1(v)} />
+        <Input value={value1} onChange={(v) => setValue1(String(v))} />
       </FormField>
       <FormField label="Email" ref={ref2}>
-        <Input value={value2} onChange={(v) => setValue2(v)} />
+        <Input value={value2} onChange={(v) => setValue2(String(v))} />
       </FormField>
       <FormField label="Company" ref={ref3}>
-        <Input value={value3} onChange={(v) => setValue3(v)} />
+        <Input value={value3} onChange={(v) => setValue3(String(v))} />
       </FormField>
     </StyledFormFieldDiv>
   );

@@ -73,12 +73,12 @@ const StyledFormFieldHelperTextDiv = styled.div<StyledFormFieldHelperTextDivProp
  * Component.
  */
 
-export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
+export const FormField = forwardRef<HTMLDivElement, FormFieldProps>((props) => {
   const { label, children, errorMessage, hint, isRequired } = props;
   const isErred = Boolean(errorMessage);
 
   return (
-    <StyledFormFieldWrapperDiv ref={ref}>
+    <StyledFormFieldWrapperDiv>
       <StyledFormFieldLabelDiv>
         <StyledLabelWrapperDiv>{label}</StyledLabelWrapperDiv>
         {isRequired && <StyledRequiredTagDiv>*</StyledRequiredTagDiv>}

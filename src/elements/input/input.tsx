@@ -143,7 +143,7 @@ function addInputStyles(props: StyledInputProps) {
  * Component.
  */
 
-export const Input = forwardRef<HTMLInputElement, InputProps<string | number>>((props, ref) => {
+export const Input = forwardRef<HTMLInputElement, InputProps<string | number>>((props) => {
   const {
     id,
     value,
@@ -179,7 +179,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps<string | number>>((
     <StyledInputDiv $maxWidth={maxWidth}>
       <StyledIconDiv>{getInputIcon(iconName)}</StyledIconDiv>
       <StyledInput
-        ref={ref}
         id={id}
         $isDisabled={isDisabled}
         disabled={isDisabled}

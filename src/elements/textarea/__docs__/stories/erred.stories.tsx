@@ -1,8 +1,8 @@
-import {StoryObj} from '@storybook/react';
-import React, {useState} from 'react';
+import { StoryObj } from '@storybook/react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import {Textarea} from '../../textarea';
+import { Textarea } from '../../textarea';
 
 const StyledCenteredDiv = styled.div`
   display: flex;
@@ -22,7 +22,7 @@ const Template = () => {
   const [value, setValue] = useState('');
   return (
     <StyledTextareaDiv>
-      <Textarea value={value} onChange={(event) => setValue(event.target.value)} isErred />
+      <Textarea value={value} onChange={setValue} isErred />
     </StyledTextareaDiv>
   );
 };
