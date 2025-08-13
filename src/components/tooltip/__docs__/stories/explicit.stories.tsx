@@ -18,7 +18,7 @@ const StyledWrapperDiv = styled.div`
 const StyledTooltipWrapperDiv = styled.div``;
 
 const Template = () => {
-  const [isEnabled, setIsEnabled] = useState(false);
+  const [isEnabled, setIsEnabled] = useState(true);
   return (
     <StyledWrapperDiv>
       <Button onClick={() => setIsEnabled(!isEnabled)}>Toggle Tooltip</Button>

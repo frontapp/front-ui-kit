@@ -2,6 +2,7 @@ import { StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import { CalendarWeekDaysEnum } from '../../../../helpers/calendarHelpers';
 import { DatePickerDropdown as DatePicker } from '../../datepickerDropdown';
 
 const StyledDatePickerDiv = styled.div`
@@ -25,7 +26,7 @@ const Template = () => {
           onChange={setSelectedDate}
           type="dateAndTime"
           placeholder="Select a date and time"
-          minDate={new Date(Date.now() - 604800000)}
+          calendarWeekStartDay={CalendarWeekDaysEnum.TUESDAY}
           layerRootId="story--components-date-picker--start-date"
         />
       </StyledDatePickerWrapperDiv>
