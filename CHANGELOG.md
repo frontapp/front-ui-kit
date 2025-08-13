@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/frontapp/front-ui-kit/compare/v0.7.19...v0.8.0) (2025-08-13)
+
+
+### Features
+
+* bump react from 18 to 19 ([#246](https://github.com/frontapp/front-ui-kit/issues/246)) ([14cc894](https://github.com/frontapp/front-ui-kit/commit/14cc894ee00aaebc502a5fb3c4e69ca2129fad74))
+
 ## [0.7.19](https://github.com/frontapp/front-ui-kit/compare/v0.7.18...v0.7.19) (2025-06-11)
 
 ### Bug Fixes
