@@ -1,11 +1,9 @@
-import {ComponentStory} from '@storybook/react';
-import React from 'react';
+import {StoryObj} from '@storybook/react';
 
 import {Avatar} from '../../avatar';
 
-const Template: ComponentStory<typeof Avatar> = (args) => <Avatar {...args} />;
-
-export const Basic = Template.bind({});
-Basic.args = {
-  name: 'John Doe'
+export const Basic: StoryObj<typeof Avatar> = {
+  args: {
+    name: 'John Doe'
+  }
 };

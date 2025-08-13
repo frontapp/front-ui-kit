@@ -1,5 +1,5 @@
 /* eslint-disable storybook/story-exports */
-import {ComponentMeta} from '@storybook/react';
+import {Meta} from '@storybook/react';
 
 import {Button} from '../button';
 import DocumentationMDX from './docs.mdx';
@@ -23,7 +23,7 @@ export default {
     viewMode: 'docs'
   },
   id: 'Components/Button'
-} as ComponentMeta<typeof Button>;
+} as Meta<typeof Button>;
 
 export {Basic} from './stories/basic.stories';
 export {IconBasic} from './stories/icon-basic.stories';

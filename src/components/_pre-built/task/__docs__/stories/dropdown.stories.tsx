@@ -1,4 +1,4 @@
-import {ComponentStory} from '@storybook/react';
+import {StoryObj} from '@storybook/react';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
@@ -22,11 +22,7 @@ const StyledShowcaseDiv = styled.div`
   width: 300px;
 `;
 
-/*
- * Storybook.
- */
-
-const ShowcaseTemplate: ComponentStory<typeof Task> = () => {
+const Template = () => {
   const [isChecked, setIsChecked] = useState(false);
   const onToggleCheckbox = (checked: boolean) => {
     setIsChecked(checked);
@@ -48,4 +44,11 @@ const ShowcaseTemplate: ComponentStory<typeof Task> = () => {
     </StyledWrapperDiv>
   );
 };
-export const Dropdown = ShowcaseTemplate.bind({});
+
+/*
+ * Storybook.
+ */
+
+export const Dropdown: StoryObj<typeof Task> = {
+  render: () => <Template />
+};

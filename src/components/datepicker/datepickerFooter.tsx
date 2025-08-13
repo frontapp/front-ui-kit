@@ -221,12 +221,10 @@ function parseTime(date: DateTime, timeValue?: string) {
   );
   if (!formattedTime.matches || _.isEmpty(formattedTime.matches)) return undefined;
 
-  const parsedTime = DateTime.now()
-    .startOf('minute')
-    .set({
-      hour: formattedTime?.matches.h,
-      minute: formattedTime?.matches.m
-    });
+  const parsedTime = DateTime.now().startOf('minute').set({
+    hour: formattedTime?.matches.h,
+    minute: formattedTime?.matches.m
+  });
   return mergeDateAndTime(date, parsedTime);
 }
 

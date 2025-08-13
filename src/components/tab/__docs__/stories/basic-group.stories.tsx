@@ -1,4 +1,4 @@
-import {ComponentStory} from '@storybook/react';
+import {StoryFn} from '@storybook/react';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
@@ -17,7 +17,7 @@ const StyledTabWrapperDiv = styled.div`
   width: 350px;
 `;
 
-const Template: ComponentStory<typeof Tab> = () => {
+const Template: StoryFn<typeof Tab> = () => {
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
   return (

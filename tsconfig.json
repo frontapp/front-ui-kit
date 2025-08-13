@@ -18,7 +18,7 @@
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "plugins": [
       {
         "name": "typescript-styled-plugin"

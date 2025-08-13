@@ -1,8 +1,8 @@
-import {ComponentStory} from '@storybook/react';
-import React, {useState} from 'react';
+import { StoryObj } from '@storybook/react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import {DatePickerDropdown as DatePicker} from '../../datepickerDropdown';
+import { DatePickerDropdown as DatePicker } from '../../datepickerDropdown';
 
 const StyledDatePickerDiv = styled.div`
   display: flex;
@@ -15,7 +15,7 @@ const StyledDatePickerWrapperDiv = styled.div`
   width: 300px;
 `;
 
-const Template: ComponentStory<typeof DatePicker> = () => {
+const Template = () => {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
   return (
     <StyledDatePickerDiv>
@@ -24,13 +24,15 @@ const Template: ComponentStory<typeof DatePicker> = () => {
           value={selectedDate}
           onChange={setSelectedDate}
           type="dateAndTime"
+          timeFormat="24h"
           placeholder="Select a date and time"
           layerRootId="story--components-date-picker--twenty-four-hour"
-          timeFormat="24h"
         />
       </StyledDatePickerWrapperDiv>
     </StyledDatePickerDiv>
   );
 };
 
-export const TwentyFourHour = Template.bind({});
+export const TwentyFourHour: StoryObj<typeof DatePicker> = {
+  render: () => <Template />
+};

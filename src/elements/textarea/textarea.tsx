@@ -1,8 +1,8 @@
-import React, {ChangeEventHandler, FC, FocusEventHandler} from 'react';
-import styled, {css} from 'styled-components';
+import React, { ChangeEventHandler, FC, FocusEventHandler } from 'react';
+import styled, { css } from 'styled-components';
 
-import {greys, palette} from '../../helpers/colorHelpers';
-import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
+import { greys, palette } from '../../helpers/colorHelpers';
+import { fonts, fontSizes, fontWeights } from '../../helpers/fontHelpers';
 
 /*
  * Props

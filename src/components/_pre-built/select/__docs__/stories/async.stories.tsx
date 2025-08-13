@@ -1,4 +1,4 @@
-import {ComponentStory} from '@storybook/react';
+import {StoryFn} from '@storybook/react';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
@@ -24,7 +24,7 @@ const StyledMenuWrapperDiv = styled.div`
   width: 350px;
 `;
 
-const Template: ComponentStory<typeof Select> = (args) => {
+const Template: StoryFn<typeof Select> = (args) => {
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [users, setUsers] = useState<ReadonlyArray<UserData>>([]);

@@ -1,4 +1,4 @@
-import {ComponentStory} from '@storybook/react';
+import type {StoryFn} from '@storybook/react';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
@@ -20,7 +20,7 @@ const StyledDropdownWrapperDiv = styled.div`
 
 const itemsToRender = Array.from(Array(1000).keys());
 
-const Template: ComponentStory<typeof DropdownCoordinator> = () => {
+const Template: StoryFn<typeof DropdownCoordinator> = () => {
   const [selectedItemId, setSelectedItemId] = useState<number>();
   return (
     <StyledWrapperDiv>

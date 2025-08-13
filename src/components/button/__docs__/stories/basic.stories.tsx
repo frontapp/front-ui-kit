@@ -1,4 +1,4 @@
-import {ComponentStory} from '@storybook/react';
+import {StoryFn} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -10,7 +10,7 @@ const StyledCenteredDiv = styled.div`
   justify-content: center;
 `;
 
-const Template: ComponentStory<typeof Button> = () => (
+const Template: StoryFn<typeof Button> = () => (
   <StyledCenteredDiv>
     <Button>Example</Button>
   </StyledCenteredDiv>

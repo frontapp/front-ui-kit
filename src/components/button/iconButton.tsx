@@ -96,6 +96,7 @@ function addIconColorStyles(
 
 export const IconButton: FC<IconButtonProps> = (props) => {
   const {children, isDanger, isDisabled, isActive, onClick, className, iconColor, isRounded} = props;
+
   return (
     <StyledIconButton
       className={className}

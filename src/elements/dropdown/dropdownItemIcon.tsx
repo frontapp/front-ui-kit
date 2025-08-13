@@ -45,3 +45,5 @@ export const DropdownItemIcon: FC<DropdownItemIconProps> = ({position = 'left', 
     <Icon name={iconName} color={color} />
   </StyledDropdownIconWrapperDiv>
 );
+
+DropdownItemIcon.displayName = 'DropdownItemIcon';

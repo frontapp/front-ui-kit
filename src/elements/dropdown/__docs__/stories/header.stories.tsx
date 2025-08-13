@@ -1,4 +1,4 @@
-import {ComponentStory} from '@storybook/react';
+import type {StoryFn} from '@storybook/react';
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
@@ -46,7 +46,7 @@ const dogBreedsSource = [
   'Volpino Italiano'
 ];
 
-const Template: ComponentStory<typeof DropdownCoordinator> = () => {
+const Template: StoryFn<typeof DropdownCoordinator> = () => {
   const [searchValue, setSearchValue] = useState('');
   const [dogBreeds, setDogBreeds] = useState(dogBreedsSource);
   const [selectedDogBreed, setSelectedDogBreed] = useState('');

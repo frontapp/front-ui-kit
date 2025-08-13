@@ -1,9 +1,9 @@
-import {ComponentStory} from '@storybook/react';
-import React, {useState} from 'react';
+import { StoryObj } from '@storybook/react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import {CalendarWeekDaysEnum} from '../../../../helpers/calendarHelpers';
-import {DatePickerDropdown as DatePicker} from '../../datepickerDropdown';
+import { CalendarWeekDaysEnum } from '../../../../helpers/calendarHelpers';
+import { DatePickerDropdown as DatePicker } from '../../datepickerDropdown';
 
 const StyledDatePickerDiv = styled.div`
   display: flex;
@@ -16,7 +16,7 @@ const StyledDatePickerWrapperDiv = styled.div`
   width: 300px;
 `;
 
-const Template: ComponentStory<typeof DatePicker> = () => {
+const Template = () => {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
   return (
     <StyledDatePickerDiv>
@@ -34,4 +34,6 @@ const Template: ComponentStory<typeof DatePicker> = () => {
   );
 };
 
-export const StartDate = Template.bind({});
+export const StartDate: StoryObj<typeof DatePicker> = {
+  render: () => <Template />
+};

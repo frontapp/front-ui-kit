@@ -1,5 +1,5 @@
 /* eslint-disable storybook/story-exports */
-import {ComponentMeta} from '@storybook/react';
+import {Meta} from '@storybook/react';
 
 import {Tab} from '../tab';
 import DocumentationMDX from './docs.mdx';
@@ -23,7 +23,7 @@ export default {
     viewMode: 'docs'
   },
   id: 'Components/Tab'
-} as ComponentMeta<typeof Tab>;
+} as Meta<typeof Tab>;
 
 export {Basic} from './stories/basic.stories';
 export {BasicGroup} from './stories/basic-group.stories';

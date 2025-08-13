@@ -1,4 +1,4 @@
-import {ComponentStory} from '@storybook/react';
+import {StoryFn} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -7,14 +7,12 @@ import {ActionMenu} from '../../actionMenu';
 import {ActionMenuItem} from '../../actionMenuItem';
 import {ActionMenuItemSpacer} from '../../actionMenuItemSpacer';
 
-/*
- * Styles.
- */
-
 const StyledStoryWrapperDiv = styled.div`
   height: 215px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  position: relative;
 `;
 
 const StyledMenuWrapperDiv = styled.div`
@@ -27,16 +25,13 @@ const StyledMenuWrapperDiv = styled.div`
   background: white;
   border: 1px solid ${greys.shade30};
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  position: relative;
 `;
 
-/*
- * Story.
- */
-
-const Template: ComponentStory<typeof ActionMenu> = () => (
+const Template: StoryFn<typeof ActionMenu> = () => (
   <StyledStoryWrapperDiv>
     <StyledMenuWrapperDiv>
-      <ActionMenu layerRootId="story--components-action-menu--basic">
+      <ActionMenu>
         <ActionMenuItem iconName="Assign">Merge Contact</ActionMenuItem>
         <ActionMenuItem iconName="Copy">Copy Account Id</ActionMenuItem>
         <ActionMenuItem>Extra Long Name For A Dropdown</ActionMenuItem>

@@ -11,8 +11,8 @@ import * as ReactIs from 'react-is';
 export function isComponentInChildren(children: React.ReactNode, componentDisplayName: string) {
   return React.Children.toArray(children).some((child) => {
     if (typeof child === 'string' || typeof child === 'number') return null;
-    if (ReactIs.isFragment(child) || !ReactIs.isElement(child)) return false;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/consistent-type-assertions
+    if (ReactIs.isFragment(child) || !React.isValidElement(child)) return false;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return (child.type as any)?.displayName === componentDisplayName;
   });
 }
@@ -22,17 +22,22 @@ export function isComponentInChildren(children: React.ReactNode, componentDispla
  */
 export function renderFirstIconOnly(children: React.ReactNode, shouldDisableColor: boolean = true) {
   let hasFoundIcon = false;
+
   return React.Children.toArray(children).map((child) => {
     if (typeof child === 'string' || typeof child === 'number') return null;
-    if (ReactIs.isFragment(child) || !ReactIs.isElement(child)) return null;
+
+    if (ReactIs.isFragment(child) || !React.isValidElement(child)) return null;
 
     // Check for an icon and if we find one make sure we only have 1 icon
     // total that we could render. We also need to display any set colors
     // so the component itself can style the color.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/consistent-type-assertions
-    if ((child.type as any)?.displayName === 'Icon' && !hasFoundIcon) {
+    const childType = (child as any).type;
+    const isIcon = childType?.displayName === 'Icon';
+
+    if (isIcon && !hasFoundIcon) {
       hasFoundIcon = true;
-      return React.cloneElement(child, {shouldDisableColor});
+      return React.cloneElement(child as React.ReactElement, {shouldDisableColor} as any);
     }
     return null;
   });
@@ -44,14 +49,15 @@ export function renderFirstIconOnly(children: React.ReactNode, shouldDisableColo
 export function renderChildrenIgnoreSpecifiedComponents(
   children: React.ReactNode,
   componentsToIgnore: ReadonlyArray<string>
-) {
+): React.ReactNode[] {
   return React.Children.toArray(children).map((child) => {
     if (typeof child === 'string' || typeof child === 'number') return child;
-    if (ReactIs.isFragment(child) || !ReactIs.isElement(child)) return child;
+
+    if (ReactIs.isFragment(child) || !React.isValidElement(child)) return child;
 
     // Check if the display name is one we should not render.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/consistent-type-assertions
-    if (componentsToIgnore.includes((child.type as any)?.displayName)) return null;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if (componentsToIgnore.includes((child as any).type?.displayName)) return null;
 
     return child;
   });
@@ -63,14 +69,16 @@ export function renderChildrenIgnoreSpecifiedComponents(
 export function renderChildrenSpecifiedComponents(
   children: React.ReactNode,
   componentsToInclude: ReadonlyArray<string>
-) {
+): React.ReactNode[] {
   return React.Children.toArray(children).map((child) => {
     if (typeof child === 'string' || typeof child === 'number') return null;
-    if (ReactIs.isFragment(child) || !ReactIs.isElement(child)) return null;
+    if (ReactIs.isFragment(child) || !React.isValidElement(child)) return null;
 
-    // Check if the display name is one we should not render.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/consistent-type-assertions
-    if (componentsToInclude.includes((child.type as any)?.displayName)) return child;
+    // Check if the display name is one we should render.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const childElement = child as any;
+    const displayName = childElement.type?.displayName;
+    if (componentsToInclude.includes(displayName)) return child;
 
     return null;
   });

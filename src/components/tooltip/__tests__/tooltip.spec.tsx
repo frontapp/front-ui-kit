@@ -14,7 +14,10 @@ describe('<Tooltip /> Spec', () => {
     );
 
     // Hover over the anchor.
-    await userEvent.hover(screen.getByText('anchor'));
+    await act(async () => {
+      await userEvent.hover(screen.getByText('anchor'));
+    });
+
     // Make sure the tooltip is visible.
     await waitFor(() => {
       const tooltip = screen.queryByText('Example Tooltip');
@@ -32,8 +35,9 @@ describe('<Tooltip /> Spec', () => {
     );
 
     // Hover over the anchor.
-    await userEvent.hover(screen.getByText('anchor'));
-    await act(() => {});
+    await act(async () => {
+      await userEvent.hover(screen.getByText('anchor'));
+    });
 
     // Make sure the tooltip is not visible.
     const tooltip = screen.queryByText('Example Tooltip');
@@ -50,7 +54,10 @@ describe('<Tooltip /> Spec', () => {
     );
 
     // Hover over the anchor.
-    await userEvent.hover(screen.getByText('anchor'));
+    await act(async () => {
+      await userEvent.hover(screen.getByText('anchor'));
+    });
+
     // Make sure the tooltip is visible.
     await waitFor(() => {
       const tooltip = screen.queryByText('Example Tooltip');

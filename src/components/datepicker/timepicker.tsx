@@ -88,7 +88,7 @@ export const TimePicker: FC<TimePickerProps> = (props) => {
  * Helpers
  */
 
-function renderItems(props: TimePickerProps, selectedRef: RefObject<HTMLDivElement>) {
+function renderItems(props: TimePickerProps, selectedRef: RefObject<HTMLDivElement | null>) {
   // Render each hour in the day.
   const {value = DateTime.now(), onChange, timeFormat} = props;
   return range(24).map((hour) => {

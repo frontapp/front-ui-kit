@@ -1,18 +1,20 @@
-import {ComponentStory} from '@storybook/react';
-import React, {useState} from 'react';
+import { StoryObj } from '@storybook/react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import {Input} from '../../../../elements/input/input';
-import {greys} from '../../../../helpers/colorHelpers';
-import {FormField} from '../../../formField/formField';
-import {Tooltip} from '../../tooltip';
-import {TooltipCoordinator} from '../../tooltipCoordinator';
+import { Input } from '../../../../elements/input/input';
+import { greys } from '../../../../helpers/colorHelpers';
+import { FormField } from '../../../formField/formField';
+import { Tooltip } from '../../tooltip';
+import { TooltipCoordinator } from '../../tooltipCoordinator';
+import { TooltipOverflow } from '../../tooltipOverflow';
 
-const StyledWrapperDiv = styled.div`
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  gap: 8px;
+
+const StyledTooltipDiv = styled.div`
+  width: 350px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const StyledTooltipRowWrapperDiv = styled.div`
@@ -32,18 +34,18 @@ const StyledTooltipWrapperDiv = styled.div<StyledTooltipWrapperDivProps>`
   padding: 4px;
 `;
 
-const Template: ComponentStory<typeof Tooltip> = () => {
+const Template = () => {
   const [width, setWidth] = useState(350);
   return (
-    <StyledWrapperDiv>
+    <StyledTooltipDiv>
       <FormField label="Width of Container">
-        <Input<number> type="number" value={width} onChange={setWidth} />
+        <Input type="number" value={width} onChange={(value) => setWidth(Number(value))} />
       </FormField>
       <br />
       <StyledTooltipRowWrapperDiv>
         <StyledTooltipWrapperDiv $width={width}>
           <TooltipCoordinator
-            condition={{type: 'overflow'}}
+            condition={{ type: 'overflow' }}
             renderTooltip={() => <Tooltip>This text is smaller.</Tooltip>}>
             This text is smaller.
           </TooltipCoordinator>
@@ -52,7 +54,7 @@ const Template: ComponentStory<typeof Tooltip> = () => {
       <StyledTooltipRowWrapperDiv>
         <StyledTooltipWrapperDiv $width={width}>
           <TooltipCoordinator
-            condition={{type: 'overflow'}}
+            condition={{ type: 'overflow' }}
             renderTooltip={() => (
               <Tooltip>This is really long text that is overflowing, looooooooooooooong text.</Tooltip>
             )}>
@@ -60,8 +62,10 @@ const Template: ComponentStory<typeof Tooltip> = () => {
           </TooltipCoordinator>
         </StyledTooltipWrapperDiv>
       </StyledTooltipRowWrapperDiv>
-    </StyledWrapperDiv>
+    </StyledTooltipDiv>
   );
 };
 
-export const Overflow = Template.bind({});
+export const Overflow: StoryObj<typeof TooltipOverflow> = {
+  render: () => <Template />
+};

@@ -36,6 +36,8 @@ export const ActionMenuItem: FC<ActionMenuItemProps> = (props) => {
   );
 };
 
+ActionMenuItem.displayName = 'ActionMenuItem';
+
 /*
  * Helpers.
  */

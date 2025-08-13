@@ -1,4 +1,4 @@
-import {ComponentStory} from '@storybook/react';
+import {StoryFn} from '@storybook/react';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
@@ -88,7 +88,7 @@ const StyledCheckboxDiv = styled.div`
   margin: auto;
 `;
 
-const Template: ComponentStory<typeof Accordion> = () => {
+const Template: StoryFn<typeof Accordion> = () => {
   const [checkedState, setCheckedState] = useState(CHECKED_STATE);
   return (
     <DefaultStyleProvider>

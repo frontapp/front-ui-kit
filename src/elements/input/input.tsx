@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable react/function-component-definition */
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
-import React, {ChangeEventHandler, FocusEventHandler} from 'react';
-import styled, {css} from 'styled-components';
+import React, { ChangeEventHandler, FocusEventHandler } from 'react';
+import styled, { css } from 'styled-components';
 
-import {greys, palette} from '../../helpers/colorHelpers';
-import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
-import {Icon, IconName} from '../icon/icon';
+import { greys, palette } from '../../helpers/colorHelpers';
+import { fonts, fontSizes, fontWeights } from '../../helpers/fontHelpers';
+import { Icon, IconName } from '../icon/icon';
 
 /*
  * Props
@@ -162,9 +162,7 @@ export function Input<T = string>(props: InputProps<T>) {
   const onInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     if (isDisabled || !onChange) return;
     const inputValue = event.currentTarget.value;
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    onChange(type === 'number' ? Number(inputValue) : inputValue);
+    onChange(inputValue as T);
   };
 
   const onInputFocus: FocusEventHandler<HTMLInputElement> = (event) => {
@@ -198,7 +196,7 @@ export function Input<T = string>(props: InputProps<T>) {
       />
     </StyledInputDiv>
   );
-}
+};
 
 /*
  * Helpers.

@@ -1,4 +1,4 @@
-import {ComponentStory} from '@storybook/react';
+import {StoryObj} from '@storybook/react';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
@@ -89,7 +89,7 @@ const StyledCheckboxDiv = styled.div`
   margin: auto;
 `;
 
-const Template: ComponentStory<typeof Accordion> = () => {
+const Template = () => {
   const [checkedState, setCheckedState] = useState(CHECKED_STATE);
   return (
     <DefaultStyleProvider>
@@ -126,7 +126,9 @@ const Template: ComponentStory<typeof Accordion> = () => {
   );
 };
 
-export const Multi = Template.bind({});
+export const Multi: StoryObj<typeof Accordion> = {
+  render: () => <Template />
+};
 
 /*
  * Helpers

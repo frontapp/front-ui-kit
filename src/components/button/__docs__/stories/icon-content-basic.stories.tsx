@@ -1,4 +1,4 @@
-import {ComponentStory} from '@storybook/react';
+import {StoryObj} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -12,15 +12,15 @@ const StyledCenteredDiv = styled.div`
   justify-content: center;
 `;
 
-const Template: ComponentStory<typeof Button> = () => (
-  <StyledCenteredDiv>
-    <Button>
-      Example
-      <ButtonContentIcon>
-        <Icon name="Calendar" />
-      </ButtonContentIcon>
-    </Button>
-  </StyledCenteredDiv>
-);
-
-export const IconContentBasic = Template.bind({});
+export const IconContentBasic: StoryObj<typeof Button> = {
+  render: () => (
+    <StyledCenteredDiv>
+      <Button>
+        Example
+        <ButtonContentIcon>
+          <Icon name="Calendar" />
+        </ButtonContentIcon>
+      </Button>
+    </StyledCenteredDiv>
+  )
+};

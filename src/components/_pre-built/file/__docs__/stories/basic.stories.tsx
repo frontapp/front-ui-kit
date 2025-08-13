@@ -1,4 +1,4 @@
-import {ComponentStory} from '@storybook/react';
+import {StoryObj} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -14,11 +14,12 @@ const StyledFileWrapperDiv = styled.div`
   width: 300px;
 `;
 
-const Template: ComponentStory<typeof File> = () => (
-  <StyledWrapperDiv>
-    <StyledFileWrapperDiv>
-      <File fileName="Test File.txt" fileSize={12330} />
-    </StyledFileWrapperDiv>
-  </StyledWrapperDiv>
-);
-export const Basic = Template.bind({});
+export const Basic: StoryObj<typeof File> = {
+  render: () => (
+    <StyledWrapperDiv>
+      <StyledFileWrapperDiv>
+        <File fileName="Test File.txt" fileSize={12330} />
+      </StyledFileWrapperDiv>
+    </StyledWrapperDiv>
+  )
+};

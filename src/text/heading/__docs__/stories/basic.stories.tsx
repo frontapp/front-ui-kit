@@ -1,4 +1,4 @@
-import {ComponentStory} from '@storybook/react';
+import {StoryObj} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -10,10 +10,10 @@ const StyledCenteredDiv = styled.div`
   justify-content: center;
 `;
 
-const Template: ComponentStory<typeof Heading> = () => (
-  <StyledCenteredDiv>
-    <Heading>Example Heading</Heading>
-  </StyledCenteredDiv>
-);
-
-export const Basic = Template.bind({});
+export const Basic: StoryObj<typeof Heading> = {
+  render: () => (
+    <StyledCenteredDiv>
+      <Heading>Example Heading</Heading>
+    </StyledCenteredDiv>
+  )
+};

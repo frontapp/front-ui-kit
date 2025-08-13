@@ -18,3 +18,5 @@ const StyledDropdownItemSpacerDiv = styled.div`
  */
 
 export const DropdownItemSpacer: FC = () => <StyledDropdownItemSpacerDiv />;
+
+DropdownItemSpacer.displayName = 'DropdownItemSpacer';

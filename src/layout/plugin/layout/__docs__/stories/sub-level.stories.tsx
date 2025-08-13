@@ -1,13 +1,11 @@
-import {ComponentStory} from '@storybook/react';
+import {StoryFn} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import {Button} from '../../../../../components/button/button';
 import {Dropdown} from '../../../../../elements/dropdown/dropdown';
 import {DropdownCoordinator} from '../../../../../elements/dropdown/dropdownCoordinator';
 import {DropdownItem} from '../../../../../elements/dropdown/dropdownItem';
 import {DropdownItemIcon} from '../../../../../elements/dropdown/dropdownItemIcon';
-import {Icon} from '../../../../../elements/icon/icon';
 import {greys, palette} from '../../../../../helpers/colorHelpers';
 import {DefaultStyleProvider} from '../../../../../utils/defaultStyleProvider';
 import {PluginFooter} from '../../pluginFooter';
@@ -33,7 +31,25 @@ const StyledPluginContentDiv = styled.div`
   white-space: pre-wrap;
 `;
 
-const Template: ComponentStory<typeof PluginLayout> = () => (
+const StyledThreeDotsButton = styled.button<{$isActive: boolean}>`
+  background: ${(props) => (props.$isActive ? '#e0e0e0' : 'transparent')};
+  border: none;
+  border-radius: 4px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background: #e0e0e0;
+  }
+`;
+
+const Template: StoryFn<typeof PluginLayout> = () => (
   <StyledCenteredDiv>
     <DefaultStyleProvider>
       <StyledLayoutWrapperDiv>
@@ -42,25 +58,35 @@ const Template: ComponentStory<typeof PluginLayout> = () => (
             onBackClick={() => console.log('On back click')}
             actions={
               <DropdownCoordinator
-                layerRootId="story--layout-plugin-layout--sub-level"
                 placement="bottom-end"
-                renderButton={(isDropdownOpen) => (
-                  <Button type="icon" isActive={isDropdownOpen}>
-                    <Icon name="EllipsisHorizontal" />
-                  </Button>
+                onDropdownOpen={() => console.log('Dropdown opened!')}
+                onDropdownClosed={() => console.log('Dropdown closed!')}
+                renderButton={(isDropdownOpen, isDisabled, buttonRef, onClick) => (
+                  <StyledThreeDotsButton
+                    type="button"
+                    $isActive={isDropdownOpen}
+                    onClick={(e) => {
+                      console.log('Button clicked!');
+                      onClick?.(e);
+                    }}>
+                    ⋯
+                  </StyledThreeDotsButton>
                 )}
-                renderDropdown={() => (
-                  <Dropdown maxHeight={70} maxWidth={175}>
-                    <DropdownItem>
-                      <DropdownItemIcon iconName="Checkmark" color={palette.green.shade40} />
-                      Approve Request
-                    </DropdownItem>
-                    <DropdownItem>
-                      <DropdownItemIcon iconName="Close" color={palette.red.shade40} />
-                      Cancel Request
-                    </DropdownItem>
-                  </Dropdown>
-                )}
+                renderDropdown={() => {
+                  console.log('Rendering dropdown!');
+                  return (
+                    <Dropdown maxHeight={70} maxWidth={175}>
+                      <DropdownItem>
+                        <DropdownItemIcon iconName="Checkmark" color={palette.green.shade40} />
+                        Approve Request
+                      </DropdownItem>
+                      <DropdownItem>
+                        <DropdownItemIcon iconName="Close" color={palette.red.shade40} />
+                        Cancel Request
+                      </DropdownItem>
+                    </Dropdown>
+                  );
+                }}
               />
             }>
             Sub-level Plugin Page

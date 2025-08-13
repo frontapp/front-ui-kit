@@ -11,12 +11,9 @@ exports[`<Pill /> Spec Snapshots should render selected state 1`] = `
   border-radius: 4px;
   display: inline-grid;
   grid-template-areas: 'left-content content right-content';
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   box-sizing: border-box;
   font-size: 14px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   line-height: 16px;
   color: #ffffff;
@@ -47,21 +44,18 @@ exports[`<Pill /> Spec Snapshots should render using defaults 1`] = `
   border-radius: 4px;
   display: inline-grid;
   grid-template-areas: 'left-content content right-content';
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   box-sizing: border-box;
   font-size: 14px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   line-height: 16px;
   color: #19191a;
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .c0:hover {
   color: #19191a;
-  background-color: rgba(0,0,0,0.15);
+  background-color: rgba(0, 0, 0, 0.15);
 }
 
 <div>
@@ -81,6 +75,9 @@ exports[`<Pill /> Spec Snapshots should support rendering a pill with icon 1`] =
 .c2 {
   width: 16px;
   height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .c3 {
@@ -93,21 +90,18 @@ exports[`<Pill /> Spec Snapshots should support rendering a pill with icon 1`] =
   border-radius: 4px;
   display: inline-grid;
   grid-template-areas: 'left-content content right-content';
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   box-sizing: border-box;
   font-size: 14px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   line-height: 16px;
   color: #19191a;
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .c0:hover {
   color: #19191a;
-  background-color: rgba(0,0,0,0.15);
+  background-color: rgba(0, 0, 0, 0.15);
 }
 
 .c1 {
@@ -130,6 +124,7 @@ exports[`<Pill /> Spec Snapshots should support rendering a pill with icon 1`] =
           height="16"
           name="Checkmark"
           preserveaspectratio="none"
+          viewbox="0 0 16 16"
           width="16"
         />
       </div>
@@ -150,6 +145,7 @@ exports[`<Pill /> Spec Snapshots should support rendering a pill with icon 1`] =
           height="16"
           name="Checkmark"
           preserveaspectratio="none"
+          viewbox="0 0 16 16"
           width="16"
         />
       </div>

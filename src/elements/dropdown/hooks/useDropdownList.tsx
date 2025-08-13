@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 import _ from 'lodash';
-import React, {useCallback, useMemo} from 'react';
+import React, {isValidElement,useCallback, useMemo} from 'react';
 import ReactIs from 'react-is';
 
 import {ActionMenuItem, ActionMenuItemProps} from '../../../components/_pre-built/actionMenu/actionMenuItem';
@@ -140,7 +140,7 @@ function buildDropdownItemsFromChildren(children: React.ReactNode): ReadonlyArra
       if (ReactIs.isFragment(child)) return buildDropdownItemsFromChildren(child.props.children);
 
       // This is a check for arbitrary elements such as div, span, etc.
-      if (!ReactIs.isElement(child)) return undefined;
+      if (!isValidElement(child)) return undefined;
 
       // Check for specific items that we will support rendering in the list.
       if ((child.type as any)?.displayName === 'DropdownItem')

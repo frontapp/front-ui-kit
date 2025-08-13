@@ -7,3 +7,5 @@ import {DropdownItemSpacer} from '../../../elements/dropdown/dropdownItemSpacer'
  */
 
 export const ActionMenuItemSpacer: FC = () => <DropdownItemSpacer />;
+
+ActionMenuItemSpacer.displayName = 'ActionMenuItemSpacer';

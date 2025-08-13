@@ -35,3 +35,5 @@ const StyledDropdownHeadingDiv = styled.div`
 export const DropdownHeading: FC<DropdownHeadingProps> = ({children}) => (
   <StyledDropdownHeadingDiv onClick={(event) => event.preventDefault()}>{children}</StyledDropdownHeadingDiv>
 );
+
+DropdownHeading.displayName = 'DropdownHeading';

@@ -2,16 +2,8 @@
 
 exports[`<Checkbox /> Spec Snapshots should render a checkbox with a label 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-flow: row;
-  -ms-flex-flow: row;
   flex-flow: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -32,27 +24,20 @@ exports[`<Checkbox /> Spec Snapshots should render a checkbox with a label 1`] =
   height: inherit;
   border-radius: 3px;
   box-sizing: border-box;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   margin: 0px;
   border: 1.5px solid #9b9c9e;
 }
 
 .c4 {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
   color: #3e3e40;
   margin-left: 8px;
   cursor: default;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
 }
 
@@ -89,19 +74,14 @@ exports[`<Checkbox /> Spec Snapshots should render a checked and disabled checkb
 .c4 {
   width: 16px;
   height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-flow: row;
-  -ms-flex-flow: row;
   flex-flow: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -122,8 +102,6 @@ exports[`<Checkbox /> Spec Snapshots should render a checked and disabled checkb
   height: inherit;
   border-radius: 3px;
   box-sizing: border-box;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   margin: 0px;
   background-color: #d4d6d9;
@@ -131,19 +109,14 @@ exports[`<Checkbox /> Spec Snapshots should render a checked and disabled checkb
 }
 
 .c5 {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
   color: #3e3e40;
   margin-left: 8px;
   cursor: default;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
 }
 
@@ -175,6 +148,7 @@ exports[`<Checkbox /> Spec Snapshots should render a checked and disabled checkb
             height="16"
             name="CheckmarkBox"
             preserveaspectratio="none"
+            viewbox="0 0 16 16"
             width="16"
           />
         </div>
@@ -191,19 +165,14 @@ exports[`<Checkbox /> Spec Snapshots should render a checked checkbox 1`] = `
 .c4 {
   width: 16px;
   height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-flow: row;
-  -ms-flex-flow: row;
   flex-flow: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -224,8 +193,6 @@ exports[`<Checkbox /> Spec Snapshots should render a checked checkbox 1`] = `
   height: inherit;
   border-radius: 3px;
   box-sizing: border-box;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   margin: 0px;
   background: #367fee;
@@ -233,19 +200,14 @@ exports[`<Checkbox /> Spec Snapshots should render a checked checkbox 1`] = `
 }
 
 .c5 {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
   color: #3e3e40;
   margin-left: 8px;
   cursor: default;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
 }
 
@@ -276,6 +238,7 @@ exports[`<Checkbox /> Spec Snapshots should render a checked checkbox 1`] = `
             height="16"
             name="CheckmarkBox"
             preserveaspectratio="none"
+            viewbox="0 0 16 16"
             width="16"
           />
         </div>
@@ -290,16 +253,8 @@ exports[`<Checkbox /> Spec Snapshots should render a checked checkbox 1`] = `
 
 exports[`<Checkbox /> Spec Snapshots should render an empty and disabled checkbox 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-flow: row;
-  -ms-flex-flow: row;
   flex-flow: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -320,8 +275,6 @@ exports[`<Checkbox /> Spec Snapshots should render an empty and disabled checkbo
   height: inherit;
   border-radius: 3px;
   box-sizing: border-box;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   margin: 0px;
   background-color: #f3f4f6;
@@ -329,19 +282,14 @@ exports[`<Checkbox /> Spec Snapshots should render an empty and disabled checkbo
 }
 
 .c4 {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
   color: #3e3e40;
   margin-left: 8px;
   cursor: default;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
 }
 
@@ -375,16 +323,8 @@ exports[`<Checkbox /> Spec Snapshots should render an empty and disabled checkbo
 
 exports[`<Checkbox /> Spec Snapshots should render an empty checkbox 1`] = `
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-flow: row;
-  -ms-flex-flow: row;
   flex-flow: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -405,27 +345,20 @@ exports[`<Checkbox /> Spec Snapshots should render an empty checkbox 1`] = `
   height: inherit;
   border-radius: 3px;
   box-sizing: border-box;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   margin: 0px;
   border: 1.5px solid #9b9c9e;
 }
 
 .c4 {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
   color: #3e3e40;
   margin-left: 8px;
   cursor: default;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
 }
 
@@ -460,19 +393,14 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate and disabled
 .c4 {
   width: 16px;
   height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-flow: row;
-  -ms-flex-flow: row;
   flex-flow: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -493,8 +421,6 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate and disabled
   height: inherit;
   border-radius: 3px;
   box-sizing: border-box;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   margin: 0px;
   background-color: #d4d6d9;
@@ -502,19 +428,14 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate and disabled
 }
 
 .c5 {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
   color: #3e3e40;
   margin-left: 8px;
   cursor: default;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
 }
 
@@ -546,6 +467,7 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate and disabled
             height="16"
             name="Minus"
             preserveaspectratio="none"
+            viewbox="0 0 16 16"
             width="16"
           />
         </div>
@@ -562,19 +484,14 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate checkbox 1`]
 .c4 {
   width: 16px;
   height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-flow: row;
-  -ms-flex-flow: row;
   flex-flow: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -595,8 +512,6 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate checkbox 1`]
   height: inherit;
   border-radius: 3px;
   box-sizing: border-box;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   margin: 0px;
   background: #367fee;
@@ -604,19 +519,14 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate checkbox 1`]
 }
 
 .c5 {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
   color: #3e3e40;
   margin-left: 8px;
   cursor: default;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
 }
 
@@ -647,6 +557,7 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate checkbox 1`]
             height="16"
             name="Minus"
             preserveaspectratio="none"
+            viewbox="0 0 16 16"
             width="16"
           />
         </div>

@@ -30,7 +30,7 @@ const StyledTooltipOverflowDiv = styled.div`
 
 export const TooltipOverflow: FC<TooltipOverflowProps> = (props) => {
   const {children, onConditionChange} = props;
-  const overflowHTMLRef = useRef<HTMLDivElement | null>();
+  const overflowHTMLRef = useRef<HTMLDivElement | null>(null);
   const [overflowRef, {width}] = useMeasureElement();
 
   useEffect(() => {

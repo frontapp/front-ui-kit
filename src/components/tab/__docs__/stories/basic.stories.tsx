@@ -1,4 +1,4 @@
-import {ComponentStory} from '@storybook/react';
+import {StoryFn} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -16,7 +16,7 @@ const StyledTabWrapperDiv = styled.div`
   width: 100px;
 `;
 
-const Template: ComponentStory<typeof Tab> = (args) => (
+const Template: StoryFn<typeof Tab> = (args) => (
   <StyledWrapperDiv>
     <StyledTabWrapperDiv>
       <Tab {...args} />

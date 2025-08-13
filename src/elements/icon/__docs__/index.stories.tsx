@@ -1,8 +1,7 @@
 /* eslint-disable storybook/story-exports */
-import {ComponentMeta} from '@storybook/react';
+import {Meta} from '@storybook/react';
 
 import {Icon} from '../icon';
-import DocumentationMDX from './docs.mdx';
 
 /*
  * Storybook.
@@ -10,20 +9,8 @@ import DocumentationMDX from './docs.mdx';
 
 export default {
   title: 'Elements/Icon',
-  component: Icon,
-  parameters: {
-    docs: {
-      page: DocumentationMDX
-    },
-    previewTabs: {
-      canvas: {
-        hidden: true
-      }
-    },
-    viewMode: 'docs'
-  },
-  id: 'Elements/Icon'
-} as ComponentMeta<typeof Icon>;
+  component: Icon
+} as Meta<typeof Icon>;
 
 export {Basic} from './stories/basic.stories';
 export {BasicIcons} from './stories/basic-icon-showcase.stories';

@@ -2,7 +2,7 @@
  * Interfaces.
  */
 
-export {SelectableComponentColors} from './helpers/styleHelpers';
+export type {SelectableComponentColors} from './helpers/styleHelpers';
 
 /*
  * Constants.
@@ -36,7 +36,8 @@ export {ActionMenuItemSpacer} from './components/_pre-built/actionMenu/actionMen
 
 export {Avatar} from './components/avatar/avatar';
 
-export {Button, ButtonTypes} from './components/button/button';
+export {Button} from './components/button/button';
+export type {ButtonTypes} from './components/button/button';
 export {ButtonContent} from './components/button/buttonContent';
 export {ButtonContentIcon} from './components/button/buttonContentIcon';
 export {ButtonGroup} from './components/button/buttonGroup';
@@ -44,7 +45,7 @@ export {ButtonGroup} from './components/button/buttonGroup';
 export {Checkbox} from './components/checkbox/checkbox';
 
 export {DatePickerDropdown as DatePicker} from './components/datepicker/datepickerDropdown';
- 
+
 export {File, FileTypesEnum} from './components/_pre-built/file/file';
 
 export {InlineBanner} from './components/inlineBanner/inlineBanner';
@@ -71,13 +72,8 @@ export {TooltipCoordinator} from './components/tooltip/tooltipCoordinator';
 export {TopBanner} from './components/topBanners/topBanner';
 export {TopBannersHost} from './components/topBanners/topBannersHost';
 export {TopBannersProvider} from './components/topBanners/topBannersProvider';
-export {
-  TopBannerContext,
-  TopBannersEnum,
-  TopBannerDefinition,
-  TopBannerContextProps,
-  useTopBanners
-} from './components/topBanners/topBannersContext';
+export {TopBannerContext, TopBannersEnum, useTopBanners} from './components/topBanners/topBannersContext';
+export type {TopBannerDefinition, TopBannerContextProps} from './components/topBanners/topBannersContext';
 
 export {Loader} from './components/loader/loader';
 

@@ -1,4 +1,4 @@
-import {ComponentMeta, ComponentStory} from '@storybook/react';
+import {Meta, StoryObj} from '@storybook/react';
 import React, {FC, useState} from 'react';
 import styled from 'styled-components';
 
@@ -75,10 +75,11 @@ const ShowcaseCheckboxComponent: FC<ShowcaseCheckboxProps> = (props) => {
 export default {
   title: 'Components/Checkbox',
   component: ShowcaseComponent
-} as ComponentMeta<typeof ShowcaseComponent>;
+} as Meta<typeof ShowcaseComponent>;
 
-const ShowcaseTemplate: ComponentStory<typeof ShowcaseComponent> = () => <ShowcaseComponent />;
-export const Showcase = ShowcaseTemplate.bind({});
-Showcase.parameters = {
-  controls: {hideNoControlsWarning: true}
+export const Showcase: StoryObj<typeof ShowcaseComponent> = {
+  render: () => <ShowcaseComponent />,
+  parameters: {
+    controls: {hideNoControlsWarning: true}
+  }
 };

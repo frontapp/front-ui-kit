@@ -86,6 +86,8 @@ export const AccordionSection: FC<AccordionSectionProps> = (props) => {
   );
 };
 
+AccordionSection.displayName = 'AccordionSection';
+
 /*
  * Helpers
  */

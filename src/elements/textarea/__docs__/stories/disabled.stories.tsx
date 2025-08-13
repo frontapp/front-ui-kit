@@ -1,4 +1,4 @@
-import {ComponentStory} from '@storybook/react';
+import {StoryObj} from '@storybook/react';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
@@ -14,15 +14,15 @@ const StyledInputWrapperDiv = styled.div`
   width: 300px;
 `;
 
-const Template: ComponentStory<typeof Textarea> = () => {
+const Template = () => {
   const [value, setValue] = useState('');
   return (
-    <StyledCenteredDiv>
-      <StyledInputWrapperDiv>
-        <Textarea value={value} onChange={setValue} placeholder="Simple Textarea Example" isDisabled />
-      </StyledInputWrapperDiv>
-    </StyledCenteredDiv>
+    <StyledInputWrapperDiv>
+      <Textarea value={value} onChange={(event) => setValue(event.target.value)} isDisabled />
+    </StyledInputWrapperDiv>
   );
 };
 
-export const Disabled = Template.bind({});
+export const Disabled: StoryObj<typeof Textarea> = {
+  render: () => <Template />
+};

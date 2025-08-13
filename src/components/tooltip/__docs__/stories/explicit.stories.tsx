@@ -1,10 +1,10 @@
-import {ComponentStory} from '@storybook/react';
-import React, {useState} from 'react';
+import { StoryObj } from '@storybook/react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import {Button} from '../../../button/button';
-import {Tooltip} from '../../tooltip';
-import {TooltipCoordinator} from '../../tooltipCoordinator';
+import { Button } from '../../../../components/button/button';
+import { Tooltip } from '../../tooltip';
+import { TooltipCoordinator } from '../../tooltipCoordinator';
 
 const StyledWrapperDiv = styled.div`
   display: flex;
@@ -17,7 +17,7 @@ const StyledWrapperDiv = styled.div`
 
 const StyledTooltipWrapperDiv = styled.div``;
 
-const Template: ComponentStory<typeof Tooltip> = () => {
+const Template = () => {
   const [isEnabled, setIsEnabled] = useState(true);
   return (
     <StyledWrapperDiv>
@@ -36,4 +36,6 @@ const Template: ComponentStory<typeof Tooltip> = () => {
   );
 };
 
-export const Explicit = Template.bind({});
+export const Explicit: StoryObj<typeof Tooltip> = {
+  render: () => <Template />
+};

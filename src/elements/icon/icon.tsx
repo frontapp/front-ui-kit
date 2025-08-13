@@ -54,6 +54,7 @@ import Trash from '../../assets/icons/trash.svg';
 import TrashFilled from '../../assets/icons/trashFilled.svg';
 import WarningFilled from '../../assets/icons/warningFilled.svg';
 import {greys} from '../../helpers/colorHelpers';
+import {getIconViewBox} from './iconViewBoxes';
 
 /*
  * Constants.
@@ -115,12 +116,13 @@ const importedIcons = {
   Trash,
   TrashFilled,
   WarningFilled
-};
+} as const;
+
 export type IconName = keyof typeof importedIcons;
-// eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-export const icons = importedIcons as {
+
+export const icons: {
   [name in IconName]: (props: React.SVGAttributes<SVGElement>) => React.ReactElement;
-};
+} = importedIcons;
 
 /*
  * Props.
@@ -135,6 +137,8 @@ interface IconProps {
   size?: number;
   /** If set, no color for the icon will be set. This enables inheriting the parents color. */
   shouldDisableColor?: boolean;
+  /** The viewBox of the icon. */
+  viewBox?: string;
 }
 
 /*
@@ -148,6 +152,9 @@ interface StyledIconDivProps {
 const StyledIconDiv = styled.div<StyledIconDivProps>`
   width: ${(p) => `${p.$size}px`};
   height: ${(p) => `${p.$size}px`};
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 /*
@@ -155,22 +162,23 @@ const StyledIconDiv = styled.div<StyledIconDivProps>`
  */
 
 export const Icon: FC<IconProps> = (props) => {
-  const {name, size = defaultSize, color = defaultColor, shouldDisableColor} = props;
+  const {name, size = defaultSize, color = defaultColor, shouldDisableColor, viewBox} = props;
 
   // Pull the icon from the list of available icons.
   // The svg file is converted to a function that is called.
   const icon = icons[name];
   if (!icon) return null;
 
-  return (
-    <StyledIconDiv $size={size}>
-      {icon({
-        name,
-        width: size,
-        height: size,
-        color: shouldDisableColor ? '' : color,
-        preserveAspectRatio: 'none'
-      })}
-    </StyledIconDiv>
-  );
+  const iconProps: React.SVGAttributes<SVGElement> = {
+    name,
+    width: size,
+    height: size,
+    color: shouldDisableColor ? '' : color,
+    preserveAspectRatio: 'none',
+    viewBox: viewBox || getIconViewBox(name)
+  };
+
+  return <StyledIconDiv $size={size}>{icon(iconProps)}</StyledIconDiv>;
 };
+
+Icon.displayName = 'Icon';

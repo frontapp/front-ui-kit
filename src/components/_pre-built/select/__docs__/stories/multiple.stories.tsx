@@ -1,4 +1,4 @@
-import {ComponentStory} from '@storybook/react';
+import {StoryFn} from '@storybook/react';
 import _ from 'lodash';
 import React, {useState} from 'react';
 import styled from 'styled-components';
@@ -28,7 +28,7 @@ const items = [
   {display: 'Example Item 5', id: '5'}
 ];
 
-const Template: ComponentStory<typeof Select> = () => {
+const Template: StoryFn<typeof Select> = () => {
   const [selectedItemIds, setSelectedItemIds] = useState<ReadonlyArray<string>>([]);
   return (
     <StyledWrapperDiv>

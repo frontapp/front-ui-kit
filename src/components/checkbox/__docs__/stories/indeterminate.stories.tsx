@@ -1,4 +1,4 @@
-import {ComponentStory} from '@storybook/react';
+import {StoryObj} from '@storybook/react';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
@@ -10,7 +10,11 @@ const StyledSpacerDiv = styled.div`
   gap: 4px;
 `;
 
-const Template: ComponentStory<typeof Checkbox> = () => {
+const StyledWrapperDiv = styled.div`
+  max-width: 400px;
+`;
+
+const Template = () => {
   const [isChecked, setIsChecked] = useState({
     1: false,
     2: true,
@@ -47,4 +51,6 @@ const Template: ComponentStory<typeof Checkbox> = () => {
   );
 };
 
-export const Indeterminate = Template.bind({});
+export const Indeterminate: StoryObj<typeof Checkbox> = {
+  render: () => <Template />
+};

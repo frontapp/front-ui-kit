@@ -13,7 +13,8 @@ export {DropdownItemSpacer} from './dropdown/dropdownItemSpacer';
 
 export {EmptyState} from './emptyState/emptyState';
 
-export {Icon, IconName} from './icon/icon';
+export {Icon} from './icon/icon';
+export type {IconName} from './icon/icon';
 
 export {Input} from './input/input';
 

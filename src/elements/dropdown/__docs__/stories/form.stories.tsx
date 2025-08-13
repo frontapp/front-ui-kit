@@ -1,4 +1,4 @@
-import {ComponentStory} from '@storybook/react';
+import type {StoryFn} from '@storybook/react';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
@@ -48,7 +48,7 @@ const StyledDropdownWrapperDiv = styled.div`
   width: 300px;
 `;
 
-const Template: ComponentStory<typeof DropdownCoordinator> = () => {
+const Template: StoryFn<typeof DropdownCoordinator> = () => {
   const [selectedDog, setSelectedDog] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -72,7 +72,7 @@ const Template: ComponentStory<typeof DropdownCoordinator> = () => {
               </DropdownItemFormField>
               <DropdownItemFormField label="Your favorite dog breed">
                 <DropdownCoordinator
-                  layerRootId="story--elements-dropdown--form"
+                  layerRootId="story--elements-dropdown--form-nested"
                   placement="bottom-start"
                   renderButton={(isDropdownOpen) => (
                     <DropdownButton
@@ -81,7 +81,7 @@ const Template: ComponentStory<typeof DropdownCoordinator> = () => {
                       value={selectedDog}
                     />
                   )}
-                  renderDropdown={() => (
+                  renderDropdown={(_onRequestClose, buttonWidth) => (
                     <Dropdown maxWidth={244} maxHeight={200}>
                       <DropdownHeader>Dog Breeds</DropdownHeader>
                       {dogBreedsSource.map((breed) => (

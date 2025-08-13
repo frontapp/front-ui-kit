@@ -1,4 +1,4 @@
-import {ComponentStory} from '@storybook/react';
+import {StoryObj} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -11,10 +11,10 @@ const StyledWrapperDiv = styled.div`
   height: 200px;
 `;
 
-const Template: ComponentStory<typeof EmptyState> = () => (
-  <StyledWrapperDiv>
-    <EmptyState buttonText="Create new issue" onButtonClick={() => {}} />
-  </StyledWrapperDiv>
-);
-
-export const Basic = Template.bind({});
+export const Basic: StoryObj<typeof EmptyState> = {
+  render: () => (
+    <StyledWrapperDiv>
+      <EmptyState buttonText="Create new issue" onButtonClick={() => {}} />
+    </StyledWrapperDiv>
+  )
+};

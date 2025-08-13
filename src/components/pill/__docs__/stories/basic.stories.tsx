@@ -1,4 +1,4 @@
-import {ComponentStory} from '@storybook/react';
+import {StoryObj} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -10,10 +10,10 @@ const StyledWrapperDiv = styled.div`
   justify-content: center;
 `;
 
-const Template: ComponentStory<typeof Pill> = (args) => (
-  <StyledWrapperDiv>
-    <Pill {...args}>Example Pill</Pill>
-  </StyledWrapperDiv>
-);
-
-export const Basic = Template.bind({});
+export const Basic: StoryObj<typeof Pill> = {
+  render: (args) => (
+    <StyledWrapperDiv>
+      <Pill {...args}>Example Pill</Pill>
+    </StyledWrapperDiv>
+  )
+};

@@ -60,7 +60,7 @@ export const DropdownList: FC<DropdownListProps> = (props) => {
     onLoadMore
   } = props;
 
-  const listRef = useRef<VariableSizeList>();
+  const listRef = useRef<VariableSizeList>(null);
   const previousIsLoading = usePrevious(isLoading);
   const loadingIndexRef = useRef<number>(itemsCount);
 

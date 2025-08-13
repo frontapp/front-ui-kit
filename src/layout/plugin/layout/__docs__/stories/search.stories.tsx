@@ -1,12 +1,12 @@
-import {ComponentStory} from '@storybook/react';
-import React, {useState} from 'react';
+import { StoryObj } from '@storybook/react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import {greys} from '../../../../../helpers/colorHelpers';
-import {DefaultStyleProvider} from '../../../../../utils/defaultStyleProvider';
-import {PluginFooter} from '../../pluginFooter';
-import {PluginHeader} from '../../pluginHeader';
-import {PluginLayout} from '../../pluginLayout';
+import { greys } from '../../../../../helpers/colorHelpers';
+import { DefaultStyleProvider } from '../../../../../utils/defaultStyleProvider';
+import { PluginFooter } from '../../pluginFooter';
+import { PluginHeader } from '../../pluginHeader';
+import { PluginLayout } from '../../pluginLayout';
 
 const StyledCenteredDiv = styled.div`
   display: flex;
@@ -14,7 +14,7 @@ const StyledCenteredDiv = styled.div`
   justify-content: center;
 `;
 
-const StyledLayoutWrapperDiv = styled.div`
+const StyledLayoutDiv = styled.div`
   width: 400px;
   height: 600px;
   background: ${greys.white};
@@ -22,20 +22,20 @@ const StyledLayoutWrapperDiv = styled.div`
   border: 1px solid ${greys.shade30};
 `;
 
-const StyledPluginContentDiv = styled.div`
+const StyledContentDiv = styled.div`
   padding: 16px;
   white-space: pre-wrap;
 `;
 
-const Template: ComponentStory<typeof PluginLayout> = () => {
+const Template = () => {
   const [query, setQuery] = useState('');
   return (
     <StyledCenteredDiv>
       <DefaultStyleProvider>
-        <StyledLayoutWrapperDiv>
+        <StyledLayoutDiv>
           <PluginLayout>
-            <PluginHeader search={{query, onChange: setQuery}}>Top-level Plugin Page</PluginHeader>
-            <StyledPluginContentDiv>
+            <PluginHeader search={{ query, onChange: setQuery }}>Top-level Plugin Page</PluginHeader>
+            <StyledContentDiv>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at mattis lorem, id varius sem.
               Praesent commodo eu ex sit amet cursus. Sed condimentum tortor urna, ut dapibus odio vehicula a.
               Quisque nec odio lorem. In hac habitasse platea dictumst. Mauris dictum varius ultrices. Morbi
@@ -70,13 +70,15 @@ const Template: ComponentStory<typeof PluginLayout> = () => {
               euismod at, accumsan vel turpis. Curabitur congue, quam sed pretium pharetra, sem erat auctor
               libero, placerat aliquam enim eros sed lectus. Sed tincidunt magna vitae tortor auctor
               vestibulum.
-            </StyledPluginContentDiv>
+            </StyledContentDiv>
             <PluginFooter>Plugin Footer</PluginFooter>
           </PluginLayout>
-        </StyledLayoutWrapperDiv>
+        </StyledLayoutDiv>
       </DefaultStyleProvider>
     </StyledCenteredDiv>
   );
 };
 
-export const Search = Template.bind({});
+export const Search: StoryObj<typeof PluginLayout> = {
+  render: () => <Template />
+};

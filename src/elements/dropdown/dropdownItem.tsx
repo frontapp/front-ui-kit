@@ -148,3 +148,5 @@ function maybeRenderDescription(description?: string) {
   if (!description) return null;
   return <StyledDropdownItemDescriptionDiv>{description}</StyledDropdownItemDescriptionDiv>;
 }
+
+DropdownItem.displayName = 'DropdownItem';

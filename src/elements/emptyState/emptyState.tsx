@@ -91,7 +91,7 @@ export const EmptyState: FC<EmptyStateProps> = ({message = DefaultMessage, butto
     <StyledEmptyStateWrapperDiv>
       <StyledContentWrapperDiv $hasVisibleButton={hasVisibleButton}>
         <StyledSearchIconWrapperDiv>
-          <Icon name="Search" size={40} color={greys.shade50} />
+          <Icon name="Search" size={40} color={greys.shade50} viewBox="0 0 16 16" />
         </StyledSearchIconWrapperDiv>
         <StyledSearchTextDiv>{message}</StyledSearchTextDiv>
         {maybeRenderButton(buttonText, onButtonClick)}

@@ -1,4 +1,4 @@
-import {ComponentStory} from '@storybook/react';
+import type {StoryFn} from '@storybook/react';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
@@ -27,7 +27,7 @@ const StyledDropdownWrapperDiv = styled.div`
   width: 300px;
 `;
 
-const Template: ComponentStory<typeof DropdownCoordinator> = () => {
+const Template: StoryFn<typeof DropdownCoordinator> = () => {
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [users, setUsers] = useState<ReadonlyArray<UserData>>([]);
