@@ -47,7 +47,7 @@ jobs:
           cache: 'yarn'
       - run: yarn install --frozen-lockfile
       - name: Build storybook
-        run: yarn build:storybook
+        run: yarn build-storybook
       - name: Deploy storybook
         uses: JamesIves/github-pages-deploy-action@6c2d9db40f9296374acc17b90404b6e8864128c8
         with:
