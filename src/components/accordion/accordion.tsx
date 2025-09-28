@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import _ from 'lodash';
-import React, { FC, useMemo, useState } from 'react';
+import React, {FC, useMemo, useState} from 'react';
 import styled from 'styled-components';
 
-import { renderChildrenSpecifiedComponents } from '../../helpers/renderHelpers';
-import { AccordionSection } from './accordionSection';
+import {renderChildrenSpecifiedComponents} from '../../helpers/renderHelpers';
+import {AccordionSection} from './accordionSection';
 
 /*
  * Props
@@ -29,7 +29,7 @@ const StyledAccordionSectionDiv = styled.div`
  * Component
  */
 
-export const Accordion: FC<AccordionProps> = ({ children, expandMode = 'single' }) => {
+export const Accordion: FC<AccordionProps> = ({children, expandMode = 'single'}) => {
   const accordionSections = useMemo(
     () =>
       _(renderChildrenSpecifiedComponents(children, ['AccordionSection']))
@@ -52,10 +52,16 @@ export const Accordion: FC<AccordionProps> = ({ children, expandMode = 'single' 
   return (
     <StyledAccordionSectionDiv>
       {accordionSections.map((section) => {
-        const { id, onSectionToggled } = section.props as { id: string; onSectionToggled?: (isOpen: boolean) => void };
+        const sectionProps = section.props as {
+          id: string;
+          onSectionToggled?: (isOpen: boolean) => void;
+          children: React.ReactNode;
+          title: string;
+        };
+        const {id, onSectionToggled} = sectionProps;
         return (
           <AccordionSection
-            {...(section.props as any)}
+            {...sectionProps}
             key={id}
             isOpen={openAccordionSections.includes(id)}
             onSectionToggled={() => {
@@ -73,16 +79,21 @@ export const Accordion: FC<AccordionProps> = ({ children, expandMode = 'single' 
  * Helpers
  */
 
-function findOpenAccordionSections(accordionSections: React.ReactElement[], expandMode: 'single' | 'multi'): Array<string> {
+function findOpenAccordionSections(
+  accordionSections: React.ReactElement[],
+  expandMode: 'single' | 'multi'
+): Array<string> {
   if (!accordionSections) return [];
 
   const openAccordionSections = accordionSections
-    .filter(
-      (section: React.ReactElement) => (section.props as any).isOpen
-    )
-    .map(
-      (section: React.ReactElement) => (section.props as any).id
-    );
+    .filter((section: React.ReactElement) => {
+      const sectionProps = section.props as {isOpen?: boolean};
+      return sectionProps.isOpen;
+    })
+    .map((section: React.ReactElement) => {
+      const sectionProps = section.props as {id: string};
+      return sectionProps.id;
+    });
 
   // If multiple sections cannot be selected, then only expand the first section
   if (expandMode === 'single') return openAccordionSections.slice(0, 1);

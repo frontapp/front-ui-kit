@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { FC } from 'react';
+import {FC} from 'react';
 import styled from 'styled-components';
 
-import { FormField, FormFieldProps } from '../../components/formField/formField';
+import {FormField, FormFieldProps} from '../../components/formField/formField';
 
 /*
  * Style.

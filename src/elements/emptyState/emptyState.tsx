@@ -1,10 +1,10 @@
-import { FC } from 'react';
-import styled, { css } from 'styled-components';
+import {FC} from 'react';
+import styled, {css} from 'styled-components';
 
-import { Button } from '../../components/button/button';
-import { greys } from '../../helpers/colorHelpers';
-import { fonts, fontSizes } from '../../helpers/fontHelpers';
-import { Icon } from '../icon/icon';
+import {Button} from '../../components/button/button';
+import {greys} from '../../helpers/colorHelpers';
+import {fonts, fontSizes} from '../../helpers/fontHelpers';
+import {Icon} from '../icon/icon';
 
 /*
  * Constants.
@@ -84,7 +84,7 @@ const StyledButtonWrapperDiv = styled.div`
  * Component.
  */
 
-export const EmptyState: FC<EmptyStateProps> = ({ message = DefaultMessage, buttonText, onButtonClick }) => {
+export const EmptyState: FC<EmptyStateProps> = ({message = DefaultMessage, buttonText, onButtonClick}) => {
   const hasVisibleButton = Boolean(buttonText && onButtonClick);
 
   return (

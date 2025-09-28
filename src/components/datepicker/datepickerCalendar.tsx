@@ -1,11 +1,11 @@
-import { DateTime, Info } from 'luxon';
-import { FC } from 'react';
+import {DateTime, Info} from 'luxon';
+import {FC} from 'react';
 import styled from 'styled-components';
 
-import { CalendarWeekDaysEnum, getCalendarDays, getSortedWeekdays } from '../../helpers/calendarHelpers';
-import { greys } from '../../helpers/colorHelpers';
-import { fonts, fontSizes, fontWeights } from '../../helpers/fontHelpers';
-import { DatePickerCalendarItem } from './datepickerCalendarItem';
+import {CalendarWeekDaysEnum, getCalendarDays, getSortedWeekdays} from '../../helpers/calendarHelpers';
+import {greys} from '../../helpers/colorHelpers';
+import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
+import {DatePickerCalendarItem} from './datepickerCalendarItem';
 
 /*
  * Props.
@@ -55,7 +55,7 @@ const StyledWeekdayDiv = styled.div`
  */
 
 export const DatePickerCalendar: FC<DatePickerCalendarProps> = (props) => {
-  const { calendarWeekStartDay } = props;
+  const {calendarWeekStartDay} = props;
   const weekdays = getSortedWeekdays(calendarWeekStartDay);
   return (
     <StyledGridDiv>
@@ -78,7 +78,7 @@ function renderWeekdays(weekdays: ReadonlyArray<number>) {
 
 /** Render all the calendar days. */
 function renderDays(props: DatePickerCalendarProps, weekdays: ReadonlyArray<number>) {
-  const { monthBeingViewed, selectedDate, minDate, maxDate, onDateSelect } = props;
+  const {monthBeingViewed, selectedDate, minDate, maxDate, onDateSelect} = props;
   const days = getCalendarDays(monthBeingViewed, weekdays);
   return days.map((day) => {
     // Check if this day is in range.

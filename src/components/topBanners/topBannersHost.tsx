@@ -1,15 +1,15 @@
-import { FC } from 'react';
-import { animated, useTransition } from 'react-spring';
+import {FC} from 'react';
+import {animated, useTransition} from 'react-spring';
 import styled from 'styled-components';
 
-import { TopBanner } from './topBanner';
-import { useTopBanners } from './topBannersContext';
+import {TopBanner} from './topBanner';
+import {useTopBanners} from './topBannersContext';
 
 /*
  * Props.
  */
 
-interface TopBannersHostProps { }
+interface TopBannersHostProps {}
 
 /*
  * Style.
@@ -27,11 +27,11 @@ const StyledDiv = styled.div`
  */
 
 export const TopBannersHost: FC<TopBannersHostProps> = (props) => {
-  const { currentBanner, dismissBanner } = useTopBanners();
+  const {currentBanner, dismissBanner} = useTopBanners();
   const transitions = useTransition(currentBanner, {
-    from: { opacity: 0, transform: 'translateY(-44px)' },
-    enter: { opacity: 1, transform: 'translateY(0)' },
-    leave: { opacity: 0 }
+    from: {opacity: 0, transform: 'translateY(-44px)'},
+    enter: {opacity: 1, transform: 'translateY(0)'},
+    leave: {opacity: 0}
   });
 
   return (

@@ -1,13 +1,13 @@
-import { FC } from 'react';
+import {FC} from 'react';
 import styled from 'styled-components';
 
-import { Icon, IconName } from '../../../elements/icon/icon';
-import { greys, palette } from '../../../helpers/colorHelpers';
-import { fonts, fontSizes, fontWeights } from '../../../helpers/fontHelpers';
-import { buildHoverParentClassName, hoverSelector } from '../../../helpers/hoverHelpers';
-import { Button } from '../../button/button';
-import { Tooltip } from '../../tooltip/tooltip';
-import { TooltipCoordinator } from '../../tooltip/tooltipCoordinator';
+import {Icon, IconName} from '../../../elements/icon/icon';
+import {greys, palette} from '../../../helpers/colorHelpers';
+import {fonts, fontSizes, fontWeights} from '../../../helpers/fontHelpers';
+import {buildHoverParentClassName, hoverSelector} from '../../../helpers/hoverHelpers';
+import {Button} from '../../button/button';
+import {Tooltip} from '../../tooltip/tooltip';
+import {TooltipCoordinator} from '../../tooltip/tooltipCoordinator';
 
 /*
  * Constants.
@@ -30,7 +30,7 @@ export enum FileTypesEnum {
   WORD = 'WORD'
 }
 
-type FileTypeIcons = { [T in FileTypesEnum]: IconName };
+type FileTypeIcons = {[T in FileTypesEnum]: IconName};
 
 const fileTypeIcons: FileTypeIcons = {
   [FileTypesEnum.ARCHIVE]: 'AttachmentArchive',
@@ -130,7 +130,7 @@ const StyledFileClearIconDiv = styled.div`
   }
 `;
 
-const StyledButton = styled(Button) <StyledFileProps>`
+const StyledButton = styled(Button)<StyledFileProps>`
   background: ${(p) => (p.$isErred ? palette.red.shade40 : greys.black)};
   color: ${greys.white};
   &:hover {

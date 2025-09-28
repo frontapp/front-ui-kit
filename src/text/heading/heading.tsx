@@ -1,9 +1,9 @@
-import { FC, ReactNode } from 'react';
+import {FC, ReactNode} from 'react';
 import styled from 'styled-components';
 
-import { greys } from '../../helpers/colorHelpers';
-import { fonts, fontSizes, fontWeights, VisualSizesEnum } from '../../helpers/fontHelpers';
-import { makeSizeConstants } from '../../helpers/styleHelpers';
+import {greys} from '../../helpers/colorHelpers';
+import {fonts, fontSizes, fontWeights, VisualSizesEnum} from '../../helpers/fontHelpers';
+import {makeSizeConstants} from '../../helpers/styleHelpers';
 
 /*
  * Constants.

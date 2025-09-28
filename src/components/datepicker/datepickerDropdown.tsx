@@ -1,9 +1,9 @@
-import { FC } from 'react';
+import {FC} from 'react';
 
-import { DropdownButton } from '../../elements/dropdown/dropdownButton';
-import { DropdownCoordinator } from '../../elements/dropdown/dropdownCoordinator';
-import { CalendarWeekDaysEnum, formatDateTime } from '../../helpers/calendarHelpers';
-import { DatePicker } from './datepicker';
+import {DropdownButton} from '../../elements/dropdown/dropdownButton';
+import {DropdownCoordinator} from '../../elements/dropdown/dropdownCoordinator';
+import {CalendarWeekDaysEnum, formatDateTime} from '../../helpers/calendarHelpers';
+import {DatePicker} from './datepicker';
 
 /*
  * Props.

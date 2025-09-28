@@ -1,9 +1,9 @@
-import { ellipsis } from 'polished';
-import { FC, MouseEventHandler } from 'react';
-import styled, { css } from 'styled-components';
+import {ellipsis} from 'polished';
+import {FC, MouseEventHandler} from 'react';
+import styled, {css} from 'styled-components';
 
-import { alphas, greys } from '../../helpers/colorHelpers';
-import { fonts, fontWeights } from '../../helpers/fontHelpers';
+import {alphas, greys} from '../../helpers/colorHelpers';
+import {fonts, fontWeights} from '../../helpers/fontHelpers';
 
 /*
  * Props.
@@ -77,7 +77,7 @@ const StyledSelectedBorderDiv = styled.div<StyledSelectedBorderDivProps>`
 
 // TODO: Add tooltip support for overflowing names.
 export const Tab: FC<TabProps> = (props) => {
-  const { name, isSelected, onClick } = props;
+  const {name, isSelected, onClick} = props;
   return (
     <StyledTabWrapperDiv $isSelected={isSelected} onClick={onClick}>
       <StyledTabNameDiv>{name}</StyledTabNameDiv>

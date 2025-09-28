@@ -1,9 +1,9 @@
-import { FC, useMemo } from 'react';
-import styled, { css } from 'styled-components';
+import {FC, useMemo} from 'react';
+import styled, {css} from 'styled-components';
 
-import { greys, palette, PaletteColorsEnum } from '../../helpers/colorHelpers';
-import { fonts, fontSizes, VisualSizesEnum } from '../../helpers/fontHelpers';
-import { makeSizeConstants } from '../../helpers/styleHelpers';
+import {greys, palette, PaletteColorsEnum} from '../../helpers/colorHelpers';
+import {fonts, fontSizes, VisualSizesEnum} from '../../helpers/fontHelpers';
+import {makeSizeConstants} from '../../helpers/styleHelpers';
 
 /*
  * Constants.
@@ -67,7 +67,7 @@ function addImageSrcStyles(imgSrc?: string) {
  * Component.
  */
 
-export const Avatar: FC<AvatarProps> = ({ name, imgSrc, size = VisualSizesEnum.LARGE }) => {
+export const Avatar: FC<AvatarProps> = ({name, imgSrc, size = VisualSizesEnum.LARGE}) => {
   const avatarColor = useMemo(() => computeColorFromName(name.trim()), [name]);
   const initials = useMemo(() => computeInitialsFromName(name.trim(), size), [name, size]);
 

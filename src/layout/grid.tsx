@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from 'react';
+import {FC, PropsWithChildren} from 'react';
 import styled from 'styled-components';
 
 /*
@@ -12,7 +12,7 @@ interface GridAreaItemProps {
  * Style.
  */
 
-const GridAreaItemDiv = styled.div<{ $area: string }>`
+const GridAreaItemDiv = styled.div<{$area: string}>`
   grid-area: ${(p) => p.$area};
 `;
 

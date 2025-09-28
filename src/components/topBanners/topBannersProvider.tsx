@@ -1,13 +1,13 @@
-import { FC, PropsWithChildren, useCallback, useMemo, useState } from 'react';
+import {FC, PropsWithChildren, useCallback, useMemo, useState} from 'react';
 
-import { useTimeout } from '../../helpers/hookHelpers';
-import { TopBannerContextProps, TopBannerDefinition, TopBannerProvider } from './topBannersContext';
+import {useTimeout} from '../../helpers/hookHelpers';
+import {TopBannerContextProps, TopBannerDefinition, TopBannerProvider} from './topBannersContext';
 
 /*
  * Props.
  */
 
-interface TopBannersProviderProps { }
+interface TopBannersProviderProps {}
 
 /*
  * Component.

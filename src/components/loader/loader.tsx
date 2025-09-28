@@ -1,13 +1,13 @@
-import { FC } from 'react';
-import styled, { css, keyframes } from 'styled-components';
+import {FC} from 'react';
+import styled, {css, keyframes} from 'styled-components';
 
 import loader from '../../assets/images/loader.png';
 import loaderGrey from '../../assets/images/loaderGrey.png';
 import loaderGreySmall from '../../assets/images/loaderGreySmall.png';
 import loaderSmall from '../../assets/images/loaderSmall.png';
-import { PaletteColorsEnum } from '../../helpers/colorHelpers';
-import { VisualSizesEnum } from '../../helpers/fontHelpers';
-import { makeSizeConstants } from '../../helpers/styleHelpers';
+import {PaletteColorsEnum} from '../../helpers/colorHelpers';
+import {VisualSizesEnum} from '../../helpers/fontHelpers';
+import {makeSizeConstants} from '../../helpers/styleHelpers';
 
 /*
  * Props.

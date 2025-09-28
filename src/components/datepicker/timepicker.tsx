@@ -1,11 +1,11 @@
-import { range } from 'lodash';
-import { DateTime } from 'luxon';
-import { FC, RefObject, useEffect, useRef } from 'react';
-import styled, { css } from 'styled-components';
+import {range} from 'lodash';
+import {DateTime} from 'luxon';
+import {FC, RefObject, useEffect, useRef} from 'react';
+import styled, {css} from 'styled-components';
 
-import { formatTime } from '../../helpers/calendarHelpers';
-import { alphas, greys, palette } from '../../helpers/colorHelpers';
-import { fonts, fontSizes, fontWeights } from '../../helpers/fontHelpers';
+import {formatTime} from '../../helpers/calendarHelpers';
+import {alphas, greys, palette} from '../../helpers/colorHelpers';
+import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 
 /*
  * Types.
@@ -79,7 +79,7 @@ function addTimesStyles(props: TimePickerItemStyleProps) {
 export const TimePicker: FC<TimePickerProps> = (props) => {
   const selectedRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    selectedRef.current?.scrollIntoView({ block: 'center' });
+    selectedRef.current?.scrollIntoView({block: 'center'});
   }, []);
   return <StyledTimePickerDiv>{renderItems(props, selectedRef)}</StyledTimePickerDiv>;
 };
@@ -90,10 +90,10 @@ export const TimePicker: FC<TimePickerProps> = (props) => {
 
 function renderItems(props: TimePickerProps, selectedRef: RefObject<HTMLDivElement | null>) {
   // Render each hour in the day.
-  const { value = DateTime.now(), onChange, timeFormat } = props;
+  const {value = DateTime.now(), onChange, timeFormat} = props;
   return range(24).map((hour) => {
     // Check if this hour is selected.
-    const hourTime = value.startOf('hour').set({ hour });
+    const hourTime = value.startOf('hour').set({hour});
     const isSelected = areTimesEqual(hourTime, value);
 
     return (
