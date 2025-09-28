@@ -1,9 +1,9 @@
-import React, {FC} from 'react';
-import styled, {css} from 'styled-components';
+import { FC } from 'react';
+import styled, { css } from 'styled-components';
 
-import {Skeleton} from '../../../components/skeleton/skeleton';
-import {VisualSizesEnum} from '../../../helpers/fontHelpers';
-import {makeSizeConstants} from '../../../helpers/styleHelpers';
+import { Skeleton } from '../../../components/skeleton/skeleton';
+import { VisualSizesEnum } from '../../../helpers/fontHelpers';
+import { makeSizeConstants } from '../../../helpers/styleHelpers';
 
 /*
  * Constants.

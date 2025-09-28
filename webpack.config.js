@@ -25,9 +25,9 @@ module.exports = {
           options: {
             compact: true,
             presets: [
-              ['@babel/preset-env', {modules: false}],
+              ['@babel/preset-env', { modules: false }],
               '@babel/preset-typescript',
-              ['@babel/preset-react', {runtime: 'automatic'}]
+              ['@babel/preset-react', { runtime: 'automatic' }]
             ],
             plugins: [
               'add-react-displayname',
@@ -55,9 +55,9 @@ module.exports = {
           options: {
             compact: true,
             presets: [
-              ['@babel/preset-env', {modules: false}],
+              ['@babel/preset-env', { modules: false }],
               '@babel/preset-typescript',
-              ['@babel/preset-react', {runtime: 'automatic'}]
+              ['@babel/preset-react', { runtime: 'automatic' }]
             ],
             plugins: [
               'add-react-displayname',
@@ -109,7 +109,9 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
-    clean: true,
+    clean: {
+      keep: /\.d\.ts$/
+    },
     library: {
       type: 'commonjs'
     }

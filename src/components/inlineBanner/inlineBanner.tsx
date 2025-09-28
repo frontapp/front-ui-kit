@@ -1,11 +1,11 @@
-import React, {FC, PropsWithChildren} from 'react';
-import styled, {css} from 'styled-components';
+import { FC, PropsWithChildren } from 'react';
+import styled, { css } from 'styled-components';
 
-import {Icon, IconName} from '../../elements/icon/icon';
-import {greys, palette} from '../../helpers/colorHelpers';
-import {fonts, fontSizes, fontWeights, VisualSizesEnum} from '../../helpers/fontHelpers';
-import {makeSizeConstants} from '../../helpers/styleHelpers';
-import {IconButton} from '../button/iconButton';
+import { Icon, IconName } from '../../elements/icon/icon';
+import { greys, palette } from '../../helpers/colorHelpers';
+import { fonts, fontSizes, fontWeights, VisualSizesEnum } from '../../helpers/fontHelpers';
+import { makeSizeConstants } from '../../helpers/styleHelpers';
+import { IconButton } from '../button/iconButton';
 
 /*
  * Props.
@@ -155,7 +155,7 @@ const StyledContentDiv = styled.div<BannerContentProps>`
   `}
 `;
 
-const StyledIconDiv = styled.div<{$size: VisualSizesEnum; $type: InlineBannerTypes}>`
+const StyledIconDiv = styled.div<{ $size: VisualSizesEnum; $type: InlineBannerTypes }>`
   grid-area: icon;
   color: ${(p) => bannerConstants[p.$type].iconColor};
   margin-top: 2px;

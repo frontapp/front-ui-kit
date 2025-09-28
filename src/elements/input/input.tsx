@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable react/function-component-definition */
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
-import React, { ChangeEventHandler, FocusEventHandler } from 'react';
+import { ChangeEventHandler, FocusEventHandler } from 'react';
 import styled, { css } from 'styled-components';
 
 import { greys, palette } from '../../helpers/colorHelpers';

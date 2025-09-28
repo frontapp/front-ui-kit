@@ -1,8 +1,8 @@
-import React, {FC} from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
 
-import {Layer, LayerProps} from '../layer/layer';
-import {Reposition, RepositionProps} from './reposition';
+import { Layer, LayerProps } from '../layer/layer';
+import { Reposition, RepositionProps } from './reposition';
 
 /*
  * Props.
@@ -37,7 +37,7 @@ const StyledBackgroundDiv = styled.div<StyledBackgroundDivProps>`
  */
 
 export const RepositionPopover: FC<RepositionPopoverProps> = (props) => {
-  const {hasVisibleOverlay, isExclusive, placement, children, layerRootId, onRequestClose} = props;
+  const { hasVisibleOverlay, isExclusive, placement, children, layerRootId, onRequestClose } = props;
   return (
     <Layer
       isExclusive={isExclusive}

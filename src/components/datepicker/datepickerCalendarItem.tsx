@@ -1,9 +1,9 @@
-import {DateTime} from 'luxon';
-import React, {FC, MouseEventHandler} from 'react';
-import styled, {css} from 'styled-components';
+import { DateTime } from 'luxon';
+import { FC, MouseEventHandler } from 'react';
+import styled, { css } from 'styled-components';
 
-import {greys, palette} from '../../helpers/colorHelpers';
-import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
+import { greys, palette } from '../../helpers/colorHelpers';
+import { fonts, fontSizes, fontWeights } from '../../helpers/fontHelpers';
 
 /*
  * Props.
@@ -78,7 +78,7 @@ function addDayStyles(props: DayStyleProps) {
  */
 
 export const DatePickerCalendarItem: FC<DatePickerCalendarItemProps> = (props) => {
-  const {day, isSelectable, isSelected, isDifferentMonth, onSelect} = props;
+  const { day, isSelectable, isSelected, isDifferentMonth, onSelect } = props;
   const onClick: MouseEventHandler = (event) => {
     event.preventDefault();
     if (onSelect) onSelect(day);

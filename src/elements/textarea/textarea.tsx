@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, FC, FocusEventHandler } from 'react';
+import { ChangeEventHandler, FC, FocusEventHandler } from 'react';
 import styled, { css } from 'styled-components';
 
 import { greys, palette } from '../../helpers/colorHelpers';

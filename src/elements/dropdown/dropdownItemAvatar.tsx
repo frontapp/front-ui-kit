@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, {FC} from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
 
-import {Avatar, AvatarProps} from '../../components/avatar/avatar';
-import {VisualSizesEnum} from '../../helpers/fontHelpers';
+import { Avatar, AvatarProps } from '../../components/avatar/avatar';
+import { VisualSizesEnum } from '../../helpers/fontHelpers';
 
 /*
  * Style.

@@ -1,12 +1,12 @@
-import React, {FC} from 'react';
+import { FC } from 'react';
 
-import {DropdownItem, DropdownItemProps} from '../../../elements/dropdown/dropdownItem';
+import { DropdownItem, DropdownItemProps } from '../../../elements/dropdown/dropdownItem';
 
 /*
  * Props.
  */
 
-export interface SelectItemProps extends DropdownItemProps {}
+export interface SelectItemProps extends DropdownItemProps { }
 
 /*
  * Component.
