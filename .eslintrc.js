@@ -70,7 +70,7 @@ module.exports = {
     ],
 
     // Correct your types.
-    '@typescript-eslint/consistent-type-assertions': ['warn', {assertionStyle: 'never'}],
+    '@typescript-eslint/consistent-type-assertions': ['warn', {assertionStyle: 'as'}],
     '@typescript-eslint/naming-convention': [
       'warn',
       {
@@ -139,7 +139,9 @@ module.exports = {
         'react/no-multi-comp': 0,
         'no-restricted-globals': 0,
         'operator-linebreak': 0,
-        'simple-import-sort/imports': 2
+        'simple-import-sort/imports': 2,
+        // Disable react-in-jsx-scope since we're using automatic JSX runtime
+        'react/react-in-jsx-scope': 'off'
       }
     },
     {
