@@ -2,8 +2,28 @@ import React from 'react';
 import * as ReactIs from 'react-is';
 
 /*
+ * Types.
+ */
+
+type ComponentWithDisplayName = {
+  displayName?: string;
+};
+
+function isComponentWithDisplayName(elementType: unknown): elementType is ComponentWithDisplayName {
+  return typeof elementType === 'function' && 'displayName' in elementType;
+}
+
+/*
  * Helpers.
  */
+
+/**
+ * Helper to safely get displayName from a React element type
+ */
+function getDisplayName(elementType: string | React.JSXElementConstructor<unknown>): string | undefined {
+  if (isComponentWithDisplayName(elementType)) return elementType.displayName;
+  return undefined;
+}
 
 /**
  * Takes in children for a component and looks for a specified component display name.
@@ -12,9 +32,7 @@ export function isComponentInChildren(children: React.ReactNode, componentDispla
   return React.Children.toArray(children).some((child) => {
     if (typeof child === 'string' || typeof child === 'number') return null;
     if (ReactIs.isFragment(child) || !React.isValidElement(child)) return false;
-    const childElement = child as React.ReactElement;
-    const childType = childElement.type as {displayName?: string};
-    return childType?.displayName === componentDisplayName;
+    return getDisplayName(child.type) === componentDisplayName;
   });
 }
 
@@ -32,15 +50,14 @@ export function renderFirstIconOnly(children: React.ReactNode, shouldDisableColo
     // Check for an icon and if we find one make sure we only have 1 icon
     // total that we could render. We also need to display any set colors
     // so the component itself can style the color.
-    const childElement = child as React.ReactElement;
-    const childType = childElement.type as {displayName?: string};
-    const isIcon = childType?.displayName === 'Icon';
+    const isIcon = getDisplayName(child.type) === 'Icon';
 
     if (isIcon && !hasFoundIcon) {
       hasFoundIcon = true;
-      return React.cloneElement(childElement, {shouldDisableColor} as React.Attributes & {
-        shouldDisableColor: boolean;
-      });
+      const props: React.Attributes & {shouldDisableColor: boolean} = {
+        shouldDisableColor
+      };
+      return React.cloneElement(child, props);
     }
     return null;
   });
@@ -59,9 +76,8 @@ export function renderChildrenIgnoreSpecifiedComponents(
     if (ReactIs.isFragment(child) || !React.isValidElement(child)) return child;
 
     // Check if the display name is one we should not render.
-    const childElement = child as React.ReactElement;
-    const childType = childElement.type as {displayName?: string};
-    if (childType?.displayName && componentsToIgnore.includes(childType.displayName)) return null;
+    const displayName = getDisplayName(child.type);
+    if (displayName && componentsToIgnore.includes(displayName)) return null;
 
     return child;
   });
@@ -79,9 +95,7 @@ export function renderChildrenSpecifiedComponents(
     if (ReactIs.isFragment(child) || !React.isValidElement(child)) return null;
 
     // Check if the display name is one we should render.
-    const childElement = child as React.ReactElement;
-    const childType = childElement.type as {displayName?: string};
-    const displayName = childType?.displayName;
+    const displayName = getDisplayName(child.type);
     if (displayName && componentsToInclude.includes(displayName)) return child;
 
     return null;
