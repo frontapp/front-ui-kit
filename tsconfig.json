@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "es2018"],
+    "lib": ["dom", "es6"],
     "outDir": "dist",
-    "target": "es2018",
-    "module": "esnext",
+    "target": "es6",
+    "module": "es6",
     "moduleResolution": "node",
     "declarationDir": "dist",
     "declaration": true,
