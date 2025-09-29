@@ -7,6 +7,10 @@ module.exports = {
     name: '@storybook/react-webpack5',
     options: {}
   },
+  typescript: {
+    check: false,
+    reactDocgen: 'none'
+  },
   webpackFinal: async (config) => ({
     ...config,
     module: {
