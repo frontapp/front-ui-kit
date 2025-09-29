@@ -20,7 +20,6 @@
     "build:watch": "yarn build:dev --watch",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production",
-    "build:types": "tsc --emitDeclarationOnly",
     "build-storybook": "storybook build",
     "lint": "eslint --ext .jsx,.ts,.tsx,.js . .storybook",
     "fix": "prettier --write . .storybook",
