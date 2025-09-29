@@ -1,4 +1,4 @@
-import React, {FC, PropsWithChildren} from 'react';
+import {FC, PropsWithChildren} from 'react';
 import styled, {css} from 'styled-components';
 
 import {Icon, IconName} from '../../elements/icon/icon';

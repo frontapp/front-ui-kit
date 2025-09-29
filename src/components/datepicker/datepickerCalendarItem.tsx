@@ -1,5 +1,5 @@
 import {DateTime} from 'luxon';
-import React, {FC, MouseEventHandler} from 'react';
+import {FC, MouseEventHandler} from 'react';
 import styled, {css} from 'styled-components';
 
 import {greys, palette} from '../../helpers/colorHelpers';

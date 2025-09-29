@@ -7,6 +7,25 @@ import {renderChildrenSpecifiedComponents} from '../../helpers/renderHelpers';
 import {AccordionSection} from './accordionSection';
 
 /*
+ * Types
+ */
+
+interface AccordionSectionProps {
+  /** Contents of the section to be rendered. */
+  children: React.ReactNode;
+  /** The unique id of the section. */
+  id: string;
+  /** The title to render for the accordion section. */
+  title: string;
+  /** Controls whether the section is expanded or not. */
+  isOpen?: boolean;
+  /** Called when the section is opened/closed. */
+  onSectionToggled?: (isOpen: boolean) => void;
+}
+
+type AccordionSectionElement = React.ReactElement<AccordionSectionProps>;
+
+/*
  * Props
  */
 
@@ -30,13 +49,19 @@ const StyledAccordionSectionDiv = styled.div`
  */
 
 export const Accordion: FC<AccordionProps> = ({children, expandMode = 'single'}) => {
-  const accordionSections = useMemo(
-    () =>
-      _(renderChildrenSpecifiedComponents(children, ['AccordionSection']))
-        .compact()
-        .value(),
-    [children]
-  );
+  const accordionSections = useMemo(() => {
+    const filteredSections = _(renderChildrenSpecifiedComponents(children, ['AccordionSection']))
+      .compact()
+      .value();
+
+    // Type guard to ensure we have the correct type
+    if (Array.isArray(filteredSections))
+      return filteredSections.filter(
+        (section): section is AccordionSectionElement =>
+          React.isValidElement(section) && section.type === AccordionSection
+      );
+    return [];
+  }, [children]);
   const [openAccordionSections, setOpenAccordionSections] = useState(
     findOpenAccordionSections(accordionSections, expandMode)
   );
@@ -52,17 +77,19 @@ export const Accordion: FC<AccordionProps> = ({children, expandMode = 'single'})
   return (
     <StyledAccordionSectionDiv>
       {accordionSections.map((section) => {
-        const {id, onSectionToggled} = section.props;
+        const {id, onSectionToggled, children: sectionChildren, title} = section.props;
         return (
           <AccordionSection
-            {...section.props}
             key={id}
+            id={id}
+            title={title}
             isOpen={openAccordionSections.includes(id)}
             onSectionToggled={() => {
               const isOpen = toggleSection(id);
               if (onSectionToggled) onSectionToggled(isOpen);
-            }}
-          />
+            }}>
+            {sectionChildren}
+          </AccordionSection>
         );
       })}
     </StyledAccordionSectionDiv>
@@ -73,21 +100,15 @@ export const Accordion: FC<AccordionProps> = ({children, expandMode = 'single'})
  * Helpers
  */
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function findOpenAccordionSections(accordionSections: any, expandMode: 'single' | 'multi'): Array<string> {
+function findOpenAccordionSections(
+  accordionSections: AccordionSectionElement[],
+  expandMode: 'single' | 'multi'
+): Array<string> {
   if (!accordionSections) return [];
 
   const openAccordionSections = accordionSections
-    .filter(
-      (
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        section: any
-      ) => section.props.isOpen
-    )
-    .map(
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (section: any) => section.props.id
-    );
+    .filter((section) => section.props.isOpen)
+    .map((section) => section.props.id);
 
   // If multiple sections cannot be selected, then only expand the first section
   if (expandMode === 'single') return openAccordionSections.slice(0, 1);

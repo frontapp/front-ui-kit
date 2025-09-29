@@ -1,4 +1,4 @@
-import React, {FC, MouseEventHandler} from 'react';
+import {FC, MouseEventHandler} from 'react';
 
 import {DropdownItem} from '../../../elements/dropdown/dropdownItem';
 import {DropdownItemIcon} from '../../../elements/dropdown/dropdownItemIcon';

@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, {FC} from 'react';
+import {FC} from 'react';
 import styled, {css} from 'styled-components';
 
 import {Icon, IconName} from '../icon/icon';

@@ -1,6 +1,6 @@
 import {range} from 'lodash';
 import {DateTime} from 'luxon';
-import React, {FC, MouseEventHandler} from 'react';
+import {FC, MouseEventHandler} from 'react';
 import styled from 'styled-components';
 
 import {Icon} from '../../elements/icon/icon';

@@ -1,4 +1,4 @@
-import React, {FC, useMemo} from 'react';
+import {FC, useMemo} from 'react';
 import styled, {css} from 'styled-components';
 
 import {greys, palette, PaletteColorsEnum} from '../../helpers/colorHelpers';
