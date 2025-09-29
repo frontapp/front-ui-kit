@@ -70,7 +70,7 @@ module.exports = {
     ],
 
     // Correct your types.
-    '@typescript-eslint/consistent-type-assertions': ['warn', {assertionStyle: 'as'}],
+    '@typescript-eslint/consistent-type-assertions': ['warn', {assertionStyle: 'never'}],
     '@typescript-eslint/naming-convention': [
       'warn',
       {
