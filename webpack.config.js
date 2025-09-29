@@ -20,63 +20,13 @@ module.exports = {
     rules: [
       {
         test: /\.ts$/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            compact: true,
-            presets: [
-              ['@babel/preset-env', {modules: false}],
-              '@babel/preset-typescript',
-              ['@babel/preset-react', {runtime: 'automatic'}]
-            ],
-            plugins: [
-              'add-react-displayname',
-              [
-                'babel-plugin-styled-components',
-                {
-                  // Disable the dev-friendly classNames on styled-components
-                  displayName: !isProduction,
-                  // Minify the CSS
-                  minify: true,
-                  // Helps with dead code elimination
-                  // https://www.styled-components.com/docs/tooling#dead-code-elimination
-                  pure: true
-                }
-              ]
-            ]
-          }
-        },
-        exclude: [/node_modules/]
+        use: 'ts-loader',
+        exclude: /node_modules/
       },
       {
         test: /\.tsx$/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            compact: true,
-            presets: [
-              ['@babel/preset-env', {modules: false}],
-              '@babel/preset-typescript',
-              ['@babel/preset-react', {runtime: 'automatic'}]
-            ],
-            plugins: [
-              'add-react-displayname',
-              [
-                'babel-plugin-styled-components',
-                {
-                  // Disable the dev-friendly classNames on styled-components
-                  displayName: !isProduction,
-                  // Minify the CSS
-                  minify: true,
-                  // Helps with dead code elimination
-                  // https://www.styled-components.com/docs/tooling#dead-code-elimination
-                  pure: true
-                }
-              ]
-            ]
-          }
-        },
-        exclude: [/node_modules/]
+        use: 'ts-loader',
+        exclude: /node_modules/
       },
       {
         test: /\.svg$/i,
@@ -109,9 +59,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
-    clean: {
-      keep: /\.d\.ts$/
-    },
+    clean: true,
     library: {
       type: 'commonjs'
     }

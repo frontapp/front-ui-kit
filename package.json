@@ -18,8 +18,8 @@
   "scripts": {
     "build": "yarn build:dev",
     "build:watch": "yarn build:dev --watch",
-    "build:dev": "yarn build:types && webpack --mode=development",
-    "build:prod": "yarn build:types && webpack --mode=production",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production",
     "build:types": "tsc --emitDeclarationOnly",
     "build-storybook": "storybook build",
     "lint": "eslint --ext .jsx,.ts,.tsx,.js . .storybook",
