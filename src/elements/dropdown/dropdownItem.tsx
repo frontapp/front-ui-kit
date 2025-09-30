@@ -10,6 +10,8 @@ import {
   renderChildrenSpecifiedComponents
 } from '../../helpers/renderHelpers';
 import {Icon} from '../icon/icon';
+import {SubmenuTrigger} from './components/SubmenuTrigger';
+import { NestedDropdownConfig } from './types/nestedDropdown';
 
 /*
  * Constants.
@@ -36,6 +38,18 @@ export interface DropdownItemProps {
   isSelected?: boolean;
   /** Called when the dropdown item is clicked. */
   onClick?: MouseEventHandler;
+  /** Submenu content to render on hover. Uses new nested dropdown system if NestedDropdownProvider is available. */
+  submenu?: React.ReactNode;
+  /** Unique identifier for this submenu (optional, auto-generated if not provided) */
+  submenuId?: string;
+  /** Parent submenu ID for proper nesting */
+  parentSubmenuId?: string;
+  /** Custom configuration for this submenu */
+  submenuConfig?: Partial<NestedDropdownConfig>;
+  /** Called when submenu opens */
+  onSubmenuOpen?: (id: string) => void;
+  /** Called when submenu closes */
+  onSubmenuClose?: (id: string) => void;
 }
 
 /*
@@ -54,6 +68,7 @@ const StyledDropdownItemWrapperDiv = styled.div`
     background: ${alphas.gray10};
   }
 `;
+
 
 const StyledDropdownItemContentWrapperDiv = styled.div`
   display: flex;
@@ -105,28 +120,58 @@ export const DropdownItem: FC<DropdownItemProps> = ({
   type = 'simple',
   isSelected,
   description,
-  onClick
-}) => (
-  <StyledDropdownItemWrapperDiv
-    onClick={(event) => {
-      // If we are in multi mode, we should not close the dropdown when clicked.
-      if (type === 'multi') event.preventDefault();
-      if (onClick) onClick(event);
-    }}>
-    {/* Render non-content items. Avatar, icons, etc. */}
-    {renderChildrenSpecifiedComponents(children, nonDropdownContentComponents)}
-    {/* Render content items. */}
-    <StyledDropdownItemContentWrapperDiv>
-      <StyledDropdownItemTitleDiv $isSelected={isSelected}>
-        {renderChildrenIgnoreSpecifiedComponents(children, nonDropdownContentComponents)}
-      </StyledDropdownItemTitleDiv>
-      {maybeRenderDescription(description)}
-    </StyledDropdownItemContentWrapperDiv>
-    <StyledDropdownItemRightContentDiv>
-      {renderSelectedState(type, isSelected)}
-    </StyledDropdownItemRightContentDiv>
-  </StyledDropdownItemWrapperDiv>
-);
+  onClick,
+  submenu,
+  submenuId,
+  submenuConfig,
+  parentSubmenuId,
+  onSubmenuOpen,
+  onSubmenuClose
+}) => {
+  // Generate deterministic ID if not provided
+  const generatedId = React.useId();
+  const effectiveSubmenuId = submenuId ?? `item-${generatedId}`;
+  
+  const content = (
+    <StyledDropdownItemWrapperDiv
+      onClick={(event) => {
+        // If we are in multi mode, we should not close the dropdown when clicked.
+        if (type === 'multi') event.preventDefault();
+        if (onClick) onClick(event);
+      }}>
+      {/* Render non-content items. Avatar, icons, etc. */}
+      {renderChildrenSpecifiedComponents(children, nonDropdownContentComponents)}
+      {/* Render content items. */}
+      <StyledDropdownItemContentWrapperDiv>
+        <StyledDropdownItemTitleDiv $isSelected={isSelected}>
+          {renderChildrenIgnoreSpecifiedComponents(children, nonDropdownContentComponents)}
+        </StyledDropdownItemTitleDiv>
+        {maybeRenderDescription(description)}
+      </StyledDropdownItemContentWrapperDiv>
+      <StyledDropdownItemRightContentDiv>
+        {renderSelectedState(type, isSelected)}
+        {submenu && <Icon name="ChevronRight" color={greys.shade60} />}
+      </StyledDropdownItemRightContentDiv>
+    </StyledDropdownItemWrapperDiv>
+  );
+
+  // If we have a submenu, wrap with SubmenuTrigger
+  if (submenu) 
+    return (
+      <SubmenuTrigger
+        submenuId={effectiveSubmenuId}
+        submenu={submenu}
+        parentSubmenuId={parentSubmenuId}
+        onSubmenuOpen={onSubmenuOpen}
+        onSubmenuClose={onSubmenuClose}
+        submenuConfig={submenuConfig}>
+        {content}
+      </SubmenuTrigger>
+    );
+
+  return content;
+};
+
 
 /*
  * Helpers.
