@@ -175,7 +175,14 @@ const Template: StoryFn = () => {
                     onSubmenuOpen={(id) => console.log('Opened submenu:', id)}
                     onSubmenuClose={(id) => console.log('Closed submenu:', id)}
                     submenu={
-                      <Dropdown>
+                      <Dropdown
+                        isEmpty={getFilteredItems(category.id, category.items).length === 0}
+                        renderEmptyState={() => (
+                          <EmptyState
+                            message="No results found. Try adjusting your search terms."
+                          />
+                        )}
+                      >
                         <DropdownHeader
                           searchValue={submenuSearchValues[category.id] || ''}
                           searchPlaceholder={`Search ${category.name.toLowerCase()}...`}
@@ -188,22 +195,16 @@ const Template: StoryFn = () => {
                           {category.name}
                         </DropdownHeader>
                         <DropdownHeading>{category.name}</DropdownHeading>
-                        {getFilteredItems(category.id, category.items).length === 0 ? (
-                          <EmptyState
-                            message="No results found. Try adjusting your search terms."
-                          />
-                        ) : (
-                          getFilteredItems(category.id, category.items).map((item) => (
-                            <DropdownItem 
-                              key={item} 
-                              onClick={() => {
-                                setSelectedValue(item);
-                                onRequestClose();
-                              }}>
-                              {item}
-                            </DropdownItem>
-                          ))
-                        )}
+                        {getFilteredItems(category.id, category.items).map((item) => (
+                          <DropdownItem 
+                            key={item} 
+                            onClick={() => {
+                              setSelectedValue(item);
+                              onRequestClose();
+                            }}>
+                            {item}
+                          </DropdownItem>
+                        ))}
                         <DropdownItem onClick={() => console.log('Settings clicked')}>
                           <DropdownItemIcon color={palette.orange.shade40} iconName="Gear" />
                           Settings
@@ -324,7 +325,14 @@ const MultiSelectTemplate: StoryFn = () => {
                       onSubmenuOpen={(id) => console.log('Opened multi-select submenu:', id)}
                       onSubmenuClose={(id) => console.log('Closed multi-select submenu:', id)}
                       submenu={
-                        <Dropdown>
+                        <Dropdown
+                          isEmpty={getFilteredItems(category.id, category.items).length === 0}
+                          renderEmptyState={() => (
+                            <EmptyState
+                              message="No results found. Try adjusting your search terms."
+                            />
+                          )}
+                        >
                           <DropdownHeader
                             searchValue={submenuSearchValues[category.id] || ''}
                             searchPlaceholder={`Search ${category.name.toLowerCase()}...`}
@@ -336,43 +344,15 @@ const MultiSelectTemplate: StoryFn = () => {
                             }}>
                             {category.name} ({selectedInCategory} selected)
                           </DropdownHeader>
-                          
-                          {getFilteredItems(category.id, category.items).length === 0 ? (
-                            <EmptyState
-                              message="No results found. Try adjusting your search terms."
-                            />
-                          ) : (
-                            <>
-                              <DropdownItem
+                            {getFilteredItems(category.id, category.items).map((item) => (
+                              <DropdownItem 
+                                key={item}
                                 type="multi"
-                                isSelected={selectedInCategory === category.items.length}
-                                onClick={() => {
-                                  if (selectedInCategory === category.items.length)
-                                    // Deselect all in this category
-                                    setSelectedItems(prev => 
-                                      prev.filter(item => !category.items.includes(item))
-                                    );
-                                  else
-                                    // Select all in this category
-                                    setSelectedItems(prev => [
-                                      ...prev.filter(item => !category.items.includes(item)),
-                                      ...category.items
-                                    ]);
-                                }}>
-                                <strong>Select All {category.name}</strong>
+                                isSelected={selectedItems.includes(item)}
+                                onClick={() => toggleItem(item)}>
+                                {item}
                               </DropdownItem>
-                              
-                              {getFilteredItems(category.id, category.items).map((item) => (
-                                <DropdownItem 
-                                  key={item}
-                                  type="multi"
-                                  isSelected={selectedItems.includes(item)}
-                                  onClick={() => toggleItem(item)}>
-                                  {item}
-                                </DropdownItem>
-                              ))}
-                            </>
-                          )}
+                            ))}
                         </Dropdown>
                       }>
                       <DropdownItemIcon 
