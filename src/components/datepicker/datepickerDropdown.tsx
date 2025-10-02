@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import {FC} from 'react';
 
 import {DropdownButton} from '../../elements/dropdown/dropdownButton';
 import {DropdownCoordinator} from '../../elements/dropdown/dropdownCoordinator';

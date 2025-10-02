@@ -1,11 +1,17 @@
 # Changelog
 
-## [0.8.0](https://github.com/frontapp/front-ui-kit/compare/v0.7.19...v0.8.0) (2025-08-13)
+## [0.8.1](https://github.com/frontapp/front-ui-kit/compare/v0.8.0...v0.8.1) (2025-09-29)
 
+
+### Bug Fixes
+
+* build type declarations not being generated ([#258](https://github.com/frontapp/front-ui-kit/issues/258)) ([2ec6328](https://github.com/frontapp/front-ui-kit/commit/2ec6328b38c715665428879b5de44772bb3c6337))
+
+## [0.8.0](https://github.com/frontapp/front-ui-kit/compare/v0.7.19...v0.8.0) (2025-08-13)
 
 ### Features
 
-* bump react from 18 to 19 ([#246](https://github.com/frontapp/front-ui-kit/issues/246)) ([14cc894](https://github.com/frontapp/front-ui-kit/commit/14cc894ee00aaebc502a5fb3c4e69ca2129fad74))
+- bump react from 18 to 19 ([#246](https://github.com/frontapp/front-ui-kit/issues/246)) ([14cc894](https://github.com/frontapp/front-ui-kit/commit/14cc894ee00aaebc502a5fb3c4e69ca2129fad74))
 
 ## [0.7.19](https://github.com/frontapp/front-ui-kit/compare/v0.7.18...v0.7.19) (2025-06-11)
 

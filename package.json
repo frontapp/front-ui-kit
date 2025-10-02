@@ -1,6 +1,6 @@
 {
   "name": "@frontapp/ui-kit",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "repository": "git@github.com:frontapp/front-ui-kit.git",
   "homepage": "http://frontapp.github.io/front-ui-kit",
   "author": "",
@@ -25,7 +25,8 @@
     "fix": "prettier --write . .storybook",
     "start": "yarn storybook",
     "storybook": "storybook dev -p 6006",
-    "test": "jest"
+    "test": "jest",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@juggle/resize-observer": "^3.4.0",
@@ -39,7 +40,7 @@
     "react-spring": "^9.7.5",
     "react-use-measure": "^2.1.7",
     "react-window": "^1.8.11",
-    "react-window-infinite-loader": "^1.0.10"
+    "react-window-infinite-loader": "^2.0.0"
   },
   "peerDependencies": {
     "react": ">= 19",

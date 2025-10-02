@@ -1,4 +1,4 @@
-import React, {FC, MouseEvent, MouseEventHandler, ReactNode} from 'react';
+import {FC, MouseEvent, MouseEventHandler, ReactNode} from 'react';
 import styled from 'styled-components';
 
 import {Dropdown} from '../../../elements/dropdown/dropdown';

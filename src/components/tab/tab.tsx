@@ -1,5 +1,5 @@
 import {ellipsis} from 'polished';
-import React, {FC, MouseEventHandler} from 'react';
+import {FC, MouseEventHandler} from 'react';
 import styled, {css} from 'styled-components';
 
 import {alphas, greys} from '../../helpers/colorHelpers';

@@ -1,12 +1,12 @@
-import { StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
+import {StoryObj} from '@storybook/react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import { greys } from '../../../../../helpers/colorHelpers';
-import { DefaultStyleProvider } from '../../../../../utils/defaultStyleProvider';
-import { PluginFooter } from '../../pluginFooter';
-import { PluginHeader } from '../../pluginHeader';
-import { PluginLayout } from '../../pluginLayout';
+import {greys} from '../../../../../helpers/colorHelpers';
+import {DefaultStyleProvider} from '../../../../../utils/defaultStyleProvider';
+import {PluginFooter} from '../../pluginFooter';
+import {PluginHeader} from '../../pluginHeader';
+import {PluginLayout} from '../../pluginLayout';
 
 const StyledCenteredDiv = styled.div`
   display: flex;
@@ -34,7 +34,7 @@ const Template = () => {
       <DefaultStyleProvider>
         <StyledLayoutDiv>
           <PluginLayout>
-            <PluginHeader search={{ query, onChange: setQuery }}>Top-level Plugin Page</PluginHeader>
+            <PluginHeader search={{query, onChange: setQuery}}>Top-level Plugin Page</PluginHeader>
             <StyledContentDiv>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at mattis lorem, id varius sem.
               Praesent commodo eu ex sit amet cursus. Sed condimentum tortor urna, ut dapibus odio vehicula a.

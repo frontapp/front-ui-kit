@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import {FC} from 'react';
 
 import {DropdownItemSpacer} from '../../../elements/dropdown/dropdownItemSpacer';
 
