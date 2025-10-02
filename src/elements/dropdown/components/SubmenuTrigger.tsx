@@ -16,6 +16,10 @@ interface SubmenuTriggerProps extends SubmenuCapableProps {
   className?: string;
   /** Whether this trigger is disabled */
   disabled?: boolean;
+  /** Minimum width for the submenu */
+  minWidth?: string;
+  /** Maximum width for the submenu */
+  maxWidth?: string;
 }
 
 const StyledSubmenuTriggerDiv = styled.div`
@@ -46,17 +50,43 @@ const StyledSubmenuContentWrapper = styled.div`
   align-items: stretch;
 `;
 
+interface StyledSubmenuPortalContainerProps {
+  $zIndex: number;
+  $minWidth: string;
+  $maxWidth: string;
+}
+
+const StyledSubmenuPortalContainer = styled.div<StyledSubmenuPortalContainerProps>`
+  z-index: ${props => props.$zIndex};
+  pointer-events: auto;
+  width: auto;
+  min-width: ${props => props.$minWidth};
+  max-width: ${props => props.$maxWidth};
+`;
+
 /**
  * SubmenuTrigger component handles the display and positioning of dropdown submenus.
- * 
+ *
  * This component wraps dropdown items that have submenus and manages:
  * - Hover state for opening/closing submenus
  * - Custom Popper.js positioning that bypasses PopoverContext
  * - Mouse event handling for smooth submenu interactions
- * 
- * The positioning implementation uses direct Popper.js integration instead of 
+ * - Configurable submenu dimensions (min/max width)
+ *
+ * The positioning implementation uses direct Popper.js integration instead of
  * PopoverContext to avoid conflicts with the main dropdown's context and ensure
  * precise positioning relative to individual dropdown items.
+ *
+ * @example
+ * ```tsx
+ * <SubmenuTrigger
+ *   submenuId="my-submenu"
+ *   submenu={<Dropdown>...</Dropdown>}
+ *   minWidth="250px"
+ *   maxWidth="500px">
+ *   <DropdownItem>Parent Item</DropdownItem>
+ * </SubmenuTrigger>
+ * ```
  */
 export const SubmenuTrigger: React.FC<SubmenuTriggerProps> = ({
   children,
@@ -67,7 +97,9 @@ export const SubmenuTrigger: React.FC<SubmenuTriggerProps> = ({
   disabled = false,
   onSubmenuOpen,
   onSubmenuClose,
-  submenuConfig
+  submenuConfig,
+  minWidth = '200px',
+  maxWidth = '400px'
 }) => {
   const triggerRef = useRef<HTMLDivElement>(null);
   const {config} = useNestedDropdown();
@@ -181,14 +213,15 @@ export const SubmenuTrigger: React.FC<SubmenuTriggerProps> = ({
         {children}
       </StyledSubmenuTriggerDiv>
       
-      
       {isOpen && submenu && positioning && (
         <SubmenuPortal
           positioning={positioning}
           onMouseEnter={handleSubmenuMouseEnter}
           onMouseLeave={handleSubmenuMouseLeave}
           submenuId={effectiveSubmenuId}
-          triggerElement={triggerRef.current}>
+          triggerElement={triggerRef.current}
+          minWidth={minWidth}
+          maxWidth={maxWidth}>
           <StyledSubmenuContentWrapper
             onMouseEnter={handleSubmenuMouseEnter}
             onMouseLeave={handleSubmenuMouseLeave}>
@@ -216,6 +249,8 @@ interface SubmenuPortalProps {
   submenuId: string;
   triggerElement: HTMLElement | null;
   children: React.ReactNode;
+  minWidth: string;
+  maxWidth: string;
 }
 
 /**
@@ -231,7 +266,9 @@ const SubmenuPortal: React.FC<SubmenuPortalProps> = ({
   onMouseLeave,
   submenuId,
   triggerElement,
-  children
+  children,
+  minWidth,
+  maxWidth
 }) => {
   /**
    * Custom Popper.js implementation for submenu positioning.
@@ -277,22 +314,18 @@ const SubmenuPortal: React.FC<SubmenuPortalProps> = ({
         style={styles.popper}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...attributes.popper}>
-        <div
+        <StyledSubmenuPortalContainer
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
           data-submenu-portal={submenuId}
           role="menu"
           tabIndex={-1}
           aria-labelledby={`trigger-${submenuId}`}
-          style={{ 
-            zIndex: positioning.zIndex,
-            pointerEvents: 'auto',
-            width: 'auto',
-            minWidth: '200px',
-            maxWidth: '400px'
-          }}>
+          $zIndex={positioning.zIndex}
+          $minWidth={minWidth}
+          $maxWidth={maxWidth}>
           {children}
-        </div>
+        </StyledSubmenuPortalContainer>
       </div>
     </Layer>
   );

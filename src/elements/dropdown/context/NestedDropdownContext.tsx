@@ -90,9 +90,11 @@ export const NestedDropdownProvider: React.FC<NestedDropdownProviderProps> = ({
       const level = parentId ? (prev.get(parentId)?.level ?? 0) + 1 : 0;
       
       // Check max depth
-      if (level >= config.maxDepth) 
-        // Maximum nesting depth exceeded - silently ignore
+      if (level >= config.maxDepth) {
+        // eslint-disable-next-line no-console
+        console.warn(`Maximum nesting depth exceeded for submenu ${id}`);
         return prev;
+      }
       
       // Close any existing submenus at this level or deeper
       newSubmenus.forEach((submenu, submenuId) => {
