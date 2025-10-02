@@ -1,9 +1,9 @@
-import { StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
+import {StoryObj} from '@storybook/react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import { CalendarWeekDaysEnum } from '../../../../helpers/calendarHelpers';
-import { DatePickerDropdown as DatePicker } from '../../datepickerDropdown';
+import {CalendarWeekDaysEnum} from '../../../../helpers/calendarHelpers';
+import {DatePickerDropdown as DatePicker} from '../../datepickerDropdown';
 
 const StyledDatePickerDiv = styled.div`
   display: flex;

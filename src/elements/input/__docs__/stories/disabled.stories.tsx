@@ -1,8 +1,8 @@
-import { StoryObj } from '@storybook/react';
-import React, { createRef, useState } from 'react';
+import {StoryObj} from '@storybook/react';
+import React, {createRef, useState} from 'react';
 import styled from 'styled-components';
 
-import { Input } from '../../input';
+import {Input} from '../../input';
 
 const StyledCenteredDiv = styled.div`
   display: flex;
@@ -16,7 +16,13 @@ const Template = () => {
   const ref = createRef<HTMLInputElement>();
   return (
     <StyledCenteredDiv>
-      <Input value={value} onChange={(v) => setValue(String(v))} isDisabled ref={ref} placeholder='Disabled Input Example' />
+      <Input
+        value={value}
+        onChange={(v) => setValue(String(v))}
+        isDisabled
+        ref={ref}
+        placeholder="Disabled Input Example"
+      />
     </StyledCenteredDiv>
   );
 };

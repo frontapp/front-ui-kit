@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import {FC} from 'react';
 import styled, {css, keyframes} from 'styled-components';
 
 import {greys} from '../../helpers/colorHelpers';

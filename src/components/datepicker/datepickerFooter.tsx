@@ -1,6 +1,6 @@
 import _, {isUndefined} from 'lodash';
 import {DateTime} from 'luxon';
-import React, {FC, FocusEventHandler, MouseEventHandler, useEffect, useState} from 'react';
+import {FC, FocusEventHandler, MouseEventHandler, useEffect, useState} from 'react';
 import styled from 'styled-components';
 
 import {Input} from '../../elements/input/input';

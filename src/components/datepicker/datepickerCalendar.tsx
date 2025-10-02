@@ -1,5 +1,5 @@
 import {DateTime, Info} from 'luxon';
-import React, {FC} from 'react';
+import {FC} from 'react';
 import styled from 'styled-components';
 
 import {CalendarWeekDaysEnum, getCalendarDays, getSortedWeekdays} from '../../helpers/calendarHelpers';

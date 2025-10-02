@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
 import _ from 'lodash';
-import React, {isValidElement,useCallback, useMemo} from 'react';
+import React, {isValidElement, useCallback, useMemo} from 'react';
 import ReactIs from 'react-is';
 
 import {ActionMenuItem, ActionMenuItemProps} from '../../../components/_pre-built/actionMenu/actionMenuItem';

@@ -1,6 +1,6 @@
 import {range} from 'lodash';
 import {DateTime} from 'luxon';
-import React, {FC, RefObject, useEffect, useRef} from 'react';
+import {FC, RefObject, useEffect, useRef} from 'react';
 import styled, {css} from 'styled-components';
 
 import {formatTime} from '../../helpers/calendarHelpers';

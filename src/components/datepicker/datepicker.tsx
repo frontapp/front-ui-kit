@@ -1,6 +1,6 @@
 import {isUndefined} from 'lodash';
 import {DateTime} from 'luxon';
-import React, {FC, MouseEventHandler, useEffect, useMemo, useState} from 'react';
+import {FC, MouseEventHandler, useEffect, useMemo, useState} from 'react';
 import styled from 'styled-components';
 
 import {CalendarWeekDaysEnum, DatepickerViewsEnum, mergeDateAndTime} from '../../helpers/calendarHelpers';
