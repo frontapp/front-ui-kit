@@ -1,6 +1,6 @@
 import React, {ComponentType, FC, forwardRef, useEffect, useRef} from 'react';
 import {ListChildComponentProps, VariableSizeList} from 'react-window';
-import InfiniteLoader from 'react-window-infinite-loader';
+import {useInfiniteLoader} from 'react-window-infinite-loader';
 
 import {usePrevious} from '../../helpers/hookHelpers';
 
@@ -102,28 +102,26 @@ export const DropdownList: FC<DropdownListProps> = (props) => {
     return <div style={updateStyle}>{renderItem(index)}</div>;
   };
 
+  const onRowsRendered = useInfiniteLoader({
+    isRowLoaded: isItemLoaded,
+    rowCount: itemCount,
+    loadMoreRows: isLoading ? async () => {} : async () => onLoadMore(),
+    threshold: loadingThreshold
+  });
+
   return (
-    <InfiniteLoader
-      isItemLoaded={isItemLoaded}
+    <VariableSizeList
+      ref={listRef}
+      height={height}
       itemCount={itemCount}
-      loadMoreItems={isLoading ? () => {} : onLoadMore}
-      threshold={loadingThreshold}>
-      {({onItemsRendered, ref: infiniteLoaderListRef}) => (
-        <VariableSizeList
-          ref={(ref: VariableSizeList) => {
-            listRef.current = ref;
-            infiniteLoaderListRef(ref);
-          }}
-          height={height}
-          itemCount={itemCount}
-          itemSize={computeItemHeight}
-          innerElementType={innerElementType}
-          width="100%"
-          onItemsRendered={onItemsRendered}>
-          {renderChild}
-        </VariableSizeList>
-      )}
-    </InfiniteLoader>
+      itemSize={computeItemHeight}
+      innerElementType={innerElementType}
+      width="100%"
+      onItemsRendered={({visibleStartIndex, visibleStopIndex}) => {
+        onRowsRendered({startIndex: visibleStartIndex, stopIndex: visibleStopIndex});
+      }}>
+      {renderChild}
+    </VariableSizeList>
   );
 };
 
