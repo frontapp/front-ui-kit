@@ -10,6 +10,8 @@ export {DropdownItemFormField} from './dropdown/dropdownItemFormField';
 export {DropdownFooter} from './dropdown/dropdownFooter';
 export {DropdownItemSkeleton} from './dropdown/skeleton/dropdownItemSkeleton';
 export {DropdownItemSpacer} from './dropdown/dropdownItemSpacer';
+export {NestedDropdownContext} from './dropdown/context/NestedDropdownContext';
+export {NestedDropdownProvider} from './dropdown/context/NestedDropdownContext';
 
 export {EmptyState} from './emptyState/emptyState';
 
