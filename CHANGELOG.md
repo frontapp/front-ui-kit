@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.0](https://github.com/frontapp/front-ui-kit/compare/v0.8.1...v0.9.0) (2025-10-02)
+
+
+### Features
+
+* create nested dropdowns ([#262](https://github.com/frontapp/front-ui-kit/issues/262)) ([29d9cbd](https://github.com/frontapp/front-ui-kit/commit/29d9cbd750d67d04cee4cdc35b510f61263ed5b5))
+
 ## [0.8.1](https://github.com/frontapp/front-ui-kit/compare/v0.8.0...v0.8.1) (2025-09-29)
 
 
