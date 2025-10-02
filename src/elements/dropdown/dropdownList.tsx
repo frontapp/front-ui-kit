@@ -1,6 +1,7 @@
 import React, {ComponentType, FC, forwardRef, useEffect, useRef} from 'react';
 import {ListChildComponentProps, VariableSizeList} from 'react-window';
 import {useInfiniteLoader} from 'react-window-infinite-loader';
+import styled from 'styled-components';
 
 import {usePrevious} from '../../helpers/hookHelpers';
 
@@ -9,6 +10,27 @@ import {usePrevious} from '../../helpers/hookHelpers';
  */
 
 export const dropdownListPadding = 5; // px.
+
+/*
+ * Styled Components.
+ */
+
+interface StyledPersistentContainerProps {
+  $height: number;
+}
+
+const StyledPersistentContainer = styled.div<StyledPersistentContainerProps>`
+  height: ${(props) => props.$height}px;
+  overflow: auto;
+  padding: ${dropdownListPadding}px 0;
+  box-sizing: border-box;
+`;
+
+const StyledPersistentItem = styled.div<{ $height: number }>`
+  height: ${(props) => props.$height}px;
+  display: flex;
+  align-items: stretch;
+`;
 
 /*
  * Props.
@@ -37,6 +59,8 @@ interface DropdownListProps {
   renderItem: (index: number) => React.ReactNode;
   /** Called when we should load more items. */
   onLoadMore: () => Promise<void>;
+  /** If true, disables virtualization and renders all items directly. Useful for submenus that need to stay mounted. */
+  isPersistent?: boolean;
 }
 
 type RenderChild = ComponentType<ListChildComponentProps>;
@@ -57,7 +81,8 @@ export const DropdownList: FC<DropdownListProps> = (props) => {
     loadingSkeleton,
     getItemHeight,
     renderItem,
-    onLoadMore
+    onLoadMore,
+    isPersistent
   } = props;
 
   const listRef = useRef<VariableSizeList>(null);
@@ -108,6 +133,27 @@ export const DropdownList: FC<DropdownListProps> = (props) => {
     loadMoreRows: isLoading ? async () => {} : async () => onLoadMore(),
     threshold: loadingThreshold
   });
+
+
+  // If isPersistent is true, render without virtualization
+  // This is used for submenus that need to stay mounted for search functionality
+  if (isPersistent)
+    return (
+      <StyledPersistentContainer $height={height}>
+        {Array.from({ length: itemCount }, (_, index) => {
+          const itemHeight = computeItemHeight(index);
+          const isLoaded = isItemLoaded(index);
+          
+          return (
+            <StyledPersistentItem 
+              key={`persistent-item-${index}`} 
+              $height={itemHeight}>
+              {isLoaded ? renderItem(index) : loadingSkeleton}
+            </StyledPersistentItem>
+          );
+        })}
+      </StyledPersistentContainer>
+    );
 
   return (
     <VariableSizeList

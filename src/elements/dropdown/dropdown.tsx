@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, {FC, useMemo} from 'react';
+import React, {FC, isValidElement, useMemo} from 'react';
 import styled, {css} from 'styled-components';
 
 import {greys} from '../../helpers/colorHelpers';
@@ -81,9 +81,10 @@ const StyledDropdownWrapperDiv = styled.div<StyledDropdownWrapperDivProps>`
     max-width: ${p.$maxWidth}px;
   `}
   ${(p) =>
+    // We add 2px to the max height to account for the border of the dropdown.
     p.$maxHeight &&
     css`
-      max-height: ${p.$maxHeight}px;
+      max-height: ${p.$maxHeight + 2}px;
     `};
   ${(p) =>
     p.$minWidth &&
@@ -164,6 +165,14 @@ export const Dropdown: FC<DropdownProps> = ({
     [children]
   );
 
+  // Check if any children have submenus to determine if we need persistent rendering
+  const hasSubmenus = useMemo(() => 
+    React.Children.toArray(children).some(child => {
+      if (!isValidElement(child) || !child.props) return false;
+      const childProps = child.props as Record<string, unknown>;
+      return 'submenu' in childProps && Boolean(childProps.submenu);
+    }), [children]);
+
   const renderDropdownContent = () => {
     if (isEmpty && renderEmptyState) return renderEmptyState();
     // We will not support rendering the input items in the list. Since the virtual list re-renders so often
@@ -192,6 +201,7 @@ export const Dropdown: FC<DropdownProps> = ({
         getItemHeight={getItemHeight}
         renderItem={renderItem}
         onLoadMore={onLoadMore || (async () => {})}
+        isPersistent={hasSubmenus}
       />
     );
   };
@@ -200,7 +210,8 @@ export const Dropdown: FC<DropdownProps> = ({
     <StyledDropdownWrapperDiv
       $minWidth={minWidth}
       $maxWidth={maxWidth}
-      $maxHeight={headerAndFooterComponents.length === 0 ? maxDropdownHeight : undefined}>
+      $maxHeight={headerAndFooterComponents.length === 0 ? maxDropdownHeight : undefined}
+      data-dropdown-container="true">
       {/* Render Dropdown headers / footers. */}
       {headerAndFooterComponents}
       <StyledDropdownContentWrapperDiv
