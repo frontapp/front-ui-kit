@@ -81,9 +81,10 @@ const StyledDropdownWrapperDiv = styled.div<StyledDropdownWrapperDivProps>`
     max-width: ${p.$maxWidth}px;
   `}
   ${(p) =>
+    // We add 2px to the max height to account for the border of the dropdown.
     p.$maxHeight &&
     css`
-      max-height: ${p.$maxHeight}px;
+      max-height: ${p.$maxHeight + 2}px;
     `};
   ${(p) =>
     p.$minWidth &&
