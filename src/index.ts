@@ -30,6 +30,8 @@ export {DefaultStyleProvider} from './utils/defaultStyleProvider';
 export {Accordion} from './components/accordion/accordion';
 export {AccordionSection} from './components/accordion/accordionSection';
 
+export {ExpandableSection} from './components/expandableSection/expandableSection';
+
 export {ActionMenu} from './components/_pre-built/actionMenu/actionMenu';
 export {ActionMenuItem} from './components/_pre-built/actionMenu/actionMenuItem';
 export {ActionMenuItemSpacer} from './components/_pre-built/actionMenu/actionMenuItemSpacer';
