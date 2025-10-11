@@ -120,12 +120,8 @@ export const ExpandableSection: FC<ExpandableSectionProps> = (props) => {
 
   const handleToggle = () => {
     const newIsOpen = !isOpen;
-    if (controlledIsOpen === undefined) {
-      setInternalIsOpen(newIsOpen);
-    }
-    if (onToggle) {
-      onToggle(newIsOpen);
-    }
+    if (controlledIsOpen === undefined) setInternalIsOpen(newIsOpen);
+    if (onToggle) onToggle(newIsOpen);
   };
 
   const titleElement = typeof title === 'string' ? <StyledTitleDiv>{title}</StyledTitleDiv> : title;

@@ -3,11 +3,11 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 
 import {Button} from '../../../button/button';
+import {ExpandableSection} from '../../expandableSection';
 import {Icon} from '../../../../elements/icon/icon';
 import {greys, palette} from '../../../../helpers/colorHelpers';
-import {DefaultStyleProvider} from '../../../../utils/defaultStyleProvider';
-import {ExpandableSection} from '../../expandableSection';
 import {VisualSizesEnum} from '../../../../helpers/fontHelpers';
+import {DefaultStyleProvider} from '../../../../utils/defaultStyleProvider';
 
 const StyledCenteredDiv = styled.div`
   display: flex;
@@ -80,7 +80,7 @@ export const Basic: StoryObj<typeof ExpandableSection> = {
           }>
           <StyledContentDiv>
             This expandable section includes action buttons in the header. The actions are positioned on the
-            right side and don't trigger the expand/collapse behavior.
+            right side and don&apos;t trigger the expand/collapse behavior.
           </StyledContentDiv>
         </ExpandableSection>
 
@@ -102,37 +102,39 @@ export const Basic: StoryObj<typeof ExpandableSection> = {
   )
 };
 
-export const Controlled: StoryObj<typeof ExpandableSection> = {
-  render: () => {
-    const [isOpen, setIsOpen] = useState(false);
+const ControlledComponent = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
-    return (
-      <DefaultStyleProvider>
-        <StyledCenteredDiv>
-          <div>
-            <Button onClick={() => setIsOpen(!isOpen)}>
-              {isOpen ? 'Close' : 'Open'} Section Programmatically
+  return (
+    <DefaultStyleProvider>
+      <StyledCenteredDiv>
+        <div>
+          <Button onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? 'Close' : 'Open'} Section Programmatically
+          </Button>
+        </div>
+
+        <ExpandableSection
+          title="Controlled Expandable Section"
+          isOpen={isOpen}
+          onToggle={setIsOpen}
+          actions={
+            <Button type="icon" size={VisualSizesEnum.SMALL}>
+              <Icon name="Gear" />
             </Button>
-          </div>
+          }>
+          <StyledContentDiv>
+            This section&apos;s open/closed state is controlled externally. You can toggle it using the button
+            above or by clicking on the section header.
+          </StyledContentDiv>
+        </ExpandableSection>
+      </StyledCenteredDiv>
+    </DefaultStyleProvider>
+  );
+};
 
-          <ExpandableSection
-            title="Controlled Expandable Section"
-            isOpen={isOpen}
-            onToggle={setIsOpen}
-            actions={
-              <Button type="icon" size={VisualSizesEnum.SMALL}>
-                <Icon name="Gear" />
-              </Button>
-            }>
-            <StyledContentDiv>
-              This section's open/closed state is controlled externally. You can toggle it using the button
-              above or by clicking on the section header.
-            </StyledContentDiv>
-          </ExpandableSection>
-        </StyledCenteredDiv>
-      </DefaultStyleProvider>
-    );
-  }
+export const Controlled: StoryObj<typeof ExpandableSection> = {
+  render: () => <ControlledComponent />
 };
 
 export const MultipleSections: StoryObj<typeof ExpandableSection> = {
@@ -166,7 +168,7 @@ export const Customized: StoryObj<typeof ExpandableSection> = {
       <StyledCenteredDiv>
         <ExpandableSection
           title="Text Before Icon"
-          showTextBeforeIcon={true}
+          showTextBeforeIcon
           actions={
             <Button type="icon" size={VisualSizesEnum.SMALL}>
               <Icon name="EditSquare" />
@@ -181,7 +183,7 @@ export const Customized: StoryObj<typeof ExpandableSection> = {
           </StyledContentDiv>
         </ExpandableSection>
 
-        <ExpandableSection title="Text First + Custom Icon" showTextBeforeIcon={true} iconName="ChevronDown">
+        <ExpandableSection title="Text First + Custom Icon" showTextBeforeIcon iconName="ChevronDown">
           <StyledContentDiv>
             This section combines both customizations: text before icon and a custom chevron icon.
           </StyledContentDiv>

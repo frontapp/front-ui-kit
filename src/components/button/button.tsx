@@ -120,7 +120,7 @@ function addButtonTypeStyles(
     `;
 
   // Handle custom color with early return
-  if (customColor) {
+  if (customColor)
     switch (type) {
       case 'primary':
       case 'primary-danger':
@@ -150,7 +150,6 @@ function addButtonTypeStyles(
           color: ${palette[customColor].shade40};
         `;
     }
-  }
 
   // Default behavior without custom color
   switch (type) {

@@ -170,8 +170,7 @@ export const Dropdown: FC<DropdownProps> = ({
     () =>
       React.Children.toArray(children).some((child) => {
         if (!isValidElement(child) || !child.props) return false;
-        const childProps = child.props as Record<string, unknown>;
-        return 'submenu' in childProps && Boolean(childProps.submenu);
+        return 'submenu' in child.props && Boolean(child.props.submenu);
       }),
     [children]
   );

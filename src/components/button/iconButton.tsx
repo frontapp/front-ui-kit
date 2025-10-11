@@ -67,7 +67,7 @@ function addIconColorStyles(
     `;
 
   // Handle custom color with early return
-  if (customColor) {
+  if (customColor)
     return css`
       color: ${palette[customColor][isActive ? 'shade50' : 'shade40']};
       background: ${isActive ? alphas.gray20 : 'unset'};
@@ -77,7 +77,6 @@ function addIconColorStyles(
         background: ${alphas.gray20};
       }
     `;
-  }
 
   if (isDanger)
     return css`

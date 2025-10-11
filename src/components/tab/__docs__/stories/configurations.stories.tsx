@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 import {Tab} from '../../tab';
 import {TabGroup} from '../../tabGroup';
-import {Heading, Paragraph} from '../../../../text';
 import {VisualSizesEnum} from '../../../../helpers/fontHelpers';
+import {Heading, Paragraph} from '../../../../text';
 
 const StyledWrapperDiv = styled.div`
   display: flex;
@@ -81,7 +81,8 @@ const Template: StoryFn<typeof Tab> = () => {
   const [selectedTabs, setSelectedTabs] = useState<Record<string, string>>(
     configurations.reduce(
       (acc, _, index) => {
-        acc[`config-${index}`] = tabs[0];
+        const [firstTab] = tabs;
+        acc[`config-${index}`] = firstTab;
         return acc;
       },
       {} as Record<string, string>
@@ -98,7 +99,7 @@ const Template: StoryFn<typeof Tab> = () => {
   return (
     <StyledWrapperDiv>
       {configurations.map((config, index) => (
-        <StyledSectionDiv key={index}>
+        <StyledSectionDiv key={config.title}>
           <Heading size={VisualSizesEnum.MEDIUM}>{config.title}</Heading>
           <StyledConfigWrapper>
             <Paragraph color="#666">{config.description}</Paragraph>
