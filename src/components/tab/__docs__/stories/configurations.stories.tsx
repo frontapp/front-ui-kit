@@ -2,10 +2,10 @@ import {StoryFn} from '@storybook/react';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import {Tab} from '../../tab';
-import {TabGroup} from '../../tabGroup';
 import {VisualSizesEnum} from '../../../../helpers/fontHelpers';
 import {Heading, Paragraph} from '../../../../text';
+import {Tab} from '../../tab';
+import {TabGroup} from '../../tabGroup';
 
 const StyledWrapperDiv = styled.div`
   display: flex;

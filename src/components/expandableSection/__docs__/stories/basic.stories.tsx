@@ -2,12 +2,12 @@ import {StoryObj} from '@storybook/react';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import {Button} from '../../../button/button';
-import {ExpandableSection} from '../../expandableSection';
 import {Icon} from '../../../../elements/icon/icon';
 import {greys, palette} from '../../../../helpers/colorHelpers';
 import {VisualSizesEnum} from '../../../../helpers/fontHelpers';
 import {DefaultStyleProvider} from '../../../../utils/defaultStyleProvider';
+import {Button} from '../../../button/button';
+import {ExpandableSection} from '../../expandableSection';
 
 const StyledCenteredDiv = styled.div`
   display: flex;

@@ -2,9 +2,9 @@ import {StoryFn} from '@storybook/react';
 import React from 'react';
 import styled from 'styled-components';
 
-import {Button} from '../../button';
 import {Icon} from '../../../../elements/icon/icon';
 import {PaletteColorsEnum} from '../../../../helpers/colorHelpers';
+import {Button} from '../../button';
 
 const StyledContainer = styled.div`
   display: flex;

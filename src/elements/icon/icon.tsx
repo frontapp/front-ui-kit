@@ -1,8 +1,6 @@
 import React, {FC} from 'react';
 import styled from 'styled-components';
 
-import {greys} from '../../helpers/colorHelpers';
-import {getIconViewBox} from './iconViewBoxes';
 import Archive from '../../assets/icons/archive.svg';
 import ArchiveFilled from '../../assets/icons/archiveFilled.svg';
 import Assign from '../../assets/icons/assign.svg';
@@ -56,8 +54,10 @@ import Star from '../../assets/icons/star.svg';
 import StarFilled from '../../assets/icons/starFilled.svg';
 import Trash from '../../assets/icons/trash.svg';
 import TrashFilled from '../../assets/icons/trashFilled.svg';
-import WarningFilled from '../../assets/icons/warningFilled.svg';
 import UserSquare from '../../assets/icons/userSquare.svg';
+import WarningFilled from '../../assets/icons/warningFilled.svg';
+import {greys} from '../../helpers/colorHelpers';
+import {getIconViewBox} from './iconViewBoxes';
 
 /*
  * Constants.

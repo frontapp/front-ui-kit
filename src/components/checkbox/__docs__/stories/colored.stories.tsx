@@ -1,8 +1,8 @@
 import {StoryObj} from '@storybook/react';
 import React, {useState} from 'react';
 
-import {Checkbox} from '../../checkbox';
 import {PaletteColorsEnum} from '../../../../helpers/colorHelpers';
+import {Checkbox} from '../../checkbox';
 
 const Template = ({color}: {color: PaletteColorsEnum}) => {
   const [isChecked, setIsChecked] = useState(false);
