@@ -101,8 +101,8 @@ const AutoDismissContent = () => {
           borderRadius: '4px',
           fontSize: '14px'
         }}>
-        <strong>Note:</strong> The "Multiple Banners" example shows how banners queue up when multiple are
-        triggered in sequence.
+        <strong>Note:</strong> The &quot;Multiple Banners&quot; example shows how banners queue up when
+        multiple are triggered in sequence.
       </div>
     </div>
   );

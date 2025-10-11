@@ -1,10 +1,10 @@
 import React from 'react';
 
+import {VisualSizesEnum} from '../../../../helpers/fontHelpers';
 import {Button} from '../../../button/button';
 import {TopBannersEnum, useTopBanners} from '../../topBannersContext';
 import {TopBannersHost} from '../../topBannersHost';
 import {TopBannersProvider} from '../../topBannersProvider';
-import {VisualSizesEnum} from '../../../../helpers/fontHelpers';
 
 const CustomMessagesContent = () => {
   const {showBanner} = useTopBanners();
