@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
 import Archive from '../../assets/icons/archive.svg';
@@ -31,6 +31,7 @@ import Close from '../../assets/icons/close.svg';
 import Copy from '../../assets/icons/copy.svg';
 import Edit from '../../assets/icons/edit.svg';
 import EditFilled from '../../assets/icons/editFilled.svg';
+import EditSquare from '../../assets/icons/editSquare.svg';
 import Export from '../../assets/icons/export.svg';
 import ExternalLink from '../../assets/icons/externalLink.svg';
 import Gear from '../../assets/icons/gear.svg';
@@ -56,8 +57,8 @@ import TrashFilled from '../../assets/icons/trashFilled.svg';
 import WarningFilled from '../../assets/icons/warningFilled.svg';
 import UserSquare from '../../assets/icons/userSquare.svg';
 
-import {greys} from '../../helpers/colorHelpers';
-import {getIconViewBox} from './iconViewBoxes';
+import { greys } from '../../helpers/colorHelpers';
+import { getIconViewBox } from './iconViewBoxes';
 
 /*
  * Constants.
@@ -96,6 +97,7 @@ const importedIcons = {
   Close,
   Copy,
   Edit,
+  EditSquare,
   EditFilled,
   EllipsisHorizontal,
   EllipsisVertical,
@@ -167,7 +169,7 @@ const StyledIconDiv = styled.div<StyledIconDivProps>`
  */
 
 export const Icon: FC<IconProps> = (props) => {
-  const {name, size = defaultSize, color = defaultColor, shouldDisableColor, viewBox} = props;
+  const { name, size = defaultSize, color = defaultColor, shouldDisableColor, viewBox } = props;
 
   // Pull the icon from the list of available icons.
   // The svg file is converted to a function that is called.
