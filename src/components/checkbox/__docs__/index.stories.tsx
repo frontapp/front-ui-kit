@@ -1,5 +1,5 @@
 /* eslint-disable storybook/story-exports */
-import {ComponentMeta} from '@storybook/react';
+import {Meta} from '@storybook/react';
 
 import {Checkbox} from '../checkbox';
 import DocumentationMDX from './docs.mdx';
@@ -23,7 +23,7 @@ export default {
     viewMode: 'docs'
   },
   id: 'Components/Checkbox'
-} as ComponentMeta<typeof Checkbox>;
+} as Meta<typeof Checkbox>;
 
 export {Basic} from './stories/basic.stories';
 export {BasicReverse} from './stories/basic-reverse.stories';

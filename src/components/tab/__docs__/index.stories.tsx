@@ -27,3 +27,4 @@ export default {
 
 export {Basic} from './stories/basic.stories';
 export {BasicGroup} from './stories/basic-group.stories';
+export {Configurations} from './stories/configurations.stories';

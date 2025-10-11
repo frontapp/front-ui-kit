@@ -16,6 +16,12 @@ interface TabProps {
   isSelected?: boolean;
   /** Called when the tab is clicked. */
   onClick?: MouseEventHandler;
+  /** Margin bottom for the tab name. Defaults to 11px. */
+  marginBottom?: number;
+  /** Height of the selected indicator. Defaults to 4px. */
+  selectedIndicatorHeight?: number;
+  /** Width of the selected indicator. Defaults to 50%. */
+  selectedIndicatorWidth?: string;
 }
 
 /*
@@ -49,18 +55,26 @@ const StyledTabWrapperDiv = styled.div<StyledTabWrapperDivProps>`
   }
 `;
 
-const StyledTabNameDiv = styled.div`
-  margin-bottom: 11px;
+interface StyledTabNameDivProps {
+  $marginBottom?: number;
+}
+
+const StyledTabNameDiv = styled.div<StyledTabNameDivProps>`
+  margin-bottom: ${(p) => p.$marginBottom || 11}px;
   ${ellipsis()}; // TODO: Remove this when we have tooltip support.
 `;
 
 interface StyledSelectedBorderDivProps {
   $isSelected?: boolean;
+  $selectedIndicatorHeight?: number;
+  $selectedIndicatorWidth?: string;
 }
 
 const StyledSelectedBorderDiv = styled.div<StyledSelectedBorderDivProps>`
   background: ${alphas.transparent};
-  height: 4px;
+  height: ${(p) => p.$selectedIndicatorHeight || 4}px;
+  width: ${(p) => p.$selectedIndicatorWidth || '50%'};
+  justify-self: center;
   border-top-left-radius: 100px;
   border-top-right-radius: 100px;
 
@@ -77,11 +91,15 @@ const StyledSelectedBorderDiv = styled.div<StyledSelectedBorderDivProps>`
 
 // TODO: Add tooltip support for overflowing names.
 export const Tab: FC<TabProps> = (props) => {
-  const {name, isSelected, onClick} = props;
+  const {name, isSelected, onClick, marginBottom, selectedIndicatorHeight, selectedIndicatorWidth} = props;
   return (
     <StyledTabWrapperDiv $isSelected={isSelected} onClick={onClick}>
-      <StyledTabNameDiv>{name}</StyledTabNameDiv>
-      <StyledSelectedBorderDiv $isSelected={isSelected} />
+      <StyledTabNameDiv $marginBottom={marginBottom}>{name}</StyledTabNameDiv>
+      <StyledSelectedBorderDiv
+        $isSelected={isSelected}
+        $selectedIndicatorHeight={selectedIndicatorHeight}
+        $selectedIndicatorWidth={selectedIndicatorWidth}
+      />
     </StyledTabWrapperDiv>
   );
 };
