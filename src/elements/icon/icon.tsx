@@ -18,6 +18,7 @@ import AttachmentVideo from '../../assets/icons/attachmentVideo.svg';
 import AttachmentWord from '../../assets/icons/attachmentWord.svg';
 import Calendar from '../../assets/icons/calendar.svg';
 import CalendarFilled from '../../assets/icons/calendarFilled.svg';
+import CaretExpand from '../../assets/icons/caretExpand.svg';
 import CheckmarkBox from '../../assets/icons/checkmarkBox.svg';
 import CheckmarkCircle from '../../assets/icons/checkmarkCircle.svg';
 import CheckmarkCircleEmpty from '../../assets/icons/checkmarkCircleEmpty.svg';
@@ -53,6 +54,8 @@ import StarFilled from '../../assets/icons/starFilled.svg';
 import Trash from '../../assets/icons/trash.svg';
 import TrashFilled from '../../assets/icons/trashFilled.svg';
 import WarningFilled from '../../assets/icons/warningFilled.svg';
+import UserSquare from '../../assets/icons/userSquare.svg';
+
 import {greys} from '../../helpers/colorHelpers';
 import {getIconViewBox} from './iconViewBoxes';
 
@@ -81,6 +84,7 @@ const importedIcons = {
   AttachmentWord,
   Calendar,
   CalendarFilled,
+  CaretExpand,
   CheckmarkCircle,
   CheckmarkCircleEmpty,
   CheckmarkBox,
@@ -115,7 +119,8 @@ const importedIcons = {
   StarFilled,
   Trash,
   TrashFilled,
-  WarningFilled
+  WarningFilled,
+  UserSquare
 } as const;
 
 export type IconName = keyof typeof importedIcons;

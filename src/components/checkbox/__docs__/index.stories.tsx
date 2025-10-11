@@ -28,3 +28,4 @@ export default {
 export {Basic} from './stories/basic.stories';
 export {BasicReverse} from './stories/basic-reverse.stories';
 export {Indeterminate} from './stories/indeterminate.stories';
+export {Colored} from './stories/colored.stories';
