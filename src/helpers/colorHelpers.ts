@@ -60,7 +60,8 @@ export enum PaletteColorsEnum {
   GREEN = 'green',
   TEAL = 'teal',
   BLUE = 'blue',
-  PURPLE = 'purple'
+  PURPLE = 'purple',
+  FRONT_PURPLE = 'frontPurple'
 }
 
 export const greys: Readonly<FullColorPalette> = {
@@ -159,6 +160,13 @@ export const palette: Palette = {
     shade30: '#ddbbfa',
     shade40: '#9235e4',
     shade50: '#681aad'
+  },
+  [PaletteColorsEnum.FRONT_PURPLE]: {
+    shade10: '#f8f1ff',
+    shade20: '#f0dfff',
+    shade30: '#e6b3ff',
+    shade40: '#9747ff',
+    shade50: '#7a39cc'
   }
 };
 

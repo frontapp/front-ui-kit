@@ -11,7 +11,7 @@ import {
 } from '../../helpers/renderHelpers';
 import {Icon} from '../icon/icon';
 import {SubmenuTrigger} from './components/SubmenuTrigger';
-import { NestedDropdownConfig } from './types/nestedDropdown';
+import {NestedDropdownConfig} from './types/nestedDropdown';
 
 /*
  * Constants.
@@ -68,7 +68,6 @@ const StyledDropdownItemWrapperDiv = styled.div`
     background: ${alphas.gray10};
   }
 `;
-
 
 const StyledDropdownItemContentWrapperDiv = styled.div`
   display: flex;
@@ -131,7 +130,7 @@ export const DropdownItem: FC<DropdownItemProps> = ({
   // Generate deterministic ID if not provided
   const generatedId = React.useId();
   const effectiveSubmenuId = submenuId ?? `item-${generatedId}`;
-  
+
   const content = (
     <StyledDropdownItemWrapperDiv
       onClick={(event) => {
@@ -156,7 +155,7 @@ export const DropdownItem: FC<DropdownItemProps> = ({
   );
 
   // If we have a submenu, wrap with SubmenuTrigger
-  if (submenu) 
+  if (submenu)
     return (
       <SubmenuTrigger
         submenuId={effectiveSubmenuId}
@@ -171,7 +170,6 @@ export const DropdownItem: FC<DropdownItemProps> = ({
 
   return content;
 };
-
 
 /*
  * Helpers.

@@ -98,4 +98,3 @@ export interface SubmenuPositioning {
   /** Layer root ID */
   layerId: string;
 }
-

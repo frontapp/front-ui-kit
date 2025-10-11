@@ -1,5 +1,5 @@
 /* eslint-disable storybook/story-exports */
-import {ComponentMeta} from '@storybook/react';
+import {Meta} from '@storybook/react';
 
 import {Accordion} from '../accordion';
 import DocumentationMDX from './docs.mdx';
@@ -23,7 +23,7 @@ export default {
     viewMode: 'docs'
   },
   id: 'Components/Accordion'
-} as ComponentMeta<typeof Accordion>;
+} as Meta<typeof Accordion>;
 
 export {Basic} from './stories/basic.stories';
 export {Multi} from './stories/multi.stories';

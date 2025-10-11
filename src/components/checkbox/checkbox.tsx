@@ -2,7 +2,7 @@ import React, {FC, useLayoutEffect, useRef} from 'react';
 import styled, {css} from 'styled-components';
 
 import {Icon} from '../../elements/icon/icon';
-import {greys, palette} from '../../helpers/colorHelpers';
+import {greys, palette, PaletteColorsEnum} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 
 /*
@@ -20,6 +20,8 @@ interface CheckboxProps {
   isIndeterminate?: boolean;
   /** The side to render the label on. */
   labelSide?: 'left' | 'right';
+  /** The color theme for the checkbox. */
+  color?: PaletteColorsEnum;
   /** Handler to check or uncheck the checkbox */
   onChange: (isChecked: boolean) => void;
 }
@@ -32,6 +34,7 @@ interface StyledCheckboxInputProps {
   $isChecked: boolean;
   $isIndeterminate: boolean;
   $isDisabled: boolean;
+  $color: PaletteColorsEnum;
 }
 
 interface StyledWrapperDivProps {
@@ -105,7 +108,7 @@ function addCheckboxStyles(props: StyledCheckboxInputProps) {
 
   if (props.$isChecked || props.$isIndeterminate)
     return css`
-      background: ${palette.blue.shade40};
+      background: ${palette[props.$color].shade40};
       border: none;
     `;
 
@@ -124,6 +127,7 @@ export const Checkbox: FC<CheckboxProps> = ({
   isDisabled = false,
   isIndeterminate = false,
   labelSide = 'right',
+  color = PaletteColorsEnum.BLUE,
   onChange
 }) => {
   const onInputChange = () => {
@@ -158,6 +162,7 @@ export const Checkbox: FC<CheckboxProps> = ({
           $isChecked={isChecked}
           $isDisabled={isDisabled}
           $isIndeterminate={isIndeterminate}
+          $color={color}
           onChange={onInputChange}
         />
         <StyledIconDiv>{getCheckboxIcon(isDisabled, isChecked, isIndeterminate)}</StyledIconDiv>

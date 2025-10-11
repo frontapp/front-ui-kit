@@ -31,3 +31,4 @@ export {IconContentBasic} from './stories/icon-content-basic.stories';
 export {GroupBasic} from './stories/group-basic.stories';
 export {Sizes} from './stories/sizes.stories';
 export {Variants} from './stories/variants.stories';
+export {Customization} from './stories/customization.stories';
