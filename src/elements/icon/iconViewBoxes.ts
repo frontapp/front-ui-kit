@@ -3,7 +3,7 @@
 // This ensures we can preserve the original viewBox from SVG files
 // when no viewBox prop is explicitly provided
 
-import type { IconName } from './icon';
+import type {IconName} from './icon';
 
 const ICON_VIEW_BOX_EXCEPTIONS: Partial<Record<IconName, string>> = {
   Export: '0 0 16 17',
