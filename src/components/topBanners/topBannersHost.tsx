@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import React, {FC} from 'react';
 import {animated, useTransition} from 'react-spring';
 import styled from 'styled-components';
 
@@ -38,12 +38,13 @@ export const TopBannersHost: FC<TopBannersHostProps> = (props) => {
     <StyledDiv>
       {transitions(
         (styles, banner) =>
-          banner && (
-            <animated.div style={styles}>
-              <TopBanner type={banner.type} onDismissClick={dismissBanner}>
-                {banner.message}
-              </TopBanner>
-            </animated.div>
+          banner &&
+          React.createElement(
+            animated.div,
+            {style: styles},
+            <TopBanner type={banner.type} onDismissClick={dismissBanner}>
+              {banner.message}
+            </TopBanner>
           )
       )}
     </StyledDiv>

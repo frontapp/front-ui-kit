@@ -169,7 +169,7 @@ export const Dropdown: FC<DropdownProps> = ({
   const hasSubmenus = useMemo(
     () =>
       React.Children.toArray(children).some((child) => {
-        if (!isValidElement(child) || !child.props) return false;
+        if (!isValidElement(child) || !child.props || typeof child.props !== 'object') return false;
         return 'submenu' in child.props && Boolean(child.props.submenu);
       }),
     [children]

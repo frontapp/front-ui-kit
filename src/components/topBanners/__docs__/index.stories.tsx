@@ -1,5 +1,5 @@
 /* eslint-disable storybook/story-exports */
-import {ComponentMeta} from '@storybook/react';
+import {Meta} from '@storybook/react';
 
 import {TopBanner} from '../topBanner';
 /*
@@ -11,6 +11,9 @@ export default {
   component: TopBanner,
   parameters: {},
   id: 'Components/Top Banner'
-} as ComponentMeta<typeof TopBanner>;
+} as Meta<typeof TopBanner>;
 
 export {Basic} from './stories/basic.stories';
+export {BannerTypes} from './stories/bannerTypes.stories';
+export {CustomMessages} from './stories/customMessages.stories';
+export {AutoDismiss} from './stories/autoDismiss.stories';
