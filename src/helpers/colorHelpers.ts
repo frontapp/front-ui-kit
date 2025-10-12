@@ -156,9 +156,9 @@ export const palette: Palette = {
   [PaletteColorsEnum.PURPLE]: {
     shade10: '#f8f1ff',
     shade20: '#f0dfff',
-    shade30: '#ddbbfa',
-    shade40: '#9235e4',
-    shade50: '#681aad'
+    shade30: '#e6b3ff',
+    shade40: '#9747ff',
+    shade50: '#7a39cc'
   }
 };
 
