@@ -32,6 +32,8 @@ exports[`<Button /> Spec Snapshots should render selected tab 1`] = `
 .c2 {
   background: transparent;
   height: 4px;
+  width: 50%;
+  justify-self: center;
   border-top-left-radius: 100px;
   border-top-right-radius: 100px;
   background: #001B38;
@@ -84,6 +86,8 @@ exports[`<Button /> Spec Snapshots should render tab 1`] = `
 .c2 {
   background: transparent;
   height: 4px;
+  width: 50%;
+  justify-self: center;
   border-top-left-radius: 100px;
   border-top-right-radius: 100px;
 }
@@ -153,6 +157,8 @@ exports[`<Button /> Spec Snapshots should render tab group 1`] = `
 .c3 {
   background: transparent;
   height: 4px;
+  width: 50%;
+  justify-self: center;
   border-top-left-radius: 100px;
   border-top-right-radius: 100px;
   background: #001B38;
@@ -161,6 +167,8 @@ exports[`<Button /> Spec Snapshots should render tab group 1`] = `
 .c5 {
   background: transparent;
   height: 4px;
+  width: 50%;
+  justify-self: center;
   border-top-left-radius: 100px;
   border-top-right-radius: 100px;
 }
