@@ -26,7 +26,7 @@ const StyledPersistentContainer = styled.div<StyledPersistentContainerProps>`
   box-sizing: border-box;
 `;
 
-const StyledPersistentItem = styled.div<{ $height: number }>`
+const StyledPersistentItem = styled.div<{$height: number}>`
   height: ${(props) => props.$height}px;
   display: flex;
   align-items: stretch;
@@ -134,20 +134,17 @@ export const DropdownList: FC<DropdownListProps> = (props) => {
     threshold: loadingThreshold
   });
 
-
   // If isPersistent is true, render without virtualization
   // This is used for submenus that need to stay mounted for search functionality
   if (isPersistent)
     return (
       <StyledPersistentContainer $height={height}>
-        {Array.from({ length: itemCount }, (_, index) => {
+        {Array.from({length: itemCount}, (_, index) => {
           const itemHeight = computeItemHeight(index);
           const isLoaded = isItemLoaded(index);
-          
+
           return (
-            <StyledPersistentItem 
-              key={`persistent-item-${index}`} 
-              $height={itemHeight}>
+            <StyledPersistentItem key={`persistent-item-${index}`} $height={itemHeight}>
               {isLoaded ? renderItem(index) : loadingSkeleton}
             </StyledPersistentItem>
           );

@@ -166,12 +166,15 @@ export const Dropdown: FC<DropdownProps> = ({
   );
 
   // Check if any children have submenus to determine if we need persistent rendering
-  const hasSubmenus = useMemo(() => 
-    React.Children.toArray(children).some(child => {
-      if (!isValidElement(child) || !child.props) return false;
-      const childProps = child.props as Record<string, unknown>;
-      return 'submenu' in childProps && Boolean(childProps.submenu);
-    }), [children]);
+  const hasSubmenus = useMemo(
+    () =>
+      React.Children.toArray(children).some((child) => {
+        if (!isValidElement(child) || !child.props) return false;
+        const childProps = child.props as Record<string, unknown>;
+        return 'submenu' in childProps && Boolean(childProps.submenu);
+      }),
+    [children]
+  );
 
   const renderDropdownContent = () => {
     if (isEmpty && renderEmptyState) return renderEmptyState();

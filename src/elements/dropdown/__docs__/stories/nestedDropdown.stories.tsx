@@ -32,7 +32,7 @@ const categoriesData = [
     icon: 'Archive',
     items: [
       'Affenpinscher',
-      'Armant', 
+      'Armant',
       'Bedlington Terrier',
       'Boston Terrier',
       'Bullmastiff',
@@ -47,18 +47,7 @@ const categoriesData = [
     id: 'colors',
     name: 'Colors',
     icon: 'Star',
-    items: [
-      'Red',
-      'Blue', 
-      'Green',
-      'Yellow',
-      'Purple',
-      'Orange',
-      'Pink',
-      'Brown',
-      'Black',
-      'White'
-    ]
+    items: ['Red', 'Blue', 'Green', 'Yellow', 'Purple', 'Orange', 'Pink', 'Brown', 'Black', 'White']
   },
   {
     id: 'countries',
@@ -93,7 +82,7 @@ const departmentsData = [
       },
       {
         id: 'backend',
-        name: 'Backend', 
+        name: 'Backend',
         members: ['Eve Brown', 'Frank Miller', 'Grace Lee', 'Henry Taylor']
       },
       {
@@ -142,9 +131,7 @@ const Template: StoryFn = () => {
   const getFilteredItems = (categoryId: string, items: string[]) => {
     const searchValue = submenuSearchValues[categoryId] || '';
     if (!searchValue) return items;
-    return items.filter(item => 
-      item.toLowerCase().includes(searchValue.toLowerCase())
-    );
+    return items.filter((item) => item.toLowerCase().includes(searchValue.toLowerCase()));
   };
 
   return (
@@ -160,10 +147,7 @@ const Template: StoryFn = () => {
           <DropdownCoordinator
             placement="bottom-start"
             renderButton={(isOpen, isDisabled, buttonRef) => (
-              <DropdownButton 
-                value={selectedValue || 'Select Category'}
-                isActive={isOpen}
-              />
+              <DropdownButton value={selectedValue || 'Select Category'} isActive={isOpen} />
             )}
             renderDropdown={(onRequestClose) => (
               <Dropdown>
@@ -178,16 +162,13 @@ const Template: StoryFn = () => {
                       <Dropdown
                         isEmpty={getFilteredItems(category.id, category.items).length === 0}
                         renderEmptyState={() => (
-                          <EmptyState
-                            message="No results found. Try adjusting your search terms."
-                          />
-                        )}
-                      >
+                          <EmptyState message="No results found. Try adjusting your search terms." />
+                        )}>
                         <DropdownHeader
                           searchValue={submenuSearchValues[category.id] || ''}
                           searchPlaceholder={`Search ${category.name.toLowerCase()}...`}
                           onSearchChange={(newValue) => {
-                            setSubmenuSearchValues(prev => ({
+                            setSubmenuSearchValues((prev) => ({
                               ...prev,
                               [category.id]: newValue
                             }));
@@ -196,8 +177,8 @@ const Template: StoryFn = () => {
                         </DropdownHeader>
                         <DropdownHeading>{category.name}</DropdownHeading>
                         {getFilteredItems(category.id, category.items).map((item) => (
-                          <DropdownItem 
-                            key={item} 
+                          <DropdownItem
+                            key={item}
                             onClick={() => {
                               setSelectedValue(item);
                               onRequestClose();
@@ -211,9 +192,9 @@ const Template: StoryFn = () => {
                         </DropdownItem>
                       </Dropdown>
                     }>
-                    <DropdownItemIcon 
-                      color={palette.blue.shade40} 
-                      iconName={category.icon as 'Archive' | 'Star' | 'Calendar'} 
+                    <DropdownItemIcon
+                      color={palette.blue.shade40}
+                      iconName={category.icon as 'Archive' | 'Star' | 'Calendar'}
                     />
                     {category.name}
                   </DropdownItem>
@@ -255,25 +236,19 @@ const MultiSelectTemplate: StoryFn = () => {
   const getFilteredItems = (categoryId: string, items: string[]) => {
     const searchValue = submenuSearchValues[categoryId] || '';
     if (!searchValue) return items;
-    return items.filter(item => 
-      item.toLowerCase().includes(searchValue.toLowerCase())
-    );
+    return items.filter((item) => item.toLowerCase().includes(searchValue.toLowerCase()));
   };
 
   const toggleItem = (item: string) => {
-    setSelectedItems(prev => 
-      prev.includes(item)
-        ? prev.filter(i => i !== item)
-        : [...prev, item]
-    );
+    setSelectedItems((prev) => (prev.includes(item) ? prev.filter((i) => i !== item) : [...prev, item]));
   };
 
   const clearSelection = () => {
     setSelectedItems([]);
   };
 
-  const getSelectedByCategory = (categoryItems: string[]) => 
-    categoryItems.filter(item => selectedItems.includes(item)).length;
+  const getSelectedByCategory = (categoryItems: string[]) =>
+    categoryItems.filter((item) => selectedItems.includes(item)).length;
 
   return (
     <StyledWrapperDiv>
@@ -288,7 +263,7 @@ const MultiSelectTemplate: StoryFn = () => {
           <DropdownCoordinator
             placement="bottom-start"
             renderButton={(isOpen, isDisabled, buttonRef) => (
-              <DropdownButton 
+              <DropdownButton
                 value={selectedItems.length > 0 ? selectedItems : []}
                 placeholder="Select multiple items"
                 isActive={isOpen}
@@ -297,16 +272,16 @@ const MultiSelectTemplate: StoryFn = () => {
             renderDropdown={(onRequestClose) => (
               <Dropdown>
                 <DropdownHeader>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                     <span>Multi-Select Categories</span>
                     {selectedItems.length > 0 && (
-                      <button 
+                      <button
                         type="button"
                         onClick={clearSelection}
-                        style={{ 
-                          background: 'none', 
-                          border: 'none', 
-                          color: '#007bff', 
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          color: '#007bff',
                           cursor: 'pointer',
                           fontSize: '12px'
                         }}>
@@ -315,7 +290,7 @@ const MultiSelectTemplate: StoryFn = () => {
                     )}
                   </div>
                 </DropdownHeader>
-                
+
                 {categoriesData.map((category) => {
                   const selectedInCategory = getSelectedByCategory(category.items);
                   return (
@@ -328,36 +303,33 @@ const MultiSelectTemplate: StoryFn = () => {
                         <Dropdown
                           isEmpty={getFilteredItems(category.id, category.items).length === 0}
                           renderEmptyState={() => (
-                            <EmptyState
-                              message="No results found. Try adjusting your search terms."
-                            />
-                          )}
-                        >
+                            <EmptyState message="No results found. Try adjusting your search terms." />
+                          )}>
                           <DropdownHeader
                             searchValue={submenuSearchValues[category.id] || ''}
                             searchPlaceholder={`Search ${category.name.toLowerCase()}...`}
                             onSearchChange={(newValue) => {
-                              setSubmenuSearchValues(prev => ({
+                              setSubmenuSearchValues((prev) => ({
                                 ...prev,
                                 [category.id]: newValue
                               }));
                             }}>
                             {category.name} ({selectedInCategory} selected)
                           </DropdownHeader>
-                            {getFilteredItems(category.id, category.items).map((item) => (
-                              <DropdownItem 
-                                key={item}
-                                type="multi"
-                                isSelected={selectedItems.includes(item)}
-                                onClick={() => toggleItem(item)}>
-                                {item}
-                              </DropdownItem>
-                            ))}
+                          {getFilteredItems(category.id, category.items).map((item) => (
+                            <DropdownItem
+                              key={item}
+                              type="multi"
+                              isSelected={selectedItems.includes(item)}
+                              onClick={() => toggleItem(item)}>
+                              {item}
+                            </DropdownItem>
+                          ))}
                         </Dropdown>
                       }>
-                      <DropdownItemIcon 
-                        color={palette.purple.shade40} 
-                        iconName={category.icon as 'Archive' | 'Star' | 'Calendar'} 
+                      <DropdownItemIcon
+                        color={palette.purple.shade40}
+                        iconName={category.icon as 'Archive' | 'Star' | 'Calendar'}
                       />
                       {category.name}
                     </DropdownItem>
@@ -377,7 +349,7 @@ MultiSelectDropdown.storyName = 'Multi-Select with Submenus';
 
 // Left-aligned submenu example
 const LeftAlignedTemplate: StoryFn = () => (
-  <StyledWrapperDiv style={{ justifyContent: 'flex-end' }}>
+  <StyledWrapperDiv style={{justifyContent: 'flex-end'}}>
     <StyledDropdownWrapperDiv>
       <NestedDropdownProvider
         config={{
@@ -388,10 +360,7 @@ const LeftAlignedTemplate: StoryFn = () => (
         <DropdownCoordinator
           placement="bottom-start"
           renderButton={(isOpen, isDisabled, buttonRef) => (
-            <DropdownButton 
-              value="Left-Aligned Submenus"
-              isActive={isOpen}
-            />
+            <DropdownButton value="Left-Aligned Submenus" isActive={isOpen} />
           )}
           renderDropdown={(onRequestClose) => (
             <Dropdown>
@@ -410,9 +379,9 @@ const LeftAlignedTemplate: StoryFn = () => (
                       ))}
                     </Dropdown>
                   }>
-                  <DropdownItemIcon 
-                    color={palette.purple.shade40} 
-                    iconName={category.icon as 'Archive' | 'Star' | 'Calendar'} 
+                  <DropdownItemIcon
+                    color={palette.purple.shade40}
+                    iconName={category.icon as 'Archive' | 'Star' | 'Calendar'}
                   />
                   {category.name}
                 </DropdownItem>
@@ -431,26 +400,24 @@ LeftAlignedSubmenus.storyName = 'Left-Aligned Submenus';
 // Performance test with many items
 const PerformanceTemplate: StoryFn = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  
+
   // Generate large dataset
-  const largeDataset = Array.from({ length: 10 }, (_, categoryIndex) => ({
+  const largeDataset = Array.from({length: 10}, (_, categoryIndex) => ({
     id: `category-${categoryIndex}`,
     name: `Category ${categoryIndex + 1}`,
     icon: 'Archive',
-    items: Array.from({ length: 100 }, (__, itemIndex) => 
-      `Item ${categoryIndex + 1}-${itemIndex + 1}`
-    )
+    items: Array.from({length: 100}, (__, itemIndex) => `Item ${categoryIndex + 1}-${itemIndex + 1}`)
   }));
 
-  const filteredData = largeDataset.map(category => ({
-    ...category,
-    items: category.items.filter(item => 
-      item.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-  })).filter(category => 
-    category.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    category.items.length > 0
-  );
+  const filteredData = largeDataset
+    .map((category) => ({
+      ...category,
+      items: category.items.filter((item) => item.toLowerCase().includes(searchTerm.toLowerCase()))
+    }))
+    .filter(
+      (category) =>
+        category.name.toLowerCase().includes(searchTerm.toLowerCase()) || category.items.length > 0
+    );
 
   return (
     <StyledWrapperDiv>
@@ -459,10 +426,7 @@ const PerformanceTemplate: StoryFn = () => {
           <DropdownCoordinator
             placement="bottom-start"
             renderButton={(isOpen, isDisabled, buttonRef) => (
-              <DropdownButton 
-                value="Performance Test (1000+ Items)"
-                isActive={isOpen}
-              />
+              <DropdownButton value="Performance Test (1000+ Items)" isActive={isOpen} />
             )}
             renderDropdown={(onRequestClose) => (
               <Dropdown>
@@ -472,14 +436,16 @@ const PerformanceTemplate: StoryFn = () => {
                   onSearchChange={setSearchTerm}>
                   Performance Test
                 </DropdownHeader>
-                
+
                 {filteredData.map((category) => (
                   <DropdownItem
                     key={category.id}
                     submenuId={`perf-${category.id}`}
                     submenu={
-                        <Dropdown maxHeight={400}>
-                        <DropdownHeading>{category.name} ({category.items.length} items)</DropdownHeading>
+                      <Dropdown maxHeight={400}>
+                        <DropdownHeading>
+                          {category.name} ({category.items.length} items)
+                        </DropdownHeading>
                         {category.items.map((item) => (
                           <DropdownItem key={item} onClick={() => console.log('Selected:', item)}>
                             {item}
