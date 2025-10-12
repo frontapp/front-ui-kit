@@ -73,7 +73,7 @@ interface StyledSelectedBorderDivProps {
 const StyledSelectedBorderDiv = styled.div<StyledSelectedBorderDivProps>`
   background: ${alphas.transparent};
   height: ${(p) => p.$selectedIndicatorHeight || 4}px;
-  width: ${(p) => p.$selectedIndicatorWidth || '50%'};
+  width: ${(p) => p.$selectedIndicatorWidth || '100%'};
   justify-self: center;
   border-top-left-radius: 100px;
   border-top-right-radius: 100px;
