@@ -1,8 +1,8 @@
-import React, {FC, MouseEventHandler} from 'react';
-import styled, {css} from 'styled-components';
+import React, { FC, MouseEventHandler } from 'react';
+import styled, { css } from 'styled-components';
 
-import {alphas, greys, palette} from '../../helpers/colorHelpers';
-import {renderFirstIconOnly} from '../../helpers/renderHelpers';
+import { alphas, greys, palette, PaletteColorsEnum } from '../../helpers/colorHelpers';
+import { renderFirstIconOnly } from '../../helpers/renderHelpers';
 
 /*
  * Props.
@@ -25,6 +25,10 @@ interface IconButtonProps {
   iconColor?: string;
   /** Make the button completely round. */
   isRounded?: boolean;
+  /** Custom color from the palette to use for the icon button. Overrides the default colors. */
+  color?: PaletteColorsEnum;
+  /** Custom border radius for the icon button. Defaults to 8px or 99999px if isRounded. */
+  borderRadius?: string | number;
 }
 
 /*
@@ -37,27 +41,43 @@ interface StyledIconButtonProps {
   $isActive?: boolean;
   $iconColor?: string;
   $isRounded?: boolean;
+  $color?: PaletteColorsEnum;
+  $borderRadius?: string | number;
 }
 
 const StyledIconButton = styled.button<StyledIconButtonProps>`
   background: transparent;
   border: none;
   padding: 7px;
-  border-radius: ${(p) => (p.$isRounded ? '99999px' : '8px')};
+  border-radius: ${(p) => p.$borderRadius || (p.$isRounded ? '99999px' : '8px')};
 
-  ${(p) => addIconColorStyles(p.$isDanger, p.$isDisabled, p.$isActive, p.$iconColor)};
+  ${(p) => addIconColorStyles(p.$isDanger, p.$isDisabled, p.$isActive, p.$iconColor, p.$color)};
 `;
 
 function addIconColorStyles(
   isDanger?: boolean,
   isDisabled?: boolean,
   isActive?: boolean,
-  iconColor?: string
+  iconColor?: string,
+  customColor?: PaletteColorsEnum
 ) {
   if (isDisabled)
     return css`
       color: ${greys.shade40};
     `;
+
+  // Handle custom color with early return
+  if (customColor)
+    return css`
+      color: ${palette[customColor][isActive ? 'shade50' : 'shade40']};
+      background: ${isActive ? alphas.gray20 : 'unset'};
+
+      &:hover {
+        color: ${palette[customColor].shade50};
+        background: ${alphas.gray20};
+      }
+    `;
+
   if (isDanger)
     return css`
       color: ${palette.red[isActive ? 'shade50' : 'shade40']};
@@ -95,7 +115,18 @@ function addIconColorStyles(
  */
 
 export const IconButton: FC<IconButtonProps> = (props) => {
-  const {children, isDanger, isDisabled, isActive, onClick, className, iconColor, isRounded} = props;
+  const {
+    children,
+    isDanger,
+    isDisabled,
+    isActive,
+    onClick,
+    className,
+    iconColor,
+    isRounded,
+    color,
+    borderRadius
+  } = props;
 
   return (
     <StyledIconButton
@@ -104,6 +135,8 @@ export const IconButton: FC<IconButtonProps> = (props) => {
       $isDisabled={isDisabled}
       $isActive={isActive}
       $isRounded={Boolean(isRounded)}
+      $color={color}
+      $borderRadius={borderRadius}
       onClick={onClick}
       $iconColor={iconColor}>
       {renderFirstIconOnly(children)}

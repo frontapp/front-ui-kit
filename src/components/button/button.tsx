@@ -1,16 +1,16 @@
-import React, {FC, MouseEvent, MouseEventHandler} from 'react';
-import styled, {css} from 'styled-components';
+import React, { FC, MouseEvent, MouseEventHandler } from 'react';
+import styled, { css } from 'styled-components';
 
-import {alphas, greys, palette} from '../../helpers/colorHelpers';
-import {fonts, fontSizes, fontWeights, VisualSizesEnum} from '../../helpers/fontHelpers';
+import { alphas, greys, palette, PaletteColorsEnum } from '../../helpers/colorHelpers';
+import { fonts, fontSizes, fontWeights, VisualSizesEnum } from '../../helpers/fontHelpers';
 import {
   isComponentInChildren,
   renderChildrenIgnoreSpecifiedComponents,
   renderChildrenSpecifiedComponents
 } from '../../helpers/renderHelpers';
-import {makeSizeConstants} from '../../helpers/styleHelpers';
-import {ButtonContent} from './buttonContent';
-import {IconButton} from './iconButton';
+import { makeSizeConstants } from '../../helpers/styleHelpers';
+import { ButtonContent } from './buttonContent';
+import { IconButton } from './iconButton';
 
 /*
  * Constants.
@@ -54,6 +54,10 @@ interface ButtonProps {
   onClick?: MouseEventHandler;
   /** Used for icon buttons in order to make them completely round. */
   isRounded?: boolean;
+  /** Custom color from the palette to use for the button. Overrides the default type colors. */
+  color?: PaletteColorsEnum;
+  /** Custom border radius for the button. Defaults to 100px (fully rounded). */
+  borderRadius?: string | number;
 }
 
 /*
@@ -69,18 +73,20 @@ interface StyledButtonProps {
   $type: Omit<ButtonTypes, 'icon' | 'icon-danger'>;
   $isActive?: boolean;
   $isDisabled?: boolean;
+  $color?: PaletteColorsEnum;
+  $borderRadius?: string | number;
 }
 
 const StyledButton = styled.button<StyledButtonProps>`
   display: grid;
   grid-template-areas: 'left-content content right-content';
   font-family: ${fonts.system};
-  border-radius: 100px;
+  border-radius: ${(p) => p.$borderRadius || '100px'};
   box-sizing: border-box;
   font-weight: ${fontWeights.semibold};
 
   ${(p) => addButtonSizeStyles(p.$size)};
-  ${(p) => addButtonTypeStyles(p.$type, p.$isDisabled, p.$isActive)};
+  ${(p) => addButtonTypeStyles(p.$type, p.$isDisabled, p.$isActive, p.$color)};
 `;
 
 function addButtonSizeStyles(size: VisualSizesEnum) {
@@ -94,7 +100,8 @@ function addButtonSizeStyles(size: VisualSizesEnum) {
 function addButtonTypeStyles(
   type: Omit<ButtonTypes, 'icon' | 'icon-danger'>,
   isDisabled?: boolean,
-  isActive?: boolean
+  isActive?: boolean,
+  customColor?: PaletteColorsEnum
 ) {
   if (isDisabled)
     return css`
@@ -112,6 +119,39 @@ function addButtonTypeStyles(
       `}
     `;
 
+  // Handle custom color with early return
+  if (customColor)
+    switch (type) {
+      case 'primary':
+      case 'primary-danger':
+        return css`
+          ${addSharedPrimaryStyles()};
+          background: ${palette[customColor][isActive ? 'shade50' : 'shade40']};
+
+          &:hover {
+            background: ${palette[customColor].shade50};
+          }
+        `;
+      case 'tertiary':
+        return css`
+          background: ${isActive ? alphas.gray10 : 'transparent'};
+          border: 1px solid transparent;
+          color: ${palette[customColor].shade40};
+
+          &:hover {
+            background: ${alphas.gray10};
+          }
+        `;
+      case 'secondary':
+      case 'secondary-danger':
+      default:
+        return css`
+          ${addSharedSecondaryStyles(isActive)};
+          color: ${palette[customColor].shade40};
+        `;
+    }
+
+  // Default behavior without custom color
   switch (type) {
     case 'primary':
       return css`
@@ -188,7 +228,9 @@ export const Button: FC<ButtonProps> = ({
   onClick,
   className,
   iconColor,
-  isRounded
+  isRounded,
+  color,
+  borderRadius
 }) => {
   // Wrap the onClick to check if it is disabled or not defined.
   const onButtonClick = (event: MouseEvent) => {
@@ -206,7 +248,9 @@ export const Button: FC<ButtonProps> = ({
         isActive={isActive}
         onClick={onButtonClick}
         iconColor={iconColor}
-        isRounded={isRounded}>
+        isRounded={isRounded}
+        color={color}
+        borderRadius={borderRadius}>
         {children}
       </IconButton>
     );
@@ -218,6 +262,8 @@ export const Button: FC<ButtonProps> = ({
         $size={size}
         $isDisabled={isDisabled}
         $isActive={isActive}
+        $color={color}
+        $borderRadius={borderRadius}
         onClick={onButtonClick}>
         {renderChildrenSpecifiedComponents(children, nonButtonContentChildren)}
         {renderButtonChildren(children)}
