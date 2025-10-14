@@ -48,7 +48,21 @@ export const NavigationalSubmenuTrigger: React.FC<NavigationalSubmenuTriggerProp
   className,
   onNavigate
 }) => {
-  const {navigateTo} = useNavigationalDropdown();
+  const {navigateTo, autoNavigateToSubmenuId} = useNavigationalDropdown();
+  const hasAutoNavigatedRef = React.useRef(false);
+
+  // Auto-navigate to this submenu if it matches the autoNavigateToSubmenuId
+  // Use useLayoutEffect to navigate synchronously before paint to avoid flashing
+  React.useLayoutEffect(() => {
+    if (autoNavigateToSubmenuId === submenuId && !hasAutoNavigatedRef.current && getSubmenu) {
+      hasAutoNavigatedRef.current = true;
+      navigateTo(submenuId, getSubmenu, backTitle);
+    }
+    // Reset the flag when autoNavigateToSubmenuId changes
+    if (autoNavigateToSubmenuId !== submenuId) {
+      hasAutoNavigatedRef.current = false;
+    }
+  }, [autoNavigateToSubmenuId, submenuId, getSubmenu, backTitle, navigateTo]);
 
   const handleClick = useCallback(
     (event: React.MouseEvent) => {
@@ -57,13 +71,14 @@ export const NavigationalSubmenuTrigger: React.FC<NavigationalSubmenuTriggerProp
       // Check if the click target is specifically an input field or checkbox
       const target = event.target as HTMLElement;
       const isInputOrCheckbox = target.closest(
-        'input[type="text"], input[type="search"], input[type="email"], input[type="password"], input[type="url"], input[type="number"], [role="checkbox"]'
+        'input[type="text"], input[type="search"], input[type="email"], input[type="password"], input[type="url"], input[type="number"], input[type="checkbox"], [role="checkbox"]'
       );
 
       if (isInputOrCheckbox) {
         // Don't interfere with input fields or checkboxes
         return;
       }
+
       // Prevent the dropdown from closing
       event.preventDefault();
       event.stopPropagation();

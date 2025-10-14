@@ -41,12 +41,12 @@ const StyledDropdownHeaderWrapperDiv = styled.div`
 `;
 
 const StyledHeaderTopRowDiv = styled.div`
-  display: flex;
-  flex-flow: row;
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
+  align-items: center;
 `;
 
 const StyledHeaderLabelDiv = styled.div`
-  flex: 1;
   text-align: center;
   font-size: ${fontSizes.medium};
   font-weight: ${fontWeights.medium};
@@ -56,6 +56,10 @@ const StyledHeaderLabelDiv = styled.div`
 const StyledButtonWrapperDiv = styled.div`
   // Need to be negative to move into the padding of the dropdown a bit.
   margin: -6px 0 -8px -6px;
+`;
+
+const StyledPlaceholderDiv = styled.div`
+  width: 32px; // Same width as the back button to maintain symmetry
 `;
 
 const StyledSearchWrapperDiv = styled.div``;
@@ -74,8 +78,9 @@ export const DropdownHeader: FC<DropdownHeaderProps> = ({
 }) => (
   <StyledDropdownHeaderWrapperDiv>
     <StyledHeaderTopRowDiv>
-      {maybeRenderBackButton(onBackClick)}
+      {onBackClick ? maybeRenderBackButton(onBackClick) : <StyledPlaceholderDiv />}
       <StyledHeaderLabelDiv>{children}</StyledHeaderLabelDiv>
+      <StyledPlaceholderDiv />
     </StyledHeaderTopRowDiv>
     {maybeRenderSearchDropdown(searchValue, searchPlaceholder, shouldAutoFocusSearchInput, onSearchChange)}
   </StyledDropdownHeaderWrapperDiv>
@@ -112,7 +117,12 @@ function maybeRenderSearchDropdown(
   // We will only render the dropdown if the value is supplied.
   if (typeof searchValue === 'undefined') return null;
   return (
-    <StyledSearchWrapperDiv>
+    <StyledSearchWrapperDiv
+      onClick={(e) => {
+        // Prevent clicks on the search input from closing the dropdown
+        e.preventDefault();
+        e.stopPropagation();
+      }}>
       <Input
         iconName="Search"
         placeholder={placeholder}

@@ -32,6 +32,8 @@ export interface NavigationalDropdownContextValue {
   reset: () => void;
   /** Get the current navigation level */
   getCurrentLevel: () => number;
+  /** ID of submenu to auto-navigate to (used internally for re-navigation after state updates) */
+  autoNavigateToSubmenuId: string | null;
 }
 
 /**
@@ -53,6 +55,8 @@ interface NavigationalDropdownProviderProps {
   onNavigate?: (level: number, viewId: string) => void;
   /** Callback when navigating back */
   onNavigateBack?: (level: number, viewId: string) => void;
+  /** Optional content version to trigger re-render when content changes */
+  contentVersion?: number;
 }
 
 /**
@@ -63,7 +67,8 @@ export const NavigationalDropdownProvider: React.FC<NavigationalDropdownProvider
   getRootContent,
   rootId = 'root',
   onNavigate,
-  onNavigateBack
+  onNavigateBack,
+  contentVersion = 0
 }) => {
   // Initialize with root view
   const [viewStack, setViewStack] = useState<NavigationalView[]>([
@@ -74,11 +79,42 @@ export const NavigationalDropdownProvider: React.FC<NavigationalDropdownProvider
     }
   ]);
 
+  // Track the previous contentVersion to detect changes and remember current submenu
+  const prevContentVersionRef = React.useRef(contentVersion);
+  const [autoNavigateToSubmenuId, setAutoNavigateToSubmenuId] = React.useState<string | null>(null);
+
+  // Use useLayoutEffect to update synchronously before paint to reduce flashing
+  React.useLayoutEffect(() => {
+    // Only reset if contentVersion actually changed (not on first mount)
+    if (prevContentVersionRef.current !== contentVersion && prevContentVersionRef.current !== undefined) {
+      // Remember which submenu we're currently viewing
+      const currentSubmenuId = viewStack.length > 1 ? viewStack[viewStack.length - 1].id : null;
+
+      if (currentSubmenuId) {
+        // Set the auto-navigate ID so the NavigationalSubmenuTrigger can re-open the submenu
+        setAutoNavigateToSubmenuId(currentSubmenuId);
+      }
+
+      // Reset to root with fresh content
+      setViewStack([
+        {
+          id: rootId,
+          getContent: getRootContent,
+          level: 0
+        }
+      ]);
+    }
+    prevContentVersionRef.current = contentVersion;
+  }, [contentVersion, getRootContent, rootId, viewStack]);
+
   /**
    * Navigate to a new view by pushing it onto the stack
    */
   const navigateTo = useCallback(
     (id: string, getContent: () => React.ReactNode, parentTitle?: string) => {
+      // Clear auto-navigate flag when manually navigating
+      setAutoNavigateToSubmenuId(null);
+
       setViewStack((prev) => {
         const currentLevel = prev.length > 0 ? prev[prev.length - 1].level : -1;
         const newView: NavigationalView = {
@@ -127,8 +163,11 @@ export const NavigationalDropdownProvider: React.FC<NavigationalDropdownProvider
 
   const canNavigateBack = viewStack.length > 1;
 
-  // Get fresh content from the current view
-  const currentContent = viewStack.length > 0 ? viewStack[viewStack.length - 1].getContent() : null;
+  // Get fresh content from the current view, recalculate when contentVersion changes
+  const currentContent = useMemo(
+    () => (viewStack.length > 0 ? viewStack[viewStack.length - 1].getContent() : null),
+    [viewStack, contentVersion]
+  );
 
   const contextValue = useMemo<NavigationalDropdownContextValue>(
     () => ({
@@ -138,9 +177,19 @@ export const NavigationalDropdownProvider: React.FC<NavigationalDropdownProvider
       navigateBack,
       canNavigateBack,
       reset,
-      getCurrentLevel
+      getCurrentLevel,
+      autoNavigateToSubmenuId
     }),
-    [viewStack, currentContent, navigateTo, navigateBack, canNavigateBack, reset, getCurrentLevel]
+    [
+      viewStack,
+      currentContent,
+      navigateTo,
+      navigateBack,
+      canNavigateBack,
+      reset,
+      getCurrentLevel,
+      autoNavigateToSubmenuId
+    ]
   );
 
   return (

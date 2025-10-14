@@ -138,13 +138,17 @@ export const DropdownItem: FC<DropdownItemProps> = ({
   const generatedId = React.useId();
   const effectiveSubmenuId = submenuId ?? `item-${generatedId}`;
 
-  console.log('isSelected', isSelected);
-
   const content = (
     <StyledDropdownItemWrapperDiv
       onClick={(event) => {
         // If we are in multi mode, we should not close the dropdown when clicked.
-        if (type === 'multi') event.preventDefault();
+        if (type === 'multi') {
+          event.preventDefault();
+          event.stopPropagation();
+          // Call onClick after preventing default to ensure state updates still happen
+          if (onClick) onClick(event);
+          return;
+        }
         if (onClick) onClick(event);
       }}>
       {/* Render non-content items. Avatar, icons, etc. */}

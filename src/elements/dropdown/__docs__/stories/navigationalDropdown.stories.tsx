@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 
 import {palette} from '../../../../helpers/colorHelpers';
+import {EmptyState} from '../../../emptyState/emptyState';
 import {NavigationalDropdownProvider} from '../../context/NavigationalDropdownContext';
 import {Dropdown} from '../../dropdown';
 import {DropdownButton} from '../../dropdownButton';
@@ -73,9 +74,6 @@ const BasicNavigationalTemplate: StoryFn = () => {
   const [searchValues, setSearchValues] = useState<Record<string, string>>({});
 
   const toggleFilter = (category: string, itemId: string) => {
-    console.log('toggleFilter', category, itemId);
-    console.log('selectedFilters', selectedFilters);
-    console.log('searchValues', searchValues);
     setSelectedFilters((prev) => {
       const current = prev[category] || [];
       const isSelected = current.includes(itemId);
@@ -92,7 +90,65 @@ const BasicNavigationalTemplate: StoryFn = () => {
     return items.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()));
   };
 
-  const rootContent = (
+  // Helper to render a category section with heading (only if items exist)
+  const renderCategorySection = <T extends {id: string; name: string}>(
+    heading: string,
+    items: T[],
+    category: string,
+    renderItem: (item: T) => React.ReactNode
+  ) => {
+    if (items.length === 0) return null;
+    return (
+      <>
+        <DropdownHeading>{heading}</DropdownHeading>
+        {items.map((item) => renderItem(item))}
+      </>
+    );
+  };
+
+  // Render inbox sections
+  const renderInboxSections = () => {
+    const anyInboxes = getFilteredItems(inboxesData.slice(0, 2), 'inboxes');
+    const individualInboxes = getFilteredItems(inboxesData.slice(2, 4), 'inboxes');
+    const sharedInboxes = getFilteredItems(inboxesData.slice(4), 'inboxes');
+
+    return (
+      <>
+        {renderCategorySection('Any', anyInboxes, 'inboxes', (inbox) => (
+          <DropdownItem
+            key={inbox.id}
+            type="multi"
+            isSelected={selectedFilters.inboxes.includes(inbox.id)}
+            onClick={() => toggleFilter('inboxes', inbox.id)}>
+            <DropdownItemIcon color={palette.blue.shade40} iconName="Archive" />
+            {inbox.name}
+          </DropdownItem>
+        ))}
+        {renderCategorySection('Individual', individualInboxes, 'inboxes', (inbox) => (
+          <DropdownItem
+            key={inbox.id}
+            type="multi"
+            isSelected={selectedFilters.inboxes.includes(inbox.id)}
+            onClick={() => toggleFilter('inboxes', inbox.id)}>
+            <DropdownItemIcon color={palette.green.shade40} iconName="Archive" />
+            {inbox.name}
+          </DropdownItem>
+        ))}
+        {renderCategorySection('Shared', sharedInboxes, 'inboxes', (inbox) => (
+          <DropdownItem
+            key={inbox.id}
+            type="multi"
+            isSelected={selectedFilters.inboxes.includes(inbox.id)}
+            onClick={() => toggleFilter('inboxes', inbox.id)}>
+            <DropdownItemIcon color={palette.purple.shade40} iconName="Archive" />
+            {inbox.name}
+          </DropdownItem>
+        ))}
+      </>
+    );
+  };
+
+  const getRootContent = () => (
     <Dropdown>
       <DropdownHeading>Filter by</DropdownHeading>
 
@@ -101,49 +157,16 @@ const BasicNavigationalTemplate: StoryFn = () => {
         submenuBackTitle="Filter by"
         submenuId="inboxes"
         submenu={
-          <Dropdown>
+          <Dropdown
+            isEmpty={getFilteredItems(inboxesData, 'inboxes').length === 0 && Boolean(searchValues.inboxes)}
+            renderEmptyState={() => <EmptyState message="No inboxes found" />}>
             <DropdownHeader
               searchValue={searchValues.inboxes || ''}
               searchPlaceholder="Search inboxes..."
               onSearchChange={(newValue) => setSearchValues((prev) => ({...prev, inboxes: newValue}))}>
               Inboxes
             </DropdownHeader>
-
-            <DropdownHeading>Any</DropdownHeading>
-            {getFilteredItems(inboxesData.slice(0, 2), 'inboxes').map((inbox) => (
-              <DropdownItem
-                key={inbox.id}
-                type="multi"
-                isSelected={selectedFilters.inboxes.includes(inbox.id)}
-                onClick={() => toggleFilter('inboxes', inbox.id)}>
-                <DropdownItemIcon color={palette.blue.shade40} iconName="Archive" />
-                {inbox.name}
-              </DropdownItem>
-            ))}
-
-            <DropdownHeading>Individual</DropdownHeading>
-            {getFilteredItems(inboxesData.slice(2, 4), 'inboxes').map((inbox) => (
-              <DropdownItem
-                key={inbox.id}
-                type="multi"
-                isSelected={selectedFilters.inboxes.includes(inbox.id)}
-                onClick={() => toggleFilter('inboxes', inbox.id)}>
-                <DropdownItemIcon color={palette.green.shade40} iconName="Archive" />
-                {inbox.name}
-              </DropdownItem>
-            ))}
-
-            <DropdownHeading>Shared</DropdownHeading>
-            {getFilteredItems(inboxesData.slice(4), 'inboxes').map((inbox) => (
-              <DropdownItem
-                key={inbox.id}
-                type="multi"
-                isSelected={selectedFilters.inboxes.includes(inbox.id)}
-                onClick={() => toggleFilter('inboxes', inbox.id)}>
-                <DropdownItemIcon color={palette.purple.shade40} iconName="Archive" />
-                {inbox.name}
-              </DropdownItem>
-            ))}
+            {renderInboxSections()}
           </Dropdown>
         }>
         <DropdownItemIcon color={palette.blue.shade40} iconName="Archive" />
@@ -155,16 +178,16 @@ const BasicNavigationalTemplate: StoryFn = () => {
         submenuBackTitle="Filter by"
         submenuId="tags"
         submenu={
-          <Dropdown>
+          <Dropdown
+            isEmpty={getFilteredItems(tagsData, 'tags').length === 0 && Boolean(searchValues.tags)}
+            renderEmptyState={() => <EmptyState message="No tags found" />}>
             <DropdownHeader
               searchValue={searchValues.tags || ''}
               searchPlaceholder="Search tags..."
               onSearchChange={(newValue) => setSearchValues((prev) => ({...prev, tags: newValue}))}>
               Tags
             </DropdownHeader>
-
-            <DropdownHeading>Tags</DropdownHeading>
-            {getFilteredItems(tagsData, 'tags').map((tag) => (
+            {renderCategorySection('Tags', getFilteredItems(tagsData, 'tags'), 'tags', (tag) => (
               <DropdownItem
                 key={tag.id}
                 type="multi"
@@ -185,25 +208,32 @@ const BasicNavigationalTemplate: StoryFn = () => {
         submenuBackTitle="Filter by"
         submenuId="assignees"
         submenu={
-          <Dropdown>
+          <Dropdown
+            isEmpty={
+              getFilteredItems(assigneesData, 'assignees').length === 0 && Boolean(searchValues.assignees)
+            }
+            renderEmptyState={() => <EmptyState message="No assignees found" />}>
             <DropdownHeader
               searchValue={searchValues.assignees || ''}
               searchPlaceholder="Search assignees..."
               onSearchChange={(newValue) => setSearchValues((prev) => ({...prev, assignees: newValue}))}>
               Assignees
             </DropdownHeader>
-
-            <DropdownHeading>Assignees</DropdownHeading>
-            {getFilteredItems(assigneesData, 'assignees').map((assignee) => (
-              <DropdownItem
-                key={assignee.id}
-                type="multi"
-                isSelected={selectedFilters.assignees.includes(assignee.id)}
-                onClick={() => toggleFilter('assignees', assignee.id)}
-                description={assignee.email}>
-                {assignee.name}
-              </DropdownItem>
-            ))}
+            {renderCategorySection(
+              'Assignees',
+              getFilteredItems(assigneesData, 'assignees'),
+              'assignees',
+              (assignee) => (
+                <DropdownItem
+                  key={assignee.id}
+                  type="multi"
+                  isSelected={selectedFilters.assignees.includes(assignee.id)}
+                  onClick={() => toggleFilter('assignees', assignee.id)}
+                  description={assignee.email}>
+                  {assignee.name}
+                </DropdownItem>
+              )
+            )}
           </Dropdown>
         }>
         <DropdownItemIcon color={palette.green.shade40} iconName="Calendar" />
@@ -240,27 +270,63 @@ const BasicNavigationalTemplate: StoryFn = () => {
     </Dropdown>
   );
 
-  const getFilterSummary = () => {
-    const total =
-      selectedFilters.inboxes.length +
-      selectedFilters.tags.length +
-      selectedFilters.assignees.length +
-      selectedFilters.statuses.length;
-    if (total === 0) return 'Filter by';
-    return `${total} filter${total > 1 ? 's' : ''} applied`;
+  const getSelectedItemNames = (): string[] => {
+    const names: string[] = [];
+
+    // Get selected inbox names
+    selectedFilters.inboxes.forEach((id) => {
+      const inbox = inboxesData.find((item) => item.id === id);
+      if (inbox) names.push(inbox.name);
+    });
+
+    // Get selected tag names
+    selectedFilters.tags.forEach((id) => {
+      const tag = tagsData.find((item) => item.id === id);
+      if (tag) names.push(tag.name);
+    });
+
+    // Get selected assignee names
+    selectedFilters.assignees.forEach((id) => {
+      const assignee = assigneesData.find((item) => item.id === id);
+      if (assignee) names.push(assignee.name);
+    });
+
+    // Get selected status names
+    selectedFilters.statuses.forEach((id) => {
+      const status = ticketStatusesData.find((item) => item.id === id);
+      if (status) names.push(status.name);
+    });
+
+    return names;
   };
+
+  // Calculate a version number based on the total number of selected filters and search values
+  // We need to include search values to trigger re-renders when typing
+  const contentVersion =
+    selectedFilters.inboxes.length +
+    selectedFilters.tags.length +
+    selectedFilters.assignees.length +
+    selectedFilters.statuses.length +
+    Object.values(searchValues).join('').length;
 
   return (
     <StyledWrapperDiv>
       <StyledDropdownWrapperDiv>
         <NavigationalDropdownProvider
-          getRootContent={() => rootContent}
+          getRootContent={getRootContent}
           rootId="filter-menu"
+          contentVersion={contentVersion}
           onNavigate={(level, id) => console.log('Navigated to:', id, 'at level', level)}
           onNavigateBack={(level, id) => console.log('Navigated back to:', id, 'at level', level)}>
           <DropdownCoordinator
             placement="bottom-start"
-            renderButton={(isOpen) => <DropdownButton value={getFilterSummary()} isActive={isOpen} />}
+            renderButton={(isOpen) => (
+              <DropdownButton
+                value={getSelectedItemNames().length > 0 ? getSelectedItemNames() : []}
+                placeholder="Filter by"
+                isActive={isOpen}
+              />
+            )}
             renderDropdown={(onRequestClose) => <NavigationalDropdownContainer />}
           />
         </NavigationalDropdownProvider>
