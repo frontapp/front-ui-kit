@@ -274,3 +274,5 @@ function computeHeight(
     itemsHeight + (hasMore ? loadingSkeletonHeight * totalLoadingRowsToRender : 0);
   return itemsWithLoadingHeight < maxHeight ? itemsWithLoadingHeight + dropdownListPadding * 2 : maxHeight;
 }
+
+Dropdown.displayName = 'Dropdown';

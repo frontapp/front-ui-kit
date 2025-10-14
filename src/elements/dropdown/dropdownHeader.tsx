@@ -72,7 +72,7 @@ export const DropdownHeader: FC<DropdownHeaderProps> = ({
   onSearchChange,
   onBackClick
 }) => (
-  <StyledDropdownHeaderWrapperDiv onClick={(event) => event.preventDefault()}>
+  <StyledDropdownHeaderWrapperDiv>
     <StyledHeaderTopRowDiv>
       {maybeRenderBackButton(onBackClick)}
       <StyledHeaderLabelDiv>{children}</StyledHeaderLabelDiv>
@@ -112,11 +112,7 @@ function maybeRenderSearchDropdown(
   // We will only render the dropdown if the value is supplied.
   if (typeof searchValue === 'undefined') return null;
   return (
-    <StyledSearchWrapperDiv
-      onClick={(event) => {
-        // Mark the input as handled.
-        event.preventDefault();
-      }}>
+    <StyledSearchWrapperDiv>
       <Input
         iconName="Search"
         placeholder={placeholder}
@@ -129,3 +125,5 @@ function maybeRenderSearchDropdown(
     </StyledSearchWrapperDiv>
   );
 }
+
+DropdownHeader.displayName = 'DropdownHeader';
