@@ -137,7 +137,10 @@ function buildDropdownItemsFromChildren(children: React.ReactNode): ReadonlyArra
       // If the child item is a fragment, we can just look directly at the children instead and this will work recursively.
       // This enables users to pass content like:
       // {BooleanCheck && (<><DropdownItem>Test</DropdownItem></>)}
-      if (ReactIs.isFragment(child)) return buildDropdownItemsFromChildren(child.props.children);
+      if (ReactIs.isFragment(child)) {
+        const fragmentChild = child as React.ReactElement<{children: React.ReactNode}>;
+        return buildDropdownItemsFromChildren(fragmentChild.props.children);
+      }
 
       // This is a check for arbitrary elements such as div, span, etc.
       if (!isValidElement(child)) return undefined;
