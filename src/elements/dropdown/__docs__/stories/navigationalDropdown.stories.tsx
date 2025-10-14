@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import {palette} from '../../../../helpers/colorHelpers';
 import {EmptyState} from '../../../emptyState/emptyState';
+import {NavigationalDropdownContainer} from '../../components/NavigationalDropdownContainer';
 import {NavigationalDropdownProvider} from '../../context/NavigationalDropdownContext';
 import {Dropdown} from '../../dropdown';
 import {DropdownButton} from '../../dropdownButton';
@@ -12,7 +13,6 @@ import {DropdownHeader} from '../../dropdownHeader';
 import {DropdownHeading} from '../../dropdownHeading';
 import {DropdownItem} from '../../dropdownItem';
 import {DropdownItemIcon} from '../../dropdownItemIcon';
-import {NavigationalDropdownContainer} from '../../components/NavigationalDropdownContainer';
 
 const StyledWrapperDiv = styled.div`
   display: flex;
@@ -90,22 +90,6 @@ const BasicNavigationalTemplate: StoryFn = () => {
     return items.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()));
   };
 
-  // Helper to render a category section with heading (only if items exist)
-  const renderCategorySection = <T extends {id: string; name: string}>(
-    heading: string,
-    items: T[],
-    category: string,
-    renderItem: (item: T) => React.ReactNode
-  ) => {
-    if (items.length === 0) return null;
-    return (
-      <>
-        <DropdownHeading>{heading}</DropdownHeading>
-        {items.map((item) => renderItem(item))}
-      </>
-    );
-  };
-
   // Render inbox sections
   const renderInboxSections = () => {
     const anyInboxes = getFilteredItems(inboxesData.slice(0, 2), 'inboxes');
@@ -114,36 +98,51 @@ const BasicNavigationalTemplate: StoryFn = () => {
 
     return (
       <>
-        {renderCategorySection('Any', anyInboxes, 'inboxes', (inbox) => (
-          <DropdownItem
-            key={inbox.id}
-            type="multi"
-            isSelected={selectedFilters.inboxes.includes(inbox.id)}
-            onClick={() => toggleFilter('inboxes', inbox.id)}>
-            <DropdownItemIcon color={palette.blue.shade40} iconName="Archive" />
-            {inbox.name}
-          </DropdownItem>
-        ))}
-        {renderCategorySection('Individual', individualInboxes, 'inboxes', (inbox) => (
-          <DropdownItem
-            key={inbox.id}
-            type="multi"
-            isSelected={selectedFilters.inboxes.includes(inbox.id)}
-            onClick={() => toggleFilter('inboxes', inbox.id)}>
-            <DropdownItemIcon color={palette.green.shade40} iconName="Archive" />
-            {inbox.name}
-          </DropdownItem>
-        ))}
-        {renderCategorySection('Shared', sharedInboxes, 'inboxes', (inbox) => (
-          <DropdownItem
-            key={inbox.id}
-            type="multi"
-            isSelected={selectedFilters.inboxes.includes(inbox.id)}
-            onClick={() => toggleFilter('inboxes', inbox.id)}>
-            <DropdownItemIcon color={palette.purple.shade40} iconName="Archive" />
-            {inbox.name}
-          </DropdownItem>
-        ))}
+        {anyInboxes.length > 0 && (
+          <>
+            <DropdownHeading>Any</DropdownHeading>
+            {anyInboxes.map((inbox) => (
+              <DropdownItem
+                key={inbox.id}
+                type="multi"
+                isSelected={selectedFilters.inboxes.includes(inbox.id)}
+                onClick={() => toggleFilter('inboxes', inbox.id)}>
+                <DropdownItemIcon color={palette.blue.shade40} iconName="Archive" />
+                {inbox.name}
+              </DropdownItem>
+            ))}
+          </>
+        )}
+        {individualInboxes.length > 0 && (
+          <>
+            <DropdownHeading>Individual</DropdownHeading>
+            {individualInboxes.map((inbox) => (
+              <DropdownItem
+                key={inbox.id}
+                type="multi"
+                isSelected={selectedFilters.inboxes.includes(inbox.id)}
+                onClick={() => toggleFilter('inboxes', inbox.id)}>
+                <DropdownItemIcon color={palette.green.shade40} iconName="Archive" />
+                {inbox.name}
+              </DropdownItem>
+            ))}
+          </>
+        )}
+        {sharedInboxes.length > 0 && (
+          <>
+            <DropdownHeading>Shared</DropdownHeading>
+            {sharedInboxes.map((inbox) => (
+              <DropdownItem
+                key={inbox.id}
+                type="multi"
+                isSelected={selectedFilters.inboxes.includes(inbox.id)}
+                onClick={() => toggleFilter('inboxes', inbox.id)}>
+                <DropdownItemIcon color={palette.purple.shade40} iconName="Archive" />
+                {inbox.name}
+              </DropdownItem>
+            ))}
+          </>
+        )}
       </>
     );
   };
@@ -187,16 +186,21 @@ const BasicNavigationalTemplate: StoryFn = () => {
               onSearchChange={(newValue) => setSearchValues((prev) => ({...prev, tags: newValue}))}>
               Tags
             </DropdownHeader>
-            {renderCategorySection('Tags', getFilteredItems(tagsData, 'tags'), 'tags', (tag) => (
-              <DropdownItem
-                key={tag.id}
-                type="multi"
-                isSelected={selectedFilters.tags.includes(tag.id)}
-                onClick={() => toggleFilter('tags', tag.id)}>
-                <DropdownItemIcon color={tag.color} iconName="Star" />
-                {tag.name}
-              </DropdownItem>
-            ))}
+            {getFilteredItems(tagsData, 'tags').length > 0 && (
+              <>
+                <DropdownHeading>Tags</DropdownHeading>
+                {getFilteredItems(tagsData, 'tags').map((tag) => (
+                  <DropdownItem
+                    key={tag.id}
+                    type="multi"
+                    isSelected={selectedFilters.tags.includes(tag.id)}
+                    onClick={() => toggleFilter('tags', tag.id)}>
+                    <DropdownItemIcon color={tag.color} iconName="Star" />
+                    {tag.name}
+                  </DropdownItem>
+                ))}
+              </>
+            )}
           </Dropdown>
         }>
         <DropdownItemIcon color={palette.orange.shade40} iconName="Star" />
@@ -219,20 +223,20 @@ const BasicNavigationalTemplate: StoryFn = () => {
               onSearchChange={(newValue) => setSearchValues((prev) => ({...prev, assignees: newValue}))}>
               Assignees
             </DropdownHeader>
-            {renderCategorySection(
-              'Assignees',
-              getFilteredItems(assigneesData, 'assignees'),
-              'assignees',
-              (assignee) => (
-                <DropdownItem
-                  key={assignee.id}
-                  type="multi"
-                  isSelected={selectedFilters.assignees.includes(assignee.id)}
-                  onClick={() => toggleFilter('assignees', assignee.id)}
-                  description={assignee.email}>
-                  {assignee.name}
-                </DropdownItem>
-              )
+            {getFilteredItems(assigneesData, 'assignees').length > 0 && (
+              <>
+                <DropdownHeading>Assignees</DropdownHeading>
+                {getFilteredItems(assigneesData, 'assignees').map((assignee) => (
+                  <DropdownItem
+                    key={assignee.id}
+                    type="multi"
+                    isSelected={selectedFilters.assignees.includes(assignee.id)}
+                    onClick={() => toggleFilter('assignees', assignee.id)}
+                    description={assignee.email}>
+                    {assignee.name}
+                  </DropdownItem>
+                ))}
+              </>
             )}
           </Dropdown>
         }>

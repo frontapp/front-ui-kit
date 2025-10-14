@@ -169,7 +169,7 @@ export const DropdownItem: FC<DropdownItemProps> = ({
 
   // If we have a submenu, wrap with the appropriate trigger based on mode
   if (submenu) {
-    if (submenuMode === 'navigational') {
+    if (submenuMode === 'navigational')
       return (
         <NavigationalSubmenuTrigger
           submenuId={effectiveSubmenuId}
@@ -179,7 +179,6 @@ export const DropdownItem: FC<DropdownItemProps> = ({
           {content}
         </NavigationalSubmenuTrigger>
       );
-    }
 
     // Default to hover mode
     return (

@@ -1,4 +1,4 @@
-import React, {createContext, useCallback, useContext, useMemo, useState, useLayoutEffect} from 'react';
+import React, {createContext, useCallback, useContext, useLayoutEffect, useMemo, useState} from 'react';
 
 export interface NavigationalView {
   id: string;
@@ -49,7 +49,7 @@ export const NavigationalDropdownProvider: React.FC<NavigationalDropdownProvider
   const [autoNavigateToSubmenuId, setAutoNavigateToSubmenuId] = React.useState<string | null>(null);
 
   useLayoutEffect(() => {
-    if (prevContentVersionRef.current !== contentVersion && prevContentVersionRef.current !== undefined) {
+    if (prevContentVersionRef.current !== contentVersion && prevContentVersionRef.current !== undefined)
       setViewStack((currentStack) => {
         const activeSubmenuId = currentStack.length > 1 ? currentStack[currentStack.length - 1].id : null;
 
@@ -61,13 +61,11 @@ export const NavigationalDropdownProvider: React.FC<NavigationalDropdownProvider
           }
         ];
 
-        if (activeSubmenuId && activeSubmenuId !== rootId) {
-          setAutoNavigateToSubmenuId(activeSubmenuId);
-        }
+        if (activeSubmenuId && activeSubmenuId !== rootId) setAutoNavigateToSubmenuId(activeSubmenuId);
 
         return newStack;
       });
-    }
+
     prevContentVersionRef.current = contentVersion;
   }, [contentVersion, getRootContent, rootId]);
 
@@ -117,7 +115,7 @@ export const NavigationalDropdownProvider: React.FC<NavigationalDropdownProvider
 
   const currentContent = useMemo(
     () => (viewStack.length > 0 ? viewStack[viewStack.length - 1].getContent() : null),
-    [viewStack, contentVersion]
+    [viewStack]
   );
 
   const contextValue = useMemo<NavigationalDropdownContextValue>(

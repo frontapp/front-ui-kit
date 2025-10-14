@@ -26,13 +26,12 @@ const StyledTriggerWrapper = styled.div`
   }
 `;
 
-const isInteractiveElement = (target: HTMLElement): boolean => {
-  return Boolean(
+const isInteractiveElement = (target: HTMLElement): boolean =>
+  Boolean(
     target.closest(
       'input:not([type="checkbox"]):not([type="radio"]), textarea, select, [contenteditable="true"]'
     )
   );
-};
 
 export const NavigationalSubmenuTrigger: React.FC<NavigationalSubmenuTriggerProps> = ({
   children,
@@ -52,19 +51,15 @@ export const NavigationalSubmenuTrigger: React.FC<NavigationalSubmenuTriggerProp
       navigateTo(submenuId, getSubmenu, backTitle);
     }
 
-    if (autoNavigateToSubmenuId !== submenuId) {
-      hasAutoNavigatedRef.current = false;
-    }
+    if (autoNavigateToSubmenuId !== submenuId) hasAutoNavigatedRef.current = false;
   }, [autoNavigateToSubmenuId, submenuId, getSubmenu, backTitle, navigateTo]);
 
   const handleClick = useCallback(
     (event: React.MouseEvent) => {
       if (disabled) return;
 
-      const target = event.target as HTMLElement;
-      if (isInteractiveElement(target)) {
-        return;
-      }
+      const {target} = event;
+      if (target instanceof HTMLElement && isInteractiveElement(target)) return;
 
       event.preventDefault();
       event.stopPropagation();
@@ -79,10 +74,8 @@ export const NavigationalSubmenuTrigger: React.FC<NavigationalSubmenuTriggerProp
     (event: React.KeyboardEvent) => {
       if (disabled) return;
 
-      const target = event.target as HTMLElement;
-      if (isInteractiveElement(target)) {
-        return;
-      }
+      const {target} = event;
+      if (target instanceof HTMLElement && isInteractiveElement(target)) return;
 
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();

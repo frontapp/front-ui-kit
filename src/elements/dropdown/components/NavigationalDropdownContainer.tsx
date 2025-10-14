@@ -1,4 +1,4 @@
-import React, {useEffect, isValidElement, cloneElement, Children} from 'react';
+import React, {Children, cloneElement, isValidElement, useEffect} from 'react';
 
 import {useNavigationalDropdown} from '../context/NavigationalDropdownContext';
 
@@ -7,32 +7,28 @@ interface NavigationalDropdownContainerProps {
 }
 
 const hasDisplayName = (element: React.ReactElement, name: string): boolean => {
-  return Boolean(
-    element.type &&
-      typeof element.type === 'function' &&
-      (element.type as {displayName?: string}).displayName === name
-  );
+  const elementType = element.type;
+  if (!elementType || typeof elementType !== 'function') return false;
+
+  return 'displayName' in elementType && elementType.displayName === name;
 };
 
 const injectBackClickIntoDropdownHeader = (
   children: React.ReactNode,
   handleBackClick: (event: React.MouseEvent) => void
-): React.ReactNode => {
-  return Children.map(children, (child) => {
+): React.ReactNode =>
+  Children.map(children, (child) => {
     if (!isValidElement(child)) return child;
 
     if (hasDisplayName(child, 'DropdownHeader')) {
-      return cloneElement(
-        child as React.ReactElement,
-        {
-          onBackClick: handleBackClick
-        } as never
-      );
+      const additionalProps = {
+        onBackClick: handleBackClick
+      };
+      return cloneElement<typeof child.props>(child, additionalProps);
     }
 
     return child;
   });
-};
 
 export const NavigationalDropdownContainer: React.FC<NavigationalDropdownContainerProps> = ({className}) => {
   const {currentContent, navigateBack, canNavigateBack, reset} = useNavigationalDropdown();
@@ -53,16 +49,18 @@ export const NavigationalDropdownContainer: React.FC<NavigationalDropdownContain
     const dropdownElement = currentContent;
 
     if (hasDisplayName(dropdownElement, 'Dropdown')) {
-      const props = dropdownElement.props as {children?: React.ReactNode; className?: string};
+      const elementProps = dropdownElement.props;
 
-      if (props.children) {
-        const modifiedChildren = injectBackClickIntoDropdownHeader(props.children, handleBackClick);
+      if (elementProps && typeof elementProps === 'object' && 'children' in elementProps) {
+        const children = elementProps.children as React.ReactNode;
+        const modifiedChildren = injectBackClickIntoDropdownHeader(children, handleBackClick);
 
-        return cloneElement(dropdownElement, {
-          ...props,
+        const newProps = {
+          ...elementProps,
           children: modifiedChildren,
-          className: className || props.className
-        } as never);
+          className: className || ('className' in elementProps ? elementProps.className : undefined)
+        };
+        return cloneElement<typeof dropdownElement.props>(dropdownElement, newProps);
       }
     }
   }
