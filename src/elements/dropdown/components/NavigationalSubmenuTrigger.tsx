@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useLayoutEffect, useRef} from 'react';
 import styled from 'styled-components';
 
 import {useNavigationalDropdown} from '../context/NavigationalDropdownContext';
@@ -37,6 +37,18 @@ const StyledTriggerWrapper = styled.div`
 `;
 
 /**
+ * Check if the event target is an interactive element that should not trigger navigation
+ */
+const isInteractiveElement = (target: HTMLElement): boolean => {
+  // Check if the target or any parent is an input, checkbox, or other interactive element
+  return Boolean(
+    target.closest(
+      'input:not([type="checkbox"]):not([type="radio"]), textarea, select, [contenteditable="true"]'
+    )
+  );
+};
+
+/**
  * NavigationalSubmenuTrigger component handles click-to-navigate interactions for nested dropdowns.
  */
 export const NavigationalSubmenuTrigger: React.FC<NavigationalSubmenuTriggerProps> = ({
@@ -49,16 +61,19 @@ export const NavigationalSubmenuTrigger: React.FC<NavigationalSubmenuTriggerProp
   onNavigate
 }) => {
   const {navigateTo, autoNavigateToSubmenuId} = useNavigationalDropdown();
-  const hasAutoNavigatedRef = React.useRef(false);
+  const hasAutoNavigatedRef = useRef(false);
 
   // Auto-navigate to this submenu if it matches the autoNavigateToSubmenuId
-  // Use useLayoutEffect to navigate synchronously before paint to avoid flashing
-  React.useLayoutEffect(() => {
-    if (autoNavigateToSubmenuId === submenuId && !hasAutoNavigatedRef.current && getSubmenu) {
+  // This happens after a content refresh to restore the previous navigation state
+  // Using useLayoutEffect to make this synchronous and minimize flicker
+  useLayoutEffect(() => {
+    if (autoNavigateToSubmenuId === submenuId && !hasAutoNavigatedRef.current) {
       hasAutoNavigatedRef.current = true;
+      // Use the fresh getSubmenu function from current render
       navigateTo(submenuId, getSubmenu, backTitle);
     }
-    // Reset the flag when autoNavigateToSubmenuId changes
+
+    // Reset the flag when autoNavigateToSubmenuId changes away from this submenu
     if (autoNavigateToSubmenuId !== submenuId) {
       hasAutoNavigatedRef.current = false;
     }
@@ -68,14 +83,10 @@ export const NavigationalSubmenuTrigger: React.FC<NavigationalSubmenuTriggerProp
     (event: React.MouseEvent) => {
       if (disabled) return;
 
-      // Check if the click target is specifically an input field or checkbox
+      // Check if the click target is an interactive element (input, textarea, etc.)
       const target = event.target as HTMLElement;
-      const isInputOrCheckbox = target.closest(
-        'input[type="text"], input[type="search"], input[type="email"], input[type="password"], input[type="url"], input[type="number"], input[type="checkbox"], [role="checkbox"]'
-      );
-
-      if (isInputOrCheckbox) {
-        // Don't interfere with input fields or checkboxes
+      if (isInteractiveElement(target)) {
+        // Don't interfere with interactive elements
         return;
       }
 
@@ -94,14 +105,10 @@ export const NavigationalSubmenuTrigger: React.FC<NavigationalSubmenuTriggerProp
     (event: React.KeyboardEvent) => {
       if (disabled) return;
 
-      // Check if the focus is specifically on an input field or checkbox
+      // Check if the focus is on an interactive element
       const target = event.target as HTMLElement;
-      const isInputOrCheckbox = target.closest(
-        'input[type="text"], input[type="search"], input[type="email"], input[type="password"], input[type="url"], input[type="number"], [role="checkbox"]'
-      );
-
-      if (isInputOrCheckbox) {
-        // Don't interfere with input fields or checkboxes
+      if (isInteractiveElement(target)) {
+        // Don't interfere with interactive elements
         return;
       }
 

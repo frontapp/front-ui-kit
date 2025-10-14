@@ -1,4 +1,4 @@
-import React, {createContext, useCallback, useContext, useMemo, useState} from 'react';
+import React, {createContext, useCallback, useContext, useMemo, useState, useLayoutEffect} from 'react';
 
 /**
  * Represents a single view/level in the navigation stack
@@ -32,7 +32,7 @@ export interface NavigationalDropdownContextValue {
   reset: () => void;
   /** Get the current navigation level */
   getCurrentLevel: () => number;
-  /** ID of submenu to auto-navigate to (used internally for re-navigation after state updates) */
+  /** ID of submenu to auto-navigate to after content refresh */
   autoNavigateToSubmenuId: string | null;
 }
 
@@ -79,33 +79,37 @@ export const NavigationalDropdownProvider: React.FC<NavigationalDropdownProvider
     }
   ]);
 
-  // Track the previous contentVersion to detect changes and remember current submenu
+  // Track the previous contentVersion to detect changes and current submenu
   const prevContentVersionRef = React.useRef(contentVersion);
   const [autoNavigateToSubmenuId, setAutoNavigateToSubmenuId] = React.useState<string | null>(null);
 
-  // Use useLayoutEffect to update synchronously before paint to reduce flashing
-  React.useLayoutEffect(() => {
-    // Only reset if contentVersion actually changed (not on first mount)
+  // Use useLayoutEffect to handle content updates synchronously
+  useLayoutEffect(() => {
+    // Only handle if contentVersion actually changed (not on first mount)
     if (prevContentVersionRef.current !== contentVersion && prevContentVersionRef.current !== undefined) {
-      // Remember which submenu we're currently viewing
-      const currentSubmenuId = viewStack.length > 1 ? viewStack[viewStack.length - 1].id : null;
+      setViewStack((currentStack) => {
+        // Remember which submenu we're currently viewing
+        const activeSubmenuId = currentStack.length > 1 ? currentStack[currentStack.length - 1].id : null;
 
-      if (currentSubmenuId) {
-        // Set the auto-navigate ID so the NavigationalSubmenuTrigger can re-open the submenu
-        setAutoNavigateToSubmenuId(currentSubmenuId);
-      }
+        // Reset to root with fresh content
+        const newStack = [
+          {
+            id: rootId,
+            getContent: getRootContent,
+            level: 0
+          }
+        ];
 
-      // Reset to root with fresh content
-      setViewStack([
-        {
-          id: rootId,
-          getContent: getRootContent,
-          level: 0
+        // If we were in a submenu, signal to auto-navigate back to it
+        if (activeSubmenuId && activeSubmenuId !== rootId) {
+          setAutoNavigateToSubmenuId(activeSubmenuId);
         }
-      ]);
+
+        return newStack;
+      });
     }
     prevContentVersionRef.current = contentVersion;
-  }, [contentVersion, getRootContent, rootId, viewStack]);
+  }, [contentVersion, getRootContent, rootId]);
 
   /**
    * Navigate to a new view by pushing it onto the stack
@@ -141,6 +145,7 @@ export const NavigationalDropdownProvider: React.FC<NavigationalDropdownProvider
 
       const newStack = prev.slice(0, -1);
       const currentView = newStack[newStack.length - 1];
+
       onNavigateBack?.(currentView.level, currentView.id);
       return newStack;
     });

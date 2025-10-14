@@ -11,6 +11,41 @@ interface NavigationalDropdownContainerProps {
 }
 
 /**
+ * Helper to check if a component is a specific type by displayName
+ */
+const hasDisplayName = (element: React.ReactElement, name: string): boolean => {
+  return Boolean(
+    element.type &&
+      typeof element.type === 'function' &&
+      (element.type as {displayName?: string}).displayName === name
+  );
+};
+
+/**
+ * Recursively inject onBackClick into DropdownHeader children
+ */
+const injectBackClickIntoDropdownHeader = (
+  children: React.ReactNode,
+  handleBackClick: (event: React.MouseEvent) => void
+): React.ReactNode => {
+  return Children.map(children, (child) => {
+    if (!isValidElement(child)) return child;
+
+    // If this is a DropdownHeader, inject the onBackClick prop
+    if (hasDisplayName(child, 'DropdownHeader')) {
+      return cloneElement(
+        child as React.ReactElement,
+        {
+          onBackClick: handleBackClick
+        } as never
+      );
+    }
+
+    return child;
+  });
+};
+
+/**
  * NavigationalDropdownContainer is the main container component for navigational dropdowns.
  */
 export const NavigationalDropdownContainer: React.FC<NavigationalDropdownContainerProps> = ({className}) => {
@@ -30,46 +65,22 @@ export const NavigationalDropdownContainer: React.FC<NavigationalDropdownContain
 
   if (!currentContent) return null;
 
-  // If we need a back button and the content has a Dropdown with DropdownHeader, inject onBackClick
+  // If we need a back button and the content is a valid React element, try to inject onBackClick
   if (canNavigateBack && isValidElement(currentContent)) {
     const dropdownElement = currentContent;
 
     // Check if it's a Dropdown component
-    const isDropdown =
-      dropdownElement.type &&
-      typeof dropdownElement.type === 'function' &&
-      (dropdownElement.type as {displayName?: string}).displayName === 'Dropdown';
-
-    if (isDropdown) {
-      const props = dropdownElement.props as {children?: React.ReactNode};
+    if (hasDisplayName(dropdownElement, 'Dropdown')) {
+      const props = dropdownElement.props as {children?: React.ReactNode; className?: string};
 
       if (props.children) {
-        // Clone the Dropdown and inject onBackClick into any DropdownHeader children
-        const modifiedChildren = Children.map(props.children, (child) => {
-          if (!isValidElement(child)) return child;
-
-          // Check if this is a DropdownHeader component
-          const isDropdownHeader =
-            child.type &&
-            typeof child.type === 'function' &&
-            (child.type as {displayName?: string}).displayName === 'DropdownHeader';
-
-          if (isDropdownHeader) {
-            // Inject onBackClick into DropdownHeader
-            return cloneElement(
-              child as React.ReactElement,
-              {
-                onBackClick: handleBackClick
-              } as never
-            );
-          }
-
-          return child;
-        });
+        // Inject onBackClick into any DropdownHeader children
+        const modifiedChildren = injectBackClickIntoDropdownHeader(props.children, handleBackClick);
 
         return cloneElement(dropdownElement, {
+          ...props,
           children: modifiedChildren,
-          className
+          className: className || props.className
         } as never);
       }
     }
