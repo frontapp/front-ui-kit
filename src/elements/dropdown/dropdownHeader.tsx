@@ -114,12 +114,10 @@ function maybeRenderSearchDropdown(
   shouldAutoFocusSearchInput?: boolean,
   onSearchChange?: (value: string) => void
 ) {
-  // We will only render the dropdown if the value is supplied.
   if (typeof searchValue === 'undefined') return null;
   return (
     <StyledSearchWrapperDiv
       onClick={(e) => {
-        // Prevent clicks on the search input from closing the dropdown
         e.preventDefault();
         e.stopPropagation();
       }}>
