@@ -16,6 +16,8 @@ interface TabProps {
   isSelected?: boolean;
   /** Called when the tab is clicked. */
   onClick?: MouseEventHandler;
+  /** Maximum width of the tab in pixels. */
+  maxWidth?: number;
 }
 
 /*
@@ -24,6 +26,7 @@ interface TabProps {
 
 interface StyledTabWrapperDivProps {
   $isSelected?: boolean;
+  $maxWidth?: number;
 }
 
 const StyledTabWrapperDiv = styled.div<StyledTabWrapperDivProps>`
@@ -37,6 +40,13 @@ const StyledTabWrapperDiv = styled.div<StyledTabWrapperDivProps>`
   overflow: hidden;
   cursor: default;
   text-align: center;
+
+  ${(p) =>
+    p.$maxWidth &&
+    css`
+      max-width: ${p.$maxWidth}px;
+      flex: none;
+    `}
 
   ${(p) =>
     p.$isSelected &&
@@ -60,7 +70,7 @@ interface StyledSelectedBorderDivProps {
 
 const StyledSelectedBorderDiv = styled.div<StyledSelectedBorderDivProps>`
   background: ${alphas.transparent};
-  height: 3px;
+  height: 2.5px;
   border-top-left-radius: 100px;
   border-top-right-radius: 100px;
 
@@ -77,9 +87,9 @@ const StyledSelectedBorderDiv = styled.div<StyledSelectedBorderDivProps>`
 
 // TODO: Add tooltip support for overflowing names.
 export const Tab: FC<TabProps> = (props) => {
-  const {name, isSelected, onClick} = props;
+  const {name, isSelected, onClick, maxWidth} = props;
   return (
-    <StyledTabWrapperDiv $isSelected={isSelected} onClick={onClick}>
+    <StyledTabWrapperDiv $isSelected={isSelected} $maxWidth={maxWidth} onClick={onClick}>
       <StyledTabNameDiv>{name}</StyledTabNameDiv>
       <StyledSelectedBorderDiv $isSelected={isSelected} />
     </StyledTabWrapperDiv>
