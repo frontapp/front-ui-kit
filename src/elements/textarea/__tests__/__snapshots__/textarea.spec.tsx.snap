@@ -10,7 +10,7 @@ exports[`<Textarea /> Spec Snapshots should render a filled and disabled textare
 
 .c1 {
   width: inherit;
-  background: #ECEAF1;
+  background: #eceaf1;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   font-size: 14px;
   font-weight: 400;
@@ -21,9 +21,9 @@ exports[`<Textarea /> Spec Snapshots should render a filled and disabled textare
   appearance: none;
   padding: 4.5px 8px;
   outline: none;
-  color: #332C3A;
+  color: #332c3a;
   resize: vertical;
-  border: 2px solid #D8D6DB;
+  border: 2px solid #d8d6db;
   background: #ffffff;
   opacity: 0.5;
 }
@@ -33,11 +33,11 @@ exports[`<Textarea /> Spec Snapshots should render a filled and disabled textare
 }
 
 .c1:hover {
-  background: #D8D6DB;
+  background: #d8d6db;
 }
 
 .c1:focus {
-  border: 2px solid #94A2FF;
+  border: 2px solid #94a2ff;
   background: #ffffff;
 }
 
@@ -72,7 +72,7 @@ exports[`<Textarea /> Spec Snapshots should render a filled textarea 1`] = `
 
 .c1 {
   width: inherit;
-  background: #ECEAF1;
+  background: #eceaf1;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   font-size: 14px;
   font-weight: 400;
@@ -83,7 +83,7 @@ exports[`<Textarea /> Spec Snapshots should render a filled textarea 1`] = `
   appearance: none;
   padding: 4.5px 8px;
   outline: none;
-  color: #332C3A;
+  color: #332c3a;
   resize: vertical;
   border: 2px solid transparent;
 }
@@ -93,11 +93,11 @@ exports[`<Textarea /> Spec Snapshots should render a filled textarea 1`] = `
 }
 
 .c1:hover {
-  background: #D8D6DB;
+  background: #d8d6db;
 }
 
 .c1:focus {
-  border: 2px solid #94A2FF;
+  border: 2px solid #94a2ff;
   background: #ffffff;
 }
 
@@ -127,7 +127,7 @@ exports[`<Textarea /> Spec Snapshots should render a textarea which is resizable
 
 .c1 {
   width: inherit;
-  background: #ECEAF1;
+  background: #eceaf1;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   font-size: 14px;
   font-weight: 400;
@@ -138,7 +138,7 @@ exports[`<Textarea /> Spec Snapshots should render a textarea which is resizable
   appearance: none;
   padding: 4.5px 8px;
   outline: none;
-  color: #332C3A;
+  color: #332c3a;
   resize: vertical;
   border: 2px solid transparent;
 }
@@ -148,11 +148,11 @@ exports[`<Textarea /> Spec Snapshots should render a textarea which is resizable
 }
 
 .c1:hover {
-  background: #D8D6DB;
+  background: #d8d6db;
 }
 
 .c1:focus {
-  border: 2px solid #94A2FF;
+  border: 2px solid #94a2ff;
   background: #ffffff;
 }
 
@@ -182,7 +182,7 @@ exports[`<Textarea /> Spec Snapshots should render a textarea with an error 1`] 
 
 .c1 {
   width: inherit;
-  background: #ECEAF1;
+  background: #eceaf1;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   font-size: 14px;
   font-weight: 400;
@@ -193,9 +193,9 @@ exports[`<Textarea /> Spec Snapshots should render a textarea with an error 1`] 
   appearance: none;
   padding: 4.5px 8px;
   outline: none;
-  color: #332C3A;
+  color: #332c3a;
   resize: vertical;
-  background: #FFE7E6;
+  background: #ffe7e6;
   border: 2px solid transparent;
 }
 
@@ -204,20 +204,20 @@ exports[`<Textarea /> Spec Snapshots should render a textarea with an error 1`] 
 }
 
 .c1:hover {
-  background: #D8D6DB;
+  background: #d8d6db;
 }
 
 .c1:focus {
-  border: 2px solid #94A2FF;
+  border: 2px solid #94a2ff;
   background: #ffffff;
 }
 
 .c1:hover {
-  background: #FDCAC3;
+  background: #fdcac3;
 }
 
 .c1:focus {
-  border: 2px solid #FF7C75;
+  border: 2px solid #ff7c75;
   background: #ffffff;
 }
 
@@ -247,7 +247,7 @@ exports[`<Textarea /> Spec Snapshots should render an empty and disabled textare
 
 .c1 {
   width: inherit;
-  background: #ECEAF1;
+  background: #eceaf1;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   font-size: 14px;
   font-weight: 400;
@@ -258,9 +258,9 @@ exports[`<Textarea /> Spec Snapshots should render an empty and disabled textare
   appearance: none;
   padding: 4.5px 8px;
   outline: none;
-  color: #332C3A;
+  color: #332c3a;
   resize: vertical;
-  border: 2px solid #D8D6DB;
+  border: 2px solid #d8d6db;
   background: #ffffff;
   opacity: 0.5;
 }
@@ -270,11 +270,11 @@ exports[`<Textarea /> Spec Snapshots should render an empty and disabled textare
 }
 
 .c1:hover {
-  background: #D8D6DB;
+  background: #d8d6db;
 }
 
 .c1:focus {
-  border: 2px solid #94A2FF;
+  border: 2px solid #94a2ff;
   background: #ffffff;
 }
 

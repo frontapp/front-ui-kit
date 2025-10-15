@@ -34,7 +34,7 @@ exports[`<Checkbox /> Spec Snapshots should render a checkbox with a label 1`] =
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  color: #504C57;
+  color: #504c57;
   margin-left: 8px;
   cursor: default;
   user-select: none;
@@ -104,8 +104,8 @@ exports[`<Checkbox /> Spec Snapshots should render a checked and disabled checkb
   box-sizing: border-box;
   appearance: none;
   margin: 0px;
-  background-color: #A9ABB2;
-  border: 1.5px solid #A9ABB2;
+  background-color: #a9abb2;
+  border: 1.5px solid #a9abb2;
 }
 
 .c5 {
@@ -113,7 +113,7 @@ exports[`<Checkbox /> Spec Snapshots should render a checked and disabled checkb
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  color: #504C57;
+  color: #504c57;
   margin-left: 8px;
   cursor: default;
   user-select: none;
@@ -195,7 +195,7 @@ exports[`<Checkbox /> Spec Snapshots should render a checked checkbox 1`] = `
   box-sizing: border-box;
   appearance: none;
   margin: 0px;
-  background: #6257F4;
+  background: #6257f4;
   border: none;
 }
 
@@ -204,7 +204,7 @@ exports[`<Checkbox /> Spec Snapshots should render a checked checkbox 1`] = `
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  color: #504C57;
+  color: #504c57;
   margin-left: 8px;
   cursor: default;
   user-select: none;
@@ -277,8 +277,8 @@ exports[`<Checkbox /> Spec Snapshots should render an empty and disabled checkbo
   box-sizing: border-box;
   appearance: none;
   margin: 0px;
-  background-color: #ECEAF1;
-  border: 1.5px solid #A9ABB2;
+  background-color: #eceaf1;
+  border: 1.5px solid #a9abb2;
 }
 
 .c4 {
@@ -286,7 +286,7 @@ exports[`<Checkbox /> Spec Snapshots should render an empty and disabled checkbo
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  color: #504C57;
+  color: #504c57;
   margin-left: 8px;
   cursor: default;
   user-select: none;
@@ -355,7 +355,7 @@ exports[`<Checkbox /> Spec Snapshots should render an empty checkbox 1`] = `
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  color: #504C57;
+  color: #504c57;
   margin-left: 8px;
   cursor: default;
   user-select: none;
@@ -423,8 +423,8 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate and disabled
   box-sizing: border-box;
   appearance: none;
   margin: 0px;
-  background-color: #A9ABB2;
-  border: 1.5px solid #A9ABB2;
+  background-color: #a9abb2;
+  border: 1.5px solid #a9abb2;
 }
 
 .c5 {
@@ -432,7 +432,7 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate and disabled
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  color: #504C57;
+  color: #504c57;
   margin-left: 8px;
   cursor: default;
   user-select: none;
@@ -514,7 +514,7 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate checkbox 1`]
   box-sizing: border-box;
   appearance: none;
   margin: 0px;
-  background: #6257F4;
+  background: #6257f4;
   border: none;
 }
 
@@ -523,7 +523,7 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate checkbox 1`]
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  color: #504C57;
+  color: #504c57;
   margin-left: 8px;
   cursor: default;
   user-select: none;
