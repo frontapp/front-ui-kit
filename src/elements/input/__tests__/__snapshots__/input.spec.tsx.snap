@@ -11,7 +11,7 @@ exports[`<Checkbox /> Spec Snapshots should render a filled and disabled input 1
 .c2 {
   width: inherit;
   height: inherit;
-  background: #ECEAF1;
+  background: #eceaf1;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   font-size: 14px;
   font-weight: 400;
@@ -22,8 +22,8 @@ exports[`<Checkbox /> Spec Snapshots should render a filled and disabled input 1
   padding: 4.5px 8px 4.5px 8px;
   padding-left: 8px;
   outline: none;
-  color: #332C3A;
-  border: 2px solid #D8D6DB;
+  color: #332c3a;
+  border: 2px solid #d8d6db;
   background: #ffffff;
   opacity: 0.5;
 }
@@ -33,11 +33,11 @@ exports[`<Checkbox /> Spec Snapshots should render a filled and disabled input 1
 }
 
 .c2:hover {
-  background: #D8D6DB;
+  background: #d8d6db;
 }
 
 .c2:focus {
-  border: 2px solid #94A2FF;
+  border: 2px solid #94a2ff;
   background: #ffffff;
 }
 
@@ -86,7 +86,7 @@ exports[`<Checkbox /> Spec Snapshots should render an empty and disabled input 1
 .c2 {
   width: inherit;
   height: inherit;
-  background: #ECEAF1;
+  background: #eceaf1;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   font-size: 14px;
   font-weight: 400;
@@ -97,8 +97,8 @@ exports[`<Checkbox /> Spec Snapshots should render an empty and disabled input 1
   padding: 4.5px 8px 4.5px 8px;
   padding-left: 8px;
   outline: none;
-  color: #332C3A;
-  border: 2px solid #D8D6DB;
+  color: #332c3a;
+  border: 2px solid #d8d6db;
   background: #ffffff;
   opacity: 0.5;
 }
@@ -108,11 +108,11 @@ exports[`<Checkbox /> Spec Snapshots should render an empty and disabled input 1
 }
 
 .c2:hover {
-  background: #D8D6DB;
+  background: #d8d6db;
 }
 
 .c2:focus {
-  border: 2px solid #94A2FF;
+  border: 2px solid #94a2ff;
   background: #ffffff;
 }
 
@@ -169,7 +169,7 @@ exports[`<Checkbox /> Spec Snapshots should render an input of type email 1`] = 
 .c3 {
   width: inherit;
   height: inherit;
-  background: #ECEAF1;
+  background: #eceaf1;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   font-size: 14px;
   font-weight: 400;
@@ -180,7 +180,7 @@ exports[`<Checkbox /> Spec Snapshots should render an input of type email 1`] = 
   padding: 4.5px 8px 4.5px 8px;
   padding-left: 25px;
   outline: none;
-  color: #332C3A;
+  color: #332c3a;
   border: 2px solid transparent;
 }
 
@@ -189,11 +189,11 @@ exports[`<Checkbox /> Spec Snapshots should render an input of type email 1`] = 
 }
 
 .c3:hover {
-  background: #D8D6DB;
+  background: #d8d6db;
 }
 
 .c3:focus {
-  border: 2px solid #94A2FF;
+  border: 2px solid #94a2ff;
   background: #ffffff;
 }
 
@@ -218,7 +218,7 @@ exports[`<Checkbox /> Spec Snapshots should render an input of type email 1`] = 
         class="c2"
       >
         <div
-          color="#8D919B"
+          color="#8d919b"
           height="16"
           name="CheckmarkBox"
           preserveaspectratio="none"
@@ -258,7 +258,7 @@ exports[`<Checkbox /> Spec Snapshots should render an input of type number 1`] =
 .c3 {
   width: inherit;
   height: inherit;
-  background: #ECEAF1;
+  background: #eceaf1;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   font-size: 14px;
   font-weight: 400;
@@ -269,7 +269,7 @@ exports[`<Checkbox /> Spec Snapshots should render an input of type number 1`] =
   padding: 4.5px 8px 4.5px 8px;
   padding-left: 25px;
   outline: none;
-  color: #332C3A;
+  color: #332c3a;
   border: 2px solid transparent;
 }
 
@@ -278,11 +278,11 @@ exports[`<Checkbox /> Spec Snapshots should render an input of type number 1`] =
 }
 
 .c3:hover {
-  background: #D8D6DB;
+  background: #d8d6db;
 }
 
 .c3:focus {
-  border: 2px solid #94A2FF;
+  border: 2px solid #94a2ff;
   background: #ffffff;
 }
 
@@ -307,7 +307,7 @@ exports[`<Checkbox /> Spec Snapshots should render an input of type number 1`] =
         class="c2"
       >
         <div
-          color="#8D919B"
+          color="#8d919b"
           height="16"
           name="CheckmarkBox"
           preserveaspectratio="none"
@@ -339,7 +339,7 @@ exports[`<Checkbox /> Spec Snapshots should render an input with an error 1`] = 
 .c2 {
   width: inherit;
   height: inherit;
-  background: #ECEAF1;
+  background: #eceaf1;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   font-size: 14px;
   font-weight: 400;
@@ -350,8 +350,8 @@ exports[`<Checkbox /> Spec Snapshots should render an input with an error 1`] = 
   padding: 4.5px 8px 4.5px 8px;
   padding-left: 8px;
   outline: none;
-  color: #332C3A;
-  background: #FFE7E6;
+  color: #332c3a;
+  background: #ffe7e6;
   border: 2px solid transparent;
 }
 
@@ -360,20 +360,20 @@ exports[`<Checkbox /> Spec Snapshots should render an input with an error 1`] = 
 }
 
 .c2:hover {
-  background: #D8D6DB;
+  background: #d8d6db;
 }
 
 .c2:focus {
-  border: 2px solid #94A2FF;
+  border: 2px solid #94a2ff;
   background: #ffffff;
 }
 
 .c2:hover {
-  background: #FDCAC3;
+  background: #fdcac3;
 }
 
 .c2:focus {
-  border: 2px solid #FF7C75;
+  border: 2px solid #ff7c75;
   background: #ffffff;
 }
 
@@ -425,7 +425,7 @@ exports[`<Checkbox /> Spec Snapshots should render an input with an icon 1`] = `
 .c3 {
   width: inherit;
   height: inherit;
-  background: #ECEAF1;
+  background: #eceaf1;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   font-size: 14px;
   font-weight: 400;
@@ -436,7 +436,7 @@ exports[`<Checkbox /> Spec Snapshots should render an input with an icon 1`] = `
   padding: 4.5px 8px 4.5px 8px;
   padding-left: 25px;
   outline: none;
-  color: #332C3A;
+  color: #332c3a;
   border: 2px solid transparent;
 }
 
@@ -445,11 +445,11 @@ exports[`<Checkbox /> Spec Snapshots should render an input with an icon 1`] = `
 }
 
 .c3:hover {
-  background: #D8D6DB;
+  background: #d8d6db;
 }
 
 .c3:focus {
-  border: 2px solid #94A2FF;
+  border: 2px solid #94a2ff;
   background: #ffffff;
 }
 
@@ -474,7 +474,7 @@ exports[`<Checkbox /> Spec Snapshots should render an input with an icon 1`] = `
         class="c2"
       >
         <div
-          color="#8D919B"
+          color="#8d919b"
           height="16"
           name="CheckmarkBox"
           preserveaspectratio="none"
