@@ -7,10 +7,10 @@ exports[`<Avatar /> Spec Snapshots should render an image avatar 1`] = `
   height: 30px;
   line-height: 30px;
   font-size: 13px;
-  background: #ca3e99;
+  background: #F561C8;
   border-radius: 50%;
   text-align: center;
-  color: #ffffff;
+  color: #FFFFFF;
   background: transparent;
   background-image: url(https://picsum.photos/id/1062/200/200);
   background-size: cover;
@@ -33,10 +33,10 @@ exports[`<Avatar /> Spec Snapshots should render avatar with name and color shou
   height: 30px;
   line-height: 30px;
   font-size: 13px;
-  background: #ca3e99;
+  background: #F561C8;
   border-radius: 50%;
   text-align: center;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 <div>
@@ -55,10 +55,10 @@ exports[`<Avatar /> Spec Snapshots should render large avatar 1`] = `
   height: 30px;
   line-height: 30px;
   font-size: 13px;
-  background: #ca3e99;
+  background: #F561C8;
   border-radius: 50%;
   text-align: center;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 <div>
@@ -77,10 +77,10 @@ exports[`<Avatar /> Spec Snapshots should render small avatar with a single init
   height: 16px;
   line-height: 16px;
   font-size: 11px;
-  background: #ca3e99;
+  background: #F561C8;
   border-radius: 50%;
   text-align: center;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 <div>

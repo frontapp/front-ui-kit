@@ -19,14 +19,14 @@ exports[`<Button /> Spec Snapshots should render button using defaults 1`] = `
   font-size: 14px;
   line-height: 16px;
   padding: 7px 14px;
-  background: #ffffff;
+  background: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-  color: #3e3e40;
+  color: #656972;
 }
 
 .c1:hover {
-  background: #e8eaed;
+  background: #D8D6DB;
 }
 
 <div>
@@ -65,14 +65,14 @@ exports[`<Button /> Spec Snapshots should render different sized button 1`] = `
   font-size: 16px;
   line-height: 20px;
   padding: 9px 14px;
-  background: #ffffff;
+  background: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-  color: #3e3e40;
+  color: #656972;
 }
 
 .c2:hover {
-  background: #e8eaed;
+  background: #D8D6DB;
 }
 
 .c4 {
@@ -85,14 +85,14 @@ exports[`<Button /> Spec Snapshots should render different sized button 1`] = `
   font-size: 14px;
   line-height: 16px;
   padding: 7px 14px;
-  background: #ffffff;
+  background: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-  color: #3e3e40;
+  color: #656972;
 }
 
 .c4:hover {
-  background: #e8eaed;
+  background: #D8D6DB;
 }
 
 .c5 {
@@ -105,14 +105,14 @@ exports[`<Button /> Spec Snapshots should render different sized button 1`] = `
   font-size: 13px;
   line-height: 16px;
   padding: 5px 12px;
-  background: #ffffff;
+  background: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-  color: #3e3e40;
+  color: #656972;
 }
 
 .c5:hover {
-  background: #e8eaed;
+  background: #D8D6DB;
 }
 
 .c0 {
@@ -183,13 +183,13 @@ exports[`<Button /> Spec Snapshots should render icon button 1`] = `
   border: none;
   padding: 7px;
   border-radius: 8px;
-  color: #77787a;
+  color: #656972;
   background: unset;
 }
 
 .c0:hover {
-  color: #3e3e40;
-  background: rgba(93,105,133,0.18);
+  color: #656972;
+  background: rgba(114,118,131,0.18);
 }
 
 <div>
@@ -226,13 +226,13 @@ exports[`<Button /> Spec Snapshots should render icon-danger button 1`] = `
   border: none;
   padding: 7px;
   border-radius: 8px;
-  color: #e9483a;
+  color: #FC4F4A;
   background: unset;
 }
 
 .c0:hover {
-  color: #b72215;
-  background: rgba(93,105,133,0.18);
+  color: #EB150F;
+  background: rgba(114,118,131,0.18);
 }
 
 <div>
@@ -274,14 +274,14 @@ exports[`<Button /> Spec Snapshots should render primary button 1`] = `
   font-size: 14px;
   line-height: 16px;
   padding: 7px 14px;
-  color: #ffffff;
+  color: #FFFFFF;
   border: 1px solid transparent;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-  background: #367fee;
+  background: #7989F7;
 }
 
 .c1:hover {
-  background: #2356b3;
+  background: #6257F4;
 }
 
 <div>
@@ -320,14 +320,14 @@ exports[`<Button /> Spec Snapshots should render primary-danger button 1`] = `
   font-size: 14px;
   line-height: 16px;
   padding: 7px 14px;
-  color: #ffffff;
+  color: #FFFFFF;
   border: 1px solid transparent;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-  background: #e9483a;
+  background: #FC4F4A;
 }
 
 .c1:hover {
-  background: #b72215;
+  background: #EB150F;
 }
 
 <div>
@@ -366,14 +366,14 @@ exports[`<Button /> Spec Snapshots should render secondary button 1`] = `
   font-size: 14px;
   line-height: 16px;
   padding: 7px 14px;
-  background: #ffffff;
+  background: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-  color: #3e3e40;
+  color: #656972;
 }
 
 .c1:hover {
-  background: #e8eaed;
+  background: #D8D6DB;
 }
 
 <div>
@@ -412,14 +412,14 @@ exports[`<Button /> Spec Snapshots should render secondary-danger button 1`] = `
   font-size: 14px;
   line-height: 16px;
   padding: 7px 14px;
-  background: #ffffff;
+  background: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-  color: #e9483a;
+  color: #FC4F4A;
 }
 
 .c1:hover {
-  background: #e8eaed;
+  background: #D8D6DB;
 }
 
 <div>
@@ -460,11 +460,11 @@ exports[`<Button /> Spec Snapshots should render tertiary button 1`] = `
   padding: 7px 14px;
   background: transparent;
   border: 1px solid transparent;
-  color: #367fee;
+  color: #7989F7;
 }
 
 .c1:hover {
-  background: rgba(93,105,133,0.1);
+  background: rgba(114,118,131,0.1);
 }
 
 <div>

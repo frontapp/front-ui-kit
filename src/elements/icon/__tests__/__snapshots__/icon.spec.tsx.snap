@@ -14,7 +14,7 @@ exports[`<Icon /> Spec Snapshots should render with defaults 1`] = `
     class="c0"
   >
     <div
-      color="#bbbdbf"
+      color="#8D919B"
       height="16"
       name="Checkmark"
       preserveaspectratio="none"
@@ -39,7 +39,7 @@ exports[`<Icon /> Spec Snapshots should support different colors 1`] = `
     class="c0"
   >
     <div
-      color="#367fee"
+      color="#7989F7"
       height="16"
       name="Checkmark"
       preserveaspectratio="none"
@@ -64,7 +64,7 @@ exports[`<Icon /> Spec Snapshots should support different sizes 1`] = `
     class="c0"
   >
     <div
-      color="#bbbdbf"
+      color="#8D919B"
       height="32"
       name="Checkmark"
       preserveaspectratio="none"
