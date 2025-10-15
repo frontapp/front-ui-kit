@@ -30,6 +30,18 @@ export const Variants: StoryObj<typeof Button> = {
   render: () => (
     <StyledContainer>
       <div>
+        <StyledLabel>Default (6px border radius)</StyledLabel>
+        <StyledCenteredDiv>
+          <ButtonGroup>
+            <Button type="secondary">Secondary</Button>
+            <Button type="secondary-danger">Secondary Danger</Button>
+            <Button type="primary">Primary</Button>
+            <Button type="primary-danger">Primary Danger</Button>
+            <Button type="tertiary">Tertiary</Button>
+          </ButtonGroup>
+        </StyledCenteredDiv>
+      </div>
+      <div>
         <StyledLabel>Rounded (100px border radius)</StyledLabel>
         <StyledCenteredDiv>
           <ButtonGroup>
@@ -48,18 +60,6 @@ export const Variants: StoryObj<typeof Button> = {
             <Button type="tertiary" isRounded>
               Tertiary
             </Button>
-          </ButtonGroup>
-        </StyledCenteredDiv>
-      </div>
-      <div>
-        <StyledLabel>Default (6px border radius)</StyledLabel>
-        <StyledCenteredDiv>
-          <ButtonGroup>
-            <Button type="secondary">Secondary</Button>
-            <Button type="secondary-danger">Secondary Danger</Button>
-            <Button type="primary">Primary</Button>
-            <Button type="primary-danger">Primary Danger</Button>
-            <Button type="tertiary">Tertiary</Button>
           </ButtonGroup>
         </StyledCenteredDiv>
       </div>
