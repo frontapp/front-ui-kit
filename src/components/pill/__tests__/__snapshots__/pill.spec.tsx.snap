@@ -17,7 +17,7 @@ exports[`<Pill /> Spec Snapshots should render selected state 1`] = `
   user-select: none;
   line-height: 16px;
   color: #ffffff;
-  background-color: #77787a;
+  background-color: #656972;
 }
 
 <div>
@@ -49,12 +49,12 @@ exports[`<Pill /> Spec Snapshots should render using defaults 1`] = `
   font-size: 14px;
   user-select: none;
   line-height: 16px;
-  color: #19191a;
+  color: #332c3a;
   background-color: rgba(0, 0, 0, 0.1);
 }
 
 .c0:hover {
-  color: #19191a;
+  color: #332c3a;
   background-color: rgba(0, 0, 0, 0.15);
 }
 
@@ -95,12 +95,12 @@ exports[`<Pill /> Spec Snapshots should support rendering a pill with icon 1`] =
   font-size: 14px;
   user-select: none;
   line-height: 16px;
-  color: #19191a;
+  color: #332c3a;
   background-color: rgba(0, 0, 0, 0.1);
 }
 
 .c0:hover {
-  color: #19191a;
+  color: #332c3a;
   background-color: rgba(0, 0, 0, 0.15);
 }
 

@@ -1,11 +1,7 @@
 import {FC} from 'react';
 import styled, {css, keyframes} from 'styled-components';
 
-import loader from '../../assets/images/loader.png';
-import loaderGrey from '../../assets/images/loaderGrey.png';
-import loaderGreySmall from '../../assets/images/loaderGreySmall.png';
-import loaderSmall from '../../assets/images/loaderSmall.png';
-import {PaletteColorsEnum} from '../../helpers/colorHelpers';
+import {palette, PaletteColorsEnum} from '../../helpers/colorHelpers';
 import {VisualSizesEnum} from '../../helpers/fontHelpers';
 import {makeSizeConstants} from '../../helpers/styleHelpers';
 
@@ -34,9 +30,11 @@ const defaultProps = {
  */
 
 const sizes = makeSizeConstants(16, 20, 40);
-const images = {
-  [PaletteColorsEnum.BLUE]: makeSizeConstants(loaderSmall, loaderSmall, loader),
-  [PaletteColorsEnum.GREY]: makeSizeConstants(loaderGreySmall, loaderGreySmall, loaderGrey)
+const borderWidths = makeSizeConstants(2, 2, 3);
+
+const colors = {
+  [PaletteColorsEnum.BLUE]: palette[PaletteColorsEnum.BLUE].shade60,
+  [PaletteColorsEnum.GREY]: palette[PaletteColorsEnum.GREY].shade60
 };
 
 interface LoaderStyleProps {
@@ -44,14 +42,6 @@ interface LoaderStyleProps {
   $variant: PaletteColorsEnum.GREY | PaletteColorsEnum.BLUE;
   $isEnabled: boolean;
 }
-const StyledLoaderDiv = styled.div<LoaderStyleProps>`
-  width: ${(p) => sizes[p.$size]}px;
-  height: ${(p) => sizes[p.$size]}px;
-  background-image: url(${(p) => images[p.$variant][p.$size]});
-  background-size: ${(p) => sizes[p.$size]}px;
-
-  ${(p) => maybeAnimate(p.$isEnabled)};
-`;
 
 const rotate360 = keyframes`
   from {
@@ -60,6 +50,20 @@ const rotate360 = keyframes`
   to {
     transform: rotate(360deg);
   }
+`;
+
+const StyledLoaderDiv = styled.div<LoaderStyleProps>`
+  width: ${(p) => sizes[p.$size]}px;
+  height: ${(p) => sizes[p.$size]}px;
+  padding: ${(p) => borderWidths[p.$size]}px;
+  border-radius: 50%;
+  background: ${(p) => colors[p.$variant]};
+  mask:
+    conic-gradient(transparent 10%, #000),
+    linear-gradient(#000 0 0) content-box;
+  mask-composite: subtract;
+
+  ${(p) => maybeAnimate(p.$isEnabled)};
 `;
 
 function maybeAnimate(isEnabled: boolean) {
