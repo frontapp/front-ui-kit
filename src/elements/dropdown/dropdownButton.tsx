@@ -126,7 +126,7 @@ const StyledPlaceholderWrapperDiv = styled.div`
 
 const StyledChildrenWrapperDiv = styled.div`
   ${ellipsis()};
-  color: ${greys.shade90};
+  color: ${greys.shade80};
   cursor: default;
   flex: 1;
   padding: 0 0 0 8px;
