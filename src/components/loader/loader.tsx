@@ -58,10 +58,6 @@ const StyledLoaderDiv = styled.div<LoaderStyleProps>`
   padding: ${(p) => borderWidths[p.$size]}px;
   border-radius: 50%;
   background: ${(p) => colors[p.$variant]};
-  -webkit-mask:
-    conic-gradient(transparent 10%, #000),
-    linear-gradient(#000 0 0) content-box;
-  -webkit-mask-composite: source-out;
   mask:
     conic-gradient(transparent 10%, #000),
     linear-gradient(#000 0 0) content-box;
