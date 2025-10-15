@@ -54,8 +54,6 @@ interface ButtonProps {
   onClick?: MouseEventHandler;
   /** Used for icon buttons in order to make them completely round. */
   isRounded?: boolean;
-  /** Forces the button to display in its hover state. */
-  isHovered?: boolean;
 }
 
 /*
@@ -72,7 +70,6 @@ interface StyledButtonProps {
   $isActive?: boolean;
   $isDisabled?: boolean;
   $isRounded?: boolean;
-  $isHovered?: boolean;
 }
 
 const StyledButton = styled.button<StyledButtonProps>`
@@ -84,7 +81,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   font-weight: ${fontWeights.medium};
 
   ${(p) => addButtonSizeStyles(p.$size)};
-  ${(p) => addButtonTypeStyles(p.$type, p.$isDisabled, p.$isActive, p.$isHovered)};
+  ${(p) => addButtonTypeStyles(p.$type, p.$isDisabled, p.$isActive)};
 `;
 
 function addButtonSizeStyles(size: VisualSizesEnum) {
@@ -98,8 +95,7 @@ function addButtonSizeStyles(size: VisualSizesEnum) {
 function addButtonTypeStyles(
   type: Omit<ButtonTypes, 'icon' | 'icon-danger'>,
   isDisabled?: boolean,
-  isActive?: boolean,
-  isHovered?: boolean
+  isActive?: boolean
 ) {
   if (isDisabled)
     return css`
@@ -119,44 +115,32 @@ function addButtonTypeStyles(
 
   switch (type) {
     case 'primary': {
-      const backgroundColor = getStateBasedColor(
-        palette.blue.shade50,
-        palette.blue.shade70,
-        palette.blue.shade60,
-        isHovered,
-        isActive
-      );
+      const backgroundColor = getStateBasedColor(palette.blue.shade60, palette.blue.shade70, isActive);
 
       return css`
         ${addSharedPrimaryStyles()};
         background: ${backgroundColor};
 
         &:hover {
-          background: ${palette.blue.shade70};
+          background: ${palette.blue.shade80};
         }
       `;
     }
     case 'primary-danger': {
-      const backgroundColor = getStateBasedColor(
-        palette.red.shade40,
-        palette.red.shade60,
-        palette.red.shade50,
-        isHovered,
-        isActive
-      );
+      const backgroundColor = getStateBasedColor(palette.red.shade50, palette.red.shade60, isActive);
 
       return css`
         ${addSharedPrimaryStyles()};
         background: ${backgroundColor};
 
         &:hover {
-          background: ${palette.red.shade60};
+          background: ${palette.red.shade70};
         }
       `;
     }
     case 'tertiary':
       return css`
-        background: ${isHovered || isActive ? alphas.gray10 : 'transparent'};
+        background: ${isActive ? alphas.gray10 : 'transparent'};
         border: 1px solid transparent;
         color: ${palette.blue.shade40};
 
@@ -166,26 +150,19 @@ function addButtonTypeStyles(
       `;
     case 'secondary-danger':
       return css`
-        ${addSharedSecondaryStyles(isActive, isHovered)};
+        ${addSharedSecondaryStyles(isActive)};
         color: ${palette.red.shade50};
       `;
     case 'secondary':
     default:
       return css`
-        ${addSharedSecondaryStyles(isActive, isHovered)};
+        ${addSharedSecondaryStyles(isActive)};
         color: ${greys.shade80};
       `;
   }
 }
 
-function getStateBasedColor(
-  baseColor: string,
-  hoverColor: string,
-  activeColor: string,
-  isHovered?: boolean,
-  isActive?: boolean
-): string {
-  if (isHovered) return hoverColor;
+function getStateBasedColor(baseColor: string, activeColor: string, isActive?: boolean): string {
   if (isActive) return activeColor;
   return baseColor;
 }
@@ -198,9 +175,9 @@ function addSharedPrimaryStyles() {
   `;
 }
 
-function addSharedSecondaryStyles(isActive?: boolean, isHovered?: boolean) {
+function addSharedSecondaryStyles(isActive?: boolean) {
   return css`
-    background: ${isHovered || isActive ? greys.shade30 : greys.white};
+    background: ${isActive ? greys.shade30 : greys.white};
     border: 1px solid ${alphas.black30};
     box-shadow: 0 1px 3px ${alphas.black10};
 
@@ -223,8 +200,7 @@ export const Button: FC<ButtonProps> = ({
   onClick,
   className,
   iconColor,
-  isRounded,
-  isHovered
+  isRounded
 }) => {
   // Wrap the onClick to check if it is disabled or not defined.
   const onButtonClick = (event: MouseEvent) => {
@@ -242,8 +218,7 @@ export const Button: FC<ButtonProps> = ({
         isActive={isActive}
         onClick={onButtonClick}
         iconColor={iconColor}
-        isRounded={isRounded}
-        isHovered={isHovered}>
+        isRounded={isRounded}>
         {children}
       </IconButton>
     );
@@ -256,7 +231,6 @@ export const Button: FC<ButtonProps> = ({
         $isDisabled={isDisabled}
         $isActive={isActive}
         $isRounded={Boolean(isRounded)}
-        $isHovered={Boolean(isHovered)}
         onClick={onButtonClick}>
         {renderChildrenSpecifiedComponents(children, nonButtonContentChildren)}
         {renderButtonChildren(children)}

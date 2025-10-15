@@ -63,19 +63,6 @@ export const Variants: StoryObj<typeof Button> = {
           </ButtonGroup>
         </StyledCenteredDiv>
       </div>
-      <div>
-        <StyledLabel>Force Hovered State (not rounded)</StyledLabel>
-        <StyledCenteredDiv>
-          <ButtonGroup>
-            <Button type="primary" isHovered>
-              Primary Hovered
-            </Button>
-            <Button type="primary-danger" isHovered>
-              Primary Danger Hovered
-            </Button>
-          </ButtonGroup>
-        </StyledCenteredDiv>
-      </div>
     </StyledContainer>
   )
 };
