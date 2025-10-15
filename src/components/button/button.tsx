@@ -1,16 +1,16 @@
-import React, {FC, MouseEvent, MouseEventHandler} from 'react';
-import styled, {css} from 'styled-components';
+import React, { FC, MouseEvent, MouseEventHandler } from 'react';
+import styled, { css } from 'styled-components';
 
-import {alphas, greys, palette} from '../../helpers/colorHelpers';
-import {fonts, fontSizes, fontWeights, VisualSizesEnum} from '../../helpers/fontHelpers';
+import { alphas, greys, palette } from '../../helpers/colorHelpers';
+import { fonts, fontSizes, fontWeights, VisualSizesEnum } from '../../helpers/fontHelpers';
 import {
   isComponentInChildren,
   renderChildrenIgnoreSpecifiedComponents,
   renderChildrenSpecifiedComponents
 } from '../../helpers/renderHelpers';
-import {makeSizeConstants} from '../../helpers/styleHelpers';
-import {ButtonContent} from './buttonContent';
-import {IconButton} from './iconButton';
+import { makeSizeConstants } from '../../helpers/styleHelpers';
+import { ButtonContent } from './buttonContent';
+import { IconButton } from './iconButton';
 
 /*
  * Constants.
@@ -116,19 +116,19 @@ function addButtonTypeStyles(
     case 'primary':
       return css`
         ${addSharedPrimaryStyles()};
-        background: ${palette.blue[isActive ? 'shade50' : 'shade40']};
+        background: ${palette.blue[isActive ? 'shade60' : 'shade50']};
 
         &:hover {
-          background: ${palette.blue.shade50};
+          background: ${palette.blue.shade70};
         }
       `;
     case 'primary-danger':
       return css`
         ${addSharedPrimaryStyles()};
-        background: ${palette.red[isActive ? 'shade50' : 'shade40']};
+        background: ${palette.red[isActive ? 'shade60' : 'shade50']};
 
         &:hover {
-          background: ${palette.red.shade50};
+          background: ${palette.red.shade70};
         }
       `;
     case 'tertiary':
@@ -144,7 +144,7 @@ function addButtonTypeStyles(
     case 'secondary-danger':
       return css`
         ${addSharedSecondaryStyles(isActive)};
-        color: ${palette.red.shade40};
+        color: ${palette.red.shade50};
       `;
     case 'secondary':
     default:

@@ -1,9 +1,9 @@
-import React, {FC, useLayoutEffect, useRef} from 'react';
-import styled, {css} from 'styled-components';
+import React, { FC, useLayoutEffect, useRef } from 'react';
+import styled, { css } from 'styled-components';
 
-import {Icon} from '../../elements/icon/icon';
-import {greys, palette} from '../../helpers/colorHelpers';
-import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
+import { Icon } from '../../elements/icon/icon';
+import { greys, palette } from '../../helpers/colorHelpers';
+import { fonts, fontSizes, fontWeights } from '../../helpers/fontHelpers';
 
 /*
  * Props.
@@ -105,7 +105,7 @@ function addCheckboxStyles(props: StyledCheckboxInputProps) {
 
   if (props.$isChecked || props.$isIndeterminate)
     return css`
-      background: ${palette.blue.shade40};
+      background: ${palette.blue.shade60};
       border: none;
     `;
 

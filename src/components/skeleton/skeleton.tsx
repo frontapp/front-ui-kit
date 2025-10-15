@@ -1,7 +1,7 @@
-import {FC} from 'react';
-import styled, {css, keyframes} from 'styled-components';
+import { FC } from 'react';
+import styled, { css, keyframes } from 'styled-components';
 
-import {greys} from '../../helpers/colorHelpers';
+import { greys } from '../../helpers/colorHelpers';
 
 /*
  * Constants.
@@ -9,7 +9,7 @@ import {greys} from '../../helpers/colorHelpers';
 
 const skeletonColorSchemes = {
   light: [greys.shade10, greys.shade20],
-  dark: [greys.shade30, greys.shade40]
+  dark: [greys.shade20, greys.shade30]
 };
 
 /*

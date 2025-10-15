@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable react/function-component-definition */
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
-import {ChangeEventHandler, FocusEventHandler} from 'react';
-import styled, {css} from 'styled-components';
+import { ChangeEventHandler, FocusEventHandler } from 'react';
+import styled, { css } from 'styled-components';
 
-import {greys, palette} from '../../helpers/colorHelpers';
-import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
-import {Icon, IconName} from '../icon/icon';
+import { greys, palette } from '../../helpers/colorHelpers';
+import { fonts, fontSizes, fontWeights } from '../../helpers/fontHelpers';
+import { Icon, IconName } from '../icon/icon';
 
 /*
  * Props
@@ -123,10 +123,10 @@ function addInputStyles(props: StyledInputProps) {
 
   if (props.$isErred)
     return css`
-      background: ${palette.red.shade10};
+      background: ${palette.red.shade20};
       border: 2px solid transparent;
       &:hover {
-        background: ${palette.red.shade20};
+        background: ${palette.red.shade30};
       }
       &:focus {
         border: 2px solid ${palette.red.shade40};
