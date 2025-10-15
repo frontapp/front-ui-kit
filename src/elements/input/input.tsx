@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable react/function-component-definition */
 /* eslint-disable @typescript-eslint/consistent-type-assertions */
-import { ChangeEventHandler, FocusEventHandler } from 'react';
-import styled, { css } from 'styled-components';
+import {ChangeEventHandler, FocusEventHandler} from 'react';
+import styled, {css} from 'styled-components';
 
-import { greys, palette } from '../../helpers/colorHelpers';
-import { fonts, fontSizes, fontWeights } from '../../helpers/fontHelpers';
-import { Icon, IconName } from '../icon/icon';
+import {greys, palette} from '../../helpers/colorHelpers';
+import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
+import {Icon, IconName} from '../icon/icon';
 
 /*
  * Props

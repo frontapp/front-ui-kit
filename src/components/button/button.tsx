@@ -1,16 +1,16 @@
-import React, { FC, MouseEvent, MouseEventHandler } from 'react';
-import styled, { css } from 'styled-components';
+import React, {FC, MouseEvent, MouseEventHandler} from 'react';
+import styled, {css} from 'styled-components';
 
-import { alphas, greys, palette } from '../../helpers/colorHelpers';
-import { fonts, fontSizes, fontWeights, VisualSizesEnum } from '../../helpers/fontHelpers';
+import {alphas, greys, palette} from '../../helpers/colorHelpers';
+import {fonts, fontSizes, fontWeights, VisualSizesEnum} from '../../helpers/fontHelpers';
 import {
   isComponentInChildren,
   renderChildrenIgnoreSpecifiedComponents,
   renderChildrenSpecifiedComponents
 } from '../../helpers/renderHelpers';
-import { makeSizeConstants } from '../../helpers/styleHelpers';
-import { ButtonContent } from './buttonContent';
-import { IconButton } from './iconButton';
+import {makeSizeConstants} from '../../helpers/styleHelpers';
+import {ButtonContent} from './buttonContent';
+import {IconButton} from './iconButton';
 
 /*
  * Constants.
