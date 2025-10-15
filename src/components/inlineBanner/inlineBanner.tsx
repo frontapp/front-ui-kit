@@ -1,11 +1,11 @@
-import {FC, PropsWithChildren} from 'react';
-import styled, {css} from 'styled-components';
+import { FC, PropsWithChildren } from 'react';
+import styled, { css } from 'styled-components';
 
-import {Icon, IconName} from '../../elements/icon/icon';
-import {greys, palette} from '../../helpers/colorHelpers';
-import {fonts, fontSizes, fontWeights, VisualSizesEnum} from '../../helpers/fontHelpers';
-import {makeSizeConstants} from '../../helpers/styleHelpers';
-import {IconButton} from '../button/iconButton';
+import { Icon, IconName } from '../../elements/icon/icon';
+import { greys, palette } from '../../helpers/colorHelpers';
+import { fonts, fontSizes, fontWeights, VisualSizesEnum } from '../../helpers/fontHelpers';
+import { makeSizeConstants } from '../../helpers/styleHelpers';
+import { IconButton } from '../button/iconButton';
 
 /*
  * Props.
@@ -31,23 +31,23 @@ interface BannerConstants {
 
 const bannerConstants: Record<InlineBannerTypes, BannerConstants> = {
   info: {
-    backgroundColor: palette.blue.shade20,
-    iconColor: palette.blue.shade40,
+    backgroundColor: palette.blue.shade10,
+    iconColor: palette.blue.shade30,
     icon: 'InfoFilled'
   },
   success: {
-    backgroundColor: palette.green.shade20,
-    iconColor: palette.green.shade40,
+    backgroundColor: palette.green.shade10,
+    iconColor: palette.green.shade30,
     icon: 'CheckmarkCircle'
   },
   error: {
-    backgroundColor: palette.red.shade20,
-    iconColor: palette.red.shade40,
+    backgroundColor: palette.red.shade10,
+    iconColor: palette.red.shade30,
     icon: 'WarningFilled'
   },
   warning: {
-    backgroundColor: palette.orange.shade20,
-    iconColor: palette.orange.shade50,
+    backgroundColor: palette.orange.shade10,
+    iconColor: palette.orange.shade40,
     icon: 'WarningFilled'
   }
 };
@@ -155,7 +155,7 @@ const StyledContentDiv = styled.div<BannerContentProps>`
   `}
 `;
 
-const StyledIconDiv = styled.div<{$size: VisualSizesEnum; $type: InlineBannerTypes}>`
+const StyledIconDiv = styled.div<{ $size: VisualSizesEnum; $type: InlineBannerTypes }>`
   grid-area: icon;
   color: ${(p) => bannerConstants[p.$type].iconColor};
   margin-top: 2px;

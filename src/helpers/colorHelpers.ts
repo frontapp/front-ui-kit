@@ -1,4 +1,4 @@
-import {transparentize} from 'polished';
+import { transparentize } from 'polished';
 
 /*
  * Interfaces.
@@ -45,7 +45,7 @@ export interface AlphasPalette {
   readonly white60: string;
 }
 
-type Palette = {readonly [T in PaletteColorsEnum]: PaletteColor};
+type Palette = { readonly [T in PaletteColorsEnum]: PaletteColor };
 
 /*
  * Constants.
@@ -63,25 +63,26 @@ export enum PaletteColorsEnum {
   PURPLE = 'purple'
 }
 
+// color-primitive/gray
 export const greys: Readonly<FullColorPalette> = {
-  white: '#ffffff',
-  shade10: '#f7f8fa',
-  shade20: '#f3f4f6',
-  shade30: '#e8eaed',
-  shade40: '#d4d6d9',
-  shade50: '#bbbdbf',
-  shade60: '#9b9c9e',
-  shade70: '#77787a',
-  shade80: '#3e3e40',
-  shade90: '#19191a',
-  black: '#001B38'
+  white: '#FFFFFF',
+  shade10: '#F4F2F8',
+  shade20: '#ECEAF1',
+  shade30: '#D8D6DB',
+  shade40: '#A9ABB2',
+  shade50: '#8D919B',
+  shade60: '#727683',
+  shade70: '#656972',
+  shade80: '#656972',
+  shade90: '#332C3A',
+  black: '#15131B'
 };
 
 export const alphas: Readonly<AlphasPalette> = {
   transparent: 'transparent',
-  gray10: transparentize(0.9, '#5d6985'),
-  gray20: transparentize(0.82, '#5d6985'), // "selected state Gray 18%" in Figma.
-  gray90: transparentize(0.1, '#5d6985'),
+  gray10: transparentize(0.9, '#727683'), // color-primitive/gray/600 in Figma.
+  gray20: transparentize(0.82, '#727683'),
+  gray90: transparentize(0.1, '#727683'),
   black10: alphaBlack(0.04),
   black20: alphaBlack(0.08),
   black30: alphaBlack(0.1),
@@ -96,6 +97,9 @@ export const alphas: Readonly<AlphasPalette> = {
   white60: alphaWhite(0.95)
 };
 
+// Figma color primitives:
+// https://www.figma.com/design/cL1cMol2CdJirlTQIo1kVc/%F0%9F%9F%A3-Global-UI-Kit
+
 export const palette: Palette = {
   [PaletteColorsEnum.GREY]: {
     shade10: greys.shade10,
@@ -105,60 +109,60 @@ export const palette: Palette = {
     shade50: greys.shade80
   },
   [PaletteColorsEnum.PINK]: {
-    shade10: '#fdf0f8',
-    shade20: '#fbe1f2',
-    shade30: '#f8cae8',
-    shade40: '#ca3e99',
-    shade50: '#9f3079'
+    shade10: '#FBEAF6',
+    shade20: '#F3C9E7',
+    shade30: '#EDB0DF',
+    shade40: '#F561C8',
+    shade50: '#E231B6'
   },
   [PaletteColorsEnum.RED]: {
-    shade10: '#fff1f1',
-    shade20: '#ffe1de',
-    shade30: '#fac1bb',
-    shade40: '#e9483a',
-    shade50: '#b72215'
+    shade10: '#FFE7E6',
+    shade20: '#FDCAC3',
+    shade30: '#FF7C75',
+    shade40: '#FC4F4A',
+    shade50: '#EB150F'
   },
   [PaletteColorsEnum.ORANGE]: {
-    shade10: '#fff7f0',
-    shade20: '#ffe9d1',
-    shade30: '#fadab9',
-    shade40: '#f2830b',
-    shade50: '#cc6000'
+    shade10: '#FFE9E0',
+    shade20: '#FFCAB2',
+    shade30: '#F6844C',
+    shade40: '#F36416',
+    shade50: '#D14900'
   },
   [PaletteColorsEnum.YELLOW]: {
-    shade10: '#fefbef',
-    shade20: '#fef6dc',
-    shade30: '#faebbb',
-    shade40: '#e3b51e',
-    shade50: '#91691b'
+    shade10: '#F8EEC3',
+    shade20: '#FACE47',
+    shade30: '#D5A401',
+    shade40: '#BD8728',
+    shade50: '#9D6C01'
   },
   [PaletteColorsEnum.GREEN]: {
-    shade10: '#eefbf3',
-    shade20: '#d9f6e3',
-    shade30: '#b6f0ca',
-    shade40: '#10aa40',
-    shade50: '#0c8331'
+    shade10: '#D7F4E7',
+    shade20: '#ADE1C0',
+    shade30: '#5BB97D',
+    shade40: '#3BA554',
+    shade50: '#2D8643'
   },
   [PaletteColorsEnum.TEAL]: {
-    shade10: '#f0fdff',
-    shade20: '#dcfbff',
-    shade30: '#b9f2fa',
-    shade40: '#15acc0',
-    shade50: '#0d7482'
+    shade10: '#CDF3F9',
+    shade20: '#99DFEA',
+    shade30: '#22B6D3',
+    shade40: '#1F9FB2',
+    shade50: '#007F8F'
   },
   [PaletteColorsEnum.BLUE]: {
-    shade10: '#f1f6fd',
-    shade20: '#e0edff',
-    shade30: '#bed7fa',
-    shade40: '#367fee',
-    shade50: '#2356b3'
+    shade10: '#E6E9FE',
+    shade20: '#CAD1FC',
+    shade30: '#94A2FF',
+    shade40: '#7989F7',
+    shade50: '#6257F4'
   },
   [PaletteColorsEnum.PURPLE]: {
-    shade10: '#f8f1ff',
-    shade20: '#f0dfff',
-    shade30: '#ddbbfa',
-    shade40: '#9235e4',
-    shade50: '#681aad'
+    shade10: '#F4E8FD',
+    shade20: '#DACBF1',
+    shade30: '#CFB6EC',
+    shade40: '#B679F2',
+    shade50: '#A53EEF'
   }
 };
 

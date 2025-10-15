@@ -1,12 +1,12 @@
-import {FC, PropsWithChildren} from 'react';
-import styled, {css} from 'styled-components';
+import { FC, PropsWithChildren } from 'react';
+import styled, { css } from 'styled-components';
 
-import {Icon, IconName} from '../../elements/icon/icon';
-import {greys, palette} from '../../helpers/colorHelpers';
-import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
-import {GridAreaItem} from '../../layout/grid';
-import {Button} from '../button/button';
-import {TopBannersEnum} from './topBannersContext';
+import { Icon, IconName } from '../../elements/icon/icon';
+import { greys, palette } from '../../helpers/colorHelpers';
+import { fonts, fontSizes, fontWeights } from '../../helpers/fontHelpers';
+import { GridAreaItem } from '../../layout/grid';
+import { Button } from '../button/button';
+import { TopBannersEnum } from './topBannersContext';
 
 /*
  * Props.
@@ -26,35 +26,35 @@ interface BannerConstants {
   backgroundColor: string;
   icon: IconName;
 }
-const bannerConstants: {[k in TopBannersEnum]: BannerConstants} = {
+const bannerConstants: { [k in TopBannersEnum]: BannerConstants } = {
   [TopBannersEnum.INFO]: {
-    backgroundColor: palette.blue.shade20,
+    backgroundColor: palette.blue.shade10,
     iconColor: palette.blue.shade40,
     icon: 'InfoFilled'
   },
   [TopBannersEnum.LOADING]: {
-    backgroundColor: greys.shade40,
+    backgroundColor: greys.shade30,
     iconColor: greys.shade40,
     icon: 'InfoFilled'
   },
   [TopBannersEnum.SUCCESS]: {
-    backgroundColor: palette.green.shade20,
-    iconColor: palette.green.shade40,
+    backgroundColor: palette.green.shade10,
+    iconColor: palette.green.shade30,
     icon: 'CheckmarkCircle'
   },
   [TopBannersEnum.ERROR]: {
-    backgroundColor: palette.red.shade20,
-    iconColor: palette.red.shade40,
+    backgroundColor: palette.red.shade10,
+    iconColor: palette.red.shade30,
     icon: 'WarningFilled'
   },
   [TopBannersEnum.WARNING]: {
-    backgroundColor: palette.orange.shade20,
+    backgroundColor: palette.orange.shade10,
     iconColor: palette.orange.shade40,
     icon: 'WarningFilled'
   }
 };
 
-const StyledDiv = styled.div<{$styles: BannerConstants}>`
+const StyledDiv = styled.div<{ $styles: BannerConstants }>`
   border-radius: 18px;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
   left: 50%;
