@@ -4,11 +4,11 @@
 
 ### Features
 
-* update color palette ([#275](https://github.com/frontapp/front-ui-kit/issues/275)) ([68fdecb](https://github.com/frontapp/front-ui-kit/commit/68fdecb777e99f96538eb783260710acaaee871e))
+- update color palette ([#275](https://github.com/frontapp/front-ui-kit/issues/275)) ([68fdecb](https://github.com/frontapp/front-ui-kit/commit/68fdecb777e99f96538eb783260710acaaee871e))
 
 ### Bug Fixes
 
-* lint fixes and top banner host examples ([#265](https://github.com/frontapp/front-ui-kit/issues/265)) ([70eb935](https://github.com/frontapp/front-ui-kit/commit/70eb9352116738835dd1ceb92d7f7b0619efa064))
+- lint fixes and top banner host examples ([#265](https://github.com/frontapp/front-ui-kit/issues/265)) ([70eb935](https://github.com/frontapp/front-ui-kit/commit/70eb9352116738835dd1ceb92d7f7b0619efa064))
 
 ## [0.9.0](https://github.com/frontapp/front-ui-kit/compare/v0.8.1...v0.9.0) (2025-10-02)
 
