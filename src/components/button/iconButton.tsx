@@ -15,7 +15,7 @@ interface IconButtonProps {
   isDanger?: boolean;
   /** Whether the button is disabled. If disabled the onClick will not fire. */
   isDisabled?: boolean;
-  /** Whether we should force hover state styles. */
+  /** Whether we should force active state styles. */
   isActive?: boolean;
   /** Called when the user click on the button. */
   onClick: MouseEventHandler;
@@ -25,6 +25,8 @@ interface IconButtonProps {
   iconColor?: string;
   /** Make the button completely round. */
   isRounded?: boolean;
+  /** Forces the button to display in its hover state. */
+  isHovered?: boolean;
 }
 
 /*
@@ -37,22 +39,24 @@ interface StyledIconButtonProps {
   $isActive?: boolean;
   $iconColor?: string;
   $isRounded?: boolean;
+  $isHovered?: boolean;
 }
 
 const StyledIconButton = styled.button<StyledIconButtonProps>`
   background: transparent;
   border: none;
   padding: 7px;
-  border-radius: ${(p) => (p.$isRounded ? '99999px' : '8px')};
+  border-radius: ${(p) => (p.$isRounded ? '8px' : '99999px')};
 
-  ${(p) => addIconColorStyles(p.$isDanger, p.$isDisabled, p.$isActive, p.$iconColor)};
+  ${(p) => addIconColorStyles(p.$isDanger, p.$isDisabled, p.$isActive, p.$iconColor, p.$isHovered)};
 `;
 
 function addIconColorStyles(
   isDanger?: boolean,
   isDisabled?: boolean,
   isActive?: boolean,
-  iconColor?: string
+  iconColor?: string,
+  isHovered?: boolean
 ) {
   if (isDisabled)
     return css`
@@ -60,8 +64,8 @@ function addIconColorStyles(
     `;
   if (isDanger)
     return css`
-      color: ${palette.red[isActive ? 'shade50' : 'shade40']};
-      background: ${isActive ? alphas.gray20 : 'unset'};
+      color: ${isHovered ? palette.red.shade50 : palette.red[isActive ? 'shade50' : 'shade40']};
+      background: ${isHovered || isActive ? alphas.gray20 : 'unset'};
 
       &:hover {
         color: ${palette.red.shade50};
@@ -72,7 +76,7 @@ function addIconColorStyles(
   if (iconColor)
     return css`
       color: ${iconColor};
-      background: ${isActive ? alphas.gray20 : 'unset'};
+      background: ${isHovered || isActive ? alphas.gray20 : 'unset'};
 
       &:hover {
         background: ${alphas.gray20};
@@ -80,8 +84,8 @@ function addIconColorStyles(
     `;
 
   return css`
-    color: ${greys[isActive ? 'shade80' : 'shade70']};
-    background: ${isActive ? alphas.gray20 : 'unset'};
+    color: ${isHovered ? greys.shade80 : greys[isActive ? 'shade80' : 'shade70']};
+    background: ${isHovered || isActive ? alphas.gray20 : 'unset'};
 
     &:hover {
       color: ${greys.shade80};
@@ -95,7 +99,8 @@ function addIconColorStyles(
  */
 
 export const IconButton: FC<IconButtonProps> = (props) => {
-  const {children, isDanger, isDisabled, isActive, onClick, className, iconColor, isRounded} = props;
+  const {children, isDanger, isDisabled, isActive, onClick, className, iconColor, isRounded, isHovered} =
+    props;
 
   return (
     <StyledIconButton
@@ -104,6 +109,7 @@ export const IconButton: FC<IconButtonProps> = (props) => {
       $isDisabled={isDisabled}
       $isActive={isActive}
       $isRounded={Boolean(isRounded)}
+      $isHovered={Boolean(isHovered)}
       onClick={onClick}
       $iconColor={iconColor}>
       {renderFirstIconOnly(children)}

@@ -1,16 +1,16 @@
-import React, { FC, MouseEvent, MouseEventHandler } from 'react';
-import styled, { css } from 'styled-components';
+import React, {FC, MouseEvent, MouseEventHandler} from 'react';
+import styled, {css} from 'styled-components';
 
-import { alphas, greys, palette } from '../../helpers/colorHelpers';
-import { fonts, fontSizes, fontWeights, VisualSizesEnum } from '../../helpers/fontHelpers';
+import {alphas, greys, palette} from '../../helpers/colorHelpers';
+import {fonts, fontSizes, fontWeights, VisualSizesEnum} from '../../helpers/fontHelpers';
 import {
   isComponentInChildren,
   renderChildrenIgnoreSpecifiedComponents,
   renderChildrenSpecifiedComponents
 } from '../../helpers/renderHelpers';
-import { makeSizeConstants } from '../../helpers/styleHelpers';
-import { ButtonContent } from './buttonContent';
-import { IconButton } from './iconButton';
+import {makeSizeConstants} from '../../helpers/styleHelpers';
+import {ButtonContent} from './buttonContent';
+import {IconButton} from './iconButton';
 
 /*
  * Constants.
@@ -54,6 +54,8 @@ interface ButtonProps {
   onClick?: MouseEventHandler;
   /** Used for icon buttons in order to make them completely round. */
   isRounded?: boolean;
+  /** Forces the button to display in its hover state. */
+  isHovered?: boolean;
 }
 
 /*
@@ -69,18 +71,20 @@ interface StyledButtonProps {
   $type: Omit<ButtonTypes, 'icon' | 'icon-danger'>;
   $isActive?: boolean;
   $isDisabled?: boolean;
+  $isRounded?: boolean;
+  $isHovered?: boolean;
 }
 
 const StyledButton = styled.button<StyledButtonProps>`
   display: grid;
   grid-template-areas: 'left-content content right-content';
   font-family: ${fonts.system};
-  border-radius: 100px;
+  border-radius: ${(p) => (p.$isRounded ? '100px' : '6px')};
   box-sizing: border-box;
-  font-weight: ${fontWeights.semibold};
+  font-weight: ${fontWeights.medium};
 
   ${(p) => addButtonSizeStyles(p.$size)};
-  ${(p) => addButtonTypeStyles(p.$type, p.$isDisabled, p.$isActive)};
+  ${(p) => addButtonTypeStyles(p.$type, p.$isDisabled, p.$isActive, p.$isHovered)};
 `;
 
 function addButtonSizeStyles(size: VisualSizesEnum) {
@@ -94,7 +98,8 @@ function addButtonSizeStyles(size: VisualSizesEnum) {
 function addButtonTypeStyles(
   type: Omit<ButtonTypes, 'icon' | 'icon-danger'>,
   isDisabled?: boolean,
-  isActive?: boolean
+  isActive?: boolean,
+  isHovered?: boolean
 ) {
   if (isDisabled)
     return css`
@@ -113,27 +118,45 @@ function addButtonTypeStyles(
     `;
 
   switch (type) {
-    case 'primary':
+    case 'primary': {
+      const backgroundColor = getStateBasedColor(
+        palette.blue.shade50,
+        palette.blue.shade70,
+        palette.blue.shade60,
+        isHovered,
+        isActive
+      );
+
       return css`
         ${addSharedPrimaryStyles()};
-        background: ${palette.blue[isActive ? 'shade60' : 'shade50']};
+        background: ${backgroundColor};
 
         &:hover {
           background: ${palette.blue.shade70};
         }
       `;
-    case 'primary-danger':
+    }
+    case 'primary-danger': {
+      const backgroundColor = getStateBasedColor(
+        palette.red.shade40,
+        palette.red.shade60,
+        palette.red.shade50,
+        isHovered,
+        isActive
+      );
+
       return css`
         ${addSharedPrimaryStyles()};
-        background: ${palette.red[isActive ? 'shade50' : 'shade40']};
+        background: ${backgroundColor};
 
         &:hover {
           background: ${palette.red.shade60};
         }
       `;
+    }
     case 'tertiary':
       return css`
-        background: ${isActive ? alphas.gray10 : 'transparent'};
+        background: ${isHovered || isActive ? alphas.gray10 : 'transparent'};
         border: 1px solid transparent;
         color: ${palette.blue.shade40};
 
@@ -143,16 +166,28 @@ function addButtonTypeStyles(
       `;
     case 'secondary-danger':
       return css`
-        ${addSharedSecondaryStyles(isActive)};
+        ${addSharedSecondaryStyles(isActive, isHovered)};
         color: ${palette.red.shade50};
       `;
     case 'secondary':
     default:
       return css`
-        ${addSharedSecondaryStyles(isActive)};
+        ${addSharedSecondaryStyles(isActive, isHovered)};
         color: ${greys.shade80};
       `;
   }
+}
+
+function getStateBasedColor(
+  baseColor: string,
+  hoverColor: string,
+  activeColor: string,
+  isHovered?: boolean,
+  isActive?: boolean
+): string {
+  if (isHovered) return hoverColor;
+  if (isActive) return activeColor;
+  return baseColor;
 }
 
 function addSharedPrimaryStyles() {
@@ -163,9 +198,9 @@ function addSharedPrimaryStyles() {
   `;
 }
 
-function addSharedSecondaryStyles(isActive?: boolean) {
+function addSharedSecondaryStyles(isActive?: boolean, isHovered?: boolean) {
   return css`
-    background: ${greys[isActive ? 'shade30' : 'white']};
+    background: ${isHovered || isActive ? greys.shade30 : greys.white};
     border: 1px solid ${alphas.black30};
     box-shadow: 0 1px 3px ${alphas.black10};
 
@@ -188,7 +223,8 @@ export const Button: FC<ButtonProps> = ({
   onClick,
   className,
   iconColor,
-  isRounded
+  isRounded,
+  isHovered
 }) => {
   // Wrap the onClick to check if it is disabled or not defined.
   const onButtonClick = (event: MouseEvent) => {
@@ -206,7 +242,8 @@ export const Button: FC<ButtonProps> = ({
         isActive={isActive}
         onClick={onButtonClick}
         iconColor={iconColor}
-        isRounded={isRounded}>
+        isRounded={isRounded}
+        isHovered={isHovered}>
         {children}
       </IconButton>
     );
@@ -218,6 +255,8 @@ export const Button: FC<ButtonProps> = ({
         $size={size}
         $isDisabled={isDisabled}
         $isActive={isActive}
+        $isRounded={Boolean(isRounded)}
+        $isHovered={Boolean(isHovered)}
         onClick={onButtonClick}>
         {renderChildrenSpecifiedComponents(children, nonButtonContentChildren)}
         {renderButtonChildren(children)}
