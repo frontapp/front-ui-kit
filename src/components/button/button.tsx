@@ -125,10 +125,10 @@ function addButtonTypeStyles(
     case 'primary-danger':
       return css`
         ${addSharedPrimaryStyles()};
-        background: ${palette.red[isActive ? 'shade60' : 'shade50']};
+        background: ${palette.red[isActive ? 'shade50' : 'shade40']};
 
         &:hover {
-          background: ${palette.red.shade70};
+          background: ${palette.red.shade60};
         }
       `;
     case 'tertiary':

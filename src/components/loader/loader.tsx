@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 
-import { palette,PaletteColorsEnum } from '../../helpers/colorHelpers';
+import { palette, PaletteColorsEnum } from '../../helpers/colorHelpers';
 import { VisualSizesEnum } from '../../helpers/fontHelpers';
 import { makeSizeConstants } from '../../helpers/styleHelpers';
 
@@ -15,7 +15,7 @@ interface LoaderProps {
   size?: VisualSizesEnum;
   /** Color scheme of the loader. */
   color?: PaletteColorsEnum.GREY | PaletteColorsEnum.BLUE;
-  /** Whether or not the loader rotates. */
+  /** Whether or not the loader rotates. */x
   isAnimated?: boolean;
 }
 
