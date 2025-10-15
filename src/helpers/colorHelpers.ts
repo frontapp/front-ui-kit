@@ -1,4 +1,4 @@
-import { transparentize } from 'polished';
+import {transparentize} from 'polished';
 
 /*
  * Interfaces.
@@ -45,7 +45,7 @@ export interface AlphasPalette {
   readonly white60: string;
 }
 
-type Palette = { readonly [T in PaletteColorsEnum]: PaletteColor };
+type Palette = {readonly [T in PaletteColorsEnum]: PaletteColor};
 
 /*
  * Constants.
