@@ -1,6 +1,6 @@
 // Ref: https://www.figma.com/design/cL1cMol2CdJirlTQIo1kVc/%F0%9F%9F%A3-Global-UI-Kit
 
-import { transparentize } from 'polished';
+import {transparentize} from 'polished';
 
 /*
  * Interfaces.
@@ -42,7 +42,7 @@ export interface AlphasPalette {
   readonly white60: string;
 }
 
-type Palette = { readonly [T in PaletteColorsEnum]: ColorPalette };
+type Palette = {readonly [T in PaletteColorsEnum]: ColorPalette};
 
 /*
  * Constants.
@@ -103,7 +103,7 @@ export const palette: Palette = {
     shade60: greys.shade60,
     shade70: greys.shade70,
     shade80: greys.shade80,
-    shade90: greys.shade90,
+    shade90: greys.shade90
   },
   [PaletteColorsEnum.PINK]: {
     shade10: '#FDF6FC',

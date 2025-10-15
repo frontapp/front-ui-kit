@@ -1,9 +1,9 @@
-import { FC } from 'react';
-import styled, { css, keyframes } from 'styled-components';
+import {FC} from 'react';
+import styled, {css, keyframes} from 'styled-components';
 
-import { palette, PaletteColorsEnum } from '../../helpers/colorHelpers';
-import { VisualSizesEnum } from '../../helpers/fontHelpers';
-import { makeSizeConstants } from '../../helpers/styleHelpers';
+import {palette, PaletteColorsEnum} from '../../helpers/colorHelpers';
+import {VisualSizesEnum} from '../../helpers/fontHelpers';
+import {makeSizeConstants} from '../../helpers/styleHelpers';
 
 /*
  * Props.
@@ -58,9 +58,13 @@ const StyledLoaderDiv = styled.div<LoaderStyleProps>`
   padding: ${(p) => borderWidths[p.$size]}px;
   border-radius: 50%;
   background: ${(p) => colors[p.$variant]};
-  -webkit-mask: conic-gradient(transparent 10%, #000), linear-gradient(#000 0 0) content-box;
+  -webkit-mask:
+    conic-gradient(transparent 10%, #000),
+    linear-gradient(#000 0 0) content-box;
   -webkit-mask-composite: source-out;
-  mask: conic-gradient(transparent 10%, #000), linear-gradient(#000 0 0) content-box;
+  mask:
+    conic-gradient(transparent 10%, #000),
+    linear-gradient(#000 0 0) content-box;
   mask-composite: subtract;
 
   ${(p) => maybeAnimate(p.$isEnabled)};

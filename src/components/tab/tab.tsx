@@ -3,7 +3,7 @@ import {FC, MouseEventHandler} from 'react';
 import styled, {css} from 'styled-components';
 
 import {alphas, greys} from '../../helpers/colorHelpers';
-import {fonts, fontWeights} from '../../helpers/fontHelpers';
+import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 
 /*
  * Props.
@@ -31,8 +31,8 @@ const StyledTabWrapperDiv = styled.div<StyledTabWrapperDivProps>`
   flex: 1;
   font-family: ${fonts.system};
   position: relative;
-  font-weight: ${fontWeights.semibold};
-  font-size: 14px;
+  font-weight: ${fontWeights.medium};
+  font-size: ${fontSizes.medium};
   color: ${greys.shade60};
   overflow: hidden;
   cursor: default;
@@ -50,7 +50,7 @@ const StyledTabWrapperDiv = styled.div<StyledTabWrapperDivProps>`
 `;
 
 const StyledTabNameDiv = styled.div`
-  margin-bottom: 11px;
+  margin-bottom: 6px;
   ${ellipsis()}; // TODO: Remove this when we have tooltip support.
 `;
 
@@ -60,7 +60,7 @@ interface StyledSelectedBorderDivProps {
 
 const StyledSelectedBorderDiv = styled.div<StyledSelectedBorderDivProps>`
   background: ${alphas.transparent};
-  height: 4px;
+  height: 3px;
   border-top-left-radius: 100px;
   border-top-right-radius: 100px;
 
