@@ -12,11 +12,11 @@ exports[`<Button /> Spec Snapshots should render selected tab 1`] = `
   overflow: hidden;
   cursor: default;
   text-align: center;
-  color: #15131B;
+  color: #15131b;
 }
 
 .c0:hover {
-  color: #15131B;
+  color: #15131b;
 }
 
 .c1 {
@@ -34,7 +34,7 @@ exports[`<Button /> Spec Snapshots should render selected tab 1`] = `
   height: 4px;
   border-top-left-radius: 100px;
   border-top-right-radius: 100px;
-  background: #15131B;
+  background: #15131b;
 }
 
 <div>
@@ -68,7 +68,7 @@ exports[`<Button /> Spec Snapshots should render tab 1`] = `
 }
 
 .c0:hover {
-  color: #15131B;
+  color: #15131b;
 }
 
 .c1 {
@@ -116,11 +116,11 @@ exports[`<Button /> Spec Snapshots should render tab group 1`] = `
   overflow: hidden;
   cursor: default;
   text-align: center;
-  color: #15131B;
+  color: #15131b;
 }
 
 .c1:hover {
-  color: #15131B;
+  color: #15131b;
 }
 
 .c4 {
@@ -137,7 +137,7 @@ exports[`<Button /> Spec Snapshots should render tab group 1`] = `
 }
 
 .c4:hover {
-  color: #15131B;
+  color: #15131b;
 }
 
 .c2 {
@@ -155,7 +155,7 @@ exports[`<Button /> Spec Snapshots should render tab group 1`] = `
   height: 4px;
   border-top-left-radius: 100px;
   border-top-right-radius: 100px;
-  background: #15131B;
+  background: #15131b;
 }
 
 .c5 {

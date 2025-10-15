@@ -97,7 +97,7 @@ function addButtonTypeStyles(
   isDisabled?: boolean,
   isActive?: boolean
 ) {
-  if (isDisabled) 
+  if (isDisabled)
     switch (type) {
       case 'primary':
         return css`
@@ -142,7 +142,6 @@ function addButtonTypeStyles(
           background: ${greys.shade20};
         `;
     }
-  
 
   switch (type) {
     case 'primary': {
