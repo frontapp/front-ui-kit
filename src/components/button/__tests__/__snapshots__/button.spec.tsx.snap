@@ -323,11 +323,11 @@ exports[`<Button /> Spec Snapshots should render primary-danger button 1`] = `
   color: #ffffff;
   border: 1px solid transparent;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-  background: #FC4F4A;
+  background: #FF7C75;
 }
 
 .c1:hover {
-  background: #D01501;
+  background: #EB150F;
 }
 
 <div>

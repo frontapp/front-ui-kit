@@ -15,7 +15,7 @@ interface LoaderProps {
   size?: VisualSizesEnum;
   /** Color scheme of the loader. */
   color?: PaletteColorsEnum.GREY | PaletteColorsEnum.BLUE;
-  /** Whether or not the loader rotates. */x
+  /** Whether or not the loader rotates. */
   isAnimated?: boolean;
 }
 
