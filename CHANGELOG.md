@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.0](https://github.com/frontapp/front-ui-kit/compare/v0.12.0...v0.13.0) (2025-10-16)
+
+
+### Features
+
+* update tab styles ([#277](https://github.com/frontapp/front-ui-kit/issues/277)) ([a141cb6](https://github.com/frontapp/front-ui-kit/commit/a141cb60d82879120b1a012250b907cd2cac45f8))
+
 ## [0.12.0](https://github.com/frontapp/front-ui-kit/compare/v0.11.0...v0.12.0) (2025-10-16)
 
 
