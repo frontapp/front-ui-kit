@@ -198,7 +198,7 @@ function addSharedPrimaryStyles() {
 
 function addSharedSecondaryStyles(isActive?: boolean) {
   return css`
-    background: ${isActive ? greys.shade30 : greys.white};
+    background: ${greys[isActive ? 'shade30' : 'white']};
     border: 1px solid ${alphas.black30};
     box-shadow: 0 1px 3px ${alphas.black10};
 
