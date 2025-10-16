@@ -26,7 +26,7 @@ exports[`<Checkbox /> Spec Snapshots should render a checkbox with a label 1`] =
   box-sizing: border-box;
   appearance: none;
   margin: 0px;
-  border: 1.5px solid #9b9c9e;
+  border: 1.5px solid #727683;
 }
 
 .c4 {
@@ -34,7 +34,7 @@ exports[`<Checkbox /> Spec Snapshots should render a checkbox with a label 1`] =
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  color: #3e3e40;
+  color: #504c57;
   margin-left: 8px;
   cursor: default;
   user-select: none;
@@ -104,8 +104,8 @@ exports[`<Checkbox /> Spec Snapshots should render a checked and disabled checkb
   box-sizing: border-box;
   appearance: none;
   margin: 0px;
-  background-color: #d4d6d9;
-  border: 1.5px solid #d4d6d9;
+  background-color: #a9abb2;
+  border: 1.5px solid #a9abb2;
 }
 
 .c5 {
@@ -113,7 +113,7 @@ exports[`<Checkbox /> Spec Snapshots should render a checked and disabled checkb
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  color: #3e3e40;
+  color: #504c57;
   margin-left: 8px;
   cursor: default;
   user-select: none;
@@ -144,7 +144,7 @@ exports[`<Checkbox /> Spec Snapshots should render a checked and disabled checkb
           class="c4"
         >
           <div
-            color="#9b9c9e"
+            color="#727683"
             height="16"
             name="CheckmarkBox"
             preserveaspectratio="none"
@@ -195,7 +195,7 @@ exports[`<Checkbox /> Spec Snapshots should render a checked checkbox 1`] = `
   box-sizing: border-box;
   appearance: none;
   margin: 0px;
-  background: #367fee;
+  background: #6257f4;
   border: none;
 }
 
@@ -204,7 +204,7 @@ exports[`<Checkbox /> Spec Snapshots should render a checked checkbox 1`] = `
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  color: #3e3e40;
+  color: #504c57;
   margin-left: 8px;
   cursor: default;
   user-select: none;
@@ -277,8 +277,8 @@ exports[`<Checkbox /> Spec Snapshots should render an empty and disabled checkbo
   box-sizing: border-box;
   appearance: none;
   margin: 0px;
-  background-color: #f3f4f6;
-  border: 1.5px solid #d4d6d9;
+  background-color: #eceaf1;
+  border: 1.5px solid #a9abb2;
 }
 
 .c4 {
@@ -286,7 +286,7 @@ exports[`<Checkbox /> Spec Snapshots should render an empty and disabled checkbo
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  color: #3e3e40;
+  color: #504c57;
   margin-left: 8px;
   cursor: default;
   user-select: none;
@@ -347,7 +347,7 @@ exports[`<Checkbox /> Spec Snapshots should render an empty checkbox 1`] = `
   box-sizing: border-box;
   appearance: none;
   margin: 0px;
-  border: 1.5px solid #9b9c9e;
+  border: 1.5px solid #727683;
 }
 
 .c4 {
@@ -355,7 +355,7 @@ exports[`<Checkbox /> Spec Snapshots should render an empty checkbox 1`] = `
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  color: #3e3e40;
+  color: #504c57;
   margin-left: 8px;
   cursor: default;
   user-select: none;
@@ -423,8 +423,8 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate and disabled
   box-sizing: border-box;
   appearance: none;
   margin: 0px;
-  background-color: #d4d6d9;
-  border: 1.5px solid #d4d6d9;
+  background-color: #a9abb2;
+  border: 1.5px solid #a9abb2;
 }
 
 .c5 {
@@ -432,7 +432,7 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate and disabled
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  color: #3e3e40;
+  color: #504c57;
   margin-left: 8px;
   cursor: default;
   user-select: none;
@@ -463,7 +463,7 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate and disabled
           class="c4"
         >
           <div
-            color="#9b9c9e"
+            color="#727683"
             height="16"
             name="Minus"
             preserveaspectratio="none"
@@ -514,7 +514,7 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate checkbox 1`]
   box-sizing: border-box;
   appearance: none;
   margin: 0px;
-  background: #367fee;
+  background: #6257f4;
   border: none;
 }
 
@@ -523,7 +523,7 @@ exports[`<Checkbox /> Spec Snapshots should render an indeterminate checkbox 1`]
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  color: #3e3e40;
+  color: #504c57;
   margin-left: 8px;
   cursor: default;
   user-select: none;

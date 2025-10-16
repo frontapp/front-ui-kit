@@ -1,5 +1,5 @@
 /* eslint-disable storybook/story-exports */
-import {ComponentMeta} from '@storybook/react';
+import {Meta} from '@storybook/react';
 
 import {PluginLayout} from '../pluginLayout';
 import DocumentationMDX from './docs.mdx';
@@ -23,8 +23,9 @@ export default {
     viewMode: 'docs'
   },
   id: 'Layout/Plugin Layout'
-} as ComponentMeta<typeof PluginLayout>;
+} as Meta<typeof PluginLayout>;
 
 export {Basic} from './stories/basic.stories';
 export {Search} from './stories/search.stories';
 export {SubLevel} from './stories/sub-level.stories';
+export {Tabs} from './stories/tabs.stories';

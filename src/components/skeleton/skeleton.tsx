@@ -9,7 +9,7 @@ import {greys} from '../../helpers/colorHelpers';
 
 const skeletonColorSchemes = {
   light: [greys.shade10, greys.shade20],
-  dark: [greys.shade30, greys.shade40]
+  dark: [greys.shade20, greys.shade30]
 };
 
 /*

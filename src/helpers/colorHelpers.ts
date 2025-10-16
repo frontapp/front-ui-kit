@@ -1,11 +1,12 @@
+// Ref: https://www.figma.com/design/cL1cMol2CdJirlTQIo1kVc/%F0%9F%9F%A3-Global-UI-Kit
+
 import {transparentize} from 'polished';
 
 /*
  * Interfaces.
  */
 
-interface FullColorPalette {
-  readonly white: string;
+interface ColorPalette {
   readonly shade10: string;
   readonly shade20: string;
   readonly shade30: string;
@@ -15,15 +16,11 @@ interface FullColorPalette {
   readonly shade70: string;
   readonly shade80: string;
   readonly shade90: string;
-  readonly black: string;
 }
 
-export interface PaletteColor {
-  readonly shade10: string;
-  readonly shade20: string;
-  readonly shade30: string;
-  readonly shade40: string;
-  readonly shade50: string;
+interface FullColorPalette extends ColorPalette {
+  readonly white: string;
+  readonly black: string;
 }
 
 export interface AlphasPalette {
@@ -45,7 +42,7 @@ export interface AlphasPalette {
   readonly white60: string;
 }
 
-type Palette = {readonly [T in PaletteColorsEnum]: PaletteColor};
+type Palette = {readonly [T in PaletteColorsEnum]: ColorPalette};
 
 /*
  * Constants.
@@ -65,16 +62,16 @@ export enum PaletteColorsEnum {
 
 export const greys: Readonly<FullColorPalette> = {
   white: '#ffffff',
-  shade10: '#f7f8fa',
-  shade20: '#f3f4f6',
-  shade30: '#e8eaed',
-  shade40: '#d4d6d9',
-  shade50: '#bbbdbf',
-  shade60: '#9b9c9e',
-  shade70: '#77787a',
-  shade80: '#3e3e40',
-  shade90: '#19191a',
-  black: '#001B38'
+  shade10: '#f4f2f8',
+  shade20: '#eceaf1',
+  shade30: '#d8d6db',
+  shade40: '#a9abb2',
+  shade50: '#8d919b',
+  shade60: '#727683',
+  shade70: '#656972',
+  shade80: '#504c57',
+  shade90: '#332c3a',
+  black: '#15131b'
 };
 
 export const alphas: Readonly<AlphasPalette> = {
@@ -99,66 +96,102 @@ export const alphas: Readonly<AlphasPalette> = {
 export const palette: Palette = {
   [PaletteColorsEnum.GREY]: {
     shade10: greys.shade10,
-    shade20: greys.shade30,
-    shade30: greys.shade50,
-    shade40: greys.shade70,
-    shade50: greys.shade80
+    shade20: greys.shade20,
+    shade30: greys.shade30,
+    shade40: greys.shade40,
+    shade50: greys.shade50,
+    shade60: greys.shade60,
+    shade70: greys.shade70,
+    shade80: greys.shade80,
+    shade90: greys.shade90
   },
   [PaletteColorsEnum.PINK]: {
-    shade10: '#fdf0f8',
-    shade20: '#fbe1f2',
-    shade30: '#f8cae8',
-    shade40: '#ca3e99',
-    shade50: '#9f3079'
+    shade10: '#fdf6fc',
+    shade20: '#fbeaf6',
+    shade30: '#f3c9e7',
+    shade40: '#edb0df',
+    shade50: '#f561c8',
+    shade60: '#e231b6',
+    shade70: '#c01695',
+    shade80: '#8e1a71',
+    shade90: '#561a45'
   },
   [PaletteColorsEnum.RED]: {
-    shade10: '#fff1f1',
-    shade20: '#ffe1de',
-    shade30: '#fac1bb',
-    shade40: '#e9483a',
-    shade50: '#b72215'
+    shade10: '#fef7f5',
+    shade20: '#ffe7e6',
+    shade30: '#fdcac3',
+    shade40: '#ff7c75',
+    shade50: '#fc4f4a',
+    shade60: '#eb150f',
+    shade70: '#d01501',
+    shade80: '#9e0f00',
+    shade90: '#660c05'
   },
   [PaletteColorsEnum.ORANGE]: {
-    shade10: '#fff7f0',
-    shade20: '#ffe9d1',
-    shade30: '#fadab9',
-    shade40: '#f2830b',
-    shade50: '#cc6000'
+    shade10: '#fff7f5',
+    shade20: '#ffe9e0',
+    shade30: '#ffcab2',
+    shade40: '#f6844c',
+    shade50: '#f36416',
+    shade60: '#d14900',
+    shade70: '#b84300',
+    shade80: '#8a3000',
+    shade90: '#572300'
   },
   [PaletteColorsEnum.YELLOW]: {
-    shade10: '#fefbef',
-    shade20: '#fef6dc',
-    shade30: '#faebbb',
-    shade40: '#e3b51e',
-    shade50: '#91691b'
+    shade10: '#fefbf1',
+    shade20: '#f8eec3',
+    shade30: '#face47',
+    shade40: '#d5a401',
+    shade50: '#bd8728',
+    shade60: '#9d6c01',
+    shade70: '#906213',
+    shade80: '#65470b',
+    shade90: '#422e00'
   },
   [PaletteColorsEnum.GREEN]: {
-    shade10: '#eefbf3',
-    shade20: '#d9f6e3',
-    shade30: '#b6f0ca',
-    shade40: '#10aa40',
-    shade50: '#0c8331'
+    shade10: '#f3fcf8',
+    shade20: '#d7f4e7',
+    shade30: '#ade1c0',
+    shade40: '#5bb97d',
+    shade50: '#3ba554',
+    shade60: '#2d8643',
+    shade70: '#25793a',
+    shade80: '#245632',
+    shade90: '#153722'
   },
   [PaletteColorsEnum.TEAL]: {
     shade10: '#f0fdff',
-    shade20: '#dcfbff',
-    shade30: '#b9f2fa',
-    shade40: '#15acc0',
-    shade50: '#0d7482'
+    shade20: '#cdf3f9',
+    shade30: '#99dfea',
+    shade40: '#22b6d3',
+    shade50: '#1f9fb2',
+    shade60: '#007f8f',
+    shade70: '#00758a',
+    shade80: '#005661',
+    shade90: '#003a42'
   },
   [PaletteColorsEnum.BLUE]: {
-    shade10: '#f1f6fd',
-    shade20: '#e0edff',
-    shade30: '#bed7fa',
-    shade40: '#367fee',
-    shade50: '#2356b3'
+    shade10: '#f5f6fe',
+    shade20: '#e6e9fe',
+    shade30: '#cad1fc',
+    shade40: '#94a2ff',
+    shade50: '#7989f7',
+    shade60: '#6257f4',
+    shade70: '#584def',
+    shade80: '#3c3faa',
+    shade90: '#20224b'
   },
   [PaletteColorsEnum.PURPLE]: {
-    shade10: '#f8f1ff',
-    shade20: '#f0dfff',
-    shade30: '#ddbbfa',
-    shade40: '#9235e4',
-    shade50: '#681aad'
+    shade10: '#fbf5ff',
+    shade20: '#f4e8fd',
+    shade30: '#dacbf1',
+    shade40: '#cfb6ec',
+    shade50: '#b679f2',
+    shade60: '#a53eef',
+    shade70: '#9820ee',
+    shade80: '#7322a5',
+    shade90: '#492858'
   }
 };
 

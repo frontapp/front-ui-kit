@@ -123,10 +123,10 @@ function addInputStyles(props: StyledInputProps) {
 
   if (props.$isErred)
     return css`
-      background: ${palette.red.shade10};
+      background: ${palette.red.shade20};
       border: 2px solid transparent;
       &:hover {
-        background: ${palette.red.shade20};
+        background: ${palette.red.shade30};
       }
       &:focus {
         border: 2px solid ${palette.red.shade40};

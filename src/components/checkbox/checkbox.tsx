@@ -105,7 +105,7 @@ function addCheckboxStyles(props: StyledCheckboxInputProps) {
 
   if (props.$isChecked || props.$isIndeterminate)
     return css`
-      background: ${palette.blue.shade40};
+      background: ${palette.blue.shade60};
       border: none;
     `;
 

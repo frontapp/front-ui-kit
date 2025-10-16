@@ -1,5 +1,36 @@
 # Changelog
 
+## [0.13.0](https://github.com/frontapp/front-ui-kit/compare/v0.12.0...v0.13.0) (2025-10-16)
+
+
+### Features
+
+* update tab styles ([#277](https://github.com/frontapp/front-ui-kit/issues/277)) ([a141cb6](https://github.com/frontapp/front-ui-kit/commit/a141cb60d82879120b1a012250b907cd2cac45f8))
+
+## [0.12.0](https://github.com/frontapp/front-ui-kit/compare/v0.11.0...v0.12.0) (2025-10-16)
+
+
+### Features
+
+* expandable section component ([#269](https://github.com/frontapp/front-ui-kit/issues/269)) ([d87e251](https://github.com/frontapp/front-ui-kit/commit/d87e25106b06d0964a21ce4a97776de31c7f07a1))
+
+## [0.11.0](https://github.com/frontapp/front-ui-kit/compare/v0.10.0...v0.11.0) (2025-10-16)
+
+
+### Features
+
+* new icons ([#267](https://github.com/frontapp/front-ui-kit/issues/267)) ([244b112](https://github.com/frontapp/front-ui-kit/commit/244b1124a93d42b40f3ae406dd1192ba359887ec))
+
+## [0.10.0](https://github.com/frontapp/front-ui-kit/compare/v0.9.0...v0.10.0) (2025-10-15)
+
+### Features
+
+- update color palette ([#275](https://github.com/frontapp/front-ui-kit/issues/275)) ([68fdecb](https://github.com/frontapp/front-ui-kit/commit/68fdecb777e99f96538eb783260710acaaee871e))
+
+### Bug Fixes
+
+- lint fixes and top banner host examples ([#265](https://github.com/frontapp/front-ui-kit/issues/265)) ([70eb935](https://github.com/frontapp/front-ui-kit/commit/70eb9352116738835dd1ceb92d7f7b0619efa064))
+
 ## [0.9.0](https://github.com/frontapp/front-ui-kit/compare/v0.8.1...v0.9.0) (2025-10-02)
 
 ### Features
