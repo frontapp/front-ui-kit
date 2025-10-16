@@ -31,7 +31,7 @@ export const IconBasic: StoryObj<typeof Button> = {
   render: () => (
     <StyledContainer>
       <div>
-        <StyledLabel>Default (fully rounded)</StyledLabel>
+        <StyledLabel>Default</StyledLabel>
         <StyledCenteredDiv>
           <Button type="icon">
             <Icon name="Archive" />
@@ -42,7 +42,7 @@ export const IconBasic: StoryObj<typeof Button> = {
         </StyledCenteredDiv>
       </div>
       <div>
-        <StyledLabel>Rounded (8px border radius)</StyledLabel>
+        <StyledLabel>Rounded</StyledLabel>
         <StyledCenteredDiv>
           <Button type="icon" isRounded>
             <Icon name="Archive" />

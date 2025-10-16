@@ -43,7 +43,7 @@ const StyledIconButton = styled.button<StyledIconButtonProps>`
   background: transparent;
   border: none;
   padding: 7px;
-  border-radius: ${(p) => (p.$isRounded ? '8px' : '99999px')};
+  border-radius: ${(p) => (p.$isRounded ? '99999px' : '6px')};
 
   ${(p) => addIconColorStyles(p.$isDanger, p.$isDisabled, p.$isActive, p.$iconColor)};
 `;

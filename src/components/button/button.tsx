@@ -145,11 +145,9 @@ function addButtonTypeStyles(
 
   switch (type) {
     case 'primary': {
-      const backgroundColor = getStateBasedColor(palette.blue.shade60, palette.blue.shade70, isActive);
-
       return css`
         ${addSharedPrimaryStyles()};
-        background: ${backgroundColor};
+        background: ${palette.blue[isActive ? 'shade70' : 'shade60']};
 
         &:hover {
           background: ${palette.blue.shade80};
@@ -157,11 +155,9 @@ function addButtonTypeStyles(
       `;
     }
     case 'primary-danger': {
-      const backgroundColor = getStateBasedColor(palette.red.shade50, palette.red.shade60, isActive);
-
       return css`
         ${addSharedPrimaryStyles()};
-        background: ${backgroundColor};
+        background: ${palette.red[isActive ? 'shade60' : 'shade50']};
 
         &:hover {
           background: ${palette.red.shade70};
@@ -190,11 +186,6 @@ function addButtonTypeStyles(
         color: ${greys.shade80};
       `;
   }
-}
-
-function getStateBasedColor(baseColor: string, activeColor: string, isActive?: boolean): string {
-  if (isActive) return activeColor;
-  return baseColor;
 }
 
 function addSharedPrimaryStyles() {
