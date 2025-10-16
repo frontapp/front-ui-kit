@@ -182,7 +182,7 @@ exports[`<Button /> Spec Snapshots should render icon button 1`] = `
   background: transparent;
   border: none;
   padding: 7px;
-  border-radius: 99999px;
+  border-radius: 6px;
   color: #656972;
   background: unset;
 }
@@ -225,7 +225,7 @@ exports[`<Button /> Spec Snapshots should render icon-danger button 1`] = `
   background: transparent;
   border: none;
   padding: 7px;
-  border-radius: 99999px;
+  border-radius: 6px;
   color: #ff7c75;
   background: unset;
 }
