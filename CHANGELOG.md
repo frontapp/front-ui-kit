@@ -2,24 +2,21 @@
 
 ## [0.13.0](https://github.com/frontapp/front-ui-kit/compare/v0.12.0...v0.13.0) (2025-10-16)
 
-
 ### Features
 
-* update tab styles ([#277](https://github.com/frontapp/front-ui-kit/issues/277)) ([a141cb6](https://github.com/frontapp/front-ui-kit/commit/a141cb60d82879120b1a012250b907cd2cac45f8))
+- update tab styles ([#277](https://github.com/frontapp/front-ui-kit/issues/277)) ([a141cb6](https://github.com/frontapp/front-ui-kit/commit/a141cb60d82879120b1a012250b907cd2cac45f8))
 
 ## [0.12.0](https://github.com/frontapp/front-ui-kit/compare/v0.11.0...v0.12.0) (2025-10-16)
 
-
 ### Features
 
-* expandable section component ([#269](https://github.com/frontapp/front-ui-kit/issues/269)) ([d87e251](https://github.com/frontapp/front-ui-kit/commit/d87e25106b06d0964a21ce4a97776de31c7f07a1))
+- expandable section component ([#269](https://github.com/frontapp/front-ui-kit/issues/269)) ([d87e251](https://github.com/frontapp/front-ui-kit/commit/d87e25106b06d0964a21ce4a97776de31c7f07a1))
 
 ## [0.11.0](https://github.com/frontapp/front-ui-kit/compare/v0.10.0...v0.11.0) (2025-10-16)
 
-
 ### Features
 
-* new icons ([#267](https://github.com/frontapp/front-ui-kit/issues/267)) ([244b112](https://github.com/frontapp/front-ui-kit/commit/244b1124a93d42b40f3ae406dd1192ba359887ec))
+- new icons ([#267](https://github.com/frontapp/front-ui-kit/issues/267)) ([244b112](https://github.com/frontapp/front-ui-kit/commit/244b1124a93d42b40f3ae406dd1192ba359887ec))
 
 ## [0.10.0](https://github.com/frontapp/front-ui-kit/compare/v0.9.0...v0.10.0) (2025-10-15)
 
