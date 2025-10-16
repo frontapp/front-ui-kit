@@ -6,6 +6,7 @@ import {alphas} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 import {Icon} from '../icon/icon';
 import {Input} from '../input/input';
+import {useNavigationalDropdownSafe} from './context/NavigationalDropdownContext';
 
 /*
  * Props.
@@ -74,17 +75,29 @@ export const DropdownHeader: FC<DropdownHeaderProps> = ({
   searchValue,
   shouldAutoFocusSearchInput = true,
   onSearchChange,
-  onBackClick
-}) => (
-  <StyledDropdownHeaderWrapperDiv>
-    <StyledHeaderTopRowDiv>
-      {onBackClick ? maybeRenderBackButton(onBackClick) : <StyledPlaceholderDiv />}
-      <StyledHeaderLabelDiv>{children}</StyledHeaderLabelDiv>
-      <StyledPlaceholderDiv />
-    </StyledHeaderTopRowDiv>
-    {maybeRenderSearchDropdown(searchValue, searchPlaceholder, shouldAutoFocusSearchInput, onSearchChange)}
-  </StyledDropdownHeaderWrapperDiv>
-);
+  onBackClick // Keep as optional override
+}) => {
+  // Get back navigation from context (safely)
+  const navigationContext = useNavigationalDropdownSafe();
+
+  // Use context value if onBackClick is not provided and we're in a navigation context
+  const backClickHandler =
+    onBackClick ||
+    (navigationContext?.backNavigation?.canNavigateBack
+      ? navigationContext.backNavigation.navigateBack
+      : undefined);
+
+  return (
+    <StyledDropdownHeaderWrapperDiv>
+      <StyledHeaderTopRowDiv>
+        {backClickHandler ? maybeRenderBackButton(backClickHandler) : <StyledPlaceholderDiv />}
+        <StyledHeaderLabelDiv>{children}</StyledHeaderLabelDiv>
+        <StyledPlaceholderDiv />
+      </StyledHeaderTopRowDiv>
+      {maybeRenderSearchDropdown(searchValue, searchPlaceholder, shouldAutoFocusSearchInput, onSearchChange)}
+    </StyledDropdownHeaderWrapperDiv>
+  );
+};
 
 /*
  * Helpers.

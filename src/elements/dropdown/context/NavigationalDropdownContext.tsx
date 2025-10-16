@@ -16,6 +16,11 @@ export interface NavigationalDropdownContextValue {
   reset: () => void;
   getCurrentLevel: () => number;
   autoNavigateToSubmenuId: string | null;
+  // Add back navigation handler
+  backNavigation: {
+    canNavigateBack: boolean;
+    navigateBack: (event: React.MouseEvent) => void;
+  };
 }
 
 export const NavigationalDropdownContext = createContext<NavigationalDropdownContextValue | null>(null);
@@ -127,7 +132,16 @@ export const NavigationalDropdownProvider: React.FC<NavigationalDropdownProvider
       canNavigateBack,
       reset,
       getCurrentLevel,
-      autoNavigateToSubmenuId
+      autoNavigateToSubmenuId,
+      // Add back navigation handler
+      backNavigation: {
+        canNavigateBack,
+        navigateBack: (event: React.MouseEvent) => {
+          event.preventDefault();
+          event.stopPropagation();
+          navigateBack();
+        }
+      }
     }),
     [
       viewStack,
@@ -153,4 +167,9 @@ export const useNavigationalDropdown = (): NavigationalDropdownContextValue => {
   if (!context) throw new Error('useNavigationalDropdown must be used within a NavigationalDropdownProvider');
 
   return context;
+};
+
+export const useNavigationalDropdownSafe = (): NavigationalDropdownContextValue | null => {
+  const context = useContext(NavigationalDropdownContext);
+  return context || null;
 };
