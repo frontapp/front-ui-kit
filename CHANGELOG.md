@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.0](https://github.com/frontapp/front-ui-kit/compare/v0.11.0...v0.12.0) (2025-10-16)
+
+
+### Features
+
+* expandable section component ([#269](https://github.com/frontapp/front-ui-kit/issues/269)) ([d87e251](https://github.com/frontapp/front-ui-kit/commit/d87e25106b06d0964a21ce4a97776de31c7f07a1))
+
 ## [0.11.0](https://github.com/frontapp/front-ui-kit/compare/v0.10.0...v0.11.0) (2025-10-16)
 
 
