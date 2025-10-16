@@ -16,6 +16,7 @@ export interface NavigationalDropdownContextValue {
   reset: () => void;
   getCurrentLevel: () => number;
   autoNavigateToSubmenuId: string | null;
+  autoNavigateToSubmenuPath: string[];
   // Add back navigation handler
   backNavigation: {
     canNavigateBack: boolean;
@@ -51,12 +52,13 @@ export const NavigationalDropdownProvider: React.FC<NavigationalDropdownProvider
   ]);
 
   const prevContentVersionRef = React.useRef(contentVersion);
-  const [autoNavigateToSubmenuId, setAutoNavigateToSubmenuId] = React.useState<string | null>(null);
+  const [autoNavigateToSubmenuPath, setAutoNavigateToSubmenuPath] = React.useState<string[]>([]);
 
   useLayoutEffect(() => {
     if (prevContentVersionRef.current !== contentVersion && prevContentVersionRef.current !== undefined)
       setViewStack((currentStack) => {
-        const activeSubmenuId = currentStack.length > 1 ? currentStack[currentStack.length - 1].id : null;
+        // Store the entire navigation path, not just the last submenu ID
+        const navigationPath = currentStack.length > 1 ? currentStack.slice(1).map((view) => view.id) : [];
 
         const newStack = [
           {
@@ -66,7 +68,8 @@ export const NavigationalDropdownProvider: React.FC<NavigationalDropdownProvider
           }
         ];
 
-        if (activeSubmenuId && activeSubmenuId !== rootId) setAutoNavigateToSubmenuId(activeSubmenuId);
+        // Set the navigation path to auto-restore
+        if (navigationPath.length > 0) setAutoNavigateToSubmenuPath(navigationPath);
 
         return newStack;
       });
@@ -76,8 +79,6 @@ export const NavigationalDropdownProvider: React.FC<NavigationalDropdownProvider
 
   const navigateTo = useCallback(
     (id: string, getContent: () => React.ReactNode, parentTitle?: string) => {
-      setAutoNavigateToSubmenuId(null);
-
       setViewStack((prev) => {
         const currentLevel = prev.length > 0 ? prev[prev.length - 1].level : -1;
         const newView: NavigationalView = {
@@ -90,6 +91,14 @@ export const NavigationalDropdownProvider: React.FC<NavigationalDropdownProvider
         const newStack = [...prev, newView];
         onNavigate?.(newView.level, id);
         return newStack;
+      });
+
+      // Remove the first item from the auto-navigation path after navigating to it
+      setAutoNavigateToSubmenuPath((prev) => {
+        if (prev.length > 0 && prev[0] === id) return prev.slice(1);
+
+        // If user is manually navigating (not auto), clear the path
+        return [];
       });
     },
     [onNavigate]
@@ -132,7 +141,8 @@ export const NavigationalDropdownProvider: React.FC<NavigationalDropdownProvider
       canNavigateBack,
       reset,
       getCurrentLevel,
-      autoNavigateToSubmenuId,
+      autoNavigateToSubmenuId: autoNavigateToSubmenuPath.length > 0 ? autoNavigateToSubmenuPath[0] : null,
+      autoNavigateToSubmenuPath,
       // Add back navigation handler
       backNavigation: {
         canNavigateBack,
@@ -151,7 +161,7 @@ export const NavigationalDropdownProvider: React.FC<NavigationalDropdownProvider
       canNavigateBack,
       reset,
       getCurrentLevel,
-      autoNavigateToSubmenuId
+      autoNavigateToSubmenuPath
     ]
   );
 

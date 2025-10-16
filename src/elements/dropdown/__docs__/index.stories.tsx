@@ -41,3 +41,4 @@ export {PerformanceTest} from './stories/nestedDropdown.stories';
 
 // Navigational Dropdown Examples (Click-to-navigate)
 export {BasicNavigational} from './stories/navigationalDropdown.stories';
+export {DeepNavigational} from './stories/navigationalDropdown.stories';

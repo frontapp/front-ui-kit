@@ -1,4 +1,4 @@
-import React, {useCallback, useLayoutEffect, useRef} from 'react';
+import React, {useCallback, useLayoutEffect} from 'react';
 import styled from 'styled-components';
 
 import {useNavigationalDropdown} from '../context/NavigationalDropdownContext';
@@ -42,17 +42,19 @@ export const NavigationalSubmenuTrigger: React.FC<NavigationalSubmenuTriggerProp
   className,
   onNavigate
 }) => {
-  const {navigateTo, autoNavigateToSubmenuId} = useNavigationalDropdown();
-  const hasAutoNavigatedRef = useRef(false);
+  const {navigateTo, autoNavigateToSubmenuPath, viewStack} = useNavigationalDropdown();
 
   useLayoutEffect(() => {
-    if (autoNavigateToSubmenuId === submenuId && !hasAutoNavigatedRef.current) {
-      hasAutoNavigatedRef.current = true;
-      navigateTo(submenuId, getSubmenu, backTitle);
-    }
+    // Check if this submenu is the first one in the auto-navigation path
+    const isFirstInPath = autoNavigateToSubmenuPath.length > 0 && autoNavigateToSubmenuPath[0] === submenuId;
 
-    if (autoNavigateToSubmenuId !== submenuId) hasAutoNavigatedRef.current = false;
-  }, [autoNavigateToSubmenuId, submenuId, getSubmenu, backTitle, navigateTo]);
+    // Also check that we haven't already navigated to this level
+    const isAlreadyInStack = viewStack.some((view) => view.id === submenuId);
+
+    if (isFirstInPath && !isAlreadyInStack)
+      // Always navigate if we're first in path and not in stack
+      navigateTo(submenuId, getSubmenu, backTitle);
+  }, [autoNavigateToSubmenuPath, submenuId, getSubmenu, backTitle, navigateTo, viewStack]);
 
   const handleClick = useCallback(
     (event: React.MouseEvent) => {
