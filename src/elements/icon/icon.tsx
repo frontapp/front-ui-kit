@@ -18,6 +18,7 @@ import AttachmentVideo from '../../assets/icons/attachmentVideo.svg';
 import AttachmentWord from '../../assets/icons/attachmentWord.svg';
 import Calendar from '../../assets/icons/calendar.svg';
 import CalendarFilled from '../../assets/icons/calendarFilled.svg';
+import CaretExpand from '../../assets/icons/caretExpand.svg';
 import CheckmarkBox from '../../assets/icons/checkmarkBox.svg';
 import CheckmarkCircle from '../../assets/icons/checkmarkCircle.svg';
 import CheckmarkCircleEmpty from '../../assets/icons/checkmarkCircleEmpty.svg';
@@ -30,6 +31,7 @@ import Close from '../../assets/icons/close.svg';
 import Copy from '../../assets/icons/copy.svg';
 import Edit from '../../assets/icons/edit.svg';
 import EditFilled from '../../assets/icons/editFilled.svg';
+import EditSquare from '../../assets/icons/editSquare.svg';
 import Export from '../../assets/icons/export.svg';
 import ExternalLink from '../../assets/icons/externalLink.svg';
 import Gear from '../../assets/icons/gear.svg';
@@ -52,6 +54,7 @@ import Star from '../../assets/icons/star.svg';
 import StarFilled from '../../assets/icons/starFilled.svg';
 import Trash from '../../assets/icons/trash.svg';
 import TrashFilled from '../../assets/icons/trashFilled.svg';
+import UserSquare from '../../assets/icons/userSquare.svg';
 import WarningFilled from '../../assets/icons/warningFilled.svg';
 import {greys} from '../../helpers/colorHelpers';
 import {getIconViewBox} from './iconViewBoxes';
@@ -81,6 +84,7 @@ const importedIcons = {
   AttachmentWord,
   Calendar,
   CalendarFilled,
+  CaretExpand,
   CheckmarkCircle,
   CheckmarkCircleEmpty,
   CheckmarkBox,
@@ -93,6 +97,7 @@ const importedIcons = {
   Copy,
   Edit,
   EditFilled,
+  EditSquare,
   EllipsisHorizontal,
   EllipsisVertical,
   Export,
@@ -115,6 +120,7 @@ const importedIcons = {
   StarFilled,
   Trash,
   TrashFilled,
+  UserSquare,
   WarningFilled
 } as const;
 

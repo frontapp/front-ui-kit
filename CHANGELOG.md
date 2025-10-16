@@ -2,11 +2,9 @@
 
 ## [0.10.0](https://github.com/frontapp/front-ui-kit/compare/v0.9.0...v0.10.0) (2025-10-15)
 
-
 ### Features
 
 * update color palette ([#275](https://github.com/frontapp/front-ui-kit/issues/275)) ([68fdecb](https://github.com/frontapp/front-ui-kit/commit/68fdecb777e99f96538eb783260710acaaee871e))
-
 
 ### Bug Fixes
 
