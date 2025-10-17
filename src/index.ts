@@ -42,11 +42,6 @@ export {ButtonContent} from './components/button/buttonContent';
 export {ButtonContentIcon} from './components/button/buttonContentIcon';
 export {ButtonGroup} from './components/button/buttonGroup';
 
-export {Card} from './components/card/card';
-export {CardHeader} from './components/card/cardHeader';
-export {CardBody} from './components/card/cardBody';
-export {CardFooter} from './components/card/cardFooter';
-
 export {Checkbox} from './components/checkbox/checkbox';
 
 export {DatePickerDropdown as DatePicker} from './components/datepicker/datepickerDropdown';

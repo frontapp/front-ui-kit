@@ -176,7 +176,7 @@ export const ExpandableSection: FC<ExpandableSectionProps> = (props) => {
   ) : null;
 
   // If no actions, render the section normally
-  if (actions.length === 0) 
+  if (actions.length === 0)
     return (
       <StyledExpandableSectionDiv
         borderRadius={borderRadius}
@@ -202,11 +202,10 @@ export const ExpandableSection: FC<ExpandableSectionProps> = (props) => {
         </StyledContentDiv>
       </StyledExpandableSectionDiv>
     );
-  
 
   // Render actions based on groupActions setting
   const renderActions = () => {
-    if (groupActions) 
+    if (groupActions)
       // Group all actions into a dropdown menu
       return (
         <StyledActionsDiv $showOnHover={showActionsOnHover} onClick={(e) => e.stopPropagation()}>
@@ -224,26 +223,25 @@ export const ExpandableSection: FC<ExpandableSectionProps> = (props) => {
           </ActionMenu>
         </StyledActionsDiv>
       );
-     
-      // Show actions as individual icon buttons
-      return (
-        <StyledActionsDiv $showOnHover={showActionsOnHover} onClick={(e) => e.stopPropagation()}>
-          {actions.map((action) => (
-            <TooltipCoordinator
-              key={action.label}
-              renderTooltip={() => <Tooltip placement="top">{action.tooltip ?? action.label}</Tooltip>}>
-              <Button
-                type="icon"
-                onClick={() => {
-                  handleActionClick(action);
-                }}>
-                {action.icon && <Icon name={action.icon} />}
-              </Button>
-            </TooltipCoordinator>
-          ))}
-        </StyledActionsDiv>
-      );
-    
+
+    // Show actions as individual icon buttons
+    return (
+      <StyledActionsDiv $showOnHover={showActionsOnHover} onClick={(e) => e.stopPropagation()}>
+        {actions.map((action) => (
+          <TooltipCoordinator
+            key={action.label}
+            renderTooltip={() => <Tooltip placement="top">{action.tooltip ?? action.label}</Tooltip>}>
+            <Button
+              type="icon"
+              onClick={() => {
+                handleActionClick(action);
+              }}>
+              {action.icon && <Icon name={action.icon} />}
+            </Button>
+          </TooltipCoordinator>
+        ))}
+      </StyledActionsDiv>
+    );
   };
 
   return (
