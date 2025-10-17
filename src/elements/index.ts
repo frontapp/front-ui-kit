@@ -12,6 +12,16 @@ export {DropdownItemSkeleton} from './dropdown/skeleton/dropdownItemSkeleton';
 export {DropdownItemSpacer} from './dropdown/dropdownItemSpacer';
 export {NestedDropdownContext} from './dropdown/context/NestedDropdownContext';
 export {NestedDropdownProvider} from './dropdown/context/NestedDropdownContext';
+export {
+  NavigationalDropdownContext,
+  NavigationalDropdownProvider
+} from './dropdown/context/NavigationalDropdownContext';
+export {useNavigationalDropdown} from './dropdown/context/NavigationalDropdownContext';
+export type {
+  NavigationalView,
+  NavigationalDropdownContextValue
+} from './dropdown/context/NavigationalDropdownContext';
+export {NavigationalDropdownContainer} from './dropdown/components/NavigationalDropdownContainer';
 
 export {EmptyState} from './emptyState/emptyState';
 
