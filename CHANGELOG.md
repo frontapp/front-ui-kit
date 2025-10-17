@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.14.0](https://github.com/frontapp/front-ui-kit/compare/v0.13.0...v0.14.0) (2025-10-17)
+
+
+### Features
+
+* update button styles ([#282](https://github.com/frontapp/front-ui-kit/issues/282)) ([81553ec](https://github.com/frontapp/front-ui-kit/commit/81553ecfbe757b4b111fece0b1a14c2defed89d5))
+
 ## [0.13.0](https://github.com/frontapp/front-ui-kit/compare/v0.12.0...v0.13.0) (2025-10-16)
 
 
