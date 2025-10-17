@@ -144,7 +144,7 @@ function addButtonTypeStyles(
     }
 
   switch (type) {
-    case 'primary': {
+    case 'primary':
       return css`
         ${addSharedPrimaryStyles()};
         background: ${palette.blue[isActive ? 'shade70' : 'shade60']};
@@ -153,8 +153,7 @@ function addButtonTypeStyles(
           background: ${palette.blue.shade80};
         }
       `;
-    }
-    case 'primary-danger': {
+    case 'primary-danger':
       return css`
         ${addSharedPrimaryStyles()};
         background: ${palette.red[isActive ? 'shade60' : 'shade50']};
@@ -163,7 +162,6 @@ function addButtonTypeStyles(
           background: ${palette.red.shade70};
         }
       `;
-    }
     case 'tertiary':
       return css`
         background: ${isActive ? alphas.gray10 : 'transparent'};
