@@ -176,7 +176,7 @@ export function Input<T = string>(props: InputProps<T>) {
   };
 
   return (
-    <StyledInputDiv $maxWidth={maxWidth} key={id}>
+    <StyledInputDiv $maxWidth={maxWidth}>
       <StyledIconDiv>{getInputIcon(iconName)}</StyledIconDiv>
       <StyledInput
         id={id}
