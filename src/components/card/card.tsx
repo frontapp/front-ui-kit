@@ -48,6 +48,8 @@ export interface CardProps {
   actions?: CardAction[];
   /** Whether actions should only be visible on hover (default: true - actions always visible). */
   showActionsOnHover?: boolean;
+  /** Whether to group actions into a dropdown menu (default: false - show as individual icon buttons). */
+  groupActions?: boolean;
 }
 
 /*
@@ -145,7 +147,8 @@ const CardComponent: FC<CardProps> = ({
   isClickable = false,
   onClick,
   actions = [],
-  showActionsOnHover = false
+  showActionsOnHover = false,
+  groupActions = false
 }) => {
   const handleClick = () => {
     if (isClickable && onClick) onClick();
@@ -169,36 +172,48 @@ const CardComponent: FC<CardProps> = ({
       </StyledCard>
     );
 
-  // If only one action, show it as a simple button
-  if (actions.length === 1) {
-    const action = actions[0];
-    return (
-      <RelativeContainer className={className}>
-        <StyledCard
-          $size={size}
-          $hasShadow={hasShadow}
-          $hasBorder={hasBorder}
-          $isClickable={isClickable}
-          onClick={handleClick}>
-          {children}
-        </StyledCard>
-        <ActionButtonContainer key="single-action-button" $showOnHover={showActionsOnHover}>
-          <TooltipCoordinator
-            renderTooltip={() => <Tooltip placement="top">{action.tooltip ?? action.label}</Tooltip>}>
-            <Button
-              type="icon"
-              onClick={() => {
-                handleActionClick(action);
-              }}>
-              {action.icon && <Icon name={action.icon} />}
-            </Button>
-          </TooltipCoordinator>
+  // Render actions based on groupActions setting
+  const renderActions = () => {
+    if (groupActions) 
+      // Group all actions into a dropdown menu
+      return (
+        <ActionButtonContainer zIndex={1000} key="actions-menu" $showOnHover={showActionsOnHover}>
+          <ActionMenu layerRootId="actions-menu">
+            {actions.map((action) => (
+              <ActionMenuItem
+                key={action.label}
+                iconName={action.icon}
+                onClick={() => {
+                  handleActionClick(action);
+                }}>
+                {action.label}
+              </ActionMenuItem>
+            ))}
+          </ActionMenu>
         </ActionButtonContainer>
-      </RelativeContainer>
-    );
-  }
+      );
+     
+      // Show actions as individual icon buttons
+      return (
+        <ActionButtonContainer key="individual-actions" $showOnHover={showActionsOnHover}>
+          {actions.map((action) => (
+            <TooltipCoordinator
+              key={action.label}
+              renderTooltip={() => <Tooltip placement="top">{action.tooltip ?? action.label}</Tooltip>}>
+              <Button
+                type="icon"
+                onClick={() => {
+                  handleActionClick(action);
+                }}>
+                {action.icon && <Icon name={action.icon} />}
+              </Button>
+            </TooltipCoordinator>
+          ))}
+        </ActionButtonContainer>
+      );
+    
+  };
 
-  // Multiple actions - show dropdown menu
   return (
     <RelativeContainer className={className}>
       <StyledCard
@@ -209,20 +224,7 @@ const CardComponent: FC<CardProps> = ({
         onClick={handleClick}>
         {children}
       </StyledCard>
-      <ActionButtonContainer zIndex={1000} key="actions-menu" $showOnHover={showActionsOnHover}>
-        <ActionMenu layerRootId="actions-menu">
-          {actions.map((action) => (
-            <ActionMenuItem
-              key={action.label}
-              iconName={action.icon}
-              onClick={() => {
-                handleActionClick(action);
-              }}>
-              {action.label}
-            </ActionMenuItem>
-          ))}
-        </ActionMenu>
-      </ActionButtonContainer>
+      {renderActions()}
     </RelativeContainer>
   );
 };

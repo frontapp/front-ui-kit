@@ -34,30 +34,11 @@ const meta: Meta<typeof Card> = {
 export default meta;
 type Story = StoryObj<typeof Card>;
 
-export const Basic: Story = {
-  render: (args) => (
-    <DefaultStyleProvider>
-      <Card {...args}>
-        <Card.Header>Card Title</Card.Header>
-        <Card.Body>This is the main content of the card.</Card.Body>
-        <Card.Footer>Card footer content</Card.Footer>
-      </Card>
-    </DefaultStyleProvider>
-  ),
-  decorators: [
-    (Story) => (
-      <div style={{width: '400px'}}>
-        <Story />
-      </div>
-    )
-  ]
-};
-
 export const WithButtons: Story = {
   render: (args) => (
     <DefaultStyleProvider>
       <Card {...args}>
-        <Card.Header>Card with Actions</Card.Header>
+        <Card.Header>Card with Buttons</Card.Header>
         <Card.Body>This card contains buttons in the footer.</Card.Body>
         <Card.Footer>
           <div style={{display: 'flex', gap: '8px', justifyContent: 'flex-end'}}>
@@ -131,7 +112,22 @@ const WithCheckboxBodyAndFooterComponent = () => {
 
   return (
     <DefaultStyleProvider>
-      <Card>
+      <Card
+        groupActions
+        actions={[
+          {
+            label: 'Edit',
+            icon: 'Edit',
+            tooltip: 'Edit this card',
+            onClick: () => console.log('Edit clicked!')
+          },
+          {
+            label: 'Log content',
+            icon: 'AttachmentGeneric',
+            tooltip: 'Log content',
+            onClick: () => console.log('Log content clicked!')
+          }
+        ]}>
         <Card.Header>
           <Checkbox isChecked={isChecked} onChange={setIsChecked}>
             <span
@@ -186,107 +182,111 @@ export const WithCheckboxBodyAndFooter: Story = {
   ]
 };
 
-export const WithSingleAction: Story = {
+export const CardWithActions: Story = {
   render: (args) => (
     <DefaultStyleProvider>
-      <Card
-        {...args}
-        showActionsOnHover
-        actions={[
-          {
-            label: 'Edit',
-            icon: 'Edit',
-            tooltip: 'Edit this card',
-            onClick: () => console.log('Edit clicked!')
-          }
-        ]}>
-        <Card.Header>Card with Single Action</Card.Header>
-        <Card.Body>Hover over this card to see the edit action in the top right corner.</Card.Body>
-        <Card.Footer>Card footer content</Card.Footer>
-      </Card>
-    </DefaultStyleProvider>
-  ),
-  decorators: [
-    (Story) => (
-      <div style={{width: '400px'}}>
-        <Story />
+      <div style={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
+        <Card
+          {...args}
+          showActionsOnHover
+          actions={[
+            {
+              label: 'Edit',
+              icon: 'Edit',
+              tooltip: 'Edit this card',
+              onClick: () => console.log('Edit clicked!')
+            }
+          ]}>
+          <Card.Header>Card with Single Action</Card.Header>
+          <Card.Body>Hover over this card to see the edit action in the top right corner.</Card.Body>
+          <Card.Footer>Card footer content</Card.Footer>
+        </Card>
+        <Card
+          {...args}
+          actions={[
+            {
+              label: 'Edit',
+              icon: 'Edit',
+              tooltip: 'Edit this card',
+              onClick: () => console.log('Edit clicked!')
+            },
+            {
+              label: 'Duplicate',
+              icon: 'Copy',
+              tooltip: 'Duplicate this card',
+              onClick: () => console.log('Duplicate clicked!')
+            },
+            {
+              label: 'Delete',
+              icon: 'Trash',
+              tooltip: 'Delete this card',
+              onClick: () => console.log('Delete clicked!')
+            }
+          ]}>
+          <Card.Header>Always Visible Actions</Card.Header>
+          <Card.Body>The action menu is always visible in the top right corner, no hover needed.</Card.Body>
+          <Card.Footer>Card footer content</Card.Footer>
+        </Card>
+        <Card
+          {...args}
+          showActionsOnHover
+          actions={[
+            {
+              label: 'Edit',
+              icon: 'Edit',
+              tooltip: 'Edit this card',
+              onClick: () => console.log('Edit clicked!')
+            },
+            {
+              label: 'Duplicate',
+              icon: 'Copy',
+              tooltip: 'Duplicate this card',
+              onClick: () => console.log('Duplicate clicked!')
+            },
+            {
+              label: 'Delete',
+              icon: 'Trash',
+              tooltip: 'Delete this card',
+              onClick: () => console.log('Delete clicked!')
+            }
+          ]}>
+          <Card.Header>Actions Show on Hover</Card.Header>
+          <Card.Body>
+            Hover over this card to see the action menu (three dots) in the top right corner.
+          </Card.Body>
+          <Card.Footer>Card footer content</Card.Footer>
+        </Card>
+        <Card
+          {...args}
+          groupActions
+          actions={[
+            {
+              label: 'Edit',
+              icon: 'Edit',
+              tooltip: 'Edit this card',
+              onClick: () => console.log('Edit clicked!')
+            },
+            {
+              label: 'Copy',
+              icon: 'Copy',
+              tooltip: 'Copy this card',
+              onClick: () => console.log('Copy clicked!')
+            },
+            {
+              label: 'Share',
+              icon: 'ExternalLink',
+              tooltip: 'Share this card',
+              onClick: () => console.log('Share clicked!')
+            }
+          ]}>
+          <Card.Header>Grouped Actions (groupActions=true)</Card.Header>
+          <Card.Body>
+            When groupActions=true, all actions are grouped into a single dropdown menu. This keeps the
+            interface clean and compact, especially useful when you have many actions or limited space.
+          </Card.Body>
+          <Card.Footer>Card footer content</Card.Footer>
+        </Card>
       </div>
-    )
-  ]
-};
-
-export const WithMultipleActions: Story = {
-  render: (args) => (
-    <DefaultStyleProvider>
-      <Card
-        {...args}
-        showActionsOnHover
-        actions={[
-          {
-            label: 'Edit',
-            icon: 'Edit',
-            tooltip: 'Edit this card',
-            onClick: () => console.log('Edit clicked!')
-          },
-          {
-            label: 'Duplicate',
-            icon: 'Copy',
-            tooltip: 'Duplicate this card',
-            onClick: () => console.log('Duplicate clicked!')
-          },
-          {
-            label: 'Delete',
-            icon: 'Trash',
-            tooltip: 'Delete this card',
-            onClick: () => console.log('Delete clicked!')
-          }
-        ]}>
-        <Card.Header>Card with Multiple Actions</Card.Header>
-        <Card.Body>
-          Hover over this card to see the action menu (three dots) in the top right corner.
-        </Card.Body>
-        <Card.Footer>Card footer content</Card.Footer>
-      </Card>
-    </DefaultStyleProvider>
-  ),
-  decorators: [
-    (Story) => (
-      <div style={{width: '400px'}}>
-        <Story />
-      </div>
-    )
-  ]
-};
-
-export const WithAlwaysVisibleActions: Story = {
-  render: (args) => (
-    <DefaultStyleProvider>
-      <Card
-        {...args}
-        actions={[
-          {
-            label: 'Edit',
-            icon: 'Edit',
-            tooltip: 'Edit this card',
-            onClick: () => console.log('Edit clicked!')
-          },
-          {
-            label: 'Duplicate',
-            icon: 'Copy',
-            tooltip: 'Duplicate this card',
-            onClick: () => console.log('Duplicate clicked!')
-          },
-          {
-            label: 'Delete',
-            icon: 'Trash',
-            tooltip: 'Delete this card',
-            onClick: () => console.log('Delete clicked!')
-          }
-        ]}>
-        <Card.Header>Card with Always Visible Actions</Card.Header>
-        <Card.Body>The action menu is always visible in the top right corner, no hover needed.</Card.Body>
-        <Card.Footer>Card footer content</Card.Footer>
-      </Card>
     </DefaultStyleProvider>
   ),
   decorators: [

@@ -26,4 +26,5 @@ export {Controlled} from './stories/basic.stories';
 export {MultipleSections} from './stories/basic.stories';
 export {Customized} from './stories/basic.stories';
 export {ActionsOnHover} from './stories/basic.stories';
+export {GroupActions} from './stories/basic.stories';
 export {CustomTitleComponent} from './stories/basic.stories';
