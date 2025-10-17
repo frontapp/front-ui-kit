@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.0](https://github.com/frontapp/front-ui-kit/compare/v0.14.0...v0.15.0) (2025-10-17)
+
+
+### Features
+
+* expandable section ([#284](https://github.com/frontapp/front-ui-kit/issues/284)) ([d8b0e2f](https://github.com/frontapp/front-ui-kit/commit/d8b0e2fe1f00881d52190d1fe0db43e7604407a0))
+
 ## [0.14.0](https://github.com/frontapp/front-ui-kit/compare/v0.13.0...v0.14.0) (2025-10-17)
 
 
