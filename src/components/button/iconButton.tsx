@@ -15,7 +15,7 @@ interface IconButtonProps {
   isDanger?: boolean;
   /** Whether the button is disabled. If disabled the onClick will not fire. */
   isDisabled?: boolean;
-  /** Whether we should force hover state styles. */
+  /** Whether we should force active state styles. */
   isActive?: boolean;
   /** Called when the user click on the button. */
   onClick: MouseEventHandler;
@@ -43,7 +43,7 @@ const StyledIconButton = styled.button<StyledIconButtonProps>`
   background: transparent;
   border: none;
   padding: 7px;
-  border-radius: ${(p) => (p.$isRounded ? '99999px' : '8px')};
+  border-radius: ${(p) => (p.$isRounded ? '99999px' : '6px')};
 
   ${(p) => addIconColorStyles(p.$isDanger, p.$isDisabled, p.$isActive, p.$iconColor)};
 `;

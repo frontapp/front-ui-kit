@@ -1,5 +1,3 @@
-// Ref: https://www.figma.com/design/cL1cMol2CdJirlTQIo1kVc/%F0%9F%9F%A3-Global-UI-Kit
-
 import {transparentize} from 'polished';
 
 /*

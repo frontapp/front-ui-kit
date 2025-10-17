@@ -69,15 +69,16 @@ interface StyledButtonProps {
   $type: Omit<ButtonTypes, 'icon' | 'icon-danger'>;
   $isActive?: boolean;
   $isDisabled?: boolean;
+  $isRounded?: boolean;
 }
 
 const StyledButton = styled.button<StyledButtonProps>`
   display: grid;
   grid-template-areas: 'left-content content right-content';
   font-family: ${fonts.system};
-  border-radius: 100px;
+  border-radius: ${(p) => (p.$isRounded ? '100px' : '6px')};
   box-sizing: border-box;
-  font-weight: ${fontWeights.semibold};
+  font-weight: ${fontWeights.medium};
 
   ${(p) => addButtonSizeStyles(p.$size)};
   ${(p) => addButtonTypeStyles(p.$type, p.$isDisabled, p.$isActive)};
@@ -97,20 +98,50 @@ function addButtonTypeStyles(
   isActive?: boolean
 ) {
   if (isDisabled)
-    return css`
-      color: ${greys.shade70};
-      border: 1px solid transparent;
-      box-shadow: 0 1px 3px ${alphas.black10};
-      background: ${greys.shade40};
-
-      /* For tertiary we have slightly different styles. */
-      ${type === 'tertiary' &&
-      css`
-        color: ${greys.shade60};
-        background: transparent;
-        box-shadow: none;
-      `}
-    `;
+    switch (type) {
+      case 'primary':
+        return css`
+          color: ${greys.white};
+          border: 1px solid transparent;
+          box-shadow: 0 1px 3px ${alphas.black10};
+          background: ${palette.blue.shade30};
+        `;
+      case 'primary-danger':
+        return css`
+          color: ${greys.white};
+          border: 1px solid transparent;
+          box-shadow: 0 1px 3px ${alphas.black10};
+          background: ${palette.red.shade30};
+        `;
+      case 'secondary':
+        return css`
+          color: ${greys.shade50};
+          border: 1px solid ${alphas.black10};
+          box-shadow: 0 1px 3px ${alphas.black10};
+          background: ${greys.shade20};
+        `;
+      case 'secondary-danger':
+        return css`
+          color: ${palette.red.shade40};
+          border: 1px solid ${palette.red.shade20};
+          box-shadow: 0 1px 3px ${alphas.black10};
+          background: ${palette.red.shade10};
+        `;
+      case 'tertiary':
+        return css`
+          color: ${palette.blue.shade30};
+          background: transparent;
+          border: 1px solid transparent;
+          box-shadow: none;
+        `;
+      default:
+        return css`
+          color: ${greys.shade50};
+          border: 1px solid ${alphas.black10};
+          box-shadow: 0 1px 3px ${alphas.black10};
+          background: ${greys.shade20};
+        `;
+    }
 
   switch (type) {
     case 'primary':
@@ -218,6 +249,7 @@ export const Button: FC<ButtonProps> = ({
         $size={size}
         $isDisabled={isDisabled}
         $isActive={isActive}
+        $isRounded={Boolean(isRounded)}
         onClick={onButtonClick}>
         {renderChildrenSpecifiedComponents(children, nonButtonContentChildren)}
         {renderButtonChildren(children)}
