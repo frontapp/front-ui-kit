@@ -46,6 +46,8 @@ export {Checkbox} from './components/checkbox/checkbox';
 
 export {DatePickerDropdown as DatePicker} from './components/datepicker/datepickerDropdown';
 
+export {ExpandableSection} from './components/expandableSection/expandableSection';
+
 export {File, FileTypesEnum} from './components/_pre-built/file/file';
 
 export {InlineBanner} from './components/inlineBanner/inlineBanner';
