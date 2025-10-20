@@ -158,26 +158,15 @@ const CardComponent: FC<CardProps> = ({
     action.onClick();
   };
 
-  // If no actions, render the card normally
-  if (actions.length === 0)
-    return (
-      <StyledCard
-        className={className}
-        $size={size}
-        $hasShadow={hasShadow}
-        $hasBorder={hasBorder}
-        $isClickable={isClickable}
-        onClick={handleClick}>
-        {children}
-      </StyledCard>
-    );
-
   // Render actions based on groupActions setting
   const renderActions = () => {
+    // Return null if no actions
+    if (actions.length === 0) return null;
+
     if (groupActions)
       // Group all actions into a dropdown menu
       return (
-        <ActionButtonContainer zIndex={1000} key="actions-menu" $showOnHover={showActionsOnHover}>
+        <ActionButtonContainer key="actions-menu" $showOnHover={showActionsOnHover}>
           <ActionMenu layerRootId="actions-menu">
             {actions.map((action) => (
               <ActionMenuItem

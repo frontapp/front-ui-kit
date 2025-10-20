@@ -2,10 +2,9 @@
 
 ## [0.16.0](https://github.com/frontapp/front-ui-kit/compare/v0.15.0...v0.16.0) (2025-10-20)
 
-
 ### Features
 
-* gear rounded icon ([#288](https://github.com/frontapp/front-ui-kit/issues/288)) ([459cfb4](https://github.com/frontapp/front-ui-kit/commit/459cfb4805ee7f3a09c86ae43877d646ee08870e))
+- gear rounded icon ([#288](https://github.com/frontapp/front-ui-kit/issues/288)) ([459cfb4](https://github.com/frontapp/front-ui-kit/commit/459cfb4805ee7f3a09c86ae43877d646ee08870e))
 
 ## [0.15.0](https://github.com/frontapp/front-ui-kit/compare/v0.14.0...v0.15.0) (2025-10-17)
 
