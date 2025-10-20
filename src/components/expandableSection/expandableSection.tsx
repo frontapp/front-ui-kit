@@ -175,36 +175,10 @@ export const ExpandableSection: FC<ExpandableSectionProps> = (props) => {
     </StyledCaretIconDiv>
   ) : null;
 
-  // If no actions, render the section normally
-  if (actions.length === 0)
-    return (
-      <StyledExpandableSectionDiv
-        borderRadius={borderRadius}
-        showBorder={showBorder}
-        backgroundColor={backgroundColor}>
-        <StyledHeaderDiv onClick={handleToggle} hoverBackgroundColor={hoverBackgroundColor}>
-          <StyledTitleContainerDiv>
-            {showTextBeforeIcon ? (
-              <>
-                {titleElement}
-                {iconElement}
-              </>
-            ) : (
-              <>
-                {iconElement}
-                {titleElement}
-              </>
-            )}
-          </StyledTitleContainerDiv>
-        </StyledHeaderDiv>
-        <StyledContentDiv isOpen={isOpen} showContentBorder={showContentBorder} maxHeight={maxHeight}>
-          {children}
-        </StyledContentDiv>
-      </StyledExpandableSectionDiv>
-    );
-
   // Render actions based on groupActions setting
   const renderActions = () => {
+    if (actions.length === 0) return null;
+
     if (groupActions)
       // Group all actions into a dropdown menu
       return (
