@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
 import Archive from '../../assets/icons/archive.svg';
@@ -36,6 +36,7 @@ import Export from '../../assets/icons/export.svg';
 import ExternalLink from '../../assets/icons/externalLink.svg';
 import Gear from '../../assets/icons/gear.svg';
 import GearFilled from '../../assets/icons/gearFilled.svg';
+import GearRounded from '../../assets/icons/gearRounded.svg';
 import Import from '../../assets/icons/import.svg';
 import Info from '../../assets/icons/info.svg';
 import Info20 from '../../assets/icons/info20.svg';
@@ -56,8 +57,8 @@ import Trash from '../../assets/icons/trash.svg';
 import TrashFilled from '../../assets/icons/trashFilled.svg';
 import UserSquare from '../../assets/icons/userSquare.svg';
 import WarningFilled from '../../assets/icons/warningFilled.svg';
-import {greys} from '../../helpers/colorHelpers';
-import {getIconViewBox} from './iconViewBoxes';
+import { greys } from '../../helpers/colorHelpers';
+import { getIconViewBox } from './iconViewBoxes';
 
 /*
  * Constants.
@@ -104,6 +105,7 @@ const importedIcons = {
   ExternalLink,
   Gear,
   GearFilled,
+  GearRounded,
   Import,
   Info,
   InfoFilled,
@@ -168,7 +170,7 @@ const StyledIconDiv = styled.div<StyledIconDivProps>`
  */
 
 export const Icon: FC<IconProps> = (props) => {
-  const {name, size = defaultSize, color = defaultColor, shouldDisableColor, viewBox} = props;
+  const { name, size = defaultSize, color = defaultColor, shouldDisableColor, viewBox } = props;
 
   // Pull the icon from the list of available icons.
   // The svg file is converted to a function that is called.
