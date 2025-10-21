@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
+import type {Meta, StoryObj} from '@storybook/react';
+import React, {useState} from 'react';
 
-import { greys, palette } from '../../../helpers/colorHelpers';
-import { fontSizes, fontWeights, VisualSizesEnum } from '../../../helpers/fontHelpers';
-import { DefaultStyleProvider } from '../../../utils/defaultStyleProvider';
-import { Button } from '../../button/button';
-import { Checkbox } from '../../checkbox/checkbox';
-import { Card } from '../card';
+import {greys, palette} from '../../../helpers/colorHelpers';
+import {fontSizes, fontWeights, VisualSizesEnum} from '../../../helpers/fontHelpers';
+import {DefaultStyleProvider} from '../../../utils/defaultStyleProvider';
+import {Button} from '../../button/button';
+import {Checkbox} from '../../checkbox/checkbox';
+import {Card} from '../card';
 
 const meta: Meta<typeof Card> = {
   title: 'Components/Card',
@@ -16,9 +16,9 @@ const meta: Meta<typeof Card> = {
   },
   argTypes: {
     size: {
-      control: { type: 'select' },
+      control: {type: 'select'},
       options: ['SMALL', 'MEDIUM', 'LARGE']
-    },
+    }
   }
 };
 
@@ -32,7 +32,7 @@ export const WithButtons: Story = {
         <Card.Header>Card with Buttons</Card.Header>
         <Card.Body>This card contains buttons in the footer.</Card.Body>
         <Card.Footer>
-          <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
+          <div style={{display: 'flex', gap: '8px', justifyContent: 'flex-end'}}>
             <Button type="secondary" size={VisualSizesEnum.SMALL}>
               Cancel
             </Button>
@@ -46,7 +46,7 @@ export const WithButtons: Story = {
   ),
   decorators: [
     (Story) => (
-      <div style={{ width: '400px' }}>
+      <div style={{width: '400px'}}>
         <Story />
       </div>
     )
@@ -91,7 +91,7 @@ export const WithCheckboxAndBody: Story = {
   render: () => <WithCheckboxAndBodyComponent />,
   decorators: [
     (Story) => (
-      <div style={{ width: '400px' }}>
+      <div style={{width: '400px'}}>
         <Story />
       </div>
     )
@@ -166,7 +166,7 @@ export const WithCheckboxBodyAndFooter: Story = {
 
   decorators: [
     (Story) => (
-      <div style={{ width: '400px' }}>
+      <div style={{width: '400px'}}>
         <Story />
       </div>
     )
@@ -176,7 +176,7 @@ export const WithCheckboxBodyAndFooter: Story = {
 export const CardWithActions: Story = {
   render: (args) => (
     <DefaultStyleProvider>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      <div style={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
         <Card
           {...args}
           showActionsOnHover
@@ -256,7 +256,7 @@ export const CardWithActions: Story = {
   ),
   decorators: [
     (Story) => (
-      <div style={{ width: '400px' }}>
+      <div style={{width: '400px'}}>
         <Story />
       </div>
     )

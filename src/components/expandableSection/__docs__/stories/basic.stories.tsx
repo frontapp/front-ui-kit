@@ -195,7 +195,6 @@ export const ActionsOnHover: StoryObj<typeof ExpandableSection> = {
       <StyledCenteredDiv>
         <ExpandableSection
           title="Actions Always Visible (Default)"
-          backgroundColor={greys.white}
           actions={[
             {
               label: 'Edit',
@@ -224,7 +223,6 @@ export const ActionsOnHover: StoryObj<typeof ExpandableSection> = {
 
         <ExpandableSection
           title="Actions Show on Hover"
-          backgroundColor={greys.white}
           showActionsOnHover
           actions={[
             {
@@ -263,7 +261,6 @@ export const GroupActions: StoryObj<typeof ExpandableSection> = {
       <StyledCenteredDiv>
         <ExpandableSection
           title="Individual Actions (groupActions=false - Default)"
-          backgroundColor={greys.white}
           actions={[
             {
               label: 'Edit',
@@ -292,7 +289,6 @@ export const GroupActions: StoryObj<typeof ExpandableSection> = {
 
         <ExpandableSection
           title="Grouped Actions (groupActions=true)"
-          backgroundColor={greys.white}
           groupActions
           actions={[
             {
