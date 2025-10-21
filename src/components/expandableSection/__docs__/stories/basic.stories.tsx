@@ -1,13 +1,11 @@
-import {StoryObj} from '@storybook/react';
-import React, {useState} from 'react';
+import { StoryObj } from '@storybook/react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import {Icon} from '../../../../elements/icon/icon';
-import {greys, palette} from '../../../../helpers/colorHelpers';
-import {VisualSizesEnum} from '../../../../helpers/fontHelpers';
-import {DefaultStyleProvider} from '../../../../utils/defaultStyleProvider';
-import {Button} from '../../../button/button';
-import {ExpandableSection} from '../../expandableSection';
+import { greys, palette } from '../../../../helpers/colorHelpers';
+import { DefaultStyleProvider } from '../../../../utils/defaultStyleProvider';
+import { Button } from '../../../button/button';
+import { ExpandableSection } from '../../expandableSection';
 
 const StyledCenteredDiv = styled.div`
   display: flex;
@@ -36,25 +34,6 @@ const StyledActionsContainer = styled.div`
   gap: 8px;
 `;
 
-const StyledHoverWrapper = styled.div`
-  position: relative;
-
-  &:hover .hover-actions {
-    opacity: 1;
-  }
-`;
-
-const StyledHoverActionsContainer = styled.div`
-  display: flex;
-  gap: 8px;
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out;
-
-  &.hover-actions {
-    opacity: 0;
-  }
-`;
-
 export const Basic: StoryObj<typeof ExpandableSection> = {
   render: () => (
     <DefaultStyleProvider>
@@ -68,19 +47,24 @@ export const Basic: StoryObj<typeof ExpandableSection> = {
 
         <ExpandableSection
           title="With Actions"
-          actions={
-            <StyledActionsContainer>
-              <Button type="icon" size={VisualSizesEnum.SMALL}>
-                <Icon name="Edit" />
-              </Button>
-              <Button type="icon" size={VisualSizesEnum.SMALL}>
-                <Icon name="Close" />
-              </Button>
-            </StyledActionsContainer>
-          }>
+          actions={[
+            {
+              label: 'Edit',
+              icon: 'Edit',
+              tooltip: 'Edit this section',
+              onClick: () => console.log('Edit clicked')
+            },
+            {
+              label: 'Delete',
+              icon: 'Close',
+              tooltip: 'Delete this section',
+              onClick: () => console.log('Delete clicked')
+            }
+          ]}>
           <StyledContentDiv>
             This expandable section includes action buttons in the header. The actions are positioned on the
-            right side and don&apos;t trigger the expand/collapse behavior.
+            right side and don&apos;t trigger the expand/collapse behavior. Multiple actions will show as a
+            dropdown menu.
           </StyledContentDiv>
         </ExpandableSection>
 
@@ -118,14 +102,17 @@ const ControlledComponent = () => {
           title="Controlled Expandable Section"
           isOpen={isOpen}
           onToggle={setIsOpen}
-          actions={
-            <Button type="icon" size={VisualSizesEnum.SMALL}>
-              <Icon name="Gear" />
-            </Button>
-          }>
+          actions={[
+            {
+              label: 'Settings',
+              icon: 'Gear',
+              tooltip: 'Open settings',
+              onClick: () => console.log('Settings clicked')
+            }
+          ]}>
           <StyledContentDiv>
             This section&apos;s open/closed state is controlled externally. You can toggle it using the button
-            above or by clicking on the section header.
+            above or by clicking on the section header. Single actions show as icon buttons with tooltips.
           </StyledContentDiv>
         </ExpandableSection>
       </StyledCenteredDiv>
@@ -169,11 +156,14 @@ export const Customized: StoryObj<typeof ExpandableSection> = {
         <ExpandableSection
           title="Text Before Icon"
           showTextBeforeIcon
-          actions={
-            <Button type="icon" size={VisualSizesEnum.SMALL}>
-              <Icon name="EditSquare" />
-            </Button>
-          }
+          actions={[
+            {
+              label: 'Edit',
+              icon: 'EditSquare',
+              tooltip: 'Edit this section',
+              onClick: () => console.log('Edit clicked')
+            }
+          ]}
           borderRadius="0px"
           showBorder={false}
           showContentBorder={false}
@@ -203,29 +193,132 @@ export const ActionsOnHover: StoryObj<typeof ExpandableSection> = {
   render: () => (
     <DefaultStyleProvider>
       <StyledCenteredDiv>
-        <StyledHoverWrapper>
-          <ExpandableSection
-            title="Actions Show on Hover"
-            actions={
-              <StyledHoverActionsContainer className="hover-actions">
-                <Button type="icon" size={VisualSizesEnum.SMALL}>
-                  <Icon name="Edit" />
-                </Button>
-                <Button type="icon" size={VisualSizesEnum.SMALL}>
-                  <Icon name="Copy" />
-                </Button>
-                <Button type="icon" size={VisualSizesEnum.SMALL}>
-                  <Icon name="Trash" />
-                </Button>
-              </StyledHoverActionsContainer>
-            }>
-            <StyledContentDiv>
-              Hover over this section to see the action buttons appear. The actions are hidden by default and
-              smoothly fade in when you hover over the section header. This provides a clean interface while
-              keeping actions easily accessible.
-            </StyledContentDiv>
-          </ExpandableSection>
-        </StyledHoverWrapper>
+        <ExpandableSection
+          title="Actions Always Visible (Default)"
+          backgroundColor={greys.white}
+          actions={[
+            {
+              label: 'Edit',
+              icon: 'Edit',
+              tooltip: 'Edit this section',
+              onClick: () => console.log('Edit clicked')
+            },
+            {
+              label: 'Copy',
+              icon: 'Copy',
+              tooltip: 'Copy this section',
+              onClick: () => console.log('Copy clicked')
+            },
+            {
+              label: 'Delete',
+              icon: 'Trash',
+              tooltip: 'Delete this section',
+              onClick: () => console.log('Delete clicked')
+            }
+          ]}>
+          <StyledContentDiv>
+            By default, actions are always visible. This provides immediate access to all available actions.
+            Multiple actions will show as a dropdown menu.
+          </StyledContentDiv>
+        </ExpandableSection>
+
+        <ExpandableSection
+          title="Actions Show on Hover"
+          backgroundColor={greys.white}
+          showActionsOnHover
+          actions={[
+            {
+              label: 'Edit',
+              icon: 'Edit',
+              tooltip: 'Edit this section',
+              onClick: () => console.log('Edit clicked')
+            },
+            {
+              label: 'Copy',
+              icon: 'Copy',
+              tooltip: 'Copy this section',
+              onClick: () => console.log('Copy clicked')
+            },
+            {
+              label: 'Delete',
+              icon: 'Trash',
+              tooltip: 'Delete this section',
+              onClick: () => console.log('Delete clicked')
+            }
+          ]}>
+          <StyledContentDiv>
+            Hover over this section to see the action buttons appear. The actions are hidden by default and
+            smoothly fade in when you hover over the section header. This provides a clean interface while
+            keeping actions easily accessible.
+          </StyledContentDiv>
+        </ExpandableSection>
+      </StyledCenteredDiv>
+    </DefaultStyleProvider>
+  )
+};
+
+export const GroupActions: StoryObj<typeof ExpandableSection> = {
+  render: () => (
+    <DefaultStyleProvider>
+      <StyledCenteredDiv>
+        <ExpandableSection
+          title="Individual Actions (groupActions=false - Default)"
+          backgroundColor={greys.white}
+          actions={[
+            {
+              label: 'Edit',
+              icon: 'Edit',
+              tooltip: 'Edit this section',
+              onClick: () => console.log('Edit clicked')
+            },
+            {
+              label: 'Copy',
+              icon: 'Copy',
+              tooltip: 'Copy this section',
+              onClick: () => console.log('Copy clicked')
+            },
+            {
+              label: 'Share',
+              icon: 'ExternalLink',
+              tooltip: 'Share this section',
+              onClick: () => console.log('Share clicked')
+            }
+          ]}>
+          <StyledContentDiv>
+            By default, actions are displayed as individual icon buttons. Each action has its own tooltip and
+            is immediately accessible. This provides quick access to all actions but may take up more space.
+          </StyledContentDiv>
+        </ExpandableSection>
+
+        <ExpandableSection
+          title="Grouped Actions (groupActions=true)"
+          backgroundColor={greys.white}
+          groupActions
+          actions={[
+            {
+              label: 'Edit',
+              icon: 'Edit',
+              tooltip: 'Edit this section',
+              onClick: () => console.log('Edit clicked')
+            },
+            {
+              label: 'Copy',
+              icon: 'Copy',
+              tooltip: 'Copy this section',
+              onClick: () => console.log('Copy clicked')
+            },
+            {
+              label: 'Share',
+              icon: 'ExternalLink',
+              tooltip: 'Share this section',
+              onClick: () => console.log('Share clicked')
+            }
+          ]}>
+          <StyledContentDiv>
+            When groupActions=true, all actions are grouped into a single dropdown menu. This keeps the
+            interface clean and compact, especially useful when you have many actions or limited space.
+          </StyledContentDiv>
+        </ExpandableSection>
       </StyledCenteredDiv>
     </DefaultStyleProvider>
   )
@@ -273,8 +366,8 @@ export const CustomTitleComponent: StoryObj<typeof ExpandableSection> = {
 
         <ExpandableSection
           title={
-            <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
-              <span style={{fontWeight: 'bold', color: '#dc2626'}}>⚠️</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ fontWeight: 'bold', color: '#dc2626' }}>⚠️</span>
               <span>Important Notice</span>
             </div>
           }>
