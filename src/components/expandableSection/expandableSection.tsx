@@ -1,14 +1,14 @@
-import React, { FC, useState } from 'react';
+import React, {FC, useState} from 'react';
 import styled from 'styled-components';
 
-import { Icon, IconName } from '../../elements/icon/icon';
-import { greys } from '../../helpers/colorHelpers';
-import { fonts, fontSizes, fontWeights } from '../../helpers/fontHelpers';
-import { ActionMenu } from '../_pre-built/actionMenu/actionMenu';
-import { ActionMenuItem } from '../_pre-built/actionMenu/actionMenuItem';
-import { Button } from '../button/button';
-import { Tooltip } from '../tooltip/tooltip';
-import { TooltipCoordinator } from '../tooltip/tooltipCoordinator';
+import {Icon, IconName} from '../../elements/icon/icon';
+import {greys} from '../../helpers/colorHelpers';
+import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
+import {ActionMenu} from '../_pre-built/actionMenu/actionMenu';
+import {ActionMenuItem} from '../_pre-built/actionMenu/actionMenuItem';
+import {Button} from '../button/button';
+import {Tooltip} from '../tooltip/tooltip';
+import {TooltipCoordinator} from '../tooltip/tooltipCoordinator';
 
 /*
  * Props
@@ -60,16 +60,16 @@ interface ExpandableSectionProps {
  * Styles
  */
 
-const StyledExpandableSectionDiv = styled.div<{ borderRadius?: string; showBorder?: boolean }>`
+const StyledExpandableSectionDiv = styled.div<{borderRadius?: string; showBorder?: boolean}>`
   display: flex;
   flex-direction: column;
-  border: ${({ showBorder = true }) => (showBorder ? `1px solid ${greys.shade30}` : 'none')};
-  border-radius: ${({ borderRadius }) => borderRadius || '8px'};
+  border: ${({showBorder = true}) => (showBorder ? `1px solid ${greys.shade30}` : 'none')};
+  border-radius: ${({borderRadius}) => borderRadius || '8px'};
   background: ${greys.white};
   overflow: hidden;
 `;
 
-const StyledHeaderDiv = styled.div<{ hoverBackgroundColor?: string }>`
+const StyledHeaderDiv = styled.div<{hoverBackgroundColor?: string}>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -79,7 +79,7 @@ const StyledHeaderDiv = styled.div<{ hoverBackgroundColor?: string }>`
   transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: ${({ hoverBackgroundColor }) => hoverBackgroundColor || greys.shade10};
+    background-color: ${({hoverBackgroundColor}) => hoverBackgroundColor || greys.shade10};
   }
 `;
 
@@ -98,34 +98,34 @@ const StyledTitleDiv = styled.div`
   color: ${greys.shade80};
 `;
 
-const StyledCaretIconDiv = styled.div<{ isOpen: boolean }>`
+const StyledCaretIconDiv = styled.div<{isOpen: boolean}>`
   display: flex;
   align-items: center;
   transition: transform 0.2s ease;
-  transform: ${({ isOpen }) => (isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
+  transform: ${({isOpen}) => (isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
 `;
 
-const StyledActionsDiv = styled.div<{ $showOnHover?: boolean }>`
+const StyledActionsDiv = styled.div<{$showOnHover?: boolean}>`
   display: flex;
   align-items: center;
   gap: 8px;
   margin-left: 16px;
-  opacity: ${({ $showOnHover }) => ($showOnHover ? 0 : 1)};
+  opacity: ${({$showOnHover}) => ($showOnHover ? 0 : 1)};
   transition: opacity 0.2s ease;
 
   /* Show on parent hover (only if showOnHover is true) */
-  ${({ $showOnHover }) =>
+  ${({$showOnHover}) =>
     $showOnHover &&
     `${StyledHeaderDiv}:hover & {
     opacity: 1;
   }`}
 `;
 
-const StyledContentDiv = styled.div<{ isOpen: boolean; showContentBorder?: boolean; maxHeight?: string }>`
-  border-top: ${({ showContentBorder = true }) => (showContentBorder ? `1px solid ${greys.shade20}` : 'none')};
+const StyledContentDiv = styled.div<{isOpen: boolean; showContentBorder?: boolean; maxHeight?: string}>`
+  border-top: ${({showContentBorder = true}) => (showContentBorder ? `1px solid ${greys.shade20}` : 'none')};
   overflow: hidden;
-  max-height: ${({ isOpen, maxHeight = '1000px' }) => (isOpen ? maxHeight : '0')};
-  opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
+  max-height: ${({isOpen, maxHeight = '1000px'}) => (isOpen ? maxHeight : '0')};
+  opacity: ${({isOpen}) => (isOpen ? '1' : '0')};
 `;
 
 /*

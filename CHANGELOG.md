@@ -2,10 +2,9 @@
 
 ## [0.16.1](https://github.com/frontapp/front-ui-kit/compare/v0.16.0...v0.16.1) (2025-10-21)
 
-
 ### Bug Fixes
 
-* expandable section upgrades ([#286](https://github.com/frontapp/front-ui-kit/issues/286)) ([b63c334](https://github.com/frontapp/front-ui-kit/commit/b63c3343c240e3eb44403007f17d2c746f441750))
+- expandable section upgrades ([#286](https://github.com/frontapp/front-ui-kit/issues/286)) ([b63c334](https://github.com/frontapp/front-ui-kit/commit/b63c3343c240e3eb44403007f17d2c746f441750))
 
 ## [0.16.0](https://github.com/frontapp/front-ui-kit/compare/v0.15.0...v0.16.0) (2025-10-20)
 

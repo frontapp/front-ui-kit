@@ -1,11 +1,11 @@
-import { StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
+import {StoryObj} from '@storybook/react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import { greys, palette } from '../../../../helpers/colorHelpers';
-import { DefaultStyleProvider } from '../../../../utils/defaultStyleProvider';
-import { Button } from '../../../button/button';
-import { ExpandableSection } from '../../expandableSection';
+import {greys, palette} from '../../../../helpers/colorHelpers';
+import {DefaultStyleProvider} from '../../../../utils/defaultStyleProvider';
+import {Button} from '../../../button/button';
+import {ExpandableSection} from '../../expandableSection';
 
 const StyledCenteredDiv = styled.div`
   display: flex;
@@ -366,8 +366,8 @@ export const CustomTitleComponent: StoryObj<typeof ExpandableSection> = {
 
         <ExpandableSection
           title={
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span style={{ fontWeight: 'bold', color: '#dc2626' }}>⚠️</span>
+            <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
+              <span style={{fontWeight: 'bold', color: '#dc2626'}}>⚠️</span>
               <span>Important Notice</span>
             </div>
           }>
