@@ -2,7 +2,7 @@ import {FC, ReactNode} from 'react';
 import styled from 'styled-components';
 
 import {Icon, IconName} from '../../elements/icon/icon';
-import {alphas, greys} from '../../helpers/colorHelpers';
+import {greys} from '../../helpers/colorHelpers';
 import {VisualSizesEnum} from '../../helpers/fontHelpers';
 import {makeSizeConstants} from '../../helpers/styleHelpers';
 import {ActionMenu} from '../_pre-built/actionMenu/actionMenu';
@@ -34,16 +34,8 @@ export interface CardProps {
   children?: ReactNode;
   /** The size of the card. */
   size?: VisualSizesEnum;
-  /** Whether the card has a shadow. */
-  hasShadow?: boolean;
-  /** Whether the card has a border. */
-  hasBorder?: boolean;
   /** Class name to allow custom styling of the card. */
   className?: string;
-  /** Whether the card is clickable. */
-  isClickable?: boolean;
-  /** Called when the card is clicked. */
-  onClick?: () => void;
   /** Optional actions to display in the top right corner. */
   actions?: CardAction[];
   /** Whether actions should only be visible on hover (default: true - actions always visible). */
@@ -58,9 +50,6 @@ export interface CardProps {
 
 interface StyledCardProps {
   $size: VisualSizesEnum;
-  $hasShadow: boolean;
-  $hasBorder: boolean;
-  $isClickable: boolean;
 }
 
 const cardPadding = makeSizeConstants(12, 16, 20);
@@ -77,36 +66,6 @@ const StyledCard = styled.div<StyledCardProps>`
 
   /* Padding based on size */
   padding: ${(p) => cardPadding[p.$size]}px;
-
-  /* Border styling */
-  border: ${(p) => (p.$hasBorder ? `1px solid ${alphas.black10}` : 'none')};
-
-  /* Shadow styling */
-  box-shadow: ${(p) => (p.$hasShadow ? `0 2px 8px ${alphas.black10}` : 'none')};
-
-  /* Clickable styling */
-  cursor: ${(p) => (p.$isClickable ? 'pointer' : 'default')};
-  transition: ${(p) => (p.$isClickable ? 'box-shadow 0.2s ease, transform 0.2s ease' : 'none')};
-
-  &:hover {
-    ${(p) =>
-      p.$isClickable
-        ? `
-      box-shadow: 0 4px 12px ${alphas.black20};
-      transform: translateY(-1px);
-    `
-        : ''}
-  }
-
-  &:active {
-    ${(p) =>
-      p.$isClickable
-        ? `
-      transform: translateY(0);
-      box-shadow: 0 2px 8px ${alphas.black10};
-    `
-        : ''}
-  }
 `;
 
 const RelativeContainer = styled.div`
@@ -141,19 +100,11 @@ const ActionButtonContainer = styled.div<{zIndex?: number; $showOnHover?: boolea
 const CardComponent: FC<CardProps> = ({
   children,
   size = VisualSizesEnum.MEDIUM,
-  hasShadow = true,
-  hasBorder = false,
   className,
-  isClickable = false,
-  onClick,
   actions = [],
   showActionsOnHover = false,
   groupActions = false
 }) => {
-  const handleClick = () => {
-    if (isClickable && onClick) onClick();
-  };
-
   const handleActionClick = (action: CardAction) => {
     action.onClick();
   };
@@ -204,14 +155,7 @@ const CardComponent: FC<CardProps> = ({
 
   return (
     <RelativeContainer className={className}>
-      <StyledCard
-        $size={size}
-        $hasShadow={hasShadow}
-        $hasBorder={hasBorder}
-        $isClickable={isClickable}
-        onClick={handleClick}>
-        {children}
-      </StyledCard>
+      <StyledCard $size={size}>{children}</StyledCard>
       {renderActions()}
     </RelativeContainer>
   );

@@ -203,32 +203,6 @@ export const CardWithActions: Story = {
         </Card>
         <Card
           {...args}
-          actions={[
-            {
-              label: 'Edit',
-              icon: 'Edit',
-              tooltip: 'Edit this card',
-              onClick: () => console.log('Edit clicked!')
-            },
-            {
-              label: 'Duplicate',
-              icon: 'Copy',
-              tooltip: 'Duplicate this card',
-              onClick: () => console.log('Duplicate clicked!')
-            },
-            {
-              label: 'Delete',
-              icon: 'Trash',
-              tooltip: 'Delete this card',
-              onClick: () => console.log('Delete clicked!')
-            }
-          ]}>
-          <Card.Header>Always Visible Actions</Card.Header>
-          <Card.Body>The action menu is always visible in the top right corner, no hover needed.</Card.Body>
-          <Card.Footer>Card footer content</Card.Footer>
-        </Card>
-        <Card
-          {...args}
           showActionsOnHover
           actions={[
             {
