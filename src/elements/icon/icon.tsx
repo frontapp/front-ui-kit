@@ -44,11 +44,12 @@ import InfoFilled from '../../assets/icons/infoFilled.svg';
 import Minus from '../../assets/icons/minus.svg';
 import EllipsisHorizontal from '../../assets/icons/moreHorizontal.svg';
 import EllipsisVertical from '../../assets/icons/moreVertical.svg';
-import Plus from '../../assets/icons/new.svg';
 import NewContact from '../../assets/icons/newContact.svg';
 import Participant from '../../assets/icons/participant.svg';
 import ParticipantFilled from '../../assets/icons/participantFilled.svg';
+import Plus from '../../assets/icons/plus.svg';
 import PlusCircle from '../../assets/icons/plusCircle.svg';
+import PlusLarge from '../../assets/icons/plusLarge.svg';
 import Preferences from '../../assets/icons/preferences.svg';
 import Search from '../../assets/icons/search.svg';
 import Star from '../../assets/icons/star.svg';
@@ -116,6 +117,7 @@ const importedIcons = {
   ParticipantFilled,
   Plus,
   PlusCircle,
+  PlusLarge,
   Preferences,
   Search,
   Star,

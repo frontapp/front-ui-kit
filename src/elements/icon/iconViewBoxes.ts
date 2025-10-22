@@ -10,7 +10,8 @@ const ICON_VIEW_BOX_EXCEPTIONS: Partial<Record<IconName, string>> = {
   Info20: '0 0 20 20',
   CaretExpand: '0 0 20 20',
   EditSquare: '0 0 20 20',
-  GearRounded: '0 0 18 20'
+  GearRounded: '0 0 18 20',
+  PlusLarge: '0 0 14 14'
 };
 
 const DEFAULT_VIEW_BOX = '0 0 16 16';
