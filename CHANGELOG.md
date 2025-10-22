@@ -2,10 +2,9 @@
 
 ## [0.17.0](https://github.com/frontapp/front-ui-kit/compare/v0.16.1...v0.17.0) (2025-10-22)
 
-
 ### Features
 
-* large plus icon ([#291](https://github.com/frontapp/front-ui-kit/issues/291)) ([cdf4ce3](https://github.com/frontapp/front-ui-kit/commit/cdf4ce381448bedff2d3cece4f1e91b9c8626b7a))
+- large plus icon ([#291](https://github.com/frontapp/front-ui-kit/issues/291)) ([cdf4ce3](https://github.com/frontapp/front-ui-kit/commit/cdf4ce381448bedff2d3cece4f1e91b9c8626b7a))
 
 ## [0.16.1](https://github.com/frontapp/front-ui-kit/compare/v0.16.0...v0.16.1) (2025-10-21)
 
