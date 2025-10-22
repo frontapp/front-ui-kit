@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, {FC} from 'react';
 import styled from 'styled-components';
 
 import Archive from '../../assets/icons/archive.svg';
@@ -44,11 +44,12 @@ import InfoFilled from '../../assets/icons/infoFilled.svg';
 import Minus from '../../assets/icons/minus.svg';
 import EllipsisHorizontal from '../../assets/icons/moreHorizontal.svg';
 import EllipsisVertical from '../../assets/icons/moreVertical.svg';
-import Plus from '../../assets/icons/new.svg';
 import NewContact from '../../assets/icons/newContact.svg';
 import Participant from '../../assets/icons/participant.svg';
 import ParticipantFilled from '../../assets/icons/participantFilled.svg';
+import Plus from '../../assets/icons/plus.svg';
 import PlusCircle from '../../assets/icons/plusCircle.svg';
+import PlusLarge from '../../assets/icons/plusLarge.svg';
 import Preferences from '../../assets/icons/preferences.svg';
 import Search from '../../assets/icons/search.svg';
 import Star from '../../assets/icons/star.svg';
@@ -57,8 +58,8 @@ import Trash from '../../assets/icons/trash.svg';
 import TrashFilled from '../../assets/icons/trashFilled.svg';
 import UserSquare from '../../assets/icons/userSquare.svg';
 import WarningFilled from '../../assets/icons/warningFilled.svg';
-import { greys } from '../../helpers/colorHelpers';
-import { getIconViewBox } from './iconViewBoxes';
+import {greys} from '../../helpers/colorHelpers';
+import {getIconViewBox} from './iconViewBoxes';
 
 /*
  * Constants.
@@ -116,6 +117,7 @@ const importedIcons = {
   ParticipantFilled,
   Plus,
   PlusCircle,
+  PlusLarge,
   Preferences,
   Search,
   Star,
@@ -170,7 +172,7 @@ const StyledIconDiv = styled.div<StyledIconDivProps>`
  */
 
 export const Icon: FC<IconProps> = (props) => {
-  const { name, size = defaultSize, color = defaultColor, shouldDisableColor, viewBox } = props;
+  const {name, size = defaultSize, color = defaultColor, shouldDisableColor, viewBox} = props;
 
   // Pull the icon from the list of available icons.
   // The svg file is converted to a function that is called.
