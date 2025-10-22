@@ -1,18 +1,23 @@
 # Changelog
 
-## [0.16.1](https://github.com/frontapp/front-ui-kit/compare/v0.16.0...v0.16.1) (2025-10-21)
-
-
-### Bug Fixes
-
-* expandable section upgrades ([#286](https://github.com/frontapp/front-ui-kit/issues/286)) ([b63c334](https://github.com/frontapp/front-ui-kit/commit/b63c3343c240e3eb44403007f17d2c746f441750))
-
-## [0.16.0](https://github.com/frontapp/front-ui-kit/compare/v0.15.0...v0.16.0) (2025-10-20)
+## [0.17.0](https://github.com/frontapp/front-ui-kit/compare/v0.16.1...v0.17.0) (2025-10-22)
 
 
 ### Features
 
-* gear rounded icon ([#288](https://github.com/frontapp/front-ui-kit/issues/288)) ([459cfb4](https://github.com/frontapp/front-ui-kit/commit/459cfb4805ee7f3a09c86ae43877d646ee08870e))
+* large plus icon ([#291](https://github.com/frontapp/front-ui-kit/issues/291)) ([cdf4ce3](https://github.com/frontapp/front-ui-kit/commit/cdf4ce381448bedff2d3cece4f1e91b9c8626b7a))
+
+## [0.16.1](https://github.com/frontapp/front-ui-kit/compare/v0.16.0...v0.16.1) (2025-10-21)
+
+### Bug Fixes
+
+- expandable section upgrades ([#286](https://github.com/frontapp/front-ui-kit/issues/286)) ([b63c334](https://github.com/frontapp/front-ui-kit/commit/b63c3343c240e3eb44403007f17d2c746f441750))
+
+## [0.16.0](https://github.com/frontapp/front-ui-kit/compare/v0.15.0...v0.16.0) (2025-10-20)
+
+### Features
+
+- gear rounded icon ([#288](https://github.com/frontapp/front-ui-kit/issues/288)) ([459cfb4](https://github.com/frontapp/front-ui-kit/commit/459cfb4805ee7f3a09c86ae43877d646ee08870e))
 
 ## [0.15.0](https://github.com/frontapp/front-ui-kit/compare/v0.14.0...v0.15.0) (2025-10-17)
 
