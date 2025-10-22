@@ -2,7 +2,7 @@ import {StoryObj} from '@storybook/react';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import {greys, palette} from '../../../../helpers/colorHelpers';
+import {alphas, greys, palette} from '../../../../helpers/colorHelpers';
 import {DefaultStyleProvider} from '../../../../utils/defaultStyleProvider';
 import {Button} from '../../../button/button';
 import {ExpandableSection} from '../../expandableSection';
@@ -38,7 +38,7 @@ export const Basic: StoryObj<typeof ExpandableSection> = {
   render: () => (
     <DefaultStyleProvider>
       <StyledCenteredDiv>
-        <ExpandableSection title="Basic Expandable Section">
+        <ExpandableSection title="Basic Expandable Section" backgroundColor={greys.white}>
           <StyledContentDiv>
             This is the content of the expandable section. It can contain any React elements that you want to
             display when the section is expanded.
@@ -47,6 +47,7 @@ export const Basic: StoryObj<typeof ExpandableSection> = {
 
         <ExpandableSection
           title="With Actions"
+          backgroundColor={greys.white}
           actions={[
             {
               label: 'Edit',
@@ -68,7 +69,7 @@ export const Basic: StoryObj<typeof ExpandableSection> = {
           </StyledContentDiv>
         </ExpandableSection>
 
-        <ExpandableSection title="Complex Content">
+        <ExpandableSection title="Complex Content" backgroundColor={greys.white}>
           <StyledContentDiv>
             <h4>Complex Content Example</h4>
             <p>This section demonstrates that you can include any type of content:</p>
@@ -100,6 +101,7 @@ const ControlledComponent = () => {
 
         <ExpandableSection
           title="Controlled Expandable Section"
+          backgroundColor={greys.white}
           isOpen={isOpen}
           onToggle={setIsOpen}
           actions={[
@@ -128,17 +130,17 @@ export const MultipleSections: StoryObj<typeof ExpandableSection> = {
   render: () => (
     <DefaultStyleProvider>
       <StyledCenteredDiv>
-        <ExpandableSection title="Section 1">
+        <ExpandableSection title="Section 1" backgroundColor={greys.white}>
           <StyledContentDiv>Content for section 1. Each section operates independently.</StyledContentDiv>
         </ExpandableSection>
 
-        <ExpandableSection title="Section 2">
+        <ExpandableSection title="Section 2" backgroundColor={greys.white}>
           <StyledContentDiv>
             Content for section 2. Multiple sections can be open at the same time.
           </StyledContentDiv>
         </ExpandableSection>
 
-        <ExpandableSection title="Section 3">
+        <ExpandableSection title="Section 3" backgroundColor={greys.white}>
           <StyledContentDiv>
             Content for section 3. The sections have a square, card-like appearance with proper spacing and
             borders.
@@ -154,7 +156,8 @@ export const Customized: StoryObj<typeof ExpandableSection> = {
     <DefaultStyleProvider>
       <StyledCenteredDiv>
         <ExpandableSection
-          title="Text Before Icon"
+          title="Transparent background"
+          backgroundColor={alphas.transparent}
           showTextBeforeIcon
           actions={[
             {
@@ -173,13 +176,26 @@ export const Customized: StoryObj<typeof ExpandableSection> = {
           </StyledContentDiv>
         </ExpandableSection>
 
-        <ExpandableSection title="Text First + Custom Icon" showTextBeforeIcon iconName="ChevronDown">
+        <ExpandableSection
+          title="Text First + Custom Icon"
+          backgroundColor={greys.white}
+          showTextBeforeIcon
+          iconName="ChevronDown">
           <StyledContentDiv>
             This section combines both customizations: text before icon and a custom chevron icon.
           </StyledContentDiv>
         </ExpandableSection>
 
-        <ExpandableSection title="Custom Hover Color" hoverBackgroundColor="#e3f2fd">
+        <ExpandableSection title="No Icon" backgroundColor={greys.white} iconName="">
+          <StyledContentDiv>
+            This section has no expand/collapse icon. The section can still be clicked to expand and collapse.
+          </StyledContentDiv>
+        </ExpandableSection>
+
+        <ExpandableSection
+          title="Custom Hover Color"
+          backgroundColor={greys.white}
+          hoverBackgroundColor="#e3f2fd">
           <StyledContentDiv>
             This section has a custom light blue hover background color instead of the default grey.
           </StyledContentDiv>
@@ -195,6 +211,7 @@ export const ActionsOnHover: StoryObj<typeof ExpandableSection> = {
       <StyledCenteredDiv>
         <ExpandableSection
           title="Actions Always Visible (Default)"
+          backgroundColor={greys.white}
           actions={[
             {
               label: 'Edit',
@@ -223,6 +240,7 @@ export const ActionsOnHover: StoryObj<typeof ExpandableSection> = {
 
         <ExpandableSection
           title="Actions Show on Hover"
+          backgroundColor={greys.white}
           showActionsOnHover
           actions={[
             {
@@ -261,6 +279,7 @@ export const GroupActions: StoryObj<typeof ExpandableSection> = {
       <StyledCenteredDiv>
         <ExpandableSection
           title="Individual Actions (groupActions=false - Default)"
+          backgroundColor={greys.white}
           actions={[
             {
               label: 'Edit',
@@ -289,6 +308,7 @@ export const GroupActions: StoryObj<typeof ExpandableSection> = {
 
         <ExpandableSection
           title="Grouped Actions (groupActions=true)"
+          backgroundColor={greys.white}
           groupActions
           actions={[
             {
@@ -352,7 +372,8 @@ export const CustomTitleComponent: StoryObj<typeof ExpandableSection> = {
               Custom Title with Icon
               <StyledBadge>New</StyledBadge>
             </StyledCustomTitle>
-          }>
+          }
+          backgroundColor={greys.white}>
           <StyledContentDiv>
             This expandable section demonstrates using a custom React component as the title. The title
             includes an icon, styled text, and a badge component. This provides much more flexibility than
@@ -366,7 +387,8 @@ export const CustomTitleComponent: StoryObj<typeof ExpandableSection> = {
               <span style={{fontWeight: 'bold', color: '#dc2626'}}>⚠️</span>
               <span>Important Notice</span>
             </div>
-          }>
+          }
+          backgroundColor={greys.white}>
           <StyledContentDiv>
             You can also use inline styles or any other React elements as the title. This example shows a
             warning icon with styled text.

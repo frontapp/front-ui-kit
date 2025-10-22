@@ -38,8 +38,8 @@ interface ExpandableSectionProps {
   actions?: ExpandableSectionAction[];
   /** Whether to show the text before the icon (default: false) */
   showTextBeforeIcon?: boolean;
-  /** Custom icon name to use instead of the default CaretExpand */
-  iconName?: 'CaretExpand' | 'ChevronDown';
+  /** Custom icon name to use instead of the default CaretExpand. If empty or undefined, no icon will be shown. */
+  iconName?: 'CaretExpand' | 'ChevronDown' | '';
   /** Border radius for the expandable section (default: 8px) */
   borderRadius?: string;
   /** Background color for the header on hover (default: greys.shade10) */
@@ -50,6 +50,8 @@ interface ExpandableSectionProps {
   showContentBorder?: boolean;
   /** Maximum height when expanded (default: 1000px) */
   maxHeight?: string;
+  /** Background color for the expandable section (default: greys.white) */
+  backgroundColor?: string;
   /** Whether actions should only be visible on hover (default: false - actions always visible). */
   showActionsOnHover?: boolean;
   /** Whether to group actions into a dropdown menu (default: false - show as individual icon buttons). */
@@ -60,12 +62,16 @@ interface ExpandableSectionProps {
  * Styles
  */
 
-const StyledExpandableSectionDiv = styled.div<{borderRadius?: string; showBorder?: boolean}>`
+const StyledExpandableSectionDiv = styled.div<{
+  borderRadius?: string;
+  showBorder?: boolean;
+  backgroundColor?: string;
+}>`
   display: flex;
   flex-direction: column;
   border: ${({showBorder = true}) => (showBorder ? `1px solid ${greys.shade30}` : 'none')};
   border-radius: ${({borderRadius}) => borderRadius || '8px'};
-  background: ${greys.white};
+  background: ${({backgroundColor}) => backgroundColor || greys.white};
   overflow: hidden;
 `;
 
@@ -75,7 +81,6 @@ const StyledHeaderDiv = styled.div<{hoverBackgroundColor?: string}>`
   justify-content: space-between;
   padding: 16px 20px;
   cursor: pointer;
-  background: ${greys.white};
   transition: background-color 0.2s ease;
 
   &:hover {
@@ -95,7 +100,6 @@ const StyledTitleDiv = styled.div`
   font-size: ${fontSizes.large};
   font-weight: ${fontWeights.medium};
   line-height: 24px;
-  color: ${greys.shade80};
 `;
 
 const StyledCaretIconDiv = styled.div<{isOpen: boolean}>`
@@ -146,6 +150,7 @@ export const ExpandableSection: FC<ExpandableSectionProps> = (props) => {
     showBorder = true,
     showContentBorder = true,
     maxHeight = '1000px',
+    backgroundColor,
     showActionsOnHover = false,
     groupActions = false
   } = props;
@@ -164,11 +169,11 @@ export const ExpandableSection: FC<ExpandableSectionProps> = (props) => {
   };
 
   const titleElement = typeof title === 'string' ? <StyledTitleDiv>{title}</StyledTitleDiv> : title;
-  const iconElement = (
+  const iconElement = iconName ? (
     <StyledCaretIconDiv isOpen={isOpen}>
       <Icon name={iconName} size={16} />
     </StyledCaretIconDiv>
-  );
+  ) : null;
 
   // Render actions based on groupActions setting
   const renderActions = () => {
@@ -214,7 +219,10 @@ export const ExpandableSection: FC<ExpandableSectionProps> = (props) => {
   };
 
   return (
-    <StyledExpandableSectionDiv borderRadius={borderRadius} showBorder={showBorder}>
+    <StyledExpandableSectionDiv
+      borderRadius={borderRadius}
+      showBorder={showBorder}
+      backgroundColor={backgroundColor}>
       <StyledHeaderDiv onClick={handleToggle} hoverBackgroundColor={hoverBackgroundColor}>
         <StyledTitleContainerDiv>
           {showTextBeforeIcon ? (
