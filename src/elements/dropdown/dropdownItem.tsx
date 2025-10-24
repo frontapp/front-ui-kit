@@ -10,6 +10,7 @@ import {
   renderChildrenSpecifiedComponents
 } from '../../helpers/renderHelpers';
 import {Icon} from '../icon/icon';
+import {NavigationalSubmenuTrigger} from './components/NavigationalSubmenuTrigger';
 import {SubmenuTrigger} from './components/SubmenuTrigger';
 import {NestedDropdownConfig} from './types/nestedDropdown';
 
@@ -50,6 +51,10 @@ export interface DropdownItemProps {
   onSubmenuOpen?: (id: string) => void;
   /** Called when submenu closes */
   onSubmenuClose?: (id: string) => void;
+  /** Navigation mode for submenus: 'hover' shows submenu on hover (default), 'navigational' replaces current view on click */
+  submenuMode?: 'hover' | 'navigational';
+  /** Title to show in back button when using navigational mode */
+  submenuBackTitle?: string;
 }
 
 /*
@@ -125,7 +130,9 @@ export const DropdownItem: FC<DropdownItemProps> = ({
   submenuConfig,
   parentSubmenuId,
   onSubmenuOpen,
-  onSubmenuClose
+  onSubmenuClose,
+  submenuMode = 'hover',
+  submenuBackTitle
 }) => {
   // Generate deterministic ID if not provided
   const generatedId = React.useId();
@@ -135,7 +142,13 @@ export const DropdownItem: FC<DropdownItemProps> = ({
     <StyledDropdownItemWrapperDiv
       onClick={(event) => {
         // If we are in multi mode, we should not close the dropdown when clicked.
-        if (type === 'multi') event.preventDefault();
+        if (type === 'multi') {
+          event.preventDefault();
+          event.stopPropagation();
+          // Call onClick after preventing default to ensure state updates still happen
+          if (onClick) onClick(event);
+          return;
+        }
         if (onClick) onClick(event);
       }}>
       {/* Render non-content items. Avatar, icons, etc. */}
@@ -154,8 +167,20 @@ export const DropdownItem: FC<DropdownItemProps> = ({
     </StyledDropdownItemWrapperDiv>
   );
 
-  // If we have a submenu, wrap with SubmenuTrigger
-  if (submenu)
+  // If we have a submenu, wrap with the appropriate trigger based on mode
+  if (submenu) {
+    if (submenuMode === 'navigational')
+      return (
+        <NavigationalSubmenuTrigger
+          submenuId={effectiveSubmenuId}
+          getSubmenu={() => submenu}
+          backTitle={submenuBackTitle}
+          onNavigate={onSubmenuOpen}>
+          {content}
+        </NavigationalSubmenuTrigger>
+      );
+
+    // Default to hover mode
     return (
       <SubmenuTrigger
         submenuId={effectiveSubmenuId}
@@ -167,6 +192,7 @@ export const DropdownItem: FC<DropdownItemProps> = ({
         {content}
       </SubmenuTrigger>
     );
+  }
 
   return content;
 };

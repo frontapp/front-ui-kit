@@ -6,6 +6,7 @@ import {alphas} from '../../helpers/colorHelpers';
 import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 import {Icon} from '../icon/icon';
 import {Input} from '../input/input';
+import {useNavigationalDropdownSafe} from './context/NavigationalDropdownContext';
 
 /*
  * Props.
@@ -41,12 +42,12 @@ const StyledDropdownHeaderWrapperDiv = styled.div`
 `;
 
 const StyledHeaderTopRowDiv = styled.div`
-  display: flex;
-  flex-flow: row;
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
+  align-items: center;
 `;
 
 const StyledHeaderLabelDiv = styled.div`
-  flex: 1;
   text-align: center;
   font-size: ${fontSizes.medium};
   font-weight: ${fontWeights.medium};
@@ -56,6 +57,10 @@ const StyledHeaderLabelDiv = styled.div`
 const StyledButtonWrapperDiv = styled.div`
   // Need to be negative to move into the padding of the dropdown a bit.
   margin: -6px 0 -8px -6px;
+`;
+
+const StyledPlaceholderDiv = styled.div`
+  width: 32px; // Same width as the back button to maintain symmetry
 `;
 
 const StyledSearchWrapperDiv = styled.div``;
@@ -70,16 +75,29 @@ export const DropdownHeader: FC<DropdownHeaderProps> = ({
   searchValue,
   shouldAutoFocusSearchInput = true,
   onSearchChange,
-  onBackClick
-}) => (
-  <StyledDropdownHeaderWrapperDiv onClick={(event) => event.preventDefault()}>
-    <StyledHeaderTopRowDiv>
-      {maybeRenderBackButton(onBackClick)}
-      <StyledHeaderLabelDiv>{children}</StyledHeaderLabelDiv>
-    </StyledHeaderTopRowDiv>
-    {maybeRenderSearchDropdown(searchValue, searchPlaceholder, shouldAutoFocusSearchInput, onSearchChange)}
-  </StyledDropdownHeaderWrapperDiv>
-);
+  onBackClick // Keep as optional override
+}) => {
+  // Get back navigation from context (safely)
+  const navigationContext = useNavigationalDropdownSafe();
+
+  // Use context value if onBackClick is not provided and we're in a navigation context
+  const backClickHandler =
+    onBackClick ||
+    (navigationContext?.backNavigation?.canNavigateBack
+      ? navigationContext.backNavigation.navigateBack
+      : undefined);
+
+  return (
+    <StyledDropdownHeaderWrapperDiv>
+      <StyledHeaderTopRowDiv>
+        {backClickHandler ? maybeRenderBackButton(backClickHandler) : <StyledPlaceholderDiv />}
+        <StyledHeaderLabelDiv>{children}</StyledHeaderLabelDiv>
+        <StyledPlaceholderDiv />
+      </StyledHeaderTopRowDiv>
+      {maybeRenderSearchDropdown(searchValue, searchPlaceholder, shouldAutoFocusSearchInput, onSearchChange)}
+    </StyledDropdownHeaderWrapperDiv>
+  );
+};
 
 /*
  * Helpers.
@@ -109,13 +127,12 @@ function maybeRenderSearchDropdown(
   shouldAutoFocusSearchInput?: boolean,
   onSearchChange?: (value: string) => void
 ) {
-  // We will only render the dropdown if the value is supplied.
   if (typeof searchValue === 'undefined') return null;
   return (
     <StyledSearchWrapperDiv
-      onClick={(event) => {
-        // Mark the input as handled.
-        event.preventDefault();
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
       }}>
       <Input
         iconName="Search"
@@ -129,3 +146,5 @@ function maybeRenderSearchDropdown(
     </StyledSearchWrapperDiv>
   );
 }
+
+DropdownHeader.displayName = 'DropdownHeader';
