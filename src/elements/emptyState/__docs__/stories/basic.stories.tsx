@@ -18,3 +18,11 @@ export const Basic: StoryObj<typeof EmptyState> = {
     </StyledWrapperDiv>
   )
 };
+
+export const WithSubtitle: StoryObj<typeof EmptyState> = {
+  render: () => (
+    <StyledWrapperDiv>
+      <EmptyState message='No results for "Account"' subtitle="Try adjusting your search" />
+    </StyledWrapperDiv>
+  )
+};
