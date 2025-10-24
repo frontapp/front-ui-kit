@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.1](https://github.com/frontapp/front-ui-kit/compare/v0.18.0...v0.18.1) (2025-10-24)
+
+
+### Bug Fixes
+
+* card actions on hover ([#296](https://github.com/frontapp/front-ui-kit/issues/296)) ([cdbb117](https://github.com/frontapp/front-ui-kit/commit/cdbb117d4e677d378634342935a121c84d3669e9))
+
 ## [0.18.0](https://github.com/frontapp/front-ui-kit/compare/v0.17.1...v0.18.0) (2025-10-22)
 
 ### Features
