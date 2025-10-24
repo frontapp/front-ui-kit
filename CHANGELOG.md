@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.19.0](https://github.com/frontapp/front-ui-kit/compare/v0.18.1...v0.19.0) (2025-10-24)
+
+
+### Features
+
+* empty state subtitle ([#298](https://github.com/frontapp/front-ui-kit/issues/298)) ([7c11bf4](https://github.com/frontapp/front-ui-kit/commit/7c11bf4510838df83d7367321fc3b2ed301fa382))
+
 ## [0.18.1](https://github.com/frontapp/front-ui-kit/compare/v0.18.0...v0.18.1) (2025-10-24)
 
 ### Bug Fixes
