@@ -3,7 +3,7 @@ import styled, {css} from 'styled-components';
 
 import {Button} from '../../components/button/button';
 import {greys} from '../../helpers/colorHelpers';
-import {fonts, fontSizes} from '../../helpers/fontHelpers';
+import {fonts, fontSizes, fontWeights} from '../../helpers/fontHelpers';
 import {Icon} from '../icon/icon';
 
 /*
@@ -23,6 +23,8 @@ interface EmptyStateProps {
   buttonText?: string;
   /** Handler when the button is clicked, required to render a button. */
   onButtonClick?: () => void;
+  /** Subtitle to render for the empty state. */
+  subtitle?: string;
 }
 
 /*
@@ -58,7 +60,7 @@ const StyledContentWrapperDiv = styled.div<StyledContentWrapperDivProps>`
 `;
 
 const StyledSearchIconWrapperDiv = styled.div`
-  background: ${greys.shade30};
+  background: ${greys.shade20};
   border-radius: 50%;
   width: 70px;
   height: 70px;
@@ -71,8 +73,17 @@ const StyledSearchIconWrapperDiv = styled.div`
 const StyledSearchTextDiv = styled.div`
   flex: 1;
   text-align: center;
-  color: ${greys.shade70};
+  color: ${greys.black};
+  font-size: ${fontSizes.large};
+  font-weight: ${fontWeights.bold};
+`;
+
+const StyledSubtitleTextDiv = styled.div`
+  flex: 1;
+  text-align: center;
+  color: ${greys.black};
   font-size: ${fontSizes.medium};
+  font-weight: ${fontWeights.normal};
 `;
 
 const StyledButtonWrapperDiv = styled.div`
@@ -84,7 +95,12 @@ const StyledButtonWrapperDiv = styled.div`
  * Component.
  */
 
-export const EmptyState: FC<EmptyStateProps> = ({message = DefaultMessage, buttonText, onButtonClick}) => {
+export const EmptyState: FC<EmptyStateProps> = ({
+  message = DefaultMessage,
+  buttonText,
+  onButtonClick,
+  subtitle
+}) => {
   const hasVisibleButton = Boolean(buttonText && onButtonClick);
 
   return (
@@ -94,6 +110,7 @@ export const EmptyState: FC<EmptyStateProps> = ({message = DefaultMessage, butto
           <Icon name="Search" size={40} color={greys.shade50} viewBox="0 0 16 16" />
         </StyledSearchIconWrapperDiv>
         <StyledSearchTextDiv>{message}</StyledSearchTextDiv>
+        {subtitle && <StyledSubtitleTextDiv>{subtitle}</StyledSubtitleTextDiv>}
         {maybeRenderButton(buttonText, onButtonClick)}
       </StyledContentWrapperDiv>
     </StyledEmptyStateWrapperDiv>

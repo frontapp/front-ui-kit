@@ -26,3 +26,4 @@ export default {
 } as ComponentMeta<typeof EmptyState>;
 
 export {Basic} from './stories/basic.stories';
+export {WithSubtitle} from './stories/basic.stories';
