@@ -91,6 +91,14 @@ const ActionButtonContainer = styled.div<{zIndex?: number; $showOnHover?: boolea
     `${RelativeContainer}:hover & {
     opacity: 1;
   }`}
+
+  /* Keep visible when the action container or any of its children have focus or are being interacted with */
+  ${(p) =>
+    p.$showOnHover &&
+    `&:focus-within,
+     & button:active {
+    opacity: 1;
+  }`}
 `;
 
 /*
