@@ -251,6 +251,37 @@ export const CardWithActions: Story = {
           </Card.Body>
           <Card.Footer>Card footer content</Card.Footer>
         </Card>
+        <Card
+          {...args}
+          groupActions
+          showActionsOnHover
+          actions={[
+            {
+              label: 'Edit',
+              icon: 'Edit',
+              tooltip: 'Edit this card',
+              onClick: () => console.log('Edit clicked!')
+            },
+            {
+              label: 'Copy',
+              icon: 'Copy',
+              tooltip: 'Copy this card',
+              onClick: () => console.log('Copy clicked!')
+            },
+            {
+              label: 'Share',
+              icon: 'ExternalLink',
+              tooltip: 'Share this card',
+              onClick: () => console.log('Share clicked!')
+            }
+          ]}>
+          <Card.Header>Grouped Actions with hover (showActionsOnHover=true)</Card.Header>
+          <Card.Body>
+            When groupActions=true, all actions are grouped into a single dropdown menu. This keeps the
+            interface clean and compact, especially useful when you have many actions or limited space.
+          </Card.Body>
+          <Card.Footer>Card footer content</Card.Footer>
+        </Card>
       </div>
     </DefaultStyleProvider>
   ),
