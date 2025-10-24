@@ -1,11 +1,17 @@
 # Changelog
 
-## [0.17.1](https://github.com/frontapp/front-ui-kit/compare/v0.17.0...v0.17.1) (2025-10-22)
+## [0.18.0](https://github.com/frontapp/front-ui-kit/compare/v0.17.1...v0.18.0) (2025-10-22)
 
+
+### Features
+
+* added card component ([#287](https://github.com/frontapp/front-ui-kit/issues/287)) ([f73865c](https://github.com/frontapp/front-ui-kit/commit/f73865c2063990d782587999757670878d0fe19c))
+
+## [0.17.1](https://github.com/frontapp/front-ui-kit/compare/v0.17.0...v0.17.1) (2025-10-22)
 
 ### Bug Fixes
 
-* dropdown border color ([#293](https://github.com/frontapp/front-ui-kit/issues/293)) ([eb7a37c](https://github.com/frontapp/front-ui-kit/commit/eb7a37c8a5cb898eab020828ba9e03fee19c1879))
+- dropdown border color ([#293](https://github.com/frontapp/front-ui-kit/issues/293)) ([eb7a37c](https://github.com/frontapp/front-ui-kit/commit/eb7a37c8a5cb898eab020828ba9e03fee19c1879))
 
 ## [0.17.0](https://github.com/frontapp/front-ui-kit/compare/v0.16.1...v0.17.0) (2025-10-22)
 
