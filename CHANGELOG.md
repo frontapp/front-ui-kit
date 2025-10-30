@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.20.1](https://github.com/frontapp/front-ui-kit/compare/v0.20.0...v0.20.1) (2025-10-30)
+
+
+### Bug Fixes
+
+* remove max height from expandable section ([#302](https://github.com/frontapp/front-ui-kit/issues/302)) ([9b22c2f](https://github.com/frontapp/front-ui-kit/commit/9b22c2f43103fa9dd78c5be741b8e1c66d106e15))
+
 ## [0.20.0](https://github.com/frontapp/front-ui-kit/compare/v0.19.0...v0.20.0) (2025-10-29)
 
 ### Features
