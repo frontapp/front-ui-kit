@@ -48,8 +48,6 @@ interface ExpandableSectionProps {
   showBorder?: boolean;
   /** Whether to show the border between header and content when expanded (default: true) */
   showContentBorder?: boolean;
-  /** Maximum height when expanded (default: 1000px) */
-  maxHeight?: string;
   /** Background color for the expandable section (default: greys.white) */
   backgroundColor?: string;
   /** Whether actions should only be visible on hover (default: false - actions always visible). */
@@ -125,10 +123,10 @@ const StyledActionsDiv = styled.div<{$showOnHover?: boolean}>`
   }`}
 `;
 
-const StyledContentDiv = styled.div<{isOpen: boolean; showContentBorder?: boolean; maxHeight?: string}>`
+const StyledContentDiv = styled.div<{isOpen: boolean; showContentBorder?: boolean}>`
   border-top: ${({showContentBorder = true}) => (showContentBorder ? `1px solid ${greys.shade20}` : 'none')};
   overflow: hidden;
-  max-height: ${({isOpen, maxHeight = '1000px'}) => (isOpen ? maxHeight : '0')};
+  max-height: ${({isOpen}) => (isOpen ? 'unset' : '0')};
   opacity: ${({isOpen}) => (isOpen ? '1' : '0')};
 `;
 
@@ -149,7 +147,6 @@ export const ExpandableSection: FC<ExpandableSectionProps> = (props) => {
     hoverBackgroundColor,
     showBorder = true,
     showContentBorder = true,
-    maxHeight = '1000px',
     backgroundColor,
     showActionsOnHover = false,
     groupActions = false
@@ -239,7 +236,7 @@ export const ExpandableSection: FC<ExpandableSectionProps> = (props) => {
         </StyledTitleContainerDiv>
         {renderActions()}
       </StyledHeaderDiv>
-      <StyledContentDiv isOpen={isOpen} showContentBorder={showContentBorder} maxHeight={maxHeight}>
+      <StyledContentDiv isOpen={isOpen} showContentBorder={showContentBorder}>
         {children}
       </StyledContentDiv>
     </StyledExpandableSectionDiv>

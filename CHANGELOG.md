@@ -2,17 +2,15 @@
 
 ## [0.20.0](https://github.com/frontapp/front-ui-kit/compare/v0.19.0...v0.20.0) (2025-10-29)
 
-
 ### Features
 
-* navigation dropdown ([#273](https://github.com/frontapp/front-ui-kit/issues/273)) ([3774b61](https://github.com/frontapp/front-ui-kit/commit/3774b6134c1797106b68b74d97f9aeb0be827a0f))
+- navigation dropdown ([#273](https://github.com/frontapp/front-ui-kit/issues/273)) ([3774b61](https://github.com/frontapp/front-ui-kit/commit/3774b6134c1797106b68b74d97f9aeb0be827a0f))
 
 ## [0.19.0](https://github.com/frontapp/front-ui-kit/compare/v0.18.1...v0.19.0) (2025-10-24)
 
-
 ### Features
 
-* empty state subtitle ([#298](https://github.com/frontapp/front-ui-kit/issues/298)) ([7c11bf4](https://github.com/frontapp/front-ui-kit/commit/7c11bf4510838df83d7367321fc3b2ed301fa382))
+- empty state subtitle ([#298](https://github.com/frontapp/front-ui-kit/issues/298)) ([7c11bf4](https://github.com/frontapp/front-ui-kit/commit/7c11bf4510838df83d7367321fc3b2ed301fa382))
 
 ## [0.18.1](https://github.com/frontapp/front-ui-kit/compare/v0.18.0...v0.18.1) (2025-10-24)
 
