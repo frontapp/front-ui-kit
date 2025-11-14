@@ -40,6 +40,8 @@ interface PillProps {
   children: React.ReactNode;
   /** Called when the pill is clicked. */
   onClick?: MouseEventHandler;
+  /** Class name to allow custom styling of the pill. */
+  className?: string;
 }
 
 /*
@@ -88,10 +90,10 @@ function addPillStyles(colors: SelectableComponentColors, isSelected?: boolean) 
  */
 
 export const Pill: FC<PillProps> = (props) => {
-  const {children, colors = defaultPillColors, isSelected, onClick} = props;
+  const {children, colors = defaultPillColors, isSelected, onClick, className} = props;
 
   return (
-    <StyledPillDiv $colors={colors} $isSelected={isSelected} onClick={onClick}>
+    <StyledPillDiv $colors={colors} $isSelected={isSelected} onClick={onClick} className={className}>
       {renderChildrenSpecifiedComponents(children, ['PillContentIcon'])}
       {renderPillChildren(children)}
     </StyledPillDiv>
