@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.20.2](https://github.com/frontapp/front-ui-kit/compare/v0.20.1...v0.20.2) (2025-11-14)
+
+
+### Bug Fixes
+
+* add classname prop to pill ([#305](https://github.com/frontapp/front-ui-kit/issues/305)) ([efadeba](https://github.com/frontapp/front-ui-kit/commit/efadeba5fbfeae67462687d955c42ca5c953a57b))
+
 ## [0.20.1](https://github.com/frontapp/front-ui-kit/compare/v0.20.0...v0.20.1) (2025-10-30)
 
 
