@@ -35,7 +35,7 @@
     "luxon": "^3.7.2",
     "polished": "^4.3.1",
     "popper-max-size-modifier": "^0.2.0",
-    "react-is": "^19.2.0",
+    "react-is": "^19.2.1",
     "react-popper": "^2.3.0",
     "react-spring": "^9.7.5",
     "react-use-measure": "^2.1.7",
