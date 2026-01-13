@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.21.0](https://github.com/frontapp/front-ui-kit/compare/v0.20.2...v0.21.0) (2026-01-13)
+
+
+### Features
+
+* add Inbox icon ([#312](https://github.com/frontapp/front-ui-kit/issues/312)) ([421876b](https://github.com/frontapp/front-ui-kit/commit/421876babef8b300c406eec2e6f8840ce2d9e39e))
+
 ## [0.20.2](https://github.com/frontapp/front-ui-kit/compare/v0.20.1...v0.20.2) (2025-11-14)
 
 
