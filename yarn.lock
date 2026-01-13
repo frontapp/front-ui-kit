@@ -2473,15 +2473,14 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-window-infinite-loader@^1.0.9":
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/@types/react-window-infinite-loader/-/react-window-infinite-loader-1.0.9.tgz#9b24d4e60f20397ff853c6857f7fe0645becbeb9"
-  integrity sha512-gEInTjQwURCnDOFyIEK2+fWB5gTjqwx30O62QfxA9stE5aiB6EWkGj4UMhc0axq7/FV++Gs/TGW8FtgEx0S6Tw==
+"@types/react-window-infinite-loader@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/react-window-infinite-loader/-/react-window-infinite-loader-2.0.0.tgz#b92397ad97d805ea6a2f803a087882f3e68664a2"
+  integrity sha512-2YYQRI77fduB8sQJ9h43FR5qIC7C8qodN6waHcWZQmkc+PFw9vKjAs5WUeJHZZk9EGQDy95umYegK4CgZ1CYOw==
   dependencies:
-    "@types/react" "*"
-    "@types/react-window" "*"
+    react-window-infinite-loader "*"
 
-"@types/react-window@*", "@types/react-window@^1.8.8":
+"@types/react-window@^1.8.8":
   version "1.8.8"
   resolved "https://registry.yarnpkg.com/@types/react-window/-/react-window-1.8.8.tgz#c20645414d142364fbe735818e1c1e0a145696e3"
   integrity sha512-8Ls660bHR1AUA2kuRvVG9D/4XpRC6wjAaPT9dil7Ckc76eP9TKWZwwmgfq8Q1LANX3QNDnoU4Zp48A3w+zK69Q==
@@ -7190,10 +7189,10 @@ react-use-measure@^2.1.7:
   resolved "https://registry.yarnpkg.com/react-use-measure/-/react-use-measure-2.1.7.tgz#36b8a2e7fd2fa58109ab851b3addcb0aad66ad1d"
   integrity sha512-KrvcAo13I/60HpwGO5jpW7E9DfusKyLPLvuHlUyP5zqnmAPhNc6qTRjUQrdTADl0lpPpDVU2/Gg51UlOGHXbdg==
 
-react-window-infinite-loader@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/react-window-infinite-loader/-/react-window-infinite-loader-2.0.0.tgz#7655f3f8051176700c8ff7e7a2f85813479d0587"
-  integrity sha512-dioOyvShGheEqqFHcPNKCixCOc2evwb2VEt9sitfJfTZ1hir8m6b8W0CNBvcUj+8Y8IeWu4yb88DI7k88aYTQQ==
+react-window-infinite-loader@*, react-window-infinite-loader@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-window-infinite-loader/-/react-window-infinite-loader-2.0.1.tgz#ed1377311dbae5ab89db59daf5af302d382d3f40"
+  integrity sha512-+Deq2JkxfDr5N6WAwKQJLECiBARZ1yvVv9rElSXPO6yaMt3YTIs2y8TpsH67lIWGYFMnESvO6mgvETEZuCCjuw==
 
 react-window@^1.8.11:
   version "1.8.11"
