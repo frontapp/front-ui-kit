@@ -38,6 +38,7 @@ import Gear from '../../assets/icons/gear.svg';
 import GearFilled from '../../assets/icons/gearFilled.svg';
 import GearRounded from '../../assets/icons/gearRounded.svg';
 import Import from '../../assets/icons/import.svg';
+import Inbox from '../../assets/icons/inbox.svg';
 import Info from '../../assets/icons/info.svg';
 import Info20 from '../../assets/icons/info20.svg';
 import InfoFilled from '../../assets/icons/infoFilled.svg';
@@ -108,6 +109,7 @@ const importedIcons = {
   GearFilled,
   GearRounded,
   Import,
+  Inbox,
   Info,
   InfoFilled,
   Info20,
