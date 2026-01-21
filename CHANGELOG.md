@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.22.0](https://github.com/frontapp/front-ui-kit/compare/v0.21.0...v0.22.0) (2026-01-21)
+
+
+### Features
+
+* **dropdown:** add iconColor prop to DropdownButton ([#315](https://github.com/frontapp/front-ui-kit/issues/315)) ([f60cbc1](https://github.com/frontapp/front-ui-kit/commit/f60cbc12267882cefeb6cffc17abeec4b0579e37))
+
 ## [0.21.0](https://github.com/frontapp/front-ui-kit/compare/v0.20.2...v0.21.0) (2026-01-13)
 
 
