@@ -29,6 +29,8 @@ interface DropdownButtonProps {
   isActive?: boolean;
   /** Icon to render on the left. If nothing is set, no icon will be rendered. */
   iconName?: IconName;
+  /** Color for the icon. Defaults to greys.shade50. */
+  iconColor?: string;
   /** The max width of the button. Default is 100%. */
   maxWidth?: number;
   /** Reference the button itself. */
@@ -153,7 +155,7 @@ const StyledChevronWrapperDiv = styled.div`
  */
 
 export const DropdownButton: FC<DropdownButtonProps> = (props) => {
-  const {maxWidth, value, iconName, isDisabled, isActive, isErred, buttonRef} = props;
+  const {maxWidth, value, iconName, iconColor, isDisabled, isActive, isErred, buttonRef} = props;
   const [childrenContainerRef, {buttonWidth: width}] = useMeasureElement();
 
   return (
@@ -165,7 +167,7 @@ export const DropdownButton: FC<DropdownButtonProps> = (props) => {
       $isDisabled={isDisabled}
       $isErred={isErred}>
       <StyledContentWrapperDiv $isDisabled={isDisabled}>
-        {maybeRenderIcon(iconName)}
+        {maybeRenderIcon(iconName, iconColor)}
         <StyledChildrenWrapperDiv ref={childrenContainerRef}>
           {maybeRenderPlaceholder(props)}
           {renderDropdownContent(value, width)}
@@ -203,11 +205,11 @@ function renderDropdownContent(value: string | ReadonlyArray<string>, childrenCo
   return value;
 }
 
-function maybeRenderIcon(iconName?: IconName) {
+function maybeRenderIcon(iconName?: IconName, iconColor?: string) {
   if (!iconName) return null;
   return (
     <StyledIconWrapperDiv>
-      <Icon name={iconName} color={greys.shade50} />
+      <Icon name={iconName} color={iconColor ?? greys.shade50} />
     </StyledIconWrapperDiv>
   );
 }
