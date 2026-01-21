@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.22.1](https://github.com/frontapp/front-ui-kit/compare/v0.22.0...v0.22.1) (2026-01-21)
+
+
+### Bug Fixes
+
+* bump version ([#317](https://github.com/frontapp/front-ui-kit/issues/317)) ([7fab011](https://github.com/frontapp/front-ui-kit/commit/7fab0114f5e07729aeb0e5b1562b880d40d0502f))
+
 ## [0.22.0](https://github.com/frontapp/front-ui-kit/compare/v0.21.0...v0.22.0) (2026-01-21)
 
 
