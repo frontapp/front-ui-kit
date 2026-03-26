@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.22.2](https://github.com/frontapp/front-ui-kit/compare/v0.22.1...v0.22.2) (2026-03-26)
+
+
+### Bug Fixes
+
+* navigational dropdown back button bug ([#322](https://github.com/frontapp/front-ui-kit/issues/322)) ([0d91891](https://github.com/frontapp/front-ui-kit/commit/0d91891ddc70b93c2010df53950c4d54d91ecbbd))
+
 ## [0.22.1](https://github.com/frontapp/front-ui-kit/compare/v0.22.0...v0.22.1) (2026-01-21)
 
 
