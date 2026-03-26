@@ -80,6 +80,21 @@ export const NavigationalDropdownProvider: React.FC<NavigationalDropdownProvider
   const navigateTo = useCallback(
     (id: string, getContent: () => React.ReactNode, parentTitle?: string) => {
       setViewStack((prev) => {
+        const top = prev[prev.length - 1];
+        // If we're already showing this view (e.g. auto-restore after contentVersion reset ran twice
+        // before viewStack committed), replace it instead of pushing a duplicate — otherwise the user
+        // must hit "back" once per duplicate to return to the root menu.
+        if (top && top.id === id) {
+          const updatedView: NavigationalView = {
+            id,
+            getContent,
+            parentTitle,
+            level: top.level
+          };
+          onNavigate?.(updatedView.level, id);
+          return [...prev.slice(0, -1), updatedView];
+        }
+
         const currentLevel = prev.length > 0 ? prev[prev.length - 1].level : -1;
         const newView: NavigationalView = {
           id,
