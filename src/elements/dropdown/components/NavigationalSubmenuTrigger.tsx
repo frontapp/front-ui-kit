@@ -1,7 +1,7 @@
-import React, {useCallback, useLayoutEffect} from 'react';
+import React, { useCallback, useLayoutEffect } from 'react';
 import styled from 'styled-components';
 
-import {useNavigationalDropdown} from '../context/NavigationalDropdownContext';
+import { useNavigationalDropdown } from '../context/NavigationalDropdownContext';
 
 interface NavigationalSubmenuTriggerProps {
   children: React.ReactNode;
@@ -42,7 +42,7 @@ export const NavigationalSubmenuTrigger: React.FC<NavigationalSubmenuTriggerProp
   className,
   onNavigate
 }) => {
-  const {navigateTo, autoNavigateToSubmenuPath, viewStack} = useNavigationalDropdown();
+  const { navigateTo, autoNavigateToSubmenuPath, viewStack } = useNavigationalDropdown();
 
   useLayoutEffect(() => {
     // Check if this submenu is the first one in the auto-navigation path
@@ -51,16 +51,16 @@ export const NavigationalSubmenuTrigger: React.FC<NavigationalSubmenuTriggerProp
     // Also check that we haven't already navigated to this level
     const isAlreadyInStack = viewStack.some((view) => view.id === submenuId);
 
-    if (isFirstInPath && !isAlreadyInStack)
-      // Always navigate if we're first in path and not in stack
+    if (isFirstInPath && !isAlreadyInStack) 
       navigateTo(submenuId, getSubmenu, backTitle);
+    
   }, [autoNavigateToSubmenuPath, submenuId, getSubmenu, backTitle, navigateTo, viewStack]);
 
   const handleClick = useCallback(
     (event: React.MouseEvent) => {
       if (disabled) return;
 
-      const {target} = event;
+      const { target } = event;
       if (target instanceof HTMLElement && isInteractiveElement(target)) return;
 
       event.preventDefault();
@@ -76,7 +76,7 @@ export const NavigationalSubmenuTrigger: React.FC<NavigationalSubmenuTriggerProp
     (event: React.KeyboardEvent) => {
       if (disabled) return;
 
-      const {target} = event;
+      const { target } = event;
       if (target instanceof HTMLElement && isInteractiveElement(target)) return;
 
       if (event.key === 'Enter' || event.key === ' ') {

@@ -52,27 +52,30 @@ export const NavigationalDropdownProvider: React.FC<NavigationalDropdownProvider
   ]);
 
   const prevContentVersionRef = React.useRef(contentVersion);
+  const viewStackRef = React.useRef(viewStack);
+  viewStackRef.current = viewStack;
   const [autoNavigateToSubmenuPath, setAutoNavigateToSubmenuPath] = React.useState<string[]>([]);
 
+  // Reset stack when content changes, then restore submenu path via autoNavigateToSubmenuPath.
+  // Capture the path from viewStackRef during this effect (after the render where contentVersion
+  // changed) instead of reading stack inside setViewStack — avoids nested setState and keeps
+  // stack + path updates batching consistently.
   useLayoutEffect(() => {
-    if (prevContentVersionRef.current !== contentVersion && prevContentVersionRef.current !== undefined)
-      setViewStack((currentStack) => {
-        // Store the entire navigation path, not just the last submenu ID
-        const navigationPath = currentStack.length > 1 ? currentStack.slice(1).map((view) => view.id) : [];
+    const prevVersion = prevContentVersionRef.current;
+    if (prevVersion !== contentVersion && prevVersion !== undefined) {
+      const navigationPath =
+        viewStackRef.current.length > 1 ? viewStackRef.current.slice(1).map((view) => view.id) : [];
 
-        const newStack = [
-          {
-            id: rootId,
-            getContent: getRootContent,
-            level: 0
-          }
-        ];
+      setViewStack([
+        {
+          id: rootId,
+          getContent: getRootContent,
+          level: 0
+        }
+      ]);
 
-        // Set the navigation path to auto-restore
-        if (navigationPath.length > 0) setAutoNavigateToSubmenuPath(navigationPath);
-
-        return newStack;
-      });
+      if (navigationPath.length > 0) setAutoNavigateToSubmenuPath(navigationPath);
+    }
 
     prevContentVersionRef.current = contentVersion;
   }, [contentVersion, getRootContent, rootId]);
@@ -80,6 +83,19 @@ export const NavigationalDropdownProvider: React.FC<NavigationalDropdownProvider
   const navigateTo = useCallback(
     (id: string, getContent: () => React.ReactNode, parentTitle?: string) => {
       setViewStack((prev) => {
+        const top = prev[prev.length - 1];
+        // Idempotent: same view already on top (fresh getContent / avoids duplicate stack entries).
+        if (top && top.id === id) {
+          const updatedView: NavigationalView = {
+            id,
+            getContent,
+            parentTitle,
+            level: top.level
+          };
+          onNavigate?.(updatedView.level, id);
+          return [...prev.slice(0, -1), updatedView];
+        }
+
         const currentLevel = prev.length > 0 ? prev[prev.length - 1].level : -1;
         const newView: NavigationalView = {
           id,
