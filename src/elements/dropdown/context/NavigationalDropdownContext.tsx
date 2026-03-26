@@ -64,7 +64,7 @@ export const NavigationalDropdownProvider: React.FC<NavigationalDropdownProvider
   const prevContentVersionRef = React.useRef(contentVersion);
 
   useLayoutEffect(() => {
-    if (prevContentVersionRef.current !== contentVersion && prevContentVersionRef.current !== undefined) {
+    if (prevContentVersionRef.current !== contentVersion && prevContentVersionRef.current !== undefined)
       setNavState((prev) => {
         const navigationPath =
           prev.viewStack.length > 1 ? prev.viewStack.slice(1).map((view) => view.id) : [];
@@ -80,7 +80,6 @@ export const NavigationalDropdownProvider: React.FC<NavigationalDropdownProvider
           autoNavigateToSubmenuPath: navigationPath.length > 0 ? navigationPath : []
         };
       });
-    }
 
     prevContentVersionRef.current = contentVersion;
   }, [contentVersion, getRootContent, rootId]);

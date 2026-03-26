@@ -11,8 +11,10 @@ import {useMeasureElement} from '../../helpers/hookHelpers';
  * Props.
  */
 
-interface DropdownCoordinatorProps
-  extends Pick<RepositionPopoverProps, 'hasVisibleOverlay' | 'isExclusive' | 'placement'> {
+interface DropdownCoordinatorProps extends Pick<
+  RepositionPopoverProps,
+  'hasVisibleOverlay' | 'isExclusive' | 'placement'
+> {
   /** Controls if the dropdown is disabled from opening. If disabled, we will not open anything. */
   isDisabled?: boolean;
   /** Controls if the overlay will close the dropdown. If disabled, we will not close when the overlay is clicked. */
