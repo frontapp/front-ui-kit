@@ -1,7 +1,7 @@
 import {Placement} from '@popperjs/core';
 import {useCallback, useMemo} from 'react';
 
-import {SubmenuPositioning} from '../types/nestedDropdown';
+import {SubmenuPositioning, SubmenuOffset} from '../types/nestedDropdown';
 
 /**
  * Hook for calculating submenu positioning, z-index, and layer management.
@@ -27,6 +27,8 @@ interface UseSubmenuPositioningProps {
   placement?: Placement;
   /** Prefix for generating unique layer IDs */
   layerIdPrefix?: string;
+  /** Offset for submenu positioning */
+  offset?: SubmenuOffset;
 }
 
 /**
@@ -86,7 +88,8 @@ export const useSubmenuPositioning = ({
   submenuId,
   level,
   placement = 'right-start',
-  layerIdPrefix = 'nested-dropdown'
+  layerIdPrefix = 'nested-dropdown',
+  offset,
 }: UseSubmenuPositioningProps): UseSubmenuPositioningReturn => {
   /**
    * Calculates z-index based on nesting level to ensure proper stacking order.
@@ -115,9 +118,10 @@ export const useSubmenuPositioning = ({
       anchorElement,
       placement,
       zIndex: calculateZIndex(),
-      layerId: getLayerId()
+      layerId: getLayerId(),
+      offset
     }),
-    [placement, calculateZIndex, getLayerId]
+    [placement, calculateZIndex, getLayerId, offset]
   );
 
   return useMemo(
