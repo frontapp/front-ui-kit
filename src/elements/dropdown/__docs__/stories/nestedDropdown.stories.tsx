@@ -1,4 +1,4 @@
-import {type Placement,placements} from '@popperjs/core';
+import {type Placement, placements} from '@popperjs/core';
 import type {StoryFn} from '@storybook/react';
 import React, {useState} from 'react';
 import styled from 'styled-components';
@@ -261,7 +261,7 @@ const MultiSelectTemplate: StoryFn = ({placement, offset}) => {
         <NestedDropdownProvider
           config={{
             openDelay: 200,
-            closeDelay: 40000,
+            closeDelay: 400,
             maxDepth: 3,
             placement
           }}>
