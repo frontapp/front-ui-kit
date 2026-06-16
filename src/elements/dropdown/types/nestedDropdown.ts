@@ -105,6 +105,6 @@ export interface SubmenuPositioning {
 
 
 export interface SubmenuOffset {
-  left?: number;
-  top?: number;
+  skidding?: number;
+  distance?: number;
 }
