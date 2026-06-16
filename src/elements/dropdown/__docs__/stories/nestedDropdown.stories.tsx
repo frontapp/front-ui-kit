@@ -1,12 +1,11 @@
+import {type Placement,placements} from '@popperjs/core';
 import type {StoryFn} from '@storybook/react';
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
-import {type Placement, placements} from '@popperjs/core';
 import {palette} from '../../../../helpers/colorHelpers';
 import {EmptyState} from '../../../emptyState/emptyState';
 import {NestedDropdownProvider} from '../../context/NestedDropdownContext';
-import {NestedDropdownConfig} from '../../types/nestedDropdown';
 import {Dropdown} from '../../dropdown';
 import {DropdownButton} from '../../dropdownButton';
 import {DropdownCoordinator} from '../../dropdownCoordinator';
@@ -127,7 +126,7 @@ const departmentsData = [
 
 type NestedDropdownStoryArgs = {
   placement: Placement;
-}
+};
 
 const Template: StoryFn<NestedDropdownStoryArgs> = () => {
   const [selectedValue, setSelectedValue] = useState('');
@@ -235,7 +234,7 @@ CustomConfigDropdown.decorators = [
 ];
 
 // Multi-select nested dropdown example
-const MultiSelectTemplate: StoryFn = ({ placement, offset }) => {
+const MultiSelectTemplate: StoryFn = ({placement, offset}) => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [submenuSearchValues, setSubmenuSearchValues] = useState<Record<string, string>>({});
 
@@ -264,7 +263,7 @@ const MultiSelectTemplate: StoryFn = ({ placement, offset }) => {
             openDelay: 200,
             closeDelay: 40000,
             maxDepth: 3,
-            placement,
+            placement
           }}>
           <DropdownCoordinator
             placement="bottom-start"
@@ -333,8 +332,7 @@ const MultiSelectTemplate: StoryFn = ({ placement, offset }) => {
                           ))}
                         </Dropdown>
                       }
-                      submenuConfig={{ offset }}
-                      >
+                      submenuConfig={{offset}}>
                       <DropdownItemIcon
                         color={palette.purple.shade40}
                         iconName={category.icon as 'Archive' | 'Star' | 'Calendar'}
@@ -369,7 +367,7 @@ MultiSelectDropdown.argTypes = {
   },
   offset: {
     control: 'object',
-    description: 'Offset for the submenu positioning',
+    description: 'Offset for the submenu positioning'
   }
 };
 
