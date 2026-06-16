@@ -1,4 +1,5 @@
 import {type Placement} from '@popperjs/core';
+import {type Options} from '@popperjs/core/lib/modifiers/offset';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {usePopper} from 'react-popper';
 import {styled} from 'styled-components';
@@ -6,7 +7,7 @@ import {styled} from 'styled-components';
 import {Layer} from '../../../components/layer/layer';
 import {useNestedDropdown, useSubmenu} from '../context/NestedDropdownContext';
 import {useSubmenuPositioning} from '../hooks/useSubmenuPositioning';
-import {SubmenuCapableProps} from '../types/nestedDropdown';
+import {SubmenuCapableProps, SubmenuOffset} from '../types/nestedDropdown';
 
 interface SubmenuTriggerProps extends SubmenuCapableProps {
   children: React.ReactNode;
@@ -115,7 +116,8 @@ export const SubmenuTrigger: React.FC<SubmenuTriggerProps> = ({
     submenuId: effectiveSubmenuId,
     level,
     placement: effectiveConfig.placement,
-    layerIdPrefix: effectiveConfig.layerIdPrefix
+    layerIdPrefix: effectiveConfig.layerIdPrefix,
+    offset: effectiveConfig.offset
   });
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -244,6 +246,7 @@ interface SubmenuPortalProps {
     placement: Placement;
     zIndex: number;
     layerId: string;
+    offset?: SubmenuOffset;
   };
   onMouseEnter: () => void;
   onMouseLeave: () => void;
@@ -253,6 +256,13 @@ interface SubmenuPortalProps {
   minWidth: string;
   maxWidth: string;
 }
+
+const DEFAULT_SKIDDING_OFFSET = 0;
+const DEFAULT_DISTANCE_OFFSET = 8;
+const toPopperOffset = (incomingOffset?: SubmenuOffset): Options['offset'] => [
+  incomingOffset?.skidding ?? DEFAULT_SKIDDING_OFFSET,
+  incomingOffset?.distance ?? DEFAULT_DISTANCE_OFFSET
+];
 
 /**
  * SubmenuPortal renders the submenu in a portal with custom Popper.js positioning.
@@ -295,7 +305,7 @@ const SubmenuPortal: React.FC<SubmenuPortalProps> = ({
       {
         name: 'offset',
         options: {
-          offset: [0, 8] // 8px gap between trigger and submenu
+          offset: toPopperOffset(positioning.offset) // 8px gap between trigger and submenu
         }
       },
       {

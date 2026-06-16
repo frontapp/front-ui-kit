@@ -17,6 +17,8 @@ export interface NestedDropdownConfig {
   enableKeyboardNavigation: boolean;
   /** Custom layer root ID prefix */
   layerIdPrefix: string;
+  /** Offset for submenu positioning */
+  offset?: SubmenuOffset;
 }
 
 /**
@@ -28,7 +30,7 @@ export const DEFAULT_NESTED_CONFIG: NestedDropdownConfig = {
   maxDepth: 3,
   placement: 'right-start',
   enableKeyboardNavigation: true,
-  layerIdPrefix: 'nested-dropdown'
+  layerIdPrefix: 'nested-dropdown',
 };
 
 /**
@@ -97,4 +99,12 @@ export interface SubmenuPositioning {
   zIndex: number;
   /** Layer root ID */
   layerId: string;
+  /** Offset for submenu positioning */
+  offset?: SubmenuOffset;
+}
+
+
+export interface SubmenuOffset {
+  skidding?: number;
+  distance?: number;
 }

@@ -1,3 +1,4 @@
+import {type Placement, placements} from '@popperjs/core';
 import type {StoryFn} from '@storybook/react';
 import React, {useState} from 'react';
 import styled from 'styled-components';
@@ -123,7 +124,11 @@ const departmentsData = [
   }
 ];
 
-const Template: StoryFn = () => {
+type NestedDropdownStoryArgs = {
+  placement: Placement;
+};
+
+const Template: StoryFn<NestedDropdownStoryArgs> = () => {
   const [selectedValue, setSelectedValue] = useState('');
   const [submenuSearchValues, setSubmenuSearchValues] = useState<Record<string, string>>({});
   const [filteredSubmenuItems, setFilteredSubmenuItems] = useState<Record<string, string[]>>({});
@@ -229,7 +234,7 @@ CustomConfigDropdown.decorators = [
 ];
 
 // Multi-select nested dropdown example
-const MultiSelectTemplate: StoryFn = () => {
+const MultiSelectTemplate: StoryFn = ({placement, offset}) => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [submenuSearchValues, setSubmenuSearchValues] = useState<Record<string, string>>({});
 
@@ -258,7 +263,7 @@ const MultiSelectTemplate: StoryFn = () => {
             openDelay: 200,
             closeDelay: 400,
             maxDepth: 3,
-            placement: 'right-start'
+            placement
           }}>
           <DropdownCoordinator
             placement="bottom-start"
@@ -326,7 +331,8 @@ const MultiSelectTemplate: StoryFn = () => {
                             </DropdownItem>
                           ))}
                         </Dropdown>
-                      }>
+                      }
+                      submenuConfig={{offset}}>
                       <DropdownItemIcon
                         color={palette.purple.shade40}
                         iconName={category.icon as 'Archive' | 'Star' | 'Calendar'}
@@ -346,6 +352,24 @@ const MultiSelectTemplate: StoryFn = () => {
 
 export const MultiSelectDropdown = MultiSelectTemplate.bind({});
 MultiSelectDropdown.storyName = 'Multi-Select with Submenus';
+MultiSelectDropdown.args = {
+  placement: 'right-start',
+  offset: {
+    skidding: 0,
+    distance: 8
+  }
+};
+
+MultiSelectDropdown.argTypes = {
+  placement: {
+    control: 'select',
+    options: placements
+  },
+  offset: {
+    control: 'object',
+    description: 'Offset for the submenu positioning'
+  }
+};
 
 // Left-aligned submenu example
 const LeftAlignedTemplate: StoryFn = () => (
