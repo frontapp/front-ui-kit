@@ -1,7 +1,7 @@
 import {Placement} from '@popperjs/core';
 import {useCallback, useMemo} from 'react';
 
-import {SubmenuPositioning, SubmenuOffset} from '../types/nestedDropdown';
+import {SubmenuOffset, SubmenuPositioning} from '../types/nestedDropdown';
 
 /**
  * Hook for calculating submenu positioning, z-index, and layer management.
