@@ -259,7 +259,10 @@ interface SubmenuPortalProps {
 
 const DEFAULT_SKIDDING_OFFSET = 0;
 const DEFAULT_DISTANCE_OFFSET = 8;
-const toPopperOffset = (incomingOffset?: SubmenuOffset): Options['offset'] => [incomingOffset?.skidding ?? DEFAULT_SKIDDING_OFFSET, incomingOffset?.distance ?? DEFAULT_DISTANCE_OFFSET]
+const toPopperOffset = (incomingOffset?: SubmenuOffset): Options['offset'] => [
+  incomingOffset?.skidding ?? DEFAULT_SKIDDING_OFFSET,
+  incomingOffset?.distance ?? DEFAULT_DISTANCE_OFFSET
+];
 
 /**
  * SubmenuPortal renders the submenu in a portal with custom Popper.js positioning.

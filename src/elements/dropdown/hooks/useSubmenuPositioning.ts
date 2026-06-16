@@ -89,7 +89,7 @@ export const useSubmenuPositioning = ({
   level,
   placement = 'right-start',
   layerIdPrefix = 'nested-dropdown',
-  offset,
+  offset
 }: UseSubmenuPositioningProps): UseSubmenuPositioningReturn => {
   /**
    * Calculates z-index based on nesting level to ensure proper stacking order.
