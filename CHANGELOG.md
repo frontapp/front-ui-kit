@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.23.0](https://github.com/frontapp/front-ui-kit/compare/v0.22.2...v0.23.0) (2026-06-16)
+
+
+### Features
+
+* adding offset props for dropdown ([#324](https://github.com/frontapp/front-ui-kit/issues/324)) ([fd9c7bf](https://github.com/frontapp/front-ui-kit/commit/fd9c7bff48059cb271f85f092899c05fe2145b7d))
+
 ## [0.22.2](https://github.com/frontapp/front-ui-kit/compare/v0.22.1...v0.22.2) (2026-03-26)
 
 
