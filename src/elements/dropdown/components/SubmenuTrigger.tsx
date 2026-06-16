@@ -259,9 +259,7 @@ interface SubmenuPortalProps {
 
 const DEFAULT_LEFT_OFFSET = 0;
 const DEFAULT_TOP_OFFSET = 8;
-const toPopperOffset = (incomingOffset?: SubmenuOffset): Options['offset'] => {
-  return [incomingOffset?.left ?? DEFAULT_LEFT_OFFSET, incomingOffset?.top ?? DEFAULT_TOP_OFFSET];
-}
+const toPopperOffset = (incomingOffset?: SubmenuOffset): Options['offset'] => [incomingOffset?.left ?? DEFAULT_LEFT_OFFSET, incomingOffset?.top ?? DEFAULT_TOP_OFFSET]
 
 /**
  * SubmenuPortal renders the submenu in a portal with custom Popper.js positioning.
