@@ -16,11 +16,14 @@ jobs:
         with:
           release-type: node
 
-  # Build and publish to NPM when a new version is released.
+  # Build and publish to NPM, then mirror to GitHub Packages, when a new version is released.
   build-and-publish:
     runs-on: ubuntu-latest
     needs: release-please
     if: needs.release-please.outputs.release-created
+    permissions:
+      contents: read
+      packages: write
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
@@ -33,6 +36,14 @@ jobs:
       - run: yarn publish --non-interactive --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      # Mirror to GitHub Packages so frontapp/front can install @frontapp/ui-kit
+      # without mixing npm and GitHub Packages registries in CI.
+      - name: Publish to GitHub Packages
+        run: |
+          npm config set //npm.pkg.github.com/:_authToken "$GITHUB_PACKAGES_TOKEN"
+          npm publish --registry https://npm.pkg.github.com
+        env:
+          GITHUB_PACKAGES_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
   # Build and publish storybook when a new version is released.
   storybook:
