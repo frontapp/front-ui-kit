@@ -40,8 +40,8 @@ jobs:
       # without mixing npm and GitHub Packages registries in CI.
       - name: Publish to GitHub Packages
         run: |
-          npm config set //npm.pkg.github.com/:_authToken "$GITHUB_PACKAGES_TOKEN"
-          npm publish --registry https://npm.pkg.github.com
+          echo "//npm.pkg.github.com/:_authToken=$GITHUB_PACKAGES_TOKEN" >> "$NPM_CONFIG_USERCONFIG"
+          yarn publish --non-interactive --access public --registry https://npm.pkg.github.com
         env:
           GITHUB_PACKAGES_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
