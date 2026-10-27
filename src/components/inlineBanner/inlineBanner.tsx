@@ -43,7 +43,7 @@ const bannerConstants: Record<InlineBannerTypes, BannerConstants> = {
   error: {
     backgroundColor: palette.red.shade20,
     iconColor: palette.red.shade40,
-    icon: 'WarningFilled'
+    icon: 'XCircleFilled'
   },
   warning: {
     backgroundColor: palette.orange.shade20,

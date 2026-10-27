@@ -59,6 +59,7 @@ import Trash from '../../assets/icons/trash.svg';
 import TrashFilled from '../../assets/icons/trashFilled.svg';
 import UserSquare from '../../assets/icons/userSquare.svg';
 import WarningFilled from '../../assets/icons/warningFilled.svg';
+import XCircleFilled from '../../assets/icons/xCircleFilled.svg';
 import {greys} from '../../helpers/colorHelpers';
 import {getIconViewBox} from './iconViewBoxes';
 
@@ -127,7 +128,8 @@ const importedIcons = {
   Trash,
   TrashFilled,
   UserSquare,
-  WarningFilled
+  WarningFilled,
+  XCircleFilled
 } as const;
 
 export type IconName = keyof typeof importedIcons;
