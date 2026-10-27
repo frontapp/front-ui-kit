@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.23.2](https://github.com/frontapp/front-ui-kit/compare/v0.23.1...v0.23.2) (2026-10-27)
+
+
+### Bug Fixes
+
+* publish the GitHub Packages mirror with its own npmrc ([#329](https://github.com/frontapp/front-ui-kit/issues/329)) ([347fe80](https://github.com/frontapp/front-ui-kit/commit/347fe80b19a93f7de631ae766e72c94129f9a892))
+
 ## [0.23.1](https://github.com/frontapp/front-ui-kit/compare/v0.23.0...v0.23.1) (2026-10-27)
 
 
