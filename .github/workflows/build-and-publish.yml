@@ -38,10 +38,16 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
       # Mirror to GitHub Packages so frontapp/front can install @frontapp/ui-kit
       # without mixing npm and GitHub Packages registries in CI.
+      #
+      # `yarn publish` revokes the npm credential it used, and it looks the token up by the default
+      # registry rather than by `--registry`, so the npmrc is rewritten to point at GitHub Packages
+      # instead of having a line appended to it.
       - name: Publish to GitHub Packages
         run: |
-          echo "//npm.pkg.github.com/:_authToken=$GITHUB_PACKAGES_TOKEN" >> "$NPM_CONFIG_USERCONFIG"
-          yarn publish --non-interactive --access public --registry https://npm.pkg.github.com
+          printf '%s\n' \
+            'registry=https://npm.pkg.github.com' \
+            "//npm.pkg.github.com/:_authToken=$GITHUB_PACKAGES_TOKEN" > "$NPM_CONFIG_USERCONFIG"
+          yarn publish --non-interactive --access public
         env:
           GITHUB_PACKAGES_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
