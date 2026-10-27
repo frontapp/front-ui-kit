@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.23.1](https://github.com/frontapp/front-ui-kit/compare/v0.23.0...v0.23.1) (2026-10-27)
+
+
+### Bug Fixes
+
+* use the x circle icon for the error inline banner ([#327](https://github.com/frontapp/front-ui-kit/issues/327)) ([6be9ff0](https://github.com/frontapp/front-ui-kit/commit/6be9ff0ce741d3b63d424243d8fb849cdf61b54a))
+
 ## [0.23.0](https://github.com/frontapp/front-ui-kit/compare/v0.22.2...v0.23.0) (2026-06-16)
 
 
