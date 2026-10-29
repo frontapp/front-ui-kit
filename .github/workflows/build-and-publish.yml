@@ -33,7 +33,15 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: yarn install --frozen-lockfile
       - run: yarn build:prod
-      - run: yarn publish --non-interactive --access public
+      # A release that already published is re-runnable: the version is skipped, not an error.
+      - name: Publish to npm
+        run: |
+          PKG="$(node -p "const p = require('./package.json'); p.name + '@' + p.version")"
+          if npm view "$PKG" version > /dev/null 2>&1; then
+            echo "$PKG is already on npm, skipping."
+            exit 0
+          fi
+          yarn publish --non-interactive --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
       # Mirror to GitHub Packages so frontapp/front can install @frontapp/ui-kit
@@ -47,6 +55,11 @@ jobs:
           printf '%s\n' \
             'registry=https://npm.pkg.github.com' \
             "//npm.pkg.github.com/:_authToken=$GITHUB_PACKAGES_TOKEN" > "$NPM_CONFIG_USERCONFIG"
+          PKG="$(node -p "const p = require('./package.json'); p.name + '@' + p.version")"
+          if npm view "$PKG" version > /dev/null 2>&1; then
+            echo "$PKG is already on GitHub Packages, skipping."
+            exit 0
+          fi
           yarn publish --non-interactive --access public
         env:
           GITHUB_PACKAGES_TOKEN: ${{secrets.GITHUB_TOKEN}}
