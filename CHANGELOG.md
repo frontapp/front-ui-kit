@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.23.3](https://github.com/frontapp/front-ui-kit/compare/v0.23.2...v0.23.3) (2026-10-29)
+
+
+### Bug Fixes
+
+* skip a version already published instead of failing the release ([#331](https://github.com/frontapp/front-ui-kit/issues/331)) ([c46b978](https://github.com/frontapp/front-ui-kit/commit/c46b978197378ce7eadae4517df0ebfe0531e4ac))
+
 ## [0.23.2](https://github.com/frontapp/front-ui-kit/compare/v0.23.1...v0.23.2) (2026-10-27)
 
 
