@@ -97,7 +97,11 @@ export const DatePicker: FC<DatePickerProps> = (props) => {
   };
 
   const onDateSelect = (date: DateTime) => {
-    const mergedDate = mergeDateAndTime(date, selectedDate || DateTime.now().startOf('day'));
+    const mergedDate = clampToSelectableTime(
+      mergeDateAndTime(date, selectedDate || DateTime.now().startOf('day')),
+      minDateTime,
+      maxDateTime
+    );
     if (!isDateSelectable(mergedDate, minDateTime, maxDateTime)) return;
     setSelectedDate(mergedDate);
   };
@@ -177,6 +181,16 @@ function maybeRenderTimePicker(
       <TimePicker timeFormat={timeFormat} value={selectedDate} onChange={onTimeSelect} />
     </StyledTimePickerDiv>
   );
+}
+
+/**
+ * The calendar lets you pick a day that is only partly inside the range, such as today when
+ * `minDate` is now. Move the time to the edge of the range instead of ignoring the click.
+ */
+function clampToSelectableTime(date: DateTime, minDate?: DateTime, maxDate?: DateTime) {
+  if (minDate && date < minDate && date.hasSame(minDate, 'day')) return minDate;
+  if (maxDate && date > maxDate && date.hasSame(maxDate, 'day')) return maxDate.startOf('minute');
+  return date;
 }
 
 function isDateSelectable(date: DateTime, minDate?: DateTime, maxDate?: DateTime) {
